@@ -268,8 +268,10 @@ if (!function_exists('admin_email_reply')) {
               $edata['email_to'] =$student->std_id;
         }
         else{
-            
+            if(isset($professor->professor_id))
+            {
             $edata['admin_to_professor'] = $professor->professor_id; 
+            }
         }
         $edata['email_from'] = $admin_details['email'];
             

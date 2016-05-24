@@ -257,6 +257,7 @@
                                                 </li>
                                             </ul>
                                         </li>
+                                        
                                         <li class="hasSub">
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Assets Management</span></a>
@@ -310,7 +311,89 @@
                                                     </a>
                                                 </li>
                                             </ul>
+                                            
+                                          <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                                <span class="txt">Forum</span></a>
+                                            <ul class="sub">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/forum">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Forum & Discussion</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/forumtopics">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Forum Topics</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </li>
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                                <span class="txt">Media</span></a>
+                                            <ul class="sub">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/photogallery">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Media Gallery</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/bannerslider">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Banner Slider</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                                <span class="txt">Email </span></a>
+                                            <ul class="sub">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/email_compose">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Compose E-Mail</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/email_inbox">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Inbox</span>
+                                                    </a>
+                                                </li>
+                                                 <li>
+                                                    <a href="<?php echo base_url(); ?>admin/email_sent">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Sent</span>
+                                                    </a>
+                                                </li>
+                                                
+                                            </ul>
+                                        </li>
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                                <span class="txt">Import & Export </span></a>
+                                            <ul class="sub">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/import">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Import</span>
+                                                    </a>
+                                                </li>
+                                                 <li>
+                                                    <a href="<?php echo base_url(); ?>admin/export">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Export</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="<?php echo base_url().'admin/system_settings' ?>"><i class="s16 fa fa-book"></i><span class=txt>System Settings </span></a>
+                                        </li>
+                                        
                                         <li class="hasSub">
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">University</span></a>

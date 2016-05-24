@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class=panel-body>
-                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_degree');" data-toggle="modal">Add new department</a>
+                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/adddegree');" data-toggle="modal">Add new department</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -39,8 +39,8 @@
                                     <?php } ?>
                                 </td>
                                 <td class="menu-action">
-                                    <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
+                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_degree/<?php echo $row['d_id']; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Edit</span></a>
+                                     <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/degree/delete/<?php echo $row['d_id']; ?>');" data-toggle="modal" ><span class="label label-danger mr6 mb6">Delete</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>						

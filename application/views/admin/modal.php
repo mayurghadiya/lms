@@ -98,7 +98,7 @@
 
 
             <div class="modal-footer" style="margin:0px; border-top:0px; text-align:center;">
-                <a href="#" class="btn btn-danger" id="delete_link">Remove</a>
+                <a href="" class="btn btn-danger" id="delete_link">Remove</a>
                 <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
             </div>
         </div>

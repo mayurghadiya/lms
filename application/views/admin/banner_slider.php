@@ -14,40 +14,30 @@
                 </div>
             </div>
             <div class=panel-body>
+                
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th>#</th>			
-                            <th>Topic</th>
-                            <th>Branch</th>
-                            <th>Attachment</th>
-                            <th>Description</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th><div>#</div></th>
+                            <th><div>Title</div></th>  
+                            <th><div>Description</div></th>                                                                                  
+                            <th><div>Action</div></th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <?php foreach ($courseware as $row) { ?>
+                         <?php $count = 1;
+                               foreach ($banners as $row): ?>
                             <tr>
-                                <td></td>
-                                <td><?php echo $row['topic']; ?></td>
-                                <td><?php echo $row['c_name']; ?></td>
-                                <td id="downloadedfile"><a href="<?= base_url() ?>uploads/courseware/<?php echo $row['attachment']; ?>" download="" title="<?php echo $row['attachment']; ?>"><i class="fa fa-download"></i></a></td>	
-                                <td><?php echo $row['description']; ?></td>
-                                <td>
-                                    <?php if ($row['status'] == '1') { ?>
-                                        <span class="label label-success">Active</span>
-                                    <?php } else { ?>	
-                                        <span class="label label-default">InActive</span>
-                                    <?php } ?>
-                                </td>
+                                <td><?php echo $count++; ?></td>    
+                                <td><?php if($row->banner_title!=""){ echo $row->banner_title; }else{ echo "No-Title"; } ?></td>    
+                                <td><?php echo $row->banner_desc; ?></td>  
                                 <td class="menu-action">
                                     <a><span class="label label-primary mr6 mb6">Edit</span></a>
                                     <a><span class="label label-danger mr6 mb6">Delete</span></a>
                                 </td>
                             </tr>
-                        <?php } ?>																
+                            <?php endforeach;  ?>                                    
                     </tbody>
                 </table>
             </div>
