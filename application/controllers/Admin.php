@@ -962,7 +962,6 @@ class Admin extends MY_Controller {
         if ($param1 == 'delete') {
             $this->db->where('assign_id', $param2);
             $this->db->delete('assignment_manager');
-            delete_notification('assignment_manager', $param2);
             $this->session->set_flashdata('flash_message', 'Assignment Deleted Successfully');
             redirect(base_url() . 'admin/assignment/', 'refresh');
         }
@@ -978,10 +977,40 @@ class Admin extends MY_Controller {
         $this->data['degree'] = $this->db->get('degree')->result();
         $this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignment';
-        $this->data['page_title'] = $this->lang_message('assignment_title');
+        $this->data['title'] = $this->lang_message('assignment_title');
         $this->__site_template('admin/assignment', $this->data);
     }
+    
+    /**
+     * check assignment
+     */
+ function checkassignment($id = '') {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post('semester');
+        $title = $this->input->post('title');
+        $data = $this->db->get_where('assignment_manager', array('assign_degree' => $degree,
+                    'course_id' => $course,
+                    'assign_title' => $title,
+                    'assign_batch' => $batch, 'assign_sem' => $semester, 'assign_id!=' => $id))->result_array();
 
+        echo json_encode($data);
+    }
+    
+    function checkassignments() {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post('semester');
+        $title = $this->input->post('title');
+        $data = $this->db->get_where('assignment_manager', array('assign_degree' => $degree,
+                    'course_id' => $course,
+                    'assign_title' => $title,
+                    'assign_batch' => $batch, 'assign_sem' => $semester))->result_array();
+        echo json_encode($data);
+    }
+    
     /**
      * Study resource managemnt
      * @param string $param1
