@@ -502,6 +502,36 @@
                                                 <span class=txt>Video Streaming </span>
                                             </a>
                                         </li>
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                                <span class="txt">User Management</span></a>
+                                            <ul class="sub">
+                                               <li >
+                                                    <a href="<?php echo base_url(); ?>admin/create_group">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="menu-text">Create Groups</span>  
+                                                    </a>
+                                                </li>
+                                                <li >
+                                                    <a href="<?php echo base_url(); ?>admin/list_group">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="menu-text">List Groups</span>  
+                                                    </a>
+                                                </li>
+                                                  <li>
+                                                      <a href="<?php echo base_url(); ?>admin/assign_module">
+                                                          <i class="s16 icomoon-icon-screen-2"></i>
+                                                          <span class="menu-text">Assign Module</span>  
+                                                      </a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="<?php echo base_url(); ?>admin/list_module">
+                                                          <i class="s16 icomoon-icon-screen-2"></i>
+                                                          <span class="menu-text">List Module</span>  
+                                                      </a>
+                                                  </li>                                                
+                                            </ul>
+                                        </li>
                                 </div>
                             </div>
                             <!-- End sidenav -->

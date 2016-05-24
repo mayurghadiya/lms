@@ -3802,8 +3802,7 @@ class Admin extends MY_Controller {
     /*     * **GROUP MANAGEMENT**** */
     /*     * **Develop By Hardik Bhut 29-Feb-2016**** */
     function create_group($param1 = '', $param2 = '', $param3 = '') {
-        if ($this->session->userdata('admin_login') != 1)
-            redirect(base_url(), 'refresh');
+        
         if ($param1 == 'create') {
             $data['group_name'] = $this->input->post('group_name');
             $data['user_type'] = $this->input->post('user_type');
@@ -3822,7 +3821,35 @@ class Admin extends MY_Controller {
         
          $this->__site_template('admin/create_group', $this->data);
     }
+    
+    /**
+     * get professor
+     */
+    
+    function get_group_professor()
+    {
+         $dataprofessor = $this->db->get("professor")->result_array();
+        foreach ($dataprofessor as $row) {
+            $html .='<option value="' . $row['professor_id'] . '">' . $row['name'] . '</option>';
+        }
+        echo $html;
+    }
+    /**
+     * get student 
+     */
+    function get_group_student() {
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("sem");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result_array();
 
+        foreach ($datastudent as $row) {
+            $html .='<option value="' . $row['std_id'] . '">' . $row['name'] . '</option>';
+        }
+        echo $html;
+    }
+    
     function list_group($param1 = '', $param2 = '', $param3 = '') {
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
@@ -3851,7 +3878,86 @@ class Admin extends MY_Controller {
         $this->data['title'] = 'List Group';        
         $this->__site_template('admin/list_group', $this->data);
     }
-
+    
+    function assign_module($param1 = '', $param2 = '', $param3 = '') {
+        if ($this->session->userdata('admin_login') != 1)
+            redirect(base_url(), 'refresh');
+        if ($param1 == 'create') {
+            $group_name=$this->input->post('group_name');
+            $group_explode=explode(',',$group_name);
+            $data['group_id'] = $group_explode[0];
+            $data['module_id'] = implode(',', $this->input->post('module_name'));
+            //print_r($data); die;
+            $this->db->where(array('group_id' => $this->input->post('group_name')));
+            $module_row = $this->db->get('assign_module')->row();
+//            $this->db->where(array('group_id' => $this->input->post('group_name')));
+//            $group_count = $this->db->count_all_results('assign_module');
+            
+            if (count($module_row) > 0) {
+                $this->db->where('assign_module_id', $module_row->assign_module_id);
+                $this->db->update('assign_module', $data);
+            } else {
+                $this->db->insert('assign_module', $data);
+            }
+            $this->session->set_flashdata('flash_message', 'Module assign successfully');
+            redirect(base_url() . 'admin/assign_module', 'refresh');
+        }
+        $this->data['page'] = 'assign_module';
+        $this->data['title'] = 'Assign Module';
+        $this->__site_template('admin/assign_module', $this->data);
+        
+    }
+    /**
+     * list module
+     */
+    
+     function list_module($param1 = '', $param2 = '', $param3 = '') {
+        if ($this->session->userdata('admin_login') != 1)
+            redirect(base_url(), 'refresh');
+        if ($param1 == 'do_update') {
+            $data['group_id'] = $this->input->post('group_name');
+            $data['module_id'] = implode(',', $this->input->post('module_name'));
+            $this->db->where('group_id', $data['group_id']);
+            $this->db->update('assign_module', $data);
+            $this->session->set_flashdata('flash_message', get_phrase('data_updated_successfully'));
+            redirect(base_url() . 'admin/list_module', 'refresh');
+        }
+        $this->data['page'] = 'list_module';
+        $this->data['title'] = 'List Module';
+        $this->__site_template('admin/list_module', $this->data);
+    }
+    
+      function get_module_ajax() {
+        
+        $get_assign_module_list = $this->db->get_where('assign_module', array('group_id' => $this->input->post('id')))->result_array();
+        
+        $assigned_module_list=array();
+        $full_module_list=array();       
+        
+        if(count($get_assign_module_list)> 0)
+        {
+        foreach ($get_assign_module_list as $row_key => $row_value) {
+            $module_record = explode(',', $row_value['module_id']);
+            $modules_query = $this->db->get_where('modules',array('user_type'=>$this->input->post('type')))->result_array();
+            
+            foreach ($modules_query as $modules_row) {
+                if (!in_array($modules_row['module_id'], $module_record)) {
+                    $full_module_list[] = '<option value="' . $modules_row['module_id'] . '">' . $modules_row['module_name'] . '</option>';
+                }
+            }
+            
+            foreach ($module_record as $module_record_value) {
+                $user_role_query = $this->db->get_where('modules', array('module_id' => $module_record_value))->result_array();
+                foreach ($user_role_query as $user_role_row) {
+                    $assigned_module_list[] = '<option value="' . $user_role_row['module_id'] . '">' . $user_role_row['module_name'] . '</option>';
+                }
+            }
+        }
+        }
+        $out = array('assigned_module_list' => $assigned_module_list, 'full_module_list' => $full_module_list);
+        echo json_encode($out);
+    }
+    
     /**
      *  admin group
      */
