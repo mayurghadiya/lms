@@ -21,16 +21,16 @@
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-3 control-label"><?php echo ucwords("System Name"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                         <input type="text" class="form-control" name="system_name" id="system_name" value="<?php echo $this->db->get_where('system_setting', array('type' => 'system_name'))->row()->description; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-3 control-label"><?php echo ucwords("Phone"); ?><span style="color:red">*</span></label>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-9">
                         <div class="col-sm-3 p-l-0">
-                            <select name="countryCode" id="countryCode" class="form-control">  
+                            <select style="margin-left: -15px;" name="countryCode" id="countryCode" class="form-control">  
                                 <option data-countryCode="DZ" value="213">Algeria (+213)</option>
                                 <option data-countryCode="AD" value="376">Andorra (+376)</option>
                                 <option data-countryCode="AO" value="244">Angola (+244)</option>
@@ -248,32 +248,32 @@
 
                             </select>
                         </div>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="phone" id="system_phone" value="<?php echo $this->db->get_where('system_setting', array('type' => 'phone'))->row()->description; ?>">
+                        <div class="col-sm-4">
+                            <input style="margin-left: -18px" type="text" class="form-control" name="phone" id="system_phone" value="<?php echo $this->db->get_where('system_setting', array('type' => 'phone'))->row()->description; ?>">
                         </div>                                                    
                     </div>
                 </div>
                 <div class="form-group hidden">
                     <label  class="col-sm-3 control-label"><?php echo ucwords("Paypal Email"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                         <input type="text" class="form-control" name="paypal_email" id="paypal_email" value="<?php echo $this->db->get_where('system_setting', array('type' => 'paypal_email'))->row()->description; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-3 control-label"><?php echo ucwords("Currency"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                         <input type="text" class="form-control" name="currency" id="currency" value="<?php echo $this->db->get_where('system_setting', array('type' => 'currency'))->row()->description; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-3 control-label"><?php echo ucwords("System Email"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                         <input type="text" class="form-control" name="system_email" id="system_email" value="<?php echo $this->db->get_where('system_setting', array('type' => 'system_email'))->row()->description; ?>">
                     </div>
                 </div>	
                 <div class="form-group hidden">
                     <label for="field-1" class="col-sm-3 control-label"><?php echo ucwords("Photo"); ?></label>                          
-                    <div class="col-sm-6">
+                    <div class="col-sm-9">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
                             <div class="fileinput-new thumbnail" style="width: 100px; height: 100px;" data-trigger="fileinput">
                                 <img src="<?php echo $this->Crud_model->get_image_url('system', $this->session->userdata('admin_id')); ?>" id="blah" alt="...">
@@ -288,7 +288,7 @@
                     </div>
                 </div>	 	
                 <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-6">
+                    <div class="col-sm-offset-3 col-sm-9">
                         <button type="submit" class="btn btn-primary"><?php echo ucwords("save"); ?></button>
                     </div>
                 </div>
@@ -305,3 +305,9 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+<script>
+    $(document).ready(function () {
+        var countryCode = '<?php echo $this->db->get_where('system_setting', array('type' => 'country_code'))->row()->description; ?>';
+        $('#countryCode').val(countryCode);
+    })
+</script>

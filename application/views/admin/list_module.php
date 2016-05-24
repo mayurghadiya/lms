@@ -18,7 +18,7 @@
                         <div class="">
                             <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
                         </div> 
-                        <?php echo form_open(base_url() . 'index.php?admin/list_group/do_update', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'list_group')); ?>
+                        <?php echo form_open(base_url() . 'admin/list_group/do_update', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'list_group')); ?>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Group Name</label>
                             <div class="col-sm-7 controls">

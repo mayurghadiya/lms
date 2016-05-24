@@ -963,7 +963,6 @@ class Admin extends MY_Controller {
         if ($param1 == 'delete') {
             $this->db->where('assign_id', $param2);
             $this->db->delete('assignment_manager');
-            delete_notification('assignment_manager', $param2);
             $this->session->set_flashdata('flash_message', 'Assignment Deleted Successfully');
             redirect(base_url() . 'admin/assignment/', 'refresh');
         }
@@ -979,8 +978,38 @@ class Admin extends MY_Controller {
         $this->data['degree'] = $this->db->get('degree')->result();
         $this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignment';
-        $this->data['page_title'] = $this->lang_message('assignment_title');
+        $this->data['title'] = $this->lang_message('assignment_title');
         $this->__site_template('admin/assignment', $this->data);
+    }
+
+    /**
+     * check assignment
+     */
+    function checkassignment($id = '') {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post('semester');
+        $title = $this->input->post('title');
+        $data = $this->db->get_where('assignment_manager', array('assign_degree' => $degree,
+                    'course_id' => $course,
+                    'assign_title' => $title,
+                    'assign_batch' => $batch, 'assign_sem' => $semester, 'assign_id!=' => $id))->result_array();
+
+        echo json_encode($data);
+    }
+
+    function checkassignments() {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post('semester');
+        $title = $this->input->post('title');
+        $data = $this->db->get_where('assignment_manager', array('assign_degree' => $degree,
+                    'course_id' => $course,
+                    'assign_title' => $title,
+                    'assign_batch' => $batch, 'assign_sem' => $semester))->result_array();
+        echo json_encode($data);
     }
 
     /**
@@ -2646,50 +2675,39 @@ class Admin extends MY_Controller {
     }
 
     /**
-     *  Forum & Discussion
-     */
-
-    /**
-     * Forum
-     *     
-     */
-    function forum() {
-        $this->data['page'] = 'forum';
-        $this->data['title'] = $this->lang_message('forum_title');
-        $this->data['forum'] = $this->forum_model->getforum();
-        $this->__site_template('admin/forum', $this->data);
-    }
-
-    /**
      * forum crud
      * 
      */
-
-    /**
-     * @param string $param 
+    /*
+     * @param String $param
      * @param int $id
      */
-    function crud($param = '', $id = '') {
+
+    function forum($param = '', $id = '') {
         if ($param == "create") {
             $data['forum_title'] = $this->input->post("forum_title");
             $data['forum_status'] = $this->input->post("forum_status");
             $this->forum_model->create($data);
             $this->session->set_flashdata('flash_message', 'Forum Added Successfully');
-            redirect(base_url() . 'forum/', 'refresh');
+            redirect(base_url() . 'admin/forum', 'refresh');
         }
         if ($param == "update") {
             $data['forum_title'] = $this->input->post("forum_title");
             $data['forum_status'] = $this->input->post("forum_status");
             $this->forum_model->update($data, $id);
             $this->session->set_flashdata('flash_message', 'Forum Updated Successfully');
-            redirect(base_url() . 'forum/', 'refresh');
+            redirect(base_url() . 'admin/forum', 'refresh');
         }
         if ($param == "delete") {
 
             $this->forum_model->delete($id);
             $this->session->set_flashdata('flash_message', 'Forum Deleted Successfully');
-            redirect(base_url() . 'forum/', 'refresh');
+            redirect(base_url() . 'admin/forum', 'refresh');
         }
+        $this->data['page'] = 'forum';
+        $this->data['title'] = $this->lang_message('forum_title');
+        $this->data['forum'] = $this->forum_model->getforum();
+        $this->__site_template('admin/forum', $this->data);
     }
 
     /**
@@ -2731,6 +2749,32 @@ class Admin extends MY_Controller {
             if ($topic[0]['user_role'] == $this->session->userdata('login_type')) {
                 $data['user_role'] = $this->session->userdata('login_type');
                 $data['user_role_id'] = $this->session->userdata('login_id');
+                $data['user_role_id'] = $this->session->userdata('login_user_id');
+                $data['forum_id'] = $this->input->post('forum_id');
+
+
+                $this->forum_model->create_topic($data);
+                $this->session->set_flashdata('flash_message', 'Forum Topic Added Successfully');
+                redirect(base_url() . 'admin/forumtopics', 'refresh');
+            }
+            if ($param == "update") {
+                $topic = $this->forum_model->getforumtopic($id);
+                $data['forum_topic_title'] = $this->input->post('topic_title');
+                $data['forum_topic_status'] = $this->input->post('topic_status');
+                $data['forum_id'] = $this->input->post('forum_id');
+                $data['forum_topic_desc'] = $this->input->post('description');
+                if ($topic[0]['user_role'] == $this->session->userdata('login_type')) {
+                    $data['user_role'] = $this->session->userdata('login_type');
+                    $data['user_role_id'] = $this->session->userdata('login_id');
+                }
+                $this->forum_model->update_topic($data, $id);
+                $this->session->set_flashdata('flash_message', 'Forum Topic Updated Successfully');
+                redirect(base_url() . 'admin/forumtopics', 'refresh');
+            }
+            if ($param == "delete") {
+                $this->forum_model->forum_topicsdelete($id);
+                $this->session->set_flashdata('flash_message', 'Forum Topic Deleted Successfully');
+                redirect(base_url() . 'admin/forumtopics', 'refresh');
             }
             $this->forum_model->update_topic($data, $id);
             $this->session->set_flashdata('flash_message', 'Forum Topic Updated Successfully');
@@ -2784,7 +2828,7 @@ class Admin extends MY_Controller {
      * @param String $param
      * @param String $param2
      */
-    public function photogallery($param = '', $param2 = '') {
+    function photogallery($param = '', $param2 = '') {
         if ($param == 'create') {
             if ($this->input->post()) {
                 // retrieve the number of images uploaded;
@@ -2879,7 +2923,6 @@ class Admin extends MY_Controller {
                     "gallery_img" => $gallery_img,
                     "main_img" => $main_img,
                     "gal_status" => $status);
-
                 $this->photo_gallery->addmedia("photo_gallery", $insert);
 
                 $success = $this->lang_message('gallery_success');
@@ -3007,19 +3050,19 @@ class Admin extends MY_Controller {
                 $this->session->set_flashdata('flash_message', $success);
                 redirect(base_url() . 'admin/photogallery');
             }
-        }
-        if ($param == "delete") {
-            $this->db->where("gallery_id", $param2);
-            $this->db->delete("photo_gallery");
-            $success = $this->lang_message('gallery_delete');
-            $this->session->set_flashdata('flash_message', $success);
-            redirect(base_url() . 'index.php?media/photogallery');
-        }
+            if ($param == "delete") {
+                $this->db->where("gallery_id", $param2);
+                $this->db->delete("photo_gallery");
+                $success = $this->lang_message('gallery_delete');
+                $this->session->set_flashdata('flash_message', $success);
+                redirect(base_url() . 'index.php?media/photogallery');
+            }
 
-        $this->data['gallery'] = $this->photo_gallery->getphotogallery();
-        $this->data['title'] = 'Photo Gallery';
-        $this->data['page'] = 'photo_gallery';
-        $this->__site_template('admin/photo_gallery', $this->data);
+            $this->data['gallery'] = $this->photo_gallery->getphotogallery();
+            $this->data['title'] = 'Photo Gallery';
+            $this->data['page'] = 'photo_gallery';
+            $this->__site_template('admin/photo_gallery', $this->data);
+        }
     }
 
     /**
@@ -3877,8 +3920,9 @@ class Admin extends MY_Controller {
             $data['group_id'] = $group_explode[0];
             $data['module_id'] = implode(',', $this->input->post('module_name'));
             //print_r($data); die;
-            $this->db->where(array('group_id' => $this->input->post('group_name')));
+            $this->db->where(array('group_id' => $data['group_id']));
             $module_row = $this->db->get('assign_module')->row();
+
 //            $this->db->where(array('group_id' => $this->input->post('group_name')));
 //            $group_count = $this->db->count_all_results('assign_module');
 
@@ -3888,6 +3932,9 @@ class Admin extends MY_Controller {
             } else {
                 $this->db->insert('assign_module', $data);
             }
+//             print_r($this->input->post('multiselect'));
+//            echo $this->db->last_query();
+//            exit;
             $this->session->set_flashdata('flash_message', 'Module assign successfully');
             redirect(base_url() . 'admin/assign_module', 'refresh');
         }
@@ -3915,8 +3962,13 @@ class Admin extends MY_Controller {
         $this->__site_template('admin/list_module', $this->data);
     }
 
-    function get_module_ajax() {
+    function get_module() {
+        $type = $this->input->post('type');
+        $data = $this->db->get_where('modules', array('user_type' => $type))->result_array();
+        echo json_encode($data);
+    }
 
+    function get_module_ajax() {
         $get_assign_module_list = $this->db->get_where('assign_module', array('group_id' => $this->input->post('id')))->result_array();
 
         $assigned_module_list = array();
@@ -4086,7 +4138,7 @@ class Admin extends MY_Controller {
      * @param type $cc
      * @param type $attachments
      */
-    public function sendEmail($email, $subject, $message, $cc, $attachments) {
+    function sendEmail($email, $subject, $message, $cc, $attachments) {
         //$this->email->set_newline("\r\n");
         $this->email->from('mayur.ghadiya@searchnative.in', 'Search Native India');
         $this->email->to($email);
@@ -4302,7 +4354,7 @@ class Admin extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
+            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
@@ -4333,7 +4385,7 @@ class Admin extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
+            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
@@ -4351,6 +4403,77 @@ class Admin extends MY_Controller {
         $semester = $this->input->post('semester');
         $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode))->result_array();
         echo json_encode($data);
+    }
+
+    /**
+     * Get assessment student
+     * @param String $param
+     */
+    function get_assessment_student($param = '') {
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("semester");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
+
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
+        $html = '<option value="">Select Student</option>';
+        foreach ($datastudent as $row):
+            $html .='<option value="' . $row->std_id . '">' . $row->name . '</option>';
+        endforeach;
+        echo $html;
+    }
+
+    /**
+     * get batches
+     * @param type $param
+     */
+    function get_batches($param = '') {
+        $cid = $this->input->post("course");
+        $did = $this->input->post("degree");
+        if ($cid != '') {
+            $batch = $this->db->query("SELECT * FROM batch WHERE FIND_IN_SET('" . $did . "',degree_id) AND FIND_IN_SET('" . $cid . "',course_id)")->result_array();
+            $html = '<option value="">Select Batch</option>';
+            foreach ($batch as $btc):
+                $html .='<option value="' . $btc['b_id'] . '">' . $btc['b_name'] . '</option>';
+
+            endforeach;
+            echo $html;
+        }
+    }
+
+    /**
+     * getc courses
+     * @param String $param
+     */
+    function get_course($param = '') {
+        $did = $this->input->post("degree");
+
+        if ($did != '') {
+            $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
+            $html = '<option value="">Select Branch</option>';
+            foreach ($cource as $crs):
+                $html .='<option value="' . $crs['course_id'] . '">' . $crs['c_name'] . '</option>';
+
+            endforeach;
+            echo $html;
+        }
+    }
+
+    /**
+     * return student list
+     */
+    function assessment_student() {
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("semester");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
+
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
+        $html = '<option value="">Select Student</option>';
+        foreach ($datastudent as $row):
+            $html .='<option value="' . $row->std_id . '">' . $row->name . '</option>';
+        endforeach;
+        echo $html;
     }
 
     /**

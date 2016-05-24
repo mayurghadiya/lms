@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class=panel-body>
-                 <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsem');" data-toggle="modal">Add New Semester</a>
+                <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsem');" data-toggle="modal" class="links">Add New Semester</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>

@@ -26,7 +26,7 @@
                         <div class="form-group">
                                 <label class="col-sm-3 control-label"><?php echo ucwords("Status");?></label>
                                 <div class="col-sm-5">
-                                <select name="semester_status">
+                                <select name="semester_status" class="form-control">
                                         <option value="1" <?php if($row['s_status'] == '1'){ echo "selected"; } ?>>Active</option>
                                         <option value="0" <?php if($row['s_status'] == '0'){ echo "selected"; } ?>>Inactive</option>		
                                 </select>

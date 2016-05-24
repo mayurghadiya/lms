@@ -14,6 +14,7 @@
                 </div>
             </div>
             <div class=panel-body>
+                 <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addevent');" data-toggle="modal">Add new department</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -37,8 +38,8 @@
                                 <td><?php echo date('F d, Y', strtotime($row['event_date'])); ?></td> 
                                 <td><?php echo date('h:i A', strtotime($row['event_date'])); ?></td> 
                                 <td class="menu-action">
-                                    <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_event/<?php echo $row['event_id']; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/events/delete/<?php echo $row['event_id']; ?>');" data-toggle="modal" ><span class="label label-danger mr6 mb6">Delete</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>															

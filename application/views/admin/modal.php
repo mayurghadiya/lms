@@ -1,18 +1,18 @@
 
 <script>
-    
-     jQuery(window).resize(function(){
-         
 
- $('#modal_ajax').on('shown',function(){
-     var offset = 0;
-     $(this).find('.modal-body').attr('style','max-height:'+($(window).height()-offset)+'px !important;');
-  });
-  $('modal.fade.in').on('shown',function(){
-     var offset = 0;
-     $(this).find('.modal-body').attr('style','max-height:'+($(window).height()-offset)+'px !important;');
-  }); 
-  });  
+    jQuery(window).resize(function () {
+
+
+        $('#modal_ajax').on('shown', function () {
+            var offset = 0;
+            $(this).find('.modal-body').attr('style', 'max-height:' + ($(window).height() - offset) + 'px !important;');
+        });
+        $('modal.fade.in').on('shown', function () {
+            var offset = 0;
+            $(this).find('.modal-body').attr('style', 'max-height:' + ($(window).height() - offset) + 'px !important;');
+        });
+    });
 </script>
 
 <script type="text/javascript">
@@ -40,7 +40,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 id="myModalLabel2" class="modal-title">Modal title</h4>
+                <h4 id="myModalLabel2" class="modal-title">Learning Management System</h4>
             </div>
             <div class="modal-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -48,6 +48,8 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
+
+            <div class="modal-footer"><button data-dismiss="modal" class="btn btn-default" type="button">Close</button></div>
         </div>
     </div>
 </div>
