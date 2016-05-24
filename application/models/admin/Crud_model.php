@@ -1215,6 +1215,16 @@ class Crud_model extends CI_Model {
 
         return $insert_id;
     }
+    
+    /**
+     * Charity fund
+     * @return mixed
+     */
+    function charity_fund() {
+        $this->db->order_by('charity_fund_id', 'DESC');
+        
+        return $this->db->get('charity_fund')->result();
+    }
 
     /**
      * Get graduates students

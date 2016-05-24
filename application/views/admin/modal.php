@@ -1,10 +1,25 @@
-<script src="<?php echo base_url(); ?>assets/js/pages/modals.js"></script>
+
+<script>
+    
+     jQuery(window).resize(function(){
+         
+
+ $('#modal_ajax').on('shown',function(){
+     var offset = 0;
+     $(this).find('.modal-body').attr('style','max-height:'+($(window).height()-offset)+'px !important;');
+  });
+  $('modal.fade.in').on('shown',function(){
+     var offset = 0;
+     $(this).find('.modal-body').attr('style','max-height:'+($(window).height()-offset)+'px !important;');
+  }); 
+  });  
+</script>
 
 <script type="text/javascript">
     function showAjaxModal(url)
     {
         // SHOWING AJAX PRELOADER IMAGE
-        jQuery('#modal_ajax .modal-body').html('<div style="text-align:center;margin-top:200px;"><img src="assets/img/preloader.gif" /></div>');
+        jQuery('#modal_ajax .modal-body').html('<div style="text-align:center;margin-top:200px;"><img src="<?php echo base_url(); ?>assets/img/preloader.gif" /></div>');
 
         // LOADING THE AJAX MODAL
         jQuery('#modal_ajax').modal('show', {backdrop: 'true'});
@@ -20,14 +35,14 @@
     }
 </script>
 
-<div aria-hidden="true" role="dialog" tabindex="-1" id="modal_ajax" class="modal fade" style="display: none;">
-    <div class="modal-dialog modal-dialog-center" style="margin-top: -192px; margin-left: -300px;">
-        <div class="modal-content" style="max-height: 384px;">
+<div aria-hidden="true" role="dialog" tabindex="-1" id="modal_ajax" class="modal fade">
+    <div class="modal-dialog modal-dialog-center">
+        <div class="modal-content">
             <div class="modal-header">
                 <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                 <h4 id="myModalLabel2" class="modal-title">Modal title</h4>
             </div>
-            <div class="modal-body" style="max-height: 280px;">
+            <div class="modal-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

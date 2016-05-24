@@ -57,3 +57,14 @@ $route['translate_uri_dashes'] = TRUE;
 $route['admin/department'] = 'admin/degree';
 $route['admin/branch'] = 'admin/courses';
 $route['admin/class'] = 'admin/division';
+$route['admin/study_resourse'] = 'admin/studyresource';
+$route['admin/digital_library'] = 'admin/library';
+$route['admin/exam_schedule'] = 'admin/exam_time_table';
+$route['admin/exam_marks'] = 'admin/marks';
+$route['admin/exam_grade'] = 'admin/grade';
+$route['admin/cms_pages'] = 'admin/cms';
+
+$route['professor/study_resource'] = 'professor/studyresource';
+$route['professor/digital_library'] = 'professor/library';
+$route['professor/exam_schedule'] = 'professor/exam_time_table';
+$route['professor/exam_marks'] = 'professor/marks';

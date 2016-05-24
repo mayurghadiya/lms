@@ -1,163 +1,35 @@
-<!-- Start .row -->
-<div class=row>
-    <div class=col-lg-12>
-        <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh" id="supr0">
-            <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>Form validation</h4>
-                <div class="panel-controls panel-controls-right"><a href="#" class="panel-refresh"><i class="fa fa-refresh s12"></i></a><a href="#" class="toggle panel-minimize"><i class="fa fa-plus s12"></i></a><a href="#" class="panel-close"><i class="fa fa-times s12"></i></a></div>
-            </div>
-            <div class="panel-body pt0 pb0">
-                <form id=validate class="form-horizontal group-border stripped" role=form>
-                    <div class=form-group>
-                        <label for=text class="col-lg-2 col-md-3 control-label">Required field</label>
-                        <div class="col-lg-10 col-md-9"><input id=text class="form-control required"></div>
-                    </div>
-                    <div class=form-group>
-                        <label for=email class="col-lg-2 col-md-3 control-label">Email field</label>
-                        <div class="col-lg-10 col-md-9"><input id=email name=email type=email class=form-control placeholder="Type your email"></div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=minval class="col-lg-2 col-md-3 control-label">Required with min value 13</label>
-                        <div class="col-lg-10 col-md-9"><input id=minval class=form-control name=minval placeholder=""></div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=maxval class="col-lg-2 col-md-3 control-label">Required with max value 13</label>
-                        <div class="col-lg-10 col-md-9"><input id=maxval class=form-control name=maxval placeholder=""></div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=password class="col-lg-2 col-md-3 control-label">Password field</label>
-                        <div class="col-lg-10 col-md-9"><input type=password class=form-control id=password name=password placeholder="Enter your password"></div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=maxLenght class="col-lg-2 col-md-3 control-label">Required with max lenght of 10</label>
-                        <div class="col-lg-10 col-md-9"><input class=form-control id=maxLenght name=maxLenght placeholder=""></div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=rangelenght class="col-lg-2 col-md-3 control-label">Required range between 10-20 chars</label>
-                        <div class="col-lg-10 col-md-9"><input class=form-control id=rangelenght name=rangelenght placeholder=""></div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=url class="col-lg-2 col-md-3 control-label">Required with url validaiton</label>
-                        <div class="col-lg-10 col-md-9"><input class=form-control id=url name=url placeholder=""></div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=date class="col-lg-2 col-md-3 control-label">Required date</label>
-                        <div class="col-lg-10 col-md-9"><input class=form-control id=date name=date placeholder=""></div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=number class="col-lg-2 col-md-3 control-label">Required number</label>
-                        <div class="col-lg-10 col-md-9"><input class=form-control id=number name=number placeholder=""></div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=textarea class="col-lg-2 col-md-3 control-label">Required textarea</label>
-                        <div class="col-lg-10 col-md-9"><textarea class=form-control name=textarea id=textarea rows=4></textarea></div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=ccard class="col-lg-2 col-md-3 control-label">Required and accept credit card number</label>
-                        <div class="col-lg-10 col-md-9"><input class=form-control id=ccard name=ccard placeholder=""></div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=agree class="col-lg-2 col-md-3 control-label">Required checkbox</label>
-                        <div class="col-lg-10 col-md-9">
-                            <div class=checkbox-custom><input type=checkbox name=agree id=agree value=option><label for=agree>agree terms ?</label></div>
-                        </div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <label for=select2 class="col-lg-2 col-md-3 control-label">Required select with filter</label>
-                        <div class="col-lg-10 col-md-9">
-                            <select class="form-control select2" name=select2 id=select2>
-                                <option value="">Choose</option>
-                                <optgroup label="Alaskan/Hawaiian Time Zone">
-                                    <option value=AK>Alaska</option>
-                                    <option value=HI>Hawaii</option>
-                                </optgroup>
-                                <optgroup label="Pacific Time Zone">
-                                    <option value=CA>California</option>
-                                    <option value=NV>Nevada</option>
-                                    <option value=OR>Oregon</option>
-                                    <option value=WA>Washington</option>
-                                </optgroup>
-                                <optgroup label="Mountain Time Zone">
-                                    <option value=AZ>Arizona</option>
-                                    <option value=CO>Colorado</option>
-                                    <option value=ID>Idaho</option>
-                                    <option value=MT>Montana</option>
-                                    <option value=NE>Nebraska</option>
-                                    <option value=NM>New Mexico</option>
-                                    <option value=ND>North Dakota</option>
-                                    <option value=UT>Utah</option>
-                                    <option value=WY>Wyoming</option>
-                                </optgroup>
-                                <optgroup label="Central Time Zone">
-                                    <option value=AL>Alabama</option>
-                                    <option value=AR>Arkansas</option>
-                                    <option value=IL>Illinois</option>
-                                    <option value=IA>Iowa</option>
-                                    <option value=KS>Kansas</option>
-                                    <option value=KY>Kentucky</option>
-                                    <option value=LA>Louisiana</option>
-                                    <option value=MN>Minnesota</option>
-                                    <option value=MS>Mississippi</option>
-                                    <option value=MO>Missouri</option>
-                                    <option value=OK>Oklahoma</option>
-                                    <option value=SD>South Dakota</option>
-                                    <option value=TX>Texas</option>
-                                    <option value=TN>Tennessee</option>
-                                    <option value=WI>Wisconsin</option>
-                                </optgroup>
-                                <optgroup label="Eastern Time Zone">
-                                    <option value=CT>Connecticut</option>
-                                    <option value=DE>Delaware</option>
-                                    <option value=FL>Florida</option>
-                                    <option value=GA>Georgia</option>
-                                    <option value=IN>Indiana</option>
-                                    <option value=ME>Maine</option>
-                                    <option value=MD>Maryland</option>
-                                    <option value=MA>Massachusetts</option>
-                                    <option value=MI>Michigan</option>
-                                    <option value=NH>New Hampshire</option>
-                                    <option value=NJ>New Jersey</option>
-                                    <option value=NY>New York</option>
-                                    <option value=NC>North Carolina</option>
-                                    <option value=OH>Ohio</option>
-                                    <option value=PA>Pennsylvania</option>
-                                    <option value=RI>Rhode Island</option>
-                                    <option value=SC>South Carolina</option>
-                                    <option value=VT>Vermont</option>
-                                    <option value=VA>Virginia</option>
-                                    <option value=WV>West Virginia</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- End .form-group  -->
-                    <div class=form-group>
-                        <div class=col-lg-offset-2><button class="btn btn-default ml15" type=submit>Test validation</button></div>
-                    </div>
-                    <!-- End .form-group  -->
-                </form>
-            </div>
-        </div>
-        <!-- End .panel -->
+
+<div class="row">
+    <div class="panel panel-default chart col-lg-7 col-md-7 col-sm-7 col-xs-6" id="supr0" style="padding: 10px 0 !important; ">
+        <div class="panel-body"><div class="fc fc-ltr fc-unthemed" id="calendar"><div class="fc-toolbar"><div class="fc-left"><h2 class="month_year_title">Event Calendar : May 2016</h2></div><div class="fc-right"><div class="fc-button-group"><div class="btn-group mr10"><button type="button" class="btn btn-sm btn-default"><span class="fc-icon fc-icon-left-single-arrow"></span></button><button disabled="disabled" type="button" class="btn btn-sm btn-default">today</button><button type="button" class="btn btn-sm btn-default"><span class="fc-icon fc-icon-right-single-arrow"></span></button></div><br class="hidden"><div class="btn-group"><button type="button" class="btn btn-sm btn-default">day</button><button type="button" class="btn btn-sm btn-default">week</button><button type="button" class="btn btn-sm btn-default">month</button></div></div></div><div class="fc-center"></div><div class="fc-clear"></div></div><div style="" class="fc-view-container"><div style="" class="fc-view fc-month-view fc-basic-view"><table><thead><tr><td class="fc-widget-header"><div style="border-right-width: 1px; margin-right: 16px;" class="fc-row fc-widget-header"><table><thead><tr><th class="fc-day-header fc-widget-header fc-sun">Sun</th><th class="fc-day-header fc-widget-header fc-mon">Mon</th><th class="fc-day-header fc-widget-header fc-tue">Tue</th><th class="fc-day-header fc-widget-header fc-wed">Wed</th><th class="fc-day-header fc-widget-header fc-thu">Thu</th><th class="fc-day-header fc-widget-header fc-fri">Fri</th><th class="fc-day-header fc-widget-header fc-sat">Sat</th></tr></thead></table></div></td></tr></thead><tbody><tr><td class="fc-widget-content"><div style="height: 275px;" class="fc-day-grid-container fc-scroller"><div class="fc-day-grid"><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-past" data-date="2016-05-01"></td><td class="fc-day fc-widget-content fc-mon fc-past" data-date="2016-05-02"></td><td class="fc-day fc-widget-content fc-tue fc-past" data-date="2016-05-03"></td><td class="fc-day fc-widget-content fc-wed fc-past" data-date="2016-05-04"></td><td class="fc-day fc-widget-content fc-thu fc-past" data-date="2016-05-05"></td><td class="fc-day fc-widget-content fc-fri fc-past" data-date="2016-05-06"></td><td class="fc-day fc-widget-content fc-sat fc-past" data-date="2016-05-07"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-past" data-date="2016-05-01">1</td><td class="fc-day-number fc-mon fc-past" data-date="2016-05-02">2</td><td class="fc-day-number fc-tue fc-past" data-date="2016-05-03">3</td><td class="fc-day-number fc-wed fc-past" data-date="2016-05-04">4</td><td class="fc-day-number fc-thu fc-past" data-date="2016-05-05">5</td><td class="fc-day-number fc-fri fc-past" data-date="2016-05-06">6</td><td class="fc-day-number fc-sat fc-past" data-date="2016-05-07">7</td></tr></thead><tbody><tr><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable"><div class="fc-content"><span class="fc-time">12:00</span> <span class="fc-title">All Day Event</span></div></a></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-past" data-date="2016-05-08"></td><td class="fc-day fc-widget-content fc-mon fc-past" data-date="2016-05-09"></td><td class="fc-day fc-widget-content fc-tue fc-past" data-date="2016-05-10"></td><td class="fc-day fc-widget-content fc-wed fc-past" data-date="2016-05-11"></td><td class="fc-day fc-widget-content fc-thu fc-past" data-date="2016-05-12"></td><td class="fc-day fc-widget-content fc-fri fc-past" data-date="2016-05-13"></td><td class="fc-day fc-widget-content fc-sat fc-past" data-date="2016-05-14"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-past" data-date="2016-05-08">8</td><td class="fc-day-number fc-mon fc-past" data-date="2016-05-09">9</td><td class="fc-day-number fc-tue fc-past" data-date="2016-05-10">10</td><td class="fc-day-number fc-wed fc-past" data-date="2016-05-11">11</td><td class="fc-day-number fc-thu fc-past" data-date="2016-05-12">12</td><td class="fc-day-number fc-fri fc-past" data-date="2016-05-13">13</td><td class="fc-day-number fc-sat fc-past" data-date="2016-05-14">14</td></tr></thead><tbody><tr><td rowspan="2"></td><td rowspan="2"></td><td rowspan="2"></td><td colspan="3" class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable"><div class="fc-content"><span class="fc-time">12:00</span> <span class="fc-title">Long Event</span></div></a></td><td rowspan="2"></td></tr><tr><td></td><td></td><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-default fc-draggable"><div class="fc-content"><i class="fa fa-repeat"></i><span class="fc-time">4:00</span> <span class="fc-title">Repeating Event</span></div></a></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-past" data-date="2016-05-15"></td><td class="fc-day fc-widget-content fc-mon fc-today fc-state-highlight" data-date="2016-05-16"></td><td class="fc-day fc-widget-content fc-tue fc-future" data-date="2016-05-17"></td><td class="fc-day fc-widget-content fc-wed fc-future" data-date="2016-05-18"></td><td class="fc-day fc-widget-content fc-thu fc-future" data-date="2016-05-19"></td><td class="fc-day fc-widget-content fc-fri fc-future" data-date="2016-05-20"></td><td class="fc-day fc-widget-content fc-sat fc-future" data-date="2016-05-21"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-past" data-date="2016-05-15">15</td><td class="fc-day-number fc-mon fc-today fc-state-highlight" data-date="2016-05-16">16</td><td class="fc-day-number fc-tue fc-future" data-date="2016-05-17">17</td><td class="fc-day-number fc-wed fc-future" data-date="2016-05-18">18</td><td class="fc-day-number fc-thu fc-future" data-date="2016-05-19">19</td><td class="fc-day-number fc-fri fc-future" data-date="2016-05-20">20</td><td class="fc-day-number fc-sat fc-future" data-date="2016-05-21">21</td></tr></thead><tbody><tr><td rowspan="2"></td><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-default fc-draggable"><div class="fc-content"><i class="fa fa-clock-o"></i><span class="fc-time">10:30</span> <span class="fc-title">Meeting</span></div></a></td><td rowspan="2" class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-success fc-draggable"><div class="fc-content"><span class="fc-time">7:00</span> <span class="fc-title">Birthday Party</span></div></a></td><td rowspan="2"></td><td rowspan="2"></td><td rowspan="2" class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-default fc-draggable"><div class="fc-content"><i class="fa fa-repeat"></i><span class="fc-time">4:00</span> <span class="fc-title">Repeating Event</span></div></a></td><td rowspan="2"></td></tr><tr><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-danger fc-draggable"><div class="fc-content"><span class="fc-time">12:00</span> <span class="fc-title">Lunch</span></div></a></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-future" data-date="2016-05-22"></td><td class="fc-day fc-widget-content fc-mon fc-future" data-date="2016-05-23"></td><td class="fc-day fc-widget-content fc-tue fc-future" data-date="2016-05-24"></td><td class="fc-day fc-widget-content fc-wed fc-future" data-date="2016-05-25"></td><td class="fc-day fc-widget-content fc-thu fc-future" data-date="2016-05-26"></td><td class="fc-day fc-widget-content fc-fri fc-future" data-date="2016-05-27"></td><td class="fc-day fc-widget-content fc-sat fc-future" data-date="2016-05-28"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-future" data-date="2016-05-22">22</td><td class="fc-day-number fc-mon fc-future" data-date="2016-05-23">23</td><td class="fc-day-number fc-tue fc-future" data-date="2016-05-24">24</td><td class="fc-day-number fc-wed fc-future" data-date="2016-05-25">25</td><td class="fc-day-number fc-thu fc-future" data-date="2016-05-26">26</td><td class="fc-day-number fc-fri fc-future" data-date="2016-05-27">27</td><td class="fc-day-number fc-sat fc-future" data-date="2016-05-28">28</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-info fc-draggable" href="http://google.com/"><div class="fc-content"><i class="fa fa-link"></i><span class="fc-time">12:00</span> <span class="fc-title">Click for Google</span></div></a></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-future" data-date="2016-05-29"></td><td class="fc-day fc-widget-content fc-mon fc-future" data-date="2016-05-30"></td><td class="fc-day fc-widget-content fc-tue fc-future" data-date="2016-05-31"></td><td class="fc-day fc-widget-content fc-wed fc-other-month fc-future" data-date="2016-06-01"></td><td class="fc-day fc-widget-content fc-thu fc-other-month fc-future" data-date="2016-06-02"></td><td class="fc-day fc-widget-content fc-fri fc-other-month fc-future" data-date="2016-06-03"></td><td class="fc-day fc-widget-content fc-sat fc-other-month fc-future" data-date="2016-06-04"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-future" data-date="2016-05-29">29</td><td class="fc-day-number fc-mon fc-future" data-date="2016-05-30">30</td><td class="fc-day-number fc-tue fc-future" data-date="2016-05-31">31</td><td class="fc-day-number fc-wed fc-other-month fc-future" data-date="2016-06-01">1</td><td class="fc-day-number fc-thu fc-other-month fc-future" data-date="2016-06-02">2</td><td class="fc-day-number fc-fri fc-other-month fc-future" data-date="2016-06-03">3</td><td class="fc-day-number fc-sat fc-other-month fc-future" data-date="2016-06-04">4</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-other-month fc-future" data-date="2016-06-05"></td><td class="fc-day fc-widget-content fc-mon fc-other-month fc-future" data-date="2016-06-06"></td><td class="fc-day fc-widget-content fc-tue fc-other-month fc-future" data-date="2016-06-07"></td><td class="fc-day fc-widget-content fc-wed fc-other-month fc-future" data-date="2016-06-08"></td><td class="fc-day fc-widget-content fc-thu fc-other-month fc-future" data-date="2016-06-09"></td><td class="fc-day fc-widget-content fc-fri fc-other-month fc-future" data-date="2016-06-10"></td><td class="fc-day fc-widget-content fc-sat fc-other-month fc-future" data-date="2016-06-11"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-other-month fc-future" data-date="2016-06-05">5</td><td class="fc-day-number fc-mon fc-other-month fc-future" data-date="2016-06-06">6</td><td class="fc-day-number fc-tue fc-other-month fc-future" data-date="2016-06-07">7</td><td class="fc-day-number fc-wed fc-other-month fc-future" data-date="2016-06-08">8</td><td class="fc-day-number fc-thu fc-other-month fc-future" data-date="2016-06-09">9</td><td class="fc-day-number fc-fri fc-other-month fc-future" data-date="2016-06-10">10</td><td class="fc-day-number fc-sat fc-other-month fc-future" data-date="2016-06-11">11</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div></div></div></td></tr></tbody></table></div></div></div></div>
     </div>
-    <!-- col-lg-12 end here -->
+    <!-- End .panel -->
+
+    <div style="height: 0px;" aria-expanded="false" class="panel-group accordion col-lg-5 col-md-5 col-sm-5 col-xs-6 " id="accordion1">
+        <div id="supr1" class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">Collapsible Group Item #1<i class="fa fa-plus s12"></i></a></h4></div><div style="height: 0px;" aria-expanded="false" id="collapseOne1" class="panel-collapse collapse"><div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div></div></div>
+        <div id="supr2" class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1">Collapsible Group Item #2<i class="fa fa-plus s12"></i></a></h4></div><div style="height: 0px;" aria-expanded="false" id="collapseTwo1" class="panel-collapse collapse"><div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div></div></div><div id="supr3" class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1">Collapsible Group Item #3<i class="fa fa-plus s12"></i></a></h4></div><div style="height: 0px;" aria-expanded="false" id="collapseThree1" class="panel-collapse collapse"><div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div></div></div></div>
 </div>
-<!-- End .row -->
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+        <img src="assets/img/chart.jpg" width="400" height="100%">
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+        <img src="assets/img/chart1.jpg"  width="400" height="100%">
+    </div>
 </div>
-<!-- End contentwrapper -->
 </div>
-<!-- End #content -->
+</div>
+</div>
+<!-- / #wrapper -->
+<!-- Back to top -->
+<div id="back-to-top"><a href=#>Back to Top</a>
+</div>
+<!-- Javascripts -->
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="assets/js/libs/excanvas.min.js"></script>
+<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<script type="text/javascript" src="assets/js/libs/respond.min.js"></script>
+<![endif]-->
+<script src="<?php echo base_url(); ?>assets/plugins/forms/summernote/summernote.js"></script>
+

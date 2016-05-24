@@ -104,6 +104,99 @@ $lang['update_assessment'] = 'Assessment is successfully updated.';
 $lang['delete_assessment'] = 'Assessment is successfully deleted.';
 
 /**
+<<<<<<< HEAD
+ * Events 
+ */
+$lang['event_title'] = 'Event Management';
+$lang['save_event'] = 'Event is successfully added.';
+$lang['update_event'] = 'Event is successfully updated.';
+$lang['delete_event'] = 'Event is successfully deleted.';
+
+/**
+ * Assignments
+ */
+$lang['assignment_title'] = 'Assignments Management';
+$lang['save_assignment'] = 'Assignment is successfully added.';
+$lang['update_assignment'] = 'Assignment is successfully updated.';
+$lang['delete_assignment'] = 'Assignment is successfully deleted.';
+
+/**
+ * Study resources
+ */
+$lang['study_resource_title'] = 'Study Resource Management';
+$lang['save_study_resource'] = 'Study resource is successfully added.';
+$lang['update_study_resource'] = 'Study resource is successfully updated.';
+$lang['delete_study_resource'] = 'Study resource is successfully deleted.';
+
+/**
+ * Project and synopsis
+ */
+$lang['project_title'] = 'Project Management';
+$lang['save_project'] = 'Project is successfully added.';
+$lang['update_project'] = 'Project is sucucessfully updated.';
+$lang['delete_project'] = 'Project is successfully deleted.';
+
+/**
+ * Digital library
+ */
+$lang['library_title'] = 'Digital Library';
+$lang['save_library'] = 'Digital library is successfully added.';
+$lang['update_library'] = 'Digital library is successfully updated.';
+$lang['delete_library'] = 'Digital library is successfully deleted.';
+
+/**
+ * Courseware management
+ */
+$lang['courseware_title'] = 'Courseware Management';
+$lang['delete_courseware'] = 'Courseware is successfully deleted.';
+
+/**
+ * Subscriber
+ */
+$lang['subscriber_title'] = 'Subscriber';
+$lang['delete_subscriber'] = 'Subscriber is successfully deleted.';
+
+/**
+ * Graduate
+ */
+$lang['graduate_title'] = 'Toppers Graduate';
+$lang['save_graduate'] = 'Graduate is successfully added.';
+$lang['update_graduate'] = 'Graduate is successfully updated.';
+$lang['delete_graduate'] = 'Graduate is successfully deleted.';
+
+/**
+ * Charity fund
+ */
+$lang['charity_title'] = 'Charity FUnd';
+$lang['save_charity'] = 'Charity fund is successfully added.';
+$lang['update_charity'] = 'Charity fund is successfully updated.';
+$lang['delete_charity'] = 'Charity fund is successfully deleted.';
+
+/**
+ * Professor
+ */
+$lang['professor_title'] = 'Professor';
+$lang['save_professor'] = 'Professor is successfully added.';
+$lang['update_professor'] = 'Professor is successfully updated.';
+$lang['delete_professor'] = 'Professor is successfully deleted.';
+
+/**
+ * Exam management
+ */
+$lang['exam_title'] = 'Exam Management';
+$lang['save_exam'] = 'Exam is successfully added.';
+$lang['update_exam'] = 'Exam is successfully updated.';
+$lang['delete_exam'] = 'Exam is successfully deleted.';
+
+/**
+ * Exam schedule
+ */
+$lang['exam_schedule_title'] = 'Exam Schedule';
+$lang['save_exam_schedule'] = 'Exam schedule is successfully added.';
+$lang['update_exam_schedule'] = 'Exam schedule is successfully updated.';
+$lang['delete_exam_schedule'] = 'Exam schedule is successfully deleted.';
+
+/**
  * System Settings
  */
 $lang['system_title'] = 'System Settings';
