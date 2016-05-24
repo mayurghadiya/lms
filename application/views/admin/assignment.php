@@ -30,7 +30,7 @@
                              <form id="assignment-search" action="#" class="form-groups-bordered validate">
                     <div class="form-group col-sm-2">
                         <label><?php echo ucwords("department"); ?></label>
-                        <select class="form-control" id="courses"name="degree_search">
+                        <select class="form-control" id="courses" name="degree_search">
                             <option value="">Select</option>
                             <?php foreach ($degree as $row) { ?>
                                 <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
@@ -75,6 +75,8 @@
                         <input id="search-assignment-structure-data" type="button" value="Go" class="btn btn-info"/>
                     </div>
                 </form>
+                      
+                   <div class="panel-body table-responsive" id="getresponse">          
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -156,6 +158,7 @@
                         <?php endforeach; ?>						
                     </tbody>
                 </table>
+                        </div>
                         </div>
                         
                         <!-- tab content -->
@@ -301,7 +304,7 @@
             var semester = $("#semesters").val();
             $.ajax({
                 type:"POST",
-                url:"<?php echo base_url(); ?>index.php?admin/getassignment/allassignment",
+                url:"<?php echo base_url(); ?>admin/getassignment/allassignment",
                 data:{'degree':degree,'course':course,'batch':batch,"semester":semester},
                 success:function(response)
                 {
@@ -318,7 +321,7 @@
                 var dataString = "degree="+degree;
                 $.ajax({
                     type:"POST",
-                    url:"<?php echo base_url().'index.php?admin/get_course/'; ?>",
+                    url:"<?php echo base_url().'admin/get_course/'; ?>",
                     data:dataString,                   
                     success:function(response){
                         $("#branches").html(response);
@@ -333,14 +336,14 @@
                 var dataString = "course="+course+"&degree="+degree;
                 $.ajax({
                     type:"POST",
-                    url:"<?php echo base_url().'index.php?admin/get_batches/'; ?>",
+                    url:"<?php echo base_url().'admin/get_batches/'; ?>",
                     data:dataString,                   
                     success:function(response){
                         $("#batches").html(response);
                         
                          $.ajax({
                                 type: "POST",
-                                url: "<?php echo base_url() . 'index.php?admin/get_semester'; ?>",
+                                url: "<?php echo base_url() . 'admin/get_semester'; ?>",
                                 data: dataString,
                                 success: function (response1) {
                                     $("#semesters").html(response1);
@@ -377,7 +380,7 @@
                     var semester = $("#semesters").val();
                     var divclass = $("#filterclass").val();
                     $.ajax({
-                        url: '<?php echo base_url(); ?>index.php?admin/getassignment/allassignment',
+                        url: '<?php echo base_url(); ?>admin/getassignment/allassignment',
                         type: 'post',
                         data:{'degree':degree,"course":course,"batch":batch,"semester":semester,'divclass':divclass},
                         success: function (content) {
@@ -399,3 +402,4 @@
         });       
     </script>
    
+    

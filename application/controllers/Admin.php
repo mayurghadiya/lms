@@ -981,6 +981,30 @@ class Admin extends MY_Controller {
         $this->__site_template('admin/assignment', $this->data);
     }
     
+     function getassignment($param = '') {
+        if ($param = 'allassignment') {
+            $degree = $this->input->post('degree');
+            $course = $this->input->post('course');
+            $batch = $this->input->post('batch');
+            $semester = $this->input->post("semester");
+            $class = $this->input->post("divclass");
+            $data['course'] = $this->db->get('course')->result();
+            $data['semester'] = $this->db->get('semester')->result();
+            $data['batch'] = $this->db->get('batch')->result();
+            $data['degree'] = $this->db->get('degree')->result();
+            $data['class'] = $this->db->get('class')->result();
+            $this->db->where("course_id", $course);
+            $this->db->where("assign_batch", $batch);
+            $this->db->where("assign_degree", $degree);
+            $this->db->where("assign_sem", $semester);
+            $this->db->where("class_id", $class);
+            $data['param'] = $param;
+            $data['assignment'] = $this->db->get('assignment_manager')->result();
+
+            $this->load->view("admin/getassignment", $data);
+        }
+    }
+    
     /**
      * check assignment
      */
@@ -1160,7 +1184,50 @@ class Admin extends MY_Controller {
         $this->data['title'] = $this->lang_message('study_resource_title');
         $this->__site_template('admin/studyresource', $this->data);
     }
+    
+    function getstudyresource() {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post("semester");
+        $data['course'] = $this->db->get('course')->result();
+        $data['semester'] = $this->db->get('semester')->result();
+        $data['batch'] = $this->db->get('batch')->result();
+        $data['degree'] = $this->db->get('degree')->result();
+        $data['student'] = $this->db->get('student')->result();
 
+        if ($degree == "All") {
+
+
+            $data['studyresource'] = $this->db->get('study_resources')->result();
+        } else {
+            if ($course == "All") {
+                $this->db->where("study_degree", $degree);
+                $data['studyresource'] = $this->db->get('study_resources')->result();
+            } else {
+                if ($batch == 'All') {
+                    $this->db->where("study_course", $course);
+                    $this->db->where("study_degree", $degree);
+                    $data['studyresource'] = $this->db->get('study_resources')->result();
+                } else {
+                    if ($semester == "All") {
+                        $this->db->where("study_batch", $batch);
+                        $this->db->where("study_course", $course);
+                        $this->db->where("study_degree", $degree);
+                        $data['studyresource'] = $this->db->get('study_resources')->result();
+                    } else {
+                        $this->db->where("study_sem", $semester);
+                        $this->db->where("study_batch", $batch);
+                        $this->db->where("study_course", $course);
+                        $this->db->where("study_degree", $degree);
+                        $data['studyresource'] = $this->db->get('study_resources')->result();
+                    }
+                }
+            }
+        }
+        $this->load->view("admin/getstudyresource", $data);
+    }
+    
     /**
      * Project and synopsis
      * @param string $param1
