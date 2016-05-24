@@ -220,7 +220,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <a href="<?php echo base_url(); ?>admin/subject">
                                                         <i class="s16 icomoon-icon-file"></i>
                                                         <span class="txt">Subject Association</span>
                                                     </a>

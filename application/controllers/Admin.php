@@ -491,7 +491,7 @@ class Admin extends MY_Controller {
                 redirect(base_url() . 'admin/syllabus/', 'refresh');
             }
             if ($param == 'do_update') {
-                $syllabus = $this->crud_model->getsyllabus($param2);
+                $syllabus = $this->Crud_model->getsyllabus($param2);
 
                 if ($_FILES['syllabusfile']['name'] != "") {
                     $path = FCPATH . 'uploads/syllabus';
@@ -524,13 +524,13 @@ class Admin extends MY_Controller {
                 $insert['syllabus_desc'] = $this->input->post('description');
                 $insert['update_date'] = date('Y-m-d H:i:s');
 
-                $this->crud_model->update_syllabus($insert, $param2);
+                $this->Crud_model->update_syllabus($insert, $param2);
                 $this->session->set_flashdata('flash_message', $this->lang_message('update_syllabus'));
                 redirect(base_url() . 'admin/syllabus/', 'refresh');
             }
         }
         if ($param == 'delete') {
-            $this->crud_model->delete_syllabus($param2);
+            $this->Crud_model->delete_syllabus($param2);
             $this->session->set_flashdata('flash_message', $this->lang_message('delete_syllabus'));
             redirect(base_url() . 'admin/syllabus/', 'refresh');
         }
@@ -627,7 +627,7 @@ class Admin extends MY_Controller {
                 }
 
                 $this->db->insert('university_peoples', $data);
-                $this->session->set_flashdata('flash_message', get_phrase('chancellor_added_successfully'));
+                $this->session->set_flashdata('flash_message',$this->lang_message('chancellor_add'));
                 redirect(base_url() . 'admin/chancellor/', 'refresh');
             }
             if ($param1 == 'do_update') {
@@ -658,14 +658,14 @@ class Admin extends MY_Controller {
                 $this->db->where('university_people_id', $param2);
                 $this->db->update('university_peoples', $data);
 
-                $this->session->set_flashdata('flash_message', get_phrase('chancellor_updated_successfully'));
+                $this->session->set_flashdata('flash_message', $this->lang_message('chancellor_update'));
                 redirect(base_url() . 'admin/chancellor/', 'refresh');
             }
         }
         if ($param1 == 'delete') {
             $this->db->where('university_people_id', $param2);
             $this->db->delete('university_peoples');
-            $this->session->set_flashdata('flash_message', get_phrase('chancellor_deleted_successfully'));
+            $this->session->set_flashdata('flash_message', $this->lang_message('chancellor_delete'));
             redirect(base_url() . 'admin/chancellor/', 'refresh');
         }
         $this->data['title'] = 'Chancellor Management';
@@ -4224,6 +4224,11 @@ class Admin extends MY_Controller {
         echo json_encode($data);
     }
     
+    /**
+     * get course list
+     * 
+     */
+    
     function get_cource_multiple($param = '') {
         $did = implode(',', $this->input->post("degree"));
         $courceid = explode(',', $this->input->post("courseid"));
@@ -4239,6 +4244,11 @@ class Admin extends MY_Controller {
         echo $html;
     }
     
+    /**
+     * Check Duplicate semester
+     * 
+     */
+    
     function check_semester() {
         $data = $this->db->get_where('semester', array('s_name' => $this->input->post('semester')))->result();
         if (count($data) > 0) {
@@ -4248,6 +4258,11 @@ class Admin extends MY_Controller {
         }
     }
     
+    /**
+     * Check Duplicate admission type
+     * 
+     */
+    
      function check_admission_type() {
         $data = $this->db->get_where('admission_type', array('at_name' => $this->input->post('admission_type')))->result();
         if (count($data) > 0) {
@@ -4256,6 +4271,86 @@ class Admin extends MY_Controller {
             echo "true";
         }
     }
+    
+    /**
+     * Check Duplicate student email
+     * 
+     */
+    
+    function getstudentemail() {
+        $eid = $this->input->post('eid');
+        $data = $this->db->get_where('student', array('email' => $eid));
+        if ($data->num_rows() > 0) {
+            echo "false";
+        } else {
+            echo "true";
+        }
+        // echo $data->num_rows();
+    }
+    
+    /**
+     * subject association
+     * @param String $param1
+     * @param int $param2
+     */
 
+
+     function subject($param1 = '', $param2 = '') {       
+        if ($param1 == 'create') {
+            $data['sm_course_id'] = $this->input->post('course');
+            $data['sm_sem_id'] = $this->input->post('semester');
+            $data['subject_name'] = $this->input->post('subname');
+            $data['subject_code'] = $this->input->post('subcode');
+            $data['professor_id'] = implode(',', $this->input->post('professor'));
+            $data['sm_status'] = 1;
+            $data['created_date'] = date('Y-m-d');
+
+
+            $this->db->insert('subject_manager', $data);
+            $this->session->set_flashdata('flash_message',$this->lang_message('subject_add'));
+            redirect(base_url() . 'admin/subject/', 'refresh');
+        }
+        if ($param1 == 'do_update') {
+
+            $data['sm_course_id'] = $this->input->post('course');
+            $data['sm_sem_id'] = $this->input->post('semester');
+            $data['subject_name'] = $this->input->post('subname');
+            $data['subject_code'] = $this->input->post('subcode');
+            $data['professor_id'] = implode(',', $this->input->post('professor'));
+            $data['sm_status'] = 1;
+
+
+            $this->db->where('sm_id', $param2);
+            $this->db->update('subject_manager', $data);
+            $this->session->set_flashdata('flash_message', $this->lang_message('subject_update'));
+            redirect(base_url() . 'admin/subject/', 'refresh');
+        }
+        if ($param1 == 'delete') {
+            $this->db->where('sm_id', $param2);
+            $this->db->delete('subject_manager');
+            $this->session->set_flashdata('flash_message', $this->lang_message('subject_delete'));
+            redirect(base_url() . 'admin/subject/', 'refresh');
+        }
+        $this->data['subject'] = $this->db->get('subject_manager')->result();
+        $this->data['course'] = $this->db->get('course')->result();
+        $this->data['semester'] = $this->db->get('semester')->result();
+        $this->data['page'] = 'subject';
+        $this->data['title'] = 'Subject Management';      
+         $this->__site_template('admin/subject', $this->data);
+    }
+    
+    /**
+     * Check Duplicate Subject
+     * return json
+     * 
+     */
+     function checksubjects() {
+        $eid = $this->input->post('subname');
+        $subcode = $this->input->post('subcode');
+        $course = $this->input->post('course');
+        $semester = $this->input->post('semester');
+        $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode))->result_array();
+        echo json_encode($data);
+    }
 
 }
