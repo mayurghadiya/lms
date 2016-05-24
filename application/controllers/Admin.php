@@ -627,7 +627,7 @@ class Admin extends MY_Controller {
                 }
 
                 $this->db->insert('university_peoples', $data);
-                $this->session->set_flashdata('flash_message', get_phrase('chancellor_added_successfully'));
+                $this->session->set_flashdata('flash_message',$this->lang_message('chancellor_add'));
                 redirect(base_url() . 'admin/chancellor/', 'refresh');
             }
             if ($param1 == 'do_update') {
@@ -658,14 +658,14 @@ class Admin extends MY_Controller {
                 $this->db->where('university_people_id', $param2);
                 $this->db->update('university_peoples', $data);
 
-                $this->session->set_flashdata('flash_message', get_phrase('chancellor_updated_successfully'));
+                $this->session->set_flashdata('flash_message', $this->lang_message('chancellor_update'));
                 redirect(base_url() . 'admin/chancellor/', 'refresh');
             }
         }
         if ($param1 == 'delete') {
             $this->db->where('university_people_id', $param2);
             $this->db->delete('university_peoples');
-            $this->session->set_flashdata('flash_message', get_phrase('chancellor_deleted_successfully'));
+            $this->session->set_flashdata('flash_message', $this->lang_message('chancellor_delete'));
             redirect(base_url() . 'admin/chancellor/', 'refresh');
         }
         $this->data['title'] = 'Chancellor Management';

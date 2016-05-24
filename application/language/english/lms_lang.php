@@ -248,3 +248,7 @@ $lang['semester_delete'] = 'Semester Updated Successflly';
 $lang['subject_add'] = 'Subject Deleted Successfully';
 $lang['subject_update'] = 'Subject updated Successfully';
 $lang['subject_delete'] = 'Subject Deleted Successfully';
+
+$lang['chancellor_add'] =  'Chancellor Added Successfully';
+$lang['chancellor_update'] =  'Chancellor Updated Successfully';
+$lang['chancellor_delete'] =  'Chancellor Added Successfully';
