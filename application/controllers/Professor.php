@@ -132,8 +132,6 @@ class Professor extends MY_Controller {
 
                     $insert['syllabus_filename'] = $syllabus[0]->syllabus_filename;
                 }
-
-
                 $insert['syllabus_title'] = $this->input->post('title');
                 $insert['syllabus_degree'] = $this->input->post('degree');
                 $insert['syllabus_course'] = $this->input->post('course');
@@ -1322,5 +1320,7 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'exam_marks';
         $this->__site_template('professor/exam_marks', $this->data);
     }
+    
+    
 
 }
