@@ -244,3 +244,7 @@ $lang['import_title'] = 'Import Data';
 $lang['semseter_add'] = 'Semester Added Auccessfully';
 $lang['semester_update'] = 'Semester Updated Successflly';
 $lang['semester_delete'] = 'Semester Updated Successflly';
+
+$lang['subject_add'] = 'Subject Deleted Successfully';
+$lang['subject_update'] = 'Subject updated Successfully';
+$lang['subject_delete'] = 'Subject Deleted Successfully';
