@@ -68,3 +68,8 @@ $route['professor/study_resource'] = 'professor/studyresource';
 $route['professor/digital_library'] = 'professor/library';
 $route['professor/exam_schedule'] = 'professor/exam_time_table';
 $route['professor/exam_marks'] = 'professor/marks';
+
+$route['admin/create_group'] = 'admin/create_group';
+$route['admin/list_group'] = 'admin/list_group';
+$route['admin/assign_module'] = 'admin/assign_module';
+$route['admin/list_module'] = 'admin/list_module';
