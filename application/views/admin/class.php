@@ -14,6 +14,7 @@
                 </div>
             </div>
             <div class=panel-body>
+                   <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addclass');" data-toggle="modal">Add New Class</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -31,8 +32,8 @@
                                 <td></td>
                                 <td><?php echo $row['class_name']; ?></td>                         
                                 <td class="menu-action">
-                                    <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_class/<?php echo $row['class_id']; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/division/delete/<?php echo $row['class_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>																				
