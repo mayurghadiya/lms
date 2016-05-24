@@ -1,8 +1,7 @@
 <!-- Start .row -->
 <div class=row>                      
 
-    <div class=col-lg-12>
-        <!-- col-lg-12 start here -->
+    
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <div class=panel-heading>
@@ -14,7 +13,7 @@
                 </div>
             </div>
             <div class=panel-body>
-                <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_degree');" data-toggle="modal">Add new department</a>
+                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_degree');" data-toggle="modal">Add new department</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -50,8 +49,7 @@
             </div>
         </div>
         <!-- End .panel -->
-    </div>
-    <!-- col-lg-12 end here -->
+    
 </div>
 <!-- End .row -->
 </div>

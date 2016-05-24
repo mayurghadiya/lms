@@ -151,6 +151,11 @@ class Site extends MY_Controller {
         $this->data['title'] = 'User Login';
         $this->load->view('site/user_login', $this->data);
     }
+    
+    function logout() {
+        $this->session->sess_destroy();
+        redirect(base_url('site/user_login'));
+    }
 
     /**
      * Validate login

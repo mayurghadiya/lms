@@ -36,7 +36,7 @@
             <!-- Windows8 touch icon ( http://www.buildmypinnedsite.com/ )-->
             <meta name=msapplication-TileColor content="#3399cc">
             <script>
-            var base_url = '<?php echo base_url(); ?>';
+                var base_url = '<?php echo base_url(); ?>';
             </script>
 
         <body>
@@ -120,7 +120,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href=login.html>
+                            <li><a href="<?php echo base_url(); ?>site/logout">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i><span class=txt>Logout</span>
                                 </a>
                             </li>
@@ -142,11 +142,11 @@
                                     <i class="fa fa-life-ring" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href=# title="Database backup" class=tip>
+                            <li><a href="<?php echo base_url(); ?>admin/backup" title="Database backup" class=tip>
                                     <i class="fa fa-database" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href="#" title="Statistics" class=tip>
+                            <li><a href="<?php echo base_url(); ?>admin/report_chart" title="Reports" class=tip>
                                     <i class="fa fa-pie-chart" aria-hidden="true"></i>
                                 </a>
                             </li>
@@ -257,28 +257,168 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href=calendar.html><i class="s16 fa fa-university"></i><span class=txt>Academics </span></a>
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                                <span class="txt">Assets Management</span></a>
+                                            <ul class="sub">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/events">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Events</span>
+                                                    </a>
+                                                </li> 
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/assignment">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Assignments</span>
+                                                    </a>
+                                                </li> 
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/study_resourse">
+                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <span class="txt">Study Resources</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/project">
+                                                        <i class="s16 icomoon-icon-unlocked"></i>
+                                                        <span class="txt">Project/Synopsis</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/digital_library">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Digital Library</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/participate">
+                                                        <i class="s16 icomoon-icon-user-plus-2"></i>
+                                                        <span class="txt">Participate</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/courseware">
+                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <span class="txt">Courseware</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/subscriber">
+                                                        <i class="s16 icomoon-icon-user-plus-2"></i>
+                                                        <span class="txt">Subscriber</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </li>
-                                        <li><a href=gallery.html><i class="s16 fa fa-picture-o"></i><span class=txt>Gallery</span></a>
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                                <span class="txt">University</span></a>
+                                            <ul class="sub">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/graduate">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Toppers Graduate</span>
+                                                    </a>
+                                                </li> 
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/charity_fund">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Charity Fund</span>
+                                                    </a>
+                                                </li>                                                 
+                                            </ul>
                                         </li>
-                                        <li><a href=timeline.html><i class="s16 fa fa-clock-o"></i><span class=txt>Timeline</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>admin/professor">
+                                                <i class="s16 fa fa-university"></i>
+                                                <span class=txt>Professor </span>
+                                            </a>
                                         </li>
-                                        <li><a href=login.html><i class="s16 fa fa-universal-access"></i><span class=txt>Holiday </span></a>
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                                <span class="txt">Examination</span></a>
+                                            <ul class="sub">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/exam">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Exam</span>
+                                                    </a>
+                                                </li> 
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/exam_schedule">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Exam Schedule</span>
+                                                    </a>
+                                                </li> 
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/exam_marks">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Exam Marks</span>
+                                                    </a>
+                                                </li>     
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/exam_grade">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Exam Grade</span>
+                                                    </a>
+                                                </li> 
+                                            </ul>
                                         </li>
-                                        <li><a href=lock-screen.html><i class="s16 fa fa-book"></i><span class=txt>Vocational Course</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>admin/cms_pages">
+                                                <i class="s16 fa fa-picture-o"></i>
+                                                <span class=txt>CMS Pages</span></a>
                                         </li>
-                                        <li><a href=register.html><i class="fa fa-user-plus" aria-hidden="true"></i></i><span class=txt>Register</span></a>
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                                <span class="txt">Payment</span></a>
+                                            <ul class="sub">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/fees_structure">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Fee Structure</span>
+                                                    </a>
+                                                </li> 
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/make_payment">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Make Payment</span>
+                                                    </a>
+                                                </li> 
+                                                
+                                            </ul>
                                         </li>
-                                        <li><a href=lost-password.html><i class="s16 fa fa-file-o"></i><span class=txt>Lost password</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>admin/report_chart">
+                                                <i class="s16 fa fa-clock-o"></i>
+                                                <span class=txt>Reports</span>
+                                            </a>
                                         </li>
-                                        <li><a href=profile.html><i class="s16 fa fa-file-text"></i><span class=txt>User profile</span></a>
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                                <span class="txt">Backup/Restore</span></a>
+                                            <ul class="sub">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/backup">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Backup</span>
+                                                    </a>
+                                                </li> 
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/restore">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Restore</span>
+                                                    </a>
+                                                </li>                                                 
+                                            </ul>
                                         </li>
-                                        <li><a href=invoice.html><i class="s16 fa fa-file-text-o"></i><span class=txt>Invoice</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>video_streaming">
+                                                <i class="s16 icomoon-icon-image-2"></i>
+                                                <span class=txt>Video Streaming </span>
+                                            </a>
                                         </li>
-                                        <li><a href=faq.html><i class="s16 fa fa-paperclip"></i><span class=txt>FAQ</span></a>
-                                        </li>
-
-
                                 </div>
                             </div>
                             <!-- End sidenav -->

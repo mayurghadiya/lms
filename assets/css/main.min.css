@@ -57,7 +57,15 @@
 .xe-widget.xe-counter .xe-label .num, .xe-widget.xe-counter-block .xe-upper .xe-label .num, .xe-widget.xe-progress-counter .xe-upper .xe-label .num {font-size: 20px !important; line-height: 30px;}
 h2.month_year_title{ font-size: 22px; font-weight: normal; line-height: 30px; }
 
+/*  LMS style */
 .h400{min-height: 404px;}
 .scroll-bar-box{ padding-top: 20px; margin-top: 20px; overflow-y: scroll; height:220px; }
 .scroll-bar-box a{display: block; color: #fff; font-size: 16px; line-height: normal;}
 .search form .search-btn{text-indent: -9999px;}
+#header.shrink .navbar .navbar-brand{padding-top: 3px;}
+.displaynone a, .DTTT.btn-group{display: none;}
+
+a.links { -moz-border-bottom-colors: none;  -moz-border-left-colors: none;  -moz-border-right-colors: none;  -moz-border-top-colors: none;  background-color: #e0e0e0;  background-image: linear-gradient(to bottom, #fafafa 0px, #dcdcdc 100%);  background-repeat: repeat-x;  border-color: #ccc #ccc #aaa;  border-image: none;  border-radius: 2px;  border-style: solid;  border-width: 1px;  box-shadow: 0 0 1px #fff inset;  color: #555;  float: none;  font-size: 12px;  line-height: 18px;  padding: 8px 10px;  position: relative;  text-shadow: 0 1px 0 #fff;  transition: all 0.4s ease 0s;  display: inline-block;  margin-bottom: 10px;}
+a.links:hover { background-image: linear-gradient(to bottom, #e8e8e8 0px, #f9f9f9 100%); background-repeat: repeat-x; border-color: #aaa #aaa #999; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 3px #fff inset; color: #3f3f3f;  text-decoration: none;}
+    .modal-body{max-height: 300px !important;}
+    #modal_ajax .form-horizontal .control-label{ text-align: center !important;  }
