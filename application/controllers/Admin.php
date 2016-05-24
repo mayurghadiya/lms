@@ -2456,6 +2456,15 @@ class Admin extends MY_Controller {
             echo "true";
         }
     }
+    
+     function check_admission_type() {
+        $data = $this->db->get_where('admission_type', array('at_name' => $this->input->post('admission_type')))->result();
+        if (count($data) > 0) {
+            echo "false";
+        } else {
+            echo "true";
+        }
+    }
 
 
 }
