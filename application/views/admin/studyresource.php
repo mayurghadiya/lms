@@ -14,6 +14,7 @@
                 </div>
             </div>
             <div class=panel-body>
+                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addstudyresource');" data-toggle="modal">Add new department</a>
                 <form action="#" method="post" id="searchform">
                     <div class="form-group col-sm-3 validating">
                         <label>Department</label>
@@ -153,3 +154,88 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+
+ <script type="text/javascript">
+         $(document).ready(function () {
+    
+        $("#searchform").submit(function(){
+           var degree =  $("#courses").val();
+           var course =  $("#branches").val();
+           var batch =  $("#batches").val();
+            var semester = $("#semesters").val();
+            $.ajax({
+                type:"POST",
+                url:"<?php echo base_url(); ?>admin/getstudyresource/",
+                data:{'degree':degree,'course':course,'batch':batch,"semester":semester},
+                success:function(response)
+                {
+                    $("#getresponse").html(response);
+                }
+                
+                
+            });
+             return false;
+         });
+         $("#courses").change(function(){
+                var degree = $(this).val();
+                
+                var dataString = "degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'admin/course_filter/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                        if(degree=='All')
+                        {
+                            $("#branches").html(response);
+                             $("#batches").val($("#batches option:eq(1)").val());
+                             $("#branches").val($("#branches option:eq(1)").val());
+                             $("#semesters").val($("#semesters option:eq(1)").val());
+                            
+                        }
+                        else{
+                            $("#branches").append(response);
+                            
+                        }
+                    }
+                });
+        });
+        $("#batches").change(function(){
+            var batches = $("#batches").val();
+            if(batches=='All')
+            {
+                $("#semesters").val($("#semesters option:eq(1)").val());
+            }
+        });
+         $("#branches").change(function(){
+                //var course = $(this).val();
+                // var degree = $("#degree").val();
+                var degree = $("#courses").val();
+                var course = $("#branches").val();
+                var dataString = "course="+course+"&degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'admin/batch_filter/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                         if(course=='All')
+                        {
+                             $("#batches").html(response);
+                             $("#batches").val($("#batches option:eq(1)").val());                            
+                             $("#semesters").val($("#semesters option:eq(1)").val());
+                           
+                        }
+                        else{
+                           $("#batches").append(response);
+                            
+                        }
+                        
+                    }
+                });
+        });
+        });
+        $(document).ready(function () {
+            $('#studyresource-tables').dataTable();
+
+        });
+    </script>
