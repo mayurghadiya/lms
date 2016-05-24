@@ -18,7 +18,7 @@ foreach ($edit_data as $row) {
             </div>
         </div>
         <div class=panel-body>
-            <?php echo form_open(base_url() . 'index.php?admin/cms/do_update/' . $row['c_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'editcmsform', 'target' => '_top')); ?>
+            <?php echo form_open(base_url() . 'admin/cms/do_update/' . $row['c_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'editcmsform', 'target' => '_top')); ?>
             <div class="form-group">
                 <label class="col-sm-3 control-label"><?php echo ucwords("Page Title"); ?><span style="color:red">*</span></label>
                 <div class="col-sm-9 controls">

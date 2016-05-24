@@ -25,6 +25,11 @@ class Admin extends MY_Controller {
      * Index action
      */
     function index() {
+        $this->load->helper('report_chart');
+        $course = $this->db->get('course')->result();
+        $this->data['male_female_pie_chart'] = male_female_students();
+        $this->data['new_student_joining'] = new_student_registration();
+        $this->data['male_vs_female_course_wise'] = male_vs_female_course_wise();
         $this->data['title'] = 'Admin Dashboard';
         $this->__site_template('admin/dashboard', $this->data);
     }
@@ -487,7 +492,7 @@ class Admin extends MY_Controller {
                 redirect(base_url() . 'admin/syllabus/', 'refresh');
             }
             if ($param == 'do_update') {
-                $syllabus = $this->crud_model->getsyllabus($param2);
+                $syllabus = $this->Crud_model->getsyllabus($param2);
 
                 if ($_FILES['syllabusfile']['name'] != "") {
                     $path = FCPATH . 'uploads/syllabus';
@@ -520,13 +525,13 @@ class Admin extends MY_Controller {
                 $insert['syllabus_desc'] = $this->input->post('description');
                 $insert['update_date'] = date('Y-m-d H:i:s');
 
-                $this->crud_model->update_syllabus($insert, $param2);
+                $this->Crud_model->update_syllabus($insert, $param2);
                 $this->session->set_flashdata('flash_message', $this->lang_message('update_syllabus'));
                 redirect(base_url() . 'admin/syllabus/', 'refresh');
             }
         }
         if ($param == 'delete') {
-            $this->crud_model->delete_syllabus($param2);
+            $this->Crud_model->delete_syllabus($param2);
             $this->session->set_flashdata('flash_message', $this->lang_message('delete_syllabus'));
             redirect(base_url() . 'admin/syllabus/', 'refresh');
         }
@@ -623,7 +628,7 @@ class Admin extends MY_Controller {
                 }
 
                 $this->db->insert('university_peoples', $data);
-                $this->session->set_flashdata('flash_message', get_phrase('chancellor_added_successfully'));
+                $this->session->set_flashdata('flash_message', $this->lang_message('chancellor_add'));
                 redirect(base_url() . 'admin/chancellor/', 'refresh');
             }
             if ($param1 == 'do_update') {
@@ -654,14 +659,14 @@ class Admin extends MY_Controller {
                 $this->db->where('university_people_id', $param2);
                 $this->db->update('university_peoples', $data);
 
-                $this->session->set_flashdata('flash_message', get_phrase('chancellor_updated_successfully'));
+                $this->session->set_flashdata('flash_message', $this->lang_message('chancellor_update'));
                 redirect(base_url() . 'admin/chancellor/', 'refresh');
             }
         }
         if ($param1 == 'delete') {
             $this->db->where('university_people_id', $param2);
             $this->db->delete('university_peoples');
-            $this->session->set_flashdata('flash_message', get_phrase('chancellor_deleted_successfully'));
+            $this->session->set_flashdata('flash_message', $this->lang_message('chancellor_delete'));
             redirect(base_url() . 'admin/chancellor/', 'refresh');
         }
         $this->data['title'] = 'Chancellor Management';
@@ -3787,8 +3792,7 @@ class Admin extends MY_Controller {
     /*     * **GROUP MANAGEMENT**** */
     /*     * **Develop By Hardik Bhut 29-Feb-2016**** */
     function create_group($param1 = '', $param2 = '', $param3 = '') {
-        if ($this->session->userdata('admin_login') != 1)
-            redirect(base_url(), 'refresh');
+
         if ($param1 == 'create') {
             $data['group_name'] = $this->input->post('group_name');
             $data['user_type'] = $this->input->post('user_type');
@@ -3806,6 +3810,33 @@ class Admin extends MY_Controller {
         $this->data['title'] = 'Create Group';
 
         $this->__site_template('admin/create_group', $this->data);
+    }
+
+    /**
+     * get professor
+     */
+    function get_group_professor() {
+        $dataprofessor = $this->db->get("professor")->result_array();
+        foreach ($dataprofessor as $row) {
+            $html .='<option value="' . $row['professor_id'] . '">' . $row['name'] . '</option>';
+        }
+        echo $html;
+    }
+
+    /**
+     * get student 
+     */
+    function get_group_student() {
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("sem");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result_array();
+
+        foreach ($datastudent as $row) {
+            $html .='<option value="' . $row['std_id'] . '">' . $row['name'] . '</option>';
+        }
+        echo $html;
     }
 
     function list_group($param1 = '', $param2 = '', $param3 = '') {
@@ -3835,6 +3866,83 @@ class Admin extends MY_Controller {
         $this->data['page'] = 'list_group';
         $this->data['title'] = 'List Group';
         $this->__site_template('admin/list_group', $this->data);
+    }
+
+    function assign_module($param1 = '', $param2 = '', $param3 = '') {
+        if ($this->session->userdata('admin_login') != 1)
+            redirect(base_url(), 'refresh');
+        if ($param1 == 'create') {
+            $group_name = $this->input->post('group_name');
+            $group_explode = explode(',', $group_name);
+            $data['group_id'] = $group_explode[0];
+            $data['module_id'] = implode(',', $this->input->post('module_name'));
+            //print_r($data); die;
+            $this->db->where(array('group_id' => $this->input->post('group_name')));
+            $module_row = $this->db->get('assign_module')->row();
+//            $this->db->where(array('group_id' => $this->input->post('group_name')));
+//            $group_count = $this->db->count_all_results('assign_module');
+
+            if (count($module_row) > 0) {
+                $this->db->where('assign_module_id', $module_row->assign_module_id);
+                $this->db->update('assign_module', $data);
+            } else {
+                $this->db->insert('assign_module', $data);
+            }
+            $this->session->set_flashdata('flash_message', 'Module assign successfully');
+            redirect(base_url() . 'admin/assign_module', 'refresh');
+        }
+        $this->data['page'] = 'assign_module';
+        $this->data['title'] = 'Assign Module';
+        $this->__site_template('admin/assign_module', $this->data);
+    }
+
+    /**
+     * list module
+     */
+    function list_module($param1 = '', $param2 = '', $param3 = '') {
+        if ($this->session->userdata('admin_login') != 1)
+            redirect(base_url(), 'refresh');
+        if ($param1 == 'do_update') {
+            $data['group_id'] = $this->input->post('group_name');
+            $data['module_id'] = implode(',', $this->input->post('module_name'));
+            $this->db->where('group_id', $data['group_id']);
+            $this->db->update('assign_module', $data);
+            $this->session->set_flashdata('flash_message', get_phrase('data_updated_successfully'));
+            redirect(base_url() . 'admin/list_module', 'refresh');
+        }
+        $this->data['page'] = 'list_module';
+        $this->data['title'] = 'List Module';
+        $this->__site_template('admin/list_module', $this->data);
+    }
+
+    function get_module_ajax() {
+
+        $get_assign_module_list = $this->db->get_where('assign_module', array('group_id' => $this->input->post('id')))->result_array();
+
+        $assigned_module_list = array();
+        $full_module_list = array();
+
+        if (count($get_assign_module_list) > 0) {
+            foreach ($get_assign_module_list as $row_key => $row_value) {
+                $module_record = explode(',', $row_value['module_id']);
+                $modules_query = $this->db->get_where('modules', array('user_type' => $this->input->post('type')))->result_array();
+
+                foreach ($modules_query as $modules_row) {
+                    if (!in_array($modules_row['module_id'], $module_record)) {
+                        $full_module_list[] = '<option value="' . $modules_row['module_id'] . '">' . $modules_row['module_name'] . '</option>';
+                    }
+                }
+
+                foreach ($module_record as $module_record_value) {
+                    $user_role_query = $this->db->get_where('modules', array('module_id' => $module_record_value))->result_array();
+                    foreach ($user_role_query as $user_role_row) {
+                        $assigned_module_list[] = '<option value="' . $user_role_row['module_id'] . '">' . $user_role_row['module_name'] . '</option>';
+                    }
+                }
+            }
+        }
+        $out = array('assigned_module_list' => $assigned_module_list, 'full_module_list' => $full_module_list);
+        echo json_encode($out);
     }
 
     /**
@@ -4074,6 +4182,10 @@ class Admin extends MY_Controller {
         echo json_encode($data);
     }
 
+    /**
+     * get course list
+     * 
+     */
     function get_cource_multiple($param = '') {
         $did = implode(',', $this->input->post("degree"));
         $courceid = explode(',', $this->input->post("courseid"));
@@ -4089,6 +4201,10 @@ class Admin extends MY_Controller {
         echo $html;
     }
 
+    /**
+     * Check Duplicate semester
+     * 
+     */
     function check_semester() {
         $data = $this->db->get_where('semester', array('s_name' => $this->input->post('semester')))->result();
         if (count($data) > 0) {
@@ -4096,6 +4212,81 @@ class Admin extends MY_Controller {
         } else {
             echo "true";
         }
+    }
+
+    /**
+     * Check Duplicate admission type
+     * 
+     */
+    function check_admission_type() {
+        $data = $this->db->get_where('admission_type', array('at_name' => $this->input->post('admission_type')))->result();
+        if (count($data) > 0) {
+            echo "false";
+        } else {
+            echo "true";
+        }
+    }
+
+    /**
+     * Check Duplicate student email
+     * 
+     */
+    function getstudentemail() {
+        $eid = $this->input->post('eid');
+        $data = $this->db->get_where('student', array('email' => $eid));
+        if ($data->num_rows() > 0) {
+            echo "false";
+        } else {
+            echo "true";
+        }
+        // echo $data->num_rows();
+    }
+
+    /**
+     * subject association
+     * @param String $param1
+     * @param int $param2
+     */
+    function subject($param1 = '', $param2 = '') {
+        if ($param1 == 'create') {
+            $data['sm_course_id'] = $this->input->post('course');
+            $data['sm_sem_id'] = $this->input->post('semester');
+            $data['subject_name'] = $this->input->post('subname');
+            $data['subject_code'] = $this->input->post('subcode');
+            $data['professor_id'] = implode(',', $this->input->post('professor'));
+            $data['sm_status'] = 1;
+            $data['created_date'] = date('Y-m-d');
+
+
+            $this->db->insert('subject_manager', $data);
+            $this->session->set_flashdata('flash_message', $this->lang_message('subject_add'));
+            redirect(base_url() . 'admin/subject/', 'refresh');
+        }
+        if ($param1 == 'do_update') {
+
+            $data['sm_course_id'] = $this->input->post('course');
+            $data['sm_sem_id'] = $this->input->post('semester');
+            $data['subject_name'] = $this->input->post('subname');
+            $data['subject_code'] = $this->input->post('subcode');
+            $data['professor_id'] = implode(',', $this->input->post('professor'));
+            $data['sm_status'] = 1;
+            $this->db->where('sm_id', $param2);
+            $this->db->update('subject_manager', $data);
+            $this->session->set_flashdata('flash_message', $this->lang_message('subject_update'));
+            redirect(base_url() . 'admin/subject/', 'refresh');
+        }
+        if ($param1 == 'delete') {
+            $this->db->where('sm_id', $param2);
+            $this->db->delete('subject_manager');
+            $this->session->set_flashdata('flash_message', $this->lang_message('subject_delete'));
+            redirect(base_url() . 'admin/subject/', 'refresh');
+        }
+        $this->data['subject'] = $this->db->get('subject_manager')->result();
+        $this->data['course'] = $this->db->get('course')->result();
+        $this->data['semester'] = $this->db->get('semester')->result();
+        $this->data['page'] = 'subject';
+        $this->data['title'] = 'Subject Management';
+        $this->__site_template('admin/subject', $this->data);
     }
 
     /**
@@ -4146,6 +4337,296 @@ class Admin extends MY_Controller {
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
+    }
+
+    /**
+     * Check Duplicate Subject
+     * return json
+     * 
+     */
+    function checksubjects() {
+        $eid = $this->input->post('subname');
+        $subcode = $this->input->post('subcode');
+        $course = $this->input->post('course');
+        $semester = $this->input->post('semester');
+        $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode))->result_array();
+        echo json_encode($data);
+    }
+
+    /**
+     * Students of the particular course
+     * @param int $course_id
+     */
+    function course_students($course_id = '') {
+        $this->load->model('admin/Crud_model');
+        $students = $this->Crud_model->course_students($course_id);
+        echo "<option value=''>Select</option>";
+        foreach ($students as $row) {
+            ?>
+            <option value="<?php echo $row->std_id; ?>"><?php echo $row->name; ?></option>
+            <?php
+        }
+    }
+
+    /**
+     * Course semester fees structure
+     * @param string $course_id
+     * @param string $semester_id
+     */
+    function course_semester_fees_structure($course_id = '', $semester_id = '') {
+        $this->load->model('admin/Crud_model');
+        $fees_structure = $this->Crud_model->course_semester_fees_structure($course_id, $semester_id);
+
+        echo json_encode($fees_structure);
+    }
+
+    /**
+     * Student paid fees
+     * @param string $fees_structure_id
+     * @param string $student_id
+     */
+    function student_paid_fees($fees_structure_id = '', $student_id = '') {
+        $this->load->model('Student/Student_model');
+        $this->load->model('admin/Crud_model');
+        $page_data = array();
+        $total_paid = 0;
+        $fees_structure = $this->Crud_model->fees_structure_details($fees_structure_id);
+        $page_data['total_fees'] = $fees_structure->total_fee;
+        $paid_fees = $this->Student_model->student_paid_fees($fees_structure_id, $student_id);
+        if (count($paid_fees)) {
+            foreach ($paid_fees as $paid) {
+                $total_paid += $paid->paid_amount;
+            }
+        }
+        if (count($fees_structure)) {
+            $page_data['due_amount'] = $fees_structure->total_fee - $total_paid;
+            $page_data['total_paid'] = $total_paid;
+        } else {
+            $page_data['due_amount'] = $fees_structure->total_fee;
+            $page_data['total_paid'] = 0;
+        }
+
+        echo json_encode($page_data);
+    }
+
+    /**
+     * Filter and redirect based on payment gateway
+     */
+    function process_payment() {
+        if ($this->session->userdata('payment_data')['payment_gateway'] == 'authorize') {
+            $this->data['title'] = 'Authorize Payment Process';
+            $this->data['page'] = 'authorize_payment';
+            $this->__site_template('admin/authorize_payment', $this->data);
+        } else {
+            redirect(base_url('admin/make_payment'));
+        }
+    }
+
+    /**
+     * Verify and print verify card details
+     */
+    function verify_card_detail($cc_number) {
+        $cc_details = $this->validateCreditcard_number($cc_number);
+        echo json_encode($cc_details);
+    }
+
+    /**
+     * Validate credit card number
+     * @param int $cc_num
+     * @return array
+     */
+    function validateCreditcard_number($cc_num) {
+        $credit_card_number = $this->sanitize($cc_num);
+        // Get the first digit
+        $data = array();
+        $firstnumber = substr($credit_card_number, 0, 1);
+        // Make sure it is the correct amount of digits. Account for dashes being present.
+        switch ($firstnumber) {
+            case 3:
+                $data['card_type'] = "American Express";
+                if (!preg_match('/^3\d{3}[ \-]?\d{6}[ \-]?\d{5}$/', $credit_card_number)) {
+                    //return 'This is not a valid American Express card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            case 4:
+                $data['card_type'] = "Visa";
+                if (!preg_match('/^4\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
+                    //return 'This is not a valid Visa card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            case 5:
+                $data['card_type'] = "MasterCard";
+                if (!preg_match('/^5\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
+                    //return 'This is not a valid MasterCard card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            case 6:
+                $data['card_type'] = "Discover";
+                if (!preg_match('/^6011[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
+                    //return 'This is not a valid Discover card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            default:
+                //return 'This is not a valid credit card number';
+                $data['card_type'] = "Invalid";
+                $data['status'] = 'false';
+                return $data;
+        }
+        // Here's where we use the Luhn Algorithm
+        $credit_card_number = str_replace('-', '', $credit_card_number);
+        $map = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 2, 4, 6, 8, 1, 3, 5, 7, 9);
+        $sum = 0;
+        $last = strlen($credit_card_number) - 1;
+        for ($i = 0; $i <= $last; $i++) {
+            $sum += $map[$credit_card_number[$last - $i] + ($i & 1) * 10];
+        }
+        if ($sum % 10 != 0) {
+            //return 'This is not a valid credit card number';
+            $data['status'] = 'false';
+            return $data;
+        }
+        // If we made it this far the credit card number is in a valid format
+        $data['status'] = 'true';
+        return $data;
+    }
+
+    /**
+     * Sanitize the input
+     */
+    function sanitize($value) {
+        return trim(strip_tags($value));
+    }
+
+    /**
+     * Authorize.net payment process
+     */
+    function authorize_net_make_payment() {
+        $this->load->library('authorize_net');
+        $this->load->model('admin/Crud_model');
+
+        if ($_POST) {
+            $cc_details = $this->validateCreditcard_number($_POST['card_number']);
+            if ($cc_details['status'] == 'false') {
+                // invalid card details
+                echo 'invalid card details';
+                //$this->do_payment();
+            } else {
+                $student_data = $this->db->get_where('student', array('std_id' => $this->session->userdata('payment_data')['student_id']))->row();
+                $auth_net = array(
+                    'x_card_num' => $_POST['card_number'], // Visa
+                    'x_exp_date' => $_POST['month'] . '/17',
+                    'x_card_code' => $_POST['cvv'],
+                    'x_description' => 'Authorize.net transaction',
+                    'x_amount' => $this->session->userdata('payment_data')['fees'],
+                    'x_first_name' => $student_data->std_first_name,
+                    'x_last_name' => $student_data->std_last_name,
+                    'x_address' => 'Address',
+                    'x_city' => $student_data->city,
+                    'x_state' => 'State',
+                    'x_zip' => $student_data->zip,
+                    'x_country' => 'India',
+                    'x_phone' => $student_data->std_mobile,
+                    'x_email' => $student_data->email,
+                    'x_customer_ip' => $this->input->ip_address(),
+                );
+
+                $this->authorize_net->setData($auth_net);
+
+                //insert into db
+                $payment_data = array(
+                    'student_id' => $this->session->userdata('payment_data')['student_id'],
+                    'fees_structure_id' => $this->session->userdata('payment_data')['fees_structure_id'],
+                    'paid_amount' => $this->session->userdata('payment_data')['fees'],
+                    'course_id' => $this->session->userdata('payment_data')['course'],
+                    'sem_id' => $this->session->userdata('payment_data')['semester'],
+                    'remarks' => $this->session->userdata('payment_data')['description'],
+                );
+                $this->Crud_model->student_fees_save($payment_data);
+
+
+                // redirect after order completion
+                $status = array();
+
+                // Try to AUTH_CAPTURE
+                if ($this->authorize_net->authorizeAndCapture()) {
+                    $this->session->set_flashdata('Transaction success', 'Transaction is successfully done.');
+
+                    //remove session
+                    $this->session->unset_userdata('payment_data');
+                    redirect(base_url('admin/make_payment'));
+                } else {
+                    $this->session->set_flashdata('Transaction incomplete', '<p>' . $this->authorize_net->getError() . '</p>');
+                    //remove session
+                    $this->session->unset_userdata('payment_data');
+                    redirect(base_url('admin/make_payment'));
+                }
+            }
+        }
+    }
+
+    /**
+     * Invoice copy
+     * @param string $id
+     */
+    function invoice($id = '') {
+        $this->load->model('Student/Student_model');
+        $this->data['page_name'] = 'invoice';
+        $this->data['page_title'] = 'Student invoice';
+        $this->data['invoice'] = $this->Student_model->invoice_detail($id);
+        $this->data['title'] = 'Invoice Details';
+
+        $paid_fees = $this->Student_model->student_paid_fees($this->data['invoice']->fees_structure_id, $this->data['invoice']->std_id);
+        $total_paid = 0;
+        if (count($paid_fees)) {
+            foreach ($paid_fees as $paid) {
+                $total_paid += $paid->paid_amount;
+            }
+        }
+        $this->data['due_amount'] = $this->data['invoice']->total_fee - $total_paid;
+        $this->data['total_paid'] = $total_paid;
+        $this->__site_template('admin/invoice', $this->data);
+    }
+
+    /**
+     * Print invoice
+     * @param string $id
+     */
+    function invoice_print($id) {
+        $this->load->model('Student/Student_model');
+        $this->data['invoice'] = $this->Student_model->invoice_detail($id);
+        $paid_fees = $this->Student_model->student_paid_fees($this->data['invoice']->fees_structure_id, $this->data['invoice']->std_id);
+        $total_paid = 0;
+        if (count($paid_fees)) {
+            foreach ($paid_fees as $paid) {
+                $total_paid += $paid->paid_amount;
+            }
+        }
+        $page_data['due_amount'] = $this->data['invoice']->total_fee - $total_paid;
+        $this->data['total_paid'] = $total_paid;
+
+        $html = utf8_encode($this->load->view('admin/invoice_print', $this->data, true));
+
+        //this the the PDF filename that user will get to download
+        $pdfFilePath = "invoice copy.pdf";
+
+        //load mPDF library
+        $this->load->library('M_pdf');
+
+
+        //load the view and saved it into $html variable
+        //generate the PDF from the given html
+        $this->m_pdf->pdf->WriteHTML($html);
+
+        //download it.
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
     }
 
 }

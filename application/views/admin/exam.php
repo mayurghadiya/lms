@@ -14,6 +14,7 @@
                 </div>
             </div>
             <div class=panel-body>
+                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addexam');" data-toggle="modal">Add New Exam</a>
                 <form id="exam-search" action="#" class="form-groups-bordered validate">
                     <div class="form-group col-sm-3">
                         <label><?php echo ucwords("department"); ?></label>
@@ -78,8 +79,8 @@
                                     <td><?php echo $row->s_name; ?></td>
                                     <td><?php echo date('F d, Y', strtotime($row->em_date)); ?></td>
                                     <td class="menu-action">
-                                        <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                        <a><span class="label label-danger mr6 mb6">Delete</span></a>
+                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_exam/<?php echo $row->em_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">Edit</span></a>
+                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/exam/delete/<?php echo $row->em_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
                                     </td>
                                 </tr>
                             <?php } ?>															

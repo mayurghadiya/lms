@@ -11,6 +11,7 @@ class Modal extends MY_Controller {
      */
     function __construct() {
         parent::__construct();
+        $this->load->model('admin/Crud_model');
     }
 
     /*
