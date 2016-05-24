@@ -102,3 +102,52 @@ $lang['assessment_title'] = 'Assessment Management';
 $lang['save_assessment'] = 'Assessment is successfully added.';
 $lang['update_assessment'] = 'Assessment is successfully updated.';
 $lang['delete_assessment'] = 'Assessment is successfully deleted.';
+
+/**
+ * System Settings
+ */
+$lang['system_title'] = 'System Settings';
+$lang['update_system'] = 'System Settings is successfully updated.';
+
+/*
+ * Forum & discussion
+ */
+
+
+$lang['forum_title'] = 'Forum & Discussion';
+$lang['update_forum'] = 'System Settings is successfully updated.';
+$lang['forum_comment_title'] = 'Forum Comment';
+$lang['forum_topic_title'] = "Forum Topics";
+
+
+/*
+ * Gallery Messages
+ */
+
+$lang['invalid_image'] = "Invalid Images";
+$lang['gallery_success'] = "Gallery Added Successfully";
+$lang['invalid_main_image'] = "Invalid Main Image";
+$lang['gallery_update'] = "Gallery Updated Successfully";
+$lang['gallery_delete'] = "Gallery Deleted Successfully";
+
+
+
+/*
+ * banner message
+ */
+$lang['banner_add'] = "Banner added successfully";
+$lang['banner_update'] = "Banner updated successfully";
+$lang['banner_delete'] = "Banner deleted successfully";
+$lang['banner_general']= "Banner Slider General Setting Updated Successfully";
+
+/*
+ * Import Export
+ */
+
+$lang['data_import'] = "Data is successfully imported.";
+$lang['import_title'] = 'Import Data';
+
+
+$lang['semseter_add'] = 'Semester Added Auccessfully';
+$lang['semester_update'] = 'Semester Updated Successflly';
+$lang['semester_delete'] = 'Semester Updated Successflly';

@@ -1469,5 +1469,7 @@ class Crud_model extends CI_Model {
                             'student_id' => $student
                         ))->get()->row();
     }
+    
 
 }
+

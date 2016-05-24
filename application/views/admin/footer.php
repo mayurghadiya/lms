@@ -25,9 +25,13 @@
     <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script type="text/javascript" src="js/libs/respond.min.js"></script>
     <![endif]-->
+<script src="<?php echo base_url(); ?>assets/plugins/forms/select2/select2.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/forms/dual-list-box/jquery.bootstrap-duallistbox.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/forms/summernote/summernote.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/pages/forms-validation.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/pages/tables-data.js"></script>
+
 <?php include 'modal.php';?>
 </body>
 </head>
