@@ -38,7 +38,7 @@ foreach ( $edit_data as $row):
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label"><?php echo ucwords("status");?></label>
                                             <div class="col-sm-5">
-                                                <select name="batch_status">
+                                                <select name="batch_status"  class="form-control">
                                                   <option value="1" <?php if($row['holiday_status'] == '1'){ echo "selected"; } ?>>Active</option>
                                     <option value="0" <?php if($row['holiday_status'] == '0'){ echo "selected"; } ?>>Inactive</option>	
                                                 </select>
