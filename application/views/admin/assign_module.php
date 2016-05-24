@@ -9,7 +9,7 @@
             <div class="vd_content-section clearfix">
                 <div class="row">
                     <div class="col-sm-12">
-                        <?php echo form_open(base_url() . 'index.php?admin/assign_module/create', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'assign_module')); ?>						
+                        <?php echo form_open(base_url() . 'admin/assign_module/create', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'assign_module')); ?>						
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Group Name</label>
                             <div class="col-sm-7 controls">
@@ -28,7 +28,7 @@
                         </div>	
                         <div class="row">
                             <div class="col-sm-5">
-                                <select class="form-control" style="width:100%;" size="8" multiple="multiple" id="multiselect">
+                                <select class="form-control" style="width:100%;" size="8" multiple id="multiselect" name="multiselect[]">
                                     <option value="">Existing Modules</option>
 <!--                                        <?php
                                         $modules_query = $this->db->get('modules')->result_array();
@@ -51,7 +51,7 @@
                             </div>
 
                             <div class="col-sm-5">
-                                <select name="module_name[]" id="multiselect_to" class="form-control" size="8" multiple="multiple"></select>
+                                <select name="module_name[]" id="multiselect_to" class="form-control" size="8" multiple></select>
                             </div>
                         </div>	
                         <!-- col-sm-9-->
@@ -81,13 +81,28 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.js"></script> 
 
 <script type="text/javascript">
+    
+//    $().ready(function() {
+//		$("#assign_module").validate({
+//			rules: {
+//				group_name: "required",				
+//				'module_name[]': "required",
+//			},
+//			messages: {
+//				group_name: "Please enter group name",				
+//				'module_name[]': "Module name required ",			
+//			}
+//		});
+//		});
+		
+                
     $("#group_name").change(function(){
         
        var type_array=$(this).val();
         var type=type_array.split(',');
        
        $.ajax({
-            url: '<?php echo base_url(); ?>index.php?admin/get_module',
+            url: '<?php echo base_url(); ?>admin/get_module',
             type:'post',
             dataType:'json',
             data:
@@ -105,38 +120,4 @@
             }
         });
     });
-//    $(function () {
-//        // bind change event to select
-//        $('#dropclass').on('change', function () {
-//            // var url = $(this).val(); // get selected value
-//            var classId = $(this).val();
-//            if (classId) { // require a URL
-//                window.location = "<?php echo base_url('/index.php?admin/group/'); ?>/" + classId;
-//            }
-//            return false;
-//        });
-//    });
-//    function get_user(user_id) {
-//        $("#test").append('<input type="hidden" name="user_type" value="' + user_id + '">');
-//        $.ajax({
-//            url: '<?php echo base_url(); ?>index.php?admin/get_user/' + user_id,
-//            success: function (response)
-//            {
-//                //jQuery('#multiselect').html(response);
-//            }
-//        });
-//    }
-//    function get_group_ajax(group_id) {
-//
-//        $.ajax({
-//            url: '<?php echo base_url(); ?>index.php?admin/get_group_ajax/' + group_id,
-//            success: function (response)
-//            {
-//                var json = jQuery.parseJSON(response);
-//                jQuery('.group_listing').html(json.group);
-//                jQuery('#user_type').html(json.user_type);
-//                jQuery('#multiselect').html(json.full_user_list);
-//            }
-//        });
-//    }
 </script>

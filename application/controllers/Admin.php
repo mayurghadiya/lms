@@ -3888,8 +3888,9 @@ class Admin extends MY_Controller {
             $data['group_id'] = $group_explode[0];
             $data['module_id'] = implode(',', $this->input->post('module_name'));
             //print_r($data); die;
-            $this->db->where(array('group_id' => $this->input->post('group_name')));
+            $this->db->where(array('group_id' => $data['group_id']));
             $module_row = $this->db->get('assign_module')->row();
+           
 //            $this->db->where(array('group_id' => $this->input->post('group_name')));
 //            $group_count = $this->db->count_all_results('assign_module');
             
@@ -3899,6 +3900,9 @@ class Admin extends MY_Controller {
             } else {
                 $this->db->insert('assign_module', $data);
             }
+//             print_r($this->input->post('multiselect'));
+//            echo $this->db->last_query();
+//            exit;
             $this->session->set_flashdata('flash_message', 'Module assign successfully');
             redirect(base_url() . 'admin/assign_module', 'refresh');
         }
@@ -3925,6 +3929,13 @@ class Admin extends MY_Controller {
         $this->data['page'] = 'list_module';
         $this->data['title'] = 'List Module';
         $this->__site_template('admin/list_module', $this->data);
+    }
+    
+     function get_module()
+    {
+        $type=$this->input->post('type');
+        $data=$this->db->get_where('modules',array('user_type'=>$type))->result_array();
+        echo json_encode($data);
     }
     
       function get_module_ajax() {
