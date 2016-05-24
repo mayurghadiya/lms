@@ -13,6 +13,7 @@ class Modal extends MY_Controller {
         parent::__construct();
         $this->load->model('admin/Crud_model');
         $this->load->model('professor/Professor_model');
+        $this->load->model('forum_model');
     }
 
     /*
