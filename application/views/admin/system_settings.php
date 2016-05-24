@@ -29,8 +29,8 @@
                     <label  class="col-sm-3 control-label"><?php echo ucwords("Phone"); ?><span style="color:red">*</span></label>
 
                     <div class="col-sm-9">
-                        <div class="col-sm-3 p-l-0">
-                            <select style="margin-left: -15px;" name="countryCode" id="countryCode" class="form-control">  
+                        <div style="margin-left: -15px" class="col-sm-3 p-l-0">
+                            <select name="countryCode" id="countryCode" class="form-control">  
                                 <option data-countryCode="DZ" value="213">Algeria (+213)</option>
                                 <option data-countryCode="AD" value="376">Andorra (+376)</option>
                                 <option data-countryCode="AO" value="244">Angola (+244)</option>
@@ -249,7 +249,7 @@
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <input style="margin-left: -18px" type="text" class="form-control" name="phone" id="system_phone" value="<?php echo $this->db->get_where('system_setting', array('type' => 'phone'))->row()->description; ?>">
+                            <input style="margin-left: -10px" type="text" class="form-control" name="phone" id="system_phone" value="<?php echo $this->db->get_where('system_setting', array('type' => 'phone'))->row()->description; ?>">
                         </div>                                                    
                     </div>
                 </div>
@@ -273,7 +273,7 @@
                 </div>	
                 <div class="form-group hidden">
                     <label for="field-1" class="col-sm-3 control-label"><?php echo ucwords("Photo"); ?></label>                          
-                    <div class="col-sm-9">
+                    <div class="col-sm-5">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
                             <div class="fileinput-new thumbnail" style="width: 100px; height: 100px;" data-trigger="fileinput">
                                 <img src="<?php echo $this->Crud_model->get_image_url('system', $this->session->userdata('admin_id')); ?>" id="blah" alt="...">

@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     //minumum 2 symbols input
     $('.select2-minimum').select2({
-        placeholder: 'Select state',
+        placeholder: '',
         minimumInputLength: 2,
     });
 
