@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class=panel-body>
-               
+                 <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_forum_topic');" data-toggle="modal">Add New Forum Topic</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -46,8 +46,8 @@
                                                     </td>
                                                     <td><a href="<?php echo base_url().'admin/forumcomment/'.$row['forum_topic_id']; ?>" data-original-title="View Comments" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"><i class="fa fa-file-o"></i></a></td>
                                                      <td class="menu-action">
-                                                        <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                                        <a><span class="label label-danger mr6 mb6">Delete</span></a>
+                                                       <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_forumtopic/<?php echo $row['forum_topic_id']; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">Edit</span></a>
+                                                       <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/topicscrud/delete/<?php echo $row['forum_topic_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
                                                     </td>
                                                 </tr>
                                 <?php endforeach; ?>						

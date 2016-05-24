@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class=panel-body>
-                
+                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addphotogallery/');" href="#" id="navfixed" data-toggle="tab">Add Photos</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -28,20 +28,20 @@
 
                     <tbody>
                           <?php
-                                                $count = 1;
-                                                foreach ($gallery as $row):
-                                                    ?>
-                                                    <tr>
-                                                       <td><?php echo $count++; ?></td>    
-                                                    <td><?php echo $row->gallery_title; ?></td>    
-                                                    <td><?php echo $row->gallery_desc; ?></td>  
-                                                    <td><a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>index.php?modal/popup/modal_view_photogallery/<?php echo $row->gallery_id; ?>');" data-original-title="View Gallery" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"><i class="fa fa-file-o"></i></a>	</td></td>
-                                                   <td class="menu-action">
-                                                        <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                                        <a><span class="label label-danger mr6 mb6">Delete</span></a>
-                                                    </td>
-                                                    </tr>
-                                                <?php endforeach; ?>   
+                                $count = 1;
+                                foreach ($gallery as $row):
+                           ?>
+                           <tr>
+                           <td><?php echo $count++; ?></td>    
+                           <td><?php echo $row->gallery_title; ?></td>    
+                           <td><?php echo $row->gallery_desc; ?></td>  
+                           <td><a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_view_photogallery/<?php echo $row->gallery_id; ?>');" data-original-title="View Gallery" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"><i class="fa fa-file-o"></i></a>	</td></td>
+                           <td class="menu-action">
+                                 <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_photogallery/<?php echo $row->gallery_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
+                                 <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/photogallery/delete/<?php echo $row->gallery_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>
+                            </td>
+                            </tr>
+                            <?php endforeach; ?>   
                     </tbody>
                 </table>
             </div>

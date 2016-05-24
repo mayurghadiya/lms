@@ -2734,13 +2734,34 @@ class Admin extends MY_Controller {
     
     /**
      *  Forum & Discussion
+     * @param String $param
+     * @param int $id
      */
-    /**
-    * Forum
-    *     
-    */
-    function forum()
+    function forum($param='' , $id = '')
     {
+            if($param=="create")
+            {
+                $data['forum_title']  = $this->input->post("forum_title");
+                $data['forum_status'] = $this->input->post("forum_status");
+                $this->forum_model->create($data);
+                  $this->session->set_flashdata('flash_message', 'Forum Added Successfully');
+                redirect(base_url() . 'admin/forum', 'refresh');
+            }
+            if($param=="update")
+            {
+                $data['forum_title']  = $this->input->post("forum_title");
+                $data['forum_status'] = $this->input->post("forum_status");
+                $this->forum_model->update($data,$id);
+                  $this->session->set_flashdata('flash_message', 'Forum Updated Successfully');
+                redirect(base_url() . 'admin/forum', 'refresh');
+            }
+            if($param=="delete")
+            {
+                
+                $this->forum_model->delete($id);
+                  $this->session->set_flashdata('flash_message', 'Forum Deleted Successfully');
+                redirect(base_url() . 'admin/forum', 'refresh');
+            }
         $this->data['page'] = 'forum';
         $this->data['title'] = $this->lang_message('forum_title');
         $this->data['forum'] = $this->forum_model->getforum();
@@ -2757,29 +2778,7 @@ class Admin extends MY_Controller {
      */
      function crud($param='',$id='')
         {
-            if($param=="create")
-            {
-                $data['forum_title']  = $this->input->post("forum_title");
-                $data['forum_status'] = $this->input->post("forum_status");
-                $this->forum_model->create($data);
-                  $this->session->set_flashdata('flash_message', 'Forum Added Successfully');
-                redirect(base_url() . 'forum/', 'refresh');
-            }
-            if($param=="update")
-            {
-                $data['forum_title']  = $this->input->post("forum_title");
-                $data['forum_status'] = $this->input->post("forum_status");
-                $this->forum_model->update($data,$id);
-                  $this->session->set_flashdata('flash_message', 'Forum Updated Successfully');
-                redirect(base_url() . 'forum/', 'refresh');
-            }
-            if($param=="delete")
-            {
-                
-                $this->forum_model->delete($id);
-                  $this->session->set_flashdata('flash_message', 'Forum Deleted Successfully');
-                redirect(base_url() . 'forum/', 'refresh');
-            }
+            
             
         }
         
@@ -2809,13 +2808,13 @@ class Admin extends MY_Controller {
                 $data['forum_topic_status'] = $this->input->post('topic_status');
                 $data['forum_topic_desc'] = $this->input->post('description');
                 $data['user_role'] = $this->session->userdata('login_type');
-                $data['user_role_id'] = $this->session->userdata('login_id');
+                $data['user_role_id'] = $this->session->userdata('login_user_id');
                 $data['forum_id'] = $this->input->post('forum_id');
                 
                 
                 $this->forum_model->create_topic($data);
                  $this->session->set_flashdata('flash_message', 'Forum Topic Added Successfully');
-                redirect(base_url() . 'forum/forumtopics', 'refresh');
+                redirect(base_url() . 'admin/forumtopics', 'refresh');
                 
             }
              if($param=="update")
@@ -2832,14 +2831,14 @@ class Admin extends MY_Controller {
                 }
                 $this->forum_model->update_topic($data,$id);
                 $this->session->set_flashdata('flash_message', 'Forum Topic Updated Successfully');
-                redirect(base_url() . 'forum/forumtopics', 'refresh');
+                redirect(base_url() . 'admin/forumtopics', 'refresh');
                 
             }
             if($param=="delete")
             {
                  $this->forum_model->forum_topicsdelete($id);
                   $this->session->set_flashdata('flash_message', 'Forum Topic Deleted Successfully');
-                redirect(base_url() . 'forum/forumtopics', 'refresh');
+                redirect(base_url() . 'admin/forumtopics', 'refresh');
             }
         }
         
@@ -3006,7 +3005,7 @@ class Admin extends MY_Controller {
 
                       $success = $this->lang_message('gallery_success');
                     $this->session->set_flashdata('flash_message',$success);
-                    redirect(base_url().'index.php?media/photogallery');
+                    redirect(base_url().'admin/photogallery');
 
 
 
@@ -3167,7 +3166,7 @@ class Admin extends MY_Controller {
                 $this->db->delete("photo_gallery");
                 $success = $this->lang_message('gallery_delete');
                 $this->session->set_flashdata('flash_message',$success);
-                redirect(base_url().'index.php?media/photogallery');
+                redirect(base_url().'admin/photogallery');
             }
 
            $this->data['gallery'] =  $this->photo_gallery->getphotogallery();
