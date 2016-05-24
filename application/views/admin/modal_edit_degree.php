@@ -3,18 +3,12 @@ $edit_data = $this->db->get_where('degree', array('d_id' => $param2))->result_ar
 foreach ($edit_data as $row):
     ?>
 <div class=row>                      
-
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <div class=panel-heading>
-                <h4 class=panel-title> <?php echo ucwords(" Update department");?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
+                <h4 class=panel-title>  <?php echo ucwords("Update department");?></h4>                
             </div>
                 
                 <div class="panel-body">
@@ -32,9 +26,9 @@ foreach ($edit_data as $row):
                                   <lable class="error" id="error_lable_exist" style="color:#f85d2c"></lable>
                             </div>                   
                             <div class="form-group">
-                                <label class="col-sm-5 control-label"><?php echo ucwords("status");?></label>
+                                <label class="col-sm-3 control-label"><?php echo ucwords("status");?></label>
                                 <div class="col-sm-5">
-                                    <select name="degree_status">
+                                    <select name="degree_status" class="form-control" >
                                         <option value="1" <?php if ($row['d_status'] == '1') {
                             echo "selected";
                         } ?>>Active</option>

@@ -4381,5 +4381,80 @@ class Admin extends MY_Controller {
         $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode))->result_array();
         echo json_encode($data);
     }
+    
+    /**
+     * Get assessment student
+     * @param String $param
+     */
+    function get_assessment_student($param= '') {
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("semester");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
+
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
+        $html = '<option value="">Select Student</option>';
+        foreach ($datastudent as $row):
+            $html .='<option value="' . $row->std_id . '">' . $row->name . '</option>';
+        endforeach;
+        echo $html;
+    }
+    
+    
+    /**
+     * get batches
+     * @param type $param
+     */
+    function get_batches($param = '') {
+        $cid = $this->input->post("course");
+        $did = $this->input->post("degree");
+        if ($cid != '') {
+            $batch = $this->db->query("SELECT * FROM batch WHERE FIND_IN_SET('" . $did . "',degree_id) AND FIND_IN_SET('" . $cid . "',course_id)")->result_array();
+            $html = '<option value="">Select Batch</option>';
+            foreach ($batch as $btc):
+                $html .='<option value="' . $btc['b_id'] . '">' . $btc['b_name'] . '</option>';
+
+            endforeach;
+            echo $html;
+        }
+    }
+    
+    /**
+     * getc courses
+     * @param String $param
+     */
+
+    function get_course($param = '') {
+        $did = $this->input->post("degree");
+
+        if ($did != '') {
+            $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
+            $html = '<option value="">Select Branch</option>';
+            foreach ($cource as $crs):
+                $html .='<option value="' . $crs['course_id'] . '">' . $crs['c_name'] . '</option>';
+
+            endforeach;
+            echo $html;
+        }
+    }
+    
+    /**
+     * return student list
+     */
+    function assessment_student()
+    {        
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("semester");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
+
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
+        $html ='<option value="">Select Student</option>';  
+       foreach($datastudent as $row):
+          $html .='<option value="'.$row->std_id.'">'.$row->name.'</option>';
+       endforeach;
+       echo $html;
+        
+    }
 
 }
