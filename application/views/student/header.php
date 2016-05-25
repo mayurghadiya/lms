@@ -200,6 +200,10 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="<?php echo base_url(); ?>student/project/submission/"><i class="s16 icomoon-icon-cube"></i><span class="txt">Projects </span>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="<?php echo base_url(); ?>student/exam"><i class="s16 fa fa-picture-o"></i>
                                                 <span class=txt>Exam</span>
                                             </a>
@@ -220,19 +224,25 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="">
+                                            <a href="<?php echo base_url(); ?>student/holiday">
                                                 <i class="s16 fa fa-book"></i>
                                                 <span class=txt>Holiday </span>
                                             </a>
-                                        </li>                                        
+                                        </li>   
                                         <li>
-                                            <a href="">
+                                            <a href="<?php echo base_url(); ?>student/assessment">
+                                                <i class="s16 icomoon-icon-map"></i>
+                                                <span class=txt>Assessment </span>
+                                            </a>
+                                        </li>   
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/courseware">
                                                 <i class="s16 fa fa-file-o"></i>
                                                 <span class=txt>Courseware</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="">
+                                            <a href="<?php echo base_url(); ?>student/vocationalcourse">
                                                 <i class="s16 fa fa-spinner"></i>
                                                 <span class=txt>Vocational Course</span>
                                             </a>

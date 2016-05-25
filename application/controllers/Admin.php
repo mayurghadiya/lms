@@ -3117,7 +3117,11 @@ class Admin extends MY_Controller {
                 $this->session->set_flashdata('flash_message', $success);
                 redirect(base_url() . 'admin/photogallery');
             }
-            if ($param == "delete") {
+           
+           
+            
+        }
+         if ($param == "delete") {
                 $this->db->where("gallery_id", $param2);
                 $this->db->delete("photo_gallery");
                 $success = $this->lang_message('gallery_delete');
@@ -3125,11 +3129,10 @@ class Admin extends MY_Controller {
                 redirect(base_url() . 'index.php?media/photogallery');
             }
 
-            $this->data['gallery'] = $this->photo_gallery->getphotogallery();
+             $this->data['gallery'] = $this->photo_gallery->getphotogallery();
             $this->data['title'] = 'Photo Gallery';
-            $this->data['page'] = 'photo_gallery';
+            $this->data['page'] = 'photo_gallery';            
             $this->__site_template('admin/photo_gallery', $this->data);
-        }
     }
 
     /**

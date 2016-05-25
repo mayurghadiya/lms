@@ -894,24 +894,7 @@ class Student extends MY_Controller {
     }
     
     
-    /**
-     * Payment gateway type
-     * @param string $type
-     */
-    function payment_gateway_type($type) {
-        $this->load->model('admin/Crud_model');
-        if ($type == 'authorize.net') {
-            //load authorize.net payment getaway page
-            $this->data['authorize_net'] = $this->Crud_model->authorize_net_config();
-            $this->data['degree'] = $this->Crud_model->get_all_degree();
-            $this->data['course'] = $this->Crud_model->get_all_course();
-            $this->data['semester'] = $this->Crud_model->get_all_semester();
-        }
-        $this->data['title'] = 'Make Payment';
-        $this->data['page'] = 'make_payment';
-        $this->__site_template('student/make_payment', $this->data);
-     
-    }
+   
     
     function student_fees() {
         $this->load->model('Student/Student_model');
@@ -1004,14 +987,7 @@ class Student extends MY_Controller {
         return trim(strip_tags($value));
     }
     
-    /**
-     * Verify and print verify card details
-     */
-    function verify_card_detail($cc_number) {
-        $cc_details = $this->validateCreditcard_number($cc_number);
-        echo json_encode($cc_details);
-    }
-    
+   
      /**
      * Filter and redirect based on payment gateway
      */
@@ -1051,23 +1027,6 @@ class Student extends MY_Controller {
     
 
     /**
-     * Pay online student fee
-     */
-    function student_fees() {
-        $this->data['student_detail'] = $this->db->get_where('student', array(
-                    'std_id' => $this->session->userdata('login_user_id')
-                ))->row();
-        $this->data['fees_structure'] = '';
-        $this->data['semester'] = $this->Student_model->get_all_semester();
-        $this->data['fees_record'] = $this->Student_model->fees_record($this->session->userdata('login_user_id'));
-        $this->data['page'] = 'student_fees';
-        $this->data['title'] = 'Student Fee';
-        clear_notification('fees_structure', $this->session->userdata('student_id'));
-        unset($this->session->userdata('notifications')['fees_structure']);
-        $this->__site_template('student/student_fees', $this->data);
-    }
-
-    /**
      * Fees structure details
      * @param string $course_id
      * @param string $semester_id
@@ -1105,29 +1064,7 @@ class Student extends MY_Controller {
         echo json_encode($total_paid);
     }
 
-    /**
-     * Pay online
-     */
-    function pay_online() {
-        if ($_POST) {
-            //set payment data in session
-            $session['payment_info'] = array(
-                'student_id' => $this->session->userdata('student_id'),
-                'fees_structure' => $_POST['fees_structure'],
-                'semester' => $_POST['semester'],
-                'amount' => $_POST['amount'],
-                'title' => $_POST['title'],
-                'remarks' => $_POST['description']
-            );
-            $this->session->set_userdata($session);
-            //echo '<pre>';
-            //var_dump($_POST);
-            redirect(base_url('student/payment_gateway_type/' . $_POST['method']));
-        } else {
-            redirect(base_url('student/student_fees'));
-        }
-    }
-
+    
     /**
      * Payment gateway type
      * @param string $type
@@ -1154,80 +1091,8 @@ class Student extends MY_Controller {
         echo json_encode($cc_details);
     }
 
-    /**
-     * Validate credit card number
-     * @param int $cc_num
-     * @return array
-     */
-    function validateCreditcard_number($cc_num) {
-        $credit_card_number = $this->sanitize($cc_num);
-        // Get the first digit
-        $data = array();
-        $firstnumber = substr($credit_card_number, 0, 1);
-        // Make sure it is the correct amount of digits. Account for dashes being present.
-        switch ($firstnumber) {
-            case 3:
-                $data['card_type'] = "American Express";
-                if (!preg_match('/^3\d{3}[ \-]?\d{6}[ \-]?\d{5}$/', $credit_card_number)) {
-                    //return 'This is not a valid American Express card number';
-                    $data['status'] = 'false';
-                    return $data;
-                }
-                break;
-            case 4:
-                $data['card_type'] = "Visa";
-                if (!preg_match('/^4\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
-                    //return 'This is not a valid Visa card number';
-                    $data['status'] = 'false';
-                    return $data;
-                }
-                break;
-            case 5:
-                $data['card_type'] = "MasterCard";
-                if (!preg_match('/^5\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
-                    //return 'This is not a valid MasterCard card number';
-                    $data['status'] = 'false';
-                    return $data;
-                }
-                break;
-            case 6:
-                $data['card_type'] = "Discover";
-                if (!preg_match('/^6011[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
-                    //return 'This is not a valid Discover card number';
-                    $data['status'] = 'false';
-                    return $data;
-                }
-                break;
-            default:
-                //return 'This is not a valid credit card number';
-                $data['card_type'] = "Invalid";
-                $data['status'] = 'false';
-                return $data;
-        }
-        // Here's where we use the Luhn Algorithm
-        $credit_card_number = str_replace('-', '', $credit_card_number);
-        $map = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 2, 4, 6, 8, 1, 3, 5, 7, 9);
-        $sum = 0;
-        $last = strlen($credit_card_number) - 1;
-        for ($i = 0; $i <= $last; $i++) {
-            $sum += $map[$credit_card_number[$last - $i] + ($i & 1) * 10];
-        }
-        if ($sum % 10 != 0) {
-            //return 'This is not a valid credit card number';
-            $data['status'] = 'false';
-            return $data;
-        }
-        // If we made it this far the credit card number is in a valid format
-        $data['status'] = 'true';
-        return $data;
-    }
+    
 
-    /**
-     * Sanitize the input
-     */
-    function sanitize($value) {
-        return trim(strip_tags($value));
-    }
 
     /**
      * Authorize.net payment
@@ -1460,5 +1325,17 @@ class Student extends MY_Controller {
         $this->data['title'] = 'Gallery';
         $this->__site_template('student/gallery', $this->data);
     }
+    
+    /**
+     * holiday List
+     */
+    function holiday()
+       {
+            $this->data['page'] = 'holiday';
+            $this->data['title'] = 'Holiday List';      
+            $this->data['holiday'] = $this->db->get('holiday')->result_array();
+            $this->__site_template('student/holiday', $this->data);
+       }
+    
 
 }
