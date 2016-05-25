@@ -22,6 +22,7 @@
             <!-- Css files -->
             <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">
             <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/main.min.css">
+            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
             <!-- Fav and touch icons -->
             <link rel=apple-touch-icon-precomposed sizes=144x144 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-144-precomposed.png>
             <link rel=apple-touch-icon-precomposed sizes=114x114 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-114-precomposed.png>
