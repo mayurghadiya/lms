@@ -1,5 +1,4 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends MY_Controller {
@@ -20,13 +19,17 @@ class Admin extends MY_Controller {
         $this->load->model('admin/Crud_model');
         $this->load->model('forum_model');
         $this->load->model('photo_gallery');
-
     }
 
     /**
      * Index action
      */
     function index() {
+        $this->load->helper('report_chart');
+        $course = $this->db->get('course')->result();
+        $this->data['male_female_pie_chart'] = male_female_students();
+        $this->data['new_student_joining'] = new_student_registration();
+        $this->data['male_vs_female_course_wise'] = male_vs_female_course_wise();
         $this->data['title'] = 'Admin Dashboard';
         $this->__site_template('admin/dashboard', $this->data);
     }
@@ -49,15 +52,15 @@ class Admin extends MY_Controller {
      * @param string $param2
      */
     function degree($param1 = '', $param2 = '') {
-           
+
         if ($_POST) {
-         if ($param1 == 'create') {
+            if ($param1 == 'create') {
                 $data['d_name'] = $this->input->post('d_name');
                 $data['d_status'] = $this->status($this->input->post('degree_status'));
                 $data['created_date'] = date('Y-m-d');
                 $this->db->insert('degree', $data);
                 $this->session->set_flashdata('flash_message', $this->lang_message('save_department'));
-                
+
                 redirect(base_url('admin/department'));
             }
             if ($param1 == 'do_update') {
@@ -181,8 +184,7 @@ class Admin extends MY_Controller {
      */
     function semester($param1 = '', $param2 = '') {
         if ($_POST) {
-            if ($param1 == 'create') 
-            {
+            if ($param1 == 'create') {
                 $data['s_name'] = $this->input->post('s_name');
                 $data['s_status'] = $this->status($this->input->post('semester_status'));
                 $data['created_date'] = date('Y-m-d');
@@ -190,8 +192,7 @@ class Admin extends MY_Controller {
                 $this->session->set_flashdata('flash_message', $this->lang_message('semseter_add'));
                 redirect(base_url() . 'admin/semester/', 'refresh');
             }
-            if ($param1 == 'do_update') 
-            {
+            if ($param1 == 'do_update') {
                 $data['s_name'] = $this->input->post('s_name');
                 $data['s_status'] = $this->status($this->input->post('semester_status'));
 
@@ -627,7 +628,7 @@ class Admin extends MY_Controller {
                 }
 
                 $this->db->insert('university_peoples', $data);
-                $this->session->set_flashdata('flash_message',$this->lang_message('chancellor_add'));
+                $this->session->set_flashdata('flash_message', $this->lang_message('chancellor_add'));
                 redirect(base_url() . 'admin/chancellor/', 'refresh');
             }
             if ($param1 == 'do_update') {
@@ -980,8 +981,8 @@ class Admin extends MY_Controller {
         $this->data['title'] = $this->lang_message('assignment_title');
         $this->__site_template('admin/assignment', $this->data);
     }
-    
-     function getassignment($param = '') {
+
+    function getassignment($param = '') {
         if ($param = 'allassignment') {
             $degree = $this->input->post('degree');
             $course = $this->input->post('course');
@@ -1004,11 +1005,11 @@ class Admin extends MY_Controller {
             $this->load->view("admin/getassignment", $data);
         }
     }
-    
+
     /**
      * check assignment
      */
- function checkassignment($id = '') {
+    function checkassignment($id = '') {
         $degree = $this->input->post('degree');
         $course = $this->input->post('course');
         $batch = $this->input->post('batch');
@@ -1021,7 +1022,7 @@ class Admin extends MY_Controller {
 
         echo json_encode($data);
     }
-    
+
     function checkassignments() {
         $degree = $this->input->post('degree');
         $course = $this->input->post('course');
@@ -1034,7 +1035,7 @@ class Admin extends MY_Controller {
                     'assign_batch' => $batch, 'assign_sem' => $semester))->result_array();
         echo json_encode($data);
     }
-    
+
     /**
      * Study resource managemnt
      * @param string $param1
@@ -1184,7 +1185,7 @@ class Admin extends MY_Controller {
         $this->data['title'] = $this->lang_message('study_resource_title');
         $this->__site_template('admin/studyresource', $this->data);
     }
-    
+
     function getstudyresource() {
         $degree = $this->input->post('degree');
         $course = $this->input->post('course');
@@ -1225,7 +1226,7 @@ class Admin extends MY_Controller {
         }
         $this->load->view("admin/getstudyresource", $data);
     }
-    
+
     /**
      * Project and synopsis
      * @param string $param1
@@ -2433,6 +2434,18 @@ class Admin extends MY_Controller {
     }
 
     /**
+     * Fee structure ajax filter
+     * @param string $degree
+     * @param string $course
+     * @param string $batch
+     * @param string $semester
+     */
+    function fee_structure_filter($degree, $course, $batch, $semester) {
+        $this->data['fees_structure'] = $this->Crud_model->fee_structure_filter($degree, $course, $batch, $semester);
+        $this->load->view("admin/fee_structure_filter", $this->data);
+    }
+
+    /**
      * Make payment via payment gateway
      */
     function make_payment() {
@@ -2638,22 +2651,19 @@ class Admin extends MY_Controller {
         $this->load->view("admin/ajax_student", $data);
     }
 
-    
     /*
      * System Setting
      * System general settings
      */
 
     /**
-    * system_settings
-    *  @param string $param1
-    *  @param string $param2
-    *  @param string $param3
-    */
-
+     * system_settings
+     *  @param string $param1
+     *  @param string $param2
+     *  @param string $param3
+     */
     function system_settings($param1 = '', $param2 = '', $param3 = '') {
-        if($_POST)
-        {
+        if ($_POST) {
             if ($param1 == 'do_update') {
                 $data['description'] = $this->input->post('system_name');
                 $this->db->where('type', 'system_name');
@@ -2713,7 +2723,7 @@ class Admin extends MY_Controller {
         if ($param1 == 'upload_logo') {
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/logo.png');
 
-            $this->session->set_flashdata('flash_message',$this->lang_message('update_system'));
+            $this->session->set_flashdata('flash_message', $this->lang_message('update_system'));
             redirect(base_url() . 'admin/system_settings/', 'refresh');
         }
         if ($param1 == 'change_skin') {
@@ -2722,632 +2732,554 @@ class Admin extends MY_Controller {
             $this->db->update('system_setting', $data);
             $this->session->set_flashdata('flash_message', '');
             redirect(base_url() . 'admin/system_settings/', 'refresh');
-        }      
+        }
         $this->data['title'] = $this->lang_message('system_title');
         $this->data['page'] = 'system_settings';
-        $this->data['settings'] = $this->db->get('system_setting')->result_array();      
+        $this->data['settings'] = $this->db->get('system_setting')->result_array();
         $this->__site_template('admin/system_settings', $this->data);
-        
     }
-    
+
     /**
-     *  Forum & Discussion
+     * forum crud
+     * 
+     */
+    /*
      * @param String $param
      * @param int $id
      */
-    function forum($param='' , $id = '')
-    {
-            if($param=="create")
-            {
-                $data['forum_title']  = $this->input->post("forum_title");
-                $data['forum_status'] = $this->input->post("forum_status");
-                $this->forum_model->create($data);
-                  $this->session->set_flashdata('flash_message', 'Forum Added Successfully');
-                redirect(base_url() . 'admin/forum', 'refresh');
-            }
-            if($param=="update")
-            {
-                $data['forum_title']  = $this->input->post("forum_title");
-                $data['forum_status'] = $this->input->post("forum_status");
-                $this->forum_model->update($data,$id);
-                  $this->session->set_flashdata('flash_message', 'Forum Updated Successfully');
-                redirect(base_url() . 'admin/forum', 'refresh');
-            }
-            if($param=="delete")
-            {
-                
-                $this->forum_model->delete($id);
-                  $this->session->set_flashdata('flash_message', 'Forum Deleted Successfully');
-                redirect(base_url() . 'admin/forum', 'refresh');
-            }
+
+    function forum($param = '', $id = '') {
+        if ($param == "create") {
+            $data['forum_title'] = $this->input->post("forum_title");
+            $data['forum_status'] = $this->input->post("forum_status");
+            $this->forum_model->create($data);
+            $this->session->set_flashdata('flash_message', 'Forum Added Successfully');
+            redirect(base_url() . 'admin/forum', 'refresh');
+        }
+        if ($param == "update") {
+            $data['forum_title'] = $this->input->post("forum_title");
+            $data['forum_status'] = $this->input->post("forum_status");
+            $this->forum_model->update($data, $id);
+            $this->session->set_flashdata('flash_message', 'Forum Updated Successfully');
+            redirect(base_url() . 'admin/forum', 'refresh');
+        }
+        if ($param == "delete") {
+
+            $this->forum_model->delete($id);
+            $this->session->set_flashdata('flash_message', 'Forum Deleted Successfully');
+            redirect(base_url() . 'admin/forum', 'refresh');
+        }
         $this->data['page'] = 'forum';
         $this->data['title'] = $this->lang_message('forum_title');
         $this->data['forum'] = $this->forum_model->getforum();
         $this->__site_template('admin/forum', $this->data);
     }
-    
-    /**
-     * forum crud
-     * 
-     */
-    /**
-     * @param string $param 
-     * @param int $id
-     */
-     function crud($param='',$id='')
-        {
-            
-            
-        }
-        
+
     /**
      * forum topics
      * 
      */
-         
-        function forumtopics()
-        {
+    function forumtopics() {
         $this->data['page'] = 'forum_topic';
         $this->data['title'] = $this->lang_message('forum_topic_title');
         $this->data['forum_topic'] = $this->forum_model->getforum_topic();
         $this->__site_template('admin/forum_topic', $this->data);
-        }
-        
+    }
+
     /**
      * Forum Topics crud
      * @param String $param 
      * @param int $id 
      */
-        function topicscrud($param='',$id = '')
-        {
-            if($param=="create")
-            {
-                $data['forum_topic_title'] = $this->input->post('topic_title');
-                $data['forum_topic_status'] = $this->input->post('topic_status');
-                $data['forum_topic_desc'] = $this->input->post('description');
+    function topicscrud($param = '', $id = '') {
+        if ($param == "create") {
+            $data['forum_topic_title'] = $this->input->post('topic_title');
+            $data['forum_topic_status'] = $this->input->post('topic_status');
+            $data['forum_topic_desc'] = $this->input->post('description');
+            $data['user_role'] = $this->session->userdata('login_type');
+            $data['user_role_id'] = $this->session->userdata('login_id');
+            $data['forum_id'] = $this->input->post('forum_id');
+
+
+            $this->forum_model->create_topic($data);
+            $this->session->set_flashdata('flash_message', 'Forum Topic Added Successfully');
+            redirect(base_url() . 'forum/forumtopics', 'refresh');
+        }
+        if ($param == "update") {
+            $topic = $this->forum_model->getforumtopic($id);
+            $data['forum_topic_title'] = $this->input->post('topic_title');
+            $data['forum_topic_status'] = $this->input->post('topic_status');
+            $data['forum_id'] = $this->input->post('forum_id');
+            $data['forum_topic_desc'] = $this->input->post('description');
+            if ($topic[0]['user_role'] == $this->session->userdata('login_type')) {
                 $data['user_role'] = $this->session->userdata('login_type');
+                $data['user_role_id'] = $this->session->userdata('login_id');
                 $data['user_role_id'] = $this->session->userdata('login_user_id');
                 $data['forum_id'] = $this->input->post('forum_id');
-                
-                
+
+
                 $this->forum_model->create_topic($data);
-                 $this->session->set_flashdata('flash_message', 'Forum Topic Added Successfully');
+                $this->session->set_flashdata('flash_message', 'Forum Topic Added Successfully');
                 redirect(base_url() . 'admin/forumtopics', 'refresh');
-                
             }
-             if($param=="update")
-            {
+            if ($param == "update") {
                 $topic = $this->forum_model->getforumtopic($id);
                 $data['forum_topic_title'] = $this->input->post('topic_title');
                 $data['forum_topic_status'] = $this->input->post('topic_status');
                 $data['forum_id'] = $this->input->post('forum_id');
                 $data['forum_topic_desc'] = $this->input->post('description');
-                if($topic[0]['user_role']==$this->session->userdata('login_type'))
-                {
+                if ($topic[0]['user_role'] == $this->session->userdata('login_type')) {
                     $data['user_role'] = $this->session->userdata('login_type');
                     $data['user_role_id'] = $this->session->userdata('login_id');
                 }
-                $this->forum_model->update_topic($data,$id);
+                $this->forum_model->update_topic($data, $id);
                 $this->session->set_flashdata('flash_message', 'Forum Topic Updated Successfully');
                 redirect(base_url() . 'admin/forumtopics', 'refresh');
-                
             }
-            if($param=="delete")
-            {
-                 $this->forum_model->forum_topicsdelete($id);
-                  $this->session->set_flashdata('flash_message', 'Forum Topic Deleted Successfully');
+            if ($param == "delete") {
+                $this->forum_model->forum_topicsdelete($id);
+                $this->session->set_flashdata('flash_message', 'Forum Topic Deleted Successfully');
                 redirect(base_url() . 'admin/forumtopics', 'refresh');
             }
+            $this->forum_model->update_topic($data, $id);
+            $this->session->set_flashdata('flash_message', 'Forum Topic Updated Successfully');
+            redirect(base_url() . 'forum/forumtopics', 'refresh');
         }
-        
+        if ($param == "delete") {
+            $this->forum_model->forum_topicsdelete($id);
+            $this->session->set_flashdata('flash_message', 'Forum Topic Deleted Successfully');
+            redirect(base_url() . 'forum/forumtopics', 'refresh');
+        }
+    }
+
     /**
      * furum comment list
      * @param int $param 
      * get comment particular topics
-     */    
-       function forumcomment($param = '')
-       {
-            if($param!="")
-            {
-             $this->data['forum_comment'] =  $this->forum_model->getcomments($param);
-            }
-             $this->data['page'] = 'forum_comment';
-             $this->data['title'] = $this->lang_message('forum_comment_title');       
-             $this->__site_template('admin/forum_comment', $this->data);
+     */
+    function forumcomment($param = '') {
+        if ($param != "") {
+            $this->data['forum_comment'] = $this->forum_model->getcomments($param);
         }
-        
-        /**
-         * Delete Comment
-         * @param int $param comment id
-         * @param int $topic topic id
-         */
-        function commentdelete($param='',$topic)
-        {
-            $this->forum_model->delete_comment($param);
-             $this->session->set_flashdata('flash_message', 'Forum Comment Delete Successfully');
-                redirect(base_url() . 'forum/forumcomment/'.$topic, 'refresh');
-        }
-        
-        /**
-         * Approve Comment
-         * @param int $param comment id
-         * @param int $topic topic id
-         */
-        function confirmcomment($param='',$topic)
-        {
-             $this->forum_model->confirm($param);
-              $this->session->set_flashdata('flash_message', 'Forum Comment Approve Successfully');
-                redirect(base_url() . 'forum/forumcomment/'.$topic, 'refresh');
-        }
-        
-        /**
-         * Photo gallery
-         * @param String $param
-         * @param String $param2
-         */
-        public function photogallery($param = '' , $param2 = '')
-        {
-            if($param=='create')
-            {
-                if($this->input->post())
-                {
-                  // retrieve the number of images uploaded;
-                  $number_of_files = sizeof($_FILES['galleryimg']['tmp_name']);
-                  // considering that do_upload() accepts single files, we will have to do a small hack so that we can upload multiple files. For this we will have to keep the data of uploaded files in a variable, and redo the $_FILE.
-                  $files = $_FILES['galleryimg'];
-                  $errors = array();
+        $this->data['page'] = 'forum_comment';
+        $this->data['title'] = $this->lang_message('forum_comment_title');
+        $this->__site_template('admin/forum_comment', $this->data);
+    }
 
-                  // first make sure that there is no error in uploading the files
-                  for($i=0;$i<$number_of_files;$i++)
-                  {
-                    if($_FILES['galleryimg']['error'][$i] != 0) $errors[$i][] = 'Couldn\'t upload file '.$_FILES['galleryimg']['name'][$i];
-                  }
-                  if(sizeof($errors)==0)
-                  {
+    /**
+     * Delete Comment
+     * @param int $param comment id
+     * @param int $topic topic id
+     */
+    function commentdelete($param = '', $topic) {
+        $this->forum_model->delete_comment($param);
+        $this->session->set_flashdata('flash_message', 'Forum Comment Delete Successfully');
+        redirect(base_url() . 'forum/forumcomment/' . $topic, 'refresh');
+    }
+
+    /**
+     * Approve Comment
+     * @param int $param comment id
+     * @param int $topic topic id
+     */
+    function confirmcomment($param = '', $topic) {
+        $this->forum_model->confirm($param);
+        $this->session->set_flashdata('flash_message', 'Forum Comment Approve Successfully');
+        redirect(base_url() . 'forum/forumcomment/' . $topic, 'refresh');
+    }
+
+    /**
+     * Photo gallery
+     * @param String $param
+     * @param String $param2
+     */
+    function photogallery($param = '', $param2 = '') {
+        if ($param == 'create') {
+            if ($this->input->post()) {
+                // retrieve the number of images uploaded;
+                $number_of_files = sizeof($_FILES['galleryimg']['tmp_name']);
+                // considering that do_upload() accepts single files, we will have to do a small hack so that we can upload multiple files. For this we will have to keep the data of uploaded files in a variable, and redo the $_FILE.
+                $files = $_FILES['galleryimg'];
+                $errors = array();
+
+                // first make sure that there is no error in uploading the files
+                for ($i = 0; $i < $number_of_files; $i++) {
+                    if ($_FILES['galleryimg']['error'][$i] != 0)
+                        $errors[$i][] = 'Couldn\'t upload file ' . $_FILES['galleryimg']['name'][$i];
+                }
+                if (sizeof($errors) == 0) {
                     // now, taking into account that there can be more than one file, for each file we will have to do the upload
                     // we first load the upload library
                     $this->load->library('upload');
-                    if(!is_dir(FCPATH . 'uploads/photogallery'))
-                    {
+                    if (!is_dir(FCPATH . 'uploads/photogallery')) {
                         $path = FCPATH . 'uploads/photogallery';
-                        mkdir($path,0777);
+                        mkdir($path, 0777);
                     }
                     // next we pass the upload path for the images
                     $config['upload_path'] = FCPATH . 'uploads/photogallery';
                     // also, we make sure we allow only certain type of images
                     $config['allowed_types'] = 'gif|jpg|png|jpeg';
                     for ($i = 0; $i < $number_of_files; $i++) {
-                      $_FILES['galleryimg']['name'] = $files['name'][$i];
-                      $_FILES['galleryimg']['type'] = $files['type'][$i];
-                      $_FILES['galleryimg']['tmp_name'] = $files['tmp_name'][$i];
-                      $_FILES['galleryimg']['error'] = $files['error'][$i];
-                      $_FILES['galleryimg']['size'] = $files['size'][$i];
+                        $_FILES['galleryimg']['name'] = $files['name'][$i];
+                        $_FILES['galleryimg']['type'] = $files['type'][$i];
+                        $_FILES['galleryimg']['tmp_name'] = $files['tmp_name'][$i];
+                        $_FILES['galleryimg']['error'] = $files['error'][$i];
+                        $_FILES['galleryimg']['size'] = $files['size'][$i];
 
-                      $file_ext = explode(".",$_FILES['galleryimg']['name']);
-                      $ext_file = strtolower(end($file_ext));
-                      $config['file_name'] = $i.date('dmYhis').'.'.$ext_file;
+                        $file_ext = explode(".", $_FILES['galleryimg']['name']);
+                        $ext_file = strtolower(end($file_ext));
+                        $config['file_name'] = $i . date('dmYhis') . '.' . $ext_file;
 
-                      //now we initialize the upload library
-                      $this->upload->initialize($config);
-                      // we retrieve the number of files that were uploaded
-                      if ($this->upload->do_upload('galleryimg'))
-                      {
-                        $data['uploads'][$i] = $this->upload->data();
-                      }
-                      else
-                      {
-                        $data['upload_errors'][$i] = $this->upload->display_errors();
-                      }
+                        //now we initialize the upload library
+                        $this->upload->initialize($config);
+                        // we retrieve the number of files that were uploaded
+                        if ($this->upload->do_upload('galleryimg')) {
+                            $data['uploads'][$i] = $this->upload->data();
+                        } else {
+                            $data['upload_errors'][$i] = $this->upload->display_errors();
+                        }
                     }
-                  }
-                  else
-                  {
+                } else {
                     $error = $this->lang_message('invalid_image');
-                    $this->session->set_flashdata('flash_message',$error);
-                    redirect(base_url().'admin/photogallery');
+                    $this->session->set_flashdata('flash_message', $error);
+                    redirect(base_url() . 'admin/photogallery');
+                }
 
-                  }
+                $upload_files = $data['uploads'];
+                for ($u = 0; $u < count($upload_files); $u++) {
+                    $uploaded_file[] = $upload_files[$u]['file_name'];
+                }
 
-                  $upload_files =  $data['uploads'];
-                  for($u=0;$u<count($upload_files);$u++)
-                  {
-                  $uploaded_file[] =   $upload_files[$u]['file_name'];    
+                if (!empty($uploaded_file)) {
+                    $gallery = implode(",", $uploaded_file);
+                } else {
+                    $gallery = '';
+                }
 
-                  }
-
-                  if(!empty($uploaded_file))
-                  {
-                  $gallery = implode(",",$uploaded_file);
-                  }else{
-                  $gallery = '';    
-                  }
-
-                  if(is_uploaded_file($_FILES['main_img']['tmp_name']))
-                  {
-                   $config1['upload_path'] = FCPATH . 'uploads/photogallery';
+                if (is_uploaded_file($_FILES['main_img']['tmp_name'])) {
+                    $config1['upload_path'] = FCPATH . 'uploads/photogallery';
                     $config1['allowed_types'] = 'gif|jpg|png|jpeg';
-                    $ext = explode(".",$_FILES['main_img']['name']);
-                    $ext_file =strtolower(end($ext));
-                    $config1['file_name'] = date('dmYhis').'main.'.$ext_file;
+                    $ext = explode(".", $_FILES['main_img']['name']);
+                    $ext_file = strtolower(end($ext));
+                    $config1['file_name'] = date('dmYhis') . 'main.' . $ext_file;
 
                     $this->load->library('upload', $config1);
 
-                    if ( ! $this->upload->do_upload('main_img'))
-                    {
+                    if (!$this->upload->do_upload('main_img')) {
 
                         $error = $this->lang_message('invalid_main_image');
-                        $this->session->set_flashdata('flash_message',$error);
-                        redirect(base_url().'admin/photogallery');
+                        $this->session->set_flashdata('flash_message', $error);
+                        redirect(base_url() . 'admin/photogallery');
+                    } else {
+                        $upl_path = FCPATH . 'uploads/photogallery/' . $config1['file_name'];
+                        move_uploaded_file($_FILES['main_img']['tmp_name'], $upl_path);
+
+                        $main_img = $config1['file_name'];
                     }
-                    else
-                    {
-                        $upl_path= FCPATH . 'uploads/photogallery/'.$config1['file_name'];
-                       move_uploaded_file($_FILES['main_img']['tmp_name'],$upl_path);
-
-                         $main_img = $config1['file_name'];
-                    }
-                  }
-
-
-                  $title = $this->input->post("title");
-                  $status = $this->input->post("status");
-                  $description = $this->input->post("description");
-                  $gallery_img = $gallery;
-                  $insert = array("gallery_title"=>$title,
-                                  "gallery_desc"=>$description,
-                                  "gallery_img"=>$gallery_img,
-                                  "main_img"=>$main_img,
-                      "gal_status"=>$status);
-
-                   $this->photo_gallery->addmedia("photo_gallery",$insert);
-
-                      $success = $this->lang_message('gallery_success');
-                    $this->session->set_flashdata('flash_message',$success);
-                    redirect(base_url().'admin/photogallery');
-
-
-
-
                 }
+
+
+                $title = $this->input->post("title");
+                $status = $this->input->post("status");
+                $description = $this->input->post("description");
+                $gallery_img = $gallery;
+                $insert = array("gallery_title" => $title,
+                    "gallery_desc" => $description,
+                    "gallery_img" => $gallery_img,
+                    "main_img" => $main_img,
+                    "gal_status" => $status);
+                $this->photo_gallery->addmedia("photo_gallery", $insert);
+
+                $success = $this->lang_message('gallery_success');
+                $this->session->set_flashdata('flash_message', $success);
+                redirect(base_url() . 'index.php?media/photogallery');
             }
+        }
 
-            if($param=='do_update')
-            { 
-                $gal_data = $this->photo_gallery->getgallery($param2);
-                if($this->input->post())
-                {
-                  // retrieve the number of images uploaded;
-                 if(!empty($_FILES['galleryimg2']['name'][0]))
-                  {
+        if ($param == 'do_update') {
+            $gal_data = $this->photo_gallery->getgallery($param2);
+            if ($this->input->post()) {
+                // retrieve the number of images uploaded;
+                if (!empty($_FILES['galleryimg2']['name'][0])) {
 
 
-                  $number_of_files = sizeof($_FILES['galleryimg2']['tmp_name']);
-                  // considering that do_upload() accepts single files, we will have to do a small hack so that we can upload multiple files. For this we will have to keep the data of uploaded files in a variable, and redo the $_FILE.
-                  $files = $_FILES['galleryimg2'];
-                  $errors = array();
+                    $number_of_files = sizeof($_FILES['galleryimg2']['tmp_name']);
+                    // considering that do_upload() accepts single files, we will have to do a small hack so that we can upload multiple files. For this we will have to keep the data of uploaded files in a variable, and redo the $_FILE.
+                    $files = $_FILES['galleryimg2'];
+                    $errors = array();
 
-                  // first make sure that there is no error in uploading the files
-                  for($i=0;$i<$number_of_files;$i++)
-                  {
-                    if($_FILES['galleryimg2']['error'][$i] != 0) $errors[$i][] = 'Couldn\'t upload file '.$_FILES['galleryimg']['name'][$i];
-                  }
-                  if(sizeof($errors)==0)
-                  {
-                    // now, taking into account that there can be more than one file, for each file we will have to do the upload
-                    // we first load the upload library
-                    $this->load->library('upload');
-                    if(!is_dir(FCPATH . 'uploads/photogallery'))
-                    {
-                        $path = FCPATH . 'uploads/photogallery';
-                        mkdir($path,0777);
-                    }
-                    // next we pass the upload path for the images
-                    $config['upload_path'] = FCPATH . 'uploads/photogallery';
-                    // also, we make sure we allow only certain type of images
-                    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                    // first make sure that there is no error in uploading the files
                     for ($i = 0; $i < $number_of_files; $i++) {
-                      $_FILES['galleryimg2']['name'] = $files['name'][$i];
-                      $_FILES['galleryimg2']['type'] = $files['type'][$i];
-                      $_FILES['galleryimg2']['tmp_name'] = $files['tmp_name'][$i];
-                      $_FILES['galleryimg2']['error'] = $files['error'][$i];
-                      $_FILES['galleryimg2']['size'] = $files['size'][$i];
-
-                      $file_ext = explode(".",$_FILES['galleryimg2']['name']);
-                      $ext_file = strtolower(end($file_ext));
-                      $config['file_name'] = $i.date('dmYhis').'.'.$ext_file;
-
-                      //now we initialize the upload library
-                      $this->upload->initialize($config);
-                      // we retrieve the number of files that were uploaded
-                      if ($this->upload->do_upload('galleryimg2'))
-                      {
-                        $data['uploads'][$i] = $this->upload->data();
-                      }
-                      else
-                      {
-                        $data['upload_errors'][$i] = $this->upload->display_errors();
-                      }
+                        if ($_FILES['galleryimg2']['error'][$i] != 0)
+                            $errors[$i][] = 'Couldn\'t upload file ' . $_FILES['galleryimg']['name'][$i];
                     }
-                  }
-                  else
-                  {
-                      $error =  $this->lang_message('invalid_image');
-                    $this->session->set_flashdata('flash_message',$error);
-                    redirect(base_url().'admin/photogallery');
+                    if (sizeof($errors) == 0) {
+                        // now, taking into account that there can be more than one file, for each file we will have to do the upload
+                        // we first load the upload library
+                        $this->load->library('upload');
+                        if (!is_dir(FCPATH . 'uploads/photogallery')) {
+                            $path = FCPATH . 'uploads/photogallery';
+                            mkdir($path, 0777);
+                        }
+                        // next we pass the upload path for the images
+                        $config['upload_path'] = FCPATH . 'uploads/photogallery';
+                        // also, we make sure we allow only certain type of images
+                        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                        for ($i = 0; $i < $number_of_files; $i++) {
+                            $_FILES['galleryimg2']['name'] = $files['name'][$i];
+                            $_FILES['galleryimg2']['type'] = $files['type'][$i];
+                            $_FILES['galleryimg2']['tmp_name'] = $files['tmp_name'][$i];
+                            $_FILES['galleryimg2']['error'] = $files['error'][$i];
+                            $_FILES['galleryimg2']['size'] = $files['size'][$i];
 
-                  }
+                            $file_ext = explode(".", $_FILES['galleryimg2']['name']);
+                            $ext_file = strtolower(end($file_ext));
+                            $config['file_name'] = $i . date('dmYhis') . '.' . $ext_file;
 
-                  $upload_files =  $data['uploads'];
-                  for($u=0;$u<count($upload_files);$u++)
-                  {
-                  $uploaded_file[] =   $upload_files[$u]['file_name'];    
+                            //now we initialize the upload library
+                            $this->upload->initialize($config);
+                            // we retrieve the number of files that were uploaded
+                            if ($this->upload->do_upload('galleryimg2')) {
+                                $data['uploads'][$i] = $this->upload->data();
+                            } else {
+                                $data['upload_errors'][$i] = $this->upload->display_errors();
+                            }
+                        }
+                    } else {
+                        $error = $this->lang_message('invalid_image');
+                        $this->session->set_flashdata('flash_message', $error);
+                        redirect(base_url() . 'admin/photogallery');
+                    }
 
-                  }
+                    $upload_files = $data['uploads'];
+                    for ($u = 0; $u < count($upload_files); $u++) {
+                        $uploaded_file[] = $upload_files[$u]['file_name'];
+                    }
 
-                  if(!empty($uploaded_file))
-                  {
-                      $new_gallery = implode(",",$uploaded_file);
-                  }
+                    if (!empty($uploaded_file)) {
+                        $new_gallery = implode(",", $uploaded_file);
+                    }
                     $old_gal = $gal_data[0]->gallery_img;
 
-                    if(!empty($old_gal)){
-                    $all_img = $new_gallery.','.$old_gal;
+                    if (!empty($old_gal)) {
+                        $all_img = $new_gallery . ',' . $old_gal;
+                    } else {
+                        $all_img = $new_gallery;
                     }
-                    else{
-                         $all_img = $new_gallery;
-                    }
-
-                   }
-                   else{
-                         $all_img  = $gal_data[0]->gallery_img;
-                   }
-                    if(is_uploaded_file($_FILES['main_img']['tmp_name']))
-                  {
+                } else {
+                    $all_img = $gal_data[0]->gallery_img;
+                }
+                if (is_uploaded_file($_FILES['main_img']['tmp_name'])) {
 
                     $allowed_types = 'gif|jpg|png|jpeg';
-                    $type = explode("|",$allowed_types);
+                    $type = explode("|", $allowed_types);
 
 
-                    $ext = explode(".",$_FILES['main_img']['name']);
-                    $ext_file =strtolower(end($ext));
-                    $image1 = date('dmYhis').'main.'.$ext_file;
+                    $ext = explode(".", $_FILES['main_img']['name']);
+                    $ext_file = strtolower(end($ext));
+                    $image1 = date('dmYhis') . 'main.' . $ext_file;
 
                     $this->load->library('upload', $config1);
 
-                    if (in_array($ext_file, $type))
-                    {
+                    if (in_array($ext_file, $type)) {
 
-                         $upl_path= FCPATH . 'uploads/photogallery/'.$image1;
-                       move_uploaded_file($_FILES['main_img']['tmp_name'],$upl_path);
+                        $upl_path = FCPATH . 'uploads/photogallery/' . $image1;
+                        move_uploaded_file($_FILES['main_img']['tmp_name'], $upl_path);
 
-                         $main_img = $image1;
+                        $main_img = $image1;
+                    } else {
+                        $error = $this->lang_message('invalid_main_image');
+                        $this->session->set_flashdata('flash_message', $error);
+                        redirect(base_url() . 'admin/photogallery');
                     }
-                    else
-                    {
-                       $error =  $this->lang_message('invalid_main_image');
-                    $this->session->set_flashdata('flash_message',$error);
-                    redirect(base_url().'admin/photogallery');
-                    }
-                  }
-                  else{
-                      $main_img = $gal_data[0]->main_img;
-
-                  }
-
-                  $title = $this->input->post("title");
-                  $status = $this->input->post("status");
-                  $description = $this->input->post("description");
-                  $gallery_img = $all_img;
-                  $update_date = date("Y-m-d H:i:s");
-                  $update = array("gallery_title"=>$title,
-                                  "gallery_desc"=>$description,
-                                  "gallery_img"=>$gallery_img,                              
-                                  "main_img"=>$main_img,
-                                  "update_date"=>$update_date,
-                      "gal_status"=>$status);
-
-
-                   $this->photo_gallery->updatemedia($update,$param2);
-
-                      $success =  $this->lang_message('gallery_update');
-                    $this->session->set_flashdata('flash_message',$success);
-                    redirect(base_url().'admin/photogallery');
-
-
-
-
+                } else {
+                    $main_img = $gal_data[0]->main_img;
                 }
+
+                $title = $this->input->post("title");
+                $status = $this->input->post("status");
+                $description = $this->input->post("description");
+                $gallery_img = $all_img;
+                $update_date = date("Y-m-d H:i:s");
+                $update = array("gallery_title" => $title,
+                    "gallery_desc" => $description,
+                    "gallery_img" => $gallery_img,
+                    "main_img" => $main_img,
+                    "update_date" => $update_date,
+                    "gal_status" => $status);
+
+
+                $this->photo_gallery->updatemedia($update, $param2);
+
+                $success = $this->lang_message('gallery_update');
+                $this->session->set_flashdata('flash_message', $success);
+                redirect(base_url() . 'admin/photogallery');
             }
-            if($param=="delete")
-            {
-                $this->db->where("gallery_id",$param2);
+            if ($param == "delete") {
+                $this->db->where("gallery_id", $param2);
                 $this->db->delete("photo_gallery");
                 $success = $this->lang_message('gallery_delete');
-                $this->session->set_flashdata('flash_message',$success);
-                redirect(base_url().'admin/photogallery');
+                $this->session->set_flashdata('flash_message', $success);
+                redirect(base_url() . 'index.php?media/photogallery');
             }
 
-           $this->data['gallery'] =  $this->photo_gallery->getphotogallery();
+            $this->data['gallery'] = $this->photo_gallery->getphotogallery();
             $this->data['title'] = 'Photo Gallery';
             $this->data['page'] = 'photo_gallery';
-           $this->__site_template('admin/photo_gallery', $this->data);
+            $this->__site_template('admin/photo_gallery', $this->data);
         }
-        
+    }
+
     /**
      * Remove image
      */
-        function removeimg()
-    {
-        
+    function removeimg() {
+
         $item = $_POST['image'];
-        $id =  $_POST['id'];
+        $id = $_POST['id'];
         $get_gallery = $this->photo_gallery->getgallery($id);
-            $str =    $get_gallery[0]->gallery_img;
-       
-          $parts = explode(',', $str);
+        $str = $get_gallery[0]->gallery_img;
 
-            while(($i = array_search($item, $parts)) !== false) {
-                unset($parts[$i]);
-            }
+        $parts = explode(',', $str);
 
-           $new_img =  implode(',', $parts);
-           $data = array("gallery_img"=>$new_img);
-       $this->photo_gallery->updatemedia($data,$id);
-       echo $item;
-       
-        
+        while (($i = array_search($item, $parts)) !== false) {
+            unset($parts[$i]);
+        }
+
+        $new_img = implode(',', $parts);
+        $data = array("gallery_img" => $new_img);
+        $this->photo_gallery->updatemedia($data, $id);
+        echo $item;
     }
-        
+
     /**
      * banner slider
      * @param type $param
      * @param type $param2
-     */    
-          
-    function bannerslider($param='' , $param2='')
-    {
-        if($_POST)
-        {
-        if($param=="create")
-        {            
-              if(is_uploaded_file($_FILES['main_img']['tmp_name']))
-              {
-                      $path= FCPATH . 'uploads/bannerimg/';
-                      if(!is_dir($path))
-                      {
-                          mkdir($path,0777);
-                      }
-                      
-		$allowed_types = 'gif|jpg|png|jpeg';
-                $type = explode("|",$allowed_types);
-                $ext = explode(".",$_FILES['main_img']['name']);
-                $ext_file =strtolower(end($ext));
-                $image1 = date('dmYhis').'main.'.$ext_file;               
-		
-            		if (in_array($ext_file, $type))
-            		{
-                               $upl_path= FCPATH . 'uploads/bannerimg/'.$image1;
-                               move_uploaded_file($_FILES['main_img']['tmp_name'],$upl_path);
-                               $main_img = $image1;
-            		}
-            		else
-            		{
-                                $error = "Invalid main image";
-                                $this->session->set_flashdata('flash_message',$error);
-                                redirect(base_url().'admin/bannerslider');
-            		}
-              }
-              
-              
-              $title  = $this->input->post("title");
-              $status  = $this->input->post("status");
-              $slide_option  = $this->input->post("slide_option");
-              $description  = $this->input->post("description");             
-            $insert = array("banner_title"=>$title,
-                "banner_desc"=>$description,
-                "banner_status"=>$status,
-                "banner_img"=>$main_img,
-                "slide_option"=>$slide_option);
-            
-            $this->photo_gallery->addbanner($insert);
-             $success = $this->lang_message('banner_add');
-                    $this->session->set_flashdata('flash_message',$success);
-                    redirect(base_url().'admin/bannerslider');
+     */
+    function bannerslider($param = '', $param2 = '') {
+        if ($_POST) {
+            if ($param == "create") {
+                if (is_uploaded_file($_FILES['main_img']['tmp_name'])) {
+                    $path = FCPATH . 'uploads/bannerimg/';
+                    if (!is_dir($path)) {
+                        mkdir($path, 0777);
+                    }
+
+                    $allowed_types = 'gif|jpg|png|jpeg';
+                    $type = explode("|", $allowed_types);
+                    $ext = explode(".", $_FILES['main_img']['name']);
+                    $ext_file = strtolower(end($ext));
+                    $image1 = date('dmYhis') . 'main.' . $ext_file;
+
+                    if (in_array($ext_file, $type)) {
+                        $upl_path = FCPATH . 'uploads/bannerimg/' . $image1;
+                        move_uploaded_file($_FILES['main_img']['tmp_name'], $upl_path);
+                        $main_img = $image1;
+                    } else {
+                        $error = "Invalid main image";
+                        $this->session->set_flashdata('flash_message', $error);
+                        redirect(base_url() . 'admin/bannerslider');
+                    }
+                }
+
+
+                $title = $this->input->post("title");
+                $status = $this->input->post("status");
+                $slide_option = $this->input->post("slide_option");
+                $description = $this->input->post("description");
+                $insert = array("banner_title" => $title,
+                    "banner_desc" => $description,
+                    "banner_status" => $status,
+                    "banner_img" => $main_img,
+                    "slide_option" => $slide_option);
+
+                $this->photo_gallery->addbanner($insert);
+                $success = $this->lang_message('banner_add');
+                $this->session->set_flashdata('flash_message', $success);
+                redirect(base_url() . 'admin/bannerslider');
+            }
+            if ($param == "do_update") {
+                $banner = $this->photo_gallery->getbanner($param2);
+                if (is_uploaded_file($_FILES['main_img']['tmp_name'])) {
+                    $path = FCPATH . 'uploads/bannerimg/';
+                    if (!is_dir($path)) {
+                        mkdir($path, 0777);
+                    }
+
+                    $allowed_types = 'gif|jpg|png|jpeg';
+                    $type = explode("|", $allowed_types);
+                    $ext = explode(".", $_FILES['main_img']['name']);
+                    $ext_file = strtolower(end($ext));
+                    $image1 = date('dmYhis') . 'main.' . $ext_file;
+
+                    if (in_array($ext_file, $type)) {
+                        $upl_path = FCPATH . 'uploads/bannerimg/' . $image1;
+                        move_uploaded_file($_FILES['main_img']['tmp_name'], $upl_path);
+                        $main_img = $image1;
+                    } else {
+                        $error = $this->lang_message('invalid_main_image');
+                        $this->session->set_flashdata('flash_message', $error);
+                        redirect(base_url() . 'admin/bannerslider');
+                    }
+                } else {
+                    $main_img = $banner[0]->banner_img;
+                }
+
+
+                $title = $this->input->post("title");
+                $status = $this->input->post("status");
+                $description = $this->input->post("description");
+                $slide_option = $this->input->post("slide_option");
+
+                $insert = array("banner_title" => $title,
+                    "banner_desc" => $description,
+                    "banner_status" => $status,
+                    "banner_img" => $main_img,
+                    "slide_option" => $slide_option);
+
+                $this->photo_gallery->updatebanner($insert, $param2);
+                $success = $this->lang_message('banner_update');
+                $this->session->set_flashdata('flash_message', $success);
+                redirect(base_url() . 'admin/bannerslider');
+            }
         }
-        if($param=="do_update")
-        {
-           $banner =  $this->photo_gallery->getbanner($param2);
-             if(is_uploaded_file($_FILES['main_img']['tmp_name']))
-              {
-                      $path= FCPATH . 'uploads/bannerimg/';
-                      if(!is_dir($path))
-                      {
-                          mkdir($path,0777);
-                      }
-               
-		$allowed_types = 'gif|jpg|png|jpeg';
-                $type = explode("|",$allowed_types);
-                $ext = explode(".",$_FILES['main_img']['name']);
-                $ext_file =strtolower(end($ext));
-                $image1 = date('dmYhis').'main.'.$ext_file;               
-            		
-            		if (in_array($ext_file, $type))
-            		{
-                               $upl_path= FCPATH . 'uploads/bannerimg/'.$image1;
-                               move_uploaded_file($_FILES['main_img']['tmp_name'],$upl_path);
-                               $main_img = $image1;
-            		}
-            		else
-            		{
-                                $error = $this->lang_message('invalid_main_image');
-                                $this->session->set_flashdata('flash_message',$error);
-                                redirect(base_url().'admin/bannerslider');
-            		}
-              }
-              else{
-                  $main_img = $banner[0]->banner_img;
-              }
-              
-              
-              $title  = $this->input->post("title");
-              $status  = $this->input->post("status");
-              $description  = $this->input->post("description");
-               $slide_option  = $this->input->post("slide_option");
-              
-            $insert = array("banner_title"=>$title,
-                "banner_desc"=>$description,
-                "banner_status"=>$status,
-                "banner_img"=>$main_img,
-                "slide_option"=>$slide_option);
-            
-            $this->photo_gallery->updatebanner($insert,$param2);
-             $success = $this->lang_message('banner_update');
-                    $this->session->set_flashdata('flash_message',$success);
-                    redirect(base_url().'admin/bannerslider');
-        }
-        }
-        if($param=="delete")
-        {
-            $this->db->where("banner_id",$param2);
+        if ($param == "delete") {
+            $this->db->where("banner_id", $param2);
             $this->db->delete("banner_slider");
             $success = $this->lang_message('banner_delete');
-            $this->session->set_flashdata('flash_message',$success);
-            redirect(base_url().'admin/bannerslider');
+            $this->session->set_flashdata('flash_message', $success);
+            redirect(base_url() . 'admin/bannerslider');
         }
-        if($param=="general")
-        {
-            if(strtolower($_SERVER['REQUEST_METHOD'])=="post")
-            {
-             $pause_time = $this->input->post("pause_time");
+        if ($param == "general") {
+            if (strtolower($_SERVER['REQUEST_METHOD']) == "post") {
+                $pause_time = $this->input->post("pause_time");
                 $pause_on_hover = $this->input->post("pause_on_hover");
-                $caption_opacity =  $this->input->post("caption_opacity");
-                $anim_speed =  $this->input->post("anim_speed");
-                $update_general = array("pause_time"=>$pause_time,
-                "pause_on_hover"=>$pause_on_hover,
-                "caption_opacity"=>$caption_opacity,
-                "anim_speed"=>$anim_speed);
-             
-                 $this->photo_gallery->update_general($update_general);
-              
+                $caption_opacity = $this->input->post("caption_opacity");
+                $anim_speed = $this->input->post("anim_speed");
+                $update_general = array("pause_time" => $pause_time,
+                    "pause_on_hover" => $pause_on_hover,
+                    "caption_opacity" => $caption_opacity,
+                    "anim_speed" => $anim_speed);
+
+                $this->photo_gallery->update_general($update_general);
+
                 $success = $this->lang_message('banner_general');
-                $this->session->set_flashdata('flash_message',$success);
-                redirect(base_url().'admin/bannerslider');
+                $this->session->set_flashdata('flash_message', $success);
+                redirect(base_url() . 'admin/bannerslider');
             }
-             
         }
-        
-      
-        $this->data["banners"] =  $this->photo_gallery->get_banner();
+
+
+        $this->data["banners"] = $this->photo_gallery->get_banner();
         $this->data['general'] = $this->photo_gallery->general_setting();
-     
+
         $this->data['title'] = 'Banner Slider';
         $this->data['page'] = 'banner_slider';
-       $this->__site_template('admin/banner_slider', $this->data);
-        
-        
+        $this->__site_template('admin/banner_slider', $this->data);
     }
-    
-     /**
+
+    /**
      * Email inbox
      */
     function email_inbox() {
@@ -3358,21 +3290,21 @@ class Admin extends MY_Controller {
         //$this->data['content'] = 'backend/admin/email_inbox';
         $this->__site_template('admin/email_inbox', $this->data);
     }
-    
-      /**
+
+    /**
      * Admin inbox email view
      * @param int $id
      */
     function inbox_email($id) {
-      
+
         $this->load->helper('system_email');
 
         $this->data['email'] = admin_inbox_email_view($id);
-        $this->data['title'] = $this->data['email']->subject;       
+        $this->data['title'] = $this->data['email']->subject;
         $this->__site_template('admin/email_inbox_view', $this->data);
     }
-    
-     /**
+
+    /**
      * View particular email details
      * @param int $id
      */
@@ -3380,12 +3312,12 @@ class Admin extends MY_Controller {
         $this->load->model('admin/Crud_model');
         $this->load->helper('system_email');
         $this->data['email'] = view_email($id);
-        $this->data['title'] =  $this->data['email']->subject;        
-        $this->data['page'] = 'email_view';        
+        $this->data['title'] = $this->data['email']->subject;
+        $this->data['page'] = 'email_view';
         $this->__site_template('admin/email_view', $this->data);
     }
 
-     /**
+    /**
      * Delete email
      * @param type $id
      */
@@ -3395,7 +3327,7 @@ class Admin extends MY_Controller {
         $this->Crud_model->delete_email($id);
         redirect($this->agent->referrer());
     }
-    
+
     /**
      * Email compose
      * 
@@ -3404,7 +3336,7 @@ class Admin extends MY_Controller {
     function email_compose() {
         ini_set('max_execution_time', 500);
         //load the Crud model      
-        $this->load->helper('system_email');        
+        $this->load->helper('system_email');
         if ($_POST) {
             $filename = '';
             $attachments = array();
@@ -3437,7 +3369,7 @@ class Admin extends MY_Controller {
             } else if ($_POST['student'][0] == 'all') {
                 //send to all students of the course and semeter
                 send_to_all_student_course_semester($_POST, $_POST['course'], $_POST['semester']);
-            } else {               
+            } else {
                 //send particular student                
                 send_to_single_student($_POST);
             }
@@ -3471,16 +3403,15 @@ class Admin extends MY_Controller {
         $this->data['title'] = 'Compose Email';
         $this->data['content'] = 'backend/admin/email_compose';
         $this->data['page'] = 'email_compose';
-       $this->__site_template('admin/email_compose', $this->data);
+        $this->__site_template('admin/email_compose', $this->data);
     }
-    
-    
+
     /**
      * Email reply from admin
      * @param int $id
      */
     function email_reply($id) {
-      
+
         $this->load->helper('system_email');
         if ($_POST) {
             $filename = '';
@@ -3510,30 +3441,29 @@ class Admin extends MY_Controller {
 
         $this->data['email'] = admin_inbox_email_view($id);
         $this->data['title'] = $this->data['email']->subject;
-       $this->data['page'] = 'email_reply';
-       
-        
-       /// $this->data['content'] = 'backend/admin/email_reply';
+        $this->data['page'] = 'email_reply';
+
+
+        /// $this->data['content'] = 'backend/admin/email_reply';
         $this->__site_template('admin/email_reply', $this->data);
     }
-    
-     /**
+
+    /**
      * View sent email of the admin
      */
     function email_sent() {
         $this->load->helper('system_email');
         $this->data['sent_mail'] = admin_sent_email();
-        $this->data['title'] ='Sent Email';
-       $this->data['page'] = 'email_sent';
+        $this->data['title'] = 'Sent Email';
+        $this->data['page'] = 'email_sent';
         $this->__site_template('admin/email_sent', $this->data);
     }
-    
-    
+
     /**
      * Import data
      */
     function import($param1 = '') {
-        $this->load->helper('import_export');     
+        $this->load->helper('import_export');
         if ($_FILES) {
             $file_name = $_FILES['userfile']['tmp_name'];
             $this->load->library('CSVReader');
@@ -3789,16 +3719,15 @@ class Admin extends MY_Controller {
                     }
                     break;
             }
-            $this->session->set_flashdata('flash_message',$this->lang_message('data_import'));
+            $this->session->set_flashdata('flash_message', $this->lang_message('data_import'));
             redirect(base_url('admin/import'));
         }
         $this->data['degree'] = $this->Crud_model->get_all_degree();
         $this->data['title'] = $this->lang_message('import_title');
-        $this->data['page'] = 'import';       
+        $this->data['page'] = 'import';
         $this->__site_template('admin/import', $this->data);
     }
-    
-    
+
     /**
      * Download import sheet
      * @param string $param1
@@ -3864,8 +3793,8 @@ class Admin extends MY_Controller {
             //default sheet
         }
     }
-    
-     /**
+
+    /**
      * Import demo sheet download configuration
      * @param string $sheet_name
      */
@@ -3879,7 +3808,7 @@ class Admin extends MY_Controller {
     /**
      * Exoprt
      */
-    function export() {        
+    function export() {
         $this->data['title'] = 'Export';
         $this->data['page'] = 'export';
         $this->data['degree'] = $this->Crud_model->get_all_degree();
@@ -3887,15 +3816,91 @@ class Admin extends MY_Controller {
         $this->data['semester'] = $this->Crud_model->get_all_semester();
         $this->__site_template('admin/export', $this->data);
     }
-    
-    
-    
+
+    /**
+     * Export csv from data
+     * @param string $name
+     */
+    function export_csv($name = '', $type = '') {
+        $this->load->model('admin/Export_model');
+        $this->load->helper('import_export');
+        switch ($name) {
+            case 'exam_manager':
+                //download exam manager csv
+                $result = $this->Export_model->exam_manager();
+                csv_from_result($result, 'Exam Manager'); //@param $result object, string filename
+                break;
+            case 'event_manager':
+                //download event manager csv
+                $result = $this->Export_model->event_manager();
+                csv_from_result($result, 'Event Manager');
+                break;
+            case 'course':
+                //download course csv
+                $result = $this->Export_model->course();
+                csv_from_result($result, 'Branch');
+                break;
+            case 'degree':
+                //download degree csv
+                $result = $this->Export_model->degree();
+                csv_from_result($result, 'Course');
+                break;
+            case 'semester':
+                //download semester csv
+                $result = $this->Export_model->semester();
+                csv_from_result($result, 'Semester');
+                break;
+            case 'student':
+                //download student csv
+                $result = $this->Export_model->student();
+                csv_from_result($result, 'Student');
+                break;
+            case 'system_setting':
+                //download system setting csv
+                $result = $this->Export_model->system_setting();
+                csv_from_result($result, 'System Settings');
+                break;
+            case 'project_manager':
+                //download project manager csv
+                $result = $this->Export_model->project_manager();
+                csv_from_result($result, 'Project Manager');
+                break;
+            case 'admission_type':
+                //download admission type
+                $result = $this->Export_model->admission_type();
+                csv_from_result($result, 'Admission Type');
+                break;
+            case 'batch':
+                //download batch csv
+                $result = $this->Export_model->batch();
+                csv_from_result($result, 'Batch');
+                break;
+            case 'fees_structure':
+                //download batch csv
+                $result = $this->Export_model->fees_structure();
+                csv_from_result($result, 'Fees Structure');
+                break;
+            case 'subject':
+                //download subject csv
+                $result = $this->Export_model->subject_export();
+                csv_from_result($result, 'Subject');
+                break;
+            case 'exam_marks':
+                $this->load->helper('import_export');
+                $this->import_demo_sheet_download_config('Exam Marks');
+                exam_marks($type);
+                break;
+            default:
+                redirect(base_url('admin/export'));
+        }
+    }
+
     //Starting Herry Patel
 
     /*     * **GROUP MANAGEMENT**** */
     /*     * **Develop By Hardik Bhut 29-Feb-2016**** */
     function create_group($param1 = '', $param2 = '', $param3 = '') {
-        
+
         if ($param1 == 'create') {
             $data['group_name'] = $this->input->post('group_name');
             $data['user_type'] = $this->input->post('user_type');
@@ -3911,22 +3916,21 @@ class Admin extends MY_Controller {
         $this->data['groups'] = $this->db->get_where('group', array('user_role' => $param1))->result_array();
         $this->data['page'] = 'create_group';
         $this->data['title'] = 'Create Group';
-        
-         $this->__site_template('admin/create_group', $this->data);
+
+        $this->__site_template('admin/create_group', $this->data);
     }
-    
+
     /**
      * get professor
      */
-    
-    function get_group_professor()
-    {
-         $dataprofessor = $this->db->get("professor")->result_array();
+    function get_group_professor() {
+        $dataprofessor = $this->db->get("professor")->result_array();
         foreach ($dataprofessor as $row) {
             $html .='<option value="' . $row['professor_id'] . '">' . $row['name'] . '</option>';
         }
         echo $html;
     }
+
     /**
      * get student 
      */
@@ -3942,7 +3946,7 @@ class Admin extends MY_Controller {
         }
         echo $html;
     }
-    
+
     function list_group($param1 = '', $param2 = '', $param3 = '') {
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
@@ -3968,25 +3972,25 @@ class Admin extends MY_Controller {
         $this->data['group_list'] = $this->db->get_where('group')->result_array();
         $this->data['groups'] = $this->db->get_where('group', array('user_role' => $param1))->result_array();
         $this->data['page'] = 'list_group';
-        $this->data['title'] = 'List Group';        
+        $this->data['title'] = 'List Group';
         $this->__site_template('admin/list_group', $this->data);
     }
-    
+
     function assign_module($param1 = '', $param2 = '', $param3 = '') {
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'create') {
-            $group_name=$this->input->post('group_name');
-            $group_explode=explode(',',$group_name);
+            $group_name = $this->input->post('group_name');
+            $group_explode = explode(',', $group_name);
             $data['group_id'] = $group_explode[0];
             $data['module_id'] = implode(',', $this->input->post('module_name'));
             //print_r($data); die;
             $this->db->where(array('group_id' => $data['group_id']));
             $module_row = $this->db->get('assign_module')->row();
-           
+
 //            $this->db->where(array('group_id' => $this->input->post('group_name')));
 //            $group_count = $this->db->count_all_results('assign_module');
-            
+
             if (count($module_row) > 0) {
                 $this->db->where('assign_module_id', $module_row->assign_module_id);
                 $this->db->update('assign_module', $data);
@@ -4002,13 +4006,12 @@ class Admin extends MY_Controller {
         $this->data['page'] = 'assign_module';
         $this->data['title'] = 'Assign Module';
         $this->__site_template('admin/assign_module', $this->data);
-        
     }
+
     /**
      * list module
      */
-    
-     function list_module($param1 = '', $param2 = '', $param3 = '') {
+    function list_module($param1 = '', $param2 = '', $param3 = '') {
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'do_update') {
@@ -4023,119 +4026,102 @@ class Admin extends MY_Controller {
         $this->data['title'] = 'List Module';
         $this->__site_template('admin/list_module', $this->data);
     }
-    
-     function get_module()
-    {
-        $type=$this->input->post('type');
-        $data=$this->db->get_where('modules',array('user_type'=>$type))->result_array();
+
+    function get_module() {
+        $type = $this->input->post('type');
+        $data = $this->db->get_where('modules', array('user_type' => $type))->result_array();
         echo json_encode($data);
     }
-    
-      function get_module_ajax() {
-        
+
+    function get_module_ajax() {
         $get_assign_module_list = $this->db->get_where('assign_module', array('group_id' => $this->input->post('id')))->result_array();
-        
-        $assigned_module_list=array();
-        $full_module_list=array();       
-        
-        if(count($get_assign_module_list)> 0)
-        {
-        foreach ($get_assign_module_list as $row_key => $row_value) {
-            $module_record = explode(',', $row_value['module_id']);
-            $modules_query = $this->db->get_where('modules',array('user_type'=>$this->input->post('type')))->result_array();
-            
-            foreach ($modules_query as $modules_row) {
-                if (!in_array($modules_row['module_id'], $module_record)) {
-                    $full_module_list[] = '<option value="' . $modules_row['module_id'] . '">' . $modules_row['module_name'] . '</option>';
+
+        $assigned_module_list = array();
+        $full_module_list = array();
+
+        if (count($get_assign_module_list) > 0) {
+            foreach ($get_assign_module_list as $row_key => $row_value) {
+                $module_record = explode(',', $row_value['module_id']);
+                $modules_query = $this->db->get_where('modules', array('user_type' => $this->input->post('type')))->result_array();
+
+                foreach ($modules_query as $modules_row) {
+                    if (!in_array($modules_row['module_id'], $module_record)) {
+                        $full_module_list[] = '<option value="' . $modules_row['module_id'] . '">' . $modules_row['module_name'] . '</option>';
+                    }
+                }
+
+                foreach ($module_record as $module_record_value) {
+                    $user_role_query = $this->db->get_where('modules', array('module_id' => $module_record_value))->result_array();
+                    foreach ($user_role_query as $user_role_row) {
+                        $assigned_module_list[] = '<option value="' . $user_role_row['module_id'] . '">' . $user_role_row['module_name'] . '</option>';
+                    }
                 }
             }
-            
-            foreach ($module_record as $module_record_value) {
-                $user_role_query = $this->db->get_where('modules', array('module_id' => $module_record_value))->result_array();
-                foreach ($user_role_query as $user_role_row) {
-                    $assigned_module_list[] = '<option value="' . $user_role_row['module_id'] . '">' . $user_role_row['module_name'] . '</option>';
-                }
-            }
-        }
         }
         $out = array('assigned_module_list' => $assigned_module_list, 'full_module_list' => $full_module_list);
         echo json_encode($out);
     }
-    
+
     /**
      *  admin group
      */
-    function get_group_admin()
-    {
-         $dataprofessor = $this->db->get("admin")->result_array();
+    function get_group_admin() {
+        $dataprofessor = $this->db->get("admin")->result_array();
         foreach ($dataprofessor as $row) {
             $html .='<option value="' . $row['admin_id'] . '">' . $row['name'] . '</option>';
         }
         echo $html;
     }
-    
-    
-     function get_group_ajax($group_id) {
+
+    function get_group_ajax($group_id) {
         $get_group_list = $this->db->get_where('group', array('g_id' => $group_id))->result_array();
-        $user_role=explode(',',$get_group_list[0]['user_role']);
-        $full_user_list=array();
-        $group=array();
-           if($get_group_list[0]['user_type']=='student')
-           {               
-               $user_type[]='<option value="student">Student</option>';
-               $sections=$this->db->get('student')->result_array();
-                foreach ($sections as $row) {
-                    if(!in_array($row['std_id'],$user_role))
-                    {
-                        $full_user_list[]= '<option value="' . $row['std_id'] . '">' . $row['name'] . '</option>';
-                        }
+        $user_role = explode(',', $get_group_list[0]['user_role']);
+        $full_user_list = array();
+        $group = array();
+        if ($get_group_list[0]['user_type'] == 'student') {
+            $user_type[] = '<option value="student">Student</option>';
+            $sections = $this->db->get('student')->result_array();
+            foreach ($sections as $row) {
+                if (!in_array($row['std_id'], $user_role)) {
+                    $full_user_list[] = '<option value="' . $row['std_id'] . '">' . $row['name'] . '</option>';
+                }
 
-                    if(in_array($row['std_id'],$user_role))
-                    {
-                        $group[]= '<option value="' . $row['std_id'] . '">' . $row['name'] . '</option>';
-                        }
+                if (in_array($row['std_id'], $user_role)) {
+                    $group[] = '<option value="' . $row['std_id'] . '">' . $row['name'] . '</option>';
+                }
+            }
+        }
+        if ($get_group_list[0]['user_type'] == 'professor') {
+            $user_type[] = '<option value="professor">Professor</option>';
+            $sections = $this->db->get('professor')->result_array();
+            foreach ($sections as $row) {
+                if (!in_array($row['professor_id'], $user_role)) {
+                    $full_user_list[] = '<option value="' . $row['professor_id'] . '">' . $row['name'] . '</option>';
+                }
 
-                    }
-           }
-           if($get_group_list[0]['user_type']=='professor')
-           {               
-               $user_type[]='<option value="professor">Professor</option>';
-               $sections=$this->db->get('professor')->result_array();
-                foreach ($sections as $row) {
-                    if(!in_array($row['professor_id'],$user_role))
-                    {
-                        $full_user_list[]= '<option value="' . $row['professor_id'] . '">' . $row['name'] . '</option>';
-                        }
+                if (in_array($row['professor_id'], $user_role)) {
+                    $group[] = '<option value="' . $row['professor_id'] . '">' . $row['name'] . '</option>';
+                }
+            }
+        }
+        if ($get_group_list[0]['user_type'] == 'admin') {
+            $user_type[] = '<option value="admin">Admin</option>';
+            $sections = $this->db->get('admin')->result_array();
+            foreach ($sections as $row) {
+                if (!in_array($row['admin_id'], $user_role)) {
+                    $full_user_list[] = '<option value="' . $row['admin_id'] . '">' . $row['name'] . '</option>';
+                }
 
-                    if(in_array($row['professor_id'],$user_role))
-                    {
-                        $group[]= '<option value="' . $row['professor_id'] . '">' . $row['name'] . '</option>';
-                        }
-
-                    }
-           }
-           if($get_group_list[0]['user_type']=='admin')
-           {
-               $user_type[]='<option value="admin">Admin</option>';
-               $sections=$this->db->get('admin')->result_array();
-                foreach ($sections as $row) {
-                    if(!in_array($row['admin_id'],$user_role))
-                    {
-                        $full_user_list[]= '<option value="' . $row['admin_id'] . '">' . $row['name'] . '</option>';
-                        }
-
-                    if(in_array($row['admin_id'],$user_role))
-                    {
-                        $group[]= '<option value="' . $row['admin_id'] . '">' . $row['name'] . '</option>';
-                        }
-
-                    }
-           }
-        $out = array('group'=>$group,'user_type'=>$user_type,'full_user_list'=>$full_user_list); 
-	echo json_encode($out);             
+                if (in_array($row['admin_id'], $user_role)) {
+                    $group[] = '<option value="' . $row['admin_id'] . '">' . $row['name'] . '</option>';
+                }
+            }
+        }
+        $out = array('group' => $group, 'user_type' => $user_type, 'full_user_list' => $full_user_list);
+        echo json_encode($out);
     }
 
-/**
+    /**
      * Course list from degree
      * @param int $degree_id
      */
@@ -4145,7 +4131,7 @@ class Admin extends MY_Controller {
 
         echo json_encode($course);
     }
-    
+
     /**
      * Get all student by course and semester
      * @param string $course_id
@@ -4160,8 +4146,8 @@ class Admin extends MY_Controller {
             <?php
         }
     }
-    
-     /**
+
+    /**
      * Batch list from degree and course
      * @param int $degree
      * @param int $course
@@ -4172,7 +4158,7 @@ class Admin extends MY_Controller {
 
         echo json_encode($batch);
     }
-    
+
     /**
      * Semester list from branch
      * @param string $branch_id
@@ -4183,9 +4169,7 @@ class Admin extends MY_Controller {
 
         echo json_encode($semester);
     }
-    
-    
-    
+
     /**
      * Set mail config
      */
@@ -4210,8 +4194,7 @@ class Admin extends MY_Controller {
             $this->sendEmail($email, $subject, $message, $cc, $attachment);
         }
     }
-    
-    
+
     /**
      * Send emails
      * @param type $email
@@ -4220,7 +4203,7 @@ class Admin extends MY_Controller {
      * @param type $cc
      * @param type $attachments
      */
-    public function sendEmail($email, $subject, $message, $cc, $attachments) {
+    function sendEmail($email, $subject, $message, $cc, $attachments) {
         //$this->email->set_newline("\r\n");
         $this->email->from('mayur.ghadiya@searchnative.in', 'Search Native India');
         $this->email->to($email);
@@ -4254,11 +4237,11 @@ class Admin extends MY_Controller {
         $this->email->message($message);
         $this->email->send();
     }
-    
+
     /**
      * Check duplicate record
      */
-     function check_degree() {
+    function check_degree() {
         $data = $this->db->get_where('degree', array('d_name' => $this->input->post('course')))->result();
         if (count($data) > 0) {
             echo "false";
@@ -4266,23 +4249,22 @@ class Admin extends MY_Controller {
             echo "true";
         }
     }
-    
-    
+
     function check_duplicate_department($id = '') {
-        $degree = $this->input->post('d_name');      
+        $degree = $this->input->post('d_name');
         $data = $this->db->get_where('degree', array('d_name' => $degree,
                     'd_id!=' => $id))->result_array();
         echo json_encode($data);
     }
-    
-     function status($str) {
+
+    function status($str) {
         if ($str) {
             return 1;
         } else {
             return 0;
         }
     }
-    
+
     function check_course() {
         $data = $this->db->get_where('course', array('c_name' => $this->input->post('course'),
                     'degree_id' => $this->input->post('degree')))->result();
@@ -4293,7 +4275,7 @@ class Admin extends MY_Controller {
             echo "true";
         }
     }
-    
+
     function check_batch() {
 //        $degree = implode(',', $this->input->post("degree"));
 //        $course = implode(',', $this->input->post("course"));
@@ -4316,12 +4298,11 @@ class Admin extends MY_Controller {
         $data = $this->db->query($query)->result_array();
         echo json_encode($data);
     }
-    
+
     /**
      * get course list
      * 
      */
-    
     function get_cource_multiple($param = '') {
         $did = implode(',', $this->input->post("degree"));
         $courceid = explode(',', $this->input->post("courseid"));
@@ -4336,12 +4317,11 @@ class Admin extends MY_Controller {
         }
         echo $html;
     }
-    
+
     /**
      * Check Duplicate semester
      * 
      */
-    
     function check_semester() {
         $data = $this->db->get_where('semester', array('s_name' => $this->input->post('semester')))->result();
         if (count($data) > 0) {
@@ -4350,13 +4330,12 @@ class Admin extends MY_Controller {
             echo "true";
         }
     }
-    
+
     /**
      * Check Duplicate admission type
      * 
      */
-    
-     function check_admission_type() {
+    function check_admission_type() {
         $data = $this->db->get_where('admission_type', array('at_name' => $this->input->post('admission_type')))->result();
         if (count($data) > 0) {
             echo "false";
@@ -4364,12 +4343,11 @@ class Admin extends MY_Controller {
             echo "true";
         }
     }
-    
+
     /**
      * Check Duplicate student email
      * 
      */
-    
     function getstudentemail() {
         $eid = $this->input->post('eid');
         $data = $this->db->get_where('student', array('email' => $eid));
@@ -4380,15 +4358,13 @@ class Admin extends MY_Controller {
         }
         // echo $data->num_rows();
     }
-    
+
     /**
      * subject association
      * @param String $param1
      * @param int $param2
      */
-
-
-     function subject($param1 = '', $param2 = '') {       
+    function subject($param1 = '', $param2 = '') {
         if ($param1 == 'create') {
             $data['sm_course_id'] = $this->input->post('course');
             $data['sm_sem_id'] = $this->input->post('semester');
@@ -4400,7 +4376,7 @@ class Admin extends MY_Controller {
 
 
             $this->db->insert('subject_manager', $data);
-            $this->session->set_flashdata('flash_message',$this->lang_message('subject_add'));
+            $this->session->set_flashdata('flash_message', $this->lang_message('subject_add'));
             redirect(base_url() . 'admin/subject/', 'refresh');
         }
         if ($param1 == 'do_update') {
@@ -4411,8 +4387,6 @@ class Admin extends MY_Controller {
             $data['subject_code'] = $this->input->post('subcode');
             $data['professor_id'] = implode(',', $this->input->post('professor'));
             $data['sm_status'] = 1;
-
-
             $this->db->where('sm_id', $param2);
             $this->db->update('subject_manager', $data);
             $this->session->set_flashdata('flash_message', $this->lang_message('subject_update'));
@@ -4428,16 +4402,66 @@ class Admin extends MY_Controller {
         $this->data['course'] = $this->db->get('course')->result();
         $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['page'] = 'subject';
-        $this->data['title'] = 'Subject Management';      
-         $this->__site_template('admin/subject', $this->data);
+        $this->data['title'] = 'Subject Management';
+        $this->__site_template('admin/subject', $this->data);
     }
-    
+
+    /**
+     * All exam lists
+     * @param string $course_id
+     * @param string $semester_id
+     * @param string $time_table
+     */
+    function all_exam_list($course_id = '', $semester_id = '', $time_table = '') {
+        $this->load->model('admin/Crud_model');
+        $exam_detail = $this->Crud_model->all_exam_list($course_id, $semester_id);
+        echo "<option value=''>Select</option>";
+        foreach ($exam_detail as $row) {
+            ?>
+            <option value="<?php echo $row->em_id ?>"
+                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
+            <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
+            <?php
+        }
+    }
+
+    /**
+     * Exam ajax filter
+     * @param string $degree
+     * @param string $course
+     * @param string $batch
+     * @param string $semester
+     */
+    function get_exam_filter($degree, $course, $batch, $semester) {
+        $this->data['exams'] = $this->Crud_model->get_exam_filter($degree, $course, $batch, $semester);
+        $this->load->view("admin/exam_filter", $this->data);
+    }
+
+    /**
+     * Get exam list by course name and semester
+     * @param type $course_id
+     * @param type $semester_id
+     * 
+     */
+    function get_exam_list($degree_id = '', $course_id = '', $batch_id = '', $semester_id = '', $time_table = '') {
+        $this->load->model('admin/Crud_model');
+        $exam_detail = $this->Crud_model->get_exam_list($degree_id, $course_id, $batch_id, $semester_id);
+        echo "<option value=''>Select</option>";
+        foreach ($exam_detail as $row) {
+            ?>
+            <option value="<?php echo $row->em_id ?>"
+                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
+            <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
+            <?php
+        }
+    }
+
     /**
      * Check Duplicate Subject
      * return json
      * 
      */
-     function checksubjects() {
+    function checksubjects() {
         $eid = $this->input->post('subname');
         $subcode = $this->input->post('subcode');
         $course = $this->input->post('course');
@@ -4445,12 +4469,12 @@ class Admin extends MY_Controller {
         $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode))->result_array();
         echo json_encode($data);
     }
-    
+
     /**
      * Get assessment student
      * @param String $param
      */
-    function get_assessment_student($param= '') {
+    function get_assessment_student($param = '') {
         $batch = $this->input->post("batch");
         $sem = $this->input->post("semester");
         $degree = $this->input->post("degree");
@@ -4463,8 +4487,7 @@ class Admin extends MY_Controller {
         endforeach;
         echo $html;
     }
-    
-    
+
     /**
      * get batches
      * @param type $param
@@ -4482,12 +4505,11 @@ class Admin extends MY_Controller {
             echo $html;
         }
     }
-    
+
     /**
      * getc courses
      * @param String $param
      */
-
     function get_course($param = '') {
         $did = $this->input->post("degree");
 
@@ -4501,24 +4523,325 @@ class Admin extends MY_Controller {
             echo $html;
         }
     }
-    
+
     /**
      * return student list
      */
-    function assessment_student()
-    {        
+    function assessment_student() {
         $batch = $this->input->post("batch");
         $sem = $this->input->post("semester");
         $degree = $this->input->post("degree");
         $course = $this->input->post("course");
 
         $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
-        $html ='<option value="">Select Student</option>';  
-       foreach($datastudent as $row):
-          $html .='<option value="'.$row->std_id.'">'.$row->name.'</option>';
-       endforeach;
-       echo $html;
-        
+        $html = '<option value="">Select Student</option>';
+        foreach ($datastudent as $row):
+            $html .='<option value="' . $row->std_id . '">' . $row->name . '</option>';
+        endforeach;
+        echo $html;
+    }
+
+    /**
+     * Students of the particular course
+     * @param int $course_id
+     */
+    function course_students($course_id = '') {
+        $this->load->model('admin/Crud_model');
+        $students = $this->Crud_model->course_students($course_id);
+        echo "<option value=''>Select</option>";
+        foreach ($students as $row) {
+            ?>
+            <option value="<?php echo $row->std_id; ?>"><?php echo $row->name; ?></option>
+            <?php
+        }
+    }
+
+    /**
+     * Course semester fees structure
+     * @param string $course_id
+     * @param string $semester_id
+     */
+    function course_semester_fees_structure($course_id = '', $semester_id = '') {
+        $this->load->model('admin/Crud_model');
+        $fees_structure = $this->Crud_model->course_semester_fees_structure($course_id, $semester_id);
+
+        echo json_encode($fees_structure);
+    }
+
+    /**
+     * Student paid fees
+     * @param string $fees_structure_id
+     * @param string $student_id
+     */
+    function student_paid_fees($fees_structure_id = '', $student_id = '') {
+        $this->load->model('Student/Student_model');
+        $this->load->model('admin/Crud_model');
+        $page_data = array();
+        $total_paid = 0;
+        $fees_structure = $this->Crud_model->fees_structure_details($fees_structure_id);
+        $page_data['total_fees'] = $fees_structure->total_fee;
+        $paid_fees = $this->Student_model->student_paid_fees($fees_structure_id, $student_id);
+        if (count($paid_fees)) {
+            foreach ($paid_fees as $paid) {
+                $total_paid += $paid->paid_amount;
+            }
+        }
+        if (count($fees_structure)) {
+            $page_data['due_amount'] = $fees_structure->total_fee - $total_paid;
+            $page_data['total_paid'] = $total_paid;
+        } else {
+            $page_data['due_amount'] = $fees_structure->total_fee;
+            $page_data['total_paid'] = 0;
+        }
+
+        echo json_encode($page_data);
+    }
+
+    /**
+     * Filter and redirect based on payment gateway
+     */
+    function process_payment() {
+        if ($this->session->userdata('payment_data')['payment_gateway'] == 'authorize') {
+            $this->data['title'] = 'Authorize Payment Process';
+            $this->data['page'] = 'authorize_payment';
+            $this->__site_template('admin/authorize_payment', $this->data);
+        } else {
+            redirect(base_url('admin/make_payment'));
+        }
+    }
+
+    /**
+     * Verify and print verify card details
+     */
+    function verify_card_detail($cc_number) {
+        $cc_details = $this->validateCreditcard_number($cc_number);
+        echo json_encode($cc_details);
+    }
+
+    /**
+     * Validate credit card number
+     * @param int $cc_num
+     * @return array
+     */
+    function validateCreditcard_number($cc_num) {
+        $credit_card_number = $this->sanitize($cc_num);
+        // Get the first digit
+        $data = array();
+        $firstnumber = substr($credit_card_number, 0, 1);
+        // Make sure it is the correct amount of digits. Account for dashes being present.
+        switch ($firstnumber) {
+            case 3:
+                $data['card_type'] = "American Express";
+                if (!preg_match('/^3\d{3}[ \-]?\d{6}[ \-]?\d{5}$/', $credit_card_number)) {
+                    //return 'This is not a valid American Express card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            case 4:
+                $data['card_type'] = "Visa";
+                if (!preg_match('/^4\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
+                    //return 'This is not a valid Visa card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            case 5:
+                $data['card_type'] = "MasterCard";
+                if (!preg_match('/^5\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
+                    //return 'This is not a valid MasterCard card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            case 6:
+                $data['card_type'] = "Discover";
+                if (!preg_match('/^6011[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
+                    //return 'This is not a valid Discover card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            default:
+                //return 'This is not a valid credit card number';
+                $data['card_type'] = "Invalid";
+                $data['status'] = 'false';
+                return $data;
+        }
+        // Here's where we use the Luhn Algorithm
+        $credit_card_number = str_replace('-', '', $credit_card_number);
+        $map = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 2, 4, 6, 8, 1, 3, 5, 7, 9);
+        $sum = 0;
+        $last = strlen($credit_card_number) - 1;
+        for ($i = 0; $i <= $last; $i++) {
+            $sum += $map[$credit_card_number[$last - $i] + ($i & 1) * 10];
+        }
+        if ($sum % 10 != 0) {
+            //return 'This is not a valid credit card number';
+            $data['status'] = 'false';
+            return $data;
+        }
+        // If we made it this far the credit card number is in a valid format
+        $data['status'] = 'true';
+        return $data;
+    }
+
+    /**
+     * Sanitize the input
+     */
+    function sanitize($value) {
+        return trim(strip_tags($value));
+    }
+
+    /**
+     * Authorize.net payment process
+     */
+    function authorize_net_make_payment() {
+        $this->load->library('authorize_net');
+        $this->load->model('admin/Crud_model');
+
+        if ($_POST) {
+            $cc_details = $this->validateCreditcard_number($_POST['card_number']);
+            if ($cc_details['status'] == 'false') {
+                // invalid card details
+                echo 'invalid card details';
+                //$this->do_payment();
+            } else {
+                $student_data = $this->db->get_where('student', array('std_id' => $this->session->userdata('payment_data')['student_id']))->row();
+                $auth_net = array(
+                    'x_card_num' => $_POST['card_number'], // Visa
+                    'x_exp_date' => $_POST['month'] . '/17',
+                    'x_card_code' => $_POST['cvv'],
+                    'x_description' => 'Authorize.net transaction',
+                    'x_amount' => $this->session->userdata('payment_data')['fees'],
+                    'x_first_name' => $student_data->std_first_name,
+                    'x_last_name' => $student_data->std_last_name,
+                    'x_address' => 'Address',
+                    'x_city' => $student_data->city,
+                    'x_state' => 'State',
+                    'x_zip' => $student_data->zip,
+                    'x_country' => 'India',
+                    'x_phone' => $student_data->std_mobile,
+                    'x_email' => $student_data->email,
+                    'x_customer_ip' => $this->input->ip_address(),
+                );
+
+                $this->authorize_net->setData($auth_net);
+
+                //insert into db
+                $payment_data = array(
+                    'student_id' => $this->session->userdata('payment_data')['student_id'],
+                    'fees_structure_id' => $this->session->userdata('payment_data')['fees_structure_id'],
+                    'paid_amount' => $this->session->userdata('payment_data')['fees'],
+                    'course_id' => $this->session->userdata('payment_data')['course'],
+                    'sem_id' => $this->session->userdata('payment_data')['semester'],
+                    'remarks' => $this->session->userdata('payment_data')['description'],
+                );
+                $this->Crud_model->student_fees_save($payment_data);
+
+
+                // redirect after order completion
+                $status = array();
+
+                // Try to AUTH_CAPTURE
+                if ($this->authorize_net->authorizeAndCapture()) {
+                    $this->session->set_flashdata('Transaction success', 'Transaction is successfully done.');
+
+                    //remove session
+                    $this->session->unset_userdata('payment_data');
+                    redirect(base_url('admin/make_payment'));
+                } else {
+                    $this->session->set_flashdata('Transaction incomplete', '<p>' . $this->authorize_net->getError() . '</p>');
+                    //remove session
+                    $this->session->unset_userdata('payment_data');
+                    redirect(base_url('admin/make_payment'));
+                }
+            }
+        }
+    }
+
+    /**
+     * Invoice copy
+     * @param string $id
+     */
+    function invoice($id = '') {
+        $this->load->model('Student/Student_model');
+        $this->data['page_name'] = 'invoice';
+        $this->data['page_title'] = 'Student invoice';
+        $this->data['invoice'] = $this->Student_model->invoice_detail($id);
+        $this->data['title'] = 'Invoice Details';
+
+        $paid_fees = $this->Student_model->student_paid_fees($this->data['invoice']->fees_structure_id, $this->data['invoice']->std_id);
+        $total_paid = 0;
+        if (count($paid_fees)) {
+            foreach ($paid_fees as $paid) {
+                $total_paid += $paid->paid_amount;
+            }
+        }
+        $this->data['due_amount'] = $this->data['invoice']->total_fee - $total_paid;
+        $this->data['total_paid'] = $total_paid;
+        $this->__site_template('admin/invoice', $this->data);
+    }
+
+    /**
+     * Print invoice
+     * @param string $id
+     */
+    function invoice_print($id) {
+        $this->load->model('Student/Student_model');
+        $this->data['invoice'] = $this->Student_model->invoice_detail($id);
+        $paid_fees = $this->Student_model->student_paid_fees($this->data['invoice']->fees_structure_id, $this->data['invoice']->std_id);
+        $total_paid = 0;
+        if (count($paid_fees)) {
+            foreach ($paid_fees as $paid) {
+                $total_paid += $paid->paid_amount;
+            }
+        }
+        $page_data['due_amount'] = $this->data['invoice']->total_fee - $total_paid;
+        $this->data['total_paid'] = $total_paid;
+
+        $html = utf8_encode($this->load->view('admin/invoice_print', $this->data, true));
+
+        //this the the PDF filename that user will get to download
+        $pdfFilePath = "invoice copy.pdf";
+
+        //load mPDF library
+        $this->load->library('M_pdf');
+
+
+        //load the view and saved it into $html variable
+        //generate the PDF from the given html
+        $this->m_pdf->pdf->WriteHTML($html);
+
+        //download it.
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+    }
+
+    /**
+     * Exam schedule ajax filter
+     * @param string $degree
+     * @param string $course
+     * @param string $batch
+     * @param string $semester
+     * @param string $exam
+     */
+    function get_exam_schedule_filter($degree, $course, $batch, $semester, $exam) {
+        $this->data['time_table'] = $this->Crud_model->exam_schedule_filter($degree, $course, $batch, $semester, $exam);
+        $this->load->view("admin/exam_schedule_filter", $this->data);
+    }
+
+    /**
+     * Student list by degree, course, batch, and semester
+     * @param type $degree
+     * @param type $course
+     * @param type $batch
+     * @param type $semester
+     */
+    function student_list_from_degree_course_batch_semester($degree, $course, $batch, $semester) {
+        $this->load->model('admin/Crud_model');
+        $student = $this->Crud_model->student_list_from_degree_course_batch_semester($degree, $course, $batch, $semester);
+
+        echo json_encode($student);
     }
     
     /**

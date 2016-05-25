@@ -14,6 +14,7 @@
                 </div>
             </div>
             <div class=panel-body>
+                <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addcharity');" data-toggle="modal">Add Charity Fund</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -23,7 +24,6 @@
                             <th>Email</th>
                             <th>Donation</th>
                             <th>Description</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -36,10 +36,7 @@
                                 <td><?php echo $row->email; ?></td>
                                 <td><?php echo $row->amount; ?></td>
                                 <td><?php echo $row->description; ?></td>
-                                <td class="menu-action">
-                                    <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
-                                </td>
+                                
                             </tr>
                         <?php } ?>
                     </tbody>
