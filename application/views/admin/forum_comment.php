@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class=panel-body>
-                
+
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -29,32 +29,34 @@
                     </thead>
 
                     <tbody>
-                                   <?php $count = 1;
-                                            foreach ($forum_comment as $row): ?>
-                                                <tr>
-                                                    <td><?php echo $count++; ?></td>
-                                                    <td><?php echo $row['forum_comments']; ?></td>                         
-                                                      <td><?php echo $row['user_role']; ?></td> 
-                                                      <td><?php echo roleuserdatatopic($row['user_role'],$row['user_role_id']); ?></td>                                                                             
-                                                    <td >
-                                                        <?php if ($row['forum_comment_status'] == '1') { ?>
-                                                            <span>Active</span>
-                                                            <?php } else { ?>	
-                                                                <span>InActive</span>
-                                                            <?php } ?>
-                                                            
-                                                    </td>
-                                                    <td class="menu-action">                                                            
-                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>forum/commentdelete/<?php echo $row['forum_comment_id']; ?>/<?php  echo $row['forum_topic_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"><i class="fa fa-times"></i> </a>
-                                                       
-                                                    </td>
-                                                   <td class="menu-action">
-                                                       <?php if ($row['forum_comment_status'] == '0') { ?>
-                                                        <a href="<?php echo base_url(); ?>index.php?forum/confirmcomment/<?php echo $row['forum_comment_id']; ?>/<?php  echo $row['forum_topic_id']; ?>" class="btn btn-info vd_bg-green">Approve</a>
-                                                        <?php } ?>
-                                                    </td>
-                                                </tr>
-                                <?php endforeach; ?>		
+                        <?php
+                        $count = 1;
+                        foreach ($forum_comment as $row):
+                            ?>
+                            <tr>
+                                <td><?php echo $count++; ?></td>
+                                <td><?php echo $row['forum_comments']; ?></td>                         
+                                <td><?php echo $row['user_role']; ?></td> 
+                                <td><?php echo roleuserdatatopic($row['user_role'], $row['user_role_id']); ?></td>                                                                             
+                                <td >
+                                    <?php if ($row['forum_comment_status'] == '1') { ?>
+                                        <span>Active</span>
+                                    <?php } else { ?>	
+                                        <span>InActive</span>
+                                    <?php } ?>
+
+                                </td>
+                                <td class="menu-action">                                                            
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>forum/commentdelete/<?php echo $row['forum_comment_id']; ?>/<?php echo $row['forum_topic_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"><i class="fa fa-times"></i> </a>
+
+                                </td>
+                                <td class="menu-action">
+                                    <?php if ($row['forum_comment_status'] == '0') { ?>
+                                        <a href="<?php echo base_url(); ?>index.php?forum/confirmcomment/<?php echo $row['forum_comment_id']; ?>/<?php echo $row['forum_topic_id']; ?>" class="btn btn-info vd_bg-green">Approve</a>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>		
                     </tbody>
                 </table>
             </div>

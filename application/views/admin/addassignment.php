@@ -4,7 +4,7 @@
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Add Assignment");?></h4>                
+                <h4 class=panel-title>  <?php echo ucwords("Add Assignment"); ?></h4>                
             </div>    
             <div class="panel-body"> 
 

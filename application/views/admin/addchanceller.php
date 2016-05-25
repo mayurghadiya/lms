@@ -1,94 +1,95 @@
- <?php 
-   $degree = $this->db->get('degree')->result_array();
-        $courses = $this->db->get('course')->result_array();
-        $semesters = $this->db->get('semester')->result_array();?>
+<?php
+$degree = $this->db->get('degree')->result_array();
+$courses = $this->db->get('course')->result_array();
+$semesters = $this->db->get('semester')->result_array();
+?>
 <div class=row>                      
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Add chancellor");?></h4>                
+                <h4 class=panel-title>  <?php echo ucwords("Add chancellor"); ?></h4>                
             </div>    
-                <div class="panel-body"> 
-                    
-                    <div class="box-content">
-                                    <div class="">
-                                        <span style="color:red">* <?php echo "is ".ucwords("mandatory field");?></span> 
-                                    </div >                                    
-                                    <?php echo form_open(base_url() . 'admin/chancellor/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmchancellor', 'target' => '_top', "enctype" => "multipart/form-data")); ?>
-                                    <div class="padded">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Name");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
-                                                <input type="text" class="form-control" name="name" id="name" />
-                                            </div>
-                                        </div>												
-                                        											
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Email Id");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
-                                                <input type="text" class="form-control" name="email_id" id="email_id"  />
-                                                <span id="emailerror" style="color: red"></span>
-                                            </div>
-                                        </div>                            
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("designation");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
-                                                <input type="text" class="form-control" name="designation" id="designation" />
-                                            </div>
-                                        </div>
-                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Mobile No");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
-                                                <input type="text" class="form-control" name="mobileno" id="mobileno" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Facebook URL");?></label>
-                                            <div class="col-sm-5">
-                                                <input type="text" class="form-control" name="facebook" id="facebook" />
-                                            </div>
-                                        </div>	
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Twitter URL");?></label>
-                                            <div class="col-sm-5">
-                                                <input type="text" class="form-control" name="twitter" id="twitter" />
-                                            </div>
-                                        </div>	
-                                        
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("google plus link");?></label>
-                                            <div class="col-sm-5">
-                                                <input type="text" class="form-control" name="googleplus" id="googleplus" />
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Profile Photo");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
-                                                <input type="file" class="form-control" name="profilefile" id="profilefile"  />
-                                                <span id="imgerror" style="color:red;"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Description");?></label>
-                                            <div class="col-sm-5">
-                                                <textarea class="form-control" name="description" id="description" ></textarea>
-                                            </div>
-                                        </div>	
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-3 col-sm-5">
-                                                <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add");?></button>
-                                            </div>
-                                        </div>
-                                        </form>               
-                                    </div>                
-                                </div>
-                  </div>
-              </div>
-      </div>
-               </div> 
+            <div class="panel-body"> 
+
+                <div class="box-content">
+                    <div class="">
+                        <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
+                    </div >                                    
+                    <?php echo form_open(base_url() . 'admin/chancellor/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmchancellor', 'target' => '_top', "enctype" => "multipart/form-data")); ?>
+                    <div class="padded">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php echo ucwords("Name"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" name="name" id="name" />
+                            </div>
+                        </div>												
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php echo ucwords("Email Id"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" name="email_id" id="email_id"  />
+                                <span id="emailerror" style="color: red"></span>
+                            </div>
+                        </div>                            
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php echo ucwords("designation"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" name="designation" id="designation" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php echo ucwords("Mobile No"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" name="mobileno" id="mobileno" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php echo ucwords("Facebook URL"); ?></label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" name="facebook" id="facebook" />
+                            </div>
+                        </div>	
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php echo ucwords("Twitter URL"); ?></label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" name="twitter" id="twitter" />
+                            </div>
+                        </div>	
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php echo ucwords("google plus link"); ?></label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" name="googleplus" id="googleplus" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php echo ucwords("Profile Photo"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-5">
+                                <input type="file" class="form-control" name="profilefile" id="profilefile"  />
+                                <span id="imgerror" style="color:red;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php echo ucwords("Description"); ?></label>
+                            <div class="col-sm-5">
+                                <textarea class="form-control" name="description" id="description" ></textarea>
+                            </div>
+                        </div>	
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-5">
+                                <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add"); ?></button>
+                            </div>
+                        </div>
+                        </form>               
+                    </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
 <script type="text/javascript">
 
     $.validator.setDefaults({
@@ -130,7 +131,7 @@
                 email_id:
                         {
                             required: true,
-                            email_id: true,                           
+                            email_id: true,
                         },
                 mobileno:
                         {
@@ -148,11 +149,11 @@
                             url2: true,
                         },
                 googleplus:
-                {
-                    url2: true,
-                },
+                        {
+                            url2: true,
+                        },
                 admissiontype: "required",
-                 designation: "required",
+                designation: "required",
                 profilefile: {
                     required: true,
                     extension: 'gif|png|jpg|jpeg',

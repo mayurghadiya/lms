@@ -22,10 +22,10 @@
     <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script type="text/javascript" src="js/libs/respond.min.js"></script>
     <![endif]-->
-    
-	<script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-datepicker/bootstrap-datepicker.js"></script>
-	
-	<script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+
+<script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+
+<script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-timepicker/bootstrap-timepicker.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/forms/select2/select2.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/forms/dual-list-box/jquery.bootstrap-duallistbox.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/forms/summernote/summernote.js"></script>
@@ -37,17 +37,18 @@
 <script>
 <?php
 $message = $this->session->flashdata('flash_message');
-if($message != '') { ?>
-$.toaster({ 
-	priority : 'success', 
-	title : 'Success! ', 
-	message : '<?php echo $message; ?>',
-	timeOut: 5000
-});
+if ($message != '') {
+    ?>
+        $.toaster({
+            priority: 'success',
+            title: 'Success! ',
+            message: '<?php echo $message; ?>',
+            timeOut: 5000
+        });
 <?php } ?>
- </script> 
+</script> 
 
-<?php include 'modal.php';?>
+<?php include 'modal.php'; ?>
 </head>
 </body>
 </html>

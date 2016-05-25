@@ -62,19 +62,19 @@
                         </div>
                     </div>
 
-<?php if ($email->file_name != '') { ?> 
+                    <?php if ($email->file_name != '') { ?> 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Attachments</label>
 
-    <?php
-    $file_names = explode(',', $email->file_name);
-    foreach ($file_names as $file) {
-        ?>
+                            <?php
+                            $file_names = explode(',', $email->file_name);
+                            foreach ($file_names as $file) {
+                                ?>
                                 <a target="_blank" download href="<?php echo base_url('uploads/emails/' . $file); ?>" style="margin-left: 15px;"><?php echo $file; ?></a><br/>
                             <?php } ?>
                         </div>
                 </div>
-<?php } ?>
+            <?php } ?>
 
 
             </form>

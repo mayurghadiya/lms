@@ -30,15 +30,15 @@ $semesters = $this->db->get('semester')->result_array();
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Add Bannner Slider");?></h4>                
+                <h4 class=panel-title>  <?php echo ucwords("Add Bannner Slider"); ?></h4>                
             </div>
-            
+
             <div class="panel-body"> 
                 <div class="box-content">  
                     <div class="">
                         <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
                     </div>                                      
-<?php echo form_open(base_url() . 'admin/bannerslider/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmgallery', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+                    <?php echo form_open(base_url() . 'admin/bannerslider/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmgallery', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                     <div class="padded">											
 
                         <div class="form-group">

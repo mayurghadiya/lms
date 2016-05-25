@@ -148,7 +148,7 @@
                             <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add"); ?></button>
                         </div>
                     </div>
-                   <?php echo form_close(); ?>  
+                    <?php echo form_close(); ?>  
                 </div>
             </div>
             <!-- End .panel -->
