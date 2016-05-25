@@ -1,6 +1,6 @@
 <?php if ($param == 'allproject') { ?>
-    <div class="panel-body table-responsive" id="getresponse">
-        <table class="table table-striped" id="data-tables">
+  
+        <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables">
             <thead>
                 <tr>
                     <th><div>#</div></th>											
@@ -86,15 +86,15 @@
                         <td><?php echo date("F d, Y", strtotime($row->pm_dos)); ?></td>	
 
                         <td class="menu-action">
-                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"><span class="label label-primary mr6 mb6">Edit</span></a>
-                            <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/project/delete/<?php echo $row->pm_id; ?>');" title="Remove" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"><span class="label label-danger mr6 mb6">Delete</span></a>	
+                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">Edit</span></a>
+                            <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/project/delete/<?php echo $row->pm_id; ?>');" title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>	
 
                         </td>	
                     </tr>
                 <?php endforeach; ?>						
             </tbody> 
         </table>
-    </div>
+    
     <?php
 }
 if ($param == 'submitted') {

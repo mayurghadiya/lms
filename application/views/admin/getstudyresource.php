@@ -1,5 +1,5 @@
-<div class="panel-body table-responsive" id="getresponse">
-    <table class="table table-striped" id="data-tables">
+
+    <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables">
         <thead>
             <tr>
                 <th><div>#</div></th>											
@@ -85,7 +85,7 @@
             <?php endforeach; ?>						
         </tbody>
     </table>
-</div>
+
 
 <script type="text/javascript">
     $(document).ready(function () {

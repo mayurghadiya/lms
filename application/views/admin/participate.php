@@ -41,7 +41,7 @@
                     <div id="import-tab-content" class="tab-content">
                         <div class="tab-pane fade active in" id="list">
                              <div class="panel-body table-responsive">
-                                    <table class="table table-striped" id="datatable-list">
+                                    <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="datatable-list">
                                         <thead>
                                             <tr>
                                                 <th><div>#</div></th>											
@@ -245,7 +245,7 @@
                         </div>
                         <div class="tab-pane fade out" id="survey">
                                <div class="panel-body table-responsive" id="getresponse">
-                                        <table class="table table-striped" id="survey-table">
+                                        <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="survey-table">
                                             <thead>
                                                 <tr>
                                                     <th><div>#</div></th>                                           
@@ -393,7 +393,7 @@
                         </div>
                         <div class="tab-pane fade out" id="newlist">
                             <div class="panel-body table-responsive">
-                                    <table class="table table-striped" id="data-tabless">
+                                    <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tabless">
                                         <thead>
                                             <tr>
                                                 <th><div>#</div></th>                                           
@@ -433,8 +433,8 @@
                                 </div>
                         </div>
                         <div class="tab-pane fade out" id="listing">
-                            <div class="panel-body table-responsive" id="getsubmit">
-                                    <table class="table table-striped" id="data-tables-activity">
+                            <div  id="getsubmit">
+                                    <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables-activity">
                                         <thead>
                                             <tr>
                                                 <th><div>#</div></th>											
@@ -500,7 +500,7 @@
                         <!-- tab content -->
                         <div class="tab-pane fade" id="uploads">
                              <div class="panel-body table-responsive" id="upd_getsubmit">                               
-                                    <table class="table table-striped" id="uploaded-table">
+                                    <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%  id="uploaded-table">
                                         <thead>
                                             <tr>
                                                 <th><div>#</div></th>											
