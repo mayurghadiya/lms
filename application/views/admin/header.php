@@ -104,12 +104,13 @@
                                 </ul>
                             </li>
                             <li class=dropdown>
-                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt="" class="image"> <span class=txt>student@lms.com</span> <b class=caret></b>
+                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt="" class="image"> 
+                                    <span class=txt><?php echo $this->session->userdata('email'); ?></span> <b class=caret></b>
                                 </a>
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul>
-                                            <li><a href=#>
+                                            <li><a href="<?php echo base_url(); ?>admin/manage_profile">
                                                     <i class="fa fa-user-plus" aria-hidden="true"></i>Edit profile</a>
                                             </li>
                                             <li><a href=#><i class="fa fa-comment-o" aria-hidden="true"></i></i>Comments</a>

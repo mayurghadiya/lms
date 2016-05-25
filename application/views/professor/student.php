@@ -42,7 +42,7 @@
                                 <td><?php echo $row->email; ?></td>											
                                 <td><?php echo $row->std_mobile; ?></td>											
                                 <td class="menu-action">
-                                   <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_student_detail/<?php echo $row->std_id; ?>');" data-original-title="View Detail" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">View</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_student_detail/<?php echo $row->std_id; ?>');" data-original-title="view" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">View</span></a>
                                 </td> 
                             </tr>
                         <?php endforeach; ?>																

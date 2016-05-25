@@ -29,7 +29,7 @@
             <link rel=apple-touch-icon-precomposed href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-57-precomposed.png>
             <link rel=icon href=<?php echo base_url(); ?>assets/img/ico/favicon.ico type=image/png>
             <meta name=msapplication-TileColor content="#3399cc">
-
+            <script src=http://code.jquery.com/jquery-2.1.1.min.js></script>
         <body>
             <!--[if lt IE 9]>
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -101,7 +101,7 @@
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul>
-                                            <li><a href=#>
+                                            <li><a href="<?php echo base_url(); ?>student/profile">
                                                     <i class="fa fa-user-plus" aria-hidden="true"></i>Edit profile</a>
                                             </li>
                                             <li><a href=#><i class="fa fa-comment-o" aria-hidden="true"></i></i>Comments</a>
@@ -112,7 +112,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href=login.html>
+                            <li><a href="<?php echo base_url(); ?>site/logout">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i><span class=txt>Logout</span>
                                 </a>
                             </li>
@@ -161,13 +161,43 @@
                                 <!-- End .sidenav-widget -->
                                 <div class=mainnav>
                                     <ul>
-                                        <li><a href=index.html><i class="fa fa-desktop" aria-hidden="true"></i><span class=txt>Dashboard</span></a>
+                                        <li><a href="<?php echo base_url(); ?>student/dashboard"><i class="fa fa-desktop" aria-hidden="true"></i><span class=txt>Dashboard</span></a>
                                         </li>
 
       <!-- <li><a href=#><i class="fa fa-folder" aria-hidden="true"></i><span class=txt>Pages</span><span class="notification blue">11</span></a> -->
                                         <!-- <ul class=sub> -->
-                                        <li><a href="table.html"><i class="s16 fa fa-table"></i><span class="txt">Table </span></a>
-                                        <li><a href=blank.html><i class="s16 fa fa-newspaper-o"></i><span class=txt>News </span></a>
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                                <span class="txt">Email </span></a>
+                                            <ul class="sub">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>student/email_compose">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Compose E-Mail</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>student/email_inbox">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Inbox</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>student/email_sent">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Sent</span>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/assignment/"><i class="s16 fa fa-table"></i><span class="txt">Assignments </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/fee_record"><i class="s16 fa fa-newspaper-o"></i><span class=txt>Fee Record </span>
+                                            </a>
                                         </li>
                                         <li><a href=calendar.html><i class="s16 fa fa-university"></i><span class=txt>Academics </span></a>
                                         </li>

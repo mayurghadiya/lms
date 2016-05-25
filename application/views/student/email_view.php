@@ -14,38 +14,49 @@
                 </div>
             </div>
             <div class=panel-body>
-               
-                <form class="form-horizontal" role="form" action="" method="post">
+                <form class="form-horizontal" role="form" action="#" method="post">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">From</label>
+                        <label class="col-sm-2 control-label">To</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="from" id="from" readonly=""
-                                   value="<?php echo $email->email_from; ?>"/>
+                            <?php
+                            if (!empty($email->email_to)) {
+                                $admin = $this->db->get_where('admin', array(
+                                            'admin_id' => $email->email_to
+                                        ))->row();
+
+                                $send_email = $admin->email;
+                            } else {
+                                $professor = $this->db->get_where('professor', array(
+                                            'professor_id' => $email->student_to_professor
+                                        ))->row();
+                                $send_email = $professor->email;
+                            }
+                            ?>
+                            <input type="text" readonly="" class="form-control" name="from" id="from"
+                                   value="<?php echo $send_email; ?>"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Subject</label>
                         <div class="col-sm-7">
-                            <textarea id="subject" class="form-control" readonly="" name="subject"><?php echo $email->subject ?></textarea>
+                            <textarea class="form-control" id="subject" name="subject" readonly=""><?php echo $email->subject; ?></textarea>                                            
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Cc</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="cc" id="cc" readonly=""
-                                   value="<?php echo $email->cc; ?>"/>
+                            <input id="cc" class="form-control" name="cc" value="<?php echo $email->cc; ?>" readonly=""/>                                           
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
                         <div class="col-sm-7">
-                            <textarea id="message" readonly="" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here">
+                            <textarea id="message" name="message" readonly="" class="width-100 form-control"  rows="15" placeholder="Write your message here">
                                 <?php echo $email->message; ?>
-                            </textarea>
+                            </textarea>                                          
                         </div>
                     </div>
 
@@ -60,15 +71,13 @@
                                 <a target="_blank" download href="<?php echo base_url('uploads/emails/' . $file); ?>" style="margin-left: 15px;"><?php echo $file; ?></a><br/>
                             <?php } ?>
                         </div>
-                </div>
-            <?php } ?>
-
-            </form>
+                    <?php } ?>
+                </form>
+            </div>
         </div>
+        <!-- End .panel -->
     </div>
-    <!-- End .panel -->
-</div>
-<!-- col-lg-12 end here -->
+    <!-- col-lg-12 end here -->
 </div>
 <!-- End .row -->
 </div>
