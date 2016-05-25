@@ -244,39 +244,7 @@
                                 <!----CREATION FORM ENDS-->
                         </div>
                         <div class="tab-pane fade out" id="survey">
-                           
-                                   <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("department");?></label>
-                                    <select class="form-control pfilter-rows" id="pfilter2" data-filter="2" data-type="course">
-                                        <option value="">All</option>
-                                        <?php foreach ($degree as $row) { ?>
-                                            <option value="<?php echo $row->d_name; ?>"
-                                                    data-id="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                                <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Branch");?></label>
-                                    <select id="pfilter3" name="branch" data-filter="3" class="form-control pfilter-rows" data-type="branch">
-                                        <option value="">All</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Batch");?></label>
-                                    <select id="pfilter4" name="batch" data-filter="4" class="form-control pfilter-rows" data-type="batch">
-                                        <option value="">All</option>
-                                    </select>
-                                </div>                                
-                                <div class="form-group col-sm-2">
-                                    <label> <?php echo ucwords("Semester");?></label>
-                                    <select id="pfilter5" name="semester" data-filter="5" class="form-control pfilter-rows" data-type="semester">
-                                        <option value="">All</option>
-
-                                    </select>
-                                </div>
-                                 <label style="margin-left: 40px; margin-top: 30px;">OR</label>
-                              
-                                    <div class="panel-body table-responsive" id="getresponse">
+                               <div class="panel-body table-responsive" id="getresponse">
                                         <table class="table table-striped" id="survey-table">
                                             <thead>
                                                 <tr>
@@ -424,14 +392,176 @@
                                 </div>
                         </div>
                         <div class="tab-pane fade out" id="newlist">
-                            
+                            <div class="panel-body table-responsive">
+                                    <table class="table table-striped" id="data-tabless">
+                                        <thead>
+                                            <tr>
+                                                <th><div>#</div></th>                                           
+                                                <th><div><?php echo ucwords("Question");?></div></th>       
+                                                <th><div><?php echo ucwords("Description");?></div></th>
+                                                <th><div><?php echo ucwords("Status");?></div></th>
+                                                <th><div><?php echo ucwords("Action");?></div></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $countq = 1;
+
+                                            foreach ($questions as $rowq):
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $countq++; ?></td>    
+                                                    <td><?php echo $rowq->question; ?></td>    
+                                                    <td><?php echo $rowq->question_description; ?></td>    
+                                                    <td>
+                                                        <?php if ($rowq->question_status == '1') { ?>
+                                                            <span class="label label-success">Active</span>
+                                                        <?php } else { ?>	
+                                                            <span class="label label-default">InActive</span>
+                                                        <?php } ?>
+                                                        
+                                                        <?php //echo ($rowq->question_status == "1") ? 'Active' : 'Deactive'; ?></td>    
+
+                                                    <td>  <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_question/<?php echo $rowq->sq_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
+
+                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/survey/delete/<?php echo $rowq->sq_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>	</td>
+                                                </tr>
+                                            <?php endforeach; ?>                        
+                                        </tbody>
+                                    </table>
+                                </div>
                         </div>
                         <div class="tab-pane fade out" id="listing">
-                            
+                            <div class="panel-body table-responsive" id="getsubmit">
+                                    <table class="table table-striped" id="data-tables-activity">
+                                        <thead>
+                                            <tr>
+                                                <th><div>#</div></th>											
+                                                <th><div><?php echo ucwords("Student Name");?></div></th>	
+                                                <th><div><?php echo ucwords("Parti. Title");?></div></th>
+                                                <th><div><?php echo ucwords("Comment");?></div></th>
+                                                <th><div><?php echo ucwords("department");?></div></th>											
+                                                <th><div><?php echo ucwords("Branch");?></div></th>
+                                                <th><div><?php echo ucwords("Batch");?></div></th>
+                                                <th><div><?php echo ucwords("Semester");?></div></th>											
+                                                <th><div><?php echo ucwords("Parti. Status");?></div></th>											
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $counts = 1;
+
+                                            foreach ($volunteer as $rows):
+                                                $std_id = $rows['student_id'];
+                                                $pp_id = $rows['pp_id'];
+                                                $this->db->join('degree', 'degree.d_id=student.std_degree');
+                                                $this->db->join('semester', 'semester.s_id=student.semester_id');
+                                                $this->db->join('batch', 'batch.b_id=student.std_batch');
+                                                $this->db->join('course', 'course.course_id=student.course_id');
+
+                                                $user = $this->db->get_where('student', array('std_id' => $std_id))->result_array();
+                                                $part = $this->db->get_where('participate_manager', array('pp_id' => $pp_id))->result_array();
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $counts++; ?></td>	
+                                                    <td><?php echo $user[0]['name']; ?></td>	
+                                                    <td><?php echo $part[0]['pp_title']; ?></td>
+                                                    <td><?php echo wordwrap($rows['comment'], 40, "<br>\n", true); ?></td>
+                                                    <td><?php
+                                                        if (isset($user[0]['d_name'])) {
+                                                            echo $user[0]['d_name'];
+                                                        }
+                                                        ?></td>
+
+                                                    <td><?php
+                                                        if (isset($user[0]['c_name'])) {
+                                                            echo $user[0]['c_name'];
+                                                        }
+                                                        ?></td>	
+                                                    <td><?php
+                                                        if (isset($user[0]['b_name'])) {
+                                                            echo $user[0]['b_name'];
+                                                        }
+                                                        ?></td>
+                                                    <td><?php
+                                                        if (isset($user[0]['s_name'])) {
+                                                            echo $user[0]['s_name'];
+                                                        }
+                                                        ?></td>	
+                                                <td><a href="<?php echo base_url(); ?>admin/confirmparticipate/<?php echo $rows['participate_student_id']; ?>" class="btn btn-info vd_bg-green">Disapprove</a></td>	                                                    
+
+                                                </tr>
+<?php endforeach; ?>						
+                                        </tbody>
+                                    </table>
+                                </div>
                         </div>                        
                         <!-- tab content -->
                         <div class="tab-pane fade" id="uploads">
-                            
+                             <div class="panel-body table-responsive" id="upd_getsubmit">                               
+                                    <table class="table table-striped" id="uploaded-table">
+                                        <thead>
+                                            <tr>
+                                                <th><div>#</div></th>											
+                                                <th><div><?php echo ucwords("Student Name");?></div></th>	                                               
+                                                <th><div><?php echo ucwords("department");?></div></th>											
+                                                <th><div><?php echo ucwords("Branch");?></div></th>
+                                                <th><div><?php echo ucwords("Batch");?></div></th>
+                                                <th><div><?php echo ucwords("Semester");?></div></th>											
+                                                <th><div><?php echo ucwords("File");?></div></th>											                                                
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $countsu = 1;
+
+
+
+                                            foreach ($uploads as $rowsupl):
+                                                $std_id = $rowsupl['std_id'];
+                                                //   $pp_id =  $rowsupl['pp_id'];
+                                                // if()
+                                                $this->db->join('degree', 'degree.d_id=student.std_degree');
+                                                $this->db->join('semester', 'semester.s_id=student.semester_id');
+                                                $this->db->join('batch', 'batch.b_id=student.std_batch');
+                                                $this->db->join('course', 'course.course_id=student.course_id');
+
+                                                $user1 = $this->db->get_where('student', array('std_id' => $std_id))->result_array();
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $countsu++; ?></td>	
+                                                    <td><?php echo $user1[0]['name']; ?></td>	
+                                                    <td><?php
+                                                        if (isset($user1[0]['d_name'])) {
+                                                            echo $user1[0]['d_name'];
+                                                        }
+                                                        ?></td>
+
+                                                    <td><?php
+                                                        if (isset($user1[0]['c_name'])) {
+                                                            echo $user1[0]['c_name'];
+                                                        }
+                                                        ?></td>	
+                                                    <td><?php
+                                                        if (isset($user1[0]['b_name'])) {
+                                                            echo $user1[0]['b_name'];
+                                                        }
+                                                        ?></td>
+                                                    <td><?php
+                                                        if (isset($user1[0]['s_name'])) {
+                                                            echo $user1[0]['s_name'];
+                                                        }
+                                                        ?></td>	
+                                                    <td id="downloadedfile"><a href="<?php echo $rowsupl['upload_url']; ?>" download=""><i class="fa fa-download" title="<?php echo $rowsupl['upload_file_name']; ?>"></i></a></td>	
+
+                                                </tr>
+<?php endforeach; ?>						
+                                        </tbody>
+                                    </table>
+                                </div>
+
                         </div>
 
                     </div>
@@ -867,161 +997,14 @@ $("#courses").change(function(){
             });
         });
 
-        $(document).ready(function () {
-        "use strict";
-        $('#data-tabless').dataTable();
+        $(document).ready(function () {      
+        $('#data-tabless').DataTable();
+            $('#survey-table').DataTable();
+
+             $('#data-tables-activity').DataTable();
+             $('#uploaded-table').DataTable();
+        
         });
 
 
     </script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		"use strict";				
-		$('#data-tablessearch').DataTable( {
-             aoColumnDefs: [
-                {
-                   bSortable: false,
-                   aTargets: [ -1 ]
-                }
-              ]
-        } );
-
-	} );
-</script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		"use strict";				
-		$('#data-tablesupd').DataTable( {
-             aoColumnDefs: [
-                {
-                   bSortable: false,
-                   aTargets: [ -1 ]
-                }
-              ]
-        } );
-
-	} );
-</script>
-<script type="text/javascript">
-        $(document).ready(function () {
-            "use strict";
-            $('#data-tables-activity').dataTable({
-                "order": [[0, "desc"]],
-                "dom": "<'row'<'col-sm-6'><'col-sm-6'f>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
-            });
-            $('.filter-rows').on('change', function () {
-                var filter_id = $(this).attr('data-filter');
-                filter_column(filter_id);
-            });
-
-            function filter_column(filter_id) {
-                $('#data-tables-activity').DataTable().column(filter_id).search(
-                        $('#filter' + filter_id).val()
-                        ).draw();
-            }
-        });
-    </script>
-
-    <style>
-        #data-tables-activity_filter{
-            margin-top: -50px;
-        }
-    </style>
-<script type="text/javascript">
-        $(document).ready(function () {
-            "use strict";
-            $('#upload-data-table').dataTable({
-                "order": [[0, "desc"]],
-                "dom": "<'row'<'col-sm-6'><'col-sm-6'f>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
-            });
-            $('.sfilter-rows').on('change', function () {
-                var filter_id = $(this).attr('data-filter');
-                filter_column(filter_id);
-            });
-
-            function filter_column(filter_id) {
-                $('#upload-data-table').DataTable().column(filter_id).search(
-                        $('#filter' + filter_id).val()
-                        ).draw();
-            }
-        });
-           $(document).ready(function() {
-		"use strict";				
-		$('#data-tablesupd').dataTable();
-	});
-    </script>
-
-    <style>
-        #upload-data-table_filter{
-            margin-top: -50px;
-        }
-    </style>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            "use strict";
-            $('#survey-table').dataTable({
-                "order": [[0, "asc"]],
-                "dom": "<'row'<'col-sm-6'><'col-sm-6'f>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
-            });
-            $('.pfilter-rows').on('change', function () {
-                var filter_id = $(this).attr('data-filter');
-                filter_column(filter_id);
-            });
-
-            function filter_column(filter_id) {
-                $('#survey-table').DataTable().column(filter_id).search(
-                        $('#pfilter' + filter_id).val()
-                        ).draw();
-            }
-        });
-           $(document).ready(function() {
-		"use strict";				
-		$('#survey-table').dataTable();
-	});
-    </script>
-
-    <style>
-        #survey-table_filter{
-            margin-top: -50px;
-        }
-    </style>
-  <script type="text/javascript">
-        $(document).ready(function () {
-            "use strict";
-            $('#uploaded-table').dataTable({
-                "dom": "<'row'<'col-sm-6'><'col-sm-6'f>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
-            });
-            $('.ufilter-rows').on('change', function () {
-                var filter_id = $(this).attr('data-filter');
-                filter_column(filter_id);
-            });
-
-            function filter_column(filter_id) {
-                $('#uploaded-table').DataTable().column(filter_id).search(
-                        $('#ufilter' + filter_id).val()
-                        ).draw();
-            }
-        });
-           $(document).ready(function() {
-		"use strict";				
-		$('#uploaded-table').dataTable();                
- $('#survey-table').DataTable();
-                
-	});
-    </script>
-
-    <style>
-        #uploaded-table_filter{
-            margin-top: -50px;
-        }
-    </style>
-    

@@ -33,6 +33,20 @@
 <script src="<?php echo base_url(); ?>assets/js/pages/tables-data.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 
+<script src="<?php echo base_url(); ?>assets/js/jquery.toaster.js"></script>
+<script>
+<?php
+$message = $this->session->flashdata('flash_message');
+if($message != '') { ?>
+$.toaster({ 
+	priority : 'success', 
+	title : 'Success! ', 
+	message : '<?php echo $message; ?>',
+	timeOut: 5000
+});
+<?php } ?>
+ </script> 
+
 <?php include 'modal.php';?>
 </head>
 </body>

@@ -13,7 +13,7 @@
                     <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
                 </div>
             </div>
-            <div class=panel-body>
+            <div class=panel-body>                  
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -45,7 +45,8 @@
                                     <?php } ?>
                                 </td>
                                 <td class="menu-action">
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
+                                     
+                                   <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>index.php?admin/courseware/delete/<?php echo $row['courseware_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
                                 </td>
                             </tr>
                             <?php

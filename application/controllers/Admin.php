@@ -5266,6 +5266,21 @@ class Admin extends MY_Controller {
 
         //$this->load->view('backend/index', $data);
     }
+    
+    /* worked by Mayur Panchal 29-3-2016 */
+    /**
+     * confirm participate
+     * @param int $param
+     */
+    function confirmparticipate($param = '') {
+        if ($param != '') {
+            $pp_id = $param;
+
+            $this->db->delete("participate_student", array("participate_student_id" => $pp_id));
+            $this->session->set_flashdata('flash_message', 'Disapprove Successfully');
+            redirect(base_url('admin/participate'));
+        }
+    }
 
     /* end  */
 
