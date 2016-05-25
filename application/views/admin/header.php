@@ -245,6 +245,12 @@
                                                         <span class="txt">Chancellor</span>
                                                     </a>
                                                 </li>
+                                                 <li>
+                                                    <a href="<?php echo base_url(); ?>admin/category">
+                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <span class="txt"> Course Category</span>
+                                                    </a>
+                                                </li>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>admin/vocationalcourse">
                                                         <i class="s16 icomoon-icon-attachment"></i>
