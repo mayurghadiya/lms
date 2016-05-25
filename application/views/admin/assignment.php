@@ -163,7 +163,7 @@
                         
                         <!-- tab content -->
                         <div class="tab-pane fade" id="submittedlist">
-                               <div class="form-group col-sm-2">
+                            <div class="form-group col-sm-2" style="display:none;">
                                     <label><?php echo ucwords("Course");?></label>
                                     <select class="form-control sfilter-rows" id="sfilter3" data-filter="3" data-type="course">
                                         <option value="">All</option>
@@ -173,26 +173,26 @@
                                                 <?php } ?>
                                     </select>
                                 </div>
-                                <div class="form-group col-sm-2">
+                                <div class="form-group col-sm-2"  style="display:none;">
                                     <label><?php echo ucwords("Branch");?></label>
                                     <select id="sfilter4" name="branch" data-filter="4" class="form-control sfilter-rows" data-type="branch">
                                         <option value="">All</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-sm-2">
+                                <div class="form-group col-sm-2"  style="display:none;">
                                     <label><?php echo ucwords("Batch");?></label>
                                     <select id="sfilter5" name="batch" data-filter="5" class="form-control sfilter-rows" data-type="batch">
                                         <option value="">All</option>
                                     </select>
                                 </div>                                
-                                <div class="form-group col-sm-2">
+                                <div class="form-group col-sm-2"  style="display:none;">
                                     <label> <?php echo ucwords("Semester");?></label>
                                     <select id="sfilter6" name="semester" data-filter="6" class="form-control sfilter-rows" data-type="semester">
                                         <option value="">All</option>
 
                                     </select>
                                 </div>
-                                 <label style="margin-left: 40px; margin-top: 30px;">OR</label>
+                                 <label style="display:none; margin-left: 40px; margin-top: 30px;">OR</label>
                               
                                       
                                      <div class="panel-body table-responsive" id="getsubmit">

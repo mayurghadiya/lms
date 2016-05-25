@@ -4,6 +4,22 @@ $edit_data		=	$this->db->get_where('photo_gallery' , array('gallery_id' => $para
 foreach ( $edit_data as $row):
 
 ?>
+<style>
+.gallery_img {
+  float: left;
+  margin: 15px 0 0 15px;
+  position: relative;
+}
+#remove_gallery_img {
+  float: right;
+  position: absolute;
+  right: -2px;
+  top: -2px;
+}
+#remove_gallery_img i:hover{color:#fff; font-size: 20px;}
+    
+    
+</style>
 <script type="text/javascript">
 function removeimg(image , id , img )
 {
