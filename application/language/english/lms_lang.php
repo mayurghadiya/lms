@@ -167,7 +167,7 @@ $lang['delete_graduate'] = 'Graduate is successfully deleted.';
 /**
  * Charity fund
  */
-$lang['charity_title'] = 'Charity FUnd';
+$lang['charity_title'] = 'Charity Fund';
 $lang['save_charity'] = 'Charity fund is successfully added.';
 $lang['update_charity'] = 'Charity fund is successfully updated.';
 $lang['delete_charity'] = 'Charity fund is successfully deleted.';

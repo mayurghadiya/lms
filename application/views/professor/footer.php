@@ -28,7 +28,7 @@
 <script src="<?php echo base_url(); ?>assets/js/pages/forms-validation.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/pages/tables-data.js"></script>
-
+<?php include 'modal.php'; ?>
 </body>
 </head>
 </html>

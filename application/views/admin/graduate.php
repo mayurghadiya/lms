@@ -14,6 +14,7 @@
                 </div>
             </div>
             <div class=panel-body>
+                <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addgraduate');" data-toggle="modal">Add New Graduate</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -37,8 +38,8 @@
                                 <td><?php echo $row->c_name; ?></td>
                                 <td><?php echo $row->graduate_year; ?></td>
                                 <td class="menu-action">
-                                    <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_graduate/<?php echo $row->graduates_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/graduate/delete/<?php echo $row->graduates_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
                                 </td>
                             </tr>	
                         <?php } ?>														

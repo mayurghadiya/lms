@@ -57,42 +57,46 @@
                     </div>
                 </form>
 
-                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Department</th>
-                            <th>Branch</th>
-                            <th>Batch</th>
-                            <th>Semester</th>
-                            <th>Exam</th>
-                            <th>Subject</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th width="10%">Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php foreach ($time_table as $row) { ?>
+                <div class="main_exam_class_schedule">
+                    <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                        <thead>
                             <tr>
-                                <td></td>
-                                <td><?php echo $row->d_name; ?></td>
-                                <td><?php echo $row->c_name; ?></td>
-                                <td><?php echo $row->b_name; ?></td>
-                                <td><?php echo $row->s_name; ?></td>
-                                <td><?php echo $row->em_name; ?></td>
-                                <td><?php echo $row->subject_name; ?></td>
-                                <td><?php echo date('F d, Y', strtotime($row->exam_date)); ?></td>
-                                <td><?php echo date('h:i A', strtotime(date('Y-m-d') . $row->exam_start_time)) . ' to ' . date('h:i A', strtotime(date('Y-m-d') . $row->exam_end_time)); ?></td>
-                                <td class="menu-action">
-                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_exam_time_table/<?php echo $row->exam_time_table_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/exam_time_table/delete/<?php echo $row->exam_time_table_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
-                                </td>
+                                <th>#</th>
+                                <th>Department</th>
+                                <th>Branch</th>
+                                <th>Batch</th>
+                                <th>Semester</th>
+                                <th>Exam</th>
+                                <th>Subject</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th width="10%">Action</th>
                             </tr>
-                        <?php } ?>														
-                    </tbody>
-                </table>
+                        </thead>
+
+                        <tbody>
+                            <?php foreach ($time_table as $row) { ?>
+                                <tr>
+                                    <td></td>
+                                    <td><?php echo $row->d_name; ?></td>
+                                    <td><?php echo $row->c_name; ?></td>
+                                    <td><?php echo $row->b_name; ?></td>
+                                    <td><?php echo $row->s_name; ?></td>
+                                    <td><?php echo $row->em_name; ?></td>
+                                    <td><?php echo $row->subject_name; ?></td>
+                                    <td><?php echo date('F d, Y', strtotime($row->exam_date)); ?></td>
+                                    <td><?php echo date('h:i A', strtotime(date('Y-m-d') . $row->exam_start_time)) . ' to ' . date('h:i A', strtotime(date('Y-m-d') . $row->exam_end_time)); ?></td>
+                                    <td class="menu-action">
+                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_exam_time_table/<?php echo $row->exam_time_table_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">Edit</span></a>
+                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/exam_time_table/delete/<?php echo $row->exam_time_table_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
+                                    </td>
+                                </tr>
+                            <?php } ?>														
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="search-result-exam-schedule"></div>
             </div>
         </div>
         <!-- End .panel -->
@@ -107,7 +111,7 @@
 
 <script>
     $(document).ready(function () {
-        
+
         var form = $('#exam-schedule-search');
 
         $('#search-exam-data').on('click', function () {
@@ -137,12 +141,12 @@
                 var semester = $("#search-semester").val();
                 var exam = $('#search-exam').val();
                 $.ajax({
-                    url: '<?php echo base_url(); ?>index.php?admin/get_exam_schedule_filter/' + degree + '/'
+                    url: '<?php echo base_url(); ?>admin/get_exam_schedule_filter/' + degree + '/'
                             + course + '/' + batch + '/' + semester + '/' + exam,
                     type: 'get',
                     success: function (content) {
                         $("#search-result-exam-schedule").html(content);
-                        // $("#dtbl").hide();
+                        $('#main_exam_class_schedule').hide();
                         $('#search-data-tables').DataTable();
                     }
                 });
@@ -165,7 +169,7 @@
             $('#search-semester').find('option').remove().end();
             $('#search-semester').append('<option value="">Select</option>');
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/course_list_from_degree/' + degree_id,
+                url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
                 type: 'get',
                 success: function (content) {
                     var course = jQuery.parseJSON(content);
@@ -214,7 +218,7 @@
             $('#search-batch').find('option').remove().end();
             $('#search-batch').append('<option value="">Select</option>');
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
+                url: '<?php echo base_url(); ?>admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
                 type: 'get',
                 success: function (content) {
                     var batch = jQuery.parseJSON(content);
@@ -231,7 +235,7 @@
             $('#search-semester').find('option').remove().end();
             $('#search-semester').append('<option value="">Select</option>');
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/get_semesters_of_branch/' + branch_id,
+                url: '<?php echo base_url(); ?>admin/semesters_list_from_branch/' + branch_id,
                 type: 'get',
                 success: function (content) {
                     var semester = jQuery.parseJSON(content);
@@ -246,7 +250,7 @@
             $('#search-exam').find('option').remove().end();
             $('#search-exam').append('<option value="">Select</option>');
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/get_exam_list/' + degree_id + '/' + course_id + '/' + batch_id + '/' + semester_id,
+                url: '<?php echo base_url(); ?>admin/get_exam_list/' + degree_id + '/' + course_id + '/' + batch_id + '/' + semester_id,
                 type: 'get',
                 success: function (content) {
                     $('#search-exam').html(content);

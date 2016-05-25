@@ -1320,7 +1320,105 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'exam_marks';
         $this->__site_template('professor/exam_marks', $this->data);
     }
-    
-    
+
+    /**
+     * Get all semesters of the branch
+     * @param string $branch_id
+     */
+    function get_semesters_of_branch($branch_id = '') {
+        $this->load->model('professor/Professor_model');
+        $semester = $this->Professor_model->get_semesters_of_branch($branch_id);
+
+        echo json_encode($semester);
+    }
+
+    /**
+     * Batch list from degree and course
+     * @param int $degree
+     * @param int $course
+     */
+    function batch_list_from_degree_and_course($degree = '', $course = '') {
+        $this->load->model('professor/Professor_model');
+        $batch = $this->Professor_model->batch_list_from_degree_and_course($degree, $course);
+
+        echo json_encode($batch);
+    }
+
+    /**
+     * Course list from degree
+     * @param int $degree_id
+     */
+    function course_list_from_degree($degree_id) {
+        $this->load->model('professor/Professor_model');
+        $course = $this->Professor_model->course_list_from_degree($degree_id);
+
+        echo json_encode($course);
+    }
+
+    function get_course($param = '') {
+        $did = $this->input->post("degree");
+
+        if ($did != '') {
+            $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
+            $html = '<option value="">Select Branch</option>';
+            foreach ($cource as $crs):
+                $html .='<option value="' . $crs['course_id'] . '">' . $crs['c_name'] . '</option>';
+
+            endforeach;
+            echo $html;
+        }
+    }
+
+    function get_batches($param = '') {
+        $cid = $this->input->post("course");
+        $did = $this->input->post("degree");
+        if ($cid != '') {
+
+            // $cource = $this->db->get_where("batch",array("degree_id"=>$cid))->result_array();
+            $batch = $this->db->query("SELECT * FROM batch WHERE FIND_IN_SET('" . $did . "',degree_id) AND FIND_IN_SET('" . $cid . "',course_id)")->result_array();
+            // echo $this->db->last_query();
+
+            $html = '<option value="">Select Batch</option>';
+
+            foreach ($batch as $btc):
+                $html .='<option value="' . $btc['b_id'] . '">' . $btc['b_name'] . '</option>';
+
+            endforeach;
+            echo $html;
+        }
+    }
+
+    function assessment_student() {
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("semester");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
+
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
+        $html = '<option value="">Select Student</option>';
+        foreach ($datastudent as $row):
+            $html .='<option value="' . $row->std_id . '">' . $row->name . '</option>';
+        endforeach;
+        echo $html;
+    }
+
+    function get_semester($param = '') {
+        $cid = $this->input->post("course");
+        $course = $this->db->get_where('course', array('course_id' => $cid))->result_array();
+
+        $semexplode = explode(',', $course[0]['semester_id']);
+        $semester = $this->db->get('semester')->result_array();
+
+        foreach ($semester as $sem) {
+            if (in_array($sem['s_id'], $semexplode)) {
+                $semdata[] = $sem;
+            }
+        }
+        $option = "<option value=''>Select semester</option>";
+        foreach ($semdata as $s) {
+            $option .="<option value=" . $s['s_id'] . ">" . $s['s_name'] . "</option>";
+        }
+        echo $option;
+    }
 
 }

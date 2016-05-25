@@ -33,7 +33,7 @@
                     <tbody>
                         <?php
                         $count = 1;
-                        foreach (@$assessments as $row):
+                        foreach ($assessments as $row):
                             $datastudent = $this->db->get_where('student', array("std_id" => $row['student']))->result();
                             ?>
                             <tr>

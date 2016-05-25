@@ -981,8 +981,8 @@ class Admin extends MY_Controller {
         $this->data['title'] = $this->lang_message('assignment_title');
         $this->__site_template('admin/assignment', $this->data);
     }
-    
-     function getassignment($param = '') {
+
+    function getassignment($param = '') {
         if ($param = 'allassignment') {
             $degree = $this->input->post('degree');
             $course = $this->input->post('course');
@@ -1005,7 +1005,7 @@ class Admin extends MY_Controller {
             $this->load->view("admin/getassignment", $data);
         }
     }
-    
+
     /**
      * check assignment
      */
@@ -1185,7 +1185,7 @@ class Admin extends MY_Controller {
         $this->data['title'] = $this->lang_message('study_resource_title');
         $this->__site_template('admin/studyresource', $this->data);
     }
-    
+
     function getstudyresource() {
         $degree = $this->input->post('degree');
         $course = $this->input->post('course');
@@ -1228,7 +1228,7 @@ class Admin extends MY_Controller {
         }
         $this->load->view("admin/getstudyresource", $data);
     }
-    
+
     /**
      * Project and synopsis
      * @param string $param1
@@ -4421,7 +4421,7 @@ class Admin extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
+                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
@@ -4452,7 +4452,7 @@ class Admin extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
+                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
@@ -4817,6 +4817,33 @@ class Admin extends MY_Controller {
 
         //download it.
         $this->m_pdf->pdf->Output($pdfFilePath, "D");
+    }
+
+    /**
+     * Exam schedule ajax filter
+     * @param string $degree
+     * @param string $course
+     * @param string $batch
+     * @param string $semester
+     * @param string $exam
+     */
+    function get_exam_schedule_filter($degree, $course, $batch, $semester, $exam) {
+        $this->data['time_table'] = $this->Crud_model->exam_schedule_filter($degree, $course, $batch, $semester, $exam);
+        $this->load->view("admin/exam_schedule_filter", $this->data);
+    }
+
+    /**
+     * Student list by degree, course, batch, and semester
+     * @param type $degree
+     * @param type $course
+     * @param type $batch
+     * @param type $semester
+     */
+    function student_list_from_degree_course_batch_semester($degree, $course, $batch, $semester) {
+        $this->load->model('admin/Crud_model');
+        $student = $this->Crud_model->student_list_from_degree_course_batch_semester($degree, $course, $batch, $semester);
+
+        echo json_encode($student);
     }
 
 }

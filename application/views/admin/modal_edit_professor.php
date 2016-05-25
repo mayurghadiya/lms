@@ -9,11 +9,6 @@ $degree_list = $this->db->get('degree')->result();
         <!-- Start .panel -->
         <div class=panel-heading>
             <h4 class=panel-title>Update Professor</h4>
-            <div class="panel-controls panel-controls-right">
-                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-            </div>
         </div>
         <div class=panel-body>
             <?php echo form_open(base_url() . 'admin/professor/update/' . $professor->professor_id, array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'professor-form', 'enctype' => 'multipart/form-data', 'target' => '_top')); ?>

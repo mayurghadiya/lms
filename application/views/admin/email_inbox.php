@@ -14,55 +14,55 @@
                 </div>
             </div>
             <div class=panel-body>
-                
+
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
-                         <tr>
-                                    <th> <div class="vd_checkbox">
-                                            <input type="checkbox" id="checkbox-0">
-                                            <label for="checkbox-0" ></label>
-                                        </div>
-                                    </th>
-                                    <th><?php echo ucwords("From");?></th>
-                                    <th><?php echo ucwords("Subject");?></th>
-                                    <th><?php echo ucwords("Date");?></th>
-                                    <th><?php echo ucwords("Action");?></th>
-                                </tr>
+                        <tr>
+                            <th> <div class="vd_checkbox">
+                                    <input type="checkbox" id="checkbox-0">
+                                    <label for="checkbox-0" ></label>
+                                </div>
+                            </th>
+                            <th><?php echo ucwords("From"); ?></th>
+                            <th><?php echo ucwords("Subject"); ?></th>
+                            <th><?php echo ucwords("Date"); ?></th>
+                            <th><?php echo ucwords("Action"); ?></th>
+                        </tr>
                     </thead>
 
                     <tbody>
-                          <?php
-                                $counter = 0;
-                                if (count($inbox)) {
+                        <?php
+                        $counter = 0;
+                        if (count($inbox)) {
 
-                                    foreach ($inbox as $row) {
-                                        $counter++;
-                                        ?>
-                                        <tr class="<?php if($row->read == 0) echo 'info'; ?>">
-                                            <td style="width:20px"><div class="vd_checkbox">
-                                                    <input type="checkbox" id="checkbox-<?php echo $counter; ?>" class="checkbox-group">
-                                                    <label for="checkbox-<?php echo $counter; ?>" ></label>
-                                                </div>
-                                            </td>
-                                            <td><?php echo $row->email_from; ?></td>
-                                            <td>
-                                               <?php echo $row->subject; ?>
-                                            </td>
-                                            <td><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></td>
-                                            <td>
-                                                <a href="<?php echo base_url('admin/inbox_email/' . $row->email_id); ?>" title="view"><span class="fa fa-desktop"></span></a>&nbsp;
-                                                <a href="<?php echo base_url('admin/delete_email/' . $row->email_id); ?>" title="delete" 
-                                                   onclick="return confirm('Are you sure to delete this email?');"><span class="fa fa-times"></span></a>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    }
-                                } else {
-                                    ?>
-                                    <tr>
-                                        <td colspan="3">No email found in your inbox</td>
-                                    </tr>
-                                <?php } ?>                                  
+                            foreach ($inbox as $row) {
+                                $counter++;
+                                ?>
+                                <tr class="<?php if ($row->read == 0) echo 'info'; ?>">
+                                    <td style="width:20px"><div class="vd_checkbox">
+                                            <input type="checkbox" id="checkbox-<?php echo $counter; ?>" class="checkbox-group">
+                                            <label for="checkbox-<?php echo $counter; ?>" ></label>
+                                        </div>
+                                    </td>
+                                    <td><?php echo $row->email_from; ?></td>
+                                    <td>
+                                        <?php echo $row->subject; ?>
+                                    </td>
+                                    <td><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></td>
+                                    <td class="menu-action">
+                                        <a href="<?php echo base_url('admin/inbox_email/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">Edit</span></a>
+                                        <a href="<?php echo base_url('admin/delete_email/' . $row->email_id); ?>"
+                                           onclick="return confirm('Are you sure to delete this email?');"><span class="label label-danger mr6 mb6">Delete</span></a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                        } else {
+                            ?>
+                            <tr>
+                                <td colspan="3">No email found in your inbox</td>
+                            </tr>
+                        <?php } ?>                                  
                     </tbody>
                 </table>
             </div>
