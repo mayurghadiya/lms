@@ -46,45 +46,48 @@
                     </div>
                     <div class="form-group col-sm-1">
                         <label>&nbsp;</label><br/>
-                        <input id="search-exam-data" type="button" value="Go" class="btn btn-info vd_bg-green"/>
+                        <input id="search-exam-data-list" type="button" value="Go" class="btn btn-info"/>
                     </div>
                 </form>
-                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Exam Name</th>
-                            <th>Department</th>
-                            <th width="14%">Branch</th>
-                            <th>Batch</th>
-                            <th width="10%">Semester</th>
-                            <th width="10%">Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php
-                        foreach ($exams as $row) {
-                            $cenlist = array();
-                            ?>
+                <div id="all-exam-list">
+                    <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                        <thead>
                             <tr>
-                                <td></td>
-                                <td><?php echo $row->em_name; ?></td>
-                                <td><?php echo $row->d_name; ?></td>
-                                <td><?php echo $row->c_name; ?></td>
-                                <td><?php echo $row->b_name; ?></td>
-                                <td><?php echo $row->s_name; ?></td>
-
-                                <td><?php echo date('F d, Y', strtotime($row->em_date)); ?></td>
-                                <td class="menu-action">
-                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_exam/<?php echo $row->em_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
-                                </td>
+                                <th>#</th>
+                                <th>Exam Name</th>
+                                <th>Department</th>
+                                <th width="14%">Branch</th>
+                                <th>Batch</th>
+                                <th width="10%">Semester</th>
+                                <th width="10%">Date</th>
+                                <th>Action</th>
                             </tr>
-                        <?php } ?>															
-                    </tbody>
-                </table>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                            foreach ($exams as $row) {
+                                $cenlist = array();
+                                ?>
+                                <tr>
+                                    <td></td>
+                                    <td><?php echo $row->em_name; ?></td>
+                                    <td><?php echo $row->d_name; ?></td>
+                                    <td><?php echo $row->c_name; ?></td>
+                                    <td><?php echo $row->b_name; ?></td>
+                                    <td><?php echo $row->s_name; ?></td>
+
+                                    <td><?php echo date('F d, Y', strtotime($row->em_date)); ?></td>
+                                    <td class="menu-action">
+                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_exam/<?php echo $row->em_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
+                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/exam/delete/<?php echo $row->em_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
+                                    </td>
+                                </tr>
+                            <?php } ?>															
+                        </tbody>
+                    </table>
+                </div>                
+                <div id="exam-filter-result"></div>
             </div>
         </div>
         <!-- End .panel -->
@@ -98,17 +101,12 @@
 <!-- End #content -->
 
 <script>
-    $.validator.setDefaults({
-        submitHandler: function (form) {
-            form.submit();
-        }
-    });
-
     $(document).ready(function () {
 
         var form = $('#exam-search');
 
-        $('#search-exam-data').on('click', function () {
+        $('#search-exam-data-list').on('click', function () {
+            //alert(1);
             $("#exam-search").validate({
                 rules: {
                     degree: "required",
@@ -137,7 +135,7 @@
                     type: 'get',
                     success: function (content) {
                         $("#exam-filter-result").html(content);
-                        // $("#dtbl").hide();
+                        $('#all-exam-list').hide();
                         $('#exam-data-tables').DataTable();
                     }
                 });

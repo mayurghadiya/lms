@@ -304,19 +304,19 @@
                                                 <span class="txt">Email</span></a>
                                             <ul class="sub">
                                                 <li>
-                                                    <a href="">
+                                                    <a href="<?php echo base_url(); ?>professor/email_compose">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Compose</span>
                                                     </a>
                                                 </li> 
                                                 <li>
-                                                    <a href="">
+                                                    <a href="<?php echo base_url(); ?>professor/email_inbox">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Inbox</span>
                                                     </a>
                                                 </li> 
                                                 <li>
-                                                    <a href="">
+                                                    <a href="<?php echo base_url(); ?>professor/email_sent">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Sent</span>
                                                     </a>

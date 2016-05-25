@@ -1221,7 +1221,7 @@ class Admin extends MY_Controller {
                         $this->db->where("study_batch", $batch);
                         $this->db->where("study_course", $course);
                         $this->db->where("study_degree", $degree);
-                        $data['studyresource'] = $this->db->get('study_resources')->result();                        
+                        $data['studyresource'] = $this->db->get('study_resources')->result();
                     }
                 }
             }
@@ -4845,12 +4845,11 @@ class Admin extends MY_Controller {
 
         echo json_encode($student);
     }
-    
+
     /**
      * studyresource course
      * @param int $param
      */
-    
     function get_courcestudy($param = '') {
 
         $did = $this->input->post("degree");
@@ -4872,11 +4871,10 @@ class Admin extends MY_Controller {
             echo $html;
         }
     }
-    
+
     /**
      * get all semester
      */
-    
     function get_semesterall() {
 
         $cid = $this->input->post("course");
@@ -4904,12 +4902,11 @@ class Admin extends MY_Controller {
         }
         echo $option;
     }
-    
+
     /**
      * get course  using degree
      * @param string $param
      */
-    
     function course_filter($param = '') {
         $did = $this->input->post("degree");
 
@@ -4928,12 +4925,11 @@ class Admin extends MY_Controller {
             }
         }
     }
-    
+
     /**
      * get batch using course and degree
      * @param String $param
      */
-    
     function batch_filter($param = '') {
         $cid = $this->input->post("course");
         $did = $this->input->post("degree");
@@ -4959,12 +4955,11 @@ class Admin extends MY_Controller {
             }
         }
     }
-    
+
     /**
      * Student Project list 
      * return boolean
      */
-    
     function checkprojectstd() {
         $batch = $this->input->post("batch");
         $sem = $this->input->post("sem");
@@ -4977,7 +4972,7 @@ class Admin extends MY_Controller {
             echo "false";
         }
     }
-    
+
     /**
      * Check duplicate entry
      * 
@@ -4994,7 +4989,7 @@ class Admin extends MY_Controller {
                     'pm_batch' => $batch, 'pm_semester' => $semester))->result_array();
         echo json_encode($data);
     }
-    
+
     /* checkboxstudent 4-4-2016 Mayur Panchal */
 
     function checkboxstudent($param = '') {
@@ -5005,7 +5000,7 @@ class Admin extends MY_Controller {
         $course = $this->input->post("course");
         $class = $this->input->post("divclass");
 
-        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree,'class_id'=>$class))->result();
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree, 'class_id' => $class))->result();
         $html = '';
         if ($param != '') {
             $edit_data = $this->db->get_where('project_manager', array('pm_id' => $param))->result_array();
@@ -5027,8 +5022,7 @@ class Admin extends MY_Controller {
         }
         echo $html;
     }
-    
-    
+
     /**
      * batch wise student
      * @param int $param
@@ -5079,12 +5073,11 @@ class Admin extends MY_Controller {
                     'pm_batch' => $batch, 'pm_semester' => $semester, 'pm_id!=' => $id))->result_array();
         echo json_encode($data);
     }
-    
+
     /**
      * Project list
      * @param String $param
      */
-    
     function getprojects($param = '') {
         if ($param == 'allproject') {
             $degree = $this->input->post('degree');
@@ -5132,12 +5125,11 @@ class Admin extends MY_Controller {
             $this->load->view("admin/getprojects", $data);
         }
     }
-    
+
     /**
      * get library list
      * @param String $param
      */
-    
     function getlibrary($param = '') {
 
         $degree = $this->input->post('degree');
@@ -5182,12 +5174,11 @@ class Admin extends MY_Controller {
 
         $this->load->view("admin/getlibrary", $data);
     }
-    
+
     // Mayur Panchal 21-3-2016
     /**
      * batchwise student
      */
-
     function batchwisestudent() {
         $batch = $this->input->post("batch");
         if ($batch != "") {
@@ -5202,11 +5193,10 @@ class Admin extends MY_Controller {
         }
         echo $html;
     }
-    
+
     /**
      * semwise student return option
      */
-    
     function semwisestudent() {
         $batch = $this->input->post("batch");
         $sem = $this->input->post("sem");
@@ -5286,6 +5276,56 @@ class Admin extends MY_Controller {
 
     /* end  */
 
-  
+    /**
+     * Subject list from course and semester
+     * @param int $course
+     * @param int $semester
+     */
+    function subject_list_from_course_and_semester($course, $semester) {
+        $subjects = $this->Crud_model->subject_list_from_course_and_semester($course, $semester);
+
+        echo json_encode($subjects);
+    }
+
+    /**
+     * Manage profile
+     * @param string $param1
+     * @param string $param2
+     * @param string $param3
+     */
+    function manage_profile($param1 = '', $param2 = '', $param3 = '') {
+        if ($param1 == 'update_profile_info') {
+            if (!empty($_POST)) {
+                $data['name'] = $this->input->post('name');
+                $data['email'] = $this->input->post('email');
+                $data['password'] = md5($this->input->post('password'));
+                $data['pass'] = $this->input->post('password');
+
+                $data['ad_first_name'] = $this->input->post('ad_first_name');
+                $data['ad_last_name'] = $this->input->post('ad_last_name');
+                $data['ad_gender'] = $this->input->post('ad_gender');
+                $data['ad_birthdate'] = $this->input->post('ad_birthdate');
+                $data['ad_marital'] = $this->input->post('ad_marital');
+                $data['ad_branch'] = $this->input->post('ad_branch');
+                $data['ad_about'] = $this->input->post('ad_about');
+                $data['ad_mobile'] = $this->input->post('ad_mobile');
+                $data['ad_fb'] = $this->input->post('ad_fb');
+                $data['ad_twitter'] = $this->input->post('ad_twitter');
+
+
+                //$data['identification_num'] = rand(1111,9999);
+            }
+
+            $this->db->where('admin_id', $this->session->userdata('admin_id'));
+            $this->db->update('admin', $data);
+            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/admin_image/' . $this->session->userdata('admin_id') . '.jpg');
+            $this->session->set_flashdata('flash_message', get_phrase('account_updated'));
+            redirect(base_url() . 'admin/manage_profile/', 'refresh');
+        }
+        $this->data['page'] = 'manage_profile';
+        $this->data['title'] = 'Manage Profile';
+        $this->data['edit_data'] = $this->db->get_where('admin', array('admin_id' => $this->session->userdata('admin_id')))->result_array();
+        $this->__site_template('admin/manage_profile', $this->data);
+    }
 
 }
