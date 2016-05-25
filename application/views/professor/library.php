@@ -57,10 +57,10 @@
 
                     <div class="form-group col-sm-1">                                    
                         <label>&nbsp;</label><br/>                                    
-                        <button type="submit" class="submit btn btn-info vd_bg-green">Go</button>                                    
+                        <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>                                    
                     </div>
                 </form>
-
+                <div id="getresponse">
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -138,21 +138,101 @@
                                 <td id="downloadedfile"><a href="<?php echo $row->lm_url; ?>" download="" target="_blank" title="<?php echo $row->lm_filename; ?>"><i class="fa fa-download"></i></a></td>	
                                 
                                 <td class="menu-action">
-                                    <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
-                                </td>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_library/<?php echo $row->lm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/library/delete/<?php echo $row->lm_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
+                                </td>	
                             </tr>
                         <?php endforeach; ?>											
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <!-- End .panel -->
     </div>
     <!-- col-lg-12 end here -->
 </div>
-<!-- End .row -->
-</div>
-<!-- End contentwrapper -->
-</div>
-<!-- End #content -->
+
+<script type="text/javascript">
+    
+   $("#searchform #btnsubmit").click(function(){
+           var degree =  $("#courses").val();
+           var course =  $("#branches").val();
+           var batch =  $("#batches").val();
+            var semester = $("#semesters").val();
+            $.ajax({
+                type:"POST",
+                url:"<?php echo base_url(); ?>professor/getlibrary/",
+                data:{'degree':degree,'course':course,'batch':batch,"semester":semester},
+                success:function(response)
+                {
+                    $("#getresponse").html(response);
+                }
+                
+                
+            });
+             return false;
+         });
+         $("#courses").change(function(){
+                var degree = $(this).val();
+                
+                var dataString = "degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'professor/course_filter/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                        if(degree=='All')
+                        {
+                             $("#branches").html(response);
+                             $("#batches").val($("#batches option:eq(1)").val());
+                             $("#branches").val($("#branches option:eq(1)").val());
+                             $("#semesters").val($("#semesters option:eq(1)").val());
+                           // $("#branches").append(response);
+                        }
+                        else{
+                            $("#branches").append(response);
+                            
+                        }
+                    }
+                });
+        });
+        $("#batches").change(function(){
+            var batches = $("#batches").val();
+            if(batches=='All')
+            {
+                $("#semesters").val($("#semesters option:eq(1)").val());
+            }
+        });
+         $("#branches").change(function(){
+                //var course = $(this).val();
+                // var degree = $("#degree").val();
+                var degree = $("#courses").val();
+                var course = $("#branches").val();
+                var dataString = "course="+course+"&degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'professor/batch_filter/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                         if(course=='All')
+                        {
+                              $("#batches").html(response);
+                             $("#batches").val($("#batches option:eq(1)").val());                            
+                             $("#semesters").val($("#semesters option:eq(1)").val());
+                          
+                        }
+                        else{
+                           $("#batches").append(response);
+                            
+                        }
+                        
+                    }
+                });
+        });
+
+        $(document).ready(function () {
+            "use strict";
+            $('#library-data').dataTable();
+        });
+    </script>

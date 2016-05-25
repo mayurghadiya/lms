@@ -1,5 +1,5 @@
 <div class="panel-body table-responsive" id="getresponse">
-    <table class="table table-striped" id="data-tables">
+    <table class="table table-striped table-bordered table-responsive" id="data-tables">
         <thead>
             <tr>
                 <th><div>#</div></th>											
@@ -79,7 +79,8 @@
                     <td><a href="<?php echo $row->study_url; ?>" download=""  title="<?php echo $row->study_filename; ?>"><i class="fa fa-download"></i></a></td>	
                     <td class="menu-action">
                         <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_studyresource/<?php echo $row->study_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
-                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/studyresource/delete/<?php echo $row->study_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>	
+
+                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/studyresource/delete/<?php echo $row->study_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>
                     </td>	
                 </tr>
             <?php endforeach; ?>						
