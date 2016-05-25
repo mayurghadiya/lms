@@ -14,12 +14,12 @@
                 </div>
             </div>
             <div class=panel-body>
-               
-                <form class="form-horizontal" role="form" action="" method="post">
+                <a style="float: right" href="<?php echo base_url(); ?>student/email_reply/<?php echo $email->email_id; ?>" class="links">Reply</a>
+                <form class="form-horizontal" role="form" action="#" method="post">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">From</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="from" id="from" readonly=""
+                            <input type="text" readonly="" class="form-control" name="from" id="from"
                                    value="<?php echo $email->email_from; ?>"/>
                         </div>
                     </div>
@@ -27,25 +27,23 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Subject</label>
                         <div class="col-sm-7">
-                            <textarea id="subject" class="form-control" readonly="" name="subject"><?php echo $email->subject ?></textarea>
+                            <textarea class="form-control" id="subject" name="subject" readonly=""><?php echo $email->subject; ?></textarea>                                            
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Cc</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="cc" id="cc" readonly=""
-                                   value="<?php echo $email->cc; ?>"/>
+                            <input id="cc" class="form-control" name="cc" value="<?php echo $email->cc; ?>" readonly=""/>                                           
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
-                        <div class="col-sm-7">
-                            <textarea id="message" readonly="" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here">
+                        <div class="col-sm-9">
+                            <textarea id="message" name="message" readonly="" class="width-100 form-control"  rows="15" placeholder="Write your message here">
                                 <?php echo $email->message; ?>
-                            </textarea>
+                            </textarea>                                          
                         </div>
                     </div>
 
@@ -62,7 +60,6 @@
                         </div>
                 </div>
             <?php } ?>
-
             </form>
         </div>
     </div>

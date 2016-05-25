@@ -18,10 +18,10 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th><?php echo ucwords("Email"); ?></th>
-                            <th><?php echo ucwords("Subject"); ?></th>
-                            <th><?php echo ucwords("Date"); ?></th>
-                            <th><?php echo ucwords("Action"); ?></th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Date</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,22 +33,22 @@
                                 ?> 
 
                                 <tr>
-                                    <td></td>
+                                    <td>#</td>
                                     <td style="width: 20%">
                                         <?php
                                         if (!empty($row->email_to)) {
-                                            $query = "SELECT email FROM student WHERE std_id IN ($row->email_to)";
+                                            $admin = $this->db->get_where('admin', array(
+                                                        'admin_id' => $row->email_to
+                                                    ))->row();
+
+                                            echo $admin->email;
                                         } else {
-                                            $query = "SELECT email FROM admin WHERE admin_id IN ($row->professor_to_admin)";
-                                        }
-                                        $result = $this->db->query($query)->result();
-                                        if (count($result) > 1) {
-                                            echo "{$result[0]->email}...";
-                                        } else {
-                                            echo "{$result[0]->email}";
+                                            $professor = $this->db->get_where('professor', array(
+                                                        'professor_id' => $row->student_to_professor
+                                                    ))->row();
+                                            echo $professor->email;
                                         }
                                         ?>
-                                        <?php //echo $row->email_to; ?>
                                     </td>
                                     <td>
                                         <span class="label vd_bg-green append-icon"><?php echo $row->subject; ?></span> 
@@ -56,10 +56,8 @@
                                     <td style="width:20%;text-align: left">
                                         <strong><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></strong>
                                     </td>
-                                    <td class="menu-action">
-                                        <a href="<?php echo base_url('professor/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">Edit</span></a>
-                                        <a href="href="<?php echo base_url('professor/delete_email/' . $row->email_id) ?>" title="delete"
-                                           onclick="return confirm('Are you sure to delete this email?');""><span class="label label-danger mr6 mb6">Delete</span></a>
+                                    <td>
+                                        <a href="<?php echo base_url('student/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">View</span></a>                                        
                                     </td>
                                 </tr>
 
@@ -90,7 +88,7 @@
 <!-- End #content -->
 
 <script>
-    $(document).ready(function () {
-        $('#email-datatable-list').DataTable();
-    });
+$(document).ready(function(){
+    $('#email-datatable-list').DataTable();
+})
 </script>

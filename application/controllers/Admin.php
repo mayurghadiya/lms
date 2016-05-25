@@ -5319,7 +5319,7 @@ class Admin extends MY_Controller {
             $this->db->where('admin_id', $this->session->userdata('admin_id'));
             $this->db->update('admin', $data);
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/admin_image/' . $this->session->userdata('admin_id') . '.jpg');
-            $this->session->set_flashdata('flash_message', get_phrase('account_updated'));
+            $this->session->set_flashdata('flash_message', 'Profile is updated successfully.');
             redirect(base_url() . 'admin/manage_profile/', 'refresh');
         }
         $this->data['page'] = 'manage_profile';

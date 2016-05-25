@@ -18,10 +18,10 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th><?php echo ucwords("From"); ?></th>
-                            <th><?php echo ucwords("Subject"); ?></th>
-                            <th><?php echo ucwords("Date"); ?></th>
-                            <th><?php echo ucwords("Action"); ?></th>
+                            <th>From</th>
+                            <th>Subject</th>
+                            <th>Date</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,21 +32,22 @@
                             foreach ($inbox as $row) {
                                 $counter++;
                                 ?>
-                                <tr class="<?php if ($row->read == 0) echo 'info'; ?>">
-                                    <td style="width:20px"><div class="vd_checkbox">
-                                            <input type="checkbox" id="checkbox-<?php echo $counter; ?>" class="checkbox-group">
-                                            <label for="checkbox-<?php echo $counter; ?>" ></label>
-                                        </div>
-                                    </td>
+                                <?php
+                                $student_id = $this->session->userdata('std_id');
+                                $query = "SELECT email_id FROM email ";
+                                $query .= "WHERE FIND_IN_SET($student_id, student_read) ";
+                                $query .= "AND email_id = $row->email_id ";
+                                $result = $this->db->query($query)->num_rows();
+                                ?>
+                                <tr class="<?php if ($result == 0) echo 'info'; ?>">
+                                    <td></td>
                                     <td><?php echo $row->email_from; ?></td>
                                     <td>
                                         <span class="label vd_bg-green append-icon"><?php echo $row->subject; ?></span> 
                                     </td>
                                     <td><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></td>
-                                    <td class="menu-action">
-                                        <a href="<?php echo base_url('professor/inbox_email/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">View</span></a>
-                                        <a href="<?php echo base_url('professor/delete_email/' . $row->email_id); ?>"
-                                           onclick="return confirm('Are you sure to delete this email?');"><span class="label label-danger mr6 mb6">Delete</span></a>
+                                    <td>
+                                        <a href="<?php echo base_url('student/inbox_email/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">View</span></a>
                                     </td>
                                 </tr>
                                 <?php
@@ -54,7 +55,11 @@
                         } else {
                             ?>
                             <tr>
-                                <td colspan="3">No email found in your inbox</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         <?php } ?>
 
