@@ -69,3 +69,6 @@ $route['professor/digital_library'] = 'professor/library';
 $route['professor/exam_schedule'] = 'professor/exam_time_table';
 $route['professor/exam_marks'] = 'professor/marks';
 
+$route['student/exam'] = 'student/exam_listing';
+$route['pages/(:any)'] = 'pages/view/pages/$1';
+

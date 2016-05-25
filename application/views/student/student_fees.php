@@ -1,177 +1,149 @@
-<div class="vd_content-wrapper" style="min-height: 8px;">
-    <div class="vd_head-section clearfix"></div>
-    <div class="vd_title-section clearfix">
-            <div class="vd_panel-header">
-                    <ul class="breadcrumb">
-                          <li><?php echo set_breadcrumb(); ?></li>
-                    </ul>
+<div class=row>                      
 
-                </div>
-            <div class="vd_panel-header">
-            <h1>Pay Online</h1>
-        </div>
-    </div>
-     <div class="vd_content-section clearfix">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="row">
-                <div class="col-md-12">
-
-                    <!------CONTROL TABS START------>
-                    <ul class="nav nav-tabs bordered">
-                        
-                        <li class="active">
-                            <a href="#add" data-toggle="tab"><i class="entypo-plus-circled"></i>
-                                Pay Online
-                            </a></li>
-                    </ul>
-                    <!------CONTROL TABS END------>
-                    <div class="tab-content">
-                        <!----TABLE LISTING STARTS-->
-                        <div class="tab-pane box active" id="list">
-
-                            <br/>
-                            <!----CREATION FORM STARTS---->
-                        <div class="tab-pane box" id="add" style="padding: 5px">
-
-                            <form class="form-horizontal form-groups-bordered validate" 
-                                  action="<?php echo base_url('index.php?student/pay_online'); ?>" id="student_fees" method="post">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="panel panel-default panel-shadow" data-collapsed="0">
-                                            <div class="panel-heading">
-                                                <div class="panel-title">Invoice Information</div>
-                                            </div>
-                                            <div class="panel-body">
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Name</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" value="<?php echo $student_detail->std_first_name . ' ' . $student_detail->std_last_name; ?>" name="title" disabled/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Title</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" name="title"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Description</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" name="description"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Date</label>
-                                                    <div class="col-sm-9">
-                                                        <div class="input-group date ebro_datepicker" data-date-format="yyyy-M-dd">
-                                                            <input type="text" id="datepicker-normal" name="date" />
-                                                            <span class="input-group-addon"><i class="icon-calendar"></i></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="panel panel-default panel-shadow" data-collapsed="0">
-                                            <div class="panel-heading">
-                                                <div class="panel-title">Payment Information</div>
-                                            </div>
-                                            <div class="panel-body">
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Semester</label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" id="semester" name="semester">
-                                                            <option value="">Select</option>
-                                                            <?php
-                                                            foreach ($semester as $row) {
-                                                                if ($student_detail->semester_id < $row->s_id) {
-                                                                    break;
-                                                                }
-                                                                ?>
-                                                                <option value="<?php echo $row->s_id; ?>"><?php echo $row->s_name; ?></option>
-                                                            <?php }
-                                                            ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Type of Fees</label>
-                                                    <div class="col-sm-9">
-                                                        <select id="fees_structure" class="form-control" name="fees_structure">
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Total Fees</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" readonly="" id="total_fees" name="total_fees" class="form-control"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Due Fees</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" readonly="" id="due_fees" name="due_fees" class="form-control"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Amount</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" required="" pattern="(0\.((0[1-9]{1})|([1-9]{1}([0-9]{1})?)))|(([1-9]+[0-9]*)(\.([0-9]{1,2}))?)" id="amount" class="form-control" name="amount"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Method</label>
-                                                    <div class="col-sm-9">
-                                                        <select name="method" class="form-control">
-                                                            <option value="">Select</option>
-                                                            <option value="paypal">Paypal</option>
-                                                            <option value="authorize.net">Authorize.net</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-5">
-                                                <button type="submit" class="btn btn-info">Pay Online</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!----CREATION FORM ENDS-->
-                        </div>
-                        <!----TABLE LISTING ENDS--->                       
-
-                    </div>
+    <div class=col-lg-12>
+        <!-- col-lg-12 start here -->
+        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+            <!-- Start .panel -->
+            <div class=panel-heading>
+                <h4 class=panel-title><?php echo $title; ?></h4>
+                <div class="panel-controls panel-controls-right">
+                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
                 </div>
             </div>
+            <div class=panel-body>
+                <form class="form-horizontal form-groups-bordered validate" 
+                      action="<?php echo base_url('student/pay_online'); ?>" id="student_fees" method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default panel-shadow" data-collapsed="0">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Invoice Information</div>
+                                </div>
+                                <div class="panel-body">
 
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" value="<?php echo $student_detail->std_first_name . ' ' . $student_detail->std_last_name; ?>" name="title" disabled/>
+                                        </div>
+                                    </div>
 
-            <!-- Panel Widget --> 
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Title</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="title"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Description</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="description"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Date</label>
+                                        <div class="col-sm-9">
+                                            <div>
+                                                <input type="text" id="datepicker-normal" name="date" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel panel-default panel-shadow" data-collapsed="0">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Payment Information</div>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Semester</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" id="semester" name="semester">
+                                                <option value="">Select</option>
+                                                <?php
+                                                foreach ($semester as $row) {
+                                                    if ($student_detail->semester_id < $row->s_id) {
+                                                        break;
+                                                    }
+                                                    ?>
+                                                    <option value="<?php echo $row->s_id; ?>"><?php echo $row->s_name; ?></option>
+                                                <?php }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Type of Fees</label>
+                                        <div class="col-sm-9">
+                                            <select id="fees_structure" class="form-control" name="fees_structure">
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Total Fees</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly="" id="total_fees" name="total_fees" class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Due Fees</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly="" id="due_fees" name="due_fees" class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Amount</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" required="" pattern="(0\.((0[1-9]{1})|([1-9]{1}([0-9]{1})?)))|(([1-9]+[0-9]*)(\.([0-9]{1,2}))?)" id="amount" class="form-control" name="amount"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Payment Method</label>
+                                        <div class="col-sm-9">
+                                            <select name="method" class="form-control">
+                                                <option value="">Select</option>
+                                                <option value="paypal">Paypal</option>
+                                                <option value="authorize.net">Authorize.net</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">&nbsp;</label>
+                                <div class="col-sm-9">
+                                    <button type="submit" class="btn btn-primary">Pay Online</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <!-- col-sm-12--> 
+        <!-- End .panel -->
     </div>
-    </div>
-    <!-- row --> 
+    <!-- col-lg-12 end here -->
 </div>
+<!-- End .row -->
+</div>
+<!-- End contentwrapper -->
+</div>
+<!-- End #content -->
 
-<script src="<?php echo base_url(); ?>assets/js/jquery-1.9.1.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -179,7 +151,7 @@
             var semester_id = $(this).val();
             var course_id = '<?php echo $student_detail->course_id; ?>';
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?student/fees_structure_details/' + course_id + '/' + semester_id,
+                url: '<?php echo base_url(); ?>student/fees_structure_details/' + course_id + '/' + semester_id,
                 type: 'get',
                 success: function (content) {
                     $('#fees_structure').find('option').remove().end();
@@ -203,7 +175,7 @@
             var fees_structure_id = $(this).val();
 
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?student/student_fees_structure_details/' + fees_structure_id,
+                url: '<?php echo base_url(); ?>student/student_fees_structure_details/' + fees_structure_id,
                 type: 'get',
                 success: function (content) {
                     var fees_structure = jQuery.parseJSON(content);
@@ -212,7 +184,7 @@
             });
 
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?student/course_semester_paid_fee/' + fees_structure_id,
+                url: '<?php echo base_url(); ?>student/course_semester_paid_fee/' + fees_structure_id,
                 type: 'get',
                 success: function (content) {
                     var total_paid_amount = jQuery.parseJSON(content);
@@ -227,9 +199,10 @@
     })
 </script>
 
+
 <!-- Start validation -->
-<script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.js"></script>
-<script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>jquery.js"></script>
+<script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>jquery.validate.min.js"></script>
 <script type="text/javascript">
       $.validator.setDefaults({
       submitHandler: function (form) {
@@ -265,7 +238,8 @@
  $( "#datepicker-normal" ).datepicker({ 
   dateFormat: 'dd M yy',
   changeMonth: true,
-  changeYear: true
+  changeYear: true,
+  autoclose:true,
  
  });
 });

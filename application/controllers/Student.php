@@ -1050,4 +1050,415 @@ class Student extends MY_Controller {
     
     
 
+    /**
+     * Pay online student fee
+     */
+    function student_fees() {
+        $this->data['student_detail'] = $this->db->get_where('student', array(
+                    'std_id' => $this->session->userdata('login_user_id')
+                ))->row();
+        $this->data['fees_structure'] = '';
+        $this->data['semester'] = $this->Student_model->get_all_semester();
+        $this->data['fees_record'] = $this->Student_model->fees_record($this->session->userdata('login_user_id'));
+        $this->data['page'] = 'student_fees';
+        $this->data['title'] = 'Student Fee';
+        clear_notification('fees_structure', $this->session->userdata('student_id'));
+        unset($this->session->userdata('notifications')['fees_structure']);
+        $this->__site_template('student/student_fees', $this->data);
+    }
+
+    /**
+     * Fees structure details
+     * @param string $course_id
+     * @param string $semester_id
+     */
+    function fees_structure_details($course_id = '', $semester_id = '') {
+        $fees_structure = $this->Student_model->fees_structure($course_id, $semester_id);
+        echo json_encode($fees_structure);
+    }
+
+    /**
+     * Student fees structure details
+     * @param string $fees_structure_id
+     */
+    function student_fees_structure_details($fees_structure_id) {
+        $fees_structure = $this->Student_model->fees_structure_details($fees_structure_id);
+        echo json_encode($fees_structure);
+    }
+
+    /**
+     * Course semester paid fee
+     * @param int $fees_structure_id
+     */
+    function course_semester_paid_fee($fees_structure_id) {
+        $student_detail = $this->db->get_where('student', array(
+                    'std_id' => $this->session->userdata('login_user_id')
+                ))->row();
+        //$fees_structure = $this->Student_model->fees_structure_details($fees_structure_id);
+        $paid_fees = $this->Student_model->student_paid_fees($fees_structure_id, $student_detail->std_id);
+        $total_paid = 0;
+        if (count($paid_fees)) {
+            foreach ($paid_fees as $paid) {
+                $total_paid += $paid->paid_amount;
+            }
+        }
+        echo json_encode($total_paid);
+    }
+
+    /**
+     * Pay online
+     */
+    function pay_online() {
+        if ($_POST) {
+            //set payment data in session
+            $session['payment_info'] = array(
+                'student_id' => $this->session->userdata('student_id'),
+                'fees_structure' => $_POST['fees_structure'],
+                'semester' => $_POST['semester'],
+                'amount' => $_POST['amount'],
+                'title' => $_POST['title'],
+                'remarks' => $_POST['description']
+            );
+            $this->session->set_userdata($session);
+            //echo '<pre>';
+            //var_dump($_POST);
+            redirect(base_url('student/payment_gateway_type/' . $_POST['method']));
+        } else {
+            redirect(base_url('student/student_fees'));
+        }
+    }
+
+    /**
+     * Payment gateway type
+     * @param string $type
+     */
+    function payment_gateway_type($type) {
+        $this->load->model('admin/Crud_model');
+        if ($type == 'authorize.net') {
+            //load authorize.net payment getaway page
+            $this->data['authorize_net'] = $this->Crud_model->authorize_net_config();
+            $this->data['degree'] = $this->Crud_model->get_all_degree();
+            $this->data['course'] = $this->Crud_model->get_all_course();
+            $this->data['semester'] = $this->Crud_model->get_all_semester();
+        }
+        $this->data['title'] = 'Make Payment';
+        $this->data['page'] = 'make_payment';
+        $this->__site_template('student/make_payment', $this->data);
+    }
+
+    /**
+     * Verify and print verify card details
+     */
+    function verify_card_detail($cc_number) {
+        $cc_details = $this->validateCreditcard_number($cc_number);
+        echo json_encode($cc_details);
+    }
+
+    /**
+     * Validate credit card number
+     * @param int $cc_num
+     * @return array
+     */
+    function validateCreditcard_number($cc_num) {
+        $credit_card_number = $this->sanitize($cc_num);
+        // Get the first digit
+        $data = array();
+        $firstnumber = substr($credit_card_number, 0, 1);
+        // Make sure it is the correct amount of digits. Account for dashes being present.
+        switch ($firstnumber) {
+            case 3:
+                $data['card_type'] = "American Express";
+                if (!preg_match('/^3\d{3}[ \-]?\d{6}[ \-]?\d{5}$/', $credit_card_number)) {
+                    //return 'This is not a valid American Express card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            case 4:
+                $data['card_type'] = "Visa";
+                if (!preg_match('/^4\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
+                    //return 'This is not a valid Visa card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            case 5:
+                $data['card_type'] = "MasterCard";
+                if (!preg_match('/^5\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
+                    //return 'This is not a valid MasterCard card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            case 6:
+                $data['card_type'] = "Discover";
+                if (!preg_match('/^6011[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/', $credit_card_number)) {
+                    //return 'This is not a valid Discover card number';
+                    $data['status'] = 'false';
+                    return $data;
+                }
+                break;
+            default:
+                //return 'This is not a valid credit card number';
+                $data['card_type'] = "Invalid";
+                $data['status'] = 'false';
+                return $data;
+        }
+        // Here's where we use the Luhn Algorithm
+        $credit_card_number = str_replace('-', '', $credit_card_number);
+        $map = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 2, 4, 6, 8, 1, 3, 5, 7, 9);
+        $sum = 0;
+        $last = strlen($credit_card_number) - 1;
+        for ($i = 0; $i <= $last; $i++) {
+            $sum += $map[$credit_card_number[$last - $i] + ($i & 1) * 10];
+        }
+        if ($sum % 10 != 0) {
+            //return 'This is not a valid credit card number';
+            $data['status'] = 'false';
+            return $data;
+        }
+        // If we made it this far the credit card number is in a valid format
+        $data['status'] = 'true';
+        return $data;
+    }
+
+    /**
+     * Sanitize the input
+     */
+    function sanitize($value) {
+        return trim(strip_tags($value));
+    }
+
+    /**
+     * Authorize.net payment
+     */
+    function authorize_net_make_payment() {
+        $this->load->library('authorize_net');
+        if ($_POST) {
+            $student_detail = $this->db->get_where('student', array(
+                        'std_id' => $this->session->userdata('login_user_id')
+                    ))->row();
+            $cc_details = $this->validateCreditcard_number($_POST['card_number']);
+            if ($cc_details['status'] == 'false') {
+                // invalid card details
+                echo 'invalid card details';
+                //$this->do_payment();
+            } else {
+                $student_data = $this->db->get_where('student', array('std_id' => $this->session->userdata('payment_data')['student_id']))->row();
+                $auth_net = array(
+                    'x_card_num' => $_POST['card_number'], // Visa
+                    'x_exp_date' => $_POST['month'] . '/17',
+                    'x_card_code' => $_POST['cvv'],
+                    'x_description' => 'Authorize.net transaction',
+                    'x_amount' => $this->session->userdata('payment_info')['amount'],
+                    'x_first_name' => $student_detail->std_first_name,
+                    'x_last_name' => $student_detail->std_last_name,
+                    'x_address' => 'Address',
+                    'x_city' => $student_detail->city,
+                    'x_state' => 'State',
+                    'x_zip' => $student_detail->zip,
+                    'x_country' => 'India',
+                    'x_phone' => $student_detail->std_mobile,
+                    'x_email' => 'mayur.ghadiya@searchnative.in',
+                    'x_customer_ip' => $this->input->ip_address(),
+                );
+                $this->authorize_net->setData($auth_net);
+                // redirect after order completion
+                $status = array();
+                // Try to AUTH_CAPTURE
+                if ($this->authorize_net->authorizeAndCapture()) {
+                    $this->session->set_flashdata('Transaction success', 'Transaction is successfully done.');
+                    $student_detail = $this->db->get_where('student', array(
+                                'std_id' => $this->session->userdata('login_user_id')
+                            ))->row();
+                    //insert into db
+                    $this->Student_model->add_authorized_payment(array(
+                        'student_id' => $this->session->userdata('payment_info')['student_id'],
+                        'fees_structure_id' => $this->session->userdata('payment_info')['fees_structure'],
+                        'paid_amount' => $this->session->userdata('payment_info')['amount'],
+                        'course_id' => $student_detail->course_id,
+                        'sem_id' => $this->session->userdata('payment_info')['semester'],
+                        'fee_title' => $this->session->userdata('payment_info')['title'],
+                        'remarks' => $this->session->userdata('payment_info')['remarks']
+                    ));
+                    //remove session
+                    $this->session->unset_userdata('payment_info');
+                    redirect(base_url('student/fee_record'));
+                } else {
+                    $this->session->set_flashdata('Transaction incomplete', '<p>' . $this->authorize_net->getError() . '</p>');
+                    //remove session
+                    $this->session->unset_userdata('payment_data');
+                    //remove session
+                    $this->session->unset_userdata('payment_info');
+                    redirect(base_url('student/fee_record'));
+                }
+            }
+        }
+    }
+
+    /**
+     * Exam marks
+     * @param string $exam_id
+     */
+    function exam_marks($exam_id = '') {
+        $student_id = $this->session->userdata('student_id');
+        $this->data['page'] = 'exam_marks';
+        $this->data['title'] = 'Exam Marks';
+        $this->data['exam_id'] = $exam_id;
+        $this->data['exam_details'] = $this->Student_model->exam_detail($exam_id);
+        $student_details = $this->db->get_where('student', array(
+                    'std_id' => $this->session->userdata('login_user_id')
+                ))->row();
+        $this->data['student_detail'] = $student_details;
+        $this->data['batch_detail'] = $this->Student_model->student_batch_course_detail($student_details->std_id);
+        $this->data['student_marks'] = $this->Student_model->student_marks($student_details->std_id, $exam_id);
+        $this->data['exam_listing'] = $this->Student_model->
+                student_exam_list($student_details->course_id, $student_details->semester_id);
+
+        $student_id = $this->session->userdata('student_id');
+        foreach ($this->data['exam_listing'] as $exam) {
+            $is_pass = TRUE;
+            //find exam schedule
+            $exam_schedule = $this->Student_model->exam_schedule($exam->em_id);
+
+            //find marks
+            $exam_marks = $this->Student_model->student_marks($student_id, $exam->em_id);
+
+            //check for pass or fail
+            foreach ($exam_marks as $mark) {
+                if ($mark->mark_obtained < $exam->passing_mark) {
+                    $is_pass = FALSE;
+                    break;
+                }
+            }
+
+            //find remedial exams if fail
+            if (!$is_pass) {
+                $remedial_exam = $this->Student_model->remedial_exam_list($exam->em_id);
+
+                foreach ($remedial_exam as $remedial) {
+                    $is_remedial_exam_pass = FALSE;
+                    array_push($page_data['exam_listing'], $remedial);
+                    //check for exam schedule
+                    $remedial_exam_schedule = $this->Student_model->exam_schedule($remedial->em_id);
+
+                    foreach ($remedial_exam_schedule as $schedule) {
+                        //check for marks
+                        $marks = $this->Student_model->student_marks($student_id, $remedial->em_id);
+
+                        //check for pass or fail
+                        foreach ($marks as $m) {
+                            if ($m->mark_obtained >= $remedial->passing_mark) {
+                                $is_remedial_exam_pass = TRUE;
+                            } else {
+                                $is_remedial_exam_pass = FALSE;
+                                break;
+                            }
+                        }
+                        if (!$is_remedial_exam_pass)
+                            break;
+                    }
+                    if ($is_remedial_exam_pass)
+                        break;
+                }
+            }
+        }
+
+        clear_notification('marks_manager', $this->session->userdata('student_id'));
+        unset($this->session->userdata('notifications')['marks_manaher']);
+        $this->__site_template('student/exam_marks', $this->data);
+    }
+
+    /**
+     * Exam listing
+     */
+    function exam_listing() {
+        $student_details = $this->db->get_where('student', array(
+                    'std_id' => $this->session->userdata('login_user_id')
+                ))->row();
+        $this->data['exam_listing'] = $this->Student_model->
+                student_exam_list($student_details->course_id, $student_details->semester_id);
+
+        //check for time table
+        $student_id = $this->session->userdata('student_id');
+        foreach ($this->data['exam_listing'] as $exam) {
+            $is_pass = TRUE;
+            //find exam schedule
+            $exam_schedule = $this->Student_model->exam_schedule($exam->em_id);
+
+            //find marks
+            $exam_marks = $this->Student_model->student_marks($student_id, $exam->em_id);
+
+            //check for pass or fail
+            foreach ($exam_marks as $mark) {
+                if ($mark->mark_obtained < $exam->passing_mark) {
+                    $is_pass = FALSE;
+                    break;
+                }
+            }
+
+            //find remedial exams if fail
+            if (!$is_pass) {
+                $remedial_exam = $this->Student_model->remedial_exam_list($exam->em_id);
+
+                foreach ($remedial_exam as $remedial) {
+                    $is_remedial_exam_pass = FALSE;
+                    array_push($page_data['exam_listing'], $remedial);
+                    //check for exam schedule
+                    $remedial_exam_schedule = $this->Student_model->exam_schedule($remedial->em_id);
+
+                    foreach ($remedial_exam_schedule as $schedule) {
+                        //check for marks
+                        $marks = $this->Student_model->student_marks($student_id, $remedial->em_id);
+
+                        //check for pass or fail
+                        foreach ($marks as $m) {
+                            if ($m->mark_obtained >= $remedial->passing_mark) {
+                                $is_remedial_exam_pass = TRUE;
+                            } else {
+                                $is_remedial_exam_pass = FALSE;
+                                break;
+                            }
+                        }
+                        if (!$is_remedial_exam_pass)
+                            break;
+                    }
+                    if ($is_remedial_exam_pass)
+                        break;
+                }
+            }
+        }
+        $this->data['page'] = 'exam_listing';
+        $this->data['title'] = 'Exam Listing';
+        clear_notification('exam_manager', $this->session->userdata('student_id'));
+        clear_notification('exam_time_table', $this->session->userdata('student_id'));
+        unset($this->session->userdata('notifications')['exam_manager']);
+        unset($this->session->userdata('notifications')['exam_time_table']);
+        $this->__site_template('student/exam_listing', $this->data);
+    }
+
+    /**
+     * Exam schedule
+     * @param string $exam_id
+     */
+    function exam_schedule($exam_id = '') {
+        $this->data['exam_details'] = $this->Student_model->exam_detail($exam_id);
+        $this->data['time_table'] = $this->Student_model->exam_schedule($exam_id);
+        $this->data['page'] = 'exam_schedule';
+        $this->data['title'] = 'Exam Schedule';
+        $this->__site_template('student/exam_schedule', $this->data);
+    }
+
+    /**
+     * Gallery images
+     */
+    function gallery() {
+        $this->db->order_by('gallery_id', 'DESC');
+        $this->db->where('gal_status', '1');
+        $this->data['gallery'] = $this->db->get('photo_gallery')->result();
+        $this->data['page'] = 'gallery';
+        $this->data['title'] = 'Gallery';
+        $this->__site_template('student/gallery', $this->data);
+    }
+
 }

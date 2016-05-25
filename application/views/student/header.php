@@ -96,7 +96,8 @@
                                 </ul>
                             </li>
                             <li class=dropdown>
-                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt="" class="image"> <span class=txt>student@lms.com</span> <b class=caret></b>
+                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt="" class="image"> 
+                                    <span class=txt><?php echo $this->session->userdata('email'); ?></span> <b class=caret></b>
                                 </a>
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
@@ -163,22 +164,19 @@
                                     <ul>
                                         <li><a href="<?php echo base_url(); ?>student/dashboard"><i class="fa fa-desktop" aria-hidden="true"></i><span class=txt>Dashboard</span></a>
                                         </li>
-
-      <!-- <li><a href=#><i class="fa fa-folder" aria-hidden="true"></i><span class=txt>Pages</span><span class="notification blue">11</span></a> -->
-                                        <!-- <ul class=sub> -->
                                         <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="fa fa-envelope"></i>
                                                 <span class="txt">Email </span></a>
                                             <ul class="sub">
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>student/email_compose">
-                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <i class="fa fa-envelope"></i>
                                                         <span class="txt">Compose E-Mail</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>student/email_inbox">
-                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <i class="fa fa-inbox"></i>
                                                         <span class="txt">Inbox</span>
                                                     </a>
                                                 </li>
@@ -192,37 +190,71 @@
                                             </ul>
                                         </li>
                                         <li>
+                                            <a href="">
+                                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                <span class=txt>Class Routine</span>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="<?php echo base_url(); ?>student/assignment/"><i class="s16 fa fa-table"></i><span class="txt">Assignments </span>
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="<?php echo base_url(); ?>student/exam"><i class="s16 fa fa-picture-o"></i>
+                                                <span class=txt>Exam</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/exam_marks">
+                                                <i class="s16 fa fa-clock-o"></i>
+                                                <span class=txt>Exam Marks</span>
+                                            </a>
+                                        </li>                                        
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/student_fees"><i class="s16 fa fa-dollar"></i>
+                                                <span class=txt>Pay Online </span>
+                                            </a>
+                                        </li> 
+                                        <li>
                                             <a href="<?php echo base_url(); ?>student/fee_record"><i class="s16 fa fa-newspaper-o"></i><span class=txt>Fee Record </span>
                                             </a>
                                         </li>
-                                        <li><a href=calendar.html><i class="s16 fa fa-university"></i><span class=txt>Academics </span></a>
+                                        <li>
+                                            <a href="">
+                                                <i class="s16 fa fa-book"></i>
+                                                <span class=txt>Holiday </span>
+                                            </a>
+                                        </li>                                        
+                                        <li>
+                                            <a href="">
+                                                <i class="s16 fa fa-file-o"></i>
+                                                <span class=txt>Courseware</span>
+                                            </a>
                                         </li>
-                                        <li><a href=gallery.html><i class="s16 fa fa-picture-o"></i><span class=txt>Gallery</span></a>
+                                        <li>
+                                            <a href="">
+                                                <i class="s16 fa fa-spinner"></i>
+                                                <span class=txt>Vocational Course</span>
+                                            </a>
                                         </li>
-                                        <li><a href=timeline.html><i class="s16 fa fa-clock-o"></i><span class=txt>Timeline</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/gallery"><i class="s16 fa fa-picture-o"></i>
+                                                <span class=txt>Gallery </span>
+                                            </a>
+                                        </li>  
+                                        <?php
+                                        $news_conent = $this->db->get_where('cms_manager', array('c_status' => 1))->result_array();
+                                        foreach($news_conent as $row) { ?>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>pages/<?php echo @$row['c_slug']; ?>">
+                                                <i class="s16 fa fa-universal-access"></i>
+                                                <span class=txt><?php echo @$row['c_title']; ?> </span>
+                                            </a>
                                         </li>
-                                        <li><a href=login.html><i class="s16 fa fa-universal-access"></i><span class=txt>Holiday </span></a>
-                                        </li>
-                                        <li><a href=lock-screen.html><i class="s16 fa fa-book"></i><span class=txt>Vocational Course</span></a>
-                                        </li>
-                                        <li><a href=register.html><i class="fa fa-user-plus" aria-hidden="true"></i></i><span class=txt>Register</span></a>
-                                        </li>
-                                        <li><a href=lost-password.html><i class="s16 fa fa-file-o"></i><span class=txt>Lost password</span></a>
-                                        </li>
-                                        <li><a href=profile.html><i class="s16 fa fa-file-text"></i><span class=txt>User profile</span></a>
-                                        </li>
-                                        <li><a href=invoice.html><i class="s16 fa fa-file-text-o"></i><span class=txt>Invoice</span></a>
-                                        </li>
-                                        <li><a href=faq.html><i class="s16 fa fa-paperclip"></i><span class=txt>FAQ</span></a>
-                                        </li>
-
-                                        <!-- </ul> -->
-                                        <!--  </li>
-                                     </ul> -->
+                                        <?php } ?>
+                                                                             
+                                        
+                                     </ul> 
                                 </div>
                             </div>
                             <!-- End sidenav -->
