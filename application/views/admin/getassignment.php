@@ -1,6 +1,6 @@
 <?php if($param=='allassignment'){ ?>
-                                <div class="panel-body table-responsive" id="getresponse">
-                                    <table class="table table-striped" id="data-tables">
+                                
+                                    <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables">
                                         <thead>
                                             <tr>
                                                 <th><div>#</div></th>												
@@ -63,15 +63,14 @@
                                                     <td><a href="<?php echo $row->assign_url; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>	
                                                     <td><?php echo date('F d, Y',strtotime($row->assign_dos)); ?></td>	
                                                     <td class="menu-action">
-                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>index.php?modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"><i class="fa fa-pencil"></i></a>
-
-                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>index.php?admin/assignment/delete/<?php echo $row->assign_id; ?>');"    title="Remove" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"><i class="fa fa-times"></i></a>	
-                                                    </td>	
+                                   <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Edit</span></a>
+                                   <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/assignment/delete/<?php echo $row->assign_id; ?>');" data-toggle="modal" ><span class="label label-danger mr6 mb6">Delete</span></a>
+                                </td>	
                                                 </tr>
 <?php endforeach; ?>						
                                         </tbody>
                                     </table>
-                                </div>
+                               
 <?php }
 if($param=='submitted'){?>
 <div class="panel-body table-responsive" id="getsubmit">

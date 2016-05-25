@@ -5,8 +5,9 @@ $course = $this->db->get_where("course", array("course_id" => $student[0]->cours
 $batch = $this->db->get_where("batch", array("b_id" => $student[0]->std_batch))->result();
 $semester = $this->db->get_where("semester", array("s_id" => $student[0]->semester_id))->result();
 ?>
-<!-- Start .row -->
-<div class=row>                      
+
+
+<div class="row">
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
@@ -17,15 +18,15 @@ $semester = $this->db->get_where("semester", array("s_id" => $student[0]->semest
             </div>
             <div class=panel-body>
                 <table class="table table-striped" id="data-tables">
-                    
+
                     <tbody>
                         <tr>
                             <td><strong>Image</strong></td>
                             <td><?php if ($student[0]->profile_photo != "") { ?> 
-                    <img src="<?php echo base_url() . 'uploads/student_image/' . $student[0]->profile_photo; ?>" height="100" width="100" />
-                <?php } else { ?>
-                    <img src="<?= base_url() ?>/uploads/no-image.jpg" height="100px" width="100px"/>
-                <?php } ?></td>
+                                    <img src="<?php echo base_url() . 'uploads/student_image/' . $student[0]->profile_photo; ?>" height="100" width="100" />
+                                <?php } else { ?>
+                                    <img src="<?= base_url() ?>/uploads/no-image.jpg" height="100px" width="100px"/>
+                                <?php } ?></td>
                         </tr>
 
                         <tr>		

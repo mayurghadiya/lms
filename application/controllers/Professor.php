@@ -373,10 +373,11 @@ class Professor extends MY_Controller {
         $this->data['semester'] = $this->Professor_model->get_all_semester();
         $this->data['batch'] = $this->Professor_model->get_all_bacth();
 
-        $this->data['course'] = $this->db->get('course')->result();
-        $this->data['semester'] = $this->db->get('semester')->result();
-        $this->data['batch'] = $this->db->get('batch')->result();
-        $this->data['degree'] = $this->db->get('degree')->result();
+        /*  $this->data['course'] = $this->db->get('course')->result();
+          $this->data['semester'] = $this->db->get('semester')->result();
+          $this->data['batch'] = $this->db->get('batch')->result();
+          $this->data['degree'] = $this->db->get('degree')->result();
+         */
         $this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignment';
         $this->data['title'] = 'Assignment Management';
@@ -850,8 +851,8 @@ class Professor extends MY_Controller {
         $this->data['student'] = $this->db->get('student')->result();
         $this->data['course'] = $this->db->get('course')->result();
 
-        $this->data['page_name'] = 'participate';
-        $this->data['page_title'] = 'Participate Management';
+        $this->data['page'] = 'participate';
+        $this->data['title'] = 'Participate Management';
         $this->data['volunteer'] = $this->db->get('participate_student')->result_array();
         $this->data['uploads'] = $this->db->get('student_upload')->result_array();
         $this->__site_template('professor/participate', $this->data);
@@ -1420,6 +1421,70 @@ class Professor extends MY_Controller {
     }
 
     /**
+     * get course
+     * @param int $param
+     */
+    function get_cource($param = '') {
+
+        $did = $this->input->post("degree");
+
+        if ($did != '') {
+
+            if ($did == "All") {
+                
+            } else {
+
+                $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
+
+                $html = '<option value="">Select Branch</option>';
+                if ($param == '') {
+                    $html .= '<option value="All">All</option>';
+                }
+                foreach ($cource as $crs):
+                    $html .='<option value="' . $crs['course_id'] . '">' . $crs['c_name'] . '</option>';
+
+                endforeach;
+                echo $html;
+            }
+        }
+    }
+
+    /**
+     * Check assignment
+     * return json
+     */
+    function checkassignments() {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post('semester');
+        $title = $this->input->post('title');
+        $data = $this->db->get_where('assignment_manager', array('assign_degree' => $degree,
+                    'course_id' => $course,
+                    'assign_title' => $title,
+                    'assign_batch' => $batch, 'assign_sem' => $semester))->result_array();
+        echo json_encode($data);
+    }
+
+    /**
+     * check duplicate assignment
+     * @param int $id
+     */
+    function checkassignment($id = '') {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post('semester');
+        $title = $this->input->post('title');
+        $data = $this->db->get_where('assignment_manager', array('assign_degree' => $degree,
+                    'course_id' => $course,
+                    'assign_title' => $title,
+                    'assign_batch' => $batch, 'assign_sem' => $semester, 'assign_id!=' => $id))->result_array();
+
+        echo json_encode($data);
+    }
+
+    /**
      * Exam filter
      * @param string $degree
      * @param string $course
@@ -1691,5 +1756,529 @@ class Professor extends MY_Controller {
         $this->Crud_model->delete_email($id);
         redirect($this->agent->referrer());
     }
+
+    /**
+     * get batches
+     * @param String $param
+     */
+    function get_batchs($param = '') {
+        $cid = $this->input->post("course");
+        $did = $this->input->post("degree");
+        $html = '';
+        if ($cid != '') {
+            if ($cid == "All") {
+                $html .= '<option value="All">All</option>';
+            } else {
+                $batch = $this->db->query("SELECT * FROM batch WHERE FIND_IN_SET('" . $did . "',degree_id) AND FIND_IN_SET('" . $cid . "',course_id)")->result_array();
+                $html = '<option value="">Select Batch</option>';
+                if ($param == "") {
+                    $html .= '<option value="All">All</option>';
+                }
+                foreach ($batch as $btc):
+                    $html .='<option value="' . $btc['b_id'] . '">' . $btc['b_name'] . '</option>';
+
+                endforeach;
+            }
+            echo $html;
+        }
+    }
+
+    /**
+     * get study resource filter list
+     */
+    function getstudyresource() {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post("semester");
+        $data['course'] = $this->db->get('course')->result();
+        $data['semester'] = $this->db->get('semester')->result();
+        $data['batch'] = $this->db->get('batch')->result();
+        $data['degree'] = $this->db->get('degree')->result();
+        $data['student'] = $this->db->get('student')->result();
+
+        if ($degree == "All") {
+
+
+            $data['studyresource'] = $this->db->get('study_resources')->result();
+        } else {
+            if ($course == "All") {
+                $this->db->where("study_degree", $degree);
+                $data['studyresource'] = $this->db->get('study_resources')->result();
+            } else {
+                if ($batch == 'All') {
+                    $this->db->where("study_course", $course);
+                    $this->db->where("study_degree", $degree);
+                    $data['studyresource'] = $this->db->get('study_resources')->result();
+                } else {
+                    if ($semester == "All") {
+                        $this->db->where("study_batch", $batch);
+                        $this->db->where("study_course", $course);
+                        $this->db->where("study_degree", $degree);
+                        $data['studyresource'] = $this->db->get('study_resources')->result();
+                    } else {
+                        $this->db->where("study_sem", $semester);
+                        $this->db->where("study_batch", $batch);
+                        $this->db->where("study_course", $course);
+                        $this->db->where("study_degree", $degree);
+                        $data['studyresource'] = $this->db->get('study_resources')->result();
+                    }
+                }
+            }
+        }
+
+        // $this->db->where("study_course",$course);
+        // $this->db->or_where('study_course >', 'All'); 
+        //     $this->db->where("study_batch",$batch);
+        //  $this->db->or_where('study_batch >', 'All'); 
+        //      $this->db->where("study_degree",$degree);
+        //     $this->db->or_where('study_degree >', 'All'); 
+        //    $this->db->where("study_sem",$semester);
+        //   $this->db->or_where('study_sem >', 'All'); 
+        //     $data['studyresource'] = $this->db->get('study_resources')->result();
+        //$page_data['studyresource'] = $this->db->get('study_resources')->result();
+
+        $this->load->view("professor/getstudyresource", $data);
+    }
+
+    /**
+     * 
+     * @param String $param
+     */
+    function get_courcestudy($param = '') {
+
+        $did = $this->input->post("degree");
+
+        if ($did != '') {
+
+
+
+            $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
+
+            $html = '<option value="">Select Branch</option>';
+            if ($param == '') {
+                $html .= '<option value="All">All</option>';
+            }
+            foreach ($cource as $crs):
+                $html .='<option value="' . $crs['course_id'] . '">' . $crs['c_name'] . '</option>';
+
+            endforeach;
+            echo $html;
+        }
+    }
+
+    /**
+     * 
+     * @param string $param
+     */
+    function getassignment($param = '') {
+        if ($param = 'allassignment') {
+            $degree = $this->input->post('degree');
+            $course = $this->input->post('course');
+            $batch = $this->input->post('batch');
+            $semester = $this->input->post("semester");
+            $class = $this->input->post("divclass");
+            $data['course'] = $this->db->get('course')->result();
+            $data['semester'] = $this->db->get('semester')->result();
+            $data['batch'] = $this->db->get('batch')->result();
+            $data['degree'] = $this->db->get('degree')->result();
+            $data['class'] = $this->db->get('class')->result();
+            $this->db->where("course_id", $course);
+            $this->db->where("assign_batch", $batch);
+            $this->db->where("assign_degree", $degree);
+            $this->db->where("assign_sem", $semester);
+            $this->db->where("class_id", $class);
+            $data['param'] = $param;
+            $data['assignment'] = $this->db->get('assignment_manager')->result();
+
+            $this->load->view("professor/getassignment", $data);
+        }
+    }
+
+    /**
+     * course filter
+     * @param String  $param
+     */
+    function course_filter($param = '') {
+        $did = $this->input->post("degree");
+
+        if ($did != '') {
+            if ($did == 'All') {
+                echo ' <option value="">Select Branch</option>
+                   <option value="All">All</option>';
+            } else {
+                $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
+                $html = '';
+                foreach ($cource as $crs):
+                    $html .='<option value="' . $crs['course_id'] . '">' . $crs['c_name'] . '</option>';
+
+                endforeach;
+                echo $html;
+            }
+        }
+    }
+
+    /**
+     * batch filter
+     * @param String $param
+     */
+    function batch_filter($param = '') {
+        $cid = $this->input->post("course");
+        $did = $this->input->post("degree");
+        if ($cid != '') {
+            $html = '';
+            // $cource = $this->db->get_where("batch",array("degree_id"=>$cid))->result_array();
+            if ($cid == "All") {
+                //$batch = $this->db->query("SELECT * FROM batch WHERE FIND_IN_SET('" . $did . "',degree_id)")->result_array();
+                // $batch = '';
+                echo ' <option value="">Select Batch</option>
+                   <option value="All">All</option>';
+            } else {
+                $batch = $this->db->query("SELECT * FROM batch WHERE FIND_IN_SET('" . $did . "',degree_id) AND FIND_IN_SET('" . $cid . "',course_id)")->result_array();
+
+
+                // echo $this->db->last_query();           
+
+                foreach ($batch as $btc):
+                    $html .='<option value="' . $btc['b_id'] . '">' . $btc['b_name'] . '</option>';
+
+                endforeach;
+                echo $html;
+            }
+        }
+    }
+
+    /**
+     * 
+     * @param String $param
+     */
+    function getprojects($param = '') {
+        if ($param == 'allproject') {
+            $degree = $this->input->post('degree');
+            $course = $this->input->post('course');
+            $batch = $this->input->post('batch');
+            $semester = $this->input->post("semester");
+            $class = $this->input->post("divclass");
+            $data['course'] = $this->db->get('course')->result();
+            $data['semester'] = $this->db->get('semester')->result();
+            $data['batch'] = $this->db->get('batch')->result();
+            $data['degree'] = $this->db->get('degree')->result();
+            $data['class'] = $this->db->get('class')->result();
+            $data['student'] = $this->db->get('student')->result();
+            $this->db->where("pm_course", $course);
+            $this->db->where("pm_batch", $batch);
+            $this->db->where("pm_degree", $degree);
+            $this->db->where("pm_semester", $semester);
+            $this->db->where("class_id", $class);
+            $data['param'] = $param;
+            $data['project'] = $this->db->get('project_manager')->result();
+
+            $this->load->view("professor/getprojects", $data);
+        }
+        if ($param == 'submitted') {
+            $degree = $this->input->post('degree');
+            $course = $this->input->post('course');
+            $batch = $this->input->post('batch');
+            $semester = $this->input->post("semester");
+            $data['course'] = $this->db->get('course')->result();
+            $data['semester'] = $this->db->get('semester')->result();
+            $data['batch'] = $this->db->get('batch')->result();
+            $data['degree'] = $this->db->get('degree')->result();
+            $data['student'] = $this->db->get('student')->result();
+            $data['student'] = $this->db->get('student')->result();
+            $this->db->select("ps.*,pm.*,s.* ");
+            $this->db->from('project_document_submission ps');
+            $this->db->join("project_manager pm", "pm.pm_id=ps.project_id");
+            $this->db->join("student s", "s.std_id=ps.student_id");
+            $this->db->where("pm_course", $course);
+            $this->db->where("pm_batch", $batch);
+            $this->db->where("pm_degree", $degree);
+            $this->db->where("pm_semester", $semester);
+            $data['submitedproject'] = $this->db->get()->result();
+            $data['param'] = $param;
+            $this->load->view("professor/getprojects", $data);
+        }
+    }
+
+    /**
+     * 
+     * @param int $id
+     */
+    function checkprjectsedit($id = '') {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post('semester');
+        $title = $this->input->post('title');
+        $data = $this->db->get_where('project_manager', array('pm_degree' => $degree,
+                    'pm_course' => $course,
+                    'pm_title' => $title,
+                    'pm_batch' => $batch, 'pm_semester' => $semester, 'pm_id!=' => $id))->result_array();
+        echo json_encode($data);
+    }
+
+    /**
+     * 
+     * @param int $param
+     */
+    function batchwisestudentcheckbox($param = '') {
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("sem");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
+        $html = '';
+        if ($param != '') {
+            $edit_data = $this->db->get_where('project_manager', array('pm_id' => $param))->result_array();
+            $student = $edit_data[0]['pm_student_id'];
+            $std = explode(",", $student);
+        }
+
+        if ($batch != "") {
+            $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'semester_id' => $sem, 'std_status' => 1, 'course_id' => $course, 'std_degree' => $degree))->result();
+            //  $datastudent = $this->db->get_where('student', array('std_status' => 1))->result();
+
+            foreach ($datastudent as $rowstu) {
+                if (isset($std)) {
+                    if (in_array($rowstu->std_id, $std)) {
+                        $html .='<div class="checkedstudent"><input type="checkbox" class="checkbox1" onclick="uncheck();" name="student[]" value="' . $rowstu->std_id . '" checked="">' . $rowstu->std_first_name . '&nbsp' . $rowstu->std_last_name . '</div>';
+                    } else {
+                        $html .='<div class="checkedstudent"><input type="checkbox" class="checkbox1" onclick="uncheck();" name="student[]" value="' . $rowstu->std_id . '">' . $rowstu->std_first_name . '&nbsp' . $rowstu->std_last_name . '</div>';
+                    }
+                } else {
+                    $html .='<div class="checkedstudent"><input type="checkbox" class="checkbox1" onclick="uncheck();" name="student[]" value="' . $rowstu->std_id . '">' . $rowstu->std_first_name . '&nbsp' . $rowstu->std_last_name . '</div>';
+                }
+            }
+        }
+    }
+
+    /**
+     * 
+     * @param int $param
+     */
+    function checkboxstudent($param = '') {
+
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("sem");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
+        $class = $this->input->post("divclass");
+
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree, 'class_id' => $class))->result();
+        $html = '';
+        if ($param != '') {
+            $edit_data = $this->db->get_where('project_manager', array('pm_id' => $param))->result_array();
+            $student = $edit_data[0]['pm_student_id'];
+            $std = explode(",", $student);
+        }
+
+        foreach ($datastudent as $rowstu) {
+            //$rowstu->std_id . . $rowstu->name;
+            if (isset($std)) {
+                if (in_array($rowstu->std_id, $std)) {
+                    $html .='<div class="checkedstudent"><input type="checkbox" class="checkbox1" onclick="uncheck();" name="student[]" value="' . $rowstu->std_id . '" checked="">' . $rowstu->std_first_name . '&nbsp' . $rowstu->std_last_name . '</div>';
+                } else {
+                    $html .='<div class="checkedstudent"><input type="checkbox" class="checkbox1" onclick="uncheck();" name="student[]" value="' . $rowstu->std_id . '">' . $rowstu->std_first_name . '&nbsp' . $rowstu->std_last_name . '</div>';
+                }
+            } else {
+                $html .='<div class="checkedstudent"><input type="checkbox" class="checkbox1" onclick="uncheck();" name="student[]" value="' . $rowstu->std_id . '">' . $rowstu->std_first_name . '&nbsp' . $rowstu->std_last_name . '</div>';
+            }
+        }
+        echo $html;
+    }
+
+    /**
+     * check duplicate project
+     */
+    function checkprjects() {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post('semester');
+        $title = $this->input->post('title');
+        $data = $this->db->get_where('project_manager', array('pm_degree' => $degree,
+                    'pm_course' => $course,
+                    'pm_title' => $title,
+                    'pm_batch' => $batch, 'pm_semester' => $semester))->result_array();
+        echo json_encode($data);
+    }
+
+    /**
+     * Student Project list 
+     * return boolean
+     */
+    function checkprojectstd() {
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("sem");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
+        if (count($datastudent) > 0) {
+            echo "true";
+        } else {
+            echo "false";
+        }
+    }
+
+    function getlibrary($param = '') {
+
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post("semester");
+        $data['course'] = $this->db->get('course')->result();
+        $data['semester'] = $this->db->get('semester')->result();
+        $data['batch'] = $this->db->get('batch')->result();
+        $data['degree'] = $this->db->get('degree')->result();
+        if ($degree == "All") {
+
+
+            $data['library'] = $this->db->get('library_manager')->result();
+        } else {
+            if ($course == "All") {
+                $this->db->where("lm_degree", $degree);
+                $data['library'] = $this->db->get('library_manager')->result();
+            } else {
+                if ($batch == 'All') {
+                    $this->db->where("lm_course", $course);
+                    $this->db->where("lm_degree", $degree);
+                    $data['library'] = $this->db->get('library_manager')->result();
+                } else {
+                    if ($semester == "All") {
+                        $this->db->where("lm_batch", $batch);
+                        $this->db->where("lm_course", $course);
+                        $this->db->where("lm_degree", $degree);
+                        $data['library'] = $this->db->get('library_manager')->result();
+                    } else {
+                        $this->db->where("lm_semester", $semester);
+                        $this->db->where("lm_batch", $batch);
+                        $this->db->where("lm_course", $course);
+                        $this->db->where("lm_degree", $degree);
+                        $data['library'] = $this->db->get('library_manager')->result();
+                    }
+                }
+            }
+        }
+
+
+
+        $this->load->view("professor/getlibrary", $data);
+    }
+
+    function batchwisestudent() {
+        $batch = $this->input->post("batch");
+        if ($batch != "") {
+            $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1))->result();
+            //  $datastudent = $this->db->get_where('student', array('std_status' => 1))->result();
+            $html = '<option value="">Select student</option>';
+            foreach ($datastudent as $rowstu) {
+                $html .='<option value="' . $rowstu->std_id . '">' . $rowstu->name . '</option>';
+            }
+        } else {
+            $html = '<option value="">Select student</option>';
+        }
+        echo $html;
+    }
+
+    function semwisestudent() {
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("sem");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
+
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
+        $html = '<option value="">Select student</option>';
+        foreach ($datastudent as $rowstu) {
+            $html .='<option value="' . $rowstu->std_id . '">' . $rowstu->name . '</option>';
+        }
+        echo $html;
+    }
+
+    function get_semesterall() {
+
+        $cid = $this->input->post("course");
+
+        if ($cid == 'All') {
+            $course = $this->db->get('course')->result_array();
+        } else {
+
+            $course = $this->db->get_where('course', array('course_id' => $cid))->result_array();
+        }
+
+        $semexplode = explode(',', $course[0]['semester_id']);
+        $semester = $this->db->get('semester')->result_array();
+        $semdata = '';
+        foreach ($semester as $sem) {
+            if (in_array($sem['s_id'], $semexplode)) {
+                $semdata[] = $sem;
+            }
+        }
+        $option = "<option value=''>Select semester</option>";
+        $option .="<option value='All'>All</option>";
+
+        foreach ($semdata as $s) {
+            $option .="<option value=" . $s['s_id'] . ">" . $s['s_name'] . "</option>";
+        }
+        echo $option;
+    }
+    
+    /**
+     * manage profile
+     * @param String $param1
+     * @param int $param2
+     * @param type $param3
+     */
+    
+    function manage_profile($param1 = '', $param2 = '', $param3 = '') {
+        $this->load->model('admin/Crud_model');
+        if ($param1 == 'update_profile_info') {
+            if (!empty($_POST)) {
+
+                $data = array(
+                    'address' => $this->input->post('address'),
+                    'city' => $this->input->post('city'),
+                    'zip' => $this->input->post('zip_code'),
+                    'mobile' => $this->input->post('mobile'),
+                    'dob' => $this->input->post('dob'),
+                    'occupation' => $this->input->post('occupation'),
+                    'about' => $this->input->post('about')
+                );
+                if ($_FILES['userfile']['name'] != '') {
+
+
+                    $allowed_types = explode('|', 'gif|jpg|png|jpeg');
+
+                    $ext = explode(".", $_FILES['userfile']['name']);
+                    $ext_file = strtolower(end($ext));
+                    $file_name = date('dmYhis') . '.' . $ext_file;
+                    if (in_array($ext_file, $allowed_types)) {
+
+                        $upl_path = FCPATH . 'uploads/professor/' . $file_name;
+                        //  mkdir(FCPATH . 'uploads/professor', 0777);
+
+
+                        move_uploaded_file($_FILES['userfile']['tmp_name'], $upl_path);
+                        chmod($upl_path, 0777);
+                        $this->session->set_userdata('image_path', $file_name);
+                    } else {
+                        $file_name = '';
+                    }
+
+                    $data['image_path'] = $file_name;
+                }
+                $param2 = $this->session->userdata("login_user_id");
+                $this->Crud_model->save_professor($data, $param2);
+                $this->session->set_flashdata("flash_message", 'Profile update successfully');
+                redirect(base_url() . 'professor/manage_profile');
+
+                //$data['identification_num'] = rand(1111,9999);
+            }
+        }
+        $this->data['page'] = 'manage_profile';
+        $this->data['title'] = 'Manage Profile';
+        $this->data['degree_list'] = $this->Professor_model->get_all_degree();
+        $this->data['edit_data'] = $this->db->get_where('professor', array('professor_id' => $this->session->userdata('login_user_id')))->result_array();
+        $this->__site_template('professor/manage_profile', $this->data);
+    }
+
 
 }

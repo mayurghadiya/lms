@@ -3956,7 +3956,7 @@ class Admin extends MY_Controller {
             $data['user_role'] = implode(',', $this->input->post('user_role'));
             $this->db->where('g_id', $this->input->post('group_name'));
             $this->db->update('group', $data);
-            $this->session->set_flashdata('flash_message', get_phrase('group_updated_successfully'));
+            $this->session->set_flashdata('flash_message', 'group Updated Successfully');
             redirect(base_url() . 'admin/list_group', 'refresh');
         }
         if ($param1 == 'delete') {
@@ -3967,7 +3967,7 @@ class Admin extends MY_Controller {
             $this->db->where('group_id', $this->input->post('group_name_delete'));
             $this->db->delete('assign_module');
 
-            $this->session->set_flashdata('flash_message', get_phrase('group_deleted_successfully'));
+            $this->session->set_flashdata('flash_message', 'group deleted successfully');
             redirect(base_url() . 'admin/list_group', 'refresh');
         }
         $this->data['user_role'] = $param1;
@@ -4021,7 +4021,7 @@ class Admin extends MY_Controller {
             $data['module_id'] = implode(',', $this->input->post('module_name'));
             $this->db->where('group_id', $data['group_id']);
             $this->db->update('assign_module', $data);
-            $this->session->set_flashdata('flash_message', get_phrase('data_updated_successfully'));
+            $this->session->set_flashdata('flash_message', 'data updated successfully' );
             redirect(base_url() . 'admin/list_module', 'refresh');
         }
         $this->data['page'] = 'list_module';

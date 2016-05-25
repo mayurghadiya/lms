@@ -14,7 +14,17 @@
                 </div>
             </div>
             <div class=panel-body>
-
+ <ul id="import-tab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#list" data-toggle="tab" aria-expanded="true"><?php echo ucwords("Project List");?></a>
+                        </li>
+                        <li class="">
+                            <a href="#submittedlist" data-toggle="tab" aria-expanded="false"><?php echo ucwords("submitted Project list");?></a>
+                        </li>
+                    </ul>
+                <div id="import-tab-content" class="tab-content">
+                        
+                        <div class="tab-pane fade active in" id="list">
                 <form action="#" method="post" id="searchform">
                     <div class="form-group col-sm-2 validating">
                         <label>Department</label>
@@ -65,10 +75,11 @@
                     </div>
                     <div class="form-group col-sm-1">
                         <label>&nbsp;</label><br/>
-                        <button type="submit" class="submit btn btn-info vd_bg-green">Go</button>
+                        <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>
                     </div>
                 </form>
-
+                              <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addproject/');" data-original-title="" data-toggle="tooltip" data-placement="top">Add New Project</a>
+                            <div id="getresponse">
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -151,21 +162,170 @@
                                 <td id="downloadedfile"> <a href="<?php echo $row->pm_url; ?>" download=""><i class="fa fa-download"></i></a></td>
                                 <td><?php echo date('M d, Y', strtotime($row->pm_dos)); ?></td>	
                                 <td class="menu-action">
-                                    <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
+                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
+                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/project/delete/<?php echo $row->pm_id; ?>');" title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>	
                                 </td>
                             </tr>
                         <?php endforeach; ?>						
                     </tbody>
                 </table>
+                            </div>
+                            
+                        </div>
+                      <div class="tab-pane fade out" id="submittedlist">
+                          
+                                <div class="panel-body table-responsive" id="getsubmit">
+                                    <table class="table table-striped table-bordered table-responsive" id="sub-tables">
+                                        <thead>
+                                            <tr>
+                                                <th><div>#</div></th>												
+                                                <th><div><?php echo ucwords("Project Name");?></div></th>
+                                                <th><div><?php echo ucwords("Student Name");?></div></th>                                                											
+                                                <th><div><?php echo ucwords("department");?></div></th>	
+                                                <th><div><?php echo ucwords("Branch");?></div></th>
+                                                <th><div><?php echo ucwords("Batch");?></div></th>											
+                                                <th><div><?php echo ucwords("Semester");?></div></th>
+                                                <th><div><?php echo ucwords("Submitted date");?></div></th>
+                                                <th><div><?php echo ucwords("Comment");?></div></th>
+                                                <th><div><?php echo ucwords("File");?></div></th>												                                            
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $count = 1;
+                                            foreach ($submitedproject->result() as $rowsub):
+                                                ?>
+                                            <tr>
+                                                <td><?php echo $count++; ?></td>
+                                                <td><?php echo $rowsub->pm_title; ?></td>
+                                                <td><?php  echo $rowsub->std_first_name.'&nbsp'.$rowsub->std_last_name. ', '; ?></td>	
+                                              <td>
+                                                        <?php
+                                                        foreach ($degree as $deg) {
+                                                            if ($deg->d_id == $rowsub->pm_degree) {
+                                                                echo $deg->d_name;
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </td>	
+                                                     <td>
+                                                        <?php
+                                                        foreach ($course as $crs) {
+                                                            if ($crs->course_id == $rowsub->pm_course) {
+                                                                echo $crs->c_name;
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        foreach ($batch as $bch) {
+                                                            if ($bch->b_id == $rowsub->pm_batch) {
+                                                                echo $bch->b_name;
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </td>	
+                                                    <td>
+                                                        <?php
+                                                        foreach ($semester as $sem) {
+                                                            if ($sem->s_id == $rowsub->pm_semester) {
+                                                                echo $sem->s_name;
+                                                            }
+                                                        }
+                                                        ?>
+
+                                                    </td>
+                                                    
+                                                <td><?php echo date_formats($rowsub->dos); ?></td>	
+                                                <td><?php echo $rowsub->description; ?></td>
+                                                <td id="downloadedfile"><a href="<?php  echo base_url(); ?>uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                                                    	
+                                            </tr>
+<?php endforeach; ?>			 			
+                                        </tbody>
+                                    </table>
+                                </div>
+                      </div>
+                    
+                </div>
             </div>
         </div>
         <!-- End .panel -->
     </div>
     <!-- col-lg-12 end here -->
 </div>
-<!-- End .row -->
-</div>
-<!-- End contentwrapper -->
-</div>
-<!-- End #content -->
+
+
+ 
+<script type="text/javascript">
+	$(document).ready(function() {
+		"use strict";				
+		$('#data-tabless').DataTable();
+
+	} );
+</script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            
+            $('#project-data-tables').dataTable();
+        });
+    </script>
+
+  
+ <script type="text/javascript">
+       $("#searchform #btnsubmit").click(function(){
+           var degree =  $("#courses").val();
+           var course =  $("#branches").val();
+           var batch =  $("#batches").val();
+            var semester = $("#semesters").val();
+            var divclass = $("#filterclass").val();
+            $.ajax({
+                type:"POST",
+                url:"<?php echo base_url(); ?>professor/getprojects/allproject",
+                data:{'degree':degree,'course':course,'batch':batch,"semester":semester,"divclass":divclass},
+                success:function(response)
+                {
+                    $("#getresponse").html(response);
+                }
+                
+                
+            });
+             return false;
+         });
+         $("#courses").change(function(){
+                var degree = $(this).val();
+                
+                var dataString = "degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'professor/get_course/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                        $("#branches").html(response);
+                    }
+                });
+        });
+         $("#branches").change(function(){
+                //var course = $(this).val();
+                // var degree = $("#degree").val();
+                var degree = $("#courses").val();
+                var course = $("#branches").val();
+                var dataString = "course="+course+"&degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'professor/get_batches/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                        $("#batches").html(response);
+                    }
+                });
+        });
+        
+        $(document).ready(function () {
+
+            $('#sub-tables').dataTable();
+
+        });
+    </script>
+
+    
