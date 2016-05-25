@@ -63,6 +63,7 @@
                         <input id="search-assignment-structure-data" type="button" value="Go" class="btn btn-info vd_bg-green"/>
                     </div>
                 </form>
+                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addassignment/');" data-original-title="" data-toggle="tooltip" data-placement="top">Add New Assignment</a>
 
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
@@ -138,8 +139,8 @@
                                 <td ><?php echo date('M d, Y', strtotime($row->assign_dos)); ?></td>	
                                 <td id="downloadedfile"><a href="<?php echo $row->assign_url; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>
                                 <td class="menu-action">
-                                    <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/assignment/delete/<?php echo $row->assign_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>						

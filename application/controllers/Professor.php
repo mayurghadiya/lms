@@ -1420,5 +1420,71 @@ class Professor extends MY_Controller {
         }
         echo $option;
     }
+    
+    /**
+     * get course
+     * @param int $param
+     */
+    function get_cource($param = '') {
+
+        $did = $this->input->post("degree");
+
+        if ($did != '') {
+
+            if ($did == "All") {
+                
+            } else {
+
+                $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
+
+                $html = '<option value="">Select Branch</option>';
+                if ($param == '') {
+                    $html .= '<option value="All">All</option>';
+                }
+                foreach ($cource as $crs):
+                    $html .='<option value="' . $crs['course_id'] . '">' . $crs['c_name'] . '</option>';
+
+                endforeach;
+                echo $html;
+            }
+        }
+    }
+    /**
+     * Check assignment
+     * return json
+     */
+     function checkassignments() {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post('semester');
+        $title = $this->input->post('title');
+        $data = $this->db->get_where('assignment_manager', array('assign_degree' => $degree,
+                    'course_id' => $course,
+                    'assign_title' => $title,
+                    'assign_batch' => $batch, 'assign_sem' => $semester))->result_array();
+        echo json_encode($data);
+    }
+    
+    /**
+     * check duplicate assignment
+     * @param int $id
+     */
+    
+    function checkassignment($id = '') {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $batch = $this->input->post('batch');
+        $semester = $this->input->post('semester');
+        $title = $this->input->post('title');
+        $data = $this->db->get_where('assignment_manager', array('assign_degree' => $degree,
+                    'course_id' => $course,
+                    'assign_title' => $title,
+                    'assign_batch' => $batch, 'assign_sem' => $semester, 'assign_id!=' => $id))->result_array();
+
+        echo json_encode($data);
+    }
+    
+    
 
 }

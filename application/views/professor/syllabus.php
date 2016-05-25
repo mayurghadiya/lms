@@ -14,31 +14,8 @@
                 </div>
             </div>
             <div class=panel-body>
-                <div class="col-md-12">
-                    <div class="form-group col-sm-2">
-                        <label><?php echo ucwords("Course"); ?></label>
-                        <select class="form-control filter-rows" id="filter2" data-filter="2" data-type="course">
-                            <option value="">All</option>
-                            <?php foreach ($degree as $row) { ?>
-                                <option value="<?php echo $row->d_name; ?>"
-                                        data-id="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                    <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group col-sm-2">
-                        <label><?php echo ucwords("Branch"); ?></label>
-                        <select id="filter3" name="branch" data-filter="3" class="form-control filter-rows" data-type="branch">
-                            <option value="">All</option>
-                        </select>
-                    </div>                                                             
-                    <div class="form-group col-sm-2">
-                        <label> <?php echo ucwords("Semester"); ?></label>
-                        <select id="filter4" name="semester" data-filter="4" class="form-control filter-rows" data-type="semester">
-                            <option value="">All</option>
-
-                        </select>
-                    </div>
-                </div>
+                
+                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsyllabus/');" href="#" id="navfixed" data-toggle="tab">Add Syllabus</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -91,8 +68,8 @@
                                 <td><?php echo wordwrap($row->syllabus_desc, 30, "<br>\n"); ?></td>
                                 <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/syllabus/' . $row->syllabus_filename; ?>" download="" title="<?php echo $row->syllabus_title; ?>"><i class="fa fa-download"></i></a></td>	                                                  
                                 <td class="menu-action">
-                                    <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_syllabus/<?php echo $row->syllabus_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/syllabus/delete/<?php echo $row->syllabus_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>
                                 </td>	
                             </tr>
                         <?php endforeach; ?>																										
