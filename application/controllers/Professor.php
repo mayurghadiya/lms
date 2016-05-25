@@ -2220,5 +2220,65 @@ class Professor extends MY_Controller {
         }
         echo $option;
     }
+    
+    /**
+     * manage profile
+     * @param String $param1
+     * @param int $param2
+     * @param type $param3
+     */
+    
+    function manage_profile($param1 = '', $param2 = '', $param3 = '') {
+        $this->load->model('admin/Crud_model');
+        if ($param1 == 'update_profile_info') {
+            if (!empty($_POST)) {
+
+                $data = array(
+                    'address' => $this->input->post('address'),
+                    'city' => $this->input->post('city'),
+                    'zip' => $this->input->post('zip_code'),
+                    'mobile' => $this->input->post('mobile'),
+                    'dob' => $this->input->post('dob'),
+                    'occupation' => $this->input->post('occupation'),
+                    'about' => $this->input->post('about')
+                );
+                if ($_FILES['userfile']['name'] != '') {
+
+
+                    $allowed_types = explode('|', 'gif|jpg|png|jpeg');
+
+                    $ext = explode(".", $_FILES['userfile']['name']);
+                    $ext_file = strtolower(end($ext));
+                    $file_name = date('dmYhis') . '.' . $ext_file;
+                    if (in_array($ext_file, $allowed_types)) {
+
+                        $upl_path = FCPATH . 'uploads/professor/' . $file_name;
+                        //  mkdir(FCPATH . 'uploads/professor', 0777);
+
+
+                        move_uploaded_file($_FILES['userfile']['tmp_name'], $upl_path);
+                        chmod($upl_path, 0777);
+                        $this->session->set_userdata('image_path', $file_name);
+                    } else {
+                        $file_name = '';
+                    }
+
+                    $data['image_path'] = $file_name;
+                }
+                $param2 = $this->session->userdata("login_user_id");
+                $this->Crud_model->save_professor($data, $param2);
+                $this->session->set_flashdata("flash_message", 'Profile update successfully');
+                redirect(base_url() . 'professor/manage_profile');
+
+                //$data['identification_num'] = rand(1111,9999);
+            }
+        }
+        $this->data['page'] = 'manage_profile';
+        $this->data['title'] = 'Manage Profile';
+        $this->data['degree_list'] = $this->Professor_model->get_all_degree();
+        $this->data['edit_data'] = $this->db->get_where('professor', array('professor_id' => $this->session->userdata('login_user_id')))->result_array();
+        $this->__site_template('professor/manage_profile', $this->data);
+    }
+
 
 }
