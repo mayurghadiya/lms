@@ -2,27 +2,25 @@
 $edit_data = $this->db->get_where('study_resources', array('study_id' => $param2))->result_array();
 foreach ($edit_data as $row):
     ?>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-primary" data-collapsed="0">
-                <div class="panel-heading">
-                    <div class="panel-title" >
-                        <i class="entypo-plus-circled"></i>
-                        <?php echo ucwords("Update Study Resources");?>
-                    </div>
-                </div>
+<div class=row>                      
+    <div class=col-lg-12>
+        <!-- col-lg-12 start here -->
+        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+            <!-- Start .panel -->
+            <div class=panel-heading>
+                <h4 class=panel-title>  <?php echo ucwords("Update Study Resources");?></h4>                
+            </div>       
                 <div class="panel-body">
                     <div class="tab-pane box" id="add" style="padding: 5px">
                         <div class="box-content">  
                             <div class="">
                                 <span style="color:red">* <?php echo "is ".ucwords("mandatory field");?></span> 
                             </div>   
-                            <?php echo form_open(base_url() . 'index.php?admin/studyresource/do_update/' . $row['study_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'frmeditstudyresource', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+                            <?php echo form_open(base_url() . 'admin/studyresource/do_update/' . $row['study_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'frmeditstudyresource', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"> <?php echo ucwords("department");?><span style="color:red">*</span></label>
                                 <div class="col-sm-5">
-                                    <select name="degree" id="degree2">
+                                    <select name="degree" id="degree2" class="form-control">
                                         <option value="">Select department</option>
                                         
                                         <option value="All" <?php if($row['study_degree']=="All"){ echo "selected=selected"; } ?> >All</option>
@@ -48,7 +46,7 @@ foreach ($edit_data as $row):
                                             <label class="col-sm-3 control-label"> <?php echo ucwords("Branch");?><span style="color:red">*</span></label>
                                             <div class="col-sm-5">
 
-                                                <select name="course" id="course2">
+                                                <select name="course" id="course2" class="form-control">
                                                     <option value="">Select Branch</option>
                                                      <option value="All" <?php if($row['study_course']=="All"){ echo "selected=selected"; } ?> >All</option>
                                                     <?php
@@ -66,7 +64,7 @@ foreach ($edit_data as $row):
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><?php echo ucwords("Batch ");?><span style="color:red">*</span></label>
                                 <div class="col-sm-5">
-                                    <select name="batch" id="batch2">
+                                    <select name="batch" id="batch2" class="form-control">
                                         <option value="">Select batch</option>
                                         <option value="All" <?php if($row['study_batch']=="All"){ echo "selected=selected"; } ?> >All</option>
                                         <?php
@@ -89,7 +87,7 @@ foreach ($edit_data as $row):
                             <div class="form-group"> 
                                 <label class="col-sm-3 control-label"><?php echo ucwords("Semester ");?><span style="color:red">*</span></label>
                                 <div class="col-sm-5">
-                                    <select name="semester" id="semester2">
+                                    <select name="semester" id="semester2" class="form-control">
                                         <option value="">Select semester</option>
                                           <option value="All" <?php if($row['study_sem']=="All"){ echo "selected=selected"; } ?> >All</option>
     <?php
@@ -109,7 +107,7 @@ foreach ($edit_data as $row):
                                     </select> 
                                 </div>
                             </div>
-                                <div class="form-group">
+                                <div class="form-group" >
                                 <label class="col-sm-3 control-label"><?php echo ucwords("Title ");?><span style="color:red">*</span></label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" name="title" id="title"  value="<?php echo $row['study_title']; ?>"/>
@@ -146,7 +144,7 @@ endforeach;
                 var dataString = "degree="+degree;
                 $.ajax({
                     type:"POST",
-                    url:"<?php echo base_url().'index.php?admin/get_courcestudy/'; ?>",
+                    url:"<?php echo base_url().'admin/get_courcestudy/'; ?>",
                     data:dataString,                   
                     success:function(response){
                        
@@ -167,14 +165,14 @@ endforeach;
                 var dataString = "course="+course+"&degree="+degree;
                 $.ajax({
                     type:"POST",
-                    url:"<?php echo base_url().'index.php?admin/get_batchs/'; ?>",
+                    url:"<?php echo base_url().'admin/get_batchs/'; ?>",
                     data:dataString,                   
                     success:function(response){
                         $("#batch2").html(response);
                         
                           $.ajax({
                                type:"POST",
-                               url:"<?php echo base_url().'index.php?admin/get_semesterall/all'; ?>",
+                               url:"<?php echo base_url().'admin/get_semesterall/all'; ?>",
                                data:{'course':course},                   
                                success:function(response){
 

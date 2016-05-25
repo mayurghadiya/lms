@@ -1,13 +1,12 @@
   <?php $group = $this->db->get('group')->result(); ?>
-<div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-primary" data-collapsed="0">
-                <div class="panel-heading">
-                    <div class="panel-title" >
-                        <i class="entypo-plus-circled"></i>
-                        <?php echo ucwords("Add Event");?>
-                    </div>
-                </div>
+<div class=row>                      
+    <div class=col-lg-12>
+        <!-- col-lg-12 start here -->
+        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+            <!-- Start .panel -->
+            <div class=panel-heading>
+                <h4 class=panel-title>  <?php echo ucwords("Add Event");?></h4>                
+            </div>   
                 <div class="panel-body"> 
 
 <div class="box-content">  
@@ -32,7 +31,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label"><?php echo ucwords("Description"); ?><span style="color:red">*</span></label>
                                             <div class="col-sm-5">
-                                                <textarea name="event_desc" rows="3"></textarea>									</div>
+                                                <textarea name="event_desc" class="form-control" rows="3"></textarea>									</div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label"><?php echo ucwords("Start Date"); ?><span style="color:red">*</span></label>

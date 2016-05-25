@@ -1,10 +1,14 @@
 <?php
 $edit_data = $this->db->get_where('event_manager', array('event_id' => $param2))->result_array();
 ?>
-<div class="panel panel-primary">
-    <div class="panel panel-heading">
-        <div class="panel-title"><?php echo ucwords("Update Event"); ?></div>
-    </div>
+<div class=row>                      
+    <div class=col-lg-12>
+        <!-- col-lg-12 start here -->
+        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+            <!-- Start .panel -->
+            <div class=panel-heading>
+                <h4 class=panel-title>  <?php echo ucwords("Update Event");?></h4>                
+            </div>       
     <div class="panel-body">
         <div class="tab-pane box" id="edit">
             <div class="box-content">
@@ -32,7 +36,7 @@ $edit_data = $this->db->get_where('event_manager', array('event_id' => $param2))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo ucwords("Description"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-7">
-                        <textarea name="event_desc" rows="4"><?php echo $row['event_desc']; ?></textarea>
+                        <textarea name="event_desc" class="form-control" rows="4"><?php echo $row['event_desc']; ?></textarea>
                     </div>
                 </div>
 

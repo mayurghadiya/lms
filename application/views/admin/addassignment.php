@@ -1,12 +1,11 @@
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-primary" data-collapsed="0">
-            <div class="panel-heading">
-                <div class="panel-title" >
-                    <i class="entypo-plus-circled"></i>
-                    <?php echo ucwords("Add Assignment"); ?>
-                </div>
-            </div>
+<div class=row>                      
+    <div class=col-lg-12>
+        <!-- col-lg-12 start here -->
+        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+            <!-- Start .panel -->
+            <div class=panel-heading>
+                <h4 class=panel-title>  <?php echo ucwords("Add Assignment");?></h4>                
+            </div>    
             <div class="panel-body"> 
 
                 <div class="box-content">  
@@ -26,7 +25,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-5">
-                                <select name="degree" id="degree">
+                                <select name="degree" id="degree" class="form-control">
                                     <option value="">Select department</option>
                                     <?php
                                     $degree = $this->db->get_where('degree', array('d_status' => 1))->result();
@@ -43,7 +42,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-5">
-                                <select name="course" id="course">
+                                <select name="course" id="course" class="form-control">
                                     <option value="">Select Branch</option>
                                 </select>
                             </div>
@@ -51,7 +50,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-5">
-                                <select name="batch" id="batch">
+                                <select name="batch" id="batch" class="form-control">
                                     <option value="">Select Batch</option>
 
                                 </select>
@@ -60,7 +59,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-5">
-                                <select name="semester" id="semester">
+                                <select name="semester" id="semester" class="form-control">
                                     <option value="">Select Semester</option>
                                     <?php
                                     $datasem = $this->db->get_where('semester', array('s_status' => 1))->result();
@@ -76,7 +75,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo ucwords("class"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-5">
-                                <select name="class" id="class">
+                                <select name="class" id="class" class="form-control">
                                     <option value="">Select class</option>
                                     <?php
                                     $class = $this->db->get('class')->result_array();

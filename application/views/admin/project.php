@@ -64,9 +64,11 @@
                     </div>
                     <div class="form-group col-sm-1">
                         <label>&nbsp;</label><br/>
-                        <button type="submit" class="submit btn btn-info vd_bg-green">Go</button>
+                        <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>
                     </div>
                 </form>
+                  <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addproject/');" href="#" id="navfixed" data-toggle="tab">Add New Project</a>
+                  <div id="getresponse">
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -151,13 +153,14 @@
                                 <td id="downloadedfile"> <a href="<?php echo $row->pm_url; ?>" download=""><i class="fa fa-download"></i></a></td>
                                 <td><?php echo date('F d, Y', strtotime($row->pm_dos)); ?></td>	
                                 <td class="menu-action">
-                                    <a><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a><span class="label label-danger mr6 mb6">Delete</span></a>
+                                  <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
+                                   <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/project/delete/<?php echo $row->pm_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>															
                     </tbody>
                 </table>
+                  </div>
             </div>
         </div>
         <!-- End .panel -->
@@ -169,3 +172,96 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+
+ 
+<script type="text/javascript">
+	$(document).ready(function() {
+		"use strict";				
+		$('#data-tabless').DataTable( {
+             aoColumnDefs: [
+                {
+                   bSortable: false,
+                   aTargets: [ -1 ]
+                }
+              ]
+        } );
+
+	} );
+</script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            
+            $('#project-data-tables').dataTable();
+        });
+    </script>
+
+  
+ <script type="text/javascript">
+       $("#searchform #btnsubmit").click(function(){
+           var degree =  $("#courses").val();
+           var course =  $("#branches").val();
+           var batch =  $("#batches").val();
+            var semester = $("#semesters").val();
+            var divclass = $("#filterclass").val();
+            $.ajax({
+                type:"POST",
+                url:"<?php echo base_url(); ?>admin/getprojects/allproject",
+                data:{'degree':degree,'course':course,'batch':batch,"semester":semester,"divclass":divclass},
+                success:function(response)
+                {
+                    $("#getresponse").html(response);
+                }
+                
+                
+            });
+             return false;
+         });
+         $("#courses").change(function(){
+                var degree = $(this).val();
+                
+                var dataString = "degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'admin/get_course/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                        $("#branches").html(response);
+                    }
+                });
+        });
+         $("#branches").change(function(){
+                //var course = $(this).val();
+                // var degree = $("#degree").val();
+                var degree = $("#courses").val();
+                var course = $("#branches").val();
+                var dataString = "course="+course+"&degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'admin/get_batches/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                        $("#batches").html(response);
+                    }
+                });
+        });
+        
+        $(document).ready(function () {
+            "use strict";
+            $('#sub-tables').dataTable({
+                "order": [[0, "desc"]],
+                "dom": "<'row'<'col-sm-6'><'col-sm-6'f>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
+            });
+            $('.sfilter-rows').on('change', function () {
+                var filter_id = $(this).attr('data-filter');
+                filter_column(filter_id);
+            });
+
+            function filter_column(filter_id) {
+                $('#sub-tables').DataTable().column(filter_id).search(
+                        $('#sfilter' + filter_id).val()
+                        ).draw();
+            }
+        });
+    </script>
