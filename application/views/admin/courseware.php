@@ -46,7 +46,7 @@
                                 </td>
                                 <td class="menu-action">
                                      
-                                   <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>index.php?admin/courseware/delete/<?php echo $row['courseware_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
+                                   <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/courseware/delete/<?php echo $row['courseware_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
                                 </td>
                             </tr>
                             <?php

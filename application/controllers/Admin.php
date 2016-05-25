@@ -18,7 +18,9 @@ class Admin extends MY_Controller {
         //load the common crud model
         $this->load->model('admin/Crud_model');
         $this->load->model('forum_model');
+        $this->load->model('professor/Professor_model');
         $this->load->model('photo_gallery');
+        
     }
 
     /**
