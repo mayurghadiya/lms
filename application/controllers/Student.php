@@ -725,5 +725,19 @@ class Student extends MY_Controller {
             . '<div class="col-sm-5" >' . $res[0]['pp_desc'] . '</div>';
         }
     }
+    
+    /**
+     * assessment
+     */
+    public function assessment()
+    {
+              
+            $this->load->model('Student/Student_model');
+        $this->data['assessments'] = $this->Student_model->student_assessment();
+        
+        $this->data['page'] = 'assessment';
+        $this->data['title'] = 'Assessment';
+        $this->__site_template('student/assessment', $this->data);
+    }
 
 }

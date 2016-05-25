@@ -38,7 +38,7 @@
             <div id="header">
                 <nav class="navbar navbar-default" role=navigation>
                     <div class="navbar-header">
-                        <a class="navbar-brand" href=index.html>
+                        <a class="navbar-brand" href="<?php echo base_url(); ?>">
                             <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="logo">
                         </a>
                     </div>
