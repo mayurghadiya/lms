@@ -13,56 +13,35 @@
                     <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
                 </div>
             </div>
-
-
-            
-
-            <div class="vd_content-section clearfix">
-                <div class="row">
-                    <div class="col-sm-12">								
-
-
-                        <!------CONTROL TABS START------>
-                        <ul class="nav nav-tabs bordered">
-                            <li class="active">
-                                <a href="#list" data-toggle="tab"><i class="entypo-menu"></i> 
-                                    <?php echo ucwords("Participate List");?>
-                                </a></li>
-                            <li>
-                                <a href="#add" data-toggle="tab"><i class="entypo-plus-circled"></i>
-                                    <?php echo ucwords("Add Participate");?>
-                                </a></li>
-                           
-                            <li>
-                                <a href="#survey" data-toggle="tab"><i class="entypo-plus-circled"></i>
-                                    <?php echo ucwords("Survey List");?>
-                                </a></li> 
-                                 <li>
-                                <a href="#addsurvey" data-toggle="tab"><i class="entypo-plus-circled"></i>
-                                    <?php echo ucwords("Add survey Question");?>
-                                </a></li>
-                            <li>
-                                <a href="#newlist" data-toggle="tab"><i class="entypo-plus-circled"></i>
-                                    <?php echo ucwords("Question List");?>
-                                </a></li>
-                            <li>
-
-                                <a href="#listing" data-toggle="tab"><i class="entypo-plus-circled"></i>
-                                    <?php echo ucwords("Activity List");?>
-                                </a></li> 
-                            <li>
-                                <a href="#uploads" data-toggle="tab"><i class="entypo-plus-circled"></i>
-                                    <?php echo ucwords("Upload List");?>
-                                </a></li>
-
-                        </ul>
-                        <!------CONTROL TABS END------>
-
-                        <div class="tab-content">
-                            <!----TABLE LISTING STARTS-->
-                            <div class="tab-pane box active" id="list">								
-                                <div class="panel-body table-responsive">
-                                    <table class="table table-striped" id="data-tables">
+                
+            <div class="tabs mb20">
+                    <ul id="import-tab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#list" data-toggle="tab" aria-expanded="true"><?php echo ucwords("Participate List");?></a>                            
+                        </li>
+                        <li class="">
+                            <a href="#add" data-toggle="tab" aria-expanded="false"> <?php echo ucwords("Add Participate");?></a>
+                        </li>
+                        <li class="">
+                            <a href="#survey" data-toggle="tab" aria-expanded="false">  <?php echo ucwords("Survey List");?></a>
+                        </li>
+                        <li class="">
+                            <a href="#addsurvey" data-toggle="tab" aria-expanded="false">  <?php echo ucwords("Add survey Question");?></a>
+                        </li>
+                         <li class="">
+                            <a href="#newlist" data-toggle="tab" aria-expanded="false">  <?php echo ucwords("Question List");?></a>
+                        </li>
+                         <li class="">
+                            <a href="#listing" data-toggle="tab" aria-expanded="false"> <?php echo ucwords("Activity List");?></a>
+                        </li>
+                         <li class="">
+                            <a href="#uploads" data-toggle="tab" aria-expanded="false"> <?php echo ucwords("Upload List");?></a>
+                        </li>                        
+                    </ul>
+                    <div id="import-tab-content" class="tab-content">
+                        <div class="tab-pane fade active in" id="list">
+                             <div class="panel-body table-responsive">
+                                    <table class="table table-striped" id="datatable-list">
                                         <thead>
                                             <tr>
                                                 <th><div>#</div></th>											
@@ -144,9 +123,9 @@
                                                     <td><?php  echo date_formats($row->pp_dos); ?></td>	
 
                                                     <td class="menu-action">
-                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>index.php?modal/popup/modal_edit_participate/<?php echo $row->pp_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_participate/<?php echo $row->pp_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
 
-                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>index.php?admin/participate/delete/<?php echo $row->pp_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"><i class="fa fa-times"></i></a>	
+                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/participate/delete/<?php echo $row->pp_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>	
                                                     </td>	
                                                 </tr>
                                             <?php endforeach; ?>						
@@ -155,22 +134,20 @@
 
 
                                 </div>
-                            </div>
-                            <!----TABLE LISTING ENDS--->
+                            
+                        </div> <!-- Participate list end -->
 
-
-                            <!----CREATION FORM STARTS---->
-                            <div class="tab-pane box" id="add" style="padding: 5px">
-                                <div class="box-content">       
+                        <div class="tab-pane fade out" id="add">
+                            <div class="box-content">       
                                 <div class="">
                                     <span style="color:red">* <?php echo "is ".ucwords("mandatory field");?></span> 
                                 </div>                                      
-                                    <?php echo form_open(base_url() . 'index.php?admin/participate/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmparticipate', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+                                    <?php echo form_open(base_url() . 'admin/participate/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmparticipate', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                                     <div class="padded">											
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label"><?php echo ucwords("department ");?><span style="color:red">*</span></label>
                                             <div class="col-sm-5">
-                                                <select name="degree" id="degree">
+                                                <select name="degree" id="degree"  class="form-control">
                                                     <option value="">Select department</option>
                                                     <option value="All">All</option>
                                                     <?php
@@ -187,7 +164,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label"><?php echo ucwords("Branch ");?><span style="color:red">*</span></label>
                                             <div class="col-sm-5">
-                                                <select name="course" id="course">
+                                                <select name="course" id="course"  class="form-control">
                                                     <option value="">Select Branch</option>
                                                   <option value="All">All</option>
                                                     <?php
@@ -205,7 +182,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label"><?php echo ucwords("Batch ");?><span style="color:red">*</span></label>
                                             <div class="col-sm-5">
-                                                <select name="batch" id="batch" onchange="get_student2(this.value);" >
+                                                <select name="batch" id="batch" onchange="get_student2(this.value);"  class="form-control" >
                                                     <option value="">Select batch</option>
                                                     <option value="All">All</option>
                                                     <?php
@@ -222,7 +199,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label"><?php echo ucwords("Semester ");?><span style="color:red">*</span></label>
                                             <div class="col-sm-5">
-                                                <select name="semester" id="semester" onchange="get_students2(this.value);">
+                                                <select name="semester" id="semester" onchange="get_students2(this.value);"  class="form-control">
                                                     <option value="">Select Semester</option>
                                                     <option value="All">All</option>
                                                     <?php
@@ -265,95 +242,9 @@
                                     </div>                
                                 </div>
                                 <!----CREATION FORM ENDS-->
-                            </div>
-                            
-                            
-                            
-                            <!----CREATION FORM STARTS---->
-                            <div class="tab-pane box" id="addsurvey" style="padding: 5px">
-                                <div class="box-content">                   
-<div class="">
-                                    <span style="color:red">* <?php echo "is ".ucwords("mandatory field");?></span> 
-                                </div>  
-                                    <?php echo form_open(base_url() . 'index.php?admin/survey/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmsurvey', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
-                                    <div class="padded">                                            
-
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Question ");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
-                                                <input type="text" class="form-control" name="question" id="question" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Short Description ");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
-                                                <textarea class="form-control" name="description" id="description"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Status ");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
-                                                <input type="radio" id="status" name="status" value="1" >Active
-                                                <input type="radio" id="status" name="status" value="0" > Deactive
-                                                <label for="status" class="error"></label>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-3 col-sm-5">
-                                                <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add ");?></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </form>           
-
-
-                                </div>
-
-                            </div>
-
-
-
-                            <!----CREATION FORM ENDS-->
-                            
-                            
-                            <div class="tab-pane box" id="survey">		
-                                <div class="tab-pane box" id="list">
-                                             <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("department");?></label>
-                                    <select class="form-control pfilter-rows" id="pfilter2" data-filter="2" data-type="course">
-                                        <option value="">All</option>
-                                        <?php foreach ($degree as $row) { ?>
-                                            <option value="<?php echo $row->d_name; ?>"
-                                                    data-id="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                                <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Branch");?></label>
-                                    <select id="pfilter3" name="branch" data-filter="3" class="form-control pfilter-rows" data-type="branch">
-                                        <option value="">All</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Batch");?></label>
-                                    <select id="pfilter4" name="batch" data-filter="4" class="form-control pfilter-rows" data-type="batch">
-                                        <option value="">All</option>
-                                    </select>
-                                </div>                                
-                                <div class="form-group col-sm-2">
-                                    <label> <?php echo ucwords("Semester");?></label>
-                                    <select id="pfilter5" name="semester" data-filter="5" class="form-control pfilter-rows" data-type="semester">
-                                        <option value="">All</option>
-
-                                    </select>
-                                </div>
-                                 <label style="margin-left: 40px; margin-top: 30px;">OR</label>
-                              
-                                    <div class="panel-body table-responsive" id="getresponse">
+                        </div>
+                        <div class="tab-pane fade out" id="survey">
+                               <div class="panel-body table-responsive" id="getresponse">
                                         <table class="table table-striped" id="survey-table">
                                             <thead>
                                                 <tr>
@@ -426,7 +317,7 @@
                                                             //echo $row->survey_status;
                                                             $queid = $question[0];
                                                             //echo 'dss'.$queid;
-                                                            $question1 = $this->crud_model->getquestion('survey_question', $queid);
+                                                            $question1 = $this->Crud_model->getquestion('survey_question', $queid);
                                                             echo $question1;
                                                             ?>
                                                         </td>
@@ -447,18 +338,61 @@
                                                             ?></td>
 
                                                         <td class="menu-action">
-                                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>index.php?modal/popup/modal_survey_detal/<?php echo $row->survey_id; ?>');" data-original-title="View Detail" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"><i class="fa fa-file-o"></i></a>
+                                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_survey_detal/<?php echo $row->survey_id; ?>');" data-original-title="View Detail" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"><i class="fa fa-file-o"></i></a>
                                                         </td>  
                                                     </tr>
                                                 <?php endforeach; ?>                        
                                             </tbody>
                                         </table>
                                     </div>
+                              
+
+                        </div> <!-- end  -->
+                        <div class="tab-pane fade out" id="addsurvey">
+                            <div class="box-content">                   
+                                <div class="">
+                                    <span style="color:red">* <?php echo "is ".ucwords("mandatory field");?></span> 
+                                </div>  
+                                    <?php echo form_open(base_url() . 'admin/survey/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmsurvey', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+                                    <div class="padded">                                            
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><?php echo ucwords("Question ");?><span style="color:red">*</span></label>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control" name="question" id="question" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><?php echo ucwords("Short Description ");?><span style="color:red">*</span></label>
+                                            <div class="col-sm-5">
+                                                <textarea class="form-control" name="description" id="description"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><?php echo ucwords("Status ");?><span style="color:red">*</span></label>
+                                            <div class="col-sm-5">
+                                                <input type="radio" id="status" name="status" value="1" >Active
+                                                <input type="radio" id="status" name="status" value="0" > Deactive
+                                                <label for="status" class="error"></label>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-3 col-sm-5">
+                                                <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add ");?></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </form>           
+
+
                                 </div>
-                            </div>
-                            
-                            <div class="tab-pane box" id="newlist">								
-                                <div class="panel-body table-responsive">
+                        </div>
+                        <div class="tab-pane fade out" id="newlist">
+                            <div class="panel-body table-responsive">
                                     <table class="table table-striped" id="data-tabless">
                                         <thead>
                                             <tr>
@@ -489,51 +423,17 @@
                                                         
                                                         <?php //echo ($rowq->question_status == "1") ? 'Active' : 'Deactive'; ?></td>    
 
-                                                    <td>  <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>index.php?modal/popup/modal_edit_question/<?php echo $rowq->sq_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"><i class="fa fa-pencil"></i></a>
+                                                    <td>  <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_question/<?php echo $rowq->sq_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
 
-                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>index.php?admin/survey/delete/<?php echo $rowq->sq_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"><i class="fa fa-times"></i></a>	</td>
+                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/survey/delete/<?php echo $rowq->sq_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>	</td>
                                                 </tr>
                                             <?php endforeach; ?>                        
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-
-
-                            <div class="tab-pane box" id="listing">	
-                                 <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("department");?></label>
-                                    <select class="form-control filter-rows" id="filter4" data-filter="4" data-type="course">
-                                        <option value="">All</option>
-                                        <?php foreach ($degree as $row) { ?>
-                                            <option value="<?php echo $row->d_name; ?>"
-                                                    data-id="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                                <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Branch");?></label>
-                                    <select id="filter5" name="branch" data-filter="5" class="form-control filter-rows" data-type="branch">
-                                        <option value="">All</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Batch");?></label>
-                                    <select id="filter6" name="batch" data-filter="6" class="form-control filter-rows" data-type="batch">
-                                        <option value="">All</option>
-                                    </select>
-                                </div>                                
-                                <div class="form-group col-sm-2">
-                                    <label> <?php echo ucwords("Semester");?></label>
-                                    <select id="filter7" name="semester" data-filter="7" class="form-control filter-rows" data-type="semester">
-                                        <option value="">All</option>
-
-                                    </select>
-                                </div>
-                                <label style="margin-left: 40px; margin-top: 30px;">OR</label>
-                                
-                                 
-                                <div class="panel-body table-responsive" id="getsubmit">
+                        </div>
+                        <div class="tab-pane fade out" id="listing">
+                            <div class="panel-body table-responsive" id="getsubmit">
                                     <table class="table table-striped" id="data-tables-activity">
                                         <thead>
                                             <tr>
@@ -589,49 +489,17 @@
                                                             echo $user[0]['s_name'];
                                                         }
                                                         ?></td>	
-                                                <td><a href="<?php echo base_url(); ?>index.php?admin/confirmparticipate/<?php echo $rows['participate_student_id']; ?>" class="btn btn-info vd_bg-green">Disapprove</a></td>	                                                    
+                                                <td><a href="<?php echo base_url(); ?>admin/confirmparticipate/<?php echo $rows['participate_student_id']; ?>" class="btn btn-info vd_bg-green">Disapprove</a></td>	                                                    
 
                                                 </tr>
 <?php endforeach; ?>						
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-
-                            <div class="tab-pane box" id="uploads">
-                             
-                                <div class="panel-body table-responsive" id="upd_getsubmit">
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("department");?></label>
-                                    <select class="form-control ufilter-rows" id="ufilter2" data-filter="2" data-type="course">
-                                        <option value="">All</option>
-                                        <?php foreach ($degree as $row) { ?>
-                                            <option value="<?php echo $row->d_name; ?>"
-                                                    data-id="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                                <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Branch");?></label>
-                                    <select id="ufilter3" name="branch" data-filter="3" class="form-control ufilter-rows" data-type="branch">
-                                        <option value="">All</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Batch");?></label>
-                                    <select id="ufilter4" name="batch" data-filter="4" class="form-control ufilter-rows" data-type="batch">
-                                        <option value="">All</option>
-                                    </select>
-                                </div>                                
-                                <div class="form-group col-sm-2">
-                                    <label> <?php echo ucwords("Semester");?></label>
-                                    <select id="ufilter5" name="semester" data-filter="5" class="form-control ufilter-rows" data-type="semester">
-                                        <option value="">All</option>
-
-                                    </select>
-                                </div>
-                                 <label style="margin-left: 40px; margin-top: 30px;">OR</label>
-  
+                        </div>                        
+                        <!-- tab content -->
+                        <div class="tab-pane fade" id="uploads">
+                             <div class="panel-body table-responsive" id="upd_getsubmit">                               
                                     <table class="table table-striped" id="uploaded-table">
                                         <thead>
                                             <tr>
@@ -693,20 +561,20 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-
 
                         </div>
+
                     </div>
-                </div>
-            </div>              
+
+                </div>                 
         </div>
         <!-- row --> 
     </div>
 </div>
-    <script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.js"></script>
-    <script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.validate.min.js"></script>
+    
+    
     <script type="text/javascript">
+        $(document).ready(function(){
          $("#upd_searchform").validate({
             rules: {
                 degree:"required",
@@ -751,7 +619,7 @@
                           semester:"select semester",
                       }
                   });
-    
+    });
     $("#upd_courses").change(function(){
                 var degree = $(this).val();
                 
@@ -976,7 +844,7 @@ $("#courses").change(function(){
                     }
                 });
         });
-        $("#degree").change(function () {
+        $("#degree").change(function () {        
             var degree = $(this).val();
 
             var dataString = "degree=" + degree;
@@ -1068,13 +936,14 @@ $("#courses").change(function(){
 
 
 
-        $.validator.setDefaults({
+      
+        $().ready(function () {
+          $.validator.setDefaults({
             submitHandler: function (form) {
                 form.submit();
             }
         });
 
-        $().ready(function () {
 
          $("#frmsurvey").validate({
             rules: {
@@ -1090,8 +959,9 @@ $("#courses").change(function(){
         });
 
             $("#dateofsubmission").datepicker({
-                dateFormat: ' MM dd, yy',
-                minDate: 0
+                dateFormat: ' M D, yyyy',
+                minDate: 0,
+                autoclose:true,
             });
             jQuery.validator.addMethod("character", function (value, element) {
                 return this.optional(element) || /^[A-z]+$/.test(value);
@@ -1127,159 +997,14 @@ $("#courses").change(function(){
             });
         });
 
-        $(document).ready(function () {
-        "use strict";
-        $('#data-tabless').dataTable();
+        $(document).ready(function () {      
+        $('#data-tabless').DataTable();
+            $('#survey-table').DataTable();
+
+             $('#data-tables-activity').DataTable();
+             $('#uploaded-table').DataTable();
+        
         });
 
 
     </script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		"use strict";				
-		$('#data-tablessearch').DataTable( {
-             aoColumnDefs: [
-                {
-                   bSortable: false,
-                   aTargets: [ -1 ]
-                }
-              ]
-        } );
-
-	} );
-</script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		"use strict";				
-		$('#data-tablesupd').DataTable( {
-             aoColumnDefs: [
-                {
-                   bSortable: false,
-                   aTargets: [ -1 ]
-                }
-              ]
-        } );
-
-	} );
-</script>
-<script type="text/javascript">
-        $(document).ready(function () {
-            "use strict";
-            $('#data-tables-activity').dataTable({
-                "order": [[0, "desc"]],
-                "dom": "<'row'<'col-sm-6'><'col-sm-6'f>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
-            });
-            $('.filter-rows').on('change', function () {
-                var filter_id = $(this).attr('data-filter');
-                filter_column(filter_id);
-            });
-
-            function filter_column(filter_id) {
-                $('#data-tables-activity').DataTable().column(filter_id).search(
-                        $('#filter' + filter_id).val()
-                        ).draw();
-            }
-        });
-    </script>
-
-    <style>
-        #data-tables-activity_filter{
-            margin-top: -50px;
-        }
-    </style>
-<script type="text/javascript">
-        $(document).ready(function () {
-            "use strict";
-            $('#upload-data-table').dataTable({
-                "order": [[0, "desc"]],
-                "dom": "<'row'<'col-sm-6'><'col-sm-6'f>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
-            });
-            $('.sfilter-rows').on('change', function () {
-                var filter_id = $(this).attr('data-filter');
-                filter_column(filter_id);
-            });
-
-            function filter_column(filter_id) {
-                $('#upload-data-table').DataTable().column(filter_id).search(
-                        $('#filter' + filter_id).val()
-                        ).draw();
-            }
-        });
-           $(document).ready(function() {
-		"use strict";				
-		$('#data-tablesupd').dataTable();
-	});
-    </script>
-
-    <style>
-        #upload-data-table_filter{
-            margin-top: -50px;
-        }
-    </style>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            "use strict";
-            $('#survey-table').dataTable({
-                "order": [[0, "asc"]],
-                "dom": "<'row'<'col-sm-6'><'col-sm-6'f>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
-            });
-            $('.pfilter-rows').on('change', function () {
-                var filter_id = $(this).attr('data-filter');
-                filter_column(filter_id);
-            });
-
-            function filter_column(filter_id) {
-                $('#survey-table').DataTable().column(filter_id).search(
-                        $('#pfilter' + filter_id).val()
-                        ).draw();
-            }
-        });
-           $(document).ready(function() {
-		"use strict";				
-		$('#survey-table').dataTable();
-	});
-    </script>
-
-    <style>
-        #survey-table_filter{
-            margin-top: -50px;
-        }
-    </style>
-  <script type="text/javascript">
-        $(document).ready(function () {
-            "use strict";
-            $('#uploaded-table').dataTable({
-                "dom": "<'row'<'col-sm-6'><'col-sm-6'f>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
-            });
-            $('.ufilter-rows').on('change', function () {
-                var filter_id = $(this).attr('data-filter');
-                filter_column(filter_id);
-            });
-
-            function filter_column(filter_id) {
-                $('#uploaded-table').DataTable().column(filter_id).search(
-                        $('#ufilter' + filter_id).val()
-                        ).draw();
-            }
-        });
-           $(document).ready(function() {
-		"use strict";				
-		$('#uploaded-table').dataTable();
-	});
-    </script>
-
-    <style>
-        #uploaded-table_filter{
-            margin-top: -50px;
-        }
-    </style>
-    
