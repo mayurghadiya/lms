@@ -67,3 +67,40 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
+    
+<script type="text/javascript">
+    $.validator.setDefaults({
+        submitHandler: function(form) {			
+            form.submit();
+        }
+    });
+    
+    $().ready(function() {	
+        
+        jQuery.validator.addMethod("character", function(value, element) {
+            return this.optional( element ) ||  /^[A-z]+$/.test( value );
+        }, 'Please enter a valid character');
+        
+        $("#frmsurvey").validate({		
+            
+            rules: {
+                <?php $countf = 1; foreach($survey as $counts): ?>
+                Field<?php echo $countf; ?>: "required",
+                <?php
+$countf++;
+                 endforeach; ?>
+                strength: "required",
+                weekness: "required",
+            },
+            messages: {
+                <?php $counter = 1; foreach($survey as $countss): ?>
+                Field<?php echo $counter; ?>: "Please select <?php  echo $countss->question; ?>",
+                <?php $counter++; endforeach; ?> 
+                strength: "Enter strength of our school",
+                weekness: "Enter weekness of our school",				
+            }
+        });
+    });
+</script>
+

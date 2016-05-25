@@ -81,4 +81,51 @@ $res = $this->db->query("SELECT * FROM participate_manager WHERE pp_id not in (s
     </div>
     <!-- End contentwrapper -->
 </div>
+
+
+ 
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
 <!-- End #content -->
+    <script type="text/javascript">
+        
+        $("#pp_id").change(function(){
+            var pp_id = $(this).val();
+           $.ajax({
+              type:"POST" ,
+              url:"<?php echo base_url(); ?>student/get_desc",
+              data:{'pp_id':pp_id},
+              success:function(response)
+              {
+                 $("#description").html(response);
+              }    
+               
+           }); 
+        });
+       
+
+                                                    $.validator.setDefaults({
+                                                        submitHandler: function (form) {
+
+                                                            //  filecheck(img);
+                                                            form.submit();
+
+                                                        }
+                                                    });
+
+                                                    $().ready(function () {
+                                                        
+
+                                                       
+                                                        $("#frmproject").validate({
+                                                            rules: {
+                                                                pp_id:"required",
+                                                                p_status:"required",                                                               
+                                                            },
+                                                            messages: {
+                                                                pp_id:"Please select participation",
+                                                                p_status:"Please select your interest",                                                                        
+                                                               
+                                                            }
+                                                        });
+                                                    });
+    </script>

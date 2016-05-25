@@ -491,7 +491,7 @@ class Student extends MY_Controller {
             $data['pm_student_id'] = $this->input->post('student');
             $data['created_date'] = date('Y-m-d');
             $this->db->insert('project_manager', $data);
-            $this->session->set_flashdata('flash_message', get_phrase('data_added_successfully'));
+            $this->session->set_flashdata('flash_message', 'Project added successfully');
             redirect(base_url() . 'student/project/submission', 'refresh');
         }
         if ($param1 == "submit_project") {
@@ -515,7 +515,7 @@ class Student extends MY_Controller {
             $data['student_id'] = $this->session->userdata('std_id');
             $data['dos'] = date('Y-m-d');
             $this->db->insert('project_document_submission', $data);
-            $this->session->set_flashdata('flash_message', get_phrase('project_added_successfully'));
+            $this->session->set_flashdata('flash_message', 'Project added successfully');
             redirect(base_url() . 'student/project/submission', 'refresh');
         }
         if ($param1 == "submission") {
@@ -711,6 +711,19 @@ class Student extends MY_Controller {
         $this->m_pdf->pdf->WriteHTML($html);
         //download it.
         $this->m_pdf->pdf->Output($pdfFilePath, "D");
+    }
+    
+    /**
+     * get volunteer description
+     */
+    
+    function get_desc() {
+        $pp_id = $this->input->post('pp_id');
+        if ($pp_id != "") {
+            $res = $this->db->get_where('participate_manager', array('pp_id' => $pp_id))->result_array();
+            echo '<label class="col-sm-3 control-label">Description : </label>'
+            . '<div class="col-sm-5" >' . $res[0]['pp_desc'] . '</div>';
+        }
     }
 
 }
