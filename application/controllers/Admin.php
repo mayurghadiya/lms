@@ -4895,6 +4895,56 @@ class Admin extends MY_Controller {
         }
         echo $html;
     }
+    
+    
+    /**
+     * survey
+     * @param String $param
+     * @param int $param2
+     */
+     function survey($param = '', $param2 = '') {
+        if ($param == 'create') {
+
+
+            $indata['question'] = $this->input->post('question');
+            $indata['question_status'] = $this->input->post('status');
+            $indata['question_description'] = $this->input->post('description');
+
+            $this->db->insert("survey_question", $indata);
+            $this->session->set_flashdata('flash_message', 'Question Added Successfully');
+            redirect(base_url('admin/participate'));
+        }
+        if ($param == 'do_update') {
+            if (!empty($param2)) {
+                $indata['question'] = $this->input->post('question');
+                $indata['question_status'] = $this->input->post('status');
+                $indata['question_description'] = $this->input->post('description');
+
+                $this->db->where("sq_id", $param2);
+                $this->db->update("survey_question", $indata);
+                $this->session->set_flashdata('flash_message', 'Question Update Successfully');
+            }
+            redirect(base_url('admin/participate'));
+        }
+        if ($param == 'delete') {
+            if (!empty($param2)) {
+                $this->db->where("sq_id", $param2);
+                $this->db->delete("survey_question");
+                $this->session->set_flashdata('flash_message', 'Question Delete Successfully');
+            }
+            redirect(base_url('admin/participate'));
+        }
+
+        /* $data['page_name'] = 'survey_form';
+          $data['page_title'] = 'Survey Question';
+          $this->session->set_flashdata('flash_message','question_added_successfully');
+          redirect(base_url().'admin/participate');
+         */
+
+        //$this->load->view('backend/index', $data);
+    }
+
+    /* end  */
 
   
 
