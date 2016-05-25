@@ -37,7 +37,7 @@
 
                                 <tr>
                                     <td></td>
-                                    
+
                                     <td style="width: 20%">
                                         <?php
                                         if (!empty($row->email_to)) {

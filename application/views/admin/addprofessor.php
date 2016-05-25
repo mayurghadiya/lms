@@ -187,7 +187,7 @@ $degree_list = $this->db->get('degree')->result();
                 url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
                 type: 'get',
                 success: function (content) {
-                    var branch = jQuery.parseJSON(content);                    
+                    var branch = jQuery.parseJSON(content);
                     $.each(branch, function (key, value) {
                         $('#branch').append('<option value=' + value.course_id + '>' + value.c_name + '</option>');
                     });

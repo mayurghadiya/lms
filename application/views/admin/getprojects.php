@@ -1,100 +1,100 @@
 <?php if ($param == 'allproject') { ?>
-  
-        <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables">
-            <thead>
+
+    <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables">
+        <thead>
+            <tr>
+                <th><div>#</div></th>											
+                <th><div>Project Title</div></th>
+                <th><div>Student Name</div></th>											
+                <th><div>Course</div></th>	
+                <th><div>Branch</div></th>
+                <th><div>Batch</div></th>											
+                <th><div>Semester</div></th>
+                <th><div><?php echo ucwords("class"); ?></div></th>
+                <th><div>File</div></th>
+                <th><div>Date of submission</div></th>											
+
+                <th><div>Action</div></th>											
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $count = 1;
+            foreach ($project as $row):
+                ?>
                 <tr>
-                    <th><div>#</div></th>											
-                    <th><div>Project Title</div></th>
-                    <th><div>Student Name</div></th>											
-                    <th><div>Course</div></th>	
-                    <th><div>Branch</div></th>
-                    <th><div>Batch</div></th>											
-                    <th><div>Semester</div></th>
-                    <th><div><?php echo ucwords("class"); ?></div></th>
-                    <th><div>File</div></th>
-                    <th><div>Date of submission</div></th>											
+                    <td><?php echo $count++; ?></td>	
+                    <td><?php echo $row->pm_title; ?></td>	
+                    <td>
+                        <?php
+                        $stu = explode(',', $row->pm_student_id);
 
-                    <th><div>Action</div></th>											
+                        foreach ($student as $std) {
+                            if (in_array($std->std_id, $stu)) {
+                                echo $std->std_first_name . '&nbsp' . $std->std_last_name . ', ';
+                            }
+                        }
+                        ?>
+                    </td>   
+                    <td>
+                        <?php
+                        foreach ($degree as $deg) {
+                            if ($deg->d_id == $row->pm_degree) {
+                                echo $deg->d_name;
+                            }
+                        }
+                        ?>
+                    </td>	
+                    <td>
+                        <?php
+                        foreach ($course as $crs) {
+                            if ($crs->course_id == $row->pm_course) {
+                                echo $crs->c_name;
+                            }
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        foreach ($batch as $bch) {
+                            if ($bch->b_id == $row->pm_batch) {
+                                echo $bch->b_name;
+                            }
+                        }
+                        ?>
+                    </td>	
+                    <td>
+                        <?php
+                        foreach ($semester as $sem) {
+                            if ($sem->s_id == $row->pm_semester) {
+                                echo $sem->s_name;
+                            }
+                        }
+                        ?>
+
+                    </td>
+                    <td>
+                        <?php
+                        foreach ($class as $c) {
+                            if ($c->class_id == $row->class_id) {
+                                echo $c->class_name;
+                            }
+                        }
+                        ?>
+                    </td>
+                    <td> <a href="<?php echo $row->pm_url; ?>" download=""><i class="fa fa-download"></i></a></td>
+                    <td><?php echo date("F d, Y", strtotime($row->pm_dos)); ?></td>	
+
+                    <td class="menu-action">
+                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">Edit</span></a>
+                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/project/delete/<?php echo $row->pm_id; ?>');" title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>	
+
+                    </td>	
                 </tr>
-            </thead>
-            <tbody>
-                <?php
-                $count = 1;
-                foreach ($project as $row):
-                    ?>
-                    <tr>
-                        <td><?php echo $count++; ?></td>	
-                        <td><?php echo $row->pm_title; ?></td>	
-                        <td>
-                            <?php
-                            $stu = explode(',', $row->pm_student_id);
+            <?php endforeach; ?>						
+        </tbody> 
+    </table>
 
-                            foreach ($student as $std) {
-                                if (in_array($std->std_id, $stu)) {
-                                    echo $std->std_first_name . '&nbsp' . $std->std_last_name . ', ';
-                                }
-                            }
-                            ?>
-                        </td>   
-                        <td>
-                            <?php
-                            foreach ($degree as $deg) {
-                                if ($deg->d_id == $row->pm_degree) {
-                                    echo $deg->d_name;
-                                }
-                            }
-                            ?>
-                        </td>	
-                        <td>
-                            <?php
-                            foreach ($course as $crs) {
-                                if ($crs->course_id == $row->pm_course) {
-                                    echo $crs->c_name;
-                                }
-                            }
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            foreach ($batch as $bch) {
-                                if ($bch->b_id == $row->pm_batch) {
-                                    echo $bch->b_name;
-                                }
-                            }
-                            ?>
-                        </td>	
-                        <td>
-                            <?php
-                            foreach ($semester as $sem) {
-                                if ($sem->s_id == $row->pm_semester) {
-                                    echo $sem->s_name;
-                                }
-                            }
-                            ?>
-
-                        </td>
-                        <td>
-                            <?php
-                            foreach ($class as $c) {
-                                if ($c->class_id == $row->class_id) {
-                                    echo $c->class_name;
-                                }
-                            }
-                            ?>
-                        </td>
-                        <td> <a href="<?php echo $row->pm_url; ?>" download=""><i class="fa fa-download"></i></a></td>
-                        <td><?php echo date("F d, Y", strtotime($row->pm_dos)); ?></td>	
-
-                        <td class="menu-action">
-                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">Edit</span></a>
-                            <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/project/delete/<?php echo $row->pm_id; ?>');" title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>	
-
-                        </td>	
-                    </tr>
-                <?php endforeach; ?>						
-            </tbody> 
-        </table>
-    
     <?php
 }
 if ($param == 'submitted') {
