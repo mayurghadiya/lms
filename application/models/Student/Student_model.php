@@ -696,5 +696,27 @@ class Student_model extends CI_Model {
                             'vocational_course_fee.vocational_course_id' => $student_id
                         ])->get()->result();
     }
+    
+    
+    /**
+     * 
+     */
+    function student_syllabus(){
+     $std = $this->session->userdata('std_id');
+     $student = $this->db->get_where('student',array('std_id'=>$std))->result();
+     
+      $std_degree = $student[0]->std_degree;
+      $course_id = $student[0]->course_id;
+      $semester_id = $student[0]->semester_id;
+      return $this->db->get_where("smart_syllabus",array("syllabus_degree"=>$std_degree,"syllabus_course"=>$course_id,"syllabus_sem"=>$semester_id))->result();
+      
+     
+     
+     
+     
+ 
+       
+       
+    }
 
 }

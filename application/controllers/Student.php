@@ -595,8 +595,9 @@ class Student extends MY_Controller {
                 }
                 $this->db->where('std_id', $this->session->userdata('student_id'));
                 $this->db->update('student', array(
-                    'profile_photo' => $this->session->userdata('student_id') . '.jpg '
+                    'profile_photo' => $this->session->userdata('student_id') . '.jpg'
                 ));
+                $this->session->set_userdata('profile_photo',$this->session->userdata('student_id') . '.jpg');
                 $this->session->set_flashdata('message', 'Profile pic is changed');
                 redirect(base_url('student/profile'));
             }
@@ -1384,6 +1385,17 @@ class Student extends MY_Controller {
         unset($this->session->userdata('notifications')['study_resources']);
         redirect(base_url() . 'index.php?student/dashboard/', 'refresh');
     }
+    
+    /**
+     * student syllabus
+     */
+     function syllabus() {        
+        $this->data['title'] = 'Syllabus';
+         $this->data['page'] = 'syllabus';
+        $this->data['syllabus'] = $this->Student_model->student_syllabus();
+        $this->__site_template('student/syllabus', $this->data);
+    }
+
 
 
 }

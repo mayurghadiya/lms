@@ -123,7 +123,7 @@
                                 </ul>
                             </li>
                             <li class=dropdown>
-                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt="" class="image"> 
+                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src="<?php if($this->session->userdata('profile_photo')!=""){ echo base_url().'uploads/student_image/'.$this->session->userdata('profile_photo');  }else{ echo base_url().'assets/img/avatar.jpg';  } ?>" alt="" class="image"> 
                                     <span class=txt><?php echo $this->session->userdata('email'); ?></span> <b class=caret></b>
                                 </a>
                                 <ul class="dropdown-menu right">
@@ -220,6 +220,12 @@
                                             <a href="<?php echo base_url(); ?>student/class_routine">
                                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                                 <span class=txt>Class Routine</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/syllabus">
+                                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                <span class=txt>Syllabus</span>
                                             </a>
                                         </li>
                                         <li>

@@ -14,6 +14,17 @@
                 </div>
             </div>
             <div class=panel-body>
+                <ul id="import-tab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#list" data-toggle="tab" aria-expanded="true"><?php echo ucwords("Project List");?></a>
+                        </li>
+                        <li class="">
+                            <a href="#submittedlist" data-toggle="tab" aria-expanded="false"><?php echo ucwords("submitted Project list");?></a>
+                        </li>
+                    </ul>
+                  <div id="import-tab-content" class="tab-content">
+                        
+                        <div class="tab-pane fade active in" id="list">
                 <form action="#" method="post" id="searchform">
                     <div class="form-group col-sm-2 validating">
                         <label>Department</label>
@@ -161,6 +172,83 @@
                     </tbody>
                 </table>
                   </div>
+                        </div>
+                       <div class="tab-pane fade out" id="submittedlist">
+                          
+                                <div class="panel-body table-responsive" id="getsubmit">
+                                    <table class="table table-striped table-bordered table-responsive" id="sub-tables">
+                                        <thead>
+                                            <tr>
+                                                <th><div>#</div></th>												
+                                                <th><div><?php echo ucwords("Project Name");?></div></th>
+                                                <th><div><?php echo ucwords("Student Name");?></div></th>                                                											
+                                                <th><div><?php echo ucwords("department");?></div></th>	
+                                                <th><div><?php echo ucwords("Branch");?></div></th>
+                                                <th><div><?php echo ucwords("Batch");?></div></th>											
+                                                <th><div><?php echo ucwords("Semester");?></div></th>
+                                                <th><div><?php echo ucwords("Submitted date");?></div></th>
+                                                <th><div><?php echo ucwords("Comment");?></div></th>
+                                                <th><div><?php echo ucwords("File");?></div></th>												                                            
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $count = 1;
+                                            foreach ($submitedproject->result() as $rowsub):
+                                                ?>
+                                            <tr>
+                                                <td><?php echo $count++; ?></td>
+                                                <td><?php echo $rowsub->pm_title; ?></td>
+                                                <td><?php  echo $rowsub->std_first_name.'&nbsp'.$rowsub->std_last_name. ', '; ?></td>	
+                                              <td>
+                                                        <?php
+                                                        foreach ($degree as $deg) {
+                                                            if ($deg->d_id == $rowsub->pm_degree) {
+                                                                echo $deg->d_name;
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </td>	
+                                                     <td>
+                                                        <?php
+                                                        foreach ($course as $crs) {
+                                                            if ($crs->course_id == $rowsub->pm_course) {
+                                                                echo $crs->c_name;
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        foreach ($batch as $bch) {
+                                                            if ($bch->b_id == $rowsub->pm_batch) {
+                                                                echo $bch->b_name;
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </td>	
+                                                    <td>
+                                                        <?php
+                                                        foreach ($semester as $sem) {
+                                                            if ($sem->s_id == $rowsub->pm_semester) {
+                                                                echo $sem->s_name;
+                                                            }
+                                                        }
+                                                        ?>
+
+                                                    </td>
+                                                    
+                                                <td><?php echo date_formats($rowsub->dos); ?></td>	
+                                                <td><?php echo $rowsub->description; ?></td>
+                                                <td id="downloadedfile"><a href="<?php  echo base_url(); ?>uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                                                    	
+                                            </tr>
+<?php endforeach; ?>			 			
+                                        </tbody>
+                                    </table>
+                                </div>
+                      </div>
+                    
+                  </div>
             </div>
         </div>
         <!-- End .panel -->
@@ -246,22 +334,7 @@
         });
         
         $(document).ready(function () {
-            "use strict";
-            $('#sub-tables').dataTable({
-                "order": [[0, "desc"]],
-                "dom": "<'row'<'col-sm-6'><'col-sm-6'f>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
-            });
-            $('.sfilter-rows').on('change', function () {
-                var filter_id = $(this).attr('data-filter');
-                filter_column(filter_id);
-            });
+            $('#sub-tables').dataTable();         
 
-            function filter_column(filter_id) {
-                $('#sub-tables').DataTable().column(filter_id).search(
-                        $('#sfilter' + filter_id).val()
-                        ).draw();
-            }
         });
     </script>
