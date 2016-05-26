@@ -1,5 +1,5 @@
 
-<script>
+<!-- <script>
 
     jQuery(window).resize(function () {
 
@@ -13,7 +13,7 @@
             $(this).find('.modal-body').attr('style', 'max-height:' + ($(window).height() - offset) + 'px !important;');
         });
     });
-</script>
+</script> -->
 
 <script type="text/javascript">
     function showAjaxModal(url)

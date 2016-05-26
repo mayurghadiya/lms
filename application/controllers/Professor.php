@@ -2297,8 +2297,4 @@ class Professor extends MY_Controller {
         echo json_encode($class_routine);
     }
     
-    function professor_schedule() {
-        $this->load->view('professor/professor_class_routine', array('title' => 'Class routine'));
-    }
-
 }
