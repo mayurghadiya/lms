@@ -1364,5 +1364,26 @@ class Student extends MY_Controller {
         $this->data['vocational_course'] = $this->Student_model->student_vocational_course($this->session->userdata('login_user_id'));
         $this->__site_template('student/student_vocational_course', $this->data);
     }
+    
+    /**
+     * Clear Library Notification
+     */
+    function digitallibrary() {
+
+        clear_notification('library_manager', $this->session->userdata('student_id'));
+        unset($this->session->userdata('notifications')['library_manager']);
+        redirect(base_url() . 'index.php?student/dashboard/', 'refresh');
+    }
+    
+    /**
+     * Clear Notification
+     */
+    
+     function studyresources() {
+        clear_notification('study_resources', $this->session->userdata('student_id'));
+        unset($this->session->userdata('notifications')['study_resources']);
+        redirect(base_url() . 'index.php?student/dashboard/', 'refresh');
+    }
+
 
 }

@@ -81,17 +81,43 @@
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul class=notif>
-                                            <li class=header><strong>Notifications</strong> (3) items</li>
-                                            <li><a href=#><span class=icon>
+                                            <li class=header><strong>Notifications</strong> (<?php echo $this->session->userdata('notifications')['total_notification']; ?>) items</li>
+                                            <?php if (isset($this->session->userdata('notifications')['fees_structure'])) { ?>
+                                            <li><a href="<?php echo base_url('student/student_fees'); ?>"><span class=icon>
                                                     <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                    </span> <span class=event>1 User is registred</span></a>
+                                                    </span> <span class=event> New fee structure was added.</span></a>
                                             </li>
-                                            <li><a href=#><span class=icon><i class="s16 fa fa-commenting"></i></span> <span class=event>Jony add 1 comment</span></a>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['exam_manager']) || isset($this->session->userdata('notifications')['exam_time_table'])) { ?>
+                                            <li><a href="<?php echo base_url('student/exam_listing'); ?>"><span class=icon><i class="s16 fa fa-commenting"></i></span> <span class=event>New Exam or Exam schedule was added.</span></a>
                                             </li>
-                                            <li><a href=#><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>admin Julia added post with a long description</span></a>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['assignment_manager'])) { ?>
+                                            <li><a href="<?php echo base_url('student/assignment/assignment_list'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Assignment was added.</span></a>
                                             </li>
-                                            <li class=view-all><a href=#>View all notifications <i class="s16 fa fa-angle-double-right"></i></a>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['project_manager'])) { ?>
+                                            <li><a href="<?php echo base_url('student/project/submission'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Project was added.</span></a>
                                             </li>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['marks_manager'])) { ?>
+                                            <li><a href="<?php echo base_url('student/exam_marks'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>Exam marks was added.</span></a>
+                                            </li>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['participate_manager'])) { ?>
+                                            <li><a href="<?php echo base_url('student/volunteer'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Participate was added.</span></a>
+                                            </li>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['study_resources'])) { ?>
+                                            <li><a href="<?php echo base_url('student/studyresources'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Study Resources was added.</span></a>
+                                            </li>
+                                             <?php } ?>
+                                             <?php if (isset($this->session->userdata('notifications')['library_manager'])) { ?>
+                                            <li><a href="<?php echo base_url('student/digitallibrary'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Digital Library was added.</span></a>
+                                            </li>
+                                            <?php } ?>
+                                           <!-- <li class=view-all><a href=#>View all notifications <i class="s16 fa fa-angle-double-right"></i></a>
+                                            </li>-->
                                         </ul>
                                     </li>
                                 </ul>

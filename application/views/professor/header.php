@@ -111,7 +111,7 @@
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul>
-                                            <li><a href=#>
+                                            <li><a href="<?php echo base_url() ?>professor/manage_profile">
                                                     <i class="fa fa-user-plus" aria-hidden="true"></i>Edit profile</a>
                                             </li>
                                             <li><a href=#><i class="fa fa-comment-o" aria-hidden="true"></i></i>Comments</a>
