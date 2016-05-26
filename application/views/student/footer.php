@@ -25,8 +25,28 @@
 <script>
     window.jQuery || document.write('<script src="<?php echo base_url(); ?>assets/js/libs/jquery-migrate-1.2.1.min.js">\x3C/script>')
 </script>
+
+<script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+
+<script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-timepicker/bootstrap-timepicker.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/pages/tables-data.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+
+<script src="<?php echo base_url(); ?>assets/js/jquery.toaster.js"></script>
+<script>
+<?php
+$message = $this->session->flashdata('flash_message');
+if ($message != '') {
+    ?>
+        $.toaster({
+            priority: 'success',
+            title: 'Success! ',
+            message: '<?php echo $message; ?>',
+            timeOut: 5000
+        });
+<?php } ?>
+</script> 
+
 <?php include 'modal.php'; ?>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/libs/excanvas.min.js"></script>

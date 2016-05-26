@@ -3117,7 +3117,11 @@ class Admin extends MY_Controller {
                 $this->session->set_flashdata('flash_message', $success);
                 redirect(base_url() . 'admin/photogallery');
             }
-            if ($param == "delete") {
+           
+           
+            
+        }
+         if ($param == "delete") {
                 $this->db->where("gallery_id", $param2);
                 $this->db->delete("photo_gallery");
                 $success = $this->lang_message('gallery_delete');
@@ -3125,11 +3129,10 @@ class Admin extends MY_Controller {
                 redirect(base_url() . 'index.php?media/photogallery');
             }
 
-            $this->data['gallery'] = $this->photo_gallery->getphotogallery();
+             $this->data['gallery'] = $this->photo_gallery->getphotogallery();
             $this->data['title'] = 'Photo Gallery';
-            $this->data['page'] = 'photo_gallery';
+            $this->data['page'] = 'photo_gallery';            
             $this->__site_template('admin/photo_gallery', $this->data);
-        }
     }
 
     /**
@@ -5326,6 +5329,48 @@ class Admin extends MY_Controller {
         $this->data['title'] = 'Manage Profile';
         $this->data['edit_data'] = $this->db->get_where('admin', array('admin_id' => $this->session->userdata('admin_id')))->result_array();
         $this->__site_template('admin/manage_profile', $this->data);
+    }
+    
+    /**
+     * 
+     * @param String $param1
+     * @param int $param2
+     */
+    
+     function category($param1='',$param2='')
+    {
+         if ($param1 == 'create') {
+            $data['category_name'] = $this->input->post('category_name');
+            $data['category_status'] = $this->input->post('category_status');
+            $data['created_date'] = date('Y-m-d h:i:s');
+            $data['category_desc'] = $this->input->post('category_desc');
+            $this->db->insert('course_category', $data);
+            $this->session->set_flashdata('flash_message', 'Category added successfully');
+            redirect(base_url() . 'admin/category/', 'refresh');
+        }
+
+        if ($param1 == 'do_update') {
+           $data['category_name'] = $this->input->post('category_name');
+            $data['category_status'] = $this->input->post('category_status');
+            $data['category_desc'] = $this->input->post('category_desc');   
+            $this->db->where('category_id', $param2);
+            $this->db->update('course_category', $data);
+            $this->session->set_flashdata('flash_message', 'category updated successfully');
+
+            redirect(base_url() . 'admin/category/', 'refresh');
+        }
+        if ($param1 == 'delete') {
+            $this->db->where('category_id', $param2);
+            $this->db->delete('course_category');
+            $this->session->set_flashdata('flash_message','category deleted successfully');
+
+            redirect(base_url() . 'admin/category/', 'refresh');
+        }
+
+        $this->data['category'] = $this->db->get('course_category')->result_array();
+        $this->data['page'] = 'course_category';
+        $this->data['title'] = 'Category';
+         $this->__site_template('admin/course_category', $this->data);
     }
 
 }

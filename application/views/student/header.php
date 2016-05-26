@@ -22,6 +22,7 @@
             <!-- Css files -->
             <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">
             <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/main.min.css">
+            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
             <!-- Fav and touch icons -->
             <link rel=apple-touch-icon-precomposed sizes=144x144 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-144-precomposed.png>
             <link rel=apple-touch-icon-precomposed sizes=114x114 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-114-precomposed.png>
@@ -200,6 +201,10 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="<?php echo base_url(); ?>student/project/submission/"><i class="s16 icomoon-icon-cube"></i><span class="txt">Projects </span>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="<?php echo base_url(); ?>student/exam"><i class="s16 fa fa-picture-o"></i>
                                                 <span class=txt>Exam</span>
                                             </a>
@@ -220,19 +225,25 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="">
+                                            <a href="<?php echo base_url(); ?>student/holiday">
                                                 <i class="s16 fa fa-book"></i>
                                                 <span class=txt>Holiday </span>
                                             </a>
-                                        </li>                                        
+                                        </li>   
                                         <li>
-                                            <a href="">
+                                            <a href="<?php echo base_url(); ?>student/assessment">
+                                                <i class="s16 icomoon-icon-map"></i>
+                                                <span class=txt>Assessment </span>
+                                            </a>
+                                        </li>   
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/courseware">
                                                 <i class="s16 fa fa-file-o"></i>
                                                 <span class=txt>Courseware</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="">
+                                            <a href="<?php echo base_url(); ?>student/vocationalcourse">
                                                 <i class="s16 fa fa-spinner"></i>
                                                 <span class=txt>Vocational Course</span>
                                             </a>

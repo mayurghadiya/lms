@@ -1,4 +1,3 @@
-<!-- Start .row -->
 <div class=row>                      
 
     <div class=col-lg-12>
@@ -200,44 +199,48 @@
     })
 </script>
 
+
+<!-- Start validation -->
+<script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>jquery.js"></script>
+<script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>jquery.validate.min.js"></script>
 <script type="text/javascript">
-    $.validator.setDefaults({
-        submitHandler: function (form) {
-            form.submit();
-        }
-    });
-    $().ready(function () {
+      $.validator.setDefaults({
+      submitHandler: function (form) {
+       form.submit();
+       }
+       });
+        $().ready(function () {
         $("#student_fees").validate({
-            rules: {
-                title: {required: true},
-                date: "required",
-                semester: "required",
-                fees_structure: "required",
-                amount: {required: true},
-                method: "required",
-            },
-            messages: {
-                title: "Title is required",
-                date: "Date is required",
-                semester: "Semester is required",
-                fees_structure: "Fees structure is required",
-                amount: "Amount is required",
-                method: "Method is required",
-            }
+        rules: {
+             title:{required: true},
+             date:"required",
+             semester:"required",
+             fees_structure:"required",
+             amount:{required:true},
+             method:"required",
+        },
+        messages: {
+            title: "Title is required",
+            date: "Date is required",
+            semester:"Semester is required",
+            fees_structure:"Fees structure is required",
+            amount:"Amount is required",
+            method:"Method is required",
+        }
         });
-    });
-</script>
-
-<!-- End validation -->
-<script type="text/javascript">
-    $(window).load(function ()
-    {
-        "use strict";
-        $("#datepicker-normal").datepicker({
-            dateFormat: 'dd M yy',
-            changeMonth: true,
-            changeYear: true
-
         });
-    });
-</script>
+    </script>
+
+    <!-- End validation -->
+ <script type="text/javascript">
+        $(window).load(function() 
+{ "use strict"; 
+ $( "#datepicker-normal" ).datepicker({ 
+  dateFormat: 'dd M yy',
+  changeMonth: true,
+  changeYear: true,
+  autoclose:true,
+ 
+ });
+});
+ </script>
