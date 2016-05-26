@@ -191,6 +191,7 @@
                 instruction: "required",
                 submissions: "required",
                 feedback: "required",
+                marks:"required",
             },
             messages: {
                 degree: "Select department",
@@ -200,6 +201,7 @@
                 instruction: "Enter instruction",
                 submissions: "Enter about submissions",
                 feedback: "Enter feedback",
+                marks:"Enter Marks",
             }
         });
 

@@ -1,6 +1,6 @@
 
 
-    <table class="table table-striped" id="datatable-list">
+    <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="datatable-list">
                             <thead>
                                 <tr>
                                     <th><div>#</div></th>												
