@@ -192,7 +192,7 @@
 
                         </select>
                     </div>
-                    <div class="form-group col-sm-2">
+                               <div class="form-group col-sm-2" style="display: none;">
                         <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
                         <select class="form-control filter-rows" name="divclass" id="sfilterclass" >
                             <option value="">Select</option>

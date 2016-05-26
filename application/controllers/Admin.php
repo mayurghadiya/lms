@@ -1013,7 +1013,7 @@ class Admin extends MY_Controller {
             $course = $this->input->post('course');
             $batch = $this->input->post('batch');
             $semester = $this->input->post("semester");
-            $class = $this->input->post("divclass");
+           // $class = $this->input->post("divclass");
             $data['course'] = $this->db->get('course')->result();
             $data['semester'] = $this->db->get('semester')->result();
             $data['batch'] = $this->db->get('batch')->result();
@@ -1033,7 +1033,7 @@ class Admin extends MY_Controller {
             $this->db->where("am.assign_batch", $batch);
             $this->db->where("am.assign_degree", $degree);
             $this->db->where("am.assign_sem", $semester);
-            $this->db->where("am.class_id", $class);
+            //$this->db->where("am.class_id", $class);
             $data['submitedassignment'] = $this->db->get()->result();
            
              $data['param'] = $param;
@@ -5158,12 +5158,13 @@ class Admin extends MY_Controller {
             $course = $this->input->post('course');
             $batch = $this->input->post('batch');
             $semester = $this->input->post("semester");
+            //$class = $this->input->post("divclass");
             $data['course'] = $this->db->get('course')->result();
             $data['semester'] = $this->db->get('semester')->result();
             $data['batch'] = $this->db->get('batch')->result();
             $data['degree'] = $this->db->get('degree')->result();
             $data['student'] = $this->db->get('student')->result();
-            $data['student'] = $this->db->get('student')->result();
+            $data['class'] = $this->db->get('class')->result();
             $this->db->select("ps.*,pm.*,s.* ");
             $this->db->from('project_document_submission ps');
             $this->db->join("project_manager pm", "pm.pm_id=ps.project_id");
@@ -5172,6 +5173,7 @@ class Admin extends MY_Controller {
             $this->db->where("pm_batch", $batch);
             $this->db->where("pm_degree", $degree);
             $this->db->where("pm_semester", $semester);
+           //  $this->db->where("pm.class_id", $semester);
             $data['submitedproject'] = $this->db->get()->result();
             $data['param'] = $param;
             $this->load->view("admin/getprojects", $data);

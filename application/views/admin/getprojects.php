@@ -6,7 +6,7 @@
                 <th><div>#</div></th>											
                 <th><div>Project Title</div></th>
                 <th><div>Student Name</div></th>											
-                <th><div>Course</div></th>	
+                <th><div>Department</div></th>	
                 <th><div>Branch</div></th>
                 <th><div>Batch</div></th>											
                 <th><div>Semester</div></th>
@@ -99,14 +99,14 @@
 }
 if ($param == 'submitted') {
     ?>
-    <div class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="getsubmit">
-        <table class="table table-striped" id="data-tabless">
+    
+        <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tabless">
             <thead>
                 <tr>
                     <th><div>#</div></th>												
                     <th><div>Project Name</div></th>
                     <th><div>Student Name</div></th>                                                											
-                    <th><div>Course</div></th>	
+                    <th><div>Department</div></th>	
                     <th><div>Branch</div></th>
                     <th><div>Batch</div></th>											
                     <th><div>Semester</div></th>
@@ -168,7 +168,7 @@ if ($param == 'submitted') {
                 <?php endforeach; ?>						
             </tbody>
         </table>
-    </div>
+    
 <?php } ?>
 <script type="text/javascript">
     $(document).ready(function () {
