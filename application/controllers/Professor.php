@@ -2220,14 +2220,13 @@ class Professor extends MY_Controller {
         }
         echo $option;
     }
-    
+
     /**
      * manage profile
      * @param String $param1
      * @param int $param2
      * @param type $param3
      */
-    
     function manage_profile($param1 = '', $param2 = '', $param3 = '') {
         $this->load->model('admin/Crud_model');
         if ($param1 == 'update_profile_info') {
@@ -2280,5 +2279,26 @@ class Professor extends MY_Controller {
         $this->__site_template('professor/manage_profile', $this->data);
     }
 
+    /**
+     * Professor class routine
+     */
+    function class_routine() {
+        //$this->load->view('professor/class_routine', array('title' => 'Class routine'));
+        $this->data['title'] = 'Class Routine';
+        $this->__site_template('professor/class_routine', $this->data);
+    }
+
+    /**
+     * Class routine data
+     */
+    function class_routine_data() {
+        $class_routine = $this->Professor_model->professor_class_schedule();
+        //$class_routine = $this->db->get('class_routine')->result();
+        echo json_encode($class_routine);
+    }
+    
+    function professor_schedule() {
+        $this->load->view('professor/professor_class_routine', array('title' => 'Class routine'));
+    }
 
 }

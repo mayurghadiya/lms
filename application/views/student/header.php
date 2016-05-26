@@ -190,7 +190,7 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="">
+                                            <a href="<?php echo base_url(); ?>student/class_routine">
                                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                                 <span class=txt>Class Routine</span>
                                             </a>

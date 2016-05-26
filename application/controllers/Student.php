@@ -712,11 +712,10 @@ class Student extends MY_Controller {
         //download it.
         $this->m_pdf->pdf->Output($pdfFilePath, "D");
     }
-    
+
     /**
      * get volunteer description
      */
-    
     function get_desc() {
         $pp_id = $this->input->post('pp_id');
         if ($pp_id != "") {
@@ -725,16 +724,15 @@ class Student extends MY_Controller {
             . '<div class="col-sm-5" >' . $res[0]['pp_desc'] . '</div>';
         }
     }
-    
+
     /**
      * assessment
      */
-    public function assessment()
-    {
-              
-            $this->load->model('Student/Student_model');
+    public function assessment() {
+
+        $this->load->model('Student/Student_model');
         $this->data['assessments'] = $this->Student_model->student_assessment();
-        
+
         $this->data['page'] = 'assessment';
         $this->data['title'] = 'Assessment';
         $this->__site_template('student/assessment', $this->data);
@@ -1149,6 +1147,33 @@ class Student extends MY_Controller {
         $this->data['page'] = 'gallery';
         $this->data['title'] = 'Gallery';
         $this->__site_template('student/gallery', $this->data);
+    }
+
+    /**
+     * Student class routine
+     */
+    function class_routine() {
+        $this->data['title'] = 'Class Routine';
+        $this->__site_template('student/class_routine', $this->data);
+    }
+
+    /**
+     * Student class routine data
+     */
+    function class_routine_data() {
+        $student = $this->Student_model->student_info($this->session->userdata('login_user_id'));
+        $class_routine = $this->Student_model->student_class_routine($student->std_degree, $student->course_id, $student->std_batch, $student->semester_id, $student->class_id);
+
+        echo json_encode($class_routine);
+    }
+    
+    /**
+     * Student vocational course
+     */
+    function student_vocational_course() {
+        $this->data['title'] = 'Vocational Course';
+        $this->data['vocational_course'] = $this->Student_model->student_vocational_course($this->session->userdata('login_user_id'));
+        $this->__site_template('student/student_vocational_course', $this->data);
     }
 
 }

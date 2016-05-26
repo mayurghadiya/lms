@@ -475,13 +475,15 @@ class Student_model extends CI_Model {
 
         return $insert_id;
     }
- function vocational_add_authorized_payment($data) {
-     
+
+    function vocational_add_authorized_payment($data) {
+
         $this->db->insert('vocational_course_fee', $data);
         $insert_id = $this->db->insert_id();
 
         return $insert_id;
     }
+
     /**
      * Student fees record
      * @param int $student_id
@@ -633,12 +635,12 @@ class Student_model extends CI_Model {
      */
     function student_widget_order($student_id) {
         return $this->db->select()
-                ->from('widget_order')
-                ->where(array(
-                    'student_id'=> $student_id
-                ))->get()->row();
+                        ->from('widget_order')
+                        ->where(array(
+                            'student_id' => $student_id
+                        ))->get()->row();
     }
-    
+
     /**
      * Student class routine information
      * @param string $degree
@@ -650,14 +652,14 @@ class Student_model extends CI_Model {
      */
     function student_class_routine($degree, $branch, $batch, $semester, $class) {
         return $this->db->get_where('class_routine', [
-            'DepartmentID'  => $degree,
-            'BranchID'  => $branch,
-            'BatchID'   => $batch,
-            'SemesterID'    => $semester,
-            'ClassID'   => $class
-        ])->result();
+                    'DepartmentID' => $degree,
+                    'BranchID' => $branch,
+                    'BatchID' => $batch,
+                    'SemesterID' => $semester,
+                    'ClassID' => $class
+                ])->result();
     }
-    
+
     /**
      * Student information
      * @param string $student_id
@@ -665,9 +667,10 @@ class Student_model extends CI_Model {
      */
     function student_info($student_id) {
         return $this->db->get_where('student', [
-            'std_id'    => $student_id
-        ])->row();
+                    'std_id' => $student_id
+                ])->row();
     }
+
     /**
      * Student assessment
      * @param int $student_id
@@ -675,8 +678,23 @@ class Student_model extends CI_Model {
      */
     function student_assessment() {
         $student_id = $this->session->userdata('login_user_id');
-        
-        return $this->db->get_where("assessments",array("student"=>$student_id))->result();
+
+        return $this->db->get_where("assessments", array("student" => $student_id))->result();
+    }
+
+    /**
+     * Student vocational course
+     * @param string $student_id
+     * @return mixed
+     */
+    function student_vocational_course($student_id) {
+        return $this->db->select()
+                        ->from('vocational_course_fee')
+                        ->join('vocational_course', 'vocational_course.vocational_course_id = vocational_course_fee.vocational_course_id')
+                        ->join('student', 'student.std_id = vocational_course_fee.student_id')
+                        ->where([
+                            'vocational_course_fee.vocational_course_id' => $student_id
+                        ])->get()->result();
     }
 
 }
