@@ -53,12 +53,12 @@ $(document).ready(function () {
         });
     });
 
-    $.validator.setDefaults({
-        submitHandler: function (form) {
-            form.submit();
+    // $.validator.setDefaults({
+    //     submitHandler: function (form) {
+    //         form.submit();
 
-        }
-    });
+    //     }
+    // });
 
     var form = $("#frmstudentlist");
 
@@ -126,9 +126,9 @@ $(document).ready(function () {
                                 $(this).closest("tr").removeClass('row-warning')
                         });
                     });
-                    $('#summernote').summernote({
-        height: 200
-    });
+    //                 $('#summernote').summernote({
+    //     height: 200
+    // });
     
     
 //custom datatable filtering
@@ -259,7 +259,12 @@ $(document).ready(function () {
 //      //  $(this).parent().find('.child-menu').css({"display":"none"});
 //  // $(this).parent().find('.child-menu').css({"display":"block"});
 //},function(){
-//     $(this).next('div').slideUp();    
+//     $(this).next('div').slideUp();   
 //});
+
+    $(".nav li.dropdown").click(function(e) {
+        $(this).toggleClass("open");        
+    });
+    
 });
 

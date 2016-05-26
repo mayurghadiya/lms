@@ -20,7 +20,6 @@ class Admin extends MY_Controller {
         $this->load->model('forum_model');
         $this->load->model('professor/Professor_model');
         $this->load->model('photo_gallery');
-        
     }
 
     /**
@@ -3117,22 +3116,19 @@ class Admin extends MY_Controller {
                 $this->session->set_flashdata('flash_message', $success);
                 redirect(base_url() . 'admin/photogallery');
             }
-           
-           
-            
         }
-         if ($param == "delete") {
-                $this->db->where("gallery_id", $param2);
-                $this->db->delete("photo_gallery");
-                $success = $this->lang_message('gallery_delete');
-                $this->session->set_flashdata('flash_message', $success);
-                redirect(base_url() . 'index.php?media/photogallery');
-            }
+        if ($param == "delete") {
+            $this->db->where("gallery_id", $param2);
+            $this->db->delete("photo_gallery");
+            $success = $this->lang_message('gallery_delete');
+            $this->session->set_flashdata('flash_message', $success);
+            redirect(base_url() . 'index.php?media/photogallery');
+        }
 
-             $this->data['gallery'] = $this->photo_gallery->getphotogallery();
-            $this->data['title'] = 'Photo Gallery';
-            $this->data['page'] = 'photo_gallery';            
-            $this->__site_template('admin/photo_gallery', $this->data);
+        $this->data['gallery'] = $this->photo_gallery->getphotogallery();
+        $this->data['title'] = 'Photo Gallery';
+        $this->data['page'] = 'photo_gallery';
+        $this->__site_template('admin/photo_gallery', $this->data);
     }
 
     /**
@@ -4024,7 +4020,7 @@ class Admin extends MY_Controller {
             $data['module_id'] = implode(',', $this->input->post('module_name'));
             $this->db->where('group_id', $data['group_id']);
             $this->db->update('assign_module', $data);
-            $this->session->set_flashdata('flash_message', 'data updated successfully' );
+            $this->session->set_flashdata('flash_message', 'data updated successfully');
             redirect(base_url() . 'admin/list_module', 'refresh');
         }
         $this->data['page'] = 'list_module';
@@ -5213,14 +5209,13 @@ class Admin extends MY_Controller {
         }
         echo $html;
     }
-    
-    
+
     /**
      * survey
      * @param String $param
      * @param int $param2
      */
-     function survey($param = '', $param2 = '') {
+    function survey($param = '', $param2 = '') {
         if ($param == 'create') {
 
 
@@ -5261,8 +5256,9 @@ class Admin extends MY_Controller {
 
         //$this->load->view('backend/index', $data);
     }
-    
+
     /* worked by Mayur Panchal 29-3-2016 */
+
     /**
      * confirm participate
      * @param int $param
@@ -5330,16 +5326,14 @@ class Admin extends MY_Controller {
         $this->data['edit_data'] = $this->db->get_where('admin', array('admin_id' => $this->session->userdata('admin_id')))->result_array();
         $this->__site_template('admin/manage_profile', $this->data);
     }
-    
+
     /**
      * 
      * @param String $param1
      * @param int $param2
      */
-    
-     function category($param1='',$param2='')
-    {
-         if ($param1 == 'create') {
+    function category($param1 = '', $param2 = '') {
+        if ($param1 == 'create') {
             $data['category_name'] = $this->input->post('category_name');
             $data['category_status'] = $this->input->post('category_status');
             $data['created_date'] = date('Y-m-d h:i:s');
@@ -5350,9 +5344,9 @@ class Admin extends MY_Controller {
         }
 
         if ($param1 == 'do_update') {
-           $data['category_name'] = $this->input->post('category_name');
+            $data['category_name'] = $this->input->post('category_name');
             $data['category_status'] = $this->input->post('category_status');
-            $data['category_desc'] = $this->input->post('category_desc');   
+            $data['category_desc'] = $this->input->post('category_desc');
             $this->db->where('category_id', $param2);
             $this->db->update('course_category', $data);
             $this->session->set_flashdata('flash_message', 'category updated successfully');
@@ -5362,7 +5356,7 @@ class Admin extends MY_Controller {
         if ($param1 == 'delete') {
             $this->db->where('category_id', $param2);
             $this->db->delete('course_category');
-            $this->session->set_flashdata('flash_message','category deleted successfully');
+            $this->session->set_flashdata('flash_message', 'category deleted successfully');
 
             redirect(base_url() . 'admin/category/', 'refresh');
         }
@@ -5370,7 +5364,162 @@ class Admin extends MY_Controller {
         $this->data['category'] = $this->db->get('course_category')->result_array();
         $this->data['page'] = 'course_category';
         $this->data['title'] = 'Category';
-         $this->__site_template('admin/course_category', $this->data);
+        $this->__site_template('admin/course_category', $this->data);
+    }
+
+    /**
+     * Class routine
+     */
+    function class_routine() {
+        if ($_POST) {
+            $where = [
+                'DepartmentID' => $_POST['department'],
+                'BranchID' => $_POST['branch'],
+                'BatchID' => $_POST['batch'],
+                'SemesterID' => $_POST['semester'],
+            ];
+
+            if ($_POST['professor'] != '')
+                $where['ProfessorID'] = $_POST['professor'];
+
+            $class_routine = $this->Crud_model->filtered_class_routine($where);
+            $this->session->set_userdata('class_routine', $class_routine);
+
+            $filter_data = [
+                'DepartmentID' => $_POST['department'],
+                'BranchID' => $_POST['branch'],
+                'BatchID' => $_POST['batch'],
+                'SemesterID' => $_POST['semester'],
+            ];
+            $filter_data['ProfessorID'] = $_POST['professor'];
+            $this->session->set_userdata('filter_data', $filter_data);
+            redirect(base_url('admin/class_routine'));
+        }
+        $this->data['title'] = 'Class Routine';
+        $this->data['page'] = 'class_routine';
+        $this->data['department'] = $this->Crud_model->get_all_degree();
+        $this->__site_template('admin/class_routine', $this->data);
+    }
+
+    function professor_class_schedule() {
+        if ($_POST) {
+            $where = [
+                'DepartmentID' => $_POST['department'],
+                'BranchID' => $_POST['branch'],
+                'BatchID' => $_POST['batch'],
+                'SemesterID' => $_POST['semester'],
+            ];
+
+            if ($_POST['professor'] != '')
+                $where['ProfessorID'] = $_POST['professor'];
+
+            $class_routine = $this->Crud_model->filtered_class_routine($where);
+            $this->session->set_userdata('class_routine', $class_routine);
+
+            $filter_data = [
+                'DepartmentID' => $_POST['department'],
+                'BranchID' => $_POST['branch'],
+                'BatchID' => $_POST['batch'],
+                'SemesterID' => $_POST['semester'],
+            ];
+            $filter_data['ProfessorID'] = $_POST['professor'];
+            $this->session->set_userdata('filter_data', $filter_data);
+            redirect(base_url('admin/class_routine'));
+        }
+        $this->data['title'] = 'Class Routine';
+        $this->data['page'] = 'class_routine';
+        $this->data['department'] = $this->Crud_model->get_all_degree();
+        $this->__site_template('admin/professor_class_routine', $this->data);
+    }
+
+    /**
+     * Professor based on department and batch
+     * @param string $department
+     * @param string $branch
+     */
+    function professor_by_department_and_branch($department, $branch) {
+        $this->load->model('admin/Crud_model');
+        $professor = $this->Crud_model->professor_by_department_and_branch($department, $branch);
+
+        echo json_encode($professor);
+    }
+
+    function telerik_read() {
+        //$event_data = $this->db->get('class_routine')->result();
+
+        echo json_encode($this->session->userdata('class_routine'));
+        $this->session->unset_userdata('class_routine');
+        $this->session->unset_userdata('filter_data');
+    }
+
+    function telerik_create() {
+        $request = $_POST['models'];
+        $data = json_decode($request);
+        foreach ($data as $row) {
+            $insert = [
+                //'TaskID' => $row->TaskID,
+                'Title' => $row->Title,
+                'Start' => $row->Start,
+                'End' => $row->End,
+                'StartTimezone' => $row->StartTimezone,
+                'EndTimezone' => $row->EndTimezone,
+                'Description' => $row->Description,
+                'RecurrenceID' => $row->RecurrenceID,
+                'RecurrenceRule' => $row->RecurrenceRule,
+                'RecurrenceException' => $row->RecurrenceException,
+                //'OwnerID' => $row->OwnerID,
+                'IsAllDay' => $row->IsAllDay,
+                'DepartmentID' => $row->DepartmentID,
+                'BranchID' => $row->BranchID,
+                'BatchID' => $row->BatchID,
+                'SemesterID' => $row->SemesterID,
+                'ClassID' => $row->ClassID,
+                'SubjectID' => $row->SubjectID,
+                'ProfessorID' => $row->ProfessorID,
+            ];
+            $this->db->insert('class_routine', $insert);
+        }
+    }
+
+    /**
+     * Class routine update
+     */
+    function telerik_update() {
+        $request = $_POST['models'];
+        $data = json_decode($request);
+        foreach ($data as $row) {
+            $update = [
+                'Title' => $row->Title,
+                'Start' => $row->Start,
+                'End' => $row->End,
+                'StartTimezone' => $row->StartTimezone,
+                'EndTimezone' => $row->EndTimezone,
+                'Description' => $row->Description,
+                'RecurrenceID' => $row->RecurrenceID,
+                'RecurrenceRule' => $row->RecurrenceRule,
+                'RecurrenceException' => $row->RecurrenceException,
+                //'OwnerID' => $row->OwnerID,
+                'IsAllDay' => $row->IsAllDay,
+                'DepartmentID' => $row->DepartmentID,
+                'BranchID' => $row->BranchID,
+                'BatchID' => $row->BatchID,
+                'SemesterID' => $row->SemesterID,
+                'ClassID' => $row->ClassID,
+                'SubjectID' => $row->SubjectID,
+                'ProfessorID' => $row->ProfessorID,
+            ];
+            $this->db->where('ClassRoutineId', $row->ClassRoutineId);
+            $this->db->update('class_routine', $update);
+        }
+    }
+
+    /**
+     * Class routine delete
+     */
+    function telerik_delete() {
+        $request = $_POST['models'];
+        $data = json_decode($request);
+        $this->db->delete('class_routine', ['ClassRoutineId' => $data[0]->ClassRoutineId]);
     }
     
     

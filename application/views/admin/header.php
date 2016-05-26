@@ -265,6 +265,12 @@
                                                 </li>
                                             </ul>
                                         </li>
+                                        <li>
+                                            <a href="<?php echo base_url().'admin/class_routine' ?>">
+                                                <i class="s16 fa fa-book"></i>
+                                                <span class=txt>Class Routine </span>
+                                            </a>
+                                        </li>
                                         
                                         <li class="hasSub">
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
