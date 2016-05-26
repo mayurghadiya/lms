@@ -5521,5 +5521,47 @@ class Admin extends MY_Controller {
         $data = json_decode($request);
         $this->db->delete('class_routine', ['ClassRoutineId' => $data[0]->ClassRoutineId]);
     }
+    
+    
+    /**
+     * Authorize payment gateway configuration
+     */
+    function authorize_payment_config() {
+      
+        if ($_POST) {
+            $id = $this->input->post('config_id', TRUE);
+            if ($id != '') {
+                // update configuration
+                $this->Crud_model->authorize_net_config_update($id, array(
+                    'login_id' => $this->input->post('login_id', TRUE),
+                    'transaction_key' => $this->input->post('transaction_key', TRUE),
+                    'success_url' => $this->input->post('success_url', TRUE),
+                    'failure_url' => $this->input->post('failure_url', TRUE),
+                    'cancel_url' => $this->input->post('cancel_url', TRUE),
+                    'status' => $this->input->post('status', TRUE)
+                        )
+                );
+                $this->session->set_flashdata('flash_message', 'Authorize.net payment gateway configutaion updated.');
+            } else {
+                // add new configuration
+                $this->Crud_model->authorize_net_config_insert(array(
+                    'login_id' => $this->input->post('login_id', TRUE),
+                    'transaction_key' => $this->input->post('transaction_key', TRUE),
+                    'success_url' => $this->input->post('success_url', TRUE),
+                    'failure_url' => $this->input->post('failure_url', TRUE),
+                    'cancel_url' => $this->input->post('cancel_url', TRUE),
+                    'status' => $this->input->post('status', TRUE)
+                        )
+                );
+                $this->session->set_flashdata('flash_message', 'Authorize.net configuration successfully added.');
+            }
+            redirect(base_url('admin/authorize_payment_config'));
+        }
+        $this->data['title'] = 'Authorize.net Payment Gateway Configuration';
+        $this->data['page'] = 'authorize_payment_config';
+        $this->data['authorize_net'] = $this->Crud_model->authorize_net_config();
+        $this->__site_template('admin/authorize_payment_config', $this->data);
+    }
+
 
 }
