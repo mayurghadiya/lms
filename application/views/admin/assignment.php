@@ -27,7 +27,7 @@
                         
                         <div class="tab-pane fade active in" id="list">
                             <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addassignment');" data-toggle="modal">Add new assignment</a>
-                             <form id="assignment-search" action="#" class="form-groups-bordered validate">
+                   <form id="assignment-search" action="#" class="form-groups-bordered validate">
                     <div class="form-group col-sm-2">
                         <label><?php echo ucwords("department"); ?></label>
                         <select class="form-control" id="courses" name="degree_search">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-group col-sm-2">
                         <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
-                        <select class="form-control filter-rows" name="filterclass" id="filterclass" >
+                        <select class="form-control filter-rows" name="divclass" id="filterclass" >
                             <option value="">Select</option>
                             <?php
                             $class = $this->db->get('class')->result_array();
@@ -163,37 +163,54 @@
                         
                         <!-- tab content -->
                         <div class="tab-pane fade" id="submittedlist">
-                            <div class="form-group col-sm-2" style="display:none;">
-                                    <label><?php echo ucwords("Course");?></label>
-                                    <select class="form-control sfilter-rows" id="sfilter3" data-filter="3" data-type="course">
-                                        <option value="">All</option>
-                                        <?php foreach ($degree as $row) { ?>
-                                            <option value="<?php echo $row->d_name; ?>"
-                                                    data-id="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                                <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2"  style="display:none;">
-                                    <label><?php echo ucwords("Branch");?></label>
-                                    <select id="sfilter4" name="branch" data-filter="4" class="form-control sfilter-rows" data-type="branch">
-                                        <option value="">All</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2"  style="display:none;">
-                                    <label><?php echo ucwords("Batch");?></label>
-                                    <select id="sfilter5" name="batch" data-filter="5" class="form-control sfilter-rows" data-type="batch">
-                                        <option value="">All</option>
-                                    </select>
-                                </div>                                
-                                <div class="form-group col-sm-2"  style="display:none;">
-                                    <label> <?php echo ucwords("Semester");?></label>
-                                    <select id="sfilter6" name="semester" data-filter="6" class="form-control sfilter-rows" data-type="semester">
-                                        <option value="">All</option>
+                           <form id="assignment-search-submitted" action="#" class="form-groups-bordered validate">
+                    <div class="form-group col-sm-2">
+                        <label><?php echo ucwords("department"); ?></label>
+                        <select class="form-control" id="scourses" name="degree_search">
+                            <option value="">Select</option>
+                            <?php foreach ($degree as $row) { ?>
+                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label><?php echo ucwords("Branch"); ?></label>
+                        <select id="sbranches" name="course_search" data-filter="4" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label><?php echo ucwords("Batch"); ?></label>
+                        <select id="sbatches" name="batch_search" data-filter="5" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>                                
+                    <div class="form-group col-sm-2">
+                        <label> <?php echo ucwords("Semester"); ?></label>
+                        <select id="ssemesters" name="semester_search" data-filter="6" class="form-control">
+                            <option value="">Select</option>
 
-                                    </select>
-                                </div>
-                                 <label style="display:none; margin-left: 40px; margin-top: 30px;">OR</label>
-                              
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
+                        <select class="form-control filter-rows" name="divclass" id="sfilterclass" >
+                            <option value="">Select</option>
+                            <?php
+                            $class = $this->db->get('class')->result_array();
+                            foreach ($class as $c) {
+                                ?>
+                                <option value="<?php echo $c['class_id'] ?>"><?php echo $c['class_name'] ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div> 
+                    <div class="form-group col-sm-2">
+                        <label>&nbsp;</label><br/>
+                        <input id="submitted" type="button" value="Go" class="btn btn-info"/>
+                    </div>
+                </form>
                                       
                                      <div class="panel-body table-responsive" id="getsubmit">
                                     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="sub-tables">
@@ -297,24 +314,7 @@
         });
 
         $().ready(function () {
-             $("#assignment-search").submit(function(){
-           var degree =  $("#courses").val();
-           var course =  $("#branches").val();
-           var batch =  $("#batches").val();
-            var semester = $("#semesters").val();
-            $.ajax({
-                type:"POST",
-                url:"<?php echo base_url(); ?>admin/getassignment/allassignment",
-                data:{'degree':degree,'course':course,'batch':batch,"semester":semester},
-                success:function(response)
-                {
-                    $("#getresponse").html(response);
-                }
-                
-                
-            });
-             return false;
-         });
+        
          $("#courses").change(function(){
                 var degree = $(this).val();
                 
@@ -352,9 +352,86 @@
                     }
                 });
         });
+        
+              
+         $("#scourses").change(function(){
+                var degree = $(this).val();
+                
+                var dataString = "degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'admin/get_course/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                        $("#sbranches").html(response);
+                    }
+                });
+        });
+         $("#sbranches").change(function(){
+                //var course = $(this).val();
+                // var degree = $("#degree").val();
+                var degree = $("#scourses").val();
+                var course = $("#sbranches").val();
+                var dataString = "course="+course+"&degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'admin/get_batches/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                        $("#sbatches").html(response);
+                        
+                         $.ajax({
+                                type: "POST",
+                                url: "<?php echo base_url() . 'admin/get_semester'; ?>",
+                                data: dataString,
+                                success: function (response1) {
+                                    $("#ssemesters").html(response1);
+                                }
+                            });
+                    }
+                });
+        });
+
 
             var form = $('#assignment-search');
+            var forms = $('#assignment-search-submitted');
 
+            $('#submitted').on('click', function () {
+                $("#assignment-search").validate({
+                    rules: {
+                        degree_search: "required",
+                        branch_search: "required",
+                        batch_search: "required",
+                        semester_search: "required"
+                    },
+                    messages: {
+                        degree_search: "Select department",
+                        branch_search: "Select branch",
+                        batch_search: "Select batch",
+                        semester_search: "Select semester"
+                    }
+                });
+
+                if (forms.valid() == true)
+                {
+                    
+                    var degree = $("#scourses").val();
+                    var course = $("#sbranches").val();
+                    var batch = $("#sbatches").val();
+                    var semester = $("#ssemesters").val();
+                    var divclass = $("#sfilterclass").val();
+                    $.ajax({
+                        url: '<?php echo base_url(); ?>admin/getassignment/submitted',
+                        type: 'post',
+                        data:{'degree':degree,"course":course,"batch":batch,"semester":semester,'divclass':divclass},
+                        success: function (content) {
+                            $("#getsubmit").html(content);
+                            // $("#dtbl").hide();
+                          
+                        }
+                    });
+                }
+            });
             $('#search-assignment-structure-data').on('click', function () {
                 $("#assignment-search").validate({
                     rules: {

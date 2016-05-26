@@ -16,7 +16,7 @@
                              <div class="">
                     <span style="color:red">* <?php echo "is ".ucwords("mandatory field");?></span> 
                 </div>
-                              <?php echo form_open(base_url() . 'admin/forum/update/'.$param2, array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmadmission_type', 'target' => '_top')); ?>
+                              <?php echo form_open(base_url() . 'admin/forum/update/'.$param2, array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmadmissiontypeedit', 'target' => '_top')); ?>
                                     <div class="padded">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Title<span style="color:red">*</span></label>

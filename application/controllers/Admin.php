@@ -984,7 +984,8 @@ class Admin extends MY_Controller {
     }
 
     function getassignment($param = '') {
-        if ($param = 'allassignment') {
+       
+        if ($param == 'allassignment') {
             $degree = $this->input->post('degree');
             $course = $this->input->post('course');
             $batch = $this->input->post('batch');
@@ -1000,11 +1001,46 @@ class Admin extends MY_Controller {
             $this->db->where("assign_degree", $degree);
             $this->db->where("assign_sem", $semester);
             $this->db->where("class_id", $class);
-            $data['param'] = $param;
+           
+           $data['param'] = $param;
             $data['assignment'] = $this->db->get('assignment_manager')->result();
+            
+                   }
+        if($param=="submitted")
+        {
+            
+             $degree = $this->input->post('degree');
+            $course = $this->input->post('course');
+            $batch = $this->input->post('batch');
+            $semester = $this->input->post("semester");
+            $class = $this->input->post("divclass");
+            $data['course'] = $this->db->get('course')->result();
+            $data['semester'] = $this->db->get('semester')->result();
+            $data['batch'] = $this->db->get('batch')->result();
+            $data['degree'] = $this->db->get('degree')->result();
+            $data['class'] = $this->db->get('class')->result();
+            //   $this->db->where("course_id",$course);
+            //   $this->db->where("assign_batch",$batch);
+            //  $this->db->where("assign_degree",$degree);
+            //   $this->db->where("assign_sem",$semester);
+            //$data['assignment'] = $this->db->get('assignment_manager')->result();
 
-            $this->load->view("admin/getassignment", $data);
+            $this->db->select("ass.*,am.*,s.*,s.class_id");
+            $this->db->from('assignment_submission ass');
+            $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+            $this->db->join("student s", "s.std_id=ass.student_id");
+            $this->db->where("am.course_id", $course);
+            $this->db->where("am.assign_batch", $batch);
+            $this->db->where("am.assign_degree", $degree);
+            $this->db->where("am.assign_sem", $semester);
+            $this->db->where("am.class_id", $class);
+            $data['submitedassignment'] = $this->db->get()->result();
+           
+             $data['param'] = $param;
+           
+            
         }
+        $this->load->view("admin/getassignment", $data);
     }
 
     /**
@@ -4469,6 +4505,23 @@ class Admin extends MY_Controller {
         $semester = $this->input->post('semester');
         $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode))->result_array();
         echo json_encode($data);
+    }
+    /**
+     * Check Duplicate Subject
+     */
+    
+    function checksubject() {
+
+        $eid = $this->input->post('subname');
+        $subcode = $this->input->post('subcode');
+        $course = $this->input->post('course');
+        $semester = $this->input->post('semester');
+        $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode));
+        if ($data->num_rows() > 0) {
+            echo "false";
+        } else {
+            echo "true";
+        }
     }
 
     /**

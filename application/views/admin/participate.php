@@ -418,7 +418,7 @@
                                                         <?php if ($rowq->question_status == '1') { ?>
                                                             <span class="label label-success">Active</span>
                                                         <?php } else { ?>	
-                                                            <span class="label label-default">InActive</span>
+                                                            <span class="label label-danger">InActive</span>
                                                         <?php } ?>
                                                         
                                                         <?php //echo ($rowq->question_status == "1") ? 'Active' : 'Deactive'; ?></td>    

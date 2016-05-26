@@ -9,6 +9,7 @@
                 <th><div>Branch</div></th>												
                 <th><div>Batch</div></th>												
                 <th><div>Semester</div></th>	
+                <th>Class</th>
                 <th><div><?php echo ucwords("Description"); ?></div></th>
                 <th><div>File</div></th>
                 <th><div>Date of Submission</div></th>												
@@ -61,6 +62,15 @@
                         }
                         ?>													
                     </td>
+                    <td>
+                                    <?php
+                                    foreach ($class as $c) {
+                                        if ($c->class_id == $row->class_id) {
+                                            echo $c->class_name;
+                                        }
+                                    }
+                                    ?>
+                                </td>
                     <td  ><?php echo wordwrap($row->assign_desc, 30, "<br>\n"); ?></td>
                     <td><a href="<?php echo $row->assign_url; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>	
                     <td><?php echo date('F d, Y', strtotime($row->assign_dos)); ?></td>	
@@ -77,8 +87,8 @@
 }
 if ($param == 'submitted') {
     ?>
-    <div class="panel-body table-responsive" id="getsubmit">
-        <table class="table table-striped" id="data-tabless">
+   
+        <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tabless">
             <thead>
                 <tr>
                     <th><div>#</div></th>												
@@ -87,7 +97,7 @@ if ($param == 'submitted') {
                     <th><div>Course</div></th>
                     <th><div>Branch</div></th>												
                     <th><div>Batch</div></th>												
-                    <th><div>Sem</div></th>	
+                    <th><div>Semester</div></th>	                    
                     <th><div>Submitted date</div></th>	
                     <th><div>Comment</div></th>
                     <th><div>Action</div></th>												                                            
@@ -138,7 +148,7 @@ if ($param == 'submitted') {
                                 }
                             }
                             ?>													
-                        </td>	
+                        </td>                          
                         <td><?php echo date_formats($rowsub->submited_date); ?></td>	
                         <td><?php echo $rowsub->comment; ?></td>
                         <td><a href="uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                      	
@@ -146,7 +156,7 @@ if ($param == 'submitted') {
                 <?php endforeach; ?>						
             </tbody>
         </table>
-    </div>
+    
 <?php } ?>
 <script type="text/javascript">
     $(document).ready(function () {
