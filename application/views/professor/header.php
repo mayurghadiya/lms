@@ -8,7 +8,7 @@
     <html class=no-js>
         <head>
             <meta charset=utf-8>
-            <title><?php echo $title; ?> | Learning Management System</title>
+            <title><?php echo $title; ?> | <?php echo system_name(); ?></title>
             <!-- Mobile specific metas -->
             <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
             <!-- Force IE9 to render in normal mode --><!--[if IE]>

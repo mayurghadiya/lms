@@ -6,7 +6,7 @@
     <html class=no-js>
         <head>
             <meta charset=utf-8>
-            <title><?php echo $title; ?> | Learning Management System</title>
+            <title><?php echo $title; ?> | <?php echo system_name(); ?></title>
             <!-- Mobile specific metas -->
             <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
             <!-- Force IE9 to render in normal mode -->
@@ -76,14 +76,14 @@
                             <li class="dropdown">
                                 <a href=# class="dropdown-toggle" data-toggle=dropdown>
                                     <i class="fa fa-globe" aria-hidden="true"></i>
-                                    <span class="notification">3</span>
+                                    <span class="notification"><?php echo $this->session->userdata('notifications')['total_notification']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul class=notif>
                                             <li class=header><strong>Notifications</strong> (3) items</li>
                                             <li><a href=#><span class=icon>
-                                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
                                                     </span> <span class=event>1 User is registred</span></a>
                                             </li>
                                             <li><a href=#><span class=icon><i class="s16 fa fa-commenting"></i></span> <span class=event>Jony add 1 comment</span></a>

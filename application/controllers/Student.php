@@ -9,10 +9,12 @@ class Student extends MY_Controller {
         if ($this->session->userdata('student_login') != 1)
             redirect(base_url(), 'refresh');
         $this->load->model('Student/Student_model');
+          $notification = show_notification($this->session->userdata('student_id'));
+        $this->session->set_userdata('notifications', $notification);
     }
 
     function index() {
-        
+
     }
 
     /**
