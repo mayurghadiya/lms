@@ -14,8 +14,41 @@
                 </div>
             </div>
             <div class=panel-body>
-                
-                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsyllabus/');" href="#" id="navfixed" data-toggle="tab">Add Syllabus</a>
+                 <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsyllabus/');" href="#" id="navfixed" data-toggle="tab">Add Syllabus</a>
+                <form action="#" method="post" id="searchform">
+                    <div class="form-group col-sm-2 validating">
+                        <label>Department</label>
+                        <select id="courses" name="degree" class="form-control">
+                            <option value="">Select</option>
+                            <?php foreach ($sdegree as $row) { ?>
+                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-2 validating">
+                        <label>Branch</label>
+                        <select id="branches" name="course" class="form-control">
+                            <option value="">Select</option>
+
+                        </select>
+                    </div>                   
+                    <div class="form-group col-sm-2 validating">
+                        <label> Semester</label>
+                        <select id="semesters" name="semester" class="form-control">
+                            <option value="">Select</option>
+                            <?php foreach ($semester as $row) { ?>
+                                <option value="<?php echo $row->s_id; ?>"
+                                        ><?php echo $row->s_name; ?></option>
+                                    <?php } ?>
+                        </select>
+                    </div>
+             
+                    <div class="form-group col-sm-1">
+                        <label>&nbsp;</label><br/>
+                        <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>
+                    </div>
+                </form>
+                 <div id="getresponse">
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -75,6 +108,7 @@
                         <?php endforeach; ?>																										
                     </tbody>
                 </table>
+                 </div>
             </div>
         </div>
         <!-- End .panel -->
@@ -86,3 +120,46 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+
+
+<script type="text/javascript">
+                                                $(document).ready(function () {
+                                                   
+                                                    
+                                                    
+          $("#searchform #btnsubmit").click(function(){
+           var degree =  $("#courses").val();
+           var course =  $("#branches").val();           
+            var semester = $("#semesters").val();
+            
+            $.ajax({
+                type:"POST",
+                url:"<?php echo base_url(); ?>professor/getsyllabus/",
+                data:{'degree':degree,'course':course,"semester":semester},
+                success:function(response)
+                {
+                    $("#getresponse").html(response);
+                }
+                
+                
+            });
+             return false;
+         });
+           
+         $("#courses").change(function(){
+                var degree = $(this).val();
+                
+                var dataString = "degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'professor/get_course/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                        $("#branches").html(response);
+                    }
+                });
+        });
+        
+
+                                                });
+</script>

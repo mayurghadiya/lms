@@ -5179,7 +5179,32 @@ class Admin extends MY_Controller {
             $this->load->view("admin/getprojects", $data);
         }
     }
+    
+    /**
+     * 
+     */
 
+    function getsyllabus($param='')
+    {
+         $degree = $this->input->post('degree');
+            $course = $this->input->post('course');            
+            $semester = $this->input->post("semester");
+            
+            $data['course'] = $this->db->get('course')->result();
+            $data['semester'] = $this->db->get('semester')->result();
+
+            $data['degree'] = $this->db->get('degree')->result();
+
+            $this->db->where("syllabus_course", $course);          
+            $this->db->where("syllabus_degree", $degree);
+            $this->db->where("syllabus_sem", $semester);
+          
+           
+            $data['syllabus'] = $this->db->get('smart_syllabus')->result();
+
+            $this->load->view("admin/getsyllabus", $data);
+    }
+    
     /**
      * get library list
      * @param String $param

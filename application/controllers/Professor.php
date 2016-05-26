@@ -154,9 +154,36 @@ class Professor extends MY_Controller {
         $this->data['course'] = $this->db->get('course')->result();
         $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['degree'] = $this->db->get('degree')->result();
+        $this->data['sdegree'] = $this->Professor_model->get_all_degree();
+       
         $this->data['title'] = 'Syllabus Management';
         $this->data['page_name'] = 'syllabus';
         $this->__site_template('professor/syllabus', $this->data);
+    }
+    
+    /**
+     * syllabus filter
+     * @param type $param
+     */
+    function getsyllabus($param='')
+    {
+         $degree = $this->input->post('degree');
+            $course = $this->input->post('course');            
+            $semester = $this->input->post("semester");
+            
+            $data['course'] = $this->db->get('course')->result();
+            $data['semester'] = $this->db->get('semester')->result();
+
+            $data['degree'] = $this->db->get('degree')->result();
+
+            $this->db->where("syllabus_course", $course);          
+            $this->db->where("syllabus_degree", $degree);
+            $this->db->where("syllabus_sem", $semester);
+          
+           
+            $data['syllabus'] = $this->db->get('smart_syllabus')->result();
+
+            $this->load->view("admin/getsyllabus", $data);
     }
 
     /**

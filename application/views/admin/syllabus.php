@@ -19,31 +19,43 @@
                 <!----TABLE LISTING STARTS-->
                 <div class="tab-pane box active" id="list">		
 
-                    <!--<div class="form-group col-sm-2">
-                       <label><?php echo ucwords("department"); ?></label>
-                       <select class="form-control filter-rows" id="filter2" data-filter="2" data-type="course">
-                           <option value="">All</option>
-                    <?php foreach ($degree as $row) { ?>
-                                                       <option value="<?php echo $row->d_name; ?>"
-                                                               data-id="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                    <?php } ?>
-                       </select>
-                   </div>
-                   <div class="form-group col-sm-2">
-                       <label><?php echo ucwords("Branch"); ?></label>
-                       <select id="filter3" name="branch" data-filter="3" class="form-control filter-rows" data-type="branch">
-                           <option value="">All</option>
-                       </select>
-                   </div>                                                             
-                   <div class="form-group col-sm-2">
-                       <label> <?php echo ucwords("Semester"); ?></label>
-                       <select id="filter4" name="semester" data-filter="4" class="form-control filter-rows" data-type="semester">
-                           <option value="">All</option>
-
-                       </select>
-                   </div>        -->                
-                    <div class="panel-body table-responsive" id="getresponse">
+                              
+                    <div class="panel-body table-responsive">
                         <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsyllabus/');" href="#" id="navfixed" data-toggle="tab">Add Syllabus</a>
+                        <form action="#" method="post" id="searchform">
+                    <div class="form-group col-sm-2 validating">
+                        <label>Department</label>
+                        <select id="courses" name="degree" class="form-control">
+                            <option value="">Select</option>
+                            <?php foreach ($degree as $row) { ?>
+                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-2 validating">
+                        <label>Branch</label>
+                        <select id="branches" name="course" class="form-control">
+                            <option value="">Select</option>
+
+                        </select>
+                    </div>                   
+                    <div class="form-group col-sm-2 validating">
+                        <label> Semester</label>
+                        <select id="semesters" name="semester" class="form-control">
+                            <option value="">Select</option>
+                            <?php foreach ($semester as $row) { ?>
+                                <option value="<?php echo $row->s_id; ?>"
+                                        ><?php echo $row->s_name; ?></option>
+                                    <?php } ?>
+                        </select>
+                    </div>
+             
+                    <div class="form-group col-sm-1">
+                        <label>&nbsp;</label><br/>
+                        <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>
+                    </div>
+                </form>
+                        <div id="getresponse">
                         <table class="table table-striped" id="datatable-list">
                             <thead>
                                 <tr>
@@ -106,6 +118,7 @@
                                 <?php endforeach; ?>						
                             </tbody>
                         </table>
+                        </div>
                     </div>    
                 </div>
 
@@ -116,10 +129,6 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.js"></script>
-<script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.validate.min.js"></script>
-
 
 <script type="text/javascript">
                                                 $(document).ready(function () {
@@ -132,6 +141,41 @@
                                                             }
                                                         ]
                                                     });
+                                                    
+                                                    
+          $("#searchform #btnsubmit").click(function(){
+           var degree =  $("#courses").val();
+           var course =  $("#branches").val();           
+            var semester = $("#semesters").val();
+            
+            $.ajax({
+                type:"POST",
+                url:"<?php echo base_url(); ?>admin/getsyllabus/",
+                data:{'degree':degree,'course':course,"semester":semester},
+                success:function(response)
+                {
+                    $("#getresponse").html(response);
+                }
+                
+                
+            });
+             return false;
+         });
+           
+         $("#courses").change(function(){
+                var degree = $(this).val();
+                
+                var dataString = "degree="+degree;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url().'admin/get_course/'; ?>",
+                    data:dataString,                   
+                    success:function(response){
+                        $("#branches").html(response);
+                    }
+                });
+        });
+        
 
                                                 });
 </script>

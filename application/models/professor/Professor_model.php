@@ -72,7 +72,7 @@ class Professor_model extends CI_Model {
         $dept = $this->session->userdata('department');
         $branch = $this->session->userdata('branch');
         $this->db->where("syllabus_degree", $dept);
-        $this->db->where("syllabus_course", $branch);
+        //$this->db->where("syllabus_course", $branch);
         return $this->db->get('smart_syllabus')->result();
     }
 
