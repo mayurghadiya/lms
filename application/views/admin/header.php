@@ -399,7 +399,25 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="<?php echo base_url().'admin/system_settings' ?>"><i class="s16 fa fa-book"></i><span class=txt>System Settings </span></a>
+                                        
+                                         <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                                <span class="txt">System Setting</span></a>
+                                            <ul class="sub">
+                                                <li>
+                                             
+                                                    <a href="<?php echo base_url(); ?>admin/system_settings">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">System Settings</span>
+                                                    </a>
+                                                </li> 
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/authorize_payment_config">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Authorize.net Config</span>
+                                                    </a>
+                                                </li>                                                 
+                                            </ul>
                                         </li>
                                         
                                         <li class="hasSub">
