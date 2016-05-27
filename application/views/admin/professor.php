@@ -42,8 +42,8 @@
                                 <td><?php echo $row->designation; ?></td>
                                 <td><?php echo date('M d, Y', strtotime($row->dob)); ?></td>
                                 <td class="menu-action">
-                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_professor/<?php echo $row->professor_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">Edit</span></a>
-                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/professor/delete/<?php echo $row->professor_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_professor/<?php echo $row->professor_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/professor/delete/<?php echo $row->professor_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>																					

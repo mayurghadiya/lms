@@ -44,7 +44,7 @@
                                     <td class="menu-action">
                                         <a href="<?php echo base_url('admin/inbox_email/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">View</span></a>
                                         <a href="<?php echo base_url('admin/delete_email/' . $row->email_id); ?>"
-                                           onclick="return confirm('Are you sure to delete this email?');"><span class="label label-danger mr6 mb6">Delete</span></a>
+                                           onclick="return confirm('Are you sure to delete this email?');"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                     </td>
                                 </tr>
                                 <?php

@@ -75,8 +75,8 @@
                     <td><a href="<?php echo $row->assign_url; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>	
                     <td><?php echo date('F d, Y', strtotime($row->assign_dos)); ?></td>	
                     <td class="menu-action">
-                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Edit</span></a>
-                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/assignment/delete/<?php echo $row->assign_id; ?>');" data-toggle="modal" ><span class="label label-danger mr6 mb6">Delete</span></a>
+                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/assignment/delete/<?php echo $row->assign_id; ?>');" data-toggle="modal" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                     </td>	
                 </tr>
             <?php endforeach; ?>						

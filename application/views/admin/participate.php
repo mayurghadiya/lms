@@ -123,9 +123,9 @@
                                                     <td><?php  echo date_formats($row->pp_dos); ?></td>	
 
                                                     <td class="menu-action">
-                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_participate/<?php echo $row->pp_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
+                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_participate/<?php echo $row->pp_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
 
-                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/participate/delete/<?php echo $row->pp_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>	
+                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/participate/delete/<?php echo $row->pp_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>	
                                                     </td>	
                                                 </tr>
                                             <?php endforeach; ?>						
@@ -423,9 +423,9 @@
                                                         
                                                         <?php //echo ($rowq->question_status == "1") ? 'Active' : 'Deactive'; ?></td>    
 
-                                                    <td>  <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_question/<?php echo $rowq->sq_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Edit</span></a>
+                                                    <td>  <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_question/<?php echo $rowq->sq_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
 
-                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/survey/delete/<?php echo $rowq->sq_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">Delete</span></a>	</td>
+                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/survey/delete/<?php echo $rowq->sq_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>	</td>
                                                 </tr>
                                             <?php endforeach; ?>                        
                                         </tbody>
