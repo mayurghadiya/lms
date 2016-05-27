@@ -5790,6 +5790,7 @@ class Admin extends MY_Controller {
             $this->data['todolist'] = $this->Crud_model->get_todo();
             $this->load->view("admin/gettodo",$this->data);
          }
+     }
     /**
      * Calendate json
      */
@@ -5804,5 +5805,6 @@ class Admin extends MY_Controller {
 
         write_file($file, $result);
     }
+  
 
 }
