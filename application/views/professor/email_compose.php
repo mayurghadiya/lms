@@ -5,14 +5,14 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title><?php echo $title; ?></h4>
+                            <div class="panel-controls panel-controls-right">
+                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
+                            </div>
+                        </div>-->
             <div class=panel-body>
                 <form class="form-horizontal" role="form" action="" method="post" 
                       enctype="multipart/form-data">
@@ -92,7 +92,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label"><?php echo ucwords("Message"); ?></label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-5">
                             <textarea id="message" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
                         </div>
                     </div>

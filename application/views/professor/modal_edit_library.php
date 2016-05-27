@@ -7,9 +7,9 @@ foreach ($edit_data as $row):
             <!-- col-lg-12 start here -->
             <div class="panel panel-default toggle panelMove panelClose panelRefresh">
                 <!-- Start .panel -->
-                <div class=panel-heading>
-                    <h4 class=panel-title>  <?php echo ucwords("Update Library"); ?></h4>                
-                </div>     
+                <!--                <div class=panel-heading>
+                                            <h4 class=panel-title>  <?php echo ucwords("Update Library"); ?></h4>                
+                                        </div>     -->
                 <div class="panel-body">
                     <div class="tab-pane box" id="add" style="padding: 5px">
                         <div class="box-content">  
@@ -156,14 +156,14 @@ foreach ($edit_data as $row):
                                 </div>
                             </div>
                             </form>
-                        </div> </div> </div>
+                        </div> 
+                    </div> 
+                </div>
             </div>
         </div>
     </div>
 
-    <?php
-endforeach;
-?>
+<?php endforeach; ?>
 <script type="text/javascript">
 
     function get_student(batch, semester = '') {

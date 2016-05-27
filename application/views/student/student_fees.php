@@ -4,20 +4,20 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title><?php echo $title; ?></h4>
+                            <div class="panel-controls panel-controls-right">
+                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
+                            </div>
+                        </div>-->
             <div class=panel-body>
                 <form class="form-horizontal form-groups-bordered validate" 
                       action="<?php echo base_url('student/pay_online'); ?>" id="student_fees" method="post">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="panel panel-default panel-shadow" data-collapsed="0">
+                            <div class="panel panel-default" data-collapsed="0">
                                 <div class="panel-heading">
                                     <div class="panel-title">Invoice Information</div>
                                 </div>
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="panel panel-default panel-shadow" data-collapsed="0">
+                            <div class="panel panel-default" data-collapsed="0">
                                 <div class="panel-heading">
                                     <div class="panel-title">Payment Information</div>
                                 </div>

@@ -80,6 +80,11 @@ $lang['edit_fee_structure'] = 'Update Fee Structure';
 $lang['add_fee_structure'] = 'Add Fee Structure';
 $lang['edit_payment'] = 'Update Payment';
 $lang['add_payment'] = 'Add Payment';
+
+$lang['student_detail'] = 'Student Details';
+$lang['add_courseware'] = 'Add Courseware';
+$lang['edit_courseware'] = 'Update Courseware';
+
 /**
  * Department
  */

@@ -1,11 +1,11 @@
-    <div class=row>                      
+<div class=row>                      
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Submit Assignment"); ?></h4>                
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title>  <?php echo ucwords("Submit Assignment"); ?></h4>                
+                        </div>-->
 
             <div class="panel-body">
                 <div class="tab-pane box" id="add" style="padding: 5px">
@@ -17,7 +17,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Assignment Document<span style='color:red;'>*</span></label>
                                 <div class="col-sm-5">
-                                 <input type="file" name="document_file" id="document_file" >
+                                    <input type="file" name="document_file" id="document_file" >
                                 </div>
                             </div>	
                             <div class="form-group">
@@ -41,23 +41,23 @@
         </div>
     </div>
 </div>
-    <script type="text/javascript">
-        $.validator.setDefaults({
-            submitHandler: function (form) {
-                form.submit();
+<script type="text/javascript">
+    $.validator.setDefaults({
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+
+    $(document).ready(function () {
+
+
+        $("#frmsubmitassign").validate({
+            rules: {
+                document_file: "required",
+            },
+            messages: {
+                document_file: "Please select file",
             }
         });
-        
-        $(document).ready(function () {
-            
-            
-            $("#frmsubmitassign").validate({
-                rules: {
-                    document_file: "required",
-                },
-                messages: {
-                    document_file: "Please select file",
-                }
-            });
-        });
-    </script>
+    });
+</script>

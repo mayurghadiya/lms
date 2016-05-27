@@ -18,6 +18,22 @@
 <script type="text/javascript">
     function showAjaxModal(url)
     {
+        if (url.indexOf("edit_") >= 0) {
+            $('#myModalLabel2').html('<?php echo @$edit_title; ?>');
+        } else if (url.indexOf("add") >= 0) {
+            $('#myModalLabel2').html('<?php echo @$add_title; ?>');
+        } else if (url.indexOf('detail') >= 0) {
+            $('#myModalLabel2').html('<?php echo @$detail_title; ?>');
+        } else {
+            $('#myModalLabel2').html('<?php echo $title ?>');
+        }
+
+        if (url.indexOf("edit_participate") >= 0) {
+            $('#myModalLabel2').html('Update Participate');
+        } else if (url.indexOf('edit_question') >= 0) {
+            $('#myModalLabel2').html('Update Question');
+        }
+
         // SHOWING AJAX PRELOADER IMAGE
         jQuery('#modal_ajax .modal-body').html('<div style="text-align:center;margin-top:200px;"><img src="<?php echo base_url(); ?>assets/img/preloader.gif" /></div>');
 
@@ -43,10 +59,6 @@
                 <h4 id="myModalLabel2" class="modal-title">Learning Management System</h4>
             </div>
             <div class="modal-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
 
             <div class="modal-footer"><button data-dismiss="modal" class="btn btn-default" type="button">Close</button></div>

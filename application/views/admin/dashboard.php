@@ -59,7 +59,7 @@
             onlyOneDescription: true,
             openEventInNewWindow: false,
             eventsScrollable: false,
-            dateFormat: "D/MM/YYYY",
+            dateFormat: "DD/MM/YYYY",
             jsonDateFormat: 'timestamp', // you can use also "human" 'YYYY-MM-DD HH:MM:SS'
             //moveSpeed: 500,	// speed of month move when you clic on a new date
             //moveOpacity: 0, // month and events fadeOut to this opacity
@@ -425,10 +425,10 @@
                                     if (event.url) {
                                         eventTitle = '<a href="' + event.url + '" target="' + eventLinkTarget + '" class="eventCalendar-eventTitle">Title: ' + event.title + '</a>';
                                     } else {    
-                                        eventTitle = '<div class="eventCalendar-eventTitle"><b>Title :</b><span>' + event.title + '<span></div>' + '<div class="eventCalendar-eventDesc eventCalendar-hidden"><p><b>Description :</b><span>' + event.description + '</span></p><p><b>Date :</b><span>' + event.event_start_date + ' ' + event.event_start_time + '</span></p><p><b>Location :</b><span>' + event.Location + '</span></p></div>';
+                                        eventTitle = '<div class="eventCalendar-eventTitle"><i class="fa fa-check-square-o" aria-hidden="true"></i><b>Title :</b><span>' + event.title + '<span></div>' + '<div class="eventCalendar-eventDesc eventCalendar-hidden"><p><i class="fa fa-file-text-o" aria-hidden="true"></i><b>Description :</b><span>' + event.description + '</span></p><p><i class="fa fa-clock-o" aria-hidden="true"></i><b>Time :</b><span>' + event.event_start_time + '</span></p><p><i class="fa fa-map-marker" aria-hidden="true"></i><b>Location :</b><span>' + event.Location + '</span></p><p><i class="fa fa-coffee" aria-hidden="true"></i><b>Intention :</b><span>' + event.description + '</span></p></div>';
                                     }
 
-                                    events.push('<li id="' + key + '" class="' + event.type + '"><time class="time_det" datetime="' + eventDate + '"><em>' + eventStringDate + '</em></time>' + eventTitle + '<p class="eventCalendar-eventDesc ' + eventDescClass + '">' + event.description + '</p></li>');
+                                    events.push('<li id="' + key + '" class="' + event.type + '"><time class="time_det" datetime="' + eventDate + '"><i class="mar4top fa fa-calendar-o" aria-hidden="true"></i><b>Date :</b><span><em>' + eventStringDate + '</em></span></time>' + eventTitle + '<p class="eventCalendar-eventDesc displaynone ' + eventDescClass + '">' + event.description + '</p></li>');
                                     i++;
                                 }
                             }

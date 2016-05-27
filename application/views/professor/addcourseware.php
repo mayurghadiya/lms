@@ -4,9 +4,9 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title> <?php echo ucwords("Add Courseware"); ?></h4>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title> <?php echo ucwords("Add Courseware"); ?></h4>
+                        </div>-->
             <div class="panel-body"> 
 
                 <div class="box-content">     

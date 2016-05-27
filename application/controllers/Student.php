@@ -540,6 +540,8 @@ class Student extends MY_Controller {
             $this->data['student'] = $this->db->get('student')->result();
             $this->data['page'] = 'project';
             $this->data['title'] = 'Project List';
+            $this->data['add_title'] = $this->lang_message('add_project');
+            $this->data['edit_title'] = $this->lang_message('edit_project');
             $this->data['param'] = $param1;
             clear_notification('project_manager', $this->session->userdata('student_id'));
             unset($this->session->userdata('notifications')['project_manager']);
@@ -549,6 +551,8 @@ class Student extends MY_Controller {
             $this->data['project'] = $this->db->get('project_manager')->result();
             $this->data['page'] = 'project';
             $this->data['title'] = 'Project List';
+            $this->data['add_title'] = $this->lang_message('add_project');
+            $this->data['edit_title'] = $this->lang_message('edit_project');
             $this->data['param'] = $param1;
             $this->__site_template('student/project', $this->data);
         }

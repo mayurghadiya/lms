@@ -3,9 +3,9 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Add Project");?></h4>                
-            </div>             
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title>  <?php echo ucwords("Add Project"); ?></h4>                
+                        </div>             -->
             <div class="panel-body"> 
 
                 <div class="box-content">  
@@ -201,7 +201,7 @@
         $.ajax({
             url: '<?php echo base_url(); ?>professor/checkboxstudent/',
             type: 'POST',
-            data: {'batch': batch, 'sem': sem, 'course': course, 'degree': degree,'divclass':divclass},
+            data: {'batch': batch, 'sem': sem, 'course': course, 'degree': degree, 'divclass': divclass},
             success: function (content) {
                 //alert(content);
                 $("#student").html(content);
@@ -270,7 +270,7 @@
         $("#dateofsubmission").datepicker({
             dateFormat: ' M D, yyyy',
             minDate: 0,
-            autoclose:true,
+            autoclose: true,
         });
         jQuery.validator.addMethod("character", function (value, element) {
             return this.optional(element) || /^[A-z ]+$/.test(value);
@@ -315,9 +315,9 @@
                     extension: 'Upload valid file!',
                 },
                 title:
-                {
-                    required: "Enter project name",
-                },
+                        {
+                            required: "Enter project name",
+                        },
             }
         });
     });

@@ -8,9 +8,9 @@ $degree = $this->Professor_model->get_all_degree();
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>Add Exam Schedule</h4>                
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title>Add Exam Schedule</h4>                
+                        </div>-->
             <div class=panel-body>
                 <?php echo form_open(base_url() . 'professor/exam_time_table/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'exam_time_table_form', 'target' => '_top')); ?>
                 <br/>

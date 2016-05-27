@@ -5,21 +5,21 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title><?php echo $title; ?></h4>
+                            <div class="panel-controls panel-controls-right">
+                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
+                            </div>
+                        </div>-->
             <div class=panel-body>
 
                 <form action="#" method="post" id="searchform">
                     <div class="form-group col-sm-3 validating">
                         <label><?php echo ucwords("department"); ?></label>
                         <select id="courses" name="degree" class="form-control">
-                            <option value="">Select department</option>
+                            <option value="">Select</option>
                             <option value="All">All</option>
 
                             <?php foreach ($degree as $row) { ?>
@@ -30,7 +30,7 @@
                     <div class="form-group col-sm-3 validating">
                         <label>Branch</label>
                         <select id="branches" name="course" class="form-control">
-                            <option value="">Select Branch</option>
+                            <option value="">Select</option>
                             <option value="All">All</option>
 
                         </select>
@@ -38,14 +38,14 @@
                     <div class="form-group col-sm-3 validating">
                         <label>Batch</label>
                         <select id="batches" name="batch" class="form-control">
-                            <option value="">Select Batch</option>
+                            <option value="">Select</option>
                             <option value="All">All</option>
                         </select>
                     </div>
                     <div class="form-group col-sm-2 validating">
-                        <label>Select Semester</label>
+                        <label>Semester</label>
                         <select id="semesters" name="semester" class="form-control">
-                            <option value="">Select Semester</option>
+                            <option value="">Select</option>
                             <option value="All">All</option>
 
                             <?php foreach ($semester as $row) { ?>
@@ -152,7 +152,7 @@
     </div>
     <!-- col-lg-12 end here -->
 </div>
-
+</div></div>
 <script type="text/javascript">
     
    $("#searchform #btnsubmit").click(function(){

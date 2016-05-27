@@ -44,6 +44,7 @@ class Professor extends MY_Controller {
         $this->data['student'] = $this->Professor_model->get_prof_student($dpet, $branch);
         $this->data['page'] = 'student';
         $this->data['title'] = 'Student Management';
+        $this->data['detail_title'] = $this->lang_message('student_detail');
         $this->__site_template('professor/student', $this->data);
     }
 
@@ -157,6 +158,8 @@ class Professor extends MY_Controller {
         $this->data['sdegree'] = $this->Professor_model->get_all_degree();
        
         $this->data['title'] = 'Syllabus Management';
+        $this->data['add_title'] = $this->lang_message('add_syllabus');
+        $this->data['edit_title'] = $this->lang_message('edit_syllabus');
         $this->data['page_name'] = 'syllabus';
         $this->__site_template('professor/syllabus', $this->data);
     }
@@ -241,6 +244,8 @@ class Professor extends MY_Controller {
         }
 
         $this->data['title'] = 'Assessments';
+        $this->data['add_title'] = $this->lang_message('add_assessments');
+        $this->data['edit_title'] = $this->lang_message('edit_assessments');
         $this->data['pge'] = 'assessments';
         $this->data['assessments'] = $this->Professor_model->assessment();
         $this->data['degree'] = $this->Professor_model->get_all_degree();
@@ -559,6 +564,7 @@ class Professor extends MY_Controller {
         $this->data['batch'] = $this->Professor_model->get_all_bacth();
         $this->data['name'] = 'studyresource';
         $this->data['title'] = 'Study Resource Management';
+        $this->data['edit_title'] = $this->lang_message('edit_studyresource');
         $this->__site_template('professor/studyresource', $this->data);
     }
 
@@ -699,6 +705,8 @@ class Professor extends MY_Controller {
         $this->data['student'] = $this->db->get('student')->result();
         $this->data['page'] = 'project';
         $this->data['title'] = 'Project Management';
+        $this->data['add_title'] = $this->lang_message('add_project');
+        $this->data['edit_title'] = $this->lang_message('edit_project');
         $this->__site_template('professor/project', $this->data);
     }
 
@@ -854,7 +862,8 @@ class Professor extends MY_Controller {
         $this->data['batch'] = $this->Professor_model->get_all_bacth();
         $this->data['student'] = $this->db->get('student')->result();
         $this->data['page_name'] = 'library';
-        $this->data['page_title'] = 'Library Management';
+        $this->data['title'] = 'Digital Library';
+        $this->data['edit_title'] = $this->lang_message('edit_digital_library');
         $this->__site_template('professor/library', $this->data);
     }
 
@@ -975,6 +984,8 @@ class Professor extends MY_Controller {
         $this->data['courseware'] = $this->Professor_model->getcourseware();
         $this->data['page'] = 'courseware';
         $this->data['title'] = 'Courseware Management';
+        $this->data['add_title'] = $this->lang_message('add_courseware');
+        $this->data['edit_title'] = $this->lang_message('edit_courseware');
         $this->__site_template('professor/courseware', $this->data);
     }
 
@@ -1139,7 +1150,9 @@ class Professor extends MY_Controller {
 //$exam = $this->Professor_model->exam_details();
 
         $this->data['page_name'] = 'exam';
-        $this->data['page_title'] = 'Exam Management';
+        $this->data['title'] = 'Exam Management';
+        $this->data['add_title'] = 'Add Exam';
+        $this->data['edit_title'] = 'Update Exam';
         $this->data['exams'] = $this->Professor_model->exam_details();
         $this->data['exam_type'] = $this->Professor_model->get_all_exam_type();
         $this->data['degree'] = $this->Professor_model->get_all_degree();
@@ -1217,6 +1230,8 @@ class Professor extends MY_Controller {
         $this->data['semester'] = $this->Professor_model->get_all_semester();
         $this->data['time_table'] = $this->Professor_model->time_table();
         $this->data['title'] = 'Exam Schedule';
+        $this->data['add_title'] = $this->lang_message('add_exam_schedule');
+        $this->data['edit_title'] = $this->lang_message('edit_exam_schedule');
         $this->data['page'] = 'exam_time_table';
         $this->__site_template('professor/exam_time_table', $this->data);
     }

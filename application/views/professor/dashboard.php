@@ -422,10 +422,10 @@
                                     if (event.url) {
                                         eventTitle = '<a href="' + event.url + '" target="' + eventLinkTarget + '" class="eventCalendar-eventTitle">Title: ' + event.title + '</a>';
                                     } else {
-                                        eventTitle = '<span class="eventCalendar-eventTitle">Title: ' + event.title + '<br/>Description: ' + event.description + '<br/>Date: ' + event.event_start_date + ' ' + event.event_start_time + '<br/>Location: ' + event.Location + '</span>';
+                                        eventTitle = '<div class="eventCalendar-eventTitle"><i class="fa fa-check-square-o" aria-hidden="true"></i><b>Title :</b><span>' + event.title + '<span></div>' + '<div class="eventCalendar-eventDesc eventCalendar-hidden"><p><i class="fa fa-file-text-o" aria-hidden="true"></i><b>Description :</b><span>' + event.description + '</span></p><p><i class="fa fa-calendar-o" aria-hidden="true"></i><b>Time :</b><span>' + event.event_start_time + '</span></p><p><i class="fa fa-map-marker" aria-hidden="true"></i><b>Location :</b><span>' + event.Location + '</span></p><p><i class="fa fa-coffee" aria-hidden="true"></i><b>Intention :</b><span>' + event.description + '</span></p></div>';
                                     }
 
-                                    events.push('<li id="' + key + '" class="' + event.type + '"><time datetime="' + eventDate + '"><em>' + eventStringDate + '</em></time>' + eventTitle + '<p class="eventCalendar-eventDesc ' + eventDescClass + '">' + event.description + '</p></li>');
+                                    events.push('<li id="' + key + '" class="' + event.type + '"><time class="time_det" datetime="' + eventDate + '"><i class="mar4top fa fa-calendar-o" aria-hidden="true"></i><b>Date :</b><span><em>' + eventStringDate + '</em></span></time>' + eventTitle + '<p class="eventCalendar-eventDesc displaynone ' + eventDescClass + '">' + event.description + '</p></li>');
                                     i++;
                                 }
                             }
@@ -475,7 +475,7 @@
                 flags.wrap.find('.eventCalendar-monthWrap.eventCalendar-oldMonth').animate({
                     opacity: eventsOpts.moveOpacity,
                     left: lastMonthMove
-                }, eventsOpts.moveSpeed, function () {
+                }, 0, function () {
                     flags.wrap.find('.eventCalendar-monthWrap.eventCalendar-oldMonth').remove();
                 });
             });
@@ -506,6 +506,26 @@
 
     });
 </script>
+
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('p.eventCalendar-subtitle').html('Events Details:');
+        }, 500);
+
+        setTimeout(function () {
+            $('.eventCalendar-arrow').on('click',function(){
+                $('p.eventCalendar-subtitle').html('Events Details:');
+                $('.eventCalendar-monthTitle').prepend('<i class="fa fa-calendar" aria-hidden="true"></i>');
+            })
+        }, 500);
+
+        setTimeout(function() {
+            $('.eventCalendar-monthTitle').prepend('<i class="fa fa-calendar" aria-hidden="true"></i>');
+        }, 500);
+
+    })
+</script>
 <!-- Start .row -->
 <div class=row>                      
 
@@ -513,9 +533,9 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>Class Routine</h4>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title>Class Routine</h4>
+                        </div>-->
             <div class=panel-body>
                 <iframe frameborder="0" src="<?php echo base_url(); ?>professor/professor_class_routine" width="100%" height="400px"></iframe>
             </div>

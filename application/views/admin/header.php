@@ -39,8 +39,7 @@
             <script>
                 var base_url = '<?php echo base_url(); ?>';
             </script>
-
-        <body id="body">
+        <body class="<?php echo $this->uri->segment(2); ?>">
             <!--[if lt IE 9]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]--><!-- .#header -->
@@ -62,7 +61,7 @@
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
                                     <span class=txt>Messages</span>
                                 </a>
-                                
+
                             </li>
                         </ul>
                         <ul class="nav navbar-right usernav">
@@ -231,7 +230,7 @@
                                                         <span class="txt">Chancellor</span>
                                                     </a>
                                                 </li>
-                                                 <li>
+                                                <li>
                                                     <a href="<?php echo base_url(); ?>admin/category">
                                                         <i class="s16 icomoon-icon-attachment"></i>
                                                         <span class="txt"> Course Category</span>
@@ -252,12 +251,12 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url().'admin/class_routine' ?>">
+                                            <a href="<?php echo base_url() . 'admin/class_routine' ?>">
                                                 <i class="s16 fa fa-book"></i>
                                                 <span class=txt>Class Routine </span>
                                             </a>
                                         </li>
-                                        
+
                                         <li class="hasSub">
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Assets Management</span></a>
@@ -311,8 +310,8 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                            
-                                          <li class="hasSub">
+
+                                        <li class="hasSub">
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Forum</span></a>
                                             <ul class="sub">
@@ -364,13 +363,13 @@
                                                         <span class="txt">Inbox</span>
                                                     </a>
                                                 </li>
-                                                 <li>
+                                                <li>
                                                     <a href="<?php echo base_url(); ?>admin/email_sent">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Sent</span>
                                                     </a>
                                                 </li>
-                                                
+
                                             </ul>
                                         </li>
                                         <li class="hasSub">
@@ -383,7 +382,7 @@
                                                         <span class="txt">Import</span>
                                                     </a>
                                                 </li>
-                                                 <li>
+                                                <li>
                                                     <a href="<?php echo base_url(); ?>admin/export">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Export</span>
@@ -391,13 +390,13 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        
-                                         <li class="hasSub">
+
+                                        <li class="hasSub">
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">System Setting</span></a>
                                             <ul class="sub">
                                                 <li>
-                                             
+
                                                     <a href="<?php echo base_url(); ?>admin/system_settings">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">System Settings</span>
@@ -411,7 +410,7 @@
                                                 </li>                                                 
                                             </ul>
                                         </li>
-                                        
+
                                         <li class="hasSub">
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">University</span></a>
@@ -487,7 +486,7 @@
                                                         <span class="txt">Make Payment</span>
                                                     </a>
                                                 </li> 
-                                                
+
                                             </ul>
                                         </li>
                                         <li>
@@ -524,7 +523,7 @@
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">User Management</span></a>
                                             <ul class="sub">
-                                               <li >
+                                                <li >
                                                     <a href="<?php echo base_url(); ?>admin/create_group">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="menu-text">Create Groups</span>  
@@ -536,18 +535,18 @@
                                                         <span class="menu-text">List Groups</span>  
                                                     </a>
                                                 </li>
-                                                  <li>
-                                                      <a href="<?php echo base_url(); ?>admin/assign_module">
-                                                          <i class="s16 icomoon-icon-screen-2"></i>
-                                                          <span class="menu-text">Assign Module</span>  
-                                                      </a>
-                                                  </li>
-                                                  <li>
-                                                      <a href="<?php echo base_url(); ?>admin/list_module">
-                                                          <i class="s16 icomoon-icon-screen-2"></i>
-                                                          <span class="menu-text">List Module</span>  
-                                                      </a>
-                                                  </li>                                                
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/assign_module">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="menu-text">Assign Module</span>  
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/list_module">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="menu-text">List Module</span>  
+                                                    </a>
+                                                </li>                                                
                                             </ul>
                                         </li>
                                 </div>
@@ -574,66 +573,66 @@
                             <div class="search">
                                 <!-- .search -->
                                 <form id=searchform class=form-horizontal action=search.html>
-                                <input class="top-search from-control" placeholder="Search here ..."> 
-                                <input type=submit class=search-btn>
-                                <div class="category">
-                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
-                                        Category                                     
-                                    </a>
-                                    
-                                     <ul class="dropdown-menu">
-                                         <li class="menu">
-                                              <ul>
-                                                            <li>
-                                                                <label>
-                                                                    <input type="checkbox" value="degree" name="degree">
-                                                                    <span>Degree</span>
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <label>
-                                                                    <input type="checkbox" value="student" name="student">
-                                                                    <span>Student</span></label>
-                                                            </li>
-                                                            <li>
-                                                                <label>
-                                                                    <input type="checkbox" value="course" name="course">
-                                                                    <span>Courses</span></label>
-                                                            </li>
-                                                            <li>
-                                                                <label>
-                                                                    <input type="checkbox" value="exam" name="exam">
-                                                                    <span>Exam</span></label>
-                                                            </li>
-                                                            <li>
-                                                                <label>
-                                                                    <input type="checkbox" value="event" name="event">
-                                                                    <span>Event</span>
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <label>
-                                                                    <input type="checkbox" value="batch" name="batch">
-                                                                    <span>Batch</span></label>
-                                                            </li>
-                                                            <li>
-                                                                <label>
-                                                                    <input type="checkbox" value="assignment" name="assignment">
-                                                                    <span>Assignment</span></label>
-                                                            </li>
-                                                            <li>
-                                                                <label>
-                                                                    <input type="checkbox" value="participate" name="participate">
-                                                                    <span>Participate</span></label>
-                                                            </li>
-                                                            <li>
-                                                                <label>
-                                                                    <input type="checkbox" value="center" name="center">
-                                                                    <span>Exam Center</span></label>
-                                                            </li>   
-                                                        </ul>                                           
-                                         </li>
-                                     </ul> 
+                                    <input class="top-search from-control" placeholder="Search here ..."> 
+                                    <input type=submit class=search-btn>
+                                    <div class="category">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
+                                            Category                                     
+                                        </a>
+
+                                        <ul class="dropdown-menu">
+                                            <li class="menu">
+                                                <ul>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="degree" name="degree">
+                                                            <span>Degree</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="student" name="student">
+                                                            <span>Student</span></label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="course" name="course">
+                                                            <span>Courses</span></label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="exam" name="exam">
+                                                            <span>Exam</span></label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="event" name="event">
+                                                            <span>Event</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="batch" name="batch">
+                                                            <span>Batch</span></label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="assignment" name="assignment">
+                                                            <span>Assignment</span></label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="participate" name="participate">
+                                                            <span>Participate</span></label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="center" name="center">
+                                                            <span>Exam Center</span></label>
+                                                    </li>   
+                                                </ul>                                           
+                                            </li>
+                                        </ul> 
                                     </div>
                                 </form>
                             </div>
