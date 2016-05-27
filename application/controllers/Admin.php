@@ -5642,6 +5642,81 @@ class Admin extends MY_Controller {
         $this->data['authorize_net'] = $this->Crud_model->authorize_net_config();
         $this->__site_template('admin/authorize_payment_config', $this->data);
     }
-
+    
+    function todo_list()
+    {
+        
+         $this->data['title'] = 'To Do List';
+        $this->data['page'] = 'todo_list';    
+          $this->data['todolist'] = $this->Crud_model->get_todo();
+        $this->__site_template('admin/todo_list', $this->data);
+    }
+    
+    function add_to_do()
+    {
+        if($_POST)
+        {
+            $title = $this->input->post('title');
+            $todo_date = $this->input->post('todo_date');
+            $todo_time = $this->input->post('todo_time');
+            $datetime = $todo_date.' '.$todo_time;
+            
+            $datetime = strtotime($datetime);
+            $datetime = date('Y-m-d H:i:s',$datetime);
+            
+            $data['todo_datetime'] = $datetime;
+            $data['todo_title'] = $title;
+            
+            $this->Crud_model->insert_todo($data);
+            $this->data['todolist'] = $this->Crud_model->get_todo();
+            $this->load->view("admin/gettodo",$this->data);
+        }
+    }
+    
+    function changestatus()
+    {
+        if($_POST)
+        {
+            $data['todo_id'] = $this->input->post('id');
+            $data['todo_status'] = $this->input->post('status');
+            $this->Crud_model->change_status($data);
+        }
+    }
+    
+    function removetodolist()
+    {
+        if($_POST)
+        {
+            $id = $this->input->post('id');
+           
+            $this->Crud_model->removetodo($id);
+        }
+    }
+    function todoupdateform($param= '')
+    {
+        $this->data['todolist'] = $this->Crud_model->gettododata($param);
+        $this->load->view("admin/todoupdateform",$this->data);
+    }
+    
+    function updatetodolist()
+    {
+         if($_POST)
+         {
+            $title = $this->input->post('title');
+            $todo_date = $this->input->post('todo_date');
+            $todo_time = $this->input->post('todo_time');
+            $datetime = $todo_date.' '.$todo_time;
+            
+            $datetime = strtotime($datetime);
+            $datetime = date('Y-m-d H:i:s',$datetime);
+            
+            $data['todo_datetime'] = $datetime;
+            $data['todo_title'] = $title;
+            $id  = $this->input->post('todo_id');           
+            $this->Crud_model->update_todo($data,$id);
+            $this->data['todolist'] = $this->Crud_model->get_todo();
+            $this->load->view("admin/gettodo",$this->data);
+         }
+    }
 
 }

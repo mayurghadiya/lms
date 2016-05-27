@@ -1480,6 +1480,36 @@ class Crud_model extends CI_Model {
                         ))->get()->row();
     }
     
+    function insert_todo($data)
+    {
+        $this->db->insert("todo_list",$data);
+    }
+    
+    function get_todo()
+    {
+        $this->db->order_by("todo_datetime","asc");
+        return $this->db->get("todo_list")->result();
+        
+    }
+    
+    function change_status($data)
+    {        
+        $this->db->update("todo_list",$data,array("todo_id"=>$data['todo_id']));
+    }
+    
+    function removetodo($id)
+    {
+        $this->db->delete("todo_list",array("todo_id"=>$id));
+    }
+    function gettododata($id)
+    {
+        return $this->db->get_where("todo_list",array("todo_id"=>$id))->row();
+    }
+    
+    function update_todo($data,$id)
+    {
+          $this->db->update("todo_list",$data,array("todo_id"=>$id));
+    }
 
 }
 
