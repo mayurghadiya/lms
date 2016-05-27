@@ -31,6 +31,7 @@ class Professor extends MY_Controller {
      */
     function dashboard() {
         $this->data['title'] = 'Professor Dashboard';
+          $this->data['todolist'] = $this->Professor_model->get_todo();
         $this->__site_template('professor/dashboard', $this->data);
     }
 
@@ -2480,5 +2481,93 @@ class Professor extends MY_Controller {
         $this->session->set_flashdata('flash_message', 'Attendance is successfully updated.');
         redirect(base_url('professor/attendance'));
     }
+    
+    /**
+     * add to do list
+     */
+    
+    function add_to_do()
+    {
+        if($_POST)
+        {
+            $title = $this->input->post('title');
+            $todo_date = $this->input->post('todo_date');
+            $todo_time = $this->input->post('todo_time');
+            $datetime = $todo_date.' '.$todo_time;
+           
+            $datetime = strtotime($datetime);
+            $datetime = date('Y-m-d H:i:s',$datetime);
+            
+            $data['todo_datetime'] = $datetime;
+            $data['todo_title'] = $title;
+            $data['todo_role'] = $this->session->userdata('login_type');
+            $data['todo_role_id'] = $this->session->userdata('login_user_id');
+            $this->Professor_model->insert_todo($data);
+            $this->data['todolist'] = $this->Professor_model->get_todo();
+            $this->load->view("professor/gettodo",$this->data);
+        }
+    }
+    
+    /**
+     * Change status done undone
+     */
+    function changestatus()
+    {
+        if($_POST)
+        {
+            $data['todo_id'] = $this->input->post('id');
+            $data['todo_status'] = $this->input->post('status');
+            $this->Professor_model->change_status($data);
+        }
+    }
+    
+    /**
+     * remove to do list
+     */
+    
+    function removetodolist()
+    {
+        if($_POST)
+        {
+            $id = $this->input->post('id');
+           
+            $this->Professor_model->removetodo($id);
+        }
+    }
+    
+    /**
+     * update form data
+     * @param int $param
+     */
+    function todoupdateform($param= '')
+    {
+        
+        $this->data['todolist'] = $this->Professor_model->gettododata($param);
+        $this->load->view("professor/todoupdateform",$this->data);
+    }
+    /**
+     * update to do list
+     */
+    function updatetodolist()
+    {
+         if($_POST)
+         {
+            $title = $this->input->post('title');
+            $todo_date = $this->input->post('todo_date');
+            $todo_time = $this->input->post('todo_time');
+            $datetime = $todo_date.' '.$todo_time;
+            
+            $datetime = strtotime($datetime);
+            $datetime = date('Y-m-d H:i:s',$datetime);
+            $data['todo_role'] = $this->session->userdata('login_type');
+            $data['todo_role_id'] = $this->session->userdata('login_user_id');
+            $data['todo_datetime'] = $datetime;
+            $data['todo_title'] = $title;
+            $id  = $this->input->post('todo_id');           
+            $this->Professor_model->update_todo($data,$id);
+            $this->data['todolist'] = $this->Professor_model->get_todo();
+            $this->load->view("professor/gettodo",$this->data);
+         }
+     }
 
 }

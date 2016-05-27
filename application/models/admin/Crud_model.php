@@ -1487,6 +1487,10 @@ class Crud_model extends CI_Model {
     
     function get_todo()
     {
+        $login_type = $this->session->userdata("login_type");
+        $login_id = $this->session->userdata("login_user_id");
+        $this->db->where("todo_role",$login_type);
+        $this->db->where("todo_role_id",$login_id);
         $this->db->order_by("todo_datetime","asc");
         return $this->db->get("todo_list")->result();
         
