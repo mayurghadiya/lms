@@ -126,9 +126,9 @@ $(document).ready(function () {
                                 $(this).closest("tr").removeClass('row-warning')
                         });
                     });
-    //                 $('#summernote').summernote({
-    //     height: 200
-    // });
+    $('#summernote').summernote({
+         height: 200
+     });
     
     
 //custom datatable filtering
@@ -265,7 +265,7 @@ $(document).ready(function () {
     $(".nav li.dropdown").click(function(e) {
         $(this).toggleClass("open");        
     }); 
-    $(".search .category").click(function(e) {
+    $(".search_box .category").click(function(e) {
         $(this).toggleClass("open");        
     });
     
