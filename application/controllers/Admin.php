@@ -1014,7 +1014,7 @@ class Admin extends MY_Controller {
     }
 
     function getassignment($param = '') {
-       
+
         if ($param == 'allassignment') {
             $degree = $this->input->post('degree');
             $course = $this->input->post('course');
@@ -1031,19 +1031,17 @@ class Admin extends MY_Controller {
             $this->db->where("assign_degree", $degree);
             $this->db->where("assign_sem", $semester);
             $this->db->where("class_id", $class);
-           
-           $data['param'] = $param;
+
+            $data['param'] = $param;
             $data['assignment'] = $this->db->get('assignment_manager')->result();
-            
-                   }
-        if($param=="submitted")
-        {
-            
-             $degree = $this->input->post('degree');
+        }
+        if ($param == "submitted") {
+
+            $degree = $this->input->post('degree');
             $course = $this->input->post('course');
             $batch = $this->input->post('batch');
             $semester = $this->input->post("semester");
-           // $class = $this->input->post("divclass");
+            // $class = $this->input->post("divclass");
             $data['course'] = $this->db->get('course')->result();
             $data['semester'] = $this->db->get('semester')->result();
             $data['batch'] = $this->db->get('batch')->result();
@@ -1065,10 +1063,8 @@ class Admin extends MY_Controller {
             $this->db->where("am.assign_sem", $semester);
             //$this->db->where("am.class_id", $class);
             $data['submitedassignment'] = $this->db->get()->result();
-           
-             $data['param'] = $param;
-           
-            
+
+            $data['param'] = $param;
         }
         $this->load->view("admin/getassignment", $data);
     }
@@ -4530,7 +4526,7 @@ class Admin extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
+            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
@@ -4561,7 +4557,7 @@ class Admin extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
+            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
@@ -4580,10 +4576,10 @@ class Admin extends MY_Controller {
         $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode))->result_array();
         echo json_encode($data);
     }
+
     /**
      * Check Duplicate Subject
      */
-    
     function checksubject() {
 
         $eid = $this->input->post('subname');
@@ -5247,38 +5243,36 @@ class Admin extends MY_Controller {
             $this->db->where("pm_batch", $batch);
             $this->db->where("pm_degree", $degree);
             $this->db->where("pm_semester", $semester);
-           //  $this->db->where("pm.class_id", $semester);
+            //  $this->db->where("pm.class_id", $semester);
             $data['submitedproject'] = $this->db->get()->result();
             $data['param'] = $param;
             $this->load->view("admin/getprojects", $data);
         }
     }
-    
+
     /**
      * 
      */
+    function getsyllabus($param = '') {
+        $degree = $this->input->post('degree');
+        $course = $this->input->post('course');
+        $semester = $this->input->post("semester");
 
-    function getsyllabus($param='')
-    {
-         $degree = $this->input->post('degree');
-            $course = $this->input->post('course');            
-            $semester = $this->input->post("semester");
-            
-            $data['course'] = $this->db->get('course')->result();
-            $data['semester'] = $this->db->get('semester')->result();
+        $data['course'] = $this->db->get('course')->result();
+        $data['semester'] = $this->db->get('semester')->result();
 
-            $data['degree'] = $this->db->get('degree')->result();
+        $data['degree'] = $this->db->get('degree')->result();
 
-            $this->db->where("syllabus_course", $course);          
-            $this->db->where("syllabus_degree", $degree);
-            $this->db->where("syllabus_sem", $semester);
-          
-           
-            $data['syllabus'] = $this->db->get('smart_syllabus')->result();
+        $this->db->where("syllabus_course", $course);
+        $this->db->where("syllabus_degree", $degree);
+        $this->db->where("syllabus_sem", $semester);
 
-            $this->load->view("admin/getsyllabus", $data);
+
+        $data['syllabus'] = $this->db->get('smart_syllabus')->result();
+
+        $this->load->view("admin/getsyllabus", $data);
     }
-    
+
     /**
      * get library list
      * @param String $param
@@ -5716,85 +5710,81 @@ class Admin extends MY_Controller {
         $this->data['page'] = 'authorize_payment_config';
         $this->data['authorize_net'] = $this->Crud_model->authorize_net_config();
         $this->__site_template('admin/authorize_payment_config', $this->data);
-    }    
-    function todo_list()
-    {
-        
-         $this->data['title'] = 'To Do List';
-        $this->data['page'] = 'todo_list';    
-          $this->data['todolist'] = $this->Crud_model->get_todo();
+    }
+
+    function todo_list() {
+
+        $this->data['title'] = 'To Do List';
+        $this->data['page'] = 'todo_list';
+        $this->data['todolist'] = $this->Crud_model->get_todo();
         $this->__site_template('admin/todo_list', $this->data);
     }
-    
-    function add_to_do()
-    {
-        if($_POST)
-        {
+
+    function add_to_do() {
+        if ($_POST) {
             $title = $this->input->post('title');
             $todo_date = $this->input->post('todo_date');
             $todo_time = $this->input->post('todo_time');
             $datetime = $todo_date.' '.$todo_time;
-           
             $datetime = strtotime($datetime);
-            $datetime = date('Y-m-d H:i:s',$datetime);
-            
+            $datetime = date('Y-m-d H:i:s', $datetime);
+
             $data['todo_datetime'] = $datetime;
             $data['todo_title'] = $title;
+
             $data['todo_role'] = $this->session->userdata('login_type');
             $data['todo_role_id'] = $this->session->userdata('login_user_id');
             $this->Crud_model->insert_todo($data);
             $this->data['todolist'] = $this->Crud_model->get_todo();
-            $this->load->view("admin/gettodo",$this->data);
+            $this->load->view("admin/gettodo", $this->data);
         }
     }
-    
-    function changestatus()
-    {
-        if($_POST)
-        {
+
+    function changestatus() {
+        if ($_POST) {
             $data['todo_id'] = $this->input->post('id');
             $data['todo_status'] = $this->input->post('status');
             $this->Crud_model->change_status($data);
         }
     }
-    
-    function removetodolist()
-    {
-        if($_POST)
-        {
+
+    function removetodolist() {
+        if ($_POST) {
             $id = $this->input->post('id');
-           
+
             $this->Crud_model->removetodo($id);
         }
     }
+
     function todoupdateform($param= '')
     {
-        
         $this->data['todolist'] = $this->Crud_model->gettododata($param);
-        $this->load->view("admin/todoupdateform",$this->data);
+        $this->load->view("admin/todoupdateform", $this->data);
     }
-    
-    function updatetodolist()
-    {
-         if($_POST)
-         {
+
+    function updatetodolist() {
+        if ($_POST) {
             $title = $this->input->post('title');
             $todo_date = $this->input->post('todo_date');
             $todo_time = $this->input->post('todo_time');
-            $datetime = $todo_date.' '.$todo_time;
-            
+            $datetime = $todo_date . ' ' . $todo_time;
+
             $datetime = strtotime($datetime);
+
+            $datetime = date('Y-m-d H:i:s', $datetime);
+
             $datetime = date('Y-m-d H:i:s',$datetime);
             $data['todo_role'] = $this->session->userdata('login_type');
             $data['todo_role_id'] = $this->session->userdata('login_user_id');
             $data['todo_datetime'] = $datetime;
             $data['todo_title'] = $title;
-            $id  = $this->input->post('todo_id');           
-            $this->Crud_model->update_todo($data,$id);
+            $id = $this->input->post('todo_id');
+            $this->Crud_model->update_todo($data, $id);
             $this->data['todolist'] = $this->Crud_model->get_todo();
-            $this->load->view("admin/gettodo",$this->data);
-         }
-     }
+            $this->load->view("admin/gettodo", $this->data);
+        }
+    }
+
     /**
      * Calendate json
      */
@@ -5809,6 +5799,27 @@ class Admin extends MY_Controller {
 
         write_file($file, $result);
     }
-  
+
+    /**
+     * Search module
+     * 
+     * @return response
+     */
+    function search() {
+        $this->load->helper('search');
+        $this->data['search_result'] = array();
+        $this->data['page'] = 'search_result';
+        $this->data['title'] = 'Search Result';
+        if ($_POST) {
+            $this->data['title'] = 'Search Result';
+            if ($_POST['search'] != '')
+                $this->data['search_result'] = global_search($_POST['search'], $_POST);
+            $this->data['search_string'] = $_POST['search'];
+            unset($_POST['search']);
+            $this->data['from'] = $_POST;
+        }
+        //$this->data['page'] = 'search_result';
+        $this->__site_template('admin/search_result', $this->data);
+    }
 
 }

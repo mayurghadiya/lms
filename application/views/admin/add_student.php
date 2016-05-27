@@ -93,7 +93,7 @@ $semesters = $this->db->get('semester')->result_array();
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo ucwords("Birth Date"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" name="birthdate" id="basic-datepicker" />
+                                <input type="text" class="form-control basic-datepicker" name="birthdate"/>
                             </div>
                         </div>	
                         <div class="form-group">
@@ -282,6 +282,7 @@ $semesters = $this->db->get('semester')->result_array();
 
         }
     });
+     $(".basic-datepicker").datepicker();
     $(document).ready(function () {
         $("#birthdate").datepicker({
         });

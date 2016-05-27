@@ -74,6 +74,7 @@ $(document).ready(function() {
     $("#multiple-datepicker").datepicker({
         multidate: true
     });
+   
     //date range
     $(".input-daterange").datepicker();
     //inline

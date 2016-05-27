@@ -39,7 +39,7 @@
             <script>
                 var base_url = '<?php echo base_url(); ?>';
             </script>
-        <body class="<?php echo $this->uri->segment(2); ?>">
+        <body>
             <!--[if lt IE 9]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]--><!-- .#header -->
@@ -570,10 +570,11 @@
                             <!--  .heading-->
                             <h3><?php echo $title; ?></h3>
                             <div class=resBtnSearch><a href=#><span class="s16 icomoon-icon-search-3"></span></a></div>
-                            <div class="search">
+                            <div class="search_box">
                                 <!-- .search -->
-                                <form id=searchform class=form-horizontal action=search.html>
-                                    <input class="top-search from-control" placeholder="Search here ..."> 
+                                <form id=searchform class=form-horizontal method="post" action="<?php echo base_url(); ?>admin/search">
+                                    <input name="search" class="top-search from-control" placeholder="Search here ..."
+                                           value="<?php echo isset($search_string) ? $search_string : ''; ?>"> 
                                     <input type=submit class=search-btn>
                                     <div class="category">
                                         <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
@@ -585,51 +586,60 @@
                                                 <ul>
                                                     <li>
                                                         <label>
-                                                            <input type="checkbox" value="degree" name="degree">
-                                                            <span>Degree</span>
+                                                            <input type="checkbox" value="degree" name="degree"
+                                                                   <?php if (isset($from['degree'])) echo 'checked'; ?>>
+                                                            <span>Department</span>
                                                         </label>
                                                     </li>
                                                     <li>
                                                         <label>
-                                                            <input type="checkbox" value="student" name="student">
-                                                            <span>Student</span></label>
+                                                            <input type="checkbox" value="student" name="student"
+                                                                   <?php if (isset($from['student'])) echo 'checked'; ?>>
+                                                            <span>Student</span>
+                                                        </label>
                                                     </li>
                                                     <li>
                                                         <label>
-                                                            <input type="checkbox" value="course" name="course">
-                                                            <span>Courses</span></label>
+                                                            <input type="checkbox" value="course" name="course"
+                                                                   <?php if (isset($from['course'])) echo 'checked'; ?>>
+                                                            <span>Branch</span>
+                                                        </label>
                                                     </li>
                                                     <li>
                                                         <label>
-                                                            <input type="checkbox" value="exam" name="exam">
-                                                            <span>Exam</span></label>
+                                                            <input type="checkbox" value="exam" name="exam"
+                                                                   <?php if (isset($from['exam'])) echo 'checked'; ?>>
+                                                            <span>Exam</span>
+                                                        </label>
                                                     </li>
                                                     <li>
                                                         <label>
-                                                            <input type="checkbox" value="event" name="event">
+                                                            <input type="checkbox" value="event" name="event"
+                                                                   <?php if (isset($from['event'])) echo 'checked'; ?>>
                                                             <span>Event</span>
                                                         </label>
                                                     </li>
                                                     <li>
                                                         <label>
-                                                            <input type="checkbox" value="batch" name="batch">
-                                                            <span>Batch</span></label>
+                                                            <input type="checkbox" value="batch" name="batch"
+                                                                   <?php if (isset($from['batch'])) echo 'checked'; ?>>
+                                                            <span>Batch</span>
+                                                        </label>
                                                     </li>
                                                     <li>
                                                         <label>
-                                                            <input type="checkbox" value="assignment" name="assignment">
-                                                            <span>Assignment</span></label>
+                                                            <input type="checkbox" value="assignment" name="assignment"
+                                                                   <?php if (isset($from['assignment'])) echo 'checked'; ?>>
+                                                            <span>Assignment</span>
+                                                        </label>
                                                     </li>
                                                     <li>
                                                         <label>
-                                                            <input type="checkbox" value="participate" name="participate">
-                                                            <span>Participate</span></label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <input type="checkbox" value="center" name="center">
-                                                            <span>Exam Center</span></label>
-                                                    </li>   
+                                                            <input type="checkbox" value="participate" name="participate"
+                                                                   <?php if (isset($from['participate'])) echo 'checked'; ?>>
+                                                            <span>Participate</span>
+                                                        </label>
+                                                    </li>                                                     
                                                 </ul>                                           
                                             </li>
                                         </ul> 
@@ -637,10 +647,6 @@
                                 </form>
                             </div>
                             <!--  /search -->
-                            <ul class=breadcrumb>
-                                <li>You are here:</li>
-                                <li><a href=# class=tip title="back to sdashboard"><i class="s16 icomoon-icon-screen-2"></i></a> <span class=divider><i class="s16 icomoon-icon-arrow-right-3"></i></span></li>
-                                <li class=active>Blank Page</li>
-                            </ul>
+                            <?php echo create_breadcrumb(); ?>
                         </div>
                         <!-- End  / heading-->
