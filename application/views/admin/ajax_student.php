@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>#</th>	
-            <th></th>
+            <th>Image</th>
             <th>Student Name</th>												
             <th>Email</th>												
             <th>Mobile</th>												
@@ -11,27 +11,24 @@
     </thead>
 
     <tbody>
-        <?php
-        foreach ($datastudent as $row):
-            ?>
+        <?php foreach ($datastudent as $row): ?>
             <tr>
                 <td></td>
                 <td>
-               <td>
-                <?php if ($row->profile_photo != '') { ?>
-                                <img src="<?= base_url() ?>uploads/student_image/<?= $row->profile_photo; ?>" height="70px" width="70px"/>
-                <?php
-                } else {
-                    if ($row->std_gender == 'Male') {
-                        ?>
-                                            <img src="<?= base_url() ?>uploads/student_image/male.jpg" height="70px" width="70px"/>
-                    <?php } else { ?>
-                                            <img src="<?= base_url() ?>uploads/student_image/female.jpg" height="70px" width="70px"/>
+                    <?php if ($row->profile_photo != '') { ?>
+                        <img src="<?= base_url() ?>uploads/student_image/<?= $row->profile_photo; ?>" height="70px" width="70px"/>
                         <?php
+                    } else {
+                        if ($row->std_gender == 'Male') {
+                            ?>
+                            <img src="<?= base_url() ?>uploads/student_image/male.jpg" height="70px" width="70px"/>
+                        <?php } else { ?>
+                            <img src="<?= base_url() ?>uploads/student_image/female.jpg" height="70px" width="70px"/>
+                            <?php
+                        }
                     }
-                }
-                ?>
-                 </td>										
+                    ?>
+                </td>										
                 <td><?php echo $row->std_first_name . " " . $row->std_last_name; ?></td>					
                 <td><?php echo $row->email; ?></td>											
                 <td><?php echo $row->std_mobile; ?></td>											
@@ -40,17 +37,17 @@
 
                 </td>											
             </tr>
-<?php endforeach; ?>																			
+        <?php endforeach; ?>																			
     </tbody>
 </table>
 <script>
- var t = $('#datatable-list2').DataTable({
+    var t = $('#datatable-list2').DataTable({
         "columnDefs": [{
                 "searchable": false,
                 "orderable": false,
                 "targets": 0
             }],
-        "order": [[1, 'asc']],
+        "order": [[2, 'asc']],
     });
 
     t.on('order.dt search.dt', function () {

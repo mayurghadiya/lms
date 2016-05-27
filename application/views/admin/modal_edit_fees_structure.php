@@ -21,9 +21,9 @@ $batch = $this->db->query($query)->result();
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>Update Fee Structure</h4>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title>Update Fee Structure</h4>
+                        </div>-->
             <div class=panel-body>
                 <?php echo form_open(base_url() . 'admin/fees_structure/update/' . $edit_data->fees_structure_id, array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'editfeesstructure', 'target' => '_top')); ?>
                 <div class="form-group">

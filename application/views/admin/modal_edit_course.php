@@ -1,4 +1,3 @@
-
 <?php
 $edit_data = $this->db->get_where('course', array('course_id' => $param2))->result_array();
 foreach ($edit_data as $row):
@@ -8,9 +7,9 @@ foreach ($edit_data as $row):
             <!-- col-lg-12 start here -->
             <div class="panel panel-default toggle panelMove panelClose panelRefresh">
                 <!-- Start .panel -->
-                <div class=panel-heading>
-                    <h4 class=panel-title>  <?php echo ucwords("Update branch"); ?></h4>                
-                </div>
+                <!--                <div class=panel-heading>
+                                            <h4 class=panel-title>  <?php echo ucwords("Update branch"); ?></h4>                
+                                        </div>-->
                 <div class="panel-body">
                     <div class="tab-pane box" id="add" style="padding: 5px">
                         <div class="box-content"> 
@@ -127,4 +126,3 @@ foreach ($edit_data as $row):
         });
     });
 </script>
-

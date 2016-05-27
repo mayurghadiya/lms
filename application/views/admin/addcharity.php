@@ -4,9 +4,9 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>Add Charity Fund</h4>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title>Add Charity Fund</h4>
+                        </div>-->
             <div class=panel-body>
                 <?php echo form_open(base_url() . 'admin/charity_fund/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'chartiyfund', 'target' => '_top')); ?>
                 <div class="padded">

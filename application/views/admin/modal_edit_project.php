@@ -9,9 +9,9 @@ foreach ($edit_data as $row):
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Update Project");?></h4>                
-            </div>                 
+            <!--            <div class=panel-heading>
+                                <h4 class=panel-title>  <?php echo ucwords("Update Project"); ?></h4>                
+                            </div>                 -->
                 <div class="panel-body">
                     <div class="tab-pane box" id="add" style="padding: 5px">
                         <div class="box-content">  

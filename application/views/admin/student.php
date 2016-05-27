@@ -5,17 +5,17 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title><?php echo $title; ?></h4>
+                            <div class="panel-controls panel-controls-right">
+                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
+                            </div>
+                        </div>-->
             <div class=panel-body>
-                 <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_student/');" href="#" id="navfixed" data-toggle="tab">Add New Student          
-        </a>
+                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_student/');" href="#" id="navfixed" data-toggle="tab">Add New Student          
+                </a>
                 <form id="frmstudentlist" name="frmfilterlist" action="#" enctype="multipart/form-data" class="form-vertical form-groups-bordered validate">
                     <div class="form-group col-sm-2">
                         <label ><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
@@ -70,7 +70,7 @@
                         <button type="button" class="btn btn-primary form-control" id="btnsubmit"><?php echo ucwords("Search"); ?></button>
                     </div>
                 </form>
-                
+
                 <div class="panel-body table-responsive" >
                     <div id="filterdata" >
 

@@ -10,9 +10,9 @@ foreach ($edit_data as $row) {
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>Update Exam Grade</h4>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title>Update Exam Grade</h4>
+                        </div>-->
             <div class=panel-body>
                 <?php echo form_open(base_url() . 'admin/grade/update/' . $row['grade_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'edit-grade-form', 'target' => '_top')); ?>
                 <div class="padded">

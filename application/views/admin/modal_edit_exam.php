@@ -29,9 +29,9 @@ $centerlist = $this->db->get('center_user')->result();
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>Update Exam</h4>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title>Update Exam</h4>
+                        </div>-->
             <div class=panel-body>
                 <?php echo form_open(base_url() . 'admin/exam/do_update/' . $edit_data->em_id, array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'edit-exam-form', 'target' => '_top')); ?>
                 <div class="form-group">

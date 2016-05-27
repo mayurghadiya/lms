@@ -5,14 +5,14 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title><?php echo $title; ?></h4>
+                            <div class="panel-controls panel-controls-right">
+                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
+                            </div>
+                        </div>-->
             <div class="vd_content-section clearfix">
                 <div class="row">
                     <div class="col-sm-12">
@@ -22,14 +22,14 @@
                         <?php echo form_open(base_url() . 'admin/create_group/create', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'create_group')); ?>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo ucwords("Group Name"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5 controls">
-                                <input type="text" placeholder="Group Name" name="group_name" >
+                            <div class="col-sm-3 controls">
+                                <input type="text" class="form-control" placeholder="Group Name" name="group_name" >
                                 <span class="help-inline"></span> </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Type of Users<span style="color:red">*</span></label>
-                            <div class="col-sm-5 controls">
-                                <select id="user_type" onchange="return get_user(this.value)" name="user_type"  >
+                            <div class="col-sm-3 controls">
+                                <select id="user_type" class="form-control" onchange="return get_user(this.value)" name="user_type"  >
                                     <option value="">Select User Type</option>
                                     <option value="admin">Admin</option>
                                     <option value="student">Student</option>
@@ -112,7 +112,8 @@
                         <!-- col-sm-9-->
                         <div class="col-sm-3">                
                             <div class="mgbt-xs-5">
-                                <button class="btn vd_btn vd_bg-green " type="submit"><?php echo ucwords("Create"); ?></button>
+                                <br/>
+                                <button class="btn btn-primary" type="submit"><?php echo ucwords("Create"); ?></button>
                             </div>
                         </div>
                     </div>		

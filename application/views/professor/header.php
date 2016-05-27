@@ -47,7 +47,7 @@
             <div id="header">
                 <nav class="navbar navbar-default" role=navigation>
                     <div class="navbar-header">
-                        <a class="navbar-brand" href=index.html>
+                        <a class="navbar-brand" href="<?php echo base_url(); ?>professor">
                             <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="logo">
                         </a>
                     </div>
@@ -58,26 +58,10 @@
                                 <a href=# class="collapseBtn leftbar"><i class="fa fa-bars" aria-hidden="true"></i></a>
                             </li>
                             <li class="dropdown">
-                                <a href=# class=dropdown-toggle data-toggle=dropdown>
+                                <a href="<?php echo base_url(); ?>professor/email_inbox">
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    <span class=txt>Messages</span><span class=notification>8</span></a>
-                                <ul class="dropdown-menu left">
-                                    <li class=menu>
-                                        <ul class=messages>
-                                            <li class=header><strong>Messages</strong> (10) emails and (2) PM</li>
-                                            <li><span class=icon>
-                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                </span> <span class=name><a data-toggle=modal href=#myModal1><strong>Sammy Morerira</strong></a><span class=time>35 min ago</span></span> <span class=msg>I have question about new function ...</span>
-                                            </li>
-                                            <li><span class="icon avatar"><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt=""></span> <span class=name><a data-toggle=modal href=#myModal1><strong>George Michael</strong></a><span class=time>1 hour ago</span></span> <span class=msg>I need to meet you urgent please call me ...</span>
-                                            </li>
-                                            <li><span class=icon><i class="fa fa-envelope-o" aria-hidden="true"></i></span> <span class=name><a data-toggle=modal href=#myModal1><strong>Ivanovich</strong></a><span class=time>1 day ago</span></span> <span class=msg>I send you my suggestion, please look and ...</span>
-                                            </li>
-                                            <li class=view-all><a href=#>View all messages <i class="s16 fa fa-angle-double-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                    <span class=txt>Messages</span>
+                                </a>
                             </li>
                         </ul>
                         <ul class="nav navbar-right usernav">
@@ -111,12 +95,14 @@
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul>
-                                            <li><a href="<?php echo base_url() ?>professor/manage_profile">
-                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>Edit profile</a>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i>Home</a>
+                                            <li>
+                                                <a href=#>
+                                                    <i class="fa fa-user" aria-hidden="true"></i>Edit profile</a>
                                             </li>
-                                            <li><a href=#><i class="fa fa-comment-o" aria-hidden="true"></i></i>Comments</a>
-                                            </li>
-                                            <li><a href=#><i class="fa fa-plus" aria-hidden="true"></i>Add user</a>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>site/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -140,20 +126,20 @@
                 <div id="sidebar" class="page-sidebar hidden-lg hidden-md hidden-sm hidden-xs">
                     <div class=shortcuts>
                         <ul>
-                            <li><a href="support.html" title="Support section" class=tip>
+                            <li><a href="<?php echo base_url(); ?>professor/attendance" title="Daily Attendance" class=tip>
                                     <i class="fa fa-life-ring" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href="#" title="Database backup" class=tip>
+                            <li><a href="<?php echo base_url(); ?>professor/assignment" title="Assignments" class=tip>
                                     <i class="fa fa-database" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href="#" title="Reports" class=tip>
-                                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                            <li><a href="<?php echo base_url(); ?>professor/project" title="Projects" class=tip>
+                                    <i class="fa fa-university" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href=# title="Write post" class=tip>
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <li><a href="<?php echo base_url(); ?>professor/subject" title="Subject" class=tip>
+                                    <i class="fa fa-book" aria-hidden="true"></i>
                                 </a>
                             </li>
                         </ul>
@@ -265,6 +251,12 @@
                                                 <span class=txt>Class Routine </span>
                                             </a>
                                         </li> 
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>professor/events">
+                                                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                                <span class=txt>Events </span>
+                                            </a>
+                                        </li>
                                         <li class="hasSub">
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">University</span></a>

@@ -32,6 +32,7 @@ class Admin extends MY_Controller {
         $this->data['new_student_joining'] = new_student_registration();
         $this->data['male_vs_female_course_wise'] = male_vs_female_course_wise();
         $this->data['title'] = 'Admin Dashboard';
+        $this->calendar_json();
         $this->__site_template('admin/dashboard', $this->data);
     }
 
@@ -80,6 +81,8 @@ class Admin extends MY_Controller {
             redirect(base_url('admin/department'));
         }
         $this->data['title'] = $this->lang_message('department_title');
+        $this->data['edit_title'] = $this->lang_message('edit_department');
+        $this->data['add_title'] = $this->lang_message('add_department');
         $this->data['page'] = 'department';
         $this->data['degrees'] = $this->db->get('degree')->result_array();
         $this->__site_template('admin/degree', $this->data);
@@ -132,6 +135,8 @@ class Admin extends MY_Controller {
         $this->data['courses'] = $this->db->get('course')->result_array();
         $this->data['semesters'] = $this->db->get('semester')->result_array();
         $this->data['title'] = $this->lang_message('branch_title');
+        $this->data['edit_title'] = $this->lang_message('edit_branch');
+        $this->data['add_title'] = $this->lang_message('add_branch');
         $this->data['page'] = 'branch';
         $this->__site_template('admin/course', $this->data);
     }
@@ -171,6 +176,8 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/batch/', 'refresh');
         }
         $this->data['title'] = $this->lang_message('batch_title');
+        $this->data['edit_title'] = $this->lang_message('edit_batch');
+        $this->data['add_title'] = $this->lang_message('add_batch');
         $this->data['batches'] = $this->db->get('batch')->result_array();
         $this->data['degree'] = $this->db->get('degree')->result_array();
         $this->data['course'] = $this->db->get('course')->result();
@@ -212,6 +219,8 @@ class Admin extends MY_Controller {
         $this->data['semesters'] = $this->db->get('semester')->result_array();
         $this->data['page'] = 'semester';
         $this->data['title'] = $this->lang_message('semester_title');
+        $this->data['edit_title'] = $this->lang_message('edit_semester');
+        $this->data['add_title'] = $this->lang_message('add_semester');
         $this->__site_template('admin/semesterlist', $this->data);
     }
 
@@ -249,6 +258,8 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/division/', 'refresh');
         }
         $this->data['title'] = $this->lang_message('class_title');
+        $this->data['add_title'] = $this->lang_message('add_class');
+        $this->data['edit_title'] = $this->lang_message('edit_class');
         $this->data['class'] = $this->db->get('class')->result_array();
         $this->data['page'] = 'class';
         $this->__site_template('admin/class', $this->data);
@@ -287,6 +298,8 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/admission_type/', 'refresh');
         }
         $this->data['title'] = $this->lang_message('admission_type_title');
+        $this->data['add_title'] = $this->lang_message('add_admission_type');
+        $this->data['edit_title'] = $this->lang_message('edit_admission_type');
         $this->data['admission_type'] = $this->db->get('admission_type')->result_array();
         $page_data['page'] = 'admission_type';
         $this->__site_template('admin/admission_type', $this->data);
@@ -446,6 +459,8 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/student/', 'refresh');
         }
         $this->data['title'] = $this->lang_message('student_title');
+        $this->data['add_title'] = $this->lang_message('add_student');
+        $this->data['edit_title'] = $this->lang_message('edit_student');
         $this->data['student'] = $this->db->get('student')->result();
         $this->data['page'] = 'student';
         $this->__site_template('admin/student', $this->data);
@@ -542,6 +557,8 @@ class Admin extends MY_Controller {
         $this->data['degree'] = $this->db->get('degree')->result();
         $this->data['title'] = $this->lang_message('syllabus_title');
         $page_data['title'] = 'Syllabus Management';
+        $this->data['add_title'] = $this->lang_message('add_syllabus');
+        $this->data['edit_title'] = $this->lang_message('edit_syllabus');
         $page_data['page_name'] = 'syllabus';
         $this->__site_template('admin/syllabus', $this->data);
     }
@@ -587,6 +604,8 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/holiday/', 'refresh');
         }
         $this->data['title'] = $this->lang_message('holiday_title');
+        $this->data['add_title'] = $this->lang_message('add_holiday');
+        $this->data['edit_title'] = $this->lang_message('edit_holiday');
         $this->data['holiday'] = $this->db->get('holiday')->result_array();
         $this->data['page'] = 'holiday';
         $this->__site_template('admin/holiday', $this->data);
@@ -671,6 +690,8 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/chancellor/', 'refresh');
         }
         $this->data['title'] = 'Chancellor Management';
+        $this->data['edit_title'] = $this->lang_message('edit_chancellor');
+        $this->data['add_title'] = $this->lang_message('add_chancellor');
         $this->data['chancellor'] = $this->db->get('university_peoples')->result_array();
         $this->data['page'] = 'chancellor';
         $this->__site_template('admin/chancellor', $this->data);
@@ -719,6 +740,8 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/vocationalcourse/', 'refresh');
         }
         $this->data['title'] = $this->lang_message('vocational_course');
+        $this->data['edit_title'] = $this->lang_message('edit_vocationalcourse');
+        $this->data['add_title'] = $this->lang_message('add_vocationalcourse');
         $this->data['vocationalcourse'] = $this->db->get('vocational_course')->result_array();
         $this->data['page'] = 'vocational_course';
         $this->__site_template('admin/vocational_course', $this->data);
@@ -771,6 +794,8 @@ class Admin extends MY_Controller {
         }
 
         $this->data['title'] = $this->lang_message('assessment_title');
+        $this->data['edit_title'] = $this->lang_message('edit_assessments');
+        $this->data['add_title'] = $this->lang_message('add_assessments');
         $this->data['page'] = 'assessments';
         $this->data['assessments'] = $this->Crud_model->assessment();
         $this->data['degree'] = $this->Crud_model->get_all_degree();
@@ -831,6 +856,8 @@ class Admin extends MY_Controller {
         $this->data['group'] = $this->db->get('group')->result();
         $this->data['page'] = 'events';
         $this->data['title'] = $this->lang_message('event_title');
+        $this->data['add_title'] = $this->lang_message('add_events');
+        $this->data['edit_title'] = $this->lang_message('edit_events');
         $this->__site_template('admin/events', $this->data);
     }
 
@@ -980,6 +1007,8 @@ class Admin extends MY_Controller {
         $this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignment';
         $this->data['title'] = $this->lang_message('assignment_title');
+        $this->data['add_title'] = $this->lang_message('add_assignment');
+        $this->data['edit_title'] = $this->lang_message('edit_assignment');
         $this->__site_template('admin/assignment', $this->data);
     }
 
@@ -1220,6 +1249,8 @@ class Admin extends MY_Controller {
         $this->data['batch'] = $this->db->get('batch')->result();
         $this->data['page'] = 'studyresource';
         $this->data['title'] = $this->lang_message('study_resource_title');
+        $this->data['add_title'] = $this->lang_message('add_studyresource');
+        $this->data['edit_title'] = $this->lang_message('edit_studyresource');
         $this->__site_template('admin/studyresource', $this->data);
     }
 
@@ -1401,6 +1432,8 @@ class Admin extends MY_Controller {
         $this->data['student'] = $this->db->get('student')->result();
         $this->data['page'] = 'project';
         $this->data['title'] = $this->lang_message('project_title');
+        $this->data['add_title'] = $this->lang_message('add_project');
+        $this->data['edit_title'] = $this->lang_message('edit_project');
         $this->__site_template('admin/project', $this->data);
     }
 
@@ -1559,6 +1592,8 @@ class Admin extends MY_Controller {
         $this->data['student'] = $this->db->get('student')->result();
         $this->data['page'] = 'library';
         $this->data['title'] = $this->lang_message('library_title');
+        $this->data['add_title'] = $this->lang_message('add_digital_library');
+        $this->data['edit_title'] = $this->lang_message('edit_digital_library');
         $this->__site_template('admin/library', $this->data);
     }
 
@@ -1685,6 +1720,8 @@ class Admin extends MY_Controller {
 
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Participate Management';
+        $this->data['edit_participate'] = $this->lang_message('edit_participate');
+        $this->data['add_title'] = 'Add Participate';
         $this->data['volunteer'] = $this->db->get('participate_student')->result_array();
         $this->data['uploads'] = $this->db->get('student_upload')->result_array();
         $this->__site_template('admin/participate', $this->data);
@@ -1851,6 +1888,8 @@ class Admin extends MY_Controller {
             redirect(base_url('admin/graduate'));
         }
         $this->data['title'] = $this->lang_message('graduate_title');
+        $this->data['add_title'] = $this->lang_message('add_graduate');
+        $this->data['edit_title'] = $this->lang_message('edit_graduate');
         $this->data['page'] = 'graduate';
         $this->data['degree'] = $this->Crud_model->get_all_degree();
         $this->data['graduates'] = $this->Crud_model->get_all_graduates();
@@ -1916,6 +1955,8 @@ class Admin extends MY_Controller {
             redirect(base_url('admin/charity_fund'));
         }
         $this->data['title'] = $this->lang_message('charity_title');
+        $this->data['add_title'] = $this->lang_message('add_charity_fund');
+        $this->data['edit_title'] = $this->lang_message('edit_charity_fund');
         $this->data['page'] = 'charity_fund';
         $this->data['charity_rund'] = $this->Crud_model->charity_fund();
         $this->__site_template('admin/charity_fund', $this->data);
@@ -2002,6 +2043,8 @@ class Admin extends MY_Controller {
             redirect(base_url('admin/professor'));
         }
         $this->data['title'] = $this->lang_message('professor_title');
+        $this->data['add_title'] = $this->lang_message('add_professor');
+        $this->data['edit_title'] = $this->lang_message('edit_professor');
         $this->data['page'] = 'professor';
         $this->data['professor'] = $this->Crud_model->professor();
         $this->__site_template('admin/professor', $this->data);
@@ -2116,6 +2159,8 @@ class Admin extends MY_Controller {
 
         $this->data['page'] = 'exam';
         $this->data['title'] = $this->lang_message('exam_title');
+        $this->data['add_title'] = $this->lang_message('add_exam');
+        $this->data['edit_title'] = $this->lang_message('edit_exam');
         $this->data['exams'] = $this->Crud_model->exam_details();
         $this->data['exam_type'] = $this->Crud_model->get_all_exam_type();
         $this->data['degree'] = $this->Crud_model->get_all_degree();
@@ -2192,6 +2237,8 @@ class Admin extends MY_Controller {
         $this->data['semester'] = $this->Crud_model->get_all_semester();
         $this->data['time_table'] = $this->Crud_model->time_table();
         $this->data['title'] = $this->lang_message('exam_schedule_title');
+        $this->data['add_title'] = $this->lang_message('add_exam_schedule');
+        $this->data['edit_title'] = $this->lang_message('edit_exam_schedule');
         $this->data['page'] = 'exam_time_table';
         $this->__site_template('admin/exam_time_table', $this->data);
     }
@@ -2357,6 +2404,8 @@ class Admin extends MY_Controller {
             redirect(base_url('admin/grade'));
         }
         $this->data['title'] = 'Exam Grade';
+        $this->data['edit_title'] = $this->lang_message('edit_grade');
+        $this->data['add_title'] = $this->lang_message('add_grade');
         $this->data['page'] = 'grade';
         $this->data['grade'] = $this->Crud_model->grade();
         $this->__site_template('admin/grade', $this->data);
@@ -2402,6 +2451,8 @@ class Admin extends MY_Controller {
         $this->data['cms'] = $this->db->get('cms_manager')->result_array();
         $this->data['page'] = 'cms';
         $this->data['title'] = 'CMS Pages';
+        $this->data['edit_title'] = $this->lang_message('edit_cms');
+        $this->data['add_title'] = $this->lang_message('add_cms');
         $this->__site_template('admin/cms', $this->data);
     }
 
@@ -2466,6 +2517,8 @@ class Admin extends MY_Controller {
         $this->data['semester'] = $this->Crud_model->get_all_semester();
         $this->data['fees_structure'] = $this->Crud_model->get_all_fees_structure();
         $this->data['title'] = 'Fee Structure';
+        $this->data['add_title'] = $this->lang_message('add_fee_structure');
+        $this->data['edit_title'] = $this->lang_message('edit_fee_structure');
         $this->data['page'] = 'fees_structure';
         $this->__site_template('admin/fees_structure', $this->data);
     }
@@ -2501,6 +2554,8 @@ class Admin extends MY_Controller {
             redirect(base_url('admin/process_payment'));
         }
         $this->data['title'] = 'Make Payment';
+        $this->data['add_title'] = $this->lang_message('add_payment');
+        $this->data['edit_title'] = $this->lang_message('edit_payment');
         $this->data['page'] = 'make_payment';
         $this->data['authorize_net'] = $this->Crud_model->authorize_net_config();
         $this->data['degree'] = $this->Crud_model->get_all_degree();
@@ -2808,6 +2863,8 @@ class Admin extends MY_Controller {
         }
         $this->data['page'] = 'forum';
         $this->data['title'] = $this->lang_message('forum_title');
+        $this->data['add_title'] = $this->lang_message('add_forum');
+        $this->data['edit_title'] = $this->lang_message('edit_forum');
         $this->data['forum'] = $this->forum_model->getforum();
         $this->__site_template('admin/forum', $this->data);
     }
@@ -2819,6 +2876,8 @@ class Admin extends MY_Controller {
     function forumtopics() {
         $this->data['page'] = 'forum_topic';
         $this->data['title'] = $this->lang_message('forum_topic_title');
+        $this->data['edit_title'] = $this->lang_message('edit_forum_topic');
+        $this->data['add_title'] = $this->lang_message('add_forum_topic');
         $this->data['forum_topic'] = $this->forum_model->getforum_topic();
         $this->__site_template('admin/forum_topic', $this->data);
     }
@@ -3164,6 +3223,8 @@ class Admin extends MY_Controller {
         $this->data['gallery'] = $this->photo_gallery->getphotogallery();
         $this->data['title'] = 'Photo Gallery';
         $this->data['page'] = 'photo_gallery';
+        $this->data['add_title'] = $this->lang_message('add_gallery');
+        $this->data['edit_title'] = $this->lang_message('edit_gallery');
         $this->__site_template('admin/photo_gallery', $this->data);
     }
 
@@ -4208,6 +4269,16 @@ class Admin extends MY_Controller {
     }
 
     /**
+     * Get all semesters of the branch
+     * @param string $branch_id
+     */
+    function get_semesters_of_branch($branch_id = '') {
+        $semester = $this->Crud_model->get_semesters_of_branch($branch_id);
+
+        echo json_encode($semester);
+    }
+
+    /**
      * Set mail config
      */
     function setemail($emails, $subject = '', $message = '', $cc, $attachment) {
@@ -4440,6 +4511,8 @@ class Admin extends MY_Controller {
         $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['page'] = 'subject';
         $this->data['title'] = 'Subject Management';
+        $this->data['edit_title'] = $this->lang_message('edit_subject');
+        $this->data['add_title'] = $this->lang_message('add_subject');
         $this->__site_template('admin/subject', $this->data);
     }
 
@@ -5444,6 +5517,8 @@ class Admin extends MY_Controller {
         $this->data['category'] = $this->db->get('course_category')->result_array();
         $this->data['page'] = 'course_category';
         $this->data['title'] = 'Category';
+        $this->data['edit_title'] = $this->lang_message('edit_course_category');
+        $this->data['add_title'] = $this->lang_message('add_course_category');
         $this->__site_template('admin/course_category', $this->data);
     }
 
@@ -5601,13 +5676,12 @@ class Admin extends MY_Controller {
         $data = json_decode($request);
         $this->db->delete('class_routine', ['ClassRoutineId' => $data[0]->ClassRoutineId]);
     }
-    
-    
+
     /**
      * Authorize payment gateway configuration
      */
     function authorize_payment_config() {
-      
+
         if ($_POST) {
             $id = $this->input->post('config_id', TRUE);
             if ($id != '') {
@@ -5641,8 +5715,7 @@ class Admin extends MY_Controller {
         $this->data['page'] = 'authorize_payment_config';
         $this->data['authorize_net'] = $this->Crud_model->authorize_net_config();
         $this->__site_template('admin/authorize_payment_config', $this->data);
-    }
-    
+    }    
     function todo_list()
     {
         
@@ -5717,6 +5790,19 @@ class Admin extends MY_Controller {
             $this->data['todolist'] = $this->Crud_model->get_todo();
             $this->load->view("admin/gettodo",$this->data);
          }
+    /**
+     * Calendate json
+     */
+    function calendar_json() {
+        $this->load->helper('file');
+        $this->db->select('event_date AS date, event_name AS title, event_location AS Location, event_desc AS description');
+        $this->db->select('DATE_FORMAT(event_date, "%d %b %Y") AS event_start_date, TIME_FORMAT(event_date, "%h:%i %p") AS event_start_time');
+        $this->db->from('event_manager');
+        $query = $this->db->get();
+        $file = FCPATH . 'event.humanDate.json.php';
+        $result = json_encode($query->result());
+
+        write_file($file, $result);
     }
 
 }

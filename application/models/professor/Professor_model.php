@@ -1402,6 +1402,7 @@ class Professor_model extends CI_Model {
     }
 
     public function getholiday() {
+        $this->db->order_by('holiday_startdate', 'DESC');
         return $this->db->get('holiday')->result_array();
     }
 
