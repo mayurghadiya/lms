@@ -157,7 +157,7 @@
 	function dateSlider(show, flags, eventsOpts) {
 		var $eventsCalendarSlider = $("<div class='eventCalendar-slider'></div>"),
 			$eventsCalendarMonthWrap = $("<div class='eventCalendar-monthWrap'></div>"),
-			$eventsCalendarTitle = $("<div class='eventCalendar-currentTitle'><a href='#' class='eventCalendar-monthTitle'></a></div>"),
+			$eventsCalendarTitle = $("<div class='eventCalendar-currentTitle'><a href='#' class='eventCalendar-monthTitle'><i class='fa fa-calendar'></i></a></div>"),
 			$eventsCalendarArrows = $("<a href='#' class='eventCalendar-arrow eventCalendar-prev'><span>" + eventsOpts.locales.txt_prev + "</span></a><a href='#' class='eventCalendar-arrow eventCalendar-next'><span>" + eventsOpts.locales.txt_next + "</span></a>");
 			$eventsCalendarDaysList = $("<ul class='eventCalendar-daysList'></ul>"),
 			date = new Date();

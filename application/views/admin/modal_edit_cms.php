@@ -9,14 +9,14 @@ foreach ($edit_data as $row) {
     <!-- col-lg-12 start here -->
     <div class="panel panel-default toggle panelMove panelClose panelRefresh">
         <!-- Start .panel -->
-        <div class=panel-heading>
-            <h4 class=panel-title>Update CMS</h4>
-            <div class="panel-controls panel-controls-right">
-                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-            </div>
-        </div>
+        <!--        <div class=panel-heading>
+                    <h4 class=panel-title>Update CMS</h4>
+                    <div class="panel-controls panel-controls-right">
+                        <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                        <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                        <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
+                    </div>
+                </div>-->
         <div class=panel-body>
             <?php echo form_open(base_url() . 'admin/cms/do_update/' . $row['c_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'editcmsform', 'target' => '_top')); ?>
             <div class="form-group">
@@ -51,7 +51,7 @@ foreach ($edit_data as $row) {
             <div class="form-group">
                 <label class="col-sm-3 control-label"><?php echo ucwords("Page Content"); ?><span style="color:red">*</span></label>
                 <div class="col-sm-9 controls">
-                    <textarea id="edit_content_data" required="" name="edit_content_data"  class="ckeditor" data-rel="ckeditor"  rows="3" ><?php echo $row['c_description']; ?></textarea>
+                    <textarea id="edit_content_data" required="" name="edit_content_data"  class="form-control" data-rel="ckeditor"  rows="3" ><?php echo $row['c_description']; ?></textarea>
                 </div>
             </div>             
             <div class="form-group form-actions">

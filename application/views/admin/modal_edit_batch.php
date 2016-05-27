@@ -8,9 +8,9 @@ foreach ($edit_data as $row):
             <!-- col-lg-12 start here -->
             <div class="panel panel-default toggle panelMove panelClose panelRefresh">
                 <!-- Start .panel -->
-<!--                <div class=panel-heading>
-                    <h4 class=panel-title>  <?php echo ucwords("Update Batch"); ?></h4>                
-                </div>-->
+                <!--                <div class=panel-heading>
+                                    <h4 class=panel-title>  <?php echo ucwords("Update Batch"); ?></h4>                
+                                </div>-->
 
 
                 <div class="panel-body">
@@ -43,9 +43,9 @@ foreach ($edit_data as $row):
                                                 ?>
                                                 <option value="<?php echo $srow['d_id']; ?>" selected><?php echo $srow['d_name']; ?>
                                                 </option>
-            <?php
-        } else {
-            ?>
+                                                <?php
+                                            } else {
+                                                ?>
                                                 <option value="<?php echo $srow['d_id']; ?>"><?php echo $srow['d_name']; ?>
                                                 </option>   
                                                 <?php
@@ -60,11 +60,11 @@ foreach ($edit_data as $row):
                                 <div class="col-sm-5">
                                     <select id="course1" name="course1[]" class="form-control" multiple>
 
-    <?php
-    $c = explode(',', $row['course_id']);
-    foreach ($course as $crow) {
-        if (in_array($crow['course_id'], $c)) {
-            ?>
+                                        <?php
+                                        $c = explode(',', $row['course_id']);
+                                        foreach ($course as $crow) {
+                                            if (in_array($crow['course_id'], $c)) {
+                                                ?>
                                                 <option value="<?php echo $crow['course_id']; ?>" selected><?php echo $crow['c_name']; ?>
                                                 </option>
                                                 <?php
@@ -82,13 +82,17 @@ foreach ($edit_data as $row):
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><?php echo ucwords("Status"); ?></label>
                                 <div class="col-sm-5">
-                                    <select name="batch_status">
-                                        <option value="1" <?php if ($row['b_status'] == '1') {
-                                        echo "selected";
-                                    } ?>>Active</option>
-                                        <option value="0" <?php if ($row['b_status'] == '0') {
-                                        echo "selected";
-                                    } ?>>Inactive</option>	
+                                    <select name="batch_status" class="form-control">
+                                        <option value="1" <?php
+                                        if ($row['b_status'] == '1') {
+                                            echo "selected";
+                                        }
+                                        ?>>Active</option>
+                                        <option value="0" <?php
+                                        if ($row['b_status'] == '0') {
+                                            echo "selected";
+                                        }
+                                        ?>>Inactive</option>	
                                     </select>	
                                 </div>	
                             </div>

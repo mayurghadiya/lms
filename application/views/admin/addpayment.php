@@ -3,9 +3,9 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>Add Payment</h4>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title>Add Payment</h4>
+                        </div>-->
             <div class=panel-body>
                 <form id="makepayment" class="form-horizontal form-groups-bordered validate" action="" method="post" role="form">
                     <br/>
@@ -105,6 +105,7 @@
                                 <button id="submit-form" type="submit" class="btn btn-info vd_bg-green">Make Payment</button>
                             </div>
                         </div>
+                    </div>
                 </form>  
             </div>
         </div>

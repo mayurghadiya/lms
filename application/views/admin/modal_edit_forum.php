@@ -7,16 +7,17 @@ foreach ($edit_data as $row):
             <!-- col-lg-12 start here -->
             <div class="panel panel-default toggle panelMove panelClose panelRefresh">
                 <!-- Start .panel -->
-<!--                <div class=panel-heading>
-                    <h4 class=panel-title>  <?php echo ucwords("Update Forum"); ?></h4>                
-                </div>-->
+                <!--                <div class=panel-heading>
+                                    <h4 class=panel-title>  <?php echo ucwords("Update Forum"); ?></h4>                
+                                </div>-->
                 <div class="panel-body">
                     <div class="tab-pane box" id="add" style="padding: 5px">
                         <div class="box-content">  
+
                             <div class="">
                                 <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
                             </div>
-                            <?php echo form_open(base_url() . 'admin/forum/update/' . $param2, array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmadmission_type', 'target' => '_top')); ?>
+                            <?php echo form_open(base_url() . 'admin/forum/update/' . $param2, array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmadmissiontypeedit', 'target' => '_top')); ?>
                             <div class="padded">
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Title<span style="color:red">*</span></label>
@@ -28,14 +29,17 @@ foreach ($edit_data as $row):
                                     <label class="col-sm-3 control-label">Status <span style="color:red">*</span></label>
                                     <div class="col-sm-5">
                                         <select name="forum_status" class="form-control" >
-                                            <option value="1" <?php if ($row['forum_status'] == "1") {
-                            echo "selected=selected";
-                        } ?>>Active</option>
-                                            <option value="0"  <?php if ($row['forum_status'] == "0") {
-                            echo "selected=selected";
-                        } ?>>Inactive</option>		
-                                        </select>	
-
+                                            <option value="1" <?php
+                                            if ($row['forum_status'] == "1") {
+                                                echo "selected=selected";
+                                            }
+                                            ?>>Active</option>
+                                            <option value="0"  <?php
+                                            if ($row['forum_status'] == "0") {
+                                                echo "selected=selected";
+                                            }
+                                            ?>>Inactive</option>		
+                                        </select>
                                     </div>	
                                 </div>
                                 <div class="form-group">
@@ -44,15 +48,14 @@ foreach ($edit_data as $row):
                                     </div>
                                 </div>
                                 </form>   
-
-                            </div> </div> </div>
+                            </div> 
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>
 
-    <?php
-endforeach;
-?>
+    <?php endforeach; ?>
     <script type="text/javascript">
         $.validator.setDefaults({
             submitHandler: function (form) {

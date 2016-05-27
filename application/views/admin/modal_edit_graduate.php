@@ -57,9 +57,9 @@ $students = $this->db->get_where('student', array(
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>Update Graduate</h4>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title>Update Graduate</h4>
+                        </div>-->
             <div class=panel-body>
                 <?php echo form_open(base_url() . 'admin/graduate/update/' . $edit_data->graduates_id, array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'editgraduatesform', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
 

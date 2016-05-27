@@ -24,6 +24,12 @@
         } else {
             $('#myModalLabel2').html('<?php echo $title ?>');
         }
+        
+        if(url.indexOf("edit_participate") >= 0) {
+            $('#myModalLabel2').html('Update Participate');
+        } else if(url.indexOf('edit_question') >= 0) {
+            $('#myModalLabel2').html('Update Question');
+        }
         // SHOWING AJAX PRELOADER IMAGE
         jQuery('#modal_ajax .modal-body').html('<div style="text-align:center;margin-top:200px;"><img src="<?php echo base_url(); ?>assets/img/preloader.gif" /></div>');
 

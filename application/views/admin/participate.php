@@ -5,14 +5,14 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title><?php echo $title; ?></h4>
+                            <div class="panel-controls panel-controls-right">
+                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
+                            </div>
+                        </div>-->
                 
             <div class="tabs mb20">
                     <ul id="import-tab" class="nav nav-tabs">
@@ -418,7 +418,7 @@
                                                         <?php if ($rowq->question_status == '1') { ?>
                                                             <span class="label label-success">Active</span>
                                                         <?php } else { ?>	
-                                                            <span class="label label-default">InActive</span>
+                                                            <span class="label label-danger">InActive</span>
                                                         <?php } ?>
                                                         
                                                         <?php //echo ($rowq->question_status == "1") ? 'Active' : 'Deactive'; ?></td>    

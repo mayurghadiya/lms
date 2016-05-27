@@ -424,11 +424,11 @@
                                     //alert(d);
                                     if (event.url) {
                                         eventTitle = '<a href="' + event.url + '" target="' + eventLinkTarget + '" class="eventCalendar-eventTitle">Title: ' + event.title + '</a>';
-                                    } else {
-                                        eventTitle = '<span class="eventCalendar-eventTitle">Title: ' + event.title + '<br/>Description: ' + event.description + '<br/>Date: ' + event.event_start_date + ' ' + event.event_start_time + '<br/>Location: ' + event.Location + '</span>';
+                                    } else {    
+                                        eventTitle = '<div class="eventCalendar-eventTitle"><b>Title :</b><span>' + event.title + '<span></div>' + '<div class="eventCalendar-eventDesc eventCalendar-hidden"><p><b>Description :</b><span>' + event.description + '</span></p><p><b>Date :</b><span>' + event.event_start_date + ' ' + event.event_start_time + '</span></p><p><b>Location :</b><span>' + event.Location + '</span></p></div>';
                                     }
 
-                                    events.push('<li id="' + key + '" class="' + event.type + '"><time datetime="' + eventDate + '"><em>' + eventStringDate + '</em></time>' + eventTitle + '<p class="eventCalendar-eventDesc ' + eventDescClass + '">' + event.description + '</p></li>');
+                                    events.push('<li id="' + key + '" class="' + event.type + '"><time class="time_det" datetime="' + eventDate + '"><em>' + eventStringDate + '</em></time>' + eventTitle + '<p class="eventCalendar-eventDesc ' + eventDescClass + '">' + event.description + '</p></li>');
                                     i++;
                                 }
                             }
@@ -693,8 +693,13 @@ $this->load->helper('report_chart');
         setTimeout(function () {
             $('.eventCalendar-arrow').on('click',function(){
                 $('p.eventCalendar-subtitle').html('Events Details:');
+                $('.eventCalendar-monthTitle').prepend('<i class="fa fa-calendar" aria-hidden="true"></i>');
             })
-        }, 500)
+        }, 500);
+
+        setTimeout(function() {
+            $('.eventCalendar-monthTitle').prepend('<i class="fa fa-calendar" aria-hidden="true"></i>');
+        }, 500);
 
     })
 </script>

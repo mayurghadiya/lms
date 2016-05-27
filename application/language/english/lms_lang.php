@@ -60,7 +60,26 @@ $lang['edit_forum'] = 'Update Forum';
 $lang['add_forum'] = 'Add Forum';
 $lang['add_forum_topic'] = 'Add Forum Topic';
 $lang['edit_forum_topic'] = 'Update Forum Topic';
-
+$lang['add_gallery'] = 'Add Photo Gallery';
+$lang['edit_gallery'] = 'Update Photo Gallery';
+$lang['add_graduate'] = 'Add Toppers Graduate';
+$lang['edit_graduate'] = 'Update Toppers Graduate';
+$lang['edit_charity_fund'] = 'Update Charity Fund';
+$lang['add_charity_fund'] = 'Add Charity Fund';
+$lang['add_professor'] = 'Add Professor';
+$lang['edit_professor'] = 'Update Professor';
+$lang['add_exam'] = 'Add Exam';
+$lang['edit_exam'] = 'Update Exam';
+$lang['add_exam_schedule'] = 'Add Exam Schedule';
+$lang['edit_exam_schedule'] = 'Update Exam Schedule';
+$lang['add_grade'] = 'Add Exam Grade';
+$lang['edit_grade'] = 'Update Exam Grade';
+$lang['edit_cms'] = 'Update CMS Page';
+$lang['add_cms'] = 'Add CMS Page';
+$lang['edit_fee_structure'] = 'Update Fee Structure';
+$lang['add_fee_structure'] = 'Add Fee Structure';
+$lang['edit_payment'] = 'Update Payment';
+$lang['add_payment'] = 'Add Payment';
 /**
  * Department
  */

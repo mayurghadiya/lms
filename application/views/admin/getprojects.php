@@ -6,7 +6,7 @@
                 <th><div>#</div></th>											
                 <th><div>Project Title</div></th>
                 <th><div>Student Name</div></th>											
-                <th><div>Course</div></th>	
+                <th><div>Department</div></th>	
                 <th><div>Branch</div></th>
                 <th><div>Batch</div></th>											
                 <th><div>Semester</div></th>
@@ -99,18 +99,17 @@
 }
 if ($param == 'submitted') {
     ?>
-    <div class="panel-body table-responsive" id="getsubmit">
-        <table class="table table-striped" id="data-tabless">
+    
+        <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tabless">
             <thead>
                 <tr>
                     <th><div>#</div></th>												
                     <th><div>Project Name</div></th>
                     <th><div>Student Name</div></th>                                                											
-                    <th><div>Course</div></th>	
+                    <th><div>Department</div></th>	
                     <th><div>Branch</div></th>
                     <th><div>Batch</div></th>											
                     <th><div>Semester</div></th>
-
                     <th><div>Submitted date</div></th>
                     <th><div>Comment</div></th>
                     <th><div>Action</div></th>												                                            
@@ -164,12 +163,12 @@ if ($param == 'submitted') {
                         </td>	
                         <td><?php echo date_formats($rowsub->dos); ?></td>	
                         <td><?php echo $rowsub->description; ?></td>
-                        <td><a href="uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                                                    	
+                        <td><a href="<?php echo base_url(); ?>uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                                                    	
                     </tr>
                 <?php endforeach; ?>						
             </tbody>
         </table>
-    </div>
+    
 <?php } ?>
 <script type="text/javascript">
     $(document).ready(function () {

@@ -23,7 +23,6 @@
   background-repeat: repeat-x;
   border-color: #ccc;
   text-shadow: 0 1px 0 #fff;
-
 /*		background: rgba(72, 72, 78, 0.5) none repeat scroll 0 0;*/
     border: 1px solid #ccc;
    /* border-radius: 50%; */  
@@ -32,10 +31,17 @@
     padding: 8px 10px;
     text-decoration: none;
     top: 9px;
-    width: 32px;
-		
-	
+    width: 32px;	
 	}
+.eventCalendar-wrap .eventCalendar-arrow:hover {
+  background-image: linear-gradient(to bottom, #e8e8e8 0px, #f9f9f9 100%);
+  background-repeat: repeat-x;
+  border-color: #aaa #aaa #999;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 3px #fff inset;
+  color: #3f3f3f;
+  text-decoration: none;
+}
+
 /*	custom css by h*/
 
 .eventCalendar-slider, .eventCalendar-details{width:48% !important;}
@@ -221,21 +227,21 @@
 					box-shadow:inset 5px 5px 10px #449FB2;
 					text-shadow: 2px 2px 2px #449FB2;
 				}
-		.eventCalendar-loading {
-			border-radius:4px;
-			margin:5px auto;
-			padding:0 10px;
-			background-color:#ccc;
-			color:#fff;
-			text-align:center;
-			font-weight:bold;
-			box-shadow:0 0 10px #ccc;
-			text-shadow:0 0 3px #aaa;
-			position:absolute;
-			z-index:4;
-			top:25px;
-			left:5px;
-		}
+.eventCalendar-loading {
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #ccc;
+  color: #000;
+  font-weight: bold;
+  left: 40%;
+  margin: 5px auto;
+  padding: 0 10px;
+  position: absolute;
+  text-align: center;
+  text-shadow: 0 0 3px #aaa;
+  top: 30%;
+  z-index: 4;
+}
 			.eventCalendar-loading.error {
 				background-color:red;
 			}
@@ -289,13 +295,14 @@
 		}
 		.eventCalendar-list li .eventCalendar-eventTitle {
 			display:block;
-			clear:both;
+			/*clear:both;*/
 			font-weight:500;
 			text-decoration:none;
 			color:#1c1c1c;
 			font-size:110%;
 			padding:5px 0px;
 			cursor:pointer;
+			margin-top: -7px;
 		}
 			.eventCalendar-list li a.eventCalendar-eventTitle {
 				/*color:#0E8EAB;*/
@@ -460,6 +467,12 @@ pre {
 
 #supr2 .panel-title, #supr3 .panel-title, #supr4 .panel-title, #supr5 .panel-title{color: #000; font-size: 15px; line-height: 40px; margin-bottom: 0; margin-top: 0; padding: 0 10px;}
 #supr2 .panel-title, #supr3 .panel-title{margin-top: 10px;}
+.time_det {
+  float: right;
+  font-size: 12px !important;
+  font-weight: 700;
+  line-height: 20px !important;
+}
 
 @media (max-width: 780px) {
 .eventCalendar-slider, .eventCalendar-details{width:100% !important;}

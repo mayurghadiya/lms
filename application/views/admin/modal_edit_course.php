@@ -1,18 +1,15 @@
-
 <?php
 $edit_data = $this->db->get_where('course', array('course_id' => $param2))->result_array();
 foreach ($edit_data as $row):
     ?>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-primary" data-collapsed="0">
-<!--                <div class="panel-heading">
-                    <div class="panel-title" >
-                        <i class="entypo-plus-circled"></i>
-                        <?php echo ucwords("update branch"); ?>		
-                    </div>
-                </div>-->
+    <div class=row>                      
+        <div class=col-lg-12>
+            <!-- col-lg-12 start here -->
+            <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+                <!-- Start .panel -->
+                <!--                <div class=panel-heading>
+                                            <h4 class=panel-title>  <?php echo ucwords("Update branch"); ?></h4>                
+                                        </div>-->
                 <div class="panel-body">
                     <div class="tab-pane box" id="add" style="padding: 5px">
                         <div class="box-content"> 
@@ -29,11 +26,13 @@ foreach ($edit_data as $row):
                                         $sem = $this->db->get_where('degree')->result_array();
                                         foreach ($sem as $srow) {
                                             ?>
-                                            <option value="<?php echo $srow['d_id']; ?>" <?php if ($srow['d_id'] == $row['degree_id']) {
-                                        echo "selected=selected";
-                                    } ?> ><?php echo $srow['d_name']; ?>
+                                            <option value="<?php echo $srow['d_id']; ?>" <?php
+                                            if ($srow['d_id'] == $row['degree_id']) {
+                                                echo "selected=selected";
+                                            }
+                                            ?> ><?php echo $srow['d_name']; ?>
                                             </option>
-    <?php } ?>
+                                        <?php } ?>
                                     </select>
                                 </div>	
                             </div>  
@@ -59,11 +58,13 @@ foreach ($edit_data as $row):
                                         $semesters = $this->db->get('semester')->result_array();
                                         foreach ($semesters as $srow) {
                                             ?>
-                                            <option value="<?php echo $srow['s_id']; ?>" <?php if (in_array($srow['s_id'], $semexplode)) {
-                                        echo "selected";
-                                    } ?>><?php echo $srow['s_name']; ?>
+                                            <option value="<?php echo $srow['s_id']; ?>" <?php
+                                            if (in_array($srow['s_id'], $semexplode)) {
+                                                echo "selected";
+                                            }
+                                            ?>><?php echo $srow['s_name']; ?>
                                             </option>
-    <?php } ?>
+                                        <?php } ?>
                                     </select>
                                 </div>	
                             </div>          
@@ -76,13 +77,17 @@ foreach ($edit_data as $row):
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><?php echo ucwords("status"); ?></label>
                                 <div class="col-sm-5">
-                                    <select name="course_status">
-                                        <option value="1" <?php if ($row['course_status'] == '1') {
-        echo "selected";
-    } ?>>Active</option>
-                                        <option value="0" <?php if ($row['course_status'] == '0') {
-        echo "selected";
-    } ?>>Inactive</option>	
+                                    <select name="course_status" class="form-control">
+                                        <option value="1" <?php
+                                        if ($row['course_status'] == '1') {
+                                            echo "selected";
+                                        }
+                                        ?>>Active</option>
+                                        <option value="0" <?php
+                                        if ($row['course_status'] == '0') {
+                                            echo "selected";
+                                        }
+                                        ?>>Inactive</option>	
                                     </select>
                                 </div>	
                             </div>		
@@ -96,9 +101,7 @@ foreach ($edit_data as $row):
         </div>
     </div>
 
-    <?php
-endforeach;
-?>
+<?php endforeach; ?>
 <script type="text/javascript">
     $.validator.setDefaults({
         submitHandler: function (form) {
@@ -123,4 +126,3 @@ endforeach;
         });
     });
 </script>
-

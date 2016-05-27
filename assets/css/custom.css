@@ -1,7 +1,7 @@
 /* -----------------------------------------
    Custom.css - put your own changes here 
 ----------------------------------------- */
-.error { color: #ed7a53; }
+label.error { color: #ed7a53; }
 
 .panel.panel-default.toggle.panelMove.panelClose.panelRefresh {overflow: hidden;}
 /* class_routine */
