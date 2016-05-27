@@ -32,14 +32,9 @@ function removeimg(image , id , img )
         {
             //alert("#"+img);
            $("#"+img).css({'display':'none'});
-
-        }
-        
-        
-    });
-    
-    return false;
-    
+        }                
+    });    
+    return false;    
 }
 </script>
 

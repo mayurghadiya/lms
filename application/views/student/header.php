@@ -30,7 +30,7 @@
             <link rel=apple-touch-icon-precomposed href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-57-precomposed.png>
             <link rel=icon href=<?php echo base_url(); ?>assets/img/ico/favicon.ico type=image/png>
             <meta name=msapplication-TileColor content="#3399cc">
-            <script src=http://code.jquery.com/jquery-2.1.1.min.js></script>
+            <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
         <body>
             <!--[if lt IE 9]>
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -39,7 +39,7 @@
             <div id="header">
                 <nav class="navbar navbar-default" role=navigation>
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="<?php echo base_url(); ?>">
+                        <a class="navbar-brand" href="<?php echo base_url(); ?>student">
                             <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="logo">
                         </a>
                     </div>
@@ -50,26 +50,9 @@
                                 <a href=# class="collapseBtn leftbar"><i class="fa fa-bars" aria-hidden="true"></i></a>
                             </li>
                             <li class="dropdown">
-                                <a href=# class=dropdown-toggle data-toggle=dropdown>
+                                <a href="<?php echo base_url(); ?>student/email_inbox">
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    <span class=txt>Messages</span><span class=notification>8</span></a>
-                                <ul class="dropdown-menu left">
-                                    <li class=menu>
-                                        <ul class=messages>
-                                            <li class=header><strong>Messages</strong> (10) emails and (2) PM</li>
-                                            <li><span class=icon>
-                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                </span> <span class=name><a data-toggle=modal href=#myModal1><strong>Sammy Morerira</strong></a><span class=time>35 min ago</span></span> <span class=msg>I have question about new function ...</span>
-                                            </li>
-                                            <li><span class="icon avatar"><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt=""></span> <span class=name><a data-toggle=modal href=#myModal1><strong>George Michael</strong></a><span class=time>1 hour ago</span></span> <span class=msg>I need to meet you urgent please call me ...</span>
-                                            </li>
-                                            <li><span class=icon><i class="fa fa-envelope-o" aria-hidden="true"></i></span> <span class=name><a data-toggle=modal href=#myModal1><strong>Ivanovich</strong></a><span class=time>1 day ago</span></span> <span class=msg>I send you my suggestion, please look and ...</span>
-                                            </li>
-                                            <li class=view-all><a href=#>View all messages <i class="s16 fa fa-angle-double-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                    <span class=txt>Messages</span></a>                                
                             </li>
                         </ul>
                         <ul class="nav navbar-right usernav">
@@ -103,12 +86,13 @@
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard" aria-hidden="true"></i>Home</a>
+                                            </li>
                                             <li><a href="<?php echo base_url(); ?>student/profile">
                                                     <i class="fa fa-user-plus" aria-hidden="true"></i>Edit profile</a>
                                             </li>
-                                            <li><a href=#><i class="fa fa-comment-o" aria-hidden="true"></i></i>Comments</a>
-                                            </li>
-                                            <li><a href=#><i class="fa fa-plus" aria-hidden="true"></i>Add user</a>
+                                            <li><a href="<?php echo base_url(); ?>site/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -133,20 +117,20 @@
                 <div id="sidebar" class="page-sidebar hidden-lg hidden-md hidden-sm hidden-xs">
                     <div class=shortcuts>
                         <ul>
-                            <li><a href="support.html" title="Support section" class=tip>
-                                    <i class="fa fa-life-ring" aria-hidden="true"></i>
+                            <li><a href="<?php echo base_url(); ?>student/email_inbox" title="Message Inbox" class=tip>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href=# title="Database backup" class=tip>
-                                    <i class="fa fa-database" aria-hidden="true"></i>
+                            <li><a href="<?php echo base_url(); ?>student/gallery" title="Photo Gallery" class=tip>
+                                    <i class="fa fa-image" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href="#" title="Statistics" class=tip>
-                                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                            <li><a href="<?php echo base_url(); ?>student/project/submission" title="Project" class=tip>
+                                    <i class="fa fa-book" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href=# title="Write post" class=tip>
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <li><a href="<?php echo base_url(); ?>student/profile" title="Profile" class=tip>
+                                    <i class="fa fa-user" aria-hidden="true"></i>
                                 </a>
                             </li>
                         </ul>
@@ -294,12 +278,6 @@
                                     <input type="submit" class="search-btn">
                                 </form>
                             </div>
-                            <!--  /search -->
-                            <ul class="breadcrumb">
-                                <li>You are here:</li>
-                                <li><a href=# class=tip title="back to dashboard"><i class="s16 fa fa-desktop"></i></a> <span class=divider><i class="s16 fa fa-caret-right"></i></span>
-                                </li>
-                                <li class="active">Blank Page</li>
-                            </ul>
+                            <!--  /search -->                      
                         </div>
                         <!-- End  / heading-->

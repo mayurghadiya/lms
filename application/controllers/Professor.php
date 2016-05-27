@@ -992,7 +992,7 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Attendance';
         $this->data['page'] = 'attendance';
         $this->data['title'] = 'Attendance';
-        $this->data['degree'] = $this->Crud_model->get_all_degree();
+        $this->data['degree'] = $this->Professor_model->get_all_degree();
         $this->data['class'] = $this->Crud_model->class_list();
         $this->__site_template('professor/attendance', $this->data);
     }
@@ -2296,5 +2296,112 @@ class Professor extends MY_Controller {
         //$class_routine = $this->db->get('class_routine')->result();
         echo json_encode($class_routine);
     }
-    
+
+    /**
+     * Professor class routine
+     */
+    function professor_class_routine() {
+        $this->load->view('professor/professor_class_routine');
+    }
+
+    /**
+     * Check class routine
+     */
+    function check_class_routine() {
+        date_default_timezone_set('Etc/UTC');
+        if ($_POST) {
+            require 'vendor/autoload.php';
+            $this->load->library('Class_routine_attendance');
+            $this->load->model('admin/Crud_model');
+            if ($_POST) {
+                $class_routine = $this->Professor_model->class_routine_attendance($_POST);
+                $attendance_routine = array();
+                $selected_date = date('Y-m-d', strtotime($_POST['class_date']));
+                foreach ($class_routine as $row) {
+                    if ($row->RecurrenceRule) {
+                        //parse reccurrence rule
+                        $rule = $this->class_routine_attendance->parse_reccurrence_rule($row->RecurrenceRule);
+                        $rule_array = array();
+                        $reccur_rule = '';
+                        foreach ($rule as $key => $value) {
+                            $separate_rule = explode('=>', $value);
+                            $reccur_rule .= "'$separate_rule[0]' => '$separate_rule[1]'" . ';';
+                        }
+                        $conditional_rules = $this->class_routine_attendance->conditional_reccurrence_rule($reccur_rule);
+                        $conditional_rules['DTSTART'] = $row->Start;
+                        $rrule = new RRule\RRule($conditional_rules);
+                        foreach ($rrule as $occurrence) {
+                            if ($occurrence->format('Y-m-d') == $selected_date) {
+                                array_push($attendance_routine, $row);
+                                //echo $occurrence->format('Y-m-d');
+                                break;
+                            }
+                            //break;
+                        }
+                    } else {
+                        //single schedule event
+                        array_push($attendance_routine, $row);
+                    }
+                }
+            }
+            echo '<option value="">Select</option>';
+            foreach ($attendance_routine as $row) {
+                ?>
+                <option value="<?php echo $row->ClassRoutineId; ?>"><?php echo $row->subject_name . '--' . date('h:i A', strtotime($row->Start)) . '-' . date('h:i A', strtotime($row->End)); ?></option>
+                <?php
+            }
+        }
+    }
+
+    /**
+     * Submit student class routine attendance
+     */
+    function take_class_routine_attendance() {
+        if ($_POST) {
+            $this->load->model('admin/Crud_model');
+            $student = $this->Crud_model->student_list_by_department_course_batch_semester_class($_POST['department'], $_POST['branch'], $_POST['batch'], $_POST['semester'], $_POST['class']);
+
+            foreach ($student as $row) {
+                $date = date('Y-m-d', strtotime($_POST['date']));
+                $status = $this->Crud_model->check_attendance_status($_POST['department'], $_POST['branch'], $_POST['batch'], $_POST['semester'], $_POST['class'], $_POST['class_routine'], $date, $row->std_id);
+
+                //check for existing attendnace
+                if ($status) {
+                    //update existing attendance of the student
+                    if (isset($_POST['student_' . $status->student_id])) {
+                        //present
+                        $update['is_present'] = 1;
+                    } else {
+                        //absent
+                        $update['is_present'] = 0;
+                    }
+                    $this->Crud_model->save_student_attendance($update, $status->attendance_id);
+                } else {
+                    $save = array(
+                        'department_id' => $_POST['department'],
+                        'branch_id' => $_POST['branch'],
+                        'batch_id' => $_POST['batch'],
+                        'semester_id' => $_POST['semester'],
+                        'class_id' => $_POST['class'],
+                        'professor_id' => $_POST['professor'],
+                        'class_routine_id' => $_POST['class_routine'],
+                        'date_taken' => $date
+                    );
+                    if (isset($_POST['student_' . $row->std_id])) {
+                        //present student
+                        $save['student_id'] = $row->std_id;
+                        $save['is_present'] = 1;
+                    } else {
+                        //absent student
+                        $save['student_id'] = $row->std_id;
+                        $save['is_present'] = 0;
+                    }
+                    $this->Crud_model->save_student_attendance($save);
+                }
+            }
+        }
+        $this->session->set_flashdata('flash_message', 'Attendance is successfully updated.');
+        redirect(base_url('professor/attendance'));
+    }
+
 }

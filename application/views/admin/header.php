@@ -40,14 +40,14 @@
                 var base_url = '<?php echo base_url(); ?>';
             </script>
 
-        <body>
+        <body id="body">
             <!--[if lt IE 9]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]--><!-- .#header -->
             <div id="header">
                 <nav class="navbar navbar-default" role=navigation>
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="<?php echo base_url(); ?>">
+                        <a class="navbar-brand" href="<?php echo base_url(); ?>admin">
                             <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="logo">
                         </a>
                     </div>
@@ -58,26 +58,11 @@
                                 <a href=# class="collapseBtn leftbar"><i class="fa fa-bars" aria-hidden="true"></i></a>
                             </li>
                             <li class="dropdown">
-                                <a href=# class=dropdown-toggle data-toggle=dropdown>
+                                <a href="<?php echo base_url(); ?>admin/email_inbox">
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    <span class=txt>Messages</span><span class=notification>8</span></a>
-                                <ul class="dropdown-menu left">
-                                    <li class=menu>
-                                        <ul class=messages>
-                                            <li class=header><strong>Messages</strong> (10) emails and (2) PM</li>
-                                            <li><span class=icon>
-                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                </span> <span class=name><a data-toggle=modal href=#myModal1><strong>Sammy Morerira</strong></a><span class=time>35 min ago</span></span> <span class=msg>I have question about new function ...</span>
-                                            </li>
-                                            <li><span class="icon avatar"><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt=""></span> <span class=name><a data-toggle=modal href=#myModal1><strong>George Michael</strong></a><span class=time>1 hour ago</span></span> <span class=msg>I need to meet you urgent please call me ...</span>
-                                            </li>
-                                            <li><span class=icon><i class="fa fa-envelope-o" aria-hidden="true"></i></span> <span class=name><a data-toggle=modal href=#myModal1><strong>Ivanovich</strong></a><span class=time>1 day ago</span></span> <span class=msg>I send you my suggestion, please look and ...</span>
-                                            </li>
-                                            <li class=view-all><a href=#>View all messages <i class="s16 fa fa-angle-double-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                    <span class=txt>Messages</span>
+                                </a>
+                                
                             </li>
                         </ul>
                         <ul class="nav navbar-right usernav">
@@ -111,12 +96,13 @@
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard" aria-hidden="true"></i>Home</a>
+                                            </li>
                                             <li><a href="<?php echo base_url(); ?>admin/manage_profile">
-                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>Edit profile</a>
+                                                    <i class="fa fa-user" aria-hidden="true"></i>Edit profile</a>
                                             </li>
-                                            <li><a href=#><i class="fa fa-comment-o" aria-hidden="true"></i></i>Comments</a>
-                                            </li>
-                                            <li><a href=#><i class="fa fa-plus" aria-hidden="true"></i>Add user</a>
+                                            <li><a href="<?php echo base_url(); ?>site/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -585,14 +571,76 @@
                             <!--  .heading-->
                             <h3><?php echo $title; ?></h3>
                             <div class=resBtnSearch><a href=#><span class="s16 icomoon-icon-search-3"></span></a></div>
-                            <div class=search>
+                            <div class="search">
                                 <!-- .search -->
-                                <form id=searchform class=form-horizontal action=search.html><input class="top-search from-control" placeholder="Search here ..."> <input type=submit class=search-btn></form>
+                                <form id=searchform class=form-horizontal action=search.html>
+                                <input class="top-search from-control" placeholder="Search here ..."> 
+                                <input type=submit class=search-btn>
+                                <div class="category">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
+                                        Category                                     
+                                    </a>
+                                    
+                                     <ul class="dropdown-menu">
+                                         <li class="menu">
+                                              <ul>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="checkbox" value="degree" name="degree">
+                                                                    <span>Degree</span>
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="checkbox" value="student" name="student">
+                                                                    <span>Student</span></label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="checkbox" value="course" name="course">
+                                                                    <span>Courses</span></label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="checkbox" value="exam" name="exam">
+                                                                    <span>Exam</span></label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="checkbox" value="event" name="event">
+                                                                    <span>Event</span>
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="checkbox" value="batch" name="batch">
+                                                                    <span>Batch</span></label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="checkbox" value="assignment" name="assignment">
+                                                                    <span>Assignment</span></label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="checkbox" value="participate" name="participate">
+                                                                    <span>Participate</span></label>
+                                                            </li>
+                                                            <li>
+                                                                <label>
+                                                                    <input type="checkbox" value="center" name="center">
+                                                                    <span>Exam Center</span></label>
+                                                            </li>   
+                                                        </ul>                                           
+                                         </li>
+                                     </ul> 
+                                    </div>
+                                </form>
                             </div>
                             <!--  /search -->
                             <ul class=breadcrumb>
                                 <li>You are here:</li>
-                                <li><a href=# class=tip title="back to dashboard"><i class="s16 icomoon-icon-screen-2"></i></a> <span class=divider><i class="s16 icomoon-icon-arrow-right-3"></i></span></li>
+                                <li><a href=# class=tip title="back to sdashboard"><i class="s16 icomoon-icon-screen-2"></i></a> <span class=divider><i class="s16 icomoon-icon-arrow-right-3"></i></span></li>
                                 <li class=active>Blank Page</li>
                             </ul>
                         </div>

@@ -264,6 +264,9 @@ $(document).ready(function () {
 
     $(".nav li.dropdown").click(function(e) {
         $(this).toggleClass("open");        
+    }); 
+    $(".search .category").click(function(e) {
+        $(this).toggleClass("open");        
     });
     
 });

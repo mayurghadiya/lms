@@ -18,11 +18,7 @@
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th> <div class="vd_checkbox">
-                                    <input type="checkbox" id="checkbox-0">
-                                    <label for="checkbox-0" ></label>
-                                </div>
-                            </th>
+                            <th>#</th>
                             <th><?php echo ucwords("From"); ?></th>
                             <th><?php echo ucwords("Subject"); ?></th>
                             <th><?php echo ucwords("Date"); ?></th>
@@ -39,11 +35,7 @@
                                 $counter++;
                                 ?>
                                 <tr class="<?php if ($row->read == 0) echo 'info'; ?>">
-                                    <td style="width:20px"><div class="vd_checkbox">
-                                            <input type="checkbox" id="checkbox-<?php echo $counter; ?>" class="checkbox-group">
-                                            <label for="checkbox-<?php echo $counter; ?>" ></label>
-                                        </div>
-                                    </td>
+                                    <td></td>
                                     <td><?php echo $row->email_from; ?></td>
                                     <td>
                                         <?php echo $row->subject; ?>

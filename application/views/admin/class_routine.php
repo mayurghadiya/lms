@@ -15,14 +15,14 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title><?php echo $title; ?></h4>
+                            <div class="panel-controls panel-controls-right">
+                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
+                            </div>
+                        </div>-->
             <div class=panel-body>
                 <form id="exam-search" method="post" action="#" class="form-groups-bordered validate">
                     <div class="form-group col-sm-4">

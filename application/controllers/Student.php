@@ -12,7 +12,7 @@ class Student extends MY_Controller {
     }
 
     function index() {
-        
+        $this->dashboard();
     }
 
     /**

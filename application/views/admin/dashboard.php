@@ -1,38 +1,583 @@
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar_theme_responsive.css">
 
-<div class="row">
-    <div class="panel panel-default chart col-lg-7 col-md-7 col-sm-7 col-xs-6" id="supr0" style="padding: 10px 0 !important; ">
-        <div class="panel-body"><div class="fc fc-ltr fc-unthemed" id="calendar"><div class="fc-toolbar"><div class="fc-left"><h2 class="month_year_title">Event Calendar : May 2016</h2></div><div class="fc-right"><div class="fc-button-group"><div class="btn-group mr10"><button type="button" class="btn btn-sm btn-default"><span class="fc-icon fc-icon-left-single-arrow"></span></button><button disabled="disabled" type="button" class="btn btn-sm btn-default">today</button><button type="button" class="btn btn-sm btn-default"><span class="fc-icon fc-icon-right-single-arrow"></span></button></div><br class="hidden"><div class="btn-group"><button type="button" class="btn btn-sm btn-default">day</button><button type="button" class="btn btn-sm btn-default">week</button><button type="button" class="btn btn-sm btn-default">month</button></div></div></div><div class="fc-center"></div><div class="fc-clear"></div></div><div style="" class="fc-view-container"><div style="" class="fc-view fc-month-view fc-basic-view"><table><thead><tr><td class="fc-widget-header"><div style="border-right-width: 1px; margin-right: 16px;" class="fc-row fc-widget-header"><table><thead><tr><th class="fc-day-header fc-widget-header fc-sun">Sun</th><th class="fc-day-header fc-widget-header fc-mon">Mon</th><th class="fc-day-header fc-widget-header fc-tue">Tue</th><th class="fc-day-header fc-widget-header fc-wed">Wed</th><th class="fc-day-header fc-widget-header fc-thu">Thu</th><th class="fc-day-header fc-widget-header fc-fri">Fri</th><th class="fc-day-header fc-widget-header fc-sat">Sat</th></tr></thead></table></div></td></tr></thead><tbody><tr><td class="fc-widget-content"><div style="height: 275px;" class="fc-day-grid-container fc-scroller"><div class="fc-day-grid"><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-past" data-date="2016-05-01"></td><td class="fc-day fc-widget-content fc-mon fc-past" data-date="2016-05-02"></td><td class="fc-day fc-widget-content fc-tue fc-past" data-date="2016-05-03"></td><td class="fc-day fc-widget-content fc-wed fc-past" data-date="2016-05-04"></td><td class="fc-day fc-widget-content fc-thu fc-past" data-date="2016-05-05"></td><td class="fc-day fc-widget-content fc-fri fc-past" data-date="2016-05-06"></td><td class="fc-day fc-widget-content fc-sat fc-past" data-date="2016-05-07"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-past" data-date="2016-05-01">1</td><td class="fc-day-number fc-mon fc-past" data-date="2016-05-02">2</td><td class="fc-day-number fc-tue fc-past" data-date="2016-05-03">3</td><td class="fc-day-number fc-wed fc-past" data-date="2016-05-04">4</td><td class="fc-day-number fc-thu fc-past" data-date="2016-05-05">5</td><td class="fc-day-number fc-fri fc-past" data-date="2016-05-06">6</td><td class="fc-day-number fc-sat fc-past" data-date="2016-05-07">7</td></tr></thead><tbody><tr><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable"><div class="fc-content"><span class="fc-time">12:00</span> <span class="fc-title">All Day Event</span></div></a></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-past" data-date="2016-05-08"></td><td class="fc-day fc-widget-content fc-mon fc-past" data-date="2016-05-09"></td><td class="fc-day fc-widget-content fc-tue fc-past" data-date="2016-05-10"></td><td class="fc-day fc-widget-content fc-wed fc-past" data-date="2016-05-11"></td><td class="fc-day fc-widget-content fc-thu fc-past" data-date="2016-05-12"></td><td class="fc-day fc-widget-content fc-fri fc-past" data-date="2016-05-13"></td><td class="fc-day fc-widget-content fc-sat fc-past" data-date="2016-05-14"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-past" data-date="2016-05-08">8</td><td class="fc-day-number fc-mon fc-past" data-date="2016-05-09">9</td><td class="fc-day-number fc-tue fc-past" data-date="2016-05-10">10</td><td class="fc-day-number fc-wed fc-past" data-date="2016-05-11">11</td><td class="fc-day-number fc-thu fc-past" data-date="2016-05-12">12</td><td class="fc-day-number fc-fri fc-past" data-date="2016-05-13">13</td><td class="fc-day-number fc-sat fc-past" data-date="2016-05-14">14</td></tr></thead><tbody><tr><td rowspan="2"></td><td rowspan="2"></td><td rowspan="2"></td><td colspan="3" class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable"><div class="fc-content"><span class="fc-time">12:00</span> <span class="fc-title">Long Event</span></div></a></td><td rowspan="2"></td></tr><tr><td></td><td></td><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-default fc-draggable"><div class="fc-content"><i class="fa fa-repeat"></i><span class="fc-time">4:00</span> <span class="fc-title">Repeating Event</span></div></a></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-past" data-date="2016-05-15"></td><td class="fc-day fc-widget-content fc-mon fc-today fc-state-highlight" data-date="2016-05-16"></td><td class="fc-day fc-widget-content fc-tue fc-future" data-date="2016-05-17"></td><td class="fc-day fc-widget-content fc-wed fc-future" data-date="2016-05-18"></td><td class="fc-day fc-widget-content fc-thu fc-future" data-date="2016-05-19"></td><td class="fc-day fc-widget-content fc-fri fc-future" data-date="2016-05-20"></td><td class="fc-day fc-widget-content fc-sat fc-future" data-date="2016-05-21"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-past" data-date="2016-05-15">15</td><td class="fc-day-number fc-mon fc-today fc-state-highlight" data-date="2016-05-16">16</td><td class="fc-day-number fc-tue fc-future" data-date="2016-05-17">17</td><td class="fc-day-number fc-wed fc-future" data-date="2016-05-18">18</td><td class="fc-day-number fc-thu fc-future" data-date="2016-05-19">19</td><td class="fc-day-number fc-fri fc-future" data-date="2016-05-20">20</td><td class="fc-day-number fc-sat fc-future" data-date="2016-05-21">21</td></tr></thead><tbody><tr><td rowspan="2"></td><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-default fc-draggable"><div class="fc-content"><i class="fa fa-clock-o"></i><span class="fc-time">10:30</span> <span class="fc-title">Meeting</span></div></a></td><td rowspan="2" class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-success fc-draggable"><div class="fc-content"><span class="fc-time">7:00</span> <span class="fc-title">Birthday Party</span></div></a></td><td rowspan="2"></td><td rowspan="2"></td><td rowspan="2" class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-default fc-draggable"><div class="fc-content"><i class="fa fa-repeat"></i><span class="fc-time">4:00</span> <span class="fc-title">Repeating Event</span></div></a></td><td rowspan="2"></td></tr><tr><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-danger fc-draggable"><div class="fc-content"><span class="fc-time">12:00</span> <span class="fc-title">Lunch</span></div></a></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-future" data-date="2016-05-22"></td><td class="fc-day fc-widget-content fc-mon fc-future" data-date="2016-05-23"></td><td class="fc-day fc-widget-content fc-tue fc-future" data-date="2016-05-24"></td><td class="fc-day fc-widget-content fc-wed fc-future" data-date="2016-05-25"></td><td class="fc-day fc-widget-content fc-thu fc-future" data-date="2016-05-26"></td><td class="fc-day fc-widget-content fc-fri fc-future" data-date="2016-05-27"></td><td class="fc-day fc-widget-content fc-sat fc-future" data-date="2016-05-28"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-future" data-date="2016-05-22">22</td><td class="fc-day-number fc-mon fc-future" data-date="2016-05-23">23</td><td class="fc-day-number fc-tue fc-future" data-date="2016-05-24">24</td><td class="fc-day-number fc-wed fc-future" data-date="2016-05-25">25</td><td class="fc-day-number fc-thu fc-future" data-date="2016-05-26">26</td><td class="fc-day-number fc-fri fc-future" data-date="2016-05-27">27</td><td class="fc-day-number fc-sat fc-future" data-date="2016-05-28">28</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td class="fc-event-container"><a class="fc-day-grid-event fc-event fc-start fc-end fc-event-info fc-draggable" href="http://google.com/"><div class="fc-content"><i class="fa fa-link"></i><span class="fc-time">12:00</span> <span class="fc-title">Click for Google</span></div></a></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-future" data-date="2016-05-29"></td><td class="fc-day fc-widget-content fc-mon fc-future" data-date="2016-05-30"></td><td class="fc-day fc-widget-content fc-tue fc-future" data-date="2016-05-31"></td><td class="fc-day fc-widget-content fc-wed fc-other-month fc-future" data-date="2016-06-01"></td><td class="fc-day fc-widget-content fc-thu fc-other-month fc-future" data-date="2016-06-02"></td><td class="fc-day fc-widget-content fc-fri fc-other-month fc-future" data-date="2016-06-03"></td><td class="fc-day fc-widget-content fc-sat fc-other-month fc-future" data-date="2016-06-04"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-future" data-date="2016-05-29">29</td><td class="fc-day-number fc-mon fc-future" data-date="2016-05-30">30</td><td class="fc-day-number fc-tue fc-future" data-date="2016-05-31">31</td><td class="fc-day-number fc-wed fc-other-month fc-future" data-date="2016-06-01">1</td><td class="fc-day-number fc-thu fc-other-month fc-future" data-date="2016-06-02">2</td><td class="fc-day-number fc-fri fc-other-month fc-future" data-date="2016-06-03">3</td><td class="fc-day-number fc-sat fc-other-month fc-future" data-date="2016-06-04">4</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table><tbody><tr><td class="fc-day fc-widget-content fc-sun fc-other-month fc-future" data-date="2016-06-05"></td><td class="fc-day fc-widget-content fc-mon fc-other-month fc-future" data-date="2016-06-06"></td><td class="fc-day fc-widget-content fc-tue fc-other-month fc-future" data-date="2016-06-07"></td><td class="fc-day fc-widget-content fc-wed fc-other-month fc-future" data-date="2016-06-08"></td><td class="fc-day fc-widget-content fc-thu fc-other-month fc-future" data-date="2016-06-09"></td><td class="fc-day fc-widget-content fc-fri fc-other-month fc-future" data-date="2016-06-10"></td><td class="fc-day fc-widget-content fc-sat fc-other-month fc-future" data-date="2016-06-11"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><thead><tr><td class="fc-day-number fc-sun fc-other-month fc-future" data-date="2016-06-05">5</td><td class="fc-day-number fc-mon fc-other-month fc-future" data-date="2016-06-06">6</td><td class="fc-day-number fc-tue fc-other-month fc-future" data-date="2016-06-07">7</td><td class="fc-day-number fc-wed fc-other-month fc-future" data-date="2016-06-08">8</td><td class="fc-day-number fc-thu fc-other-month fc-future" data-date="2016-06-09">9</td><td class="fc-day-number fc-fri fc-other-month fc-future" data-date="2016-06-10">10</td><td class="fc-day-number fc-sat fc-other-month fc-future" data-date="2016-06-11">11</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div></div></div></td></tr></tbody></table></div></div></div></div>
-    </div>
-    <!-- End .panel -->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/event_calendar/moment.js"></script> 
 
-    <div style="height: 0px;" aria-expanded="false" class="panel-group accordion col-lg-5 col-md-5 col-sm-5 col-xs-6 " id="accordion1">
-        <div id="supr1" class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">Collapsible Group Item #1<i class="fa fa-plus s12"></i></a></h4></div><div style="height: 0px;" aria-expanded="false" id="collapseOne1" class="panel-collapse collapse"><div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div></div></div>
-        <div id="supr2" class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1">Collapsible Group Item #2<i class="fa fa-plus s12"></i></a></h4></div><div style="height: 0px;" aria-expanded="false" id="collapseTwo1" class="panel-collapse collapse"><div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div></div></div><div id="supr3" class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1">Collapsible Group Item #3<i class="fa fa-plus s12"></i></a></h4></div><div style="height: 0px;" aria-expanded="false" id="collapseThree1" class="panel-collapse collapse"><div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div></div></div></div>
-</div>
-<div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-        <img src="assets/img/chart.jpg" width="400" height="100%">
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-        <img src="assets/img/chart1.jpg"  width="400" height="100%">
-    </div>
-</div>
-</div>
-</div>
-</div>
-<!-- / #wrapper -->
-<!-- Back to top -->
-<div id="back-to-top"><a href=#>Back to Top</a>
-</div>
-<!-- Javascripts -->
-
-<!--[if lt IE 9]>
-<script type="text/javascript" src="assets/js/libs/excanvas.min.js"></script>
-<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<script type="text/javascript" src="assets/js/libs/respond.min.js"></script>
-<![endif]-->
-
+<!-- google chart -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript" >
+
+    ;
+    (function ($) {
+        $.fn.eventCalendar = function (options) {
+            var calendar = this;
+
+            if (options.locales && typeof (options.locales) == 'string') {
+                $.getJSON(options.locales, function (data) {
+                    options.locales = $.extend({}, $.fn.eventCalendar.defaults.locales, data);
+                    moment.locale(data.locale, options.locales.moment);
+                    moment.locale(data.locale);
+
+                    initEventCalendar(calendar, options);
+                }).error(function () {
+                    showError("error getting locale json", $(this));
+                });
+            } else {
+                if (options.locales && options.locales.locale) {
+                    options.locales = $.extend({}, $.fn.eventCalendar.defaults.locales, options.locales);
+                    moment.locale(options.locales.locale, options.locales.moment);
+                    moment.locale(options.locales.locale);
+                }
+                initEventCalendar(calendar, options);
+            }
+
+
+        };
+
+
+        // define the parameters with the default values of the function
+        $.fn.eventCalendar.defaults = {
+            eventsjson: '<?= $this->config->item('js_path') ?>event_js/events.json.php',
+            eventsLimit: 10,
+            locales: {
+                locale: "en",
+                txt_noEvents: "There are no events in this period",
+                txt_SpecificEvents_prev: "",
+                txt_SpecificEvents_after: "events:",
+                txt_next: "next",
+                txt_prev: "prev",
+                txt_NextEvents: "events:",
+                txt_GoToEventUrl: "",
+                //txt_GoToEventUrl: "See the event",
+                txt_loading: "loading..."
+            },
+            showDayAsWeeks: true,
+            startWeekOnMonday: true,
+            showDayNameInCalendar: true,
+            showDescription: false,
+            onlyOneDescription: true,
+            openEventInNewWindow: false,
+            eventsScrollable: false,
+            dateFormat: "D/MM/YYYY",
+            jsonDateFormat: 'timestamp', // you can use also "human" 'YYYY-MM-DD HH:MM:SS'
+            //moveSpeed: 500,	// speed of month move when you clic on a new date
+            //moveOpacity: 0, // month and events fadeOut to this opacity
+            jsonData: "", // to load and inline json (not ajax calls)
+            cacheJson: true	// if true plugin get a json only first time and after plugin filter events
+                    // if false plugin get a new json on each date change
+        };
+
+        function initEventCalendar(that, options) {
+            var eventsOpts = $.extend({}, $.fn.eventCalendar.defaults, options);
+
+            // define global vars for the function
+            var flags = {
+                wrap: "",
+                directionLeftMove: "300",
+                eventsJson: {}
+            };
+
+            // each eventCalendar will execute this function
+            that.each(function () {
+
+                flags.wrap = $(this);
+                flags.wrap.addClass('eventCalendar-wrap').append("<div class='eventCalendar-details'><div class='eventCalendar-list-wrap'><p class='eventCalendar-subtitle'></p><span class='eventCalendar-loading'>" + eventsOpts.locales.txt_loading + "</span><div class='eventCalendar-list-content'><ul class='eventCalendar-list'></ul></div></div></div>");
+
+                if (eventsOpts.eventsScrollable) {
+                    flags.wrap.find('.eventCalendar-list-content').addClass('scrollable');
+                }
+
+                setCalendarWidth(flags);
+                $(window).resize(function () {
+                    setCalendarWidth(flags);
+                });
+                //flags.directionLeftMove = flags.wrap.width();
+
+                // show current month
+                dateSlider("current", flags, eventsOpts);
+
+                getEvents(flags, eventsOpts, eventsOpts.eventsLimit, false, false, false, false);
+
+                changeMonth(flags, eventsOpts);
+
+                flags.wrap.on('click', '.eventCalendar-day a', function (e) {
+                    //flags.wrap.find('.eventCalendar-day a').live('click',function(e){
+                    e.preventDefault();
+                    var year = flags.wrap.attr('data-current-year'),
+                            month = flags.wrap.attr('data-current-month'),
+                            day = $(this).parent().attr('rel');
+
+                    getEvents(flags, eventsOpts, false, year, month, day, "day");
+                });
+                flags.wrap.on('click', '.eventCalendar-monthTitle', function (e) {
+                    //flags.wrap.find('.eventCalendar-monthTitle').live('click',function(e){
+                    e.preventDefault();
+                    var year = flags.wrap.attr('data-current-year'),
+                            month = flags.wrap.attr('data-current-month');
+
+                    getEvents(flags, eventsOpts, eventsOpts.eventsLimit, year, month, false, "month");
+                });
+            });
+
+            // show event description
+            flags.wrap.find('.eventCalendar-list').on('click', '.eventCalendar-eventTitle', function (e) {
+                //flags.wrap.find('.eventCalendar-list .eventCalendar-eventTitle').live('click',function(e){
+                if (!eventsOpts.showDescription) {
+                    e.preventDefault();
+                    var desc = $(this).parent().find('.eventCalendar-eventDesc');
+
+                    if (!desc.find('a').size()) {
+                        var eventUrl = $(this).attr('href');
+                        var eventTarget = $(this).attr('target');
+
+                        // create a button to go to event url
+                        desc.append('' + eventsOpts.locales.txt_GoToEventUrl + '');
+                        //desc.append('<a href="' + eventUrl + '" target="'+eventTarget+'" class="bt">'+eventsOpts.locales.txt_GoToEventUrl+'</a>');
+                    }
+
+                    if (desc.is(':visible')) {
+                        desc.slideUp();
+                    } else {
+                        if (eventsOpts.onlyOneDescription) {
+                            flags.wrap.find('.eventCalendar-eventDesc').slideUp();
+                        }
+                        desc.slideDown();
+                    }
+
+                }
+            });
+        }
+
+        function sortJson(a, b) {
+            if (typeof a.date === 'string') {
+                return a.date.toLowerCase() > b.date.toLowerCase() ? 1 : -1;
+            }
+            return a.date > b.date ? 1 : -1;
+        }
+
+        function dateSlider(show, flags, eventsOpts) {
+            var $eventsCalendarSlider = $("<div class='eventCalendar-slider'></div>"),
+                    $eventsCalendarMonthWrap = $("<div class='eventCalendar-monthWrap'></div>"),
+                    $eventsCalendarTitle = $("<div class='eventCalendar-currentTitle'><a href='#' class='eventCalendar-monthTitle'></a></div>"),
+                    $eventsCalendarArrows = $("<div class='arrow-nav-block'><a href='#' class='eventCalendar-arrow eventCalendar-prev'><span>" + eventsOpts.locales.txt_prev + "</span></a><a href='#' class='eventCalendar-arrow eventCalendar-next'><span>" + eventsOpts.locales.txt_next + "</span></a></div>");
+            $eventsCalendarDaysList = $("<ul class='eventCalendar-daysList'></ul>"),
+                    date = new Date();
+
+            if (!flags.wrap.find('.eventCalendar-slider').length) {
+                flags.wrap.prepend($eventsCalendarSlider);
+                $eventsCalendarSlider.append($eventsCalendarMonthWrap);
+            } else {
+                flags.wrap.find('.eventCalendar-slider').append($eventsCalendarMonthWrap);
+            }
+
+            flags.wrap.find('.eventCalendar-monthWrap.eventCalendar-currentMonth').removeClass('eventCalendar-currentMonth').addClass('eventCalendar-oldMonth');
+            $eventsCalendarMonthWrap.addClass('eventCalendar-currentMonth').append($eventsCalendarTitle, $eventsCalendarDaysList);
+
+
+
+            // if current show current month & day
+            if (show === "current") {
+                day = date.getDate();
+                $eventsCalendarSlider.append($eventsCalendarArrows);
+
+            } else {
+                date = new Date(flags.wrap.attr('data-current-year'), flags.wrap.attr('data-current-month'), 1, 0, 0, 0); // current visible month
+                day = 0; // not show current day in days list
+
+                moveOfMonth = 1;
+                if (show === "prev") {
+                    moveOfMonth = -1;
+                }
+                date.setMonth(date.getMonth() + moveOfMonth);
+
+                var tmpDate = new Date();
+                if (date.getMonth() === tmpDate.getMonth()) {
+                    day = tmpDate.getDate();
+                }
+
+            }
+
+            // get date portions
+            var year = date.getFullYear(), // year of the events
+                    currentYear = new Date().getFullYear(), // current year
+                    month = date.getMonth(), // 0-11
+                    monthToShow = month + 1;
+
+            if (show != "current") {
+                // month change
+                getEvents(flags, eventsOpts, eventsOpts.eventsLimit, year, month, false, show);
+            }
+
+            flags.wrap.attr('data-current-month', month)
+                    .attr('data-current-year', year);
+
+            // add current date info
+            moment.locale(eventsOpts.locales.locale);
+
+            var formatedDate = moment(year + " " + monthToShow, "YYYY MM").format("MMMM YYYY");
+            $eventsCalendarTitle.find('.eventCalendar-monthTitle').html(formatedDate);
+
+            // print all month days
+            var daysOnTheMonth = 32 - new Date(year, month, 32).getDate();
+            var daysList = [],
+                    i;
+            if (eventsOpts.showDayAsWeeks) {
+                $eventsCalendarDaysList.addClass('eventCalendar-showAsWeek');
+
+                // show day name in top of calendar
+                if (eventsOpts.showDayNameInCalendar) {
+                    $eventsCalendarDaysList.addClass('eventCalendar-showDayNames');
+
+                    i = 0;
+                    // if week start on monday
+                    if (eventsOpts.startWeekOnMonday) {
+                        i = 1;
+                    }
+
+                    for (; i < 7; i++) {
+                        daysList.push('<li class="eventCalendar-day-header">' + moment()._locale._weekdaysShort[i] + '</li>');
+
+                        if (i === 6 && eventsOpts.startWeekOnMonday) {
+                            // print sunday header
+                            daysList.push('<li class="eventCalendar-day-header">' + moment()._locale._weekdaysShort[0] + '</li>');
+                        }
+
+                    }
+                }
+
+                dt = new Date(year, month, 01);
+                var weekDay = dt.getDay(); // day of the week where month starts
+
+                if (eventsOpts.startWeekOnMonday) {
+                    weekDay = dt.getDay() - 1;
+                }
+                if (weekDay < 0) {
+                    weekDay = 6;
+                } // if -1 is because day starts on sunday(0) and week starts on monday
+
+                for (i = weekDay; i > 0; i--) {
+                    daysList.push('<li class="eventCalendar-day eventCalendar-empty"></li>');
+                }
+            }
+            for (dayCount = 1; dayCount <= daysOnTheMonth; dayCount++) {
+                var dayClass = "";
+
+                if (day > 0 && dayCount === day && year === currentYear) {
+                    dayClass = "today";
+                }
+                daysList.push('<li id="dayList_' + dayCount + '" rel="' + dayCount + '" class="eventCalendar-day ' + dayClass + '"><a href="#">' + dayCount + '</a></li>');
+            }
+            $eventsCalendarDaysList.append(daysList.join(''));
+
+            $eventsCalendarSlider.css('height', $eventsCalendarMonthWrap.height() + 'px');
+        }
+
+        function getEvents(flags, eventsOpts, limit, year, month, day, direction) {
+            limit = limit || 0;
+            year = year || '';
+            day = day || '';
+
+            // to avoid problem with january (month = 0)
+
+            if (typeof month != 'undefined') {
+                month = month;
+            } else {
+                month = '';
+            }
+
+            //var month = month || '';
+            flags.wrap.find('.eventCalendar-loading').fadeIn();
+
+            if (eventsOpts.jsonData) {
+                // user send a json in the plugin params
+                eventsOpts.cacheJson = true;
+
+                flags.eventsJson = eventsOpts.jsonData;
+                getEventsData(flags, eventsOpts, flags.eventsJson, limit, year, month, day, direction);
+
+            } else if (!eventsOpts.cacheJson || !direction) {
+                // first load: load json and save it to future filters
+                $.getJSON(eventsOpts.eventsjson + "?limit=" + limit + "&year=" + year + "&month=" + month + "&day=" + day, function (data) {
+                    flags.eventsJson = data; // save data to future filters
+                    getEventsData(flags, eventsOpts, flags.eventsJson, limit, year, month, day, direction);
+                }).error(function () {
+                    showError("error getting json: ", flags.wrap);
+                });
+            } else {
+                // filter previus saved json
+                getEventsData(flags, eventsOpts, flags.eventsJson, limit, year, month, day, direction);
+            }
+
+            if (day > '') {
+                flags.wrap.find('.eventCalendar-current').removeClass('eventCalendar-current');
+                flags.wrap.find('#dayList_' + day).addClass('eventCalendar-current');
+            }
+        }
+
+        function getEventsData(flags, eventsOpts, data, limit, year, month, day, direction) {
+            directionLeftMove = "-=" + flags.directionLeftMove;
+            eventContentHeight = "auto";
+
+            subtitle = flags.wrap.find('.eventCalendar-list-wrap .eventCalendar-subtitle');
+
+            if (!direction) {
+                // first load
+                subtitle.html(eventsOpts.locales.txt_NextEvents);
+                eventContentHeight = "auto";
+                directionLeftMove = "-=0";
+            } else {
+                var jsMonth = parseInt(month) + 1,
+                        formatedDate;
+                moment.locale(eventsOpts.locales.locale);
+
+                if (day !== '') {
+                    formatedDate = moment(year + " " + jsMonth + " " + day, "YYYY MM DD").format("LL");
+                    subtitle.html(eventsOpts.locales.txt_SpecificEvents_prev + formatedDate + " " + eventsOpts.locales.txt_SpecificEvents_after);
+                    //eventStringDate = moment(eventDate).format(eventsOpts.dateFormat);
+                } else {
+                    formatedDate = moment(year + " " + jsMonth, "YYYY MM").format("MMMM");
+                    subtitle.html(eventsOpts.locales.txt_SpecificEvents_prev + formatedDate + " " + eventsOpts.locales.txt_SpecificEvents_after);
+                }
+
+                if (direction === 'eventCalendar-prev') {
+                    directionLeftMove = "+=" + flags.directionLeftMove;
+                } else if (direction === 'day' || direction === 'month') {
+                    directionLeftMove = "+=0";
+                    eventContentHeight = 0;
+                }
+            }
+
+            flags.wrap.find('.eventCalendar-list').animate({
+                opacity: eventsOpts.moveOpacity,
+                left: directionLeftMove,
+                height: eventContentHeight
+            }, eventsOpts.moveSpeed, function () {
+                flags.wrap.find('.eventCalendar-list').css({'left': 0, 'height': 'auto'}).hide();
+                //wrap.find('.eventCalendar-list li').fadeIn();
+
+                var events = [];
+
+                data = $(data).sort(sortJson); // sort event by dates
+                // each event
+                if (data.length) {
+
+                    // show or hide event description
+                    var eventDescClass = '';
+                    if (!eventsOpts.showDescription) {
+                        eventDescClass = 'eventCalendar-hidden';
+                    }
+                    var eventLinkTarget = "_self";
+                    if (eventsOpts.openEventInNewWindow) {
+                        eventLinkTarget = '_target';
+                    }
+
+                    var i = 0;
+                    $.each(data, function (key, event) {
+                        var eventDateTime, eventDate, eventTime, eventYear, eventMonth, eventDay,
+                                eventMonthToShow, eventHour, eventMinute, eventSeconds;
+                        if (eventsOpts.jsonDateFormat == 'human') {
+                            eventDateTime = event.date.split(" ");
+                            eventDate = eventDateTime[0].split("-");
+                            eventTime = eventDateTime[1].split(":");
+                            eventYear = eventDate[0];
+                            eventMonth = parseInt(eventDate[1]) - 1;
+                            eventDay = parseInt(eventDate[2]);
+                            //eventMonthToShow = eventMonth;
+                            eventMonthToShow = parseInt(eventMonth) + 1;
+                            eventHour = eventTime[0];
+                            eventMinute = eventTime[1];
+                            eventSeconds = eventTime[2];
+                            eventDate = new Date(eventYear, eventMonth, eventDay, eventHour, eventMinute, eventSeconds);
+                        } else {
+                            eventDate = new Date(parseInt(event.date));
+
+                            eventYear = eventDate.getFullYear();
+                            eventMonth = eventDate.getMonth();
+                            eventDay = eventDate.getDate();
+                            eventMonthToShow = eventMonth + 1;
+                            eventHour = eventDate.getHours();
+                            eventMinute = eventDate.getMinutes();
+
+                        }
+
+                        if (parseInt(eventMinute) <= 9) {
+                            eventMinute = "0" + parseInt(eventMinute);
+                        }
+
+
+                        if (limit === 0 || limit > i) {
+                            // if month or day exist then only show matched events
+
+                            if ((month === false || month == eventMonth) && (day === '' || day == eventDay) && (year === '' || year == eventYear)) {
+
+                                // if initial load then load only future events
+                                if (month === false && eventDate < new Date()) {
+                                } else {
+
+                                    moment.locale(eventsOpts.locales.locale);
+                                    //eventStringDate = eventDay + "/" + eventMonthToShow + "/" + eventYear;
+                                    eventStringDate = moment(eventDate).format(eventsOpts.dateFormat);
+                                    var eventTitle;
+                                    //var d = new Date('dd/mm/yy');
+                                    //var today = dd+'/'+mm+'/'+yyyy;
+                                    //alert(d);
+                                    if (event.url) {
+                                        eventTitle = '<a href="' + event.url + '" target="' + eventLinkTarget + '" class="eventCalendar-eventTitle">Title: ' + event.title + '</a>';
+                                    } else {
+                                        eventTitle = '<span class="eventCalendar-eventTitle">Title: ' + event.title + '<br/>Description: ' + event.description + '<br/>Date: ' + event.event_start_date + ' ' + event.event_start_time + '<br/>Location: ' + event.Location + '</span>';
+                                    }
+
+                                    events.push('<li id="' + key + '" class="' + event.type + '"><time datetime="' + eventDate + '"><em>' + eventStringDate + '</em></time>' + eventTitle + '<p class="eventCalendar-eventDesc ' + eventDescClass + '">' + event.description + '</p></li>');
+                                    i++;
+                                }
+                            }
+                        }
+
+                        // add mark in the dayList to the days with events
+                        if (eventYear == flags.wrap.attr('data-current-year') && eventMonth == flags.wrap.attr('data-current-month')) {
+                            flags.wrap.find('.eventCalendar-currentMonth .eventCalendar-daysList #dayList_' + parseInt(eventDay)).addClass('eventCalendar-dayWithEvents');
+                        }
+
+                    });
+                }
+
+                // there is no events on this period
+                if (!events.length) {
+                    events.push('<li class="eventCalendar-noEvents"><p>' + eventsOpts.locales.txt_noEvents + '</p></li>');
+                }
+                flags.wrap.find('.eventCalendar-loading').hide();
+
+                flags.wrap.find('.eventCalendar-list')
+                        .html(events.join(''));
+
+                flags.wrap.find('.eventCalendar-list').animate({
+                    opacity: 1,
+                    height: "toggle"
+                }, eventsOpts.moveSpeed);
+
+
+            });
+            setCalendarWidth(flags);
+        }
+
+        function changeMonth(flags, eventsOpts) {
+            flags.wrap.find('.eventCalendar-arrow').click(function (e) {
+                e.preventDefault();
+                var lastMonthMove;
+
+                if ($(this).hasClass('eventCalendar-next')) {
+                    dateSlider("next", flags, eventsOpts);
+                    lastMonthMove = '-=' + flags.directionLeftMove;
+
+                } else {
+                    dateSlider("prev", flags, eventsOpts);
+                    lastMonthMove = '+=' + flags.directionLeftMove;
+                }
+
+                flags.wrap.find('.eventCalendar-monthWrap.eventCalendar-oldMonth').animate({
+                    opacity: eventsOpts.moveOpacity,
+                    left: lastMonthMove
+                }, 0, function () {
+                    flags.wrap.find('.eventCalendar-monthWrap.eventCalendar-oldMonth').remove();
+                });
+            });
+        }
+
+        function showError(msg, wrap) {
+            wrap.find('.eventCalendar-list-wrap').html("<span class='eventCalendar-loading eventCalendar-error'>" + msg + "</span>");
+        }
+
+        function setCalendarWidth(flags) {
+            // resize calendar width on window resize
+            flags.directionLeftMove = flags.wrap.width();
+            flags.wrap.find('.eventCalendar-monthWrap').width(flags.wrap.width() + 'px');
+
+            //flags.wrap.find('.eventCalendar-list-wrap').width(flags.wrap.width() + 'px');
+
+        }
+
+
+    })(jQuery);
+</script> 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#eventCalendarHumanDate").eventCalendar({
+            eventsjson: '<?php echo base_url(); ?>event.humanDate.json.php',
+            jsonDateFormat: 'human'  // 'YYYY-MM-DD HH:MM:SS'
+        });
+
+    });
+</script>
+
+<!-- Start .row -->
+<div class=row>                     
+
+    <div class=>
+        <!-- col-lg-12 start here -->
+        <div class="panel panel-default toggle">
+            <!-- Start .panel -->
+            <div class=panel-heading>
+                <h4 class=panel-title>Event Calendar</h4>                
+            </div>
+            <div class=panel-body>
+                <div id="eventCalendarHumanDate"></div>
+            </div>
+        </div>
+        <!-- End .panel -->
+
+        <div class="panel panel-default toggle">
+            <div class="panel-heading">
+                <h4 class=panel-title>Report Charts</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">Male to Female Course count Ratio</div>
+                        </div>
+                        <div class="panel-body" id="piechart" style="height: 300px;"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">Students enrolled</div>
+                        </div>
+                        <div class="panel-body" id="year_wise_student" style="height: 300px;"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">Male to Female Course count Ratio</div>
+                        </div>
+                        <div class="panel-body" id="male_female_count_course" style="height: 500px;"></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">Students Enrolled (Coursewise)</div>
+                        </div>
+                        <div class="panel-body" id="course_wise_student_count" style="height: 500px;"></div>
+                    </div>
+                </div>
+              </div>  
+
+            </div>
+        </div>
+    </div>
+    <!-- col-lg-12 end here -->
+</div>
+<!-- End .row -->
+</div>
+<!-- End contentwrapper -->
+</div>
+<!-- End #content -->
 
 <!--Male vs Female-->
 <script type="text/javascript">
@@ -47,7 +592,7 @@
         ]);
 
         var options = {
-            title: 'Male vs Female Students'
+            title: 'Male to Female Course count Ratio'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -70,8 +615,8 @@
 
         var options = {
             chart: {
-                title: 'Year wise student',
-                subtitle: 'Year wise student registration count',
+                title: 'Students enrolled',
+                subtitle: 'Students enrolled',
             }
         };
 
@@ -80,7 +625,6 @@
         chart.draw(data, options);
     }
 </script>
-
 
 <!--Male vs female course wise-->
 <script type="text/javascript">
@@ -100,8 +644,8 @@ $this->load->helper('report_chart');
 
         var options = {
             chart: {
-                title: 'Male vs Female Student Course Wise',
-                subtitle: 'Male vs Female students course wise 2016',
+                title: 'Students Enrolled (Coursewise)',
+                subtitle: 'Students Enrolled (Coursewise)',
             }
         };
 
@@ -139,65 +683,18 @@ $this->load->helper('report_chart');
         chart.draw(data, options);
     }
 </script>
-<!-- Start .row -->
-<div class=row>                      
 
-    <div class=col-lg-12>
-        <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
-            <div class=panel-body>
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Male vs Female Student</div>
-                            </div>
-                            <div class="panel-body" id="piechart" style="height: 300px;"></div>
-                        </div>
-                    </div>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('p.eventCalendar-subtitle').html('Events Details:');
+        }, 500);
 
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Year Wise Student</div>
-                            </div>
-                            <div class="panel-body" id="year_wise_student" style="height: 300px;"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12" style="min-height: 500px;">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">Male vs Female Course wise count</div>
-                        </div>
-                        <div class="panel-body" id="male_female_count_course" style="height: 500px;"></div>
-                    </div>
-                </div>
-                <div class="col-md-12" style="min-height: 500px;">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">Course Wise Student Count</div>
-                        </div>
-                        <div class="panel-body" id="course_wise_student_count" style="height: 500px;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End .panel -->
-    </div>
-    <!-- col-lg-12 end here -->
-</div>
-<!-- End .row -->
-</div>
-<!-- End contentwrapper -->
-</div>
-<!-- End #content -->
+        setTimeout(function () {
+            $('.eventCalendar-arrow').on('click',function(){
+                $('p.eventCalendar-subtitle').html('Events Details:');
+            })
+        }, 500)
+
+    })
+</script>

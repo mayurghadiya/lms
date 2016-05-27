@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class=panel-body>
-                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                <table id="holiday-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
                             <th>#</th>
@@ -26,9 +26,10 @@
                     </thead>
 
                     <tbody>
+                        <?php $count = 1; ?>
                         <?php foreach ($holiday as $row): ?>
                             <tr>
-                                <td></td>
+                                <td><?php echo $count++; ?></td>
                                 <td><?php echo $row['holiday_name']; ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($row['holiday_startdate'])); ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($row['holiday_enddate'])); ?></td>    
@@ -48,3 +49,9 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+
+<script>
+$(document).ready(function(){
+    $('#holiday-datatable-list').DataTable();
+});
+</script>

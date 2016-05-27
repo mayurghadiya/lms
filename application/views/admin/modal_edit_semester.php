@@ -9,9 +9,9 @@ foreach ($edit_data as $row):
             <!-- col-lg-12 start here -->
             <div class="panel panel-default toggle panelMove panelClose panelRefresh">
                 <!-- Start .panel -->
-                <div class=panel-heading>
-                    <h4 class=panel-title>  <?php echo ucwords("Update Semester"); ?></h4>                
-                </div>
+                <!--                <div class=panel-heading>
+                                        <h4 class=panel-title>  <?php echo ucwords("Update Semester"); ?></h4>                
+                                    </div>-->
                 <div class="panel-body">
                     <div class="">
                         <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
