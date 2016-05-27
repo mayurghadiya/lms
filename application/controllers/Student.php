@@ -37,7 +37,7 @@ class Student extends MY_Controller {
         $streaming = $this->streaming_list_widget();
         $this->data['all'] = $streaming['all'];
         $this->data['live_streaming'] = $streaming['live_streaming'];
-
+        $this->data['todolist'] = $this->Student_model->get_todo();
         $this->__site_template('student/dashboard', $this->data);
     }
 
@@ -1400,6 +1400,75 @@ class Student extends MY_Controller {
         $this->__site_template('student/syllabus', $this->data);
     }
 
-
+    
+    function add_to_do()
+    {
+        if($_POST)
+        {
+            $title = $this->input->post('title');
+            $todo_date = $this->input->post('todo_date');
+            $todo_time = $this->input->post('todo_time');
+            $datetime = $todo_date.' '.$todo_time;
+           
+            $datetime = strtotime($datetime);
+            $datetime = date('Y-m-d H:i:s',$datetime);
+            
+            $data['todo_datetime'] = $datetime;
+            $data['todo_title'] = $title;
+            $data['todo_role'] = $this->session->userdata('login_type');
+            $data['todo_role_id'] = $this->session->userdata('login_user_id');
+            $this->Student_model->insert_todo($data);
+            $this->data['todolist'] = $this->Student_model->get_todo();
+            $this->load->view("student/gettodo",$this->data);
+        }
+    }
+    
+    function changestatus()
+    {
+        if($_POST)
+        {
+            $data['todo_id'] = $this->input->post('id');
+            $data['todo_status'] = $this->input->post('status');
+            $this->Student_model->change_status($data);
+        }
+    }
+    
+    function removetodolist()
+    {
+        if($_POST)
+        {
+            $id = $this->input->post('id');
+           
+            $this->Student_model->removetodo($id);
+        }
+    }
+    function todoupdateform($param= '')
+    {
+        
+        $this->data['todolist'] = $this->Student_model->gettododata($param);
+        $this->load->view("student/todoupdateform",$this->data);
+    }
+    
+    function updatetodolist()
+    {
+         if($_POST)
+         {
+            $title = $this->input->post('title');
+            $todo_date = $this->input->post('todo_date');
+            $todo_time = $this->input->post('todo_time');
+            $datetime = $todo_date.' '.$todo_time;
+            
+            $datetime = strtotime($datetime);
+            $datetime = date('Y-m-d H:i:s',$datetime);
+            $data['todo_role'] = $this->session->userdata('login_type');
+            $data['todo_role_id'] = $this->session->userdata('login_user_id');
+            $data['todo_datetime'] = $datetime;
+            $data['todo_title'] = $title;
+            $id  = $this->input->post('todo_id');           
+            $this->Student_model->update_todo($data,$id);
+            $this->data['todolist'] = $this->Student_model->get_todo();
+            $this->load->view("student/gettodo",$this->data);
+         }
+     }
 
 }

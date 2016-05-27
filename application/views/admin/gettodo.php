@@ -69,8 +69,8 @@
                        url:"<?php echo base_url(); ?>admin/todoupdateform/"+id,
                        success:function(response)
                        {
-                           $("#updateformhtml").html(response);
-                           $("#todo-addform").hide(500);
+                           $("#todo-addform").hide();
+                           $("#updateformhtml").html(response);                           
                             $(this).closest('.todo-close').css('pointer-events','none'); 
                        }
                     });
