@@ -57,9 +57,15 @@
                                         <strong><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></strong>
                                     </td>
                                     <td class="menu-action">
-                                        <a href="<?php echo base_url('professor/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">Edit</span></a>
+                                        <a href="<?php echo base_url('professor/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">
+<i class="fa fa-pencil" aria-hidden="true"></i>
+Edit
+</span></a>
                                         <a href="href="<?php echo base_url('professor/delete_email/' . $row->email_id) ?>" title="delete"
-                                           onclick="return confirm('Are you sure to delete this email?');""><span class="label label-danger mr6 mb6">Delete</span></a>
+                                           onclick="return confirm('Are you sure to delete this email?');""><span class="label label-danger mr6 mb6">
+<i class="fa fa-trash-o" aria-hidden="true"></i>
+Delete
+</span></a>
                                     </td>
                                 </tr>
 
