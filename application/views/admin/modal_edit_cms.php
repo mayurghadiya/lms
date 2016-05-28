@@ -51,7 +51,7 @@ foreach ($edit_data as $row) {
             <div class="form-group">
                 <label class="col-sm-3 control-label"><?php echo ucwords("Page Content"); ?><span style="color:red">*</span></label>
                 <div class="col-sm-9 controls">
-                    <textarea id="edit_content_data" required="" name="edit_content_data"  class="form-control" data-rel="ckeditor"  rows="3" ><?php echo $row['c_description']; ?></textarea>
+                    <textarea required="" name="edit_content_data"  class="form-control summernote" rows="3" ><?php echo $row['c_description']; ?></textarea>
                 </div>
             </div>             
             <div class="form-group form-actions">
@@ -66,3 +66,11 @@ foreach ($edit_data as $row) {
     <!-- End .panel -->
 </div>
 <!-- col-lg-12 end here -->
+
+<script>
+    $(document).ready(function () {
+        $('.summernote').summernote({
+            height: 200
+        });
+    });
+</script>

@@ -27,6 +27,10 @@ class Site extends MY_Controller {
         $this->load->view('site/' . $view_name);
         $this->load->view('site/footer.php');        
     }
+    
+    function index() {
+        $this->home();
+    }
 
     /**
      * Home action

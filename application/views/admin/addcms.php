@@ -22,10 +22,10 @@
                             <input type="text" class="form-control" required="" name="c_slug" id="c_slug"/>
                         </div>
                     </div>
-                    <div class="form-group" id="ck-editor">					
+                    <div class="form-group">					
                         <label class="col-sm-3 control-label"><?php echo ucwords("Page Content"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-7">		
-                            <textarea name="c_description" required="" class="ckeditor form-control" data-rel="ckeditor" rows="3" required></textarea>
+                            <textarea name="c_description" required="" class="form-control summernote" rows="3" required></textarea>
                         </div>														
                     </div> 
                     <div class="form-group">
@@ -60,11 +60,6 @@
             $("#cmsform").validate({
                 ignore: [],
                 rules: {
-                    content_data: {
-                        required: function () {
-                            CKEDITOR.instances.content_data.updateElement();
-                        }
-                    },
                     c_title: "required",
                     c_slug: "required",
                     c_description: "required",
@@ -75,5 +70,8 @@
                     c_description: "Please enter page content",
                 }
             });
+        });        
+        $('.summernote').summernote({
+            height: 200
         });
     </script>

@@ -206,11 +206,18 @@
 				/*box-shadow:inset 5px 5px 10px #698B10;
 				text-shadow: 2px 2px 2px #698B10;*/
 				color:#fff;
-				background: #39c;
+				background-image:linear-gradient(to bottom,#1e86ba 0,#39c 100%);
+				background-repeat:repeat-x;
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1e86ba', endColorstr='#ff3399cc', GradientType=0);
+				border-color:#17668e;
 			}
-				li.eventCalendar-day.eventCalendar-dayWithEvents a:hover {
+				li.eventCalendar-day.eventCalendar-dayWithEvents a:hover, li.eventCalendar-day.eventCalendar-dayWithEvents a:focus, li.eventCalendar-day.eventCalendar-dayWithEvents a:active {
 					/*background:rgba(168,127,198,0.8);*/
-					background:#ed7a53;
+					background-image:linear-gradient(to bottom,#39c 0,#1e86ba 100%);
+					background-repeat:repeat-x;
+					filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3399cc', endColorstr='#ff1e86ba', GradientType=0);
+					border-color:#17668e;					
+					/*background:#ed7a53;*/
 					/*box-shadow:inset 5px 5px 10px #89B814;
 					text-shadow: 2px 2px 2px #89B814;*/
 				}

@@ -125,7 +125,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label"><?php echo ucwords("Start Date"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-6">
-                            <input readonly="" type="text" name="date" id="date" class="form-control datepicker-normal"
+                            <input type="text" name="date" id="date" class="form-control datepicker-normal"
                                    value="<?php echo set_value('date'); ?>"/>
                         </div>
                     </div>
@@ -155,3 +155,12 @@
         </div>
         <!-- col-lg-12 end here -->
     </div>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css"/>
+    <script src="<?php echo base_url(); ?>assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.datepicker-normal').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        })
+    </script>

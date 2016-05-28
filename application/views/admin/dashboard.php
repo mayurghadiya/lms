@@ -570,6 +570,97 @@
 
             </div>
         </div>
+
+        <div class="row">
+                <div class="col-lg-6">
+        <div class="panel panel-default toggle">
+            
+                     <!-- Start .panel -->
+             <div class=panel-heading>
+                <h4 class=panel-title>
+                   To Do
+                </h4>
+             </div>
+
+             <div class=panel-body>
+                <div class=todo-widget>
+                   <!-- .todo-widget -->
+                   <div class=todo-header>
+                        <div class=todo-search>
+                             <form><input class=form-control name=search placeholder="Search for todo ..."></form>
+                        </div>
+                        <div class=todo-add><a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a></div>
+                        <div id="updateformhtml">
+                      </div>
+                          <div class="todo-addform todo-search" id="todo-addform">
+                          <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class=todo-period>Add New ToDo</h4>
+                                    <form id="frmtodo" class="form-horizontal form-groups-bordered validate">
+                                        <div class=form-group>
+                                           <label class="control-label col-lg-4">Task Title</label>
+                                           <div class="col-sm-8">
+                                           <input type="text" id="todo_title" class="form-control" name="todo_title" >
+                                           </div>
+                                        </div>
+                                        <div class=form-group>                                            
+                                           <label class="control-label col-lg-4">Task Date</label>
+                                           <div class="col-sm-8">
+                                           <input id="basic-datepicker" type="text" name="tado_date" class="form-control">
+                                           </div>
+                                        </div>
+                                        <div class=form-group>
+                                           <label class="control-label col-lg-4">Task Time</label>
+                                           <div class="col-sm-8">                                               
+                                                  <div class="input-group bootstrap-timepicker">
+                                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                                     <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8">
+                                                  </div>                                               
+                                            </div>
+                                        </div>
+                                        <div class=form-group>
+                                            <div class="col-sm-offset-4 col-sm-8">
+                                                <input type="button" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
+                                            <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform">
+                                            </div>
+                                        </div>
+                                     </form>
+                                </div>                        
+                          </div>
+                            
+
+                          </div>
+                   </div>
+                   
+                   <h4 class=todo-period>To Do List</h4>
+                   <div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading..</div>
+                   <ul class=todo-list id=today>
+                      <?php foreach ($todolist as $todo) { ?>  
+                      <li class="todo-task-item <?php
+                         if ($todo->todo_status == "0") {
+                             echo "task-done";
+                         }
+                         ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
+                         <div class=checkbox-custom><input type="checkbox" <?php
+                            if ($todo->todo_status == "0") {
+                                echo "checked=''";
+                            }
+                            ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
+                         <span class="todo-category label label-primary"><?php echo $todo->todo_datetime; ?></span>
+                         <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
+                         <button type=button class="label label-primary updateclick" value="<?php echo $todo->todo_id; ?>">Edit</button>
+                         <button type=button class="close todo-close" value="<?php echo $todo->todo_id; ?>">&times;</button>
+                      </li>
+                      <?php } ?>
+                   </ul>
+                </div>
+             </div>
+         <!-- End .todo-widget -->
+                </div>
+            </div>
+        
+        </div>
+
     </div>
     <!-- col-lg-12 end here -->
 </div>
@@ -706,86 +797,9 @@ $this->load->helper('report_chart');
 
 <!-- Start to do list -->
 <div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-default toggle panelClose panelRefresh panelMove" style="float:right">
-    <!-- Start .panel -->
-    <div class=panel-heading>
-        <h4 class=panel-title>To Do List</h4>
-    </div>
-    <div class=panel-body>
-        <div class=todo-widget>
-            <!-- .todo-widget -->
-            <div class=todo-header>
-
-                <div class="todo-addform col-sm-5" id="todo-addform"  >
-                    <form id="frmtodo">
-                        <div class=form-group>
-                            <label class="col-lg-2 col-md-3 control-label">Task Title</label>
-                            <input type="text" id="todo_title" class=form-control name="todo_title" >
-                        </div>
-
-                        <div class=form-group>
-                            <label class="col-lg-2 col-md-3 control-label">Task Date</label>
-                            <input id="basic-datepicker" type="text" name="tado_date" class="form-control">
-                        </div>
-                        <div class=form-group>
-                            <label class="col-lg-10 col-md-5">Task Time</label>
-                            <div class="col-lg-5 col-md-5">
-                                <div class="input-group bootstrap-timepicker">
-                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                    <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class=form-group>
-
-                            <input type="button" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton" >
-                            <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform" >
-                        </div>
-                    </form>
-                </div>
-                <div id="updateformhtml">
-
-                </div>
-
-                <div class=todo-add><a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a></div>
-
-
-            </div>
-            <div class=todo-search>
-                <form><input class=form-control name=search placeholder="Search for todo ..."></form>
-            </div>
-            <h4 class=todo-period>To Do List</h4>
-
-            <div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading..</div>
-            <ul class=todo-list id=today>
-                <?php foreach ($todolist as $todo) { ?>  
-                    <li class="todo-task-item <?php
-                    if ($todo->todo_status == "0") {
-                        echo "task-done";
-                    }
-                    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
-                        <div class=checkbox-custom><input type="checkbox" <?php
-                            if ($todo->todo_status == "0") {
-                                echo "checked=''";
-                            }
-                            ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>               
-                        <span class="todo-category label label-primary"><?php echo $todo->todo_datetime; ?></span>
-
-                        <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
-                        <button type=button class="label label-primary updateclick" value="<?php echo $todo->todo_id; ?>">Edit</button>
-                        <button type=button class="close todo-close" value="<?php echo $todo->todo_id; ?>">&times;</button>
-
-                    </li>
-                <?php } ?>
-            </ul>
-
-        </div>
-    </div>   
-    <!-- End .todo-widget -->
-</div>
-    </div>
+   <div class="col-md-6">
+      
+   </div>
 </div>
 <!-- To do Js -->
 <script type="text/javascript">
@@ -830,6 +844,8 @@ $this->load->helper('report_chart');
         $("#addnewtodo").click(function () {
             $("#updateformhtml").html('');
             $("#todo-addform").show(500);
+            $('#addbutton').val('Add New to do');
+            $('#closeform').val('Close');
 
         });
         $("#frmtodo #addbutton").click(function ()
