@@ -20,6 +20,10 @@ class Admin extends MY_Controller {
         $this->load->model('forum_model');
         $this->load->model('professor/Professor_model');
         $this->load->model('photo_gallery');
+         if (!$this->input->is_ajax_request()) {
+            $this->load->helper('permission');        
+             user_permission();
+        }
     }
 
     /**

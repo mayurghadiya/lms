@@ -34,6 +34,7 @@
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 
 <script src="<?php echo base_url(); ?>assets/js/jquery.toaster.js"></script>
+<script src="<?php echo base_url();?>assets/js/multiselect.min.js"></script>
 <script>
 <?php
 $message = $this->session->flashdata('flash_message');
