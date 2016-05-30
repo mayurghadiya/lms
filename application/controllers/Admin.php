@@ -5770,9 +5770,7 @@ class Admin extends MY_Controller {
 
             $datetime = strtotime($datetime);
 
-            $datetime = date('Y-m-d H:i:s', $datetime);
-
-            $datetime = date('Y-m-d H:i:s', $datetime);
+            $datetime = date('Y-m-d H:i:s', $datetime);           
             $data['todo_role'] = $this->session->userdata('login_type');
             $data['todo_role_id'] = $this->session->userdata('login_user_id');
             $data['todo_datetime'] = $datetime;
