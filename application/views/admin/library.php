@@ -58,7 +58,7 @@
                         <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>                                    
                     </div>
                 </form>
-                 <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addlibrary/');" href="#" id="navfixed" data-toggle="tab">Add New Library</a>
+                 <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addlibrary/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Library</a>
                 <div id="getresponse">
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>

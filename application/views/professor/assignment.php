@@ -25,7 +25,7 @@
                     </ul>
                     <div id="import-tab-content" class="tab-content">
                         <div class="tab-pane fade active in" id="assignment-list">
-                            <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addassignment/');" data-original-title="" data-toggle="tooltip" data-placement="top">Add New Assignment</a>
+                            <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addassignment/');" data-original-title="" data-toggle="tooltip" data-placement="top"><i class="fa fa-plus"></i> Assignment</a>
                             <form id="assignment-search" action="#" class="form-groups-bordered validate">
                                 <div class="form-group col-sm-3">
                                     <label><?php echo ucwords("department"); ?></label>

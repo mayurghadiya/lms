@@ -14,7 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_exam_schedual');" data-toggle="modal">Add Exam Schedule</a>
+                <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_exam_schedual');" data-toggle="modal"><i class="fa fa-plus"></i> Exam Schedule</a>
                 <form id="exam-schedule-search" action="#" class="form-groups-bordered validate">
                     <div class="form-group col-sm-2">
                         <label><?php echo ucwords("department"); ?></label>

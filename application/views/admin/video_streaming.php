@@ -43,7 +43,7 @@
 
 <!-- just copy this <section> and next script -->
                     <section class="experiment">
-                        <div class="form-horizontal">  
+                        <form class="form-horizontal form-groups-bordered validate">  
                             <div class="">
                                 <span style="color:red">* is mandatory field</span> 
                             </div>  
@@ -97,7 +97,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-5">
-                                    <button id="setup-new-broadcast" class="btn btn-success vd_bg-green">Setup New Broadcast</button>
+                                    <button id="setup-new-broadcast" class="btn btn-primary vd_bg-primary">Setup New Broadcast</button>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -112,7 +112,7 @@
                                     </span>                                                
                                 </section>
                             </div>
-                        </div>
+                        </form>
                         <!-- list of all available broadcasting rooms -->
                         <h4>All Broadcast</h4>
                         <table style="width: 100%;" id="rooms-list" class="table table-bordered"></table>

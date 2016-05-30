@@ -25,7 +25,7 @@
                     </ul>
                     <div id="import-tab-content" class="tab-content">
                         <div class="tab-pane fade active in" id="import-data">
-                            <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addbanner/');" >Add New Banner</a>
+                            <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addbanner/');" ><i class="fa fa-plus"></i> Banner</a>
                     <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>

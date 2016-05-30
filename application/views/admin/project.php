@@ -25,7 +25,7 @@
                     </ul>
                     <div id="import-tab-content" class="tab-content">
                         <div class="tab-pane fade active in" id="project-list">
-                            <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addproject/');" href="#" id="navfixed" data-toggle="tab">Add New Project</a>
+                            <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addproject/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Project</a>
                             <form action="#" method="post" id="searchform">
                                 <div class="form-group col-sm-3 validating">
                                     <label>Department</label>
