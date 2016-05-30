@@ -36,7 +36,10 @@ if (!function_exists('user_permission')) {
         $CI = & get_instance();
 //        echo $CI->uri->segment(2);
 //        exit;
-        $run = "FIND_IN_SET('".$CI->session->userdata('login_user_id')."', user_role)";
+        if($CI->uri->segment(2)!="")
+        {
+         
+            $run = "FIND_IN_SET('".$CI->session->userdata('login_user_id')."', user_role)";
         $CI->db->where($run);
         $CI->db->where('user_type',$CI->session->userdata('login_type'));
         $user_role_query=$CI->db->get('group')->result_array();
@@ -63,6 +66,9 @@ if (!function_exists('user_permission')) {
         }
 //        echo $CI->uri->segment(2);
 //       exit;
+
+        }
+        
     }
 
 }
