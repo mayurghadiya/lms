@@ -840,10 +840,9 @@ $this->load->helper('report_chart');
 <script type="text/javascript">
             $(document).ready(function () {
     $("#todo-addform").hide();
+    alert();
     $("#basic-datepicker").datepicker({
-    dateFormat: ' MM dd, yy',
-            minDate: '0 days',
-            autoclose: true,
+            autoclose: true
     });
     //task-done
 
@@ -970,86 +969,3 @@ $this->load->helper('report_chart');
     });
     });</script>
 <!-- end To do Js -->
-
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/elements-all.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/framework-color.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/demo-widgets.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/helpers-all.css">
-<style>
-    /* mobile first */
-    #content-1{
-        width: 260px;
-        height: 400px;
-        overflow: hidden;
-        background: #fdfdfd;
-        padding: 10px;
-        margin: 20px 0;
-    }
-
-    @media only screen and (min-width: 1024px){
-        #content-1{
-            width: 80%;
-            height: 350px;
-        }
-    }
-</style>
-
-
-<div id="demo">
-    <section id="examples">			
-        <!-- content -->
-        <div id="content-1">
-            <div class="timeline-box timeline-horizontal" style="width: 1600px;">
-                <?php $i = 0;
-                foreach ($timeline as $time_line) {
-                    ?>
-                    <div class="tl-row">
-                        <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                            <div class="tl-bullet bg-black"></div>
-                            <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
-                            <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                <div class="arrow"></div>
-                                <div class="popover-content">
-                                    <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
-                                    <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
-                                    <div class="tl-time"><i class="glyph-icon icon-clock-o"></i> <?php echo $time_line->timeline_created_date; ?></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php $i++;
-                }
-                ?>
-
-            </div>
-        </div>			
-    </section>
-</div>
-<!-- custom scrollbar plugin (latest version) via Github with fallback to local -->
-<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-
-<script>
-    (function($){
-
-    $(window).load(function(){
-
-    $("#content-1").mCustomScrollbar({
-    theme:"inset-2-dark",
-            axis:"yx",
-            advanced:{autoExpandHorizontalScroll:true},
-            /* change mouse-wheel axis on-the-fly */
-            callbacks:{
-            // onOverflowY:function(){
-            // 	var opt=$(this).data("mCS").opt;
-            // 	if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
-            // },
-            onOverflowX:function(){
-            var opt = $(this).data("mCS").opt;
-            if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
-            },
-            }
-    });
-    });
-    })(jQuery);
-</script>
