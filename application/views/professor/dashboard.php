@@ -537,7 +537,7 @@
                             <h4 class=panel-title>Class Routine</h4>
                         </div>-->
             <div class=panel-body>
-              <iframe frameborder="0" src="<?php echo base_url(); ?>professor/professor_class_routine" width="100%" height="400px"></iframe>
+             fgfh <iframe frameborder="0" src="<?php echo base_url(); ?>professor/professor_class_routine" width="100%" height="400px"></iframe>
             </div>
         </div>
         <!-- End .panel -->
