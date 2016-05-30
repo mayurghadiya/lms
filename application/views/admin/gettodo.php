@@ -3,8 +3,12 @@
             <div class=checkbox-custom><input type="checkbox"  <?php if($todo->todo_status=="0"){ echo "checked=''"; } ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>               
                <span class="todo-category label label-primary"><?php  echo  $todo->todo_datetime; ?></span>
                <div class=todo-task-text><?php  echo $todo->todo_title; ?></div>
+               <div class="updateclick_box">
                <button type=button class="label label-primary updateclick" value="<?php echo $todo->todo_id; ?>">Edit</button>
+               </div>
+               <div class="todo-close_box">
                <button type=button class="close todo-close" value="<?php echo $todo->todo_id; ?>">&times;</button>
+               </div>
             </li>
 <?php } ?>
 

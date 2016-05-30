@@ -20,6 +20,10 @@ class Admin extends MY_Controller {
         $this->load->model('forum_model');
         $this->load->model('professor/Professor_model');
         $this->load->model('photo_gallery');
+         if (!$this->input->is_ajax_request()) {
+            $this->load->helper('permission');        
+             user_permission();
+        }
     }
 
     /**
@@ -5770,9 +5774,7 @@ class Admin extends MY_Controller {
 
             $datetime = strtotime($datetime);
 
-            $datetime = date('Y-m-d H:i:s', $datetime);
-
-            $datetime = date('Y-m-d H:i:s', $datetime);
+            $datetime = date('Y-m-d H:i:s', $datetime);           
             $data['todo_role'] = $this->session->userdata('login_type');
             $data['todo_role_id'] = $this->session->userdata('login_user_id');
             $data['todo_datetime'] = $datetime;

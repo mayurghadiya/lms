@@ -36,16 +36,16 @@
                                         <select class="form-control" id="module" name="module">
                                             <option value="">Select</option>
                                             <option value="admission_type">Admission Type</option>
+                                            <option value="batch">Batch</option>
                                             <option value="course">Branch</option>
                                             <option value="degree">Department</option>
-                                            <option value="batch">Batch</option>
-                                            <option value="event_manager">Event Manager</option>
                                             <option value="exam_manager">Exam Manager</option>
-                                            <option value="exam_time_table">Exam Time Table</option>
-                                            <option value="fees_structure">Fees Structure</option>
-                                            <option value="subject">Subject</option>
-                                            <option value="student">Student</option>
                                             <option value="exam_marks">Exam Marks</option>
+                                            <option value="exam_time_table">Exam Time Table</option>
+                                            <option value="event_manager">Event Manager</option>
+                                            <option value="fees_structure">Fees Structure</option>
+                                            <option value="student">Student</option>
+                                            <option value="subject">Subject</option>
                                         </select>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                     ?>
                                     <div class="col-sm-5">
                                         <select id="semester" name="course" class="form-control">
-                                            <option value="">--- Select Semester ---</option>
+                                            <option value="">Select</option>
                                             <?php foreach ($semester as $row) { ?>
                                                 <option value="<?php echo $row->s_id; ?>"><?php echo $row->s_name; ?></option>
                                             <?php } ?>
@@ -128,17 +128,18 @@
                         <!-- tab content -->
                         <div class="tab-pane fade" id="download-sample-sheet">
                             
-                            <ul>                                        
-                                <li><a href="<?php echo base_url('admin/download_import/course'); ?>">Branch</a></li>
-                                <li><a href="<?php echo base_url('admin/download_import/degree'); ?>">Department</a></li>
+                            <ul>
                                 <li><a href="<?php echo base_url('admin/download_import/admission_type'); ?>">Admission Type</a></li>
                                 <li><a href="<?php echo base_url('admin/download_import/batch'); ?>">Batch</a></li>
-                                <li><a href="<?php echo base_url('admin/download_import/event_manager'); ?>">Event Manager</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/course'); ?>">Branch</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/degree'); ?>">Department</a></li>
                                 <li><a href="<?php echo base_url('admin/download_import/exam_manager'); ?>">Exam Manager</a></li>
                                 <li><a href="<?php echo base_url('admin/download_import/exam_time_table'); ?>">Exam Time Table</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/event_manager'); ?>">Event Manager</a></li>
                                 <li><a href="<?php echo base_url('admin/download_import/fees_structure'); ?>">Fees Structure</a></li>
-                                <li><a href="<?php echo base_url('admin/download_import/subject'); ?>">Subject</a></li>
                                 <li><a href="<?php echo base_url('admin/download_import/student') ?>">Student</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/subject'); ?>">Subject</a></li>
+                                
                             </ul>
                         </div>
 
