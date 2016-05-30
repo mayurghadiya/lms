@@ -5823,8 +5823,4 @@ class Admin extends MY_Controller {
         $this->__site_template('admin/search_result', $this->data);
     }
 
-    function demo() {
-        $this->load->view('highchart');
-    }
-
 }

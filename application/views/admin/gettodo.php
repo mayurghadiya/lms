@@ -1,13 +1,13 @@
 <?php foreach($todolist as $todo){ ?>  
 <li class="todo-task-item <?php if($todo->todo_status=="0"){ echo "task-done"; } ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
             <div class=checkbox-custom><input type="checkbox"  <?php if($todo->todo_status=="0"){ echo "checked=''"; } ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>               
-               <span class="todo-category label label-primary"><?php  echo  $todo->todo_datetime; ?></span>
                <div class=todo-task-text><?php  echo $todo->todo_title; ?></div>
+               <div class="todo-category"><i class="mar4top fa fa-calendar" aria-hidden="true"></i><?php  echo  $todo->todo_datetime; ?></div>
                <div class="updateclick_box">
-               <button type=button class="label label-primary updateclick" value="<?php echo $todo->todo_id; ?>">Edit</button>
+                 <button type=button class="label label-primary updateclick" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-pencil-square-o"></i></button>
                </div>
                <div class="todo-close_box">
-               <button type=button class="close todo-close" value="<?php echo $todo->todo_id; ?>">&times;</button>
+                   <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                </div>
             </li>
 <?php } ?>

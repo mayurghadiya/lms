@@ -20,7 +20,7 @@
                     </div>              
                     <form id="exportform" class="form-horizontal validate" action="#" method="post">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Module<?php echo ucwords("home"); ?> <span style="color:red">*</span></label>
+                            <label class="col-sm-3 control-label">Module <span style="color:red">*</span></label>
                             <div class="col-sm-5">
                                 <select id="export_module" class="form-control" name="module_name" required="">
                                     <option value="">Select</option>
