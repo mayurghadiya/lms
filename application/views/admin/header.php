@@ -248,6 +248,12 @@
                                                         <span class="txt">Assessment</span>
                                                     </a>
                                                 </li>
+                                                 <li>
+                                                    <a href="<?php echo base_url(); ?>admin/time_line">
+                                                        <i class="s16 icomoon-icon-file"></i>
+                                                        <span class="txt">Time Line</span>
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li>
@@ -274,7 +280,7 @@
                                                     </a>
                                                 </li> 
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/study_resourse">
+                                                    <a href="<?php echo base_url(); ?>admin/studyresource">
                                                         <i class="s16 icomoon-icon-attachment"></i>
                                                         <span class="txt">Study Resources</span>
                                                     </a>

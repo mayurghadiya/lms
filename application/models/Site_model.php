@@ -176,4 +176,55 @@ class Site_model extends CI_Model {
     {
         $this->db->insert("forum_comment",$data);
     }
+    
+    /**
+     * Check for user email is present or not
+     * @param string $email
+     * @return object
+     */
+    function is_user_email_present($email) {
+        $users = ['student', 'admin', 'professor'];
+        foreach($users as $user) {
+            $record = $this->db->select()
+                    ->from($user)
+                    ->where('email', $email)
+                    ->get()->row();
+            
+            if($record) {
+                $record->user_type = $user;
+                return $record;
+            }
+        }
+        
+        return '';
+    }
+    
+    /**
+     * Update forgot password key
+     * @param string $user_type
+     * @param string $user_id
+     * @param string $key
+     */
+    function update_forgot_password_key($user_type, $user_id, $key) {
+        switch ($user_type) {
+            case 'admin':
+                $this->db->where('admin_id', $user_id);
+                $this->db->update('admin', [
+                    'forgot_password_link'  => $key
+                ]);
+                break;
+            case 'student':
+                $this->db->where('std_id', $user_id);
+                $this->db->update('student', [
+                    'forgot_password_link' => $key
+                ]);
+                break;
+            case 'professor':
+                $this->db->where('professor_id', $user_id);
+                $this->db->update('professor', [
+                    'forgot_password_link'  => $key
+                ]);
+                break;
+        }
+    }
 }

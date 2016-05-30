@@ -1,7 +1,7 @@
 <?php
 
 class Site extends MY_Controller {
-    
+
     /**
      * Constructor
      * 
@@ -13,7 +13,6 @@ class Site extends MY_Controller {
         $this->load->database();
         $this->load->model('Site_model');
         $this->load->helper('system_setting');
-     
     }
 
     /**
@@ -25,9 +24,9 @@ class Site extends MY_Controller {
         $data['courses'] = $this->Site_model->get_all_courses();
         $this->load->view('site/header.php', $data);
         $this->load->view('site/' . $view_name);
-        $this->load->view('site/footer.php');        
+        $this->load->view('site/footer.php');
     }
-    
+
     function index() {
         $this->home();
     }
@@ -78,10 +77,12 @@ class Site extends MY_Controller {
         $this->data['university_peoples'] = $this->Site_model->recent_universiy_peoples();
         $this->__template('about', $this->data);
     }
+
     /*
      * 
      */
-    function syllabus() {        
+
+    function syllabus() {
         $this->data['title'] = 'Syllabus';
         $this->data['syllabus'] = $this->Site_model->get_all_syllabus();
         $this->__template('syllabus', $this->data);
@@ -155,7 +156,7 @@ class Site extends MY_Controller {
         $this->data['title'] = 'User Login';
         $this->load->view('site/user_login', $this->data);
     }
-    
+
     function logout() {
         $this->session->sess_destroy();
         redirect(base_url('site/user_login'));
@@ -203,7 +204,7 @@ class Site extends MY_Controller {
             $this->session->set_userdata('user_type', '2');
             $this->session->set_userdata('group_id', $row->group_id);
             $this->session->set_userdata('online', '1');
-            $this->session->set_userdata('profile_photo', $row->profile_photo);            
+            $this->session->set_userdata('profile_photo', $row->profile_photo);
             $this->session->set_userdata('password_status', $row->password_status);
             $update = array("online" => '1');
             $this->db->where('std_id', $row->std_id);
@@ -222,21 +223,21 @@ class Site extends MY_Controller {
             $this->session->set_userdata('login_user_id', $row->sub_admin_id);
             $this->session->set_userdata('name', 'sub admin 1');
             $this->session->set_userdata('email', $row->email);
-            $this->session->set_userdata('login_type', 'subadmin');            
+            $this->session->set_userdata('login_type', 'subadmin');
             redirect(base_url('sub_admin/dashboard'));
         }
-        
+
         $query = $this->db->get_where('professor', $credential);
-        if($query->num_rows()) {
+        if ($query->num_rows()) {
             $row = $query->row();
             $this->session->set_userdata('professor_login', '1');
             $this->session->set_userdata('login_user_id', $row->professor_id);
             $this->session->set_userdata('name', $row->name);
-            $this->session->set_userdata('email', $row->email);            
+            $this->session->set_userdata('email', $row->email);
             $this->session->set_userdata('branch', $row->branch);
             $this->session->set_userdata('department', $row->department);
             $this->session->set_userdata('login_type', 'professor');
-            $this->session->set_userdata('image_path',  $row->image_path);
+            $this->session->set_userdata('image_path', $row->image_path);
             redirect(base_url('professor/dashboard'));
         }
         $this->flash_notification('danger', 'Invalid username or password');
@@ -250,14 +251,14 @@ class Site extends MY_Controller {
      */
     function user_dashboard() {
         $type = $this->session->userdata('login_type');
-      
+
         if ($type == 'admin') {
             redirect(base_url('admin/dashboard'));
         } elseif ($type == 'student') {
             redirect(base_url('student/dashboard'));
         } elseif ($type == 'subadmin') {
             redirect(base_url('sub_admin'));
-        } elseif($type == 'professor') {
+        } elseif ($type == 'professor') {
             redirect(base_url('professor/dashboard'));
         }
     }
@@ -269,79 +270,94 @@ class Site extends MY_Controller {
      */
     function forgot_password() {
         if ($_POST) {
-            $resp = array();
-            $resp['status'] = 'false';
-            $email = $_POST["email"];
-            $reset_account_type = '';
-            //resetting user password here
-            $new_password = substr(md5(rand(100000000, 20000000000)), 0, 7);
+            //check for student
+            $record = $this->Site_model->is_user_email_present($_POST['email']);
 
-            $config = Array(
-                'protocol' => 'smtp',
-                'smtp_host' => 'ssl://smtp.googlemail.com',
-                'smtp_port' => 465,
-                'smtp_user' => 'mayur.ghadiya@searchnative.in',
-                'smtp_pass' => 'the mayurz97375',
-                'mailtype' => 'html',
-                'charset' => 'iso-8859-1'
-            );
-            $this->load->library('email', $config);
-            $this->email->from('mayur.ghadiya@searchnative.in');
+            if ($record) {
+                // send email for forgot password
+                $config = Array(
+                    'protocol' => 'smtp',
+                    'smtp_host' => 'ssl://smtp.googlemail.com',
+                    'smtp_port' => 465,
+                    'smtp_user' => 'mayur.ghadiya@searchnative.in',
+                    'smtp_pass' => 'the mayurz97375',
+                    'mailtype' => 'html',
+                    'charset' => 'iso-8859-1'
+                );
 
-            // Checking credential for admin
-            $query = $this->db->get_where('admin', array('email' => $email));
-            if ($query->num_rows() > 0) {
-                $reset_account_type = 'admin';
-                $this->db->where('email', $email);
-                $this->db->update('admin', array('pass' => $new_password, 'password' => md5($new_password)));
-                $resp['status'] = 'true';
+                $user_id = '';
+                //get the user id
+                if ($record->user_type == 'student')
+                    $user_id = $record->std_id;
+                elseif ($record->user_type == 'admin')
+                    $user_id = $record->admin_id;
+                elseif ($record->user_type == 'professor')
+                    $user_id = $record->professor_id;
 
-                //send mail
-                $this->email->subject('Login Details for Learning Management System');
-                $this->email->to($_POST['email']);
-                $message = "<strong>Your Learning Management System login details given below.</strong><br/>";
-                $message .= "Login url: " . base_url('index.php?site/user_login') . "<br/>";
-                $message .= "Username: " . $_POST['email'] . "<br/>";
-                $message .= "Password: " . $new_password;
-                $this->email->message($message);
-                $this->email->send();
+                $this->update_forgot_password_key($record->user_type, $user_id, $this->random_string_generate());
+                $url = $this->forgot_password_url($record->user_type, $user_id, $this->random_string_generate());
+
+                // email configuration
+                $config = Array(
+                    'protocol' => 'smtp',
+                    'smtp_host' => 'ssl://smtp.googlemail.com',
+                    'smtp_port' => 465,
+                    'smtp_user' => 'mayur.ghadiya@searchnative.in',
+                    'smtp_pass' => 'the mayurz97375',
+                    'mailtype' => 'html',
+                    'charset' => 'iso-8859-1'
+                );
+                $this->load->library('email', $config);
+                $this->email->from('mayur.ghadiya@searchnative.in', 'Learning Management System');
+                
+            } else {
+                // email is not registered in the system
             }
-            // Checking credential for student
-            $query = $this->db->get_where('student', array('email' => $email));
-            if ($query->num_rows() > 0) {
-                $reset_account_type = 'student';
-                $this->db->where('email', $email);
-                $this->db->update('student', array('real_pass' => $new_password, 'password' => md5($new_password)));
-                $resp['status'] = 'true';
-
-                $this->email->subject('Login Details for Learning Management System');
-                $this->email->to($_POST['email']);
-                $message = "<strong>Your Learning Management System login details given below.</strong><br/>";
-                $message .= "Login url: " . base_url('index.php?site/user_login') . "<br/>";
-                $message .= "Username: " . $_POST['email'] . "<br/>";
-                $message .= "Password: " . $new_password;
-                $this->email->message($message);
-                $this->email->send();
-            }
-
-
-            // send new password to user email  
-            $this->email_model->password_reset_email($new_password, $reset_account_type, $email);
-
-            $resp['submitted_data'] = $_POST;
-
-            if (!$resp['status']) {
-                $this->session->set_flashdata('error', 'Email address is not registered with system.');
-                redirect(base_url('index.php?site/forgot_password'));
-            }
-
-            $this->session->set_flashdata('message', 'Login information is successfully sent to your email.');
-            redirect(base_url('index.php?site/user_login'));
+            //check for admin
+            //check for professor
+        } else {
+            redirect(base_url('site/user_login'));
         }
-        $this->data['title'] = 'Forgot password';
-        $this->__template('forgot_password', $this->data);
     }
-    
+
+    /**
+     * Generate random string
+     * @return string
+     */
+    function random_string_generate() {
+        $this->load->helper('string');
+        return random_string('alnum', 16);
+    }
+
+    /**
+     * Forgot password url
+     * @param string $user_type
+     * @param string $user_id
+     * @param string $random_string
+     * @return string
+     */
+    function forgot_password_url($user_type, $user_id, $random_string) {
+        $this->load->library('encrypt');
+        $base_url = base_url();
+        $user_type = urlencode($this->encrypt->encode($user_type));
+
+        return $base_url . 'reset_password/' . $user_id . '/' . $user_type . '/' . $random_string;
+    }
+
+    /**
+     * Update forgot password key for user
+     * @param string $user_type
+     * @param string $user_id
+     * @param string $key
+     */
+    function update_forgot_password_key($user_type, $user_id, $key) {
+        if ($user_type != '' && $user_id != '' && $key != '') {
+            $this->Site_model->update_forgot_password_key($user_type, $user_id, $key);
+        } else {
+            redirect(base_url('site/user_login'));
+        }
+    }
+
     /**
      * Events actions
      * 
@@ -352,7 +368,7 @@ class Site extends MY_Controller {
         $this->data['events'] = $this->Site_model->all_events();
         $this->__template('events', $this->data);
     }
-    
+
     /**
      * Alumni action
      * 
@@ -362,73 +378,64 @@ class Site extends MY_Controller {
         $this->data['title'] = 'Alumni';
         $this->__template('alumni', $this->data);
     }
-    function forums()
-    {
+
+    function forums() {
         $this->data['title'] = 'Forum';
-        $this->db->where("forum_status","1");
+        $this->db->where("forum_status", "1");
         $this->data['forums'] = $this->db->get("forum")->result();
         $this->__template('forum', $this->data);
     }
-    
-    function topics($param = '')
-    {
+
+    function topics($param = '') {
         $this->data['title'] = 'Forum Topics';
-        $this->db->where("forum_topic_status","1");
-        $this->db->where("forum_id",$param);
-         
-        
+        $this->db->where("forum_topic_status", "1");
+        $this->db->where("forum_id", $param);
+
+
         $this->data['topics'] = $this->db->get("forum_topics")->result();
         $this->data['param'] = $param;
-        $this->db->where("forum_id",$param);
-         $this->data['forum'] = $this->db->get("forum")->result();
+        $this->db->where("forum_id", $param);
+        $this->data['forum'] = $this->db->get("forum")->result();
         $this->__template('topic', $this->data);
     }
-    
-    function viewtopic($param='')
-    {
+
+    function viewtopic($param = '') {
         $this->data['title'] = 'Forum Topic Discussion';
-        $this->db->where("forum_topic_status","1");
-        $this->db->where("forum_topic_id",$param);
+        $this->db->where("forum_topic_status", "1");
+        $this->db->where("forum_topic_id", $param);
         $this->data['param'] = $param;
         $this->data['topics'] = $this->db->get("forum_topics")->result();
-        
-        $this->data['comments'] = $this->db->get_where("forum_comment",array("forum_topic_id"=>$param,"forum_comment_status"=>'1'))->result();
+
+        $this->data['comments'] = $this->db->get_where("forum_comment", array("forum_topic_id" => $param, "forum_comment_status" => '1'))->result();
         $this->__template('discussion', $this->data);
     }
-    
-    function comment($param='')
-    {
-       if($param=="create")
-       {
-          $data['forum_topic_id'] = $this->input->post('forum_topic_id');
-          $data['forum_comments'] = $this->input->post('discussion');
-          $data['forum_comment_status'] = '0';
-           $data['user_role'] = $this->session->userdata('login_type');
-           $data['user_role_id'] = $this->session->userdata('login_user_id');
-          $this->Site_model->create_comment($data);
-           $this->session->set_flashdata('message', ' Your comment has been queued for review by site administrators and will be published after approval.');
-           redirect(base_url('index.php?site/viewtopic/'.$data['forum_topic_id']));
-       }
+
+    function comment($param = '') {
+        if ($param == "create") {
+            $data['forum_topic_id'] = $this->input->post('forum_topic_id');
+            $data['forum_comments'] = $this->input->post('discussion');
+            $data['forum_comment_status'] = '0';
+            $data['user_role'] = $this->session->userdata('login_type');
+            $data['user_role_id'] = $this->session->userdata('login_user_id');
+            $this->Site_model->create_comment($data);
+            $this->session->set_flashdata('message', ' Your comment has been queued for review by site administrators and will be published after approval.');
+            redirect(base_url('index.php?site/viewtopic/' . $data['forum_topic_id']));
+        }
     }
-    
-    function crudtopic($param='')
-    {   
-        if($param='create')
-        {
+
+    function crudtopic($param = '') {
+        if ($param = 'create') {
             $data['forum_id'] = $this->input->post('forum_id');
             $data['forum_topic_title'] = $this->input->post('subject');
             $data['forum_topic_desc'] = $this->input->post('discussion');
-            $data['forum_topic_status'] = '0';         
+            $data['forum_topic_status'] = '0';
             $data['user_role'] = $this->session->userdata('login_type');
             $data['user_role_id'] = $this->session->userdata('login_user_id');
-            
+
             $this->Site_model->create_topic($data);
             $this->session->set_flashdata('message', ' Your Topic has been queued for review by site administrators and will be published after approval.');
-            redirect(base_url('index.php?site/topics/'.$data['forum_id']));
-            
+            redirect(base_url('index.php?site/topics/' . $data['forum_id']));
         }
-        
     }
-    
-    
+
 }

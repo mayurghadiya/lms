@@ -267,10 +267,10 @@ $this->load->helper('report_chart');
             eventsScrollable: false,
             dateFormat: "DD/MM/YYYY",
             jsonDateFormat: 'timestamp', // you can use also "human" 'YYYY-MM-DD HH:MM:SS'
-            //moveSpeed: 500,	// speed of month move when you clic on a new date
+            //moveSpeed: 500,    // speed of month move when you clic on a new date
             //moveOpacity: 0, // month and events fadeOut to this opacity
             jsonData: "", // to load and inline json (not ajax calls)
-            cacheJson: true	// if true plugin get a json only first time and after plugin filter events
+            cacheJson: true  // if true plugin get a json only first time and after plugin filter events
             // if false plugin get a new json on each date change
     };
     function initEventCalendar(that, options) {
@@ -679,6 +679,7 @@ $this->load->helper('report_chart');
             </div>
         </div>
         <!-- End .panel -->
+
         <div class="panel panel-default toggle">
             <div class="panel-heading">
                 <h4 class=panel-title>Report Charts</h4>
@@ -720,6 +721,7 @@ $this->load->helper('report_chart');
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-lg-6">
                 <div class="panel panel-default toggle">
@@ -733,12 +735,8 @@ $this->load->helper('report_chart');
                         <div class=todo-widget>
                             <!-- .todo-widget -->
                             <div class=todo-header>
-                                <div class=todo-search>
-                                    <form><input class=form-control name=search placeholder="Search for todo ..."></form>
-                                </div>
-                                <div class=todo-add><a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a></div>
                                 <div id="updateformhtml"></div>
-                                <div class="todo-addform todo-search" id="todo-addform">
+                                <div class="todo-addform" id="todo-addform">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <h4 class=todo-period>Add New ToDo</h4>
@@ -774,32 +772,37 @@ $this->load->helper('report_chart');
                                         </div>
                                     </div>
                                 </div>
+                                <div class=todo-search>
+                                    <form><input class=form-control name=search placeholder="Search for todo ..."></form>
+                                </div>
+                                <div class=todo-add><a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a></div>
+
                             </div>
                             <h4 class=todo-period>To Do List</h4>
                             <div id="wait" class="loading_img"><img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading...
                             </div>
                             <ul class="todo-list" id="today">
-                                <?php foreach ($todolist as $todo) { ?>  
+<?php foreach ($todolist as $todo) { ?>  
                                     <li class="todo-task-item <?php
-                                    if ($todo->todo_status == "0") {
-                                        echo "task-done";
-                                    }
-                                    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
+    if ($todo->todo_status == "0") {
+        echo "task-done";
+    }
+    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
                                         <div class=checkbox-custom><input type="checkbox" <?php
-                                            if ($todo->todo_status == "0") {
-                                                echo "checked=''";
-                                            }
-                                            ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
+    if ($todo->todo_status == "0") {
+        echo "checked=''";
+    }
+    ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
                                         <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
                                         <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo $todo->todo_datetime; ?></div>
                                         <div class="updateclick_box">
-                                            <button type=button class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                            <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                         </div>
                                         <div class="todo-close_box">
                                             <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
                                         </div>
                                     </li>
-                                <?php } ?>
+<?php } ?>
                             </ul>
                         </div>
                     </div>
@@ -838,12 +841,11 @@ $this->load->helper('report_chart');
 </div>
 <!-- To do Js -->
 <script type="text/javascript">
+
             $(document).ready(function () {
     $("#todo-addform").hide();
     $("#basic-datepicker").datepicker({
-    dateFormat: ' MM dd, yy',
-            minDate: '0 days',
-            autoclose: true,
+    autoclose: true
     });
     //task-done
 
@@ -858,7 +860,8 @@ $this->load->helper('report_chart');
     $(document).ajaxComplete(function () {
     $("#wait").css("display", "none");
     });
-    $(".todo-close").click(function () {
+    $(".close").click(function () {
+        alert($(this).val());
     var id = $(this).val();
     var dataString = "id=" + id;
     $.ajax({
@@ -961,7 +964,7 @@ $this->load->helper('report_chart');
             {
             $("#todo-addform").hide();
             $("#updateformhtml").html(response);
-            $('.todo-close').css('pointer-events', 'none');
+            $('.todo-close_box').css('pointer-events', 'none');
             }
     });
     });
@@ -970,86 +973,3 @@ $this->load->helper('report_chart');
     });
     });</script>
 <!-- end To do Js -->
-
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/elements-all.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/framework-color.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/demo-widgets.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/helpers-all.css">
-<style>
-    /* mobile first */
-    #content-1{
-        width: 260px;
-        height: 400px;
-        overflow: hidden;
-        background: #fdfdfd;
-        padding: 10px;
-        margin: 20px 0;
-    }
-
-    @media only screen and (min-width: 1024px){
-        #content-1{
-            width: 80%;
-            height: 350px;
-        }
-    }
-</style>
-
-
-<div id="demo">
-    <section id="examples">			
-        <!-- content -->
-        <div id="content-1">
-            <div class="timeline-box timeline-horizontal" style="width: 1600px;">
-                <?php $i = 0;
-                foreach ($timeline as $time_line) {
-                    ?>
-                    <div class="tl-row">
-                        <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                            <div class="tl-bullet bg-black"></div>
-                            <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
-                            <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                <div class="arrow"></div>
-                                <div class="popover-content">
-                                    <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
-                                    <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
-                                    <div class="tl-time"><i class="glyph-icon icon-clock-o"></i> <?php echo $time_line->timeline_created_date; ?></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php $i++;
-                }
-                ?>
-
-            </div>
-        </div>			
-    </section>
-</div>
-<!-- custom scrollbar plugin (latest version) via Github with fallback to local -->
-<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-
-<script>
-    (function($){
-
-    $(window).load(function(){
-
-    $("#content-1").mCustomScrollbar({
-    theme:"inset-2-dark",
-            axis:"yx",
-            advanced:{autoExpandHorizontalScroll:true},
-            /* change mouse-wheel axis on-the-fly */
-            callbacks:{
-            // onOverflowY:function(){
-            // 	var opt=$(this).data("mCS").opt;
-            // 	if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
-            // },
-            onOverflowX:function(){
-            var opt = $(this).data("mCS").opt;
-            if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
-            },
-            }
-    });
-    });
-    })(jQuery);
-</script>

@@ -59,9 +59,9 @@ if (!function_exists('batch')) {
     function batch() {
         $handle = fopen('php://output', 'w');
         fputcsv($handle, array(
-            'Batch Name',
-            'Course Name',
-            'Branch Name'
+            'Batch',
+            'Department',
+            'Branch'
         ));
         fclose($handle);
     }
@@ -98,8 +98,8 @@ if (!function_exists('exam_manager')) {
             'Total Marks',
             'Passing Marks',
             'Exam Type',
-            'Course Name',
-            'Branch Name',
+            'Department',
+            'Branch',
             'Batch',
             'Semester'
         ));
@@ -117,11 +117,11 @@ if (!function_exists('fees_structure')) {
         $handle = fopen('php://output', 'w');
         fputcsv($handle, array(
             'Title',
-            'Course Name',
-            'Branch Name',
-            'Batch Name',
+            'Department',
+            'Branch',
+            'Batch',
             'Semester',
-            'Fees'
+            'Fee'
         ));
         fclose($handle);
     }
@@ -138,7 +138,7 @@ if (!function_exists('subject')) {
         fputcsv($handle, array(
             'Subject Name',
             'Subject Code',
-            'Course',
+            'Department',
             'Semester'
         ));
         fclose($handle);
@@ -351,8 +351,8 @@ if (!function_exists('student_import_sample')) {
             'Merital',
             'Mobile',
             'About',
-            'Degree Name',
-            'Course Name',
+            'Department',
+            'Branch',
             'Batch',
             'Semester',
             'Admission Type'

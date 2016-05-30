@@ -29,6 +29,7 @@
             <link rel=apple-touch-icon-precomposed href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-57-precomposed.png>
             <link rel=icon href=<?php echo base_url(); ?>assets/img/ico/favicon.ico type=image/png>
             <meta name=msapplication-TileColor content="#3399cc">
+        </head>
 
         <body class="login-page user_login">
             <div id=header class="animated fadeInDown">
@@ -46,17 +47,17 @@
             </div>
             <!-- End #header -->
             <!-- Start login container -->
-            
+
             <div class="container login-container">
-                
+
                 <div class="login-panel panel panel-default plain animated bounceIn">
-                    
+
                     <!-- Start .panel -->
-                    
+
                     <div class=panel-body>
                         <form class="form-horizontal mt0" action="" 
                               id="login-form role=form" method="post">
-                            
+
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <!-- col-md-12 start here -->
@@ -78,7 +79,10 @@
                                 <div class="col-md-12">
                                     <div class="input-group input-icon">
                                         <input type="password" name="password" id="password" class=form-control placeholder=""> <span class=input-group-addon><i class="fa fa-lock s16"></i></span>
-                                    </div><span class="help-block text-right"><a href="#">Forgout password ?</a></span>
+                                    </div>
+                                    <span class="help-block text-right">
+                                        <a href="#forgot-password" data-toggle="modal">Forgot password ?</a>
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group mb0">
@@ -95,15 +99,16 @@
                         </form>
                         <div class="seperator"><strong>or</strong><hr></div>
                         <div class="social-buttons text-center mt5 mb5"><a class="btn btn-primary btn-alt mr10" href="#">Sign in with <i class="fa fa-facebook s20 ml5 mr0"></i></a> <a class="btn btn-danger btn-alt ml10" href="#">Sign in with <i class="fa fa-google-plus s20 ml5 mr0"></i></a></div>
-                        
+
                         <?php
                         $flash_message = $this->session->flashdata('message');
                         $type = $this->session->flashdata('type');
-                        if($type && $flash_message) { ?>
-                        <div class="alert alert-<?php echo $type; ?>">
-                            <button class="close" data-dismiss="alert">&times;</button>
-                            <p><?php echo $flash_message; ?></p>
-                        </div>
+                        if ($type && $flash_message) {
+                            ?>
+                            <div class="alert alert-<?php echo $type; ?>">
+                                <button class="close" data-dismiss="alert">&times;</button>
+                                <p><?php echo $flash_message; ?></p>
+                            </div>
                         <?php } ?>
                     </div>
                 </div>
@@ -138,3 +143,34 @@
       <script type="text/javascript" src="assets/js/libs/respond.min.js"></script>
     <![endif]-->
             <script src=<?php echo base_url(); ?>assets/js/pages/dashboard.js></script>
+
+            <!-- Modal -->
+            <div id="forgot-password" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Forgot Password</h4>
+                        </div>
+                        <form class="form-horizontal" action="<?php echo base_url(); ?>site/forgot_password" method="post">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-8">
+                                        <input required="" type="email" class="form-control" name="email" />
+                                    </div>
+                                </div>	
+                            </div>
+                            <div class="modal-footer">
+                                <input class="btn btn-primary" type="submit" name="submit" value="Submit"/>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </body>
+    </html>

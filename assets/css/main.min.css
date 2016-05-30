@@ -66,3 +66,7 @@ table tbody span.label{padding: 6px 14px 5px 7px; border-radius: 0;}
 table tbody .menu-action {margin: 0 !important; padding: 5px 7px !important;}
 
 .form-control{padding:5px 10px;}
+.todo-widget .todo-header .todo-addform {
+    float: left;
+    width: 75%;
+}
