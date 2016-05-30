@@ -163,7 +163,7 @@
                         
                         <!-- tab content -->
                         <div class="tab-pane fade" id="submittedlist">
-                               <div class="form-group col-sm-2">
+                              <!-- <div class="form-group col-sm-2">
                                     <label><?php echo ucwords("Course");?></label>
                                     <select class="form-control sfilter-rows" id="sfilter3" data-filter="3" data-type="course">
                                         <option value="">All</option>
@@ -193,7 +193,7 @@
                                     </select>
                                 </div>
                                  <label style="margin-left: 40px; margin-top: 30px;">OR</label>
-                              
+                              -->
                                       
                                      <div class="panel-body table-responsive" id="getsubmit">
                                     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="sub-tables">
