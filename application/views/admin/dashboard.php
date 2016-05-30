@@ -839,8 +839,7 @@ $this->load->helper('report_chart');
 <!-- To do Js -->
 <script type="text/javascript">
             $(document).ready(function () {
-    $("#todo-addform").hide();
-    alert();
+    $("#todo-addform").hide();    
     $("#basic-datepicker").datepicker({
             autoclose: true
     });
