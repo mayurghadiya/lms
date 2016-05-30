@@ -1479,11 +1479,19 @@ class Crud_model extends CI_Model {
                             'student_id' => $student
                         ))->get()->row();
     }
+    /**
+     * insert to do item
+     * @param mixed $data
+     */
     
     function insert_todo($data)
     {
         $this->db->insert("todo_list",$data);
     }
+    /**
+     * get all todo according to  user
+     * @return mixed
+     */
     
     function get_todo()
     {
@@ -1495,24 +1503,83 @@ class Crud_model extends CI_Model {
         return $this->db->get("todo_list")->result();
         
     }
+    /**
+     * change status of to do list item
+     * @param mixed $data
+     */
     
     function change_status($data)
     {        
         $this->db->update("todo_list",$data,array("todo_id"=>$data['todo_id']));
     }
     
+    /**
+     * delete from list
+     * @param int $id
+     */
+    
     function removetodo($id)
     {
         $this->db->delete("todo_list",array("todo_id"=>$id));
     }
+    /**
+     * 
+     * @param int $id
+     * @return mixed
+     */
     function gettododata($id)
     {
         return $this->db->get_where("todo_list",array("todo_id"=>$id))->row();
     }
-    
+    /**
+     * update to do list
+     * @param mixed $data
+     * @param int $id
+     */
     function update_todo($data,$id)
     {
           $this->db->update("todo_list",$data,array("todo_id"=>$id));
+    }
+    /**
+     * get all timeline
+     * @return mixed
+     */
+    function gettimeline()
+    {
+        return $this->db->get('timeline')->result_array();
+    }
+    
+    /**
+     * 
+     * @param mixed $data
+     */
+    function addtimeline($data){
+        $this->db->insert("timeline",$data);        
+    }
+    
+    /**
+     * update timeline
+     * @param mixed $data
+     * @param int $id
+     */
+    function update_timeline($data,$id)
+    {
+        $this->db->update("timeline",$data,array("timeline_id"=>$id));
+        
+    }
+    
+    /**
+     * 
+     * @param int $id
+     */
+    function delete_timeline($id)
+    {
+        $this->db->delete("timeline",array("timeline_id"=>$id));
+    }
+    function get_timline()
+    {
+        $this->db->order_by('timeline_year','desc');
+        return $this->db->get_where("timeline",array("timeline_status"=>'1'))->result();
     }
 
 }

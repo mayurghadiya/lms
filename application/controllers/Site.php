@@ -284,17 +284,32 @@ class Site extends MY_Controller {
                     'mailtype' => 'html',
                     'charset' => 'iso-8859-1'
                 );
-                
+
                 $user_id = '';
                 //get the user id
-                if($record->user_type == 'student')
+                if ($record->user_type == 'student')
                     $user_id = $record->std_id;
-                elseif($record->user_type == 'admin')
+                elseif ($record->user_type == 'admin')
                     $user_id = $record->admin_id;
-                elseif($record->user_type == 'professor')
+                elseif ($record->user_type == 'professor')
                     $user_id = $record->professor_id;
+
+                $this->update_forgot_password_key($record->user_type, $user_id, $this->random_string_generate());
+                $url = $this->forgot_password_url($record->user_type, $user_id, $this->random_string_generate());
+
+                // email configuration
+                $config = Array(
+                    'protocol' => 'smtp',
+                    'smtp_host' => 'ssl://smtp.googlemail.com',
+                    'smtp_port' => 465,
+                    'smtp_user' => 'mayur.ghadiya@searchnative.in',
+                    'smtp_pass' => 'the mayurz97375',
+                    'mailtype' => 'html',
+                    'charset' => 'iso-8859-1'
+                );
+                $this->load->library('email', $config);
+                $this->email->from('mayur.ghadiya@searchnative.in', 'Learning Management System');
                 
-                $this->update_forgot_password_key($record->user_type, $user_id, $this->random_string_generate($record->user_type));
             } else {
                 // email is not registered in the system
             }
@@ -304,15 +319,16 @@ class Site extends MY_Controller {
             redirect(base_url('site/user_login'));
         }
     }
-    
+
     /**
      * Generate random string
      * @return string
      */
-    function random_string_generate() {               
+    function random_string_generate() {
+        $this->load->helper('string');
         return random_string('alnum', 16);
     }
-    
+
     /**
      * Forgot password url
      * @param string $user_type
@@ -321,14 +337,13 @@ class Site extends MY_Controller {
      * @return string
      */
     function forgot_password_url($user_type, $user_id, $random_string) {
-        $this->load->helper('string');
         $this->load->library('encrypt');
         $base_url = base_url();
         $user_type = urlencode($this->encrypt->encode($user_type));
-        
+
         return $base_url . 'reset_password/' . $user_id . '/' . $user_type . '/' . $random_string;
     }
-    
+
     /**
      * Update forgot password key for user
      * @param string $user_type
@@ -336,7 +351,7 @@ class Site extends MY_Controller {
      * @param string $key
      */
     function update_forgot_password_key($user_type, $user_id, $key) {
-        if($user_type != '' && $user_id != '' && $key != '') {
+        if ($user_type != '' && $user_id != '' && $key != '') {
             $this->Site_model->update_forgot_password_key($user_type, $user_id, $key);
         } else {
             redirect(base_url('site/user_login'));

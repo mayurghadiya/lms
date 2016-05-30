@@ -685,6 +685,7 @@
          </div>
       </div>
       <!-- End .panel -->
+      
       <div class="panel panel-default toggle">
          <div class="panel-heading">
             <h4 class=panel-title>Report Charts</h4>
@@ -726,6 +727,7 @@
             </div>
          </div>
       </div>
+
       <div class="row">
          <div class="col-lg-6">
             <div class="panel panel-default toggle">

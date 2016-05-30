@@ -271,7 +271,7 @@
            eventsScrollable: false,
            dateFormat: "DD/MM/YYYY",
            jsonDateFormat: 'timestamp', // you can use also "human" 'YYYY-MM-DD HH:MM:SS'
-           //moveSpeed: 500,  // speed of month move when you clic on a new date
+           //moveSpeed: 500,    // speed of month move when you clic on a new date
            //moveOpacity: 0, // month and events fadeOut to this opacity
            jsonData: "", // to load and inline json (not ajax calls)
            cacheJson: true  // if true plugin get a json only first time and after plugin filter events
@@ -685,10 +685,51 @@
          </div>
       </div>
       <!-- End .panel -->
+      
+      <div class="panel panel-default toggle">
+         <div class="panel-heading">
+            <h4 class=panel-title>Report Charts</h4>
+         </div>
+         <div class="panel-body">
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <div class="panel-title">Male to Female Course count Ratio</div>
+                     </div>
+                     <div class="panel-body" id="container" style="width: 450px; height: 450px;"></div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <div class="panel-title">Students enrolled</div>
+                     </div>
+                     <div class="panel-body" id="stduent-enrolled" style="height: 450px; width: 450px;"></div>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <div class="panel-title">Male to Female Course count Ratio</div>
+                     </div>
+                     <div class="panel-body" id="course-male-female" style="height: 500px;"></div>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <div class="panel-title">Students Enrolled (Coursewise)</div>
+                     </div>
+                     <div class="panel-body" id="course-wise-student" style="height: 500px;"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
 
-<!-- To do list -->
       <div class="row">
-         <div class="col-lg-5">
+         <div class="col-lg-6">
             <div class="panel panel-default toggle">
                <!-- Start .panel -->
                <div class=panel-heading>
@@ -741,6 +782,7 @@
                            <form><input class=form-control name=search placeholder="Search for todo ..."></form>
                         </div>
                         <div class=todo-add><a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a></div>
+                        
                      </div>
                      <h4 class=todo-period>To Do List</h4>
                      <div id="wait" class="loading_img"><img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading...
@@ -773,70 +815,7 @@
                <!-- End .todo-widget -->
             </div>
          </div>
-
-
-<!-- Time line -->
-<!-- To do list -->
-
-         <div class="col-lg-7">
-            <div class="panel panel-default toggle">
-                <div class=panel-heading>
-                  <h4 class="panel-title marginzero">
-                     Timeline Horizontal 
-                  </h4>
-               </div>
-               <div class=panel-body>
-                  
-               </div>
-            </div>
-         </div>
-
-      </div>      
-
-
-
-      <div class="panel panel-default toggle">
-         <div class="panel-heading">
-            <h4 class="panel-title marginzero">Report Charts</h4>
-         </div>
-         <div class="panel-body">
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <div class="panel-title">Male to Female Course count Ratio</div>
-                     </div>
-                     <div class="panel-body" id="container" style="width: 450px; height: 450px;"></div>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <div class="panel-title">Students enrolled</div>
-                     </div>
-                     <div class="panel-body" id="stduent-enrolled" style="height: 450px; width: 450px;"></div>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <div class="panel-title">Male to Female Course count Ratio</div>
-                     </div>
-                     <div class="panel-body" id="course-male-female" style="height: 500px;"></div>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <div class="panel-title">Students Enrolled (Coursewise)</div>
-                     </div>
-                     <div class="panel-body" id="course-wise-student" style="height: 500px;"></div>
-                  </div>
-               </div>
-            </div>
-         </div>
       </div>
-
    </div>
    <!-- col-lg-12 end here -->
 </div>

@@ -38,6 +38,7 @@ class Admin extends MY_Controller {
         $this->data['title'] = 'Admin Dashboard';
         $this->calendar_json();
         $this->data['todolist'] = $this->Crud_model->get_todo();
+        $this->data['timeline'] = $this->Crud_model->get_timline();
         $this->__site_template('admin/dashboard', $this->data);
     }
 
@@ -3089,7 +3090,7 @@ class Admin extends MY_Controller {
 
                 $success = $this->lang_message('gallery_success');
                 $this->session->set_flashdata('flash_message', $success);
-                redirect(base_url() . 'index.php?media/photogallery');
+                redirect(base_url() . 'admin/photogallery');
             }
         }
 
@@ -3218,7 +3219,7 @@ class Admin extends MY_Controller {
             $this->db->delete("photo_gallery");
             $success = $this->lang_message('gallery_delete');
             $this->session->set_flashdata('flash_message', $success);
-            redirect(base_url() . 'index.php?media/photogallery');
+            redirect(base_url() . 'admin/photogallery');
         }
 
         $this->data['gallery'] = $this->photo_gallery->getphotogallery();
@@ -5821,6 +5822,49 @@ class Admin extends MY_Controller {
         }
         //$this->data['page'] = 'search_result';
         $this->__site_template('admin/search_result', $this->data);
+    }
+    
+    function time_line($param='' , $param2 = '')
+    {
+        if($_POST)
+        {
+            if($param=="create")
+            {
+               $data['timeline_title'] = $this->input->post('timeline_title'); 
+               $data['timeline_desc'] = $this->input->post('timeline_desc'); 
+               $data['timeline_year'] = $this->input->post('timeline_year'); 
+               $data['timeline_status'] = $this->input->post('timeline_status'); 
+               $this->Crud_model->addtimeline($data);
+               $this->session->set_userdata('flash_message', 'Timeline Added Successfully');
+               redirect(base_url('admin/time_line'));
+            }
+            if($param=="do_update")
+            {
+               $data['timeline_title'] = $this->input->post('timeline_title'); 
+               $data['timeline_desc'] = $this->input->post('timeline_desc'); 
+               $data['timeline_year'] = $this->input->post('timeline_year'); 
+               $data['timeline_status'] = $this->input->post('timeline_status'); 
+               $this->Crud_model->update_timeline($data,$param2);
+               $this->session->set_userdata('flash_message', 'Timeline Updated Successfully');
+               redirect(base_url('admin/time_line'));
+            }
+             
+            
+        }
+        if($param=="delete")
+        {
+            $this->session->set_userdata('flash_message', 'Timeline Deleted Successfully');
+            $this->Crud_model->delete_timeline($param2);
+             redirect(base_url('admin/time_line'));
+        }
+        
+        
+        $this->data['title'] = 'timeline';
+        $this->data['page'] = 'timeline';   
+        $this->data['timeline'] = $this->Crud_model->gettimeline();
+        $this->data['edit_title'] = 'Update Timeline';
+        $this->data['add_title'] = 'Add Timeline';
+        $this->__site_template('admin/timeline', $this->data);
     }
 
 }

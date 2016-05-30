@@ -17,6 +17,10 @@ class Professor extends MY_Controller {
             redirect(base_url('site/user_login'));
 
         $this->load->model('professor/Professor_model');
+         if (!$this->input->is_ajax_request()) {
+            $this->load->helper('permission');        
+             user_permission();
+        }
     }
 
     /**
