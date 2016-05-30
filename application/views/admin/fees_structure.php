@@ -14,8 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addfees');" data-toggle="modal"><i class="fa fa-plus"></i> Fee Structure</a>
-				<div class="row filter-row">
+                <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addfees');" data-toggle="modal"><i class="fa fa-plus"></i> Fee Structure</a>				<div class="row filter-row">
                 <form id="fee-structure-search" action="#" class="form-groups-bordered validate">
                     <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label><?php echo ucwords("department"); ?></label>

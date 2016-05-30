@@ -96,6 +96,8 @@
                             </div>
 
                             <div class="form-group">
+
+                                <div class="col-sm-offset-3 col-sm-5">
                                 <div class="col-lg-offset-3 col-md-offset-3  col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                     <button id="setup-new-broadcast" class="btn btn-primary vd_bg-primary">Setup New Broadcast</button>
                                 </div>
