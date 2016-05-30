@@ -4153,7 +4153,7 @@ class Admin extends MY_Controller {
                 foreach ($module_record as $module_record_value) {
                     $user_role_query = $this->db->get_where('modules', array('module_id' => $module_record_value))->result_array();
                     foreach ($user_role_query as $user_role_row) {
-                        $assigned_module_list[] = '<option value="' . $user_role_row['module_id'] . '">' . $user_role_row['module_name'] . '</option>';
+                        $assigned_module_list[] = '<option value="' . $user_role_row['module_id'] . '" selected>' . $user_role_row['module_name'] . '</option>';
                     }
                 }
             }
@@ -4187,7 +4187,7 @@ class Admin extends MY_Controller {
                 }
 
                 if (in_array($row['std_id'], $user_role)) {
-                    $group[] = '<option value="' . $row['std_id'] . '">' . $row['name'] . '</option>';
+                    $group[] = '<option value="' . $row['std_id'] . '" selected>' . $row['name'] . '</option>';
                 }
             }
         }
@@ -4200,7 +4200,7 @@ class Admin extends MY_Controller {
                 }
 
                 if (in_array($row['professor_id'], $user_role)) {
-                    $group[] = '<option value="' . $row['professor_id'] . '">' . $row['name'] . '</option>';
+                    $group[] = '<option value="' . $row['professor_id'] . '" selected>' . $row['name'] . '</option>';
                 }
             }
         }
@@ -4213,7 +4213,7 @@ class Admin extends MY_Controller {
                 }
 
                 if (in_array($row['admin_id'], $user_role)) {
-                    $group[] = '<option value="' . $row['admin_id'] . '">' . $row['name'] . '</option>';
+                    $group[] = '<option value="' . $row['admin_id'] . '" selected>' . $row['name'] . '</option>';
                 }
             }
         }
