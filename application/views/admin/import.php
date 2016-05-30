@@ -110,6 +110,7 @@
                                     <label class="col-sm-3 control-label"><?php echo ucwords("File"); ?><span style="color:red">*</span></label>
                                     <div class="col-sm-5">
                                         <input type="file" class="form-control" name="userfile" id="userfile"/>
+                                        <label id="userfile-error" class="error" for="userfile"></label>
                                     </div>
                                 </div>
                                 <input id="exam_post_details" type="hidden" name="exam_detail"/>
@@ -158,6 +159,21 @@
 </div>
 <!-- End #content -->
 
+<script type="text/javascript">
+ 
+    $().ready(function () {
+        $("#importform").validate({
+            rules: {
+                userfile: "required",
+                module: "required"
+            },
+            messages: {
+                userfile: "Please select file",
+                module: "Please select module"
+            }
+        });
+    });
+</script>
 <script>
     function get_exam_list(course_id, semester_id) {
         $.ajax({

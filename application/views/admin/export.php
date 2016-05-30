@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Module <span style="color:red">*</span></label>
                             <div class="col-sm-5">
-                                <select id="export_module" class="form-control" name="module_name" required="">
+                                <select id="export_module" class="form-control" name="module_name" >
                                     <option value="">Select</option>
                                     <option value="<?php echo base_url('admin/export_csv/admission_type'); ?>">Admission Type</option>
                                     <option value="<?php echo base_url('admin/export_csv/batch'); ?>">Batch</option>
@@ -107,6 +107,17 @@
 
 <script>
     var custom_link = '';
+
+$().ready(function () {
+        $("#exportform").validate({
+            rules: {
+                module_name: "required"
+            },
+            messages: {
+                module_name: "Select export module",
+            }
+        });
+    });
 
     $('#export_module').on('change', function () {
         var module_name = $(this).val();
@@ -208,6 +219,8 @@
 </script>
 
 <script>
+    
+    
     $(document).ready(function () {
         //course by degree
         $('#degree').on('change', function () {
