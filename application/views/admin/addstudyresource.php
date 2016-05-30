@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary" data-collapsed="0">
+            <div class="panel-heading">
+                <div class="panel-title" >
+                    <i class="entypo-plus-circled"></i>
+                    <?php echo ucwords("Add Study Resources"); ?>
+                </div>
+            </div>
+=======
 <div class=row>                      
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
@@ -6,6 +17,7 @@
             <!--            <div class=panel-heading>
                             <h4 class=panel-title>  <?php echo ucwords("Add Study Resources"); ?></h4>                
                         </div>    -->
+>>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
             <div class="panel-body"> 
 
                 <div class="box-content">  
@@ -13,12 +25,20 @@
                     <div class="">
                         <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
                     </div>                                       
+<<<<<<< HEAD
+                    <?php echo form_open(base_url() . 'index.php?admin/studyresource/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmstudyresource', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+=======
                     <?php echo form_open(base_url() . 'admin/studyresource/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmstudyresource', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+>>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
                     <div class="padded">											
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?> <span style="color:red">*</span></label>
                             <div class="col-sm-5">
+<<<<<<< HEAD
+                                <select name="degree" id="degree">
+=======
                                 <select name="degree" id="degree" class="form-control">
+>>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
                                     <option value="">Select department</option>
                                     <option value="All">All</option>
                                     <?php
@@ -35,7 +55,11 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo ucwords("Branch "); ?><span style="color:red">*</span></label>
                             <div class="col-sm-5">
+<<<<<<< HEAD
+                                <select name="course" id="course">
+=======
                                 <select name="course" id="course" class="form-control">
+>>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
                                     <option value="">Select Branch</option>
                                     <option value="All">All</option>
                                     <?php
@@ -53,7 +77,11 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo ucwords("Batch "); ?><span style="color:red">*</span></label>
                             <div class="col-sm-5">
+<<<<<<< HEAD
+                                <select name="batch" id="batch" onchange="get_student2(this.value);" >
+=======
                                 <select name="batch" id="batch" onchange="get_student2(this.value);" class="form-control" >
+>>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
                                     <option value="">Select batch</option>
                                     <option value="All">All</option>
                                     <?php
@@ -70,7 +98,11 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><?php echo ucwords("Semester "); ?><span style="color:red">*</span></label>
                             <div class="col-sm-5">
+<<<<<<< HEAD
+                                <select name="semester" id="semester" onchange="get_students2(this.value);">
+=======
                                 <select name="semester" id="semester" onchange="get_students2(this.value);" class="form-control">
+>>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
                                     <option value="">Select Semester</option>
                                     <option value="All">All</option>
                                     <?php
@@ -221,7 +253,11 @@
                         },
                 resourcefile: {
                     required: true,
+<<<<<<< HEAD
+                  extension: 'gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf|txt',
+=======
                     extension: 'gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf|txt',
+>>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
                 },
             },
             messages: {
