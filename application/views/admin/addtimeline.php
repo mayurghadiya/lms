@@ -70,13 +70,19 @@ $semesters = $this->db->get('semester')->result_array();
             rules: {
                 timeline_title:"required",                        
                 timeline_desc: "required",
-                timeline_year: "required",
+                timeline_year:{
+                    required:true,
+                    number:true,
+                },
                 timeline_status: "required",
             },
             messages: {
                   timeline_title:"Enter Title",                        
                 timeline_desc: "Enter Description",
-                timeline_year: "Enter Year",
+                timeline_year: {
+                     required:"Enter Year",
+                    number:"Enter Only Numeric value",
+                },
                 timeline_status: "Select Status",
             }
         });

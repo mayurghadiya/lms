@@ -38,6 +38,7 @@ class Admin extends MY_Controller {
         $this->data['title'] = 'Admin Dashboard';
         $this->calendar_json();
         $this->data['todolist'] = $this->Crud_model->get_todo();
+        $this->data['timeline'] = $this->Crud_model->get_timline();
         $this->__site_template('admin/dashboard', $this->data);
     }
 
@@ -3089,7 +3090,7 @@ class Admin extends MY_Controller {
 
                 $success = $this->lang_message('gallery_success');
                 $this->session->set_flashdata('flash_message', $success);
-                redirect(base_url() . 'index.php?media/photogallery');
+                redirect(base_url() . 'admin/photogallery');
             }
         }
 
@@ -3218,7 +3219,7 @@ class Admin extends MY_Controller {
             $this->db->delete("photo_gallery");
             $success = $this->lang_message('gallery_delete');
             $this->session->set_flashdata('flash_message', $success);
-            redirect(base_url() . 'index.php?media/photogallery');
+            redirect(base_url() . 'admin/photogallery');
         }
 
         $this->data['gallery'] = $this->photo_gallery->getphotogallery();
