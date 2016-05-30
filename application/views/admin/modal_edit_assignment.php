@@ -3,15 +3,14 @@ $edit_data = $this->db->get_where('assignment_manager', array('assign_id' => $pa
 foreach ($edit_data as $row):
     ?>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-primary" data-collapsed="0">
-                <div class="panel-heading">
-                    <div class="panel-title" >
-                        <i class="entypo-plus-circled"></i>
-                      <?php echo ucwords("Update Assignment");?>  
-                    </div>
-                </div>
+<div class=row>                      
+    <div class=col-lg-12>
+        <!-- col-lg-12 start here -->
+        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+            <!-- Start .panel -->
+            <!--            <div class=panel-heading>
+                                <h4 class=panel-title>  <?php echo ucwords("Update Assignment"); ?></h4>                
+                            </div>   -->
                 <div class="panel-body">
                     <div class="tab-pane box" id="add" style="padding: 5px">
                         <div class="box-content">  
@@ -29,7 +28,7 @@ foreach ($edit_data as $row):
                              <div class="form-group">
                                             <label class="col-sm-3 control-label"><?php echo ucwords("department");?><span style="color:red">*</span></label>
                                             <div class="col-sm-5">
-                                                <select name="degree" id="degree2">
+                                                <select name="degree" id="degree2"  class="form-control">
                                                     <option value="">Select department</option>
                                                     <?php
                                                     $degree = $this->db->get_where('degree', array('d_status' => 1))->result();
@@ -45,7 +44,7 @@ foreach ($edit_data as $row):
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><?php echo ucwords("Branch");?><span style="color:red">*</span></label>
                                 <div class="col-sm-5">
-                                    <select name="course" id="course2">
+                                    <select name="course" id="course2"  class="form-control">
                                         <option value="">Select Branch</option>
                                         <?php
                                         $course = $this->db->get_where('course', array('course_status' => 1,'degree_id'=>$row['assign_degree']))->result();
@@ -67,7 +66,7 @@ foreach ($edit_data as $row):
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><?php echo ucwords("Batch");?><span style="color:red">*</span></label>
                                 <div class="col-sm-5">                                    
-                                    <select name="batch" id="batch2">
+                                    <select name="batch" id="batch2"  class="form-control">
                                         <option value="">Select batch</option>
     <?php
     
@@ -92,7 +91,7 @@ foreach ($edit_data as $row):
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><?php echo ucwords("Semester");?><span style="color:red">*</span></label>
                                 <div class="col-sm-5">
-                                    <select name="semester" id="semester1">
+                                    <select name="semester" id="semester1"  class="form-control">
                                         <option value="">Select semester</option>
                                         <?php
                                         $datasem = $this->db->get_where('semester', array('s_status' => 1))->result();
@@ -114,7 +113,7 @@ foreach ($edit_data as $row):
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><?php echo ucwords("class");?><span style="color:red">*</span></label>
                                 <div class="col-sm-5">
-                                    <select name="class" id="class">
+                                    <select name="class" id="class"  class="form-control">
                                         <option value="">Select class</option>
                                         <?php 
                                         $class=$this->db->get('class')->result_array();
@@ -230,7 +229,7 @@ endforeach;
                 var dataString = "course="+course+"&degree="+degree;
                 $.ajax({
                     type:"POST",
-                    url:"<?php echo base_url().'admin/get_batchs/'; ?>",
+                    url:"<?php echo base_url().'admin/get_batches/'; ?>",
                     data:dataString,                   
                     success:function(response){
                         $("#batch2").html(response);

@@ -5,15 +5,16 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title><?php echo $title; ?></h4>
+                            <div class="panel-controls panel-controls-right">
+                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
+                            </div>
+                        </div>-->
             <div class=panel-body>
+                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addpayment');" data-toggle="modal">Add Make Payment</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -41,8 +42,8 @@
                                 <td><?php echo $row->paid_amount; ?></td>
                                 <td><?php echo date('M d, Y', strtotime(strtotime($row->paid_created_at))); ?></td>
                                 <td class="menu-action">
-                                    <a><span class="label label-primary mr6 mb6">View</span></a>
-                                    <a><span class="label label-success mr6 mb6">Download</span></a>
+                                    <a href="<?php echo base_url('admin/invoice/' . $row->fees_structure_id); ?>" target="_blank"><span class="label label-primary mr6 mb6">View</span></a>
+                                    <a target="_blank" href="<?php echo base_url('admin/invoice_print/' . $row->student_fees_id); ?>"><span class="label label-success mr6 mb6">Download</span></a>
                                 </td>
                             </tr>
                         <?php } ?>														

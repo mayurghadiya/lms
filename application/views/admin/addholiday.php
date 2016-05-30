@@ -7,9 +7,9 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Add holiday");?></h4>                
-            </div>    
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title>  <?php echo ucwords("Add holiday"); ?></h4>                
+                        </div>    -->
                 <div class="panel-body"> 
                     <div class="box-content"> 
                                 <div class="">
@@ -38,7 +38,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label"><?php echo ucwords("status");?></label>
                                             <div class="col-sm-5">
-                                                <select name="holiday_status">
+                                                <select name="holiday_status"  class="form-control">
                                                     <option value="1">Active</option>
                                                     <option value="0">Inactive</option>	
                                                 </select>

@@ -53,12 +53,12 @@ $(document).ready(function () {
         });
     });
 
-    $.validator.setDefaults({
-        submitHandler: function (form) {
-            form.submit();
+    // $.validator.setDefaults({
+    //     submitHandler: function (form) {
+    //         form.submit();
 
-        }
-    });
+    //     }
+    // });
 
     var form = $("#frmstudentlist");
 
@@ -110,30 +110,30 @@ $(document).ready(function () {
 });
 
 
-   $(function () {
-                        "use strict";
-                        $('#checkbox-0').click(function () {
-                            if ($(this).is(':checked'))
-                                $('.checkbox-group').prop('checked', true).closest("tr").addClass('row-warning');
-                            else
-                                $('.checkbox-group').prop('checked', false).closest("tr").removeClass('row-warning');
-                        });
-
-                        $('.checkbox-group').click(function () {
-                            if ($(this).is(':checked'))
-                                $(this).closest("tr").addClass('row-warning');
-                            else
-                                $(this).closest("tr").removeClass('row-warning')
-                        });
-                    });
-                    $('#summernote').summernote({
-        height: 200
+$(function () {
+    "use strict";
+    $('#checkbox-0').click(function () {
+        if ($(this).is(':checked'))
+            $('.checkbox-group').prop('checked', true).closest("tr").addClass('row-warning');
+        else
+            $('.checkbox-group').prop('checked', false).closest("tr").removeClass('row-warning');
     });
-    
-    
+
+    $('.checkbox-group').click(function () {
+        if ($(this).is(':checked'))
+            $(this).closest("tr").addClass('row-warning');
+        else
+            $(this).closest("tr").removeClass('row-warning')
+    });
+});
+$('#summernote').summernote({
+    height: 200
+});
+
+
 //custom datatable filtering
 $(document).ready(function () {
-    
+
     $('.filter-rows').on('change', function () {
         var data_type = $(this).attr('data-type');
         var data_id = $('option:selected', this).attr('data-id');
@@ -149,7 +149,7 @@ $(document).ready(function () {
                         //get the course elemt id and append course list
                         $('.filter-rows').each(function (index) {
                             var custom_data_type = $(this).attr('data-type');
-                            
+
                             if (custom_data_type == 'branch') {
                                 //$('#batch').append('<option value="">Select</option>');
                                 var branch_id = $(this).attr('id');
@@ -236,13 +236,13 @@ $(document).ready(function () {
                 var batch_id = '#' + $(this).attr('id');
             else if (custom_data_type == 'semester')
                 var semester_id = '#' + $(this).attr('id');
-            
-            if($(course_id).val() == '') {
+
+            if ($(course_id).val() == '') {
                 location.reload();
             }
         });
     }
-    
+
 //    $(".vd_menu > ul >li > a").hover(function() {        
 //              $(this).next('div').stop(true, true).slideDown("slow");
 //              
@@ -259,7 +259,15 @@ $(document).ready(function () {
 //      //  $(this).parent().find('.child-menu').css({"display":"none"});
 //  // $(this).parent().find('.child-menu').css({"display":"block"});
 //},function(){
-//     $(this).next('div').slideUp();    
+//     $(this).next('div').slideUp();   
 //});
+
+    $(".nav li.dropdown").click(function (e) {
+        $(this).toggleClass("open");
+    });
+    $(".search_box .category").click(function (e) {
+        $(this).toggleClass("open");
+    });  
+
 });
 

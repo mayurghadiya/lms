@@ -27,6 +27,10 @@ class Site extends MY_Controller {
         $this->load->view('site/' . $view_name);
         $this->load->view('site/footer.php');        
     }
+    
+    function index() {
+        $this->home();
+    }
 
     /**
      * Home action
@@ -199,6 +203,7 @@ class Site extends MY_Controller {
             $this->session->set_userdata('user_type', '2');
             $this->session->set_userdata('group_id', $row->group_id);
             $this->session->set_userdata('online', '1');
+            $this->session->set_userdata('profile_photo', $row->profile_photo);            
             $this->session->set_userdata('password_status', $row->password_status);
             $update = array("online" => '1');
             $this->db->where('std_id', $row->std_id);
@@ -217,7 +222,7 @@ class Site extends MY_Controller {
             $this->session->set_userdata('login_user_id', $row->sub_admin_id);
             $this->session->set_userdata('name', 'sub admin 1');
             $this->session->set_userdata('email', $row->email);
-            $this->session->set_userdata('login_type', 'subadmin');
+            $this->session->set_userdata('login_type', 'subadmin');            
             redirect(base_url('sub_admin/dashboard'));
         }
         

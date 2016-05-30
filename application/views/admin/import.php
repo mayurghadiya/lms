@@ -5,196 +5,162 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
-            <div class="vd_content-section clearfix">
-                <div class="row">
-                    <div class="col-sm-12">								
-                        <!------CONTROL TABS START------>
-                        <ul class="nav nav-tabs bordered">
-                            <li class="active">
-                                <a href="#list" data-toggle="tab"><i class="entypo-menu"></i> 
-                                    <?php echo ucwords("Import Data");?>
-                                </a></li>
-                            <li>
-                                <a href="#add" data-toggle="tab"><i class="entypo-plus-circled"></i>
-                                    <?php echo ucwords("Download Sample Sheet");?>
-                                </a></li>
-                        </ul>
-                        <!------CONTROL TABS END------>
-
-                        <div class="tab-content">
-                            <!----TABLE LISTING STARTS-->
-                            <div class="tab-pane box active" id="list">
-
-                                <div class="panel-body">
-                                    <div class="">
-                                        <span style="color:red">* <?php echo "is ".ucwords("mandatory field");?></span> 
+            <!--            <div class=panel-heading>
+                            <h4 class=panel-title><?php echo $title; ?></h4>
+                            <div class="panel-controls panel-controls-right">
+                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
+                            </div>
+                        </div>-->
+            <div class=panel-body>
+                <div class="tabs mb20">
+                    <ul id="import-tab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#import-data" data-toggle="tab" aria-expanded="true">Import Data</a>
+                        </li>
+                        <li class="">
+                            <a href="#download-sample-sheet" data-toggle="tab" aria-expanded="false">Download Sample Sheet</a>
+                        </li>
+                    </ul>
+                    <div id="import-tab-content" class="tab-content">
+                        <div class="tab-pane fade active in" id="import-data">
+                            <div class="">
+                                <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
+                            </div>
+                            <form id="importform" class="myimportform form-horizontal form-groups-bordered validate" role="form" method="post" action="" 
+                                  enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"><?php echo ucwords("Module"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control" id="module" name="module">
+                                            <option value="">Select</option>
+                                            <option value="admission_type">Admission Type</option>
+                                            <option value="course">Branch</option>
+                                            <option value="degree">Department</option>
+                                            <option value="batch">Batch</option>
+                                            <option value="event_manager">Event Manager</option>
+                                            <option value="exam_manager">Exam Manager</option>
+                                            <option value="exam_time_table">Exam Time Table</option>
+                                            <option value="fees_structure">Fees Structure</option>
+                                            <option value="subject">Subject</option>
+                                            <option value="student">Student</option>
+                                            <option value="exam_marks">Exam Marks</option>
+                                        </select>
                                     </div>
-                                    <form id="importform" class="myimportform form-horizontal form-groups-bordered validate" role="form" method="post" action="" 
-                                          enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Module");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
-                                                <select class="form-control" id="module" name="module">
-                                                    <option value="">Select</option>
-                                                    <option value="admission_type">Admission Type<?php echo ucwords("Home");?></option>
-                                                    <option value="course">Branch</option>
-                                                    <option value="degree">Course</option>
-                                                    <option value="batch">Batch</option>
-                                                    <option value="event_manager">Event Manager</option>
-                                                    <option value="exam_manager">Exam Manager</option>
-                                                    <option value="exam_time_table">Exam Time Table</option>
-                                                    <option value="fees_structure">Fees Structure</option>
-                                                    <option value="subject">Subject</option>
-                                                    <option value="student">Student</option>
-                                                    <option value="exam_marks">Exam Marks</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="degree_main" style="display: none;">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Course");?></label>                                            
-                                            <div class="col-sm-5">
-                                                <select id="degree" name="degree" class="form-control">
-                                                    <option value="">Select</option>
-                                                    <?php foreach ($degree as $row) { ?>
-                                                        <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group" id="course_main" style="display: none;">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Branch");?></label>
-
-                                            <div class="col-sm-5">
-                                                <select id="course" name="course" class="form-control">
-
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group" id="batch_main" style="display: none;">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("Batch");?></label>
-
-                                            <div class="col-sm-5">
-                                                <select id="batch" name="batch" class="form-control">
-
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group" id="semester_main" style="display: none;">
-                                            <label class="col-sm-3 control-label">Semester</label>
-                                            <?php
-                                            $semester = $this->db->get('semester')->result();
-                                            ?>
-                                            <div class="col-sm-5">
-                                                <select id="semester" name="course" class="form-control">
-                                                    <option value="">--- Select Semester ---</option>
-                                                    <?php foreach ($semester as $row) { ?>
-                                                        <option value="<?php echo $row->s_id; ?>"><?php echo $row->s_name; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group" id="exam_main" style="display: none;">
-                                            <label class="col-sm-3 control-label">Exam</label>
-
-                                            <div class="col-sm-5">
-                                                <select id="exam" name="exam" class="form-control">
-
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("File");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
-                                                <input type="file" class="form-control" name="userfile" id="userfile"/>
-                                            </div>
-                                        </div>
-                                        <input id="exam_post_details" type="hidden" name="exam_detail"/>
-                                        <input id="sem_post_details" type="hidden" name="sem_detail"/>
-                                        <input id="course_post_details" type="hidden" name="course_detail"/>
-
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-3 col-sm-5">
-                                                <a style="display: none;" id="show_download" class="btn btn-warning">Download Sample File</a>
-                                                <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("upload");?></button>
-                                            </div>
-                                        </div>
-                                    </form>
                                 </div>
-                            </div>
-                            <!----TABLE LISTING ENDS--->
+                                <div class="form-group" id="degree_main" style="display: none;">
+                                    <label class="col-sm-3 control-label">Department</label>                                            
+                                    <div class="col-sm-5">
+                                        <select id="degree" name="degree" class="form-control">
+                                            <option value="">Select</option>
+                                            <?php foreach ($degree as $row) { ?>
+                                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
 
+                                </div>
+                                <div class="form-group" id="course_main" style="display: none;">
+                                    <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?></label>
 
-                            <!----CREATION FORM STARTS---->
-                            <div class="tab-pane box" id="add" style="padding: 5px">
-                                <div class="box-content">   
-                                    <br/>                                    
-                                    <h4><?php echo ucwords("Download Demo sheet");?></h4>
-                                    <br/>
-                                    <ul>                                        
-                                        <li><a href="<?php echo base_url('admin/download_import/course'); ?>">Branch</a></li>
-                                        <li><a href="<?php echo base_url('admin/download_import/degree'); ?>">Course</a></li>
-                                        <li><a href="<?php echo base_url('admin/download_import/admission_type'); ?>">Admission Type</a></li>
-                                        <li><a href="<?php echo base_url('admin/download_import/batch'); ?>">Batch</a></li>
-                                        <li><a href="<?php echo base_url('admin/download_import/event_manager'); ?>">Event Manager</a></li>
-                                        <li><a href="<?php echo base_url('admin/download_import/exam_manager'); ?>">Exam Manager</a></li>
-                                        <li><a href="<?php echo base_url('admin/download_import/exam_time_table'); ?>">Exam Time Table</a></li>
-                                        <li><a href="<?php echo base_url('admin/download_import/fees_structure'); ?>">Fees Structure</a></li>
-                                        <li><a href="<?php echo base_url('admin/download_import/subject'); ?>">Subject</a></li>
-                                        <li><a href="<?php echo base_url('admin/download_import/student') ?>">Student</a></li>
-                                    </ul>
-                                </div>                
-                            </div>
-                            <!----CREATION FORM ENDS-->
+                                    <div class="col-sm-5">
+                                        <select id="course" name="course" class="form-control">
+
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="batch_main" style="display: none;">
+                                    <label class="col-sm-3 control-label"><?php echo ucwords("Batch"); ?></label>
+
+                                    <div class="col-sm-5">
+                                        <select id="batch" name="batch" class="form-control">
+
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="semester_main" style="display: none;">
+                                    <label class="col-sm-3 control-label">Semester</label>
+                                    <?php
+                                    $semester = $this->db->get('semester')->result();
+                                    ?>
+                                    <div class="col-sm-5">
+                                        <select id="semester" name="course" class="form-control">
+                                            <option value="">--- Select Semester ---</option>
+                                            <?php foreach ($semester as $row) { ?>
+                                                <option value="<?php echo $row->s_id; ?>"><?php echo $row->s_name; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="exam_main" style="display: none;">
+                                    <label class="col-sm-3 control-label">Exam</label>
+
+                                    <div class="col-sm-5">
+                                        <select id="exam" name="exam" class="form-control">
+
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"><?php echo ucwords("File"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-5">
+                                        <input type="file" class="form-control" name="userfile" id="userfile"/>
+                                    </div>
+                                </div>
+                                <input id="exam_post_details" type="hidden" name="exam_detail"/>
+                                <input id="sem_post_details" type="hidden" name="sem_detail"/>
+                                <input id="course_post_details" type="hidden" name="course_detail"/>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-5">
+                                        <a style="display: none;" id="show_download" class="btn btn-warning">Download Sample File</a>
+                                        <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("upload"); ?></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+
+                        <!-- tab content -->
+                        <div class="tab-pane fade" id="download-sample-sheet">
+                            
+                            <ul>                                        
+                                <li><a href="<?php echo base_url('admin/download_import/course'); ?>">Branch</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/degree'); ?>">Department</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/admission_type'); ?>">Admission Type</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/batch'); ?>">Batch</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/event_manager'); ?>">Event Manager</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/exam_manager'); ?>">Exam Manager</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/exam_time_table'); ?>">Exam Time Table</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/fees_structure'); ?>">Fees Structure</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/subject'); ?>">Subject</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/student') ?>">Student</a></li>
+                            </ul>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
-        </div>              
+        </div>
+        <!-- End .panel -->
     </div>
+    <!-- col-lg-12 end here -->
 </div>
-
-    <!-- row --> 
+<!-- End .row -->
 </div>
-<script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.js"></script>
-<script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.validate.min.js"></script>
-<script type="text/javascript">
-    $.validator.setDefaults({
-        submitHandler: function (form) {
-            form.submit();
-        }
-    });
-
-    $().ready(function () {
-        $("#importform").validate({
-            rules: {
-                userfile: "required",
-                module: "required"
-            },
-            messages: {
-                userfile: "Please select file",
-                module: "Please select module"
-            }
-        });
-    });
-</script>
+<!-- End contentwrapper -->
+</div>
+<!-- End #content -->
 
 <script>
     function get_exam_list(course_id, semester_id) {
         $.ajax({
-            url: '<?php echo base_url(); ?>index.php?admin/all_exam_list/' + course_id + '/' + semester_id,
+            url: '<?php echo base_url(); ?>admin/all_exam_list/' + course_id + '/' + semester_id,
             type: 'get',
             success: function (content) {
                 console.log(content);
@@ -254,15 +220,15 @@
             var exam_type = '';
             //exam details
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/exam_details/' + exam_id,
+                url: '<?php echo base_url(); ?>admin/exam_details/' + exam_id,
                 type: 'get',
                 success: function (content) {
                     var exam_data = jQuery.parseJSON(content);
                     exam_type = exam_data[0].exam_ref_name;
                     if (exam_type == 'remedial') {
-                        location.href = '<?php echo base_url(); ?>index.php?admin/remedial_exam_csv_sample/' + exam_id;
+                        location.href = '<?php echo base_url(); ?>admin/remedial_exam_csv_sample/' + exam_id;
                     } else {
-                        location.href = '<?php echo base_url(); ?>index.php?admin/download_marks_csv_sample/' + exam_id;
+                        location.href = '<?php echo base_url(); ?>admin/download_marks_csv_sample/' + exam_id;
                     }
                 }
             });
@@ -283,7 +249,7 @@
             $('#course').append('<option value="">Select</option>');
             var degree_id = $(this).val();
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/course_list_from_degree/' + degree_id,
+                url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
                 type: 'get',
                 success: function (content) {
                     var course = jQuery.parseJSON(content);
@@ -307,7 +273,7 @@
             //remove all element from batch
             $('#batch').find('option').remove().end();
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
+                url: '<?php echo base_url(); ?>admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
                 type: 'get',
                 success: function (content) {
                     $('#batch').append('<option value="">Select</option>');

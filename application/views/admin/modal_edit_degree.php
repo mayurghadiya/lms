@@ -7,27 +7,27 @@ foreach ($edit_data as $row):
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Update department");?></h4>                
-            </div>
+            <!--            <div class=panel-heading>
+                                <h4 class=panel-title>  <?php echo ucwords("Update department"); ?></h4>                
+                            </div>-->
                 
                 <div class="panel-body">
                     <div class="tab-pane box" id="add" style="padding: 5px">
                         <div class="box-content">  
-                             <div class="">
+                             <div class="form-group">
                                     <span style="color:red">* <?php echo "is ".ucwords("mandatory field");?></span> 
                                 </div>
                             <?php echo form_open(base_url() . 'admin/degree/do_update/' . $row['d_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'degreeformedit', 'target' => '_top')); ?>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("department name");?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("department name");?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="d_name" id="d_name" value="<?php echo $row['d_name']; ?>"   />
                                 </div>
                                   <lable class="error" id="error_lable_exist" style="color:#f85d2c"></lable>
                             </div>                   
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("status");?></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("status");?></label>
+                                <div class="col-sm-8">
                                     <select name="degree_status" class="form-control" >
                                         <option value="1" <?php if ($row['d_status'] == '1') {
                             echo "selected";
@@ -39,7 +39,7 @@ foreach ($edit_data as $row):
                                 </div>	
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-5">
+                                <div class="col-sm-offset-4 col-sm-8">
                                     <button type="submit" id="btnupd" class="submit btn btn-info vd_bg-green"><?php echo ucwords("update");?></button>
                                 </div>
                             </div>

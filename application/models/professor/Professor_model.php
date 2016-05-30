@@ -72,7 +72,7 @@ class Professor_model extends CI_Model {
         $dept = $this->session->userdata('department');
         $branch = $this->session->userdata('branch');
         $this->db->where("syllabus_degree", $dept);
-        $this->db->where("syllabus_course", $branch);
+        //$this->db->where("syllabus_course", $branch);
         return $this->db->get('smart_syllabus')->result();
     }
 
@@ -1402,6 +1402,7 @@ class Professor_model extends CI_Model {
     }
 
     public function getholiday() {
+        $this->db->order_by('holiday_startdate', 'DESC');
         return $this->db->get('holiday')->result_array();
     }
 
@@ -1508,4 +1509,40 @@ class Professor_model extends CI_Model {
         $this->db->where("s.course_id",$branch);
         return $this->db->get();
     }
+    
+    function insert_todo($data)
+    {
+        $this->db->insert("todo_list",$data);
+    }
+    
+    function get_todo()
+    {
+        $login_type = $this->session->userdata("login_type");
+        $login_id = $this->session->userdata("login_user_id");
+        $this->db->where("todo_role",$login_type);
+        $this->db->where("todo_role_id",$login_id);
+        $this->db->order_by("todo_datetime","asc");
+        return $this->db->get("todo_list")->result();
+        
+    }
+    
+    function change_status($data)
+    {        
+        $this->db->update("todo_list",$data,array("todo_id"=>$data['todo_id']));
+    }
+    
+    function removetodo($id)
+    {
+        $this->db->delete("todo_list",array("todo_id"=>$id));
+    }
+    function gettododata($id)
+    {
+        return $this->db->get_where("todo_list",array("todo_id"=>$id))->row();
+    }
+    
+    function update_todo($data,$id)
+    {
+          $this->db->update("todo_list",$data,array("todo_id"=>$id));
+    }
+    
 }

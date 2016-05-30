@@ -15,6 +15,76 @@ $lang['batch'] = 'Batch';
 $lang['semester'] = 'Semester';
 $lang['class'] = 'Class';
 
+$lang['edit_branch'] = 'Update Branch';
+$lang['add_branch'] = 'Add Branch';
+$lang['edit_department'] = 'Update Department';
+$lang['add_department'] = 'Add Department';
+$lang['edit_batch'] = 'Update Batch';
+$lang['add_batch'] = 'Add Batch';
+$lang['edit_semester'] = 'Update Semester';
+$lang['add_semester'] = 'Add Semester';
+$lang['edit_class'] = 'Update Class';
+$lang['add_class'] = 'Add Class';
+$lang['add_admission_type'] = 'Add Admission Type';
+$lang['edit_admission_type'] = 'Update Admission Type';
+$lang['add_student'] = 'Add Student';
+$lang['edit_student'] = 'Update Student';
+$lang['edit_subject'] = 'Update Subject';
+$lang['add_subject'] = 'Add Subject';
+$lang['add_syllabus'] = 'Add Syllabus';
+$lang['edit_syllabus'] = 'Update Syllabus';
+$lang['add_holiday'] = 'Add Holiday';
+$lang['edit_holiday'] = 'Update Holiday';
+$lang['edit_chancellor'] = 'Update Chancellor';
+$lang['add_chancellor'] = 'Add Chancellor';
+$lang['add_course_category'] = 'Add Course Category';
+$lang['edit_course_category'] = 'Update Course Category';
+$lang['edit_vocationalcourse'] = 'Update Vocational Course';
+$lang['add_vocationalcourse'] = 'Add Vocational Course';
+$lang['add_assessments'] = 'Add Assessments';
+$lang['edit_assessments'] = 'Update Assessments';
+$lang['add_events'] = 'Add Event';
+$lang['edit_events'] = 'Update Event';
+$lang['add_assignment'] = 'Add Assignment';
+$lang['edit_assignment'] = 'Update Assignment';
+$lang['add_studyresource'] = 'Add Study Resource';
+$lang['edit_studyresource'] = 'Edit Study Resource';
+$lang['edit_project'] = 'Update Project';
+$lang['add_project'] = 'Add Project';
+$lang['add_digital_library'] = 'Add Digital Library';
+$lang['edit_digital_library'] = 'Update Digital Library';
+$lang['add_participate'] = 'Add Participate';
+$lang['edit_participate'] = 'Update Participate';
+$lang['edit_question_list'] = 'Update Question List';
+$lang['edit_forum'] = 'Update Forum';
+$lang['add_forum'] = 'Add Forum';
+$lang['add_forum_topic'] = 'Add Forum Topic';
+$lang['edit_forum_topic'] = 'Update Forum Topic';
+$lang['add_gallery'] = 'Add Photo Gallery';
+$lang['edit_gallery'] = 'Update Photo Gallery';
+$lang['add_graduate'] = 'Add Toppers Graduate';
+$lang['edit_graduate'] = 'Update Toppers Graduate';
+$lang['edit_charity_fund'] = 'Update Charity Fund';
+$lang['add_charity_fund'] = 'Add Charity Fund';
+$lang['add_professor'] = 'Add Professor';
+$lang['edit_professor'] = 'Update Professor';
+$lang['add_exam'] = 'Add Exam';
+$lang['edit_exam'] = 'Update Exam';
+$lang['add_exam_schedule'] = 'Add Exam Schedule';
+$lang['edit_exam_schedule'] = 'Update Exam Schedule';
+$lang['add_grade'] = 'Add Exam Grade';
+$lang['edit_grade'] = 'Update Exam Grade';
+$lang['edit_cms'] = 'Update CMS Page';
+$lang['add_cms'] = 'Add CMS Page';
+$lang['edit_fee_structure'] = 'Update Fee Structure';
+$lang['add_fee_structure'] = 'Add Fee Structure';
+$lang['edit_payment'] = 'Update Payment';
+$lang['add_payment'] = 'Add Payment';
+
+$lang['student_detail'] = 'Student Details';
+$lang['add_courseware'] = 'Add Courseware';
+$lang['edit_courseware'] = 'Update Courseware';
+
 /**
  * Department
  */
@@ -167,7 +237,7 @@ $lang['delete_graduate'] = 'Graduate is successfully deleted.';
 /**
  * Charity fund
  */
-$lang['charity_title'] = 'Charity FUnd';
+$lang['charity_title'] = 'Charity Fund';
 $lang['save_charity'] = 'Charity fund is successfully added.';
 $lang['update_charity'] = 'Charity fund is successfully updated.';
 $lang['delete_charity'] = 'Charity fund is successfully deleted.';
@@ -242,8 +312,8 @@ $lang['import_title'] = 'Import Data';
 
 
 $lang['semseter_add'] = 'Semester Added Auccessfully';
-$lang['semester_update'] = 'Semester Updated Successflly';
-$lang['semester_delete'] = 'Semester Updated Successflly';
+$lang['semseter_update'] = 'Semester Updated Successflly';
+$lang['semester_delete'] = 'Semester Deleted Successflly';
 
 $lang['subject_add'] = 'Subject Deleted Successfully';
 $lang['subject_update'] = 'Subject updated Successfully';

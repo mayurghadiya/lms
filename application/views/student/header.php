@@ -6,7 +6,7 @@
     <html class=no-js>
         <head>
             <meta charset=utf-8>
-            <title><?php echo $title; ?> | Learning Management System</title>
+            <title><?php echo $title; ?> | <?php echo system_name(); ?></title>
             <!-- Mobile specific metas -->
             <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
             <!-- Force IE9 to render in normal mode -->
@@ -22,6 +22,7 @@
             <!-- Css files -->
             <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">
             <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/main.min.css">
+            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
             <!-- Fav and touch icons -->
             <link rel=apple-touch-icon-precomposed sizes=144x144 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-144-precomposed.png>
             <link rel=apple-touch-icon-precomposed sizes=114x114 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-114-precomposed.png>
@@ -29,7 +30,7 @@
             <link rel=apple-touch-icon-precomposed href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-57-precomposed.png>
             <link rel=icon href=<?php echo base_url(); ?>assets/img/ico/favicon.ico type=image/png>
             <meta name=msapplication-TileColor content="#3399cc">
-
+            <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
         <body>
             <!--[if lt IE 9]>
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -38,7 +39,7 @@
             <div id="header">
                 <nav class="navbar navbar-default" role=navigation>
                     <div class="navbar-header">
-                        <a class="navbar-brand" href=index.html>
+                        <a class="navbar-brand" href="<?php echo base_url(); ?>student">
                             <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="logo">
                         </a>
                     </div>
@@ -49,70 +50,81 @@
                                 <a href=# class="collapseBtn leftbar"><i class="fa fa-bars" aria-hidden="true"></i></a>
                             </li>
                             <li class="dropdown">
-                                <a href=# class=dropdown-toggle data-toggle=dropdown>
+                                <a href="<?php echo base_url(); ?>student/email_inbox">
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    <span class=txt>Messages</span><span class=notification>8</span></a>
-                                <ul class="dropdown-menu left">
-                                    <li class=menu>
-                                        <ul class=messages>
-                                            <li class=header><strong>Messages</strong> (10) emails and (2) PM</li>
-                                            <li><span class=icon>
-                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                </span> <span class=name><a data-toggle=modal href=#myModal1><strong>Sammy Morerira</strong></a><span class=time>35 min ago</span></span> <span class=msg>I have question about new function ...</span>
-                                            </li>
-                                            <li><span class="icon avatar"><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt=""></span> <span class=name><a data-toggle=modal href=#myModal1><strong>George Michael</strong></a><span class=time>1 hour ago</span></span> <span class=msg>I need to meet you urgent please call me ...</span>
-                                            </li>
-                                            <li><span class=icon><i class="fa fa-envelope-o" aria-hidden="true"></i></span> <span class=name><a data-toggle=modal href=#myModal1><strong>Ivanovich</strong></a><span class=time>1 day ago</span></span> <span class=msg>I send you my suggestion, please look and ...</span>
-                                            </li>
-                                            <li class=view-all><a href=#>View all messages <i class="s16 fa fa-angle-double-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                    <span class=txt>Messages</span></a>                                
                             </li>
                         </ul>
                         <ul class="nav navbar-right usernav">
                             <li class="dropdown">
                                 <a href=# class="dropdown-toggle" data-toggle=dropdown>
                                     <i class="fa fa-globe" aria-hidden="true"></i>
-                                    <span class="notification">3</span>
+                                    <span class="notification"><?php echo $this->session->userdata('notifications')['total_notification']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul class=notif>
-                                            <li class=header><strong>Notifications</strong> (3) items</li>
-                                            <li><a href=#><span class=icon>
-                                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                    </span> <span class=event>1 User is registred</span></a>
+                                            <li class=header><strong>Notifications</strong> (<?php echo $this->session->userdata('notifications')['total_notification']; ?>) items</li>
+                                            <?php if (isset($this->session->userdata('notifications')['fees_structure'])) { ?>
+                                            <li><a href="<?php echo base_url('student/student_fees'); ?>"><span class=icon>
+                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                    </span> <span class=event> New fee structure was added.</span></a>
                                             </li>
-                                            <li><a href=#><span class=icon><i class="s16 fa fa-commenting"></i></span> <span class=event>Jony add 1 comment</span></a>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['exam_manager']) || isset($this->session->userdata('notifications')['exam_time_table'])) { ?>
+                                            <li><a href="<?php echo base_url('student/exam_listing'); ?>"><span class=icon><i class="s16 fa fa-commenting"></i></span> <span class=event>New Exam or Exam schedule was added.</span></a>
                                             </li>
-                                            <li><a href=#><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>admin Julia added post with a long description</span></a>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['assignment_manager'])) { ?>
+                                            <li><a href="<?php echo base_url('student/assignment/assignment_list'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Assignment was added.</span></a>
                                             </li>
-                                            <li class=view-all><a href=#>View all notifications <i class="s16 fa fa-angle-double-right"></i></a>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['project_manager'])) { ?>
+                                            <li><a href="<?php echo base_url('student/project/submission'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Project was added.</span></a>
                                             </li>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['marks_manager'])) { ?>
+                                            <li><a href="<?php echo base_url('student/exam_marks'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>Exam marks was added.</span></a>
+                                            </li>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['participate_manager'])) { ?>
+                                            <li><a href="<?php echo base_url('student/volunteer'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Participate was added.</span></a>
+                                            </li>
+                                            <?php } ?>
+                                            <?php if (isset($this->session->userdata('notifications')['study_resources'])) { ?>
+                                            <li><a href="<?php echo base_url('student/studyresources'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Study Resources was added.</span></a>
+                                            </li>
+                                             <?php } ?>
+                                             <?php if (isset($this->session->userdata('notifications')['library_manager'])) { ?>
+                                            <li><a href="<?php echo base_url('student/digitallibrary'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Digital Library was added.</span></a>
+                                            </li>
+                                            <?php } ?>
+                                           <!-- <li class=view-all><a href=#>View all notifications <i class="s16 fa fa-angle-double-right"></i></a>
+                                            </li>-->
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
                             <li class=dropdown>
-                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt="" class="image"> <span class=txt>student@lms.com</span> <b class=caret></b>
+                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src="<?php if($this->session->userdata('profile_photo')!=""){ echo base_url().'uploads/student_image/'.$this->session->userdata('profile_photo');  }else{ echo base_url().'assets/img/avatar.jpg';  } ?>" alt="" class="image"> 
+                                    <span class=txt><?php echo $this->session->userdata('email'); ?></span> <b class=caret></b>
                                 </a>
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul>
-                                            <li><a href=#>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard" aria-hidden="true"></i>Home</a>
+                                            </li>
+                                            <li><a href="<?php echo base_url(); ?>student/profile">
                                                     <i class="fa fa-user-plus" aria-hidden="true"></i>Edit profile</a>
                                             </li>
-                                            <li><a href=#><i class="fa fa-comment-o" aria-hidden="true"></i></i>Comments</a>
-                                            </li>
-                                            <li><a href=#><i class="fa fa-plus" aria-hidden="true"></i>Add user</a>
+                                            <li><a href="<?php echo base_url(); ?>site/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href=login.html>
+                            <li><a href="<?php echo base_url(); ?>site/logout">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i><span class=txt>Logout</span>
                                 </a>
                             </li>
@@ -131,20 +143,20 @@
                 <div id="sidebar" class="page-sidebar hidden-lg hidden-md hidden-sm hidden-xs">
                     <div class=shortcuts>
                         <ul>
-                            <li><a href="support.html" title="Support section" class=tip>
-                                    <i class="fa fa-life-ring" aria-hidden="true"></i>
+                            <li><a href="<?php echo base_url(); ?>student/email_inbox" title="Message Inbox" class=tip>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href=# title="Database backup" class=tip>
-                                    <i class="fa fa-database" aria-hidden="true"></i>
+                            <li><a href="<?php echo base_url(); ?>student/gallery" title="Photo Gallery" class=tip>
+                                    <i class="fa fa-image" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href="#" title="Statistics" class=tip>
-                                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                            <li><a href="<?php echo base_url(); ?>student/project/submission" title="Project" class=tip>
+                                    <i class="fa fa-book" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href=# title="Write post" class=tip>
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <li><a href="<?php echo base_url(); ?>student/profile" title="Profile" class=tip>
+                                    <i class="fa fa-user" aria-hidden="true"></i>
                                 </a>
                             </li>
                         </ul>
@@ -161,38 +173,115 @@
                                 <!-- End .sidenav-widget -->
                                 <div class=mainnav>
                                     <ul>
-                                        <li><a href=index.html><i class="fa fa-desktop" aria-hidden="true"></i><span class=txt>Dashboard</span></a>
+                                        <li><a href="<?php echo base_url(); ?>student/dashboard"><i class="fa fa-desktop" aria-hidden="true"></i><span class=txt>Dashboard</span></a>
                                         </li>
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="fa fa-envelope"></i>
+                                                <span class="txt">Email </span></a>
+                                            <ul class="sub">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>student/email_compose">
+                                                        <i class="fa fa-envelope"></i>
+                                                        <span class="txt">Compose E-Mail</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>student/email_inbox">
+                                                        <i class="fa fa-inbox"></i>
+                                                        <span class="txt">Inbox</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>student/email_sent">
+                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <span class="txt">Sent</span>
+                                                    </a>
+                                                </li>
 
-      <!-- <li><a href=#><i class="fa fa-folder" aria-hidden="true"></i><span class=txt>Pages</span><span class="notification blue">11</span></a> -->
-                                        <!-- <ul class=sub> -->
-                                        <li><a href="table.html"><i class="s16 fa fa-table"></i><span class="txt">Table </span></a>
-                                        <li><a href=blank.html><i class="s16 fa fa-newspaper-o"></i><span class=txt>News </span></a>
+                                            </ul>
                                         </li>
-                                        <li><a href=calendar.html><i class="s16 fa fa-university"></i><span class=txt>Academics </span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/class_routine">
+                                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                <span class=txt>Class Routine</span>
+                                            </a>
                                         </li>
-                                        <li><a href=gallery.html><i class="s16 fa fa-picture-o"></i><span class=txt>Gallery</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/syllabus">
+                                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                <span class=txt>Syllabus</span>
+                                            </a>
                                         </li>
-                                        <li><a href=timeline.html><i class="s16 fa fa-clock-o"></i><span class=txt>Timeline</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/assignment/"><i class="s16 fa fa-table"></i><span class="txt">Assignments </span>
+                                            </a>
                                         </li>
-                                        <li><a href=login.html><i class="s16 fa fa-universal-access"></i><span class=txt>Holiday </span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/project/submission/"><i class="s16 icomoon-icon-cube"></i><span class="txt">Projects </span>
+                                            </a>
                                         </li>
-                                        <li><a href=lock-screen.html><i class="s16 fa fa-book"></i><span class=txt>Vocational Course</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/exam"><i class="s16 fa fa-picture-o"></i>
+                                                <span class=txt>Exam</span>
+                                            </a>
                                         </li>
-                                        <li><a href=register.html><i class="fa fa-user-plus" aria-hidden="true"></i></i><span class=txt>Register</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/exam_marks">
+                                                <i class="s16 fa fa-clock-o"></i>
+                                                <span class=txt>Exam Marks</span>
+                                            </a>
+                                        </li>                                        
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/student_fees"><i class="s16 fa fa-dollar"></i>
+                                                <span class=txt>Pay Online </span>
+                                            </a>
+                                        </li> 
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/fee_record"><i class="s16 fa fa-newspaper-o"></i><span class=txt>Fee Record </span>
+                                            </a>
                                         </li>
-                                        <li><a href=lost-password.html><i class="s16 fa fa-file-o"></i><span class=txt>Lost password</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/holiday">
+                                                <i class="s16 fa fa-book"></i>
+                                                <span class=txt>Holiday </span>
+                                            </a>
+                                        </li>   
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/assessment">
+                                                <i class="s16 icomoon-icon-map"></i>
+                                                <span class=txt>Assessment </span>
+                                            </a>
+                                        </li>   
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/courseware">
+                                                <i class="s16 fa fa-file-o"></i>
+                                                <span class=txt>Courseware</span>
+                                            </a>
                                         </li>
-                                        <li><a href=profile.html><i class="s16 fa fa-file-text"></i><span class=txt>User profile</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/vocationalcourse">
+                                                <i class="s16 fa fa-spinner"></i>
+                                                <span class=txt>Vocational Course</span>
+                                            </a>
                                         </li>
-                                        <li><a href=invoice.html><i class="s16 fa fa-file-text-o"></i><span class=txt>Invoice</span></a>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>student/gallery"><i class="s16 fa fa-picture-o"></i>
+                                                <span class=txt>Gallery </span>
+                                            </a>
+                                        </li>  
+                                        <?php
+                                        $news_conent = $this->db->get_where('cms_manager', array('c_status' => 1))->result_array();
+                                        foreach($news_conent as $row) { ?>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>pages/<?php echo @$row['c_slug']; ?>">
+                                                <i class="s16 fa fa-universal-access"></i>
+                                                <span class=txt><?php echo @$row['c_title']; ?> </span>
+                                            </a>
                                         </li>
-                                        <li><a href=faq.html><i class="s16 fa fa-paperclip"></i><span class=txt>FAQ</span></a>
-                                        </li>
-
-                                        <!-- </ul> -->
-                                        <!--  </li>
-                                     </ul> -->
+                                        <?php } ?>
+                                                                             
+                                        
+                                     </ul> 
                                 </div>
                             </div>
                             <!-- End sidenav -->
@@ -221,12 +310,6 @@
                                     <input type="submit" class="search-btn">
                                 </form>
                             </div>
-                            <!--  /search -->
-                            <ul class="breadcrumb">
-                                <li>You are here:</li>
-                                <li><a href=# class=tip title="back to dashboard"><i class="s16 fa fa-desktop"></i></a> <span class=divider><i class="s16 fa fa-caret-right"></i></span>
-                                </li>
-                                <li class="active">Blank Page</li>
-                            </ul>
+                            <!--  /search -->                      
                         </div>
                         <!-- End  / heading-->

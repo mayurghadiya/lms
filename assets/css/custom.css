@@ -1,3 +1,70 @@
 /* -----------------------------------------
    Custom.css - put your own changes here 
 ----------------------------------------- */
+label.error { color: #ed7a53; }
+
+.panel.panel-default.toggle.panelMove.panelClose.panelRefresh {overflow: hidden;}
+/* class_routine */
+.class_routine_box{overflow: hidden; border: none;}
+.modal-body{max-height: 450px !important;}
+#modal_ajax .form-horizontal .control-label{ text-align: center !important;  }
+.dashboard #content .contentwrapper{ padding-top: 60px; }
+
+/* Styles for search dropdown */
+.dashboard .page-content{background: #fff !important;}
+.dashboard .panel{box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); transition: all 1s ease 0s;}
+.dashboard .panel-body {padding: 0 10px;}
+
+
+
+.search_box {position: relative; margin-bottom: 0; width: 29.5%;}
+.search_box form .top-search{width: 97%;}
+.search_box .category {left: 20px; position: absolute; top: 1px; margin-left: 0; margin-top: 13px; width: 65px;}
+.search_box .category .open {position: absolute !important; top: 30px !important; left: -10px !important; width: 120% !important;}
+
+.search_box form .top-search{padding-left: 90px;}
+.search_box form .search-btn{right: 18px; left: auto;}
+.search_box .category > a { border-right: 1px dotted #ccc; display: block; color: #333; }
+.search_box .category > a:hover{} 
+.category .dropdown-menu::before { background: rgba(0, 0, 0, 0) url("../img/arrowup.png") no-repeat scroll 0 0 !important; border: medium none !important; content: ""; height: 14px !important;  position: absolute;  top: -13px !important;  width: 15px !important;  z-index: 999999;}
+.category .dropdown-menu {background: #efefef none repeat scroll 0 0 padding-box; border: 1px solid #c4c4c4; border-radius: 2px; box-shadow: 0 1px 0 #fff; float: left; font-size: 12px; list-style: outside none none; margin: 0; min-width: 160px; padding: 4px; position: absolute;  top: 34px; z-index: 999999;}
+.category .dropdown-menu li.menu > ul{padding: 0;}
+.category .dropdown-menu li.menu ul li {border-bottom: 1px solid #ebebeb;line-height: 14px; margin: 0; padding-bottom: 8px; padding-top: 10px; width: 100%; list-style: none; text-align: left;}
+.category .dropdown-menu li.menu label{padding-left: 10px;}
+.category .dropdown-menu li.menu { background: #fff none repeat scroll 0 0; border: 1px solid #c4c4c4; border-radius: 2px; display: block; float: left; margin-bottom: 0; min-width: 150px; padding: 0;}
+.category .dropdown-menu li.menu ul li a {clear: both;color: #333;display: inline-block; font-weight: 400; line-height: 14px; padding: 5px 0 5px 5px; white-space: normal; width: 100%;}
+.category .dropdown-menu li.menu ul li .checkbox-custom {display: inline-block;}
+.category .dropdown-menu li.menu span {display: inline-block; padding-left: 15px;}
+
+#content .contentwrapper .heading .breadcrumb1 {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  box-shadow: none;
+  float: right;
+  margin: 0 20px 0 0;
+  padding: 15px 10px 6px;
+}
+#content .contentwrapper .heading .breadcrumb1 li:first-child {
+  margin-right: 8px;
+}
+.breadcrumb1 > li {
+  display: inline-block;
+}
+#content .contentwrapper .heading .breadcrumb1 li + li::before {
+  display: none;
+}
+.breadcrumb1 > li + li::before {
+  color: #ccc;
+  content: "/ ";
+  padding: 0 5px;
+}
+#content .contentwrapper .heading .breadcrumb1 li a {
+  color: #333;
+}
+#content .contentwrapper .heading .breadcrumb1 li i {
+  margin-left: 0;
+  margin-right: 0;
+}
+.breadcrumb1 {
+  list-style: outside none none;
+}

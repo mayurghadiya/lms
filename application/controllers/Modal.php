@@ -158,7 +158,7 @@ class Modal extends MY_Controller {
                 $page_data['semesters'] = $this->db->get('semester')->result_array();
             }
         }
-
+        $page_data['action_page_name'] = 'abd';
         $this->load->view($account_type . '/' . $page_name . '.php', $page_data);
        
     }

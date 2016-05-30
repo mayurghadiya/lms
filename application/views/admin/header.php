@@ -8,7 +8,7 @@
     <html class=no-js>
         <head>
             <meta charset=utf-8>
-            <title><?php echo $title; ?> | Learning Management System</title>
+            <title><?php echo $title; ?> | <?php echo system_name(); ?></title>
             <!-- Mobile specific metas -->
             <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
             <!-- Force IE9 to render in normal mode --><!--[if IE]>
@@ -23,6 +23,7 @@
             <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel=stylesheet type=text/css>
             <!-- Css files -->
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/main.min.css>
+            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
 
             <!-- jQuery -->
             <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
@@ -38,7 +39,6 @@
             <script>
                 var base_url = '<?php echo base_url(); ?>';
             </script>
-
         <body>
             <!--[if lt IE 9]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -46,7 +46,7 @@
             <div id="header">
                 <nav class="navbar navbar-default" role=navigation>
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="<?php echo base_url(); ?>">
+                        <a class="navbar-brand" href="<?php echo base_url(); ?>admin">
                             <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="logo">
                         </a>
                     </div>
@@ -57,26 +57,11 @@
                                 <a href=# class="collapseBtn leftbar"><i class="fa fa-bars" aria-hidden="true"></i></a>
                             </li>
                             <li class="dropdown">
-                                <a href=# class=dropdown-toggle data-toggle=dropdown>
+                                <a href="<?php echo base_url(); ?>admin/email_inbox">
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    <span class=txt>Messages</span><span class=notification>8</span></a>
-                                <ul class="dropdown-menu left">
-                                    <li class=menu>
-                                        <ul class=messages>
-                                            <li class=header><strong>Messages</strong> (10) emails and (2) PM</li>
-                                            <li><span class=icon>
-                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                </span> <span class=name><a data-toggle=modal href=#myModal1><strong>Sammy Morerira</strong></a><span class=time>35 min ago</span></span> <span class=msg>I have question about new function ...</span>
-                                            </li>
-                                            <li><span class="icon avatar"><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt=""></span> <span class=name><a data-toggle=modal href=#myModal1><strong>George Michael</strong></a><span class=time>1 hour ago</span></span> <span class=msg>I need to meet you urgent please call me ...</span>
-                                            </li>
-                                            <li><span class=icon><i class="fa fa-envelope-o" aria-hidden="true"></i></span> <span class=name><a data-toggle=modal href=#myModal1><strong>Ivanovich</strong></a><span class=time>1 day ago</span></span> <span class=msg>I send you my suggestion, please look and ...</span>
-                                            </li>
-                                            <li class=view-all><a href=#>View all messages <i class="s16 fa fa-angle-double-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                    <span class=txt>Messages</span>
+                                </a>
+
                             </li>
                         </ul>
                         <ul class="nav navbar-right usernav">
@@ -104,17 +89,19 @@
                                 </ul>
                             </li>
                             <li class=dropdown>
-                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt="" class="image"> <span class=txt>student@lms.com</span> <b class=caret></b>
+                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt="" class="image"> 
+                                    <span class=txt><?php echo $this->session->userdata('email'); ?></span> <b class=caret></b>
                                 </a>
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul>
-                                            <li><a href=#>
-                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>Edit profile</a>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard" aria-hidden="true"></i>Home</a>
                                             </li>
-                                            <li><a href=#><i class="fa fa-comment-o" aria-hidden="true"></i></i>Comments</a>
+                                            <li><a href="<?php echo base_url(); ?>admin/manage_profile">
+                                                    <i class="fa fa-user" aria-hidden="true"></i>Edit profile</a>
                                             </li>
-                                            <li><a href=#><i class="fa fa-plus" aria-hidden="true"></i>Add user</a>
+                                            <li><a href="<?php echo base_url(); ?>site/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -244,6 +231,12 @@
                                                     </a>
                                                 </li>
                                                 <li>
+                                                    <a href="<?php echo base_url(); ?>admin/category">
+                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <span class="txt"> Course Category</span>
+                                                    </a>
+                                                </li>
+                                                <li>
                                                     <a href="<?php echo base_url(); ?>admin/vocationalcourse">
                                                         <i class="s16 icomoon-icon-attachment"></i>
                                                         <span class="txt">Vocational Course</span>
@@ -257,7 +250,13 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        
+                                        <li>
+                                            <a href="<?php echo base_url() . 'admin/class_routine' ?>">
+                                                <i class="s16 fa fa-book"></i>
+                                                <span class=txt>Class Routine </span>
+                                            </a>
+                                        </li>
+
                                         <li class="hasSub">
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Assets Management</span></a>
@@ -311,8 +310,8 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                            
-                                          <li class="hasSub">
+
+                                        <li class="hasSub">
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Forum</span></a>
                                             <ul class="sub">
@@ -364,13 +363,13 @@
                                                         <span class="txt">Inbox</span>
                                                     </a>
                                                 </li>
-                                                 <li>
+                                                <li>
                                                     <a href="<?php echo base_url(); ?>admin/email_sent">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Sent</span>
                                                     </a>
                                                 </li>
-                                                
+
                                             </ul>
                                         </li>
                                         <li class="hasSub">
@@ -383,7 +382,7 @@
                                                         <span class="txt">Import</span>
                                                     </a>
                                                 </li>
-                                                 <li>
+                                                <li>
                                                     <a href="<?php echo base_url(); ?>admin/export">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Export</span>
@@ -391,9 +390,27 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="<?php echo base_url().'admin/system_settings' ?>"><i class="s16 fa fa-book"></i><span class=txt>System Settings </span></a>
+
+                                        <li class="hasSub">
+                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                                <span class="txt">System Setting</span></a>
+                                            <ul class="sub">
+                                                <li>
+
+                                                    <a href="<?php echo base_url(); ?>admin/system_settings">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">System Settings</span>
+                                                    </a>
+                                                </li> 
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/authorize_payment_config">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Authorize.net Config</span>
+                                                    </a>
+                                                </li>                                                 
+                                            </ul>
                                         </li>
-                                        
+
                                         <li class="hasSub">
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">University</span></a>
@@ -469,7 +486,7 @@
                                                         <span class="txt">Make Payment</span>
                                                     </a>
                                                 </li> 
-                                                
+
                                             </ul>
                                         </li>
                                         <li>
@@ -506,7 +523,7 @@
                                             <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">User Management</span></a>
                                             <ul class="sub">
-                                               <li >
+                                                <li >
                                                     <a href="<?php echo base_url(); ?>admin/create_group">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="menu-text">Create Groups</span>  
@@ -518,18 +535,18 @@
                                                         <span class="menu-text">List Groups</span>  
                                                     </a>
                                                 </li>
-                                                  <li>
-                                                      <a href="<?php echo base_url(); ?>admin/assign_module">
-                                                          <i class="s16 icomoon-icon-screen-2"></i>
-                                                          <span class="menu-text">Assign Module</span>  
-                                                      </a>
-                                                  </li>
-                                                  <li>
-                                                      <a href="<?php echo base_url(); ?>admin/list_module">
-                                                          <i class="s16 icomoon-icon-screen-2"></i>
-                                                          <span class="menu-text">List Module</span>  
-                                                      </a>
-                                                  </li>                                                
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/assign_module">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="menu-text">Assign Module</span>  
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>admin/list_module">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="menu-text">List Module</span>  
+                                                    </a>
+                                                </li>                                                
                                             </ul>
                                         </li>
                                 </div>
@@ -553,15 +570,83 @@
                             <!--  .heading-->
                             <h3><?php echo $title; ?></h3>
                             <div class=resBtnSearch><a href=#><span class="s16 icomoon-icon-search-3"></span></a></div>
-                            <div class=search>
+                            <div class="search_box">
                                 <!-- .search -->
-                                <form id=searchform class=form-horizontal action=search.html><input class="top-search from-control" placeholder="Search here ..."> <input type=submit class=search-btn></form>
+                                <form id=searchform class=form-horizontal method="post" action="<?php echo base_url(); ?>admin/search">
+                                    <input name="search" class="top-search from-control" placeholder="Search here ..."
+                                           value="<?php echo isset($search_string) ? $search_string : ''; ?>"> 
+                                    <input type=submit class=search-btn>
+                                    <div class="category">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
+                                            Category                                     
+                                        </a>
+
+                                        <ul class="dropdown-menu">
+                                            <li class="menu">
+                                                <ul>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="degree" name="degree"
+                                                                   <?php if (isset($from['degree'])) echo 'checked'; ?>>
+                                                            <span>Department</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="student" name="student"
+                                                                   <?php if (isset($from['student'])) echo 'checked'; ?>>
+                                                            <span>Student</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="course" name="course"
+                                                                   <?php if (isset($from['course'])) echo 'checked'; ?>>
+                                                            <span>Branch</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="exam" name="exam"
+                                                                   <?php if (isset($from['exam'])) echo 'checked'; ?>>
+                                                            <span>Exam</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="event" name="event"
+                                                                   <?php if (isset($from['event'])) echo 'checked'; ?>>
+                                                            <span>Event</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="batch" name="batch"
+                                                                   <?php if (isset($from['batch'])) echo 'checked'; ?>>
+                                                            <span>Batch</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="assignment" name="assignment"
+                                                                   <?php if (isset($from['assignment'])) echo 'checked'; ?>>
+                                                            <span>Assignment</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" value="participate" name="participate"
+                                                                   <?php if (isset($from['participate'])) echo 'checked'; ?>>
+                                                            <span>Participate</span>
+                                                        </label>
+                                                    </li>                                                     
+                                                </ul>                                           
+                                            </li>
+                                        </ul> 
+                                    </div>
+                                </form>
                             </div>
                             <!--  /search -->
-                            <ul class=breadcrumb>
-                                <li>You are here:</li>
-                                <li><a href=# class=tip title="back to dashboard"><i class="s16 icomoon-icon-screen-2"></i></a> <span class=divider><i class="s16 icomoon-icon-arrow-right-3"></i></span></li>
-                                <li class=active>Blank Page</li>
-                            </ul>
+                            <?php echo create_breadcrumb(); ?>
                         </div>
                         <!-- End  / heading-->
