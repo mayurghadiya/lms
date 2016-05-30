@@ -24,19 +24,19 @@
                             <div class="col-sm-5">
                                 <select id="export_module" class="form-control" name="module_name" required="">
                                     <option value="">Select</option>
-                                    <option value="<?php echo base_url('admin/export_csv/exam_manager'); ?>">Exam Manager</option>
-                                    <option value="<?php echo base_url('admin/export_csv/event_manager'); ?>">Event Manager</option>
-                                    <option value="<?php echo base_url('admin/export_csv/course'); ?>">Branch</option>
-                                    <option value="<?php echo base_url('admin/export_csv/degree'); ?>">Department</option>
-                                    <option value="<?php echo base_url('admin/export_csv/semester'); ?>">Semester</option>
-                                    <option value="<?php echo base_url('admin/export_csv/student'); ?>">Student</option>
-                                    <option value="exam_marks">Exam Marks</option>
-                                    <option value="<?php echo base_url('admin/export_csv/system_setting'); ?>">System Settings</option>
-                                    <option value="<?php echo base_url('admin/export_csv/project_manager'); ?>">Project Manager</option>
                                     <option value="<?php echo base_url('admin/export_csv/admission_type'); ?>">Admission Type</option>
                                     <option value="<?php echo base_url('admin/export_csv/batch'); ?>">Batch</option>
+                                    <option value="<?php echo base_url('admin/export_csv/course'); ?>">Branch</option>
+                                    <option value="<?php echo base_url('admin/export_csv/degree'); ?>">Department</option>
+                                    <option value="<?php echo base_url('admin/export_csv/exam_manager'); ?>">Exam Manager</option>
+                                    <option value="exam_marks">Exam Marks</option>
+                                    <option value="<?php echo base_url('admin/export_csv/event_manager'); ?>">Event Manager</option>
                                     <option value="<?php echo base_url('admin/export_csv/fees_structure'); ?>">Fees Structure</option>
+                                    <option value="<?php echo base_url('admin/export_csv/project_manager'); ?>">Project Manager</option>
+                                    <option value="<?php echo base_url('admin/export_csv/semester'); ?>">Semester</option>
+                                    <option value="<?php echo base_url('admin/export_csv/student'); ?>">Student</option>    
                                     <option value="<?php echo base_url('admin/export_csv/subject'); ?>">Subject</option>
+                                    <option value="<?php echo base_url('admin/export_csv/system_setting'); ?>">System Settings</option>
                                 </select>
                             </div>
                         </div> 

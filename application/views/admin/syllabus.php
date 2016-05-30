@@ -6,7 +6,7 @@
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->          
             <div class="panel-body">
-                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsyllabus/');" href="#" id="navfixed" data-toggle="tab">Add Syllabus</a>
+                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsyllabus/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Syllabus</a>
                 <form action="#" method="post" id="searchform">
                     <div class="form-group col-sm-3 validating">
                         <label>Department</label>

@@ -5774,9 +5774,7 @@ class Admin extends MY_Controller {
 
             $datetime = strtotime($datetime);
 
-            $datetime = date('Y-m-d H:i:s', $datetime);
-
-            $datetime = date('Y-m-d H:i:s', $datetime);
+            $datetime = date('Y-m-d H:i:s', $datetime);           
             $data['todo_role'] = $this->session->userdata('login_type');
             $data['todo_role_id'] = $this->session->userdata('login_user_id');
             $data['todo_datetime'] = $datetime;
@@ -5824,9 +5822,48 @@ class Admin extends MY_Controller {
         //$this->data['page'] = 'search_result';
         $this->__site_template('admin/search_result', $this->data);
     }
-
-    function demo() {
-        $this->load->view('highchart');
+    
+    function time_line($param='' , $param2 = '')
+    {
+        if($_POST)
+        {
+            if($param=="create")
+            {
+               $data['timeline_title'] = $this->input->post('timeline_title'); 
+               $data['timeline_desc'] = $this->input->post('timeline_desc'); 
+               $data['timeline_year'] = $this->input->post('timeline_year'); 
+               $data['timeline_status'] = $this->input->post('timeline_status'); 
+               $this->Crud_model->addtimeline($data);
+               $this->session->set_userdata('flash_message', 'Timeline Added Successfully');
+               redirect(base_url('admin/time_line'));
+            }
+            if($param=="do_update")
+            {
+               $data['timeline_title'] = $this->input->post('timeline_title'); 
+               $data['timeline_desc'] = $this->input->post('timeline_desc'); 
+               $data['timeline_year'] = $this->input->post('timeline_year'); 
+               $data['timeline_status'] = $this->input->post('timeline_status'); 
+               $this->Crud_model->update_timeline($data,$param2);
+               $this->session->set_userdata('flash_message', 'Timeline Updated Successfully');
+               redirect(base_url('admin/time_line'));
+            }
+             
+            
+        }
+        if($param=="delete")
+        {
+            $this->session->set_userdata('flash_message', 'Timeline Deleted Successfully');
+            $this->Crud_model->delete_timeline($param2);
+             redirect(base_url('admin/time_line'));
+        }
+        
+        
+        $this->data['title'] = 'timeline';
+        $this->data['page'] = 'timeline';   
+        $this->data['timeline'] = $this->Crud_model->gettimeline();
+        $this->data['edit_title'] = 'Update Timeline';
+        $this->data['add_title'] = 'Add Timeline';
+        $this->__site_template('admin/timeline', $this->data);
     }
 
 }
