@@ -5,7 +5,7 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <!--            <div class=panel-heading>
+                <!--     <div class=panel-heading>
                             <h4 class=panel-title><?php echo $title; ?></h4>
                             <div class="panel-controls panel-controls-right">
                                 <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
@@ -13,13 +13,20 @@
                                 <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
                             </div>
                         </div>-->
-            <div class=panel-body>
-                <form id="restoreform" class="form-horizontal form-groups-bordered validate" role="form" action="" method="post" 
+             <div class="vd_content-section clearfix">
+                <div class="row">
+                    <div class="col-sm-12">
+                      <!--  <div class="">
+                           <!--  <span style="c <!-- olor:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
+                        </div> --> 
+                      <br>
+                         <form id="restoreform" class="form-horizontal form-groups-bordered validate" role="form" action="" method="post" 
                       enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="col-sm-3 control-label"><?php echo ucwords("File"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-5">
                             <input type="file" class="form-control" name="userfile" id="userfile"/>
+                            <label id="userfile-error" class="error" for="userfile"></label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -30,14 +37,33 @@
                     <b>Note: Please take backup before system restore</b>
                     <br/><a href="<?php echo base_url('admin/backup'); ?>">Click here to backup</a>
                 </form>
+               </div>
             </div>
         </div>
-        <!-- End .panel -->
+
+
     </div>
-    <!-- col-lg-12 end here -->
+
+    <!-- row --> 
+
 </div>
+
 <!-- End .row -->
 </div>
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+<script type="text/javascript">
+ 
+
+    $().ready(function () {
+        $("#restoreform").validate({
+            rules: {
+                userfile: "required"
+            },
+            messages: {
+                userfile: "Select system backup file"
+            }
+        });
+    });
+</script>
