@@ -25,8 +25,9 @@
                 </div>
             </div>
             <div class=panel-body>
+			<div class="row filter-row">
                 <form id="exam-search" method="post" action="#" class="form-groups-bordered validate">
-                    <div class="form-group col-sm-4">
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                         <label><?php echo ucwords("Department"); ?></label>
                         <select class="form-control" id="department_search" required="" name="department">
                             <option value="">Select</option>
@@ -35,36 +36,37 @@
                             <?php } ?>
                         </select>
                     </div>
-                    <div class="form-group col-sm-4">
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                         <label><?php echo ucwords("Branch"); ?></label>
                         <select id="branch_search" name="branch" class="form-control">
                             <option value="">Select</option>
                         </select>
                     </div>
-                    <div class="form-group col-sm-4">
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                         <label><?php echo ucwords("Batch"); ?></label>
                         <select id="batch_search" name="batch" class="form-control">
                             <option value="">Select</option>
                         </select>
                     </div>                                
-                    <div class="form-group col-sm-4">
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                         <label> <?php echo ucwords("Semester"); ?></label>
                         <select id="semester_search" name="semester" class="form-control">
                             <option value="">Select</option>
 
                         </select>
                     </div>
-                    <div class="form-group col-sm-4">
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                         <label> <?php echo ucwords("Professor"); ?></label>
                         <select id="professor_search" name="professor" class="form-control">
                             <option value="">Select</option>
                         </select>
                     </div>
-                    <div class="form-group col-sm-2">
+                    <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-2">
                         <label>&nbsp;</label><br/>
                         <input id="search-exam-data-list" type="submit" value="Go" class="btn btn-info"/>
                     </div>
-                </form>  
+                </form>
+</div>				
 
                 <div id="example">
                     <div id="example">

@@ -68,3 +68,29 @@ label.error { color: #ed7a53; }
 .breadcrumb1 {
   list-style: outside none none;
 }
+.filter-row {
+margin:5px 0px 15px 0px;
+padding:10px 0px 4px 20px;
+    background-color: #e0e0e0;
+    background-image: linear-gradient(to bottom, #eee 0px, #e5e5e5 100%);
+    background-repeat: repeat-x;
+    
+    box-shadow: 0 0 1px #fff inset;
+}
+
+/* Todo list loading */
+.loading_img{ display:none; width:69px; height:89px; border:1px solid black; position:absolute; top:50%; left:50%; padding:2px;}
+.todo-widget .todo-list .todo-task-item .todo-task-text  { margin-top: -3px; padding-top: 0;  }
+
+.todo-task-item  div{ display: inline-block; float: left !important; margin-right: 0 !important; line-height: 20px; }
+.todo-task-item .checkbox-custom{width: 5%;}
+.todo-task-item .todo-task-text{width: 55%;}
+.todo-task-item .todo-category{width: 28%;}
+.todo-task-item .updateclick_box{width: 6%;}
+.todo-task-item .todo-close_box{width: 6%;}
+
+.updateclick_box .updateclick {background: transparent; border: none;}
+.updateclick_box .updateclick i{ color: #39c; }
+.todo-task-item .todo-close_box .todo-close1 i{ color: red; }
+.todo-task-item .todo-close_box .close{opacity:0.9;}
+.updateclick_box .updateclick:hover i, .todo-task-item .todo-close_box .todo-close1:hover i{color: #000;}

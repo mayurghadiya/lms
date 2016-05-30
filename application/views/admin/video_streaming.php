@@ -48,8 +48,8 @@
                                 <span style="color:red">* is mandatory field</span> 
                             </div>  
                             <div class="form-group" id="private-broadcast-degree">
-                                <label class="col-sm-3 control-label">Department<span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label">Department<span style="color:red">*</span></label>
+                                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                     <select id="degree" class="form-control" name="private-broadcast-degree">
                                         <option value="">Select</option>
                                         <?php foreach ($degree as $row) { ?>
@@ -60,8 +60,8 @@
                                 </div>
                             </div>
                             <div class="form-group" id="private-broadcast-course">
-                                <label class="col-sm-3 control-label">Branch<span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label">Branch<span style="color:red">*</span></label>
+                                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                     <select id="course" class="form-control" name="private-broadcast-course">
                                         <option value="">Select</option>
                                     </select>
@@ -69,8 +69,8 @@
                                 </div>
                             </div>
                             <div class="form-group" id="private-broadcast-batch">
-                                <label class="col-sm-3 control-label">Batch<span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label">Batch<span style="color:red">*</span></label>
+                                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                     <select id="batch" class="form-control" name="private-broadcast-batch">
                                         <option value="">Select</option>
                                     </select>
@@ -78,8 +78,8 @@
                                 </div>
                             </div>
                             <div class="form-group" id="private-broadcast-semester">
-                                <label class="col-sm-3 control-label">Semester<span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label">Semester<span style="color:red">*</span></label>
+                                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                     <select id="semester" class="form-control" name="private-broadcast-course">
                                         <option value="">Select</option>
                                     </select>
@@ -88,20 +88,22 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Stream Name<span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label">Stream Name<span style="color:red">*</span></label>
+                                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                     <input id="broadcast-name" type="text" class="form-control" placeholder="" name="title"/>
                                     <label style="display:none; color: red" id="name_error"></label>
                                 </div>
                             </div>
 
                             <div class="form-group">
+
                                 <div class="col-sm-offset-3 col-sm-5">
+                                <div class="col-lg-offset-3 col-md-offset-3  col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                     <button id="setup-new-broadcast" class="btn btn-primary vd_bg-primary">Setup New Broadcast</button>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <section class="col-md-5 col-md-offset-3">
+                                <section class="col-md-5 col-lg-5 col-sm-6 col-xs-12 col-md-offset-3 col-lg-offset-3">
                                     <span>
                                         Private ??
                                         <a href="" target="_blank" title="Open this link in new tab. Then your room will be private!">

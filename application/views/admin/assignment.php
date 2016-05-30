@@ -163,11 +163,18 @@
 
                         <!-- tab content -->
                         <div class="tab-pane fade" id="submittedlist">
+<<<<<<< HEAD
+                              <!-- <div class="form-group col-sm-2">
+                                    <label><?php echo ucwords("Course");?></label>
+                                    <select class="form-control sfilter-rows" id="sfilter3" data-filter="3" data-type="course">
+                                        <option value="">All</option>
+=======
                             <form id="assignment-search-submitted" action="#" class="form-groups-bordered validate">
                                 <div class="form-group col-sm-3">
                                     <label><?php echo ucwords("department"); ?></label>
                                     <select class="form-control" id="scourses" name="degree_search">
                                         <option value="">Select</option>
+>>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
                                         <?php foreach ($degree as $row) { ?>
                                             <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
                                         <?php } ?>
@@ -192,6 +199,14 @@
 
                                     </select>
                                 </div>
+<<<<<<< HEAD
+                                 <label style="margin-left: 40px; margin-top: 30px;">OR</label>
+                              -->
+                                      
+                                     <div class="panel-body table-responsive" id="getsubmit">
+                                    <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="sub-tables">
+                                        <thead>
+=======
                                 <div class="form-group col-sm-2" style="display: none;">
                                     <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
                                     <select class="form-control filter-rows" name="divclass" id="sfilterclass" >
@@ -215,6 +230,7 @@
                             <div class="panel-body table-responsive" id="getsubmit">
                                 <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="sub-tables">
                                     <thead>
+>>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
                                         <tr>
                                             <th><div>#</div></th>												
                                             <th><div><?php echo ucwords("Assignment Name"); ?></div></th>

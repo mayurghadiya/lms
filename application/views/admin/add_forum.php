@@ -2,7 +2,7 @@
    $degree = $this->db->get('degree')->result_array();
         $courses = $this->db->get('course')->result_array();
         $semesters = $this->db->get('semester')->result_array();?>
-<div class=row>                      
+<div class=row>                 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
