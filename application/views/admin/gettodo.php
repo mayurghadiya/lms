@@ -50,7 +50,7 @@
                 });
                 
                    
-        $(".todo-close").click(function(){
+        $(".close").click(function(){
             var id = $(this).val();
                 var dataString = "id=" + id;
             $.ajax({
@@ -75,7 +75,8 @@
                        {
                            $("#todo-addform").hide();
                            $("#updateformhtml").html(response);                           
-                            $(this).closest('.todo-close').css('pointer-events','none'); 
+                           $('.todo-close_box').css('pointer-events', 'none');
+                            //$(this).closest('.todo-close').css('pointer-events','none'); 
                        }
                     });
                  });

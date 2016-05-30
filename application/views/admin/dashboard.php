@@ -736,7 +736,7 @@ $this->load->helper('report_chart');
                             <!-- .todo-widget -->
                             <div class=todo-header>
                                 <div id="updateformhtml"></div>
-                                <div class="todo-addform todo-search" id="todo-addform">
+                                <div class="todo-addform" id="todo-addform">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <h4 class=todo-period>Add New ToDo</h4>
@@ -860,7 +860,8 @@ $this->load->helper('report_chart');
     $(document).ajaxComplete(function () {
     $("#wait").css("display", "none");
     });
-    $(".todo-close").click(function () {
+    $(".close").click(function () {
+        alert($(this).val());
     var id = $(this).val();
     var dataString = "id=" + id;
     $.ajax({
@@ -963,7 +964,7 @@ $this->load->helper('report_chart');
             {
             $("#todo-addform").hide();
             $("#updateformhtml").html(response);
-            $('.todo-close').css('pointer-events', 'none');
+            $('.todo-close_box').css('pointer-events', 'none');
             }
     });
     });
