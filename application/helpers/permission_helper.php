@@ -36,7 +36,10 @@ if (!function_exists('user_permission')) {
         $CI = & get_instance();
 //        echo $CI->uri->segment(2);
 //        exit;
-        $run = "FIND_IN_SET('".$CI->session->userdata('login_user_id')."', user_role)";
+        if($CI->uri->segment(2)!="")
+        {
+         
+            $run = "FIND_IN_SET('".$CI->session->userdata('login_user_id')."', user_role)";
         $CI->db->where($run);
         $CI->db->where('user_type',$CI->session->userdata('login_type'));
         $user_role_query=$CI->db->get('group')->result_array();
@@ -52,34 +55,20 @@ if (!function_exists('user_permission')) {
                         $final_module_assgin[] = $module_role_query_final[0]['module_name_file'];
                  //}
         }
-//        echo $CI->uri->segment(2);
 //        echo "<pre>";
 //        print_r($final_module_assgin);
-//        
-//        echo array_search($CI->uri->segment(2),$final_module_assgin);
-//        
-//        
-//        
-//        $result = $CI->db->get_where('modules', [
-//        'user_type' => $CI->session->userdata('login_type')
-//        ])->result_array();
-//        
-//        foreach ($result as $r)
-//        {
-//            $module_name_list[]=$r['module_name_file'];
-////        }
-
-
-//        echo "<pre>";
-//        print_r($final_module_assgin);
+//        exit;
         if(!in_array($CI->uri->segment(2),$final_module_assgin))
         {
             //echo 'iffffffff';
-           $url=base_url().'index.php?'.$CI->session->userdata('login_type').'/dashboard';
+           $url=base_url().$CI->session->userdata('login_type').'/dashboard';
            echo "<script>alert('You haven not permission of this module by admin'); window.location.href ='".$url."'</script>";
         }
 //        echo $CI->uri->segment(2);
 //       exit;
+
+        }
+        
     }
 
 }

@@ -39,13 +39,14 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Type of Users"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-6 controls">
-                                <select id="user_type" name="user_type" class="form-control select2" >
+                                <select id="user_type" name="user_type" class="form-control " >
                                     <option value="">Select User Type</option>
                                 </select>
                                 <div id="test"></div>
                                 <label for="user_type" class="error"></label>
                             </div>
                         </div>
+                       	
                         <div class="row">
                             <div class="col-sm-5">
                                 <select name="from[]" id="multiselect" class="form-control" size="8" multiple="multiple">

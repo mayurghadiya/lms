@@ -11,6 +11,11 @@ class Student extends MY_Controller {
         $this->load->model('Student/Student_model');
           $notification = show_notification($this->session->userdata('student_id'));
         $this->session->set_userdata('notifications', $notification);
+        
+          if (!$this->input->is_ajax_request()) {
+            $this->load->helper('permission');        
+             user_permission();
+        }
     }
 
     function index() {
