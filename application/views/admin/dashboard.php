@@ -590,9 +590,8 @@
                              <form><input class=form-control name=search placeholder="Search for todo ..."></form>
                         </div>
                         <div class=todo-add><a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a></div>
-                        <div id="updateformhtml">
-                      </div>
-                          <div class="todo-addform todo-search" id="todo-addform">
+                        <div id="updateformhtml"></div>
+                         <div class="todo-addform todo-search" id="todo-addform">
                           <div class="row">
                                 <div class="col-lg-12">
                                     <h4 class=todo-period>Add New ToDo</h4>
@@ -626,15 +625,14 @@
                                         </div>
                                      </form>
                                 </div>                        
-                          </div>
-                            
-
-                          </div>
+                          </div>                          
+                        </div>
                    </div>
                    
                    <h4 class=todo-period>To Do List</h4>
-                   <div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading..</div>
-                   <ul class=todo-list id=today>
+                   <div id="wait" class="loading_img"><img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading...
+                   </div>
+                   <ul class="todo-list" id="today">
                       <?php foreach ($todolist as $todo) { ?>  
                       <li class="todo-task-item <?php
                          if ($todo->todo_status == "0") {
@@ -646,10 +644,14 @@
                                 echo "checked=''";
                             }
                             ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
-                         <span class="todo-category label label-primary"><?php echo $todo->todo_datetime; ?></span>
                          <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
-                         <button type=button class="label label-primary updateclick" value="<?php echo $todo->todo_id; ?>">Edit</button>
-                         <button type=button class="close todo-close" value="<?php echo $todo->todo_id; ?>">&times;</button>
+                         <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo $todo->todo_datetime; ?></div>
+                         <div class="updateclick_box">
+                         <button type=button class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                         </div>
+                         <div class="todo-close_box">
+                         <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
+                         </div>
                       </li>
                       <?php } ?>
                    </ul>
@@ -657,10 +659,8 @@
              </div>
          <!-- End .todo-widget -->
                 </div>
-            </div>
-        
+            </div>        
         </div>
-
     </div>
     <!-- col-lg-12 end here -->
 </div>

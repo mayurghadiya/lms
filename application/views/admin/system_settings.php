@@ -1,7 +1,7 @@
 <!-- Start .row -->
 <div class=row>                      
 
-    <div class=col-lg-12>
+    <div class="col-lg-12">
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
@@ -20,15 +20,15 @@
                     <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
                 </div>
                 <div class="form-group">
-                    <label  class="col-sm-3 control-label"><?php echo ucwords("System Name"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label  class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("System Name"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input type="text" class="form-control" name="system_name" id="system_name" value="<?php echo $this->db->get_where('system_setting', array('type' => 'system_name'))->row()->description; ?>">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label  class="col-sm-3 control-label"><?php echo ucwords("Phone"); ?><span style="color:red">*</span></label>
+                    <label  class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Phone"); ?><span style="color:red">*</span></label>
 
-                    <div class="col-sm-9">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div style="margin-left: -15px" class="col-sm-3 p-l-0">
                             <select name="countryCode" id="countryCode" class="form-control">  
                                 <option data-countryCode="DZ" value="213">Algeria (+213)</option>
@@ -248,32 +248,32 @@
 
                             </select>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <input style="margin-left: -10px" type="text" class="form-control" name="phone" id="system_phone" value="<?php echo $this->db->get_where('system_setting', array('type' => 'phone'))->row()->description; ?>">
                         </div>                                                    
                     </div>
                 </div>
                 <div class="form-group hidden">
-                    <label  class="col-sm-3 control-label"><?php echo ucwords("Paypal Email"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label  class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Paypal Email"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input type="text" class="form-control" name="paypal_email" id="paypal_email" value="<?php echo $this->db->get_where('system_setting', array('type' => 'paypal_email'))->row()->description; ?>">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label  class="col-sm-3 control-label"><?php echo ucwords("Currency"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label  class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Currency"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input type="text" class="form-control" name="currency" id="currency" value="<?php echo $this->db->get_where('system_setting', array('type' => 'currency'))->row()->description; ?>">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label  class="col-sm-3 control-label"><?php echo ucwords("System Email"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label  class="ccol-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("System Email"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input type="text" class="form-control" name="system_email" id="system_email" value="<?php echo $this->db->get_where('system_setting', array('type' => 'system_email'))->row()->description; ?>">
                     </div>
                 </div>	
                 <div class="form-group hidden">
-                    <label for="field-1" class="col-sm-3 control-label"><?php echo ucwords("Photo"); ?></label>                          
-                    <div class="col-sm-5">
+                    <label for="field-1" class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Photo"); ?></label>                          
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
                             <div class="fileinput-new thumbnail" style="width: 100px; height: 100px;" data-trigger="fileinput">
                                 <img src="<?php echo $this->Crud_model->get_image_url('system', $this->session->userdata('admin_id')); ?>" id="blah" alt="...">
@@ -288,7 +288,7 @@
                     </div>
                 </div>	 	
                 <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
+                    <div class="col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <button type="submit" class="btn btn-primary"><?php echo ucwords("save"); ?></button>
                     </div>
                 </div>

@@ -14,8 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_student/');" href="#" id="navfixed" data-toggle="tab">Add New Student          
-                </a>
+                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_student/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Student </a>
                 <form id="frmstudentlist" name="frmfilterlist" action="#" enctype="multipart/form-data" class="form-vertical form-groups-bordered validate">
                     <div class="form-group col-sm-2">
                         <label ><?php echo ucwords("department"); ?><span style="color:red">*</span></label>

@@ -14,9 +14,13 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addexam');" data-toggle="modal">Add New Exam</a>
+
+                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addexam');" data-toggle="modal"><i class="fa fa-plus"></i> Exam</a>
                 <form id="exam-search" action="#" class="form-groups-bordered validate">
-                    <div class="form-group col-sm-3">
+                    <div class="form-group col-sm-3">                
+                <div class="row filter-row">
+				<form id="exam-search" action="#" class="form-groups-bordered validate">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label><?php echo ucwords("department"); ?></label>
                         <select class="form-control" id="search-degree"name="degree">
                             <option value="">Select</option>
@@ -25,30 +29,31 @@
                             <?php } ?>
                         </select>
                     </div>
-                    <div class="form-group col-sm-3">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label><?php echo ucwords("Branch"); ?></label>
                         <select id="search-course" name="course" data-filter="4" class="form-control">
                             <option value="">Select</option>
                         </select>
                     </div>
-                    <div class="form-group col-sm-3">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label><?php echo ucwords("Batch"); ?></label>
                         <select id="search-batch" name="batch" data-filter="5" class="form-control">
                             <option value="">Select</option>
                         </select>
                     </div>                                
-                    <div class="form-group col-sm-2">
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                         <label> <?php echo ucwords("Semester"); ?></label>
                         <select id="search-semester" name="semester" data-filter="6" class="form-control">
                             <option value="">Select</option>
 
                         </select>
                     </div>
-                    <div class="form-group col-sm-1">
+                    <div class="form-group col-lg-1 col-md-1 col-sm-2 col-xs-2">
                         <label>&nbsp;</label><br/>
                         <input id="search-exam-data" type="button" value="Go" class="btn btn-info vd_bg-green"/>
                     </div>
                 </form>
+				</div>
 
                 <div id="all-exam-result">
                     <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>

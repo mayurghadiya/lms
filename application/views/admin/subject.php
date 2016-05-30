@@ -15,7 +15,7 @@
                             </div>
                         </div>						-->
             <div class="panel-body table-responsive">
-                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsubject/');" href="#" id="navfixed" data-toggle="tab">Add New Subject</a>
+                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsubject/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Subject</a>
                 <table class="table table-striped table-responsive table-bordered" id="datatable-list">
                     <thead>
                         <tr>

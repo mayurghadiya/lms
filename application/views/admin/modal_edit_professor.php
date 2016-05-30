@@ -14,77 +14,77 @@ $degree_list = $this->db->get('degree')->result();
             <?php echo form_open(base_url() . 'admin/professor/update/' . $professor->professor_id, array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'professor-form', 'enctype' => 'multipart/form-data', 'target' => '_top')); ?>
             <div class="padded">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("professor name"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("professor name"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input id="professor-name" class="form-control" type="text" name="professor_name" required=""
                                value="<?php echo $professor->name; ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("email"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("email"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input id="email" class="form-control" type="email" name="email" required=""
                                value="<?php echo $professor->email; ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("password"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("password"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input id="password" class="form-control" type="password" name="password" required=""
                                value="<?php echo $professor->real_pass; ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("mobile"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("mobile"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input id="mobile" class="form-control" type="text" name="mobile" required=""
                                value="<?php echo $professor->mobile; ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("address"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("address"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <textarea id="address" class="form-control" name="address" required=""><?php echo $professor->address; ?></textarea>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("city"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("city"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input id="city" class="form-control" type="text" name="city" required=""
                                value="<?php echo $professor->city; ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("zip code"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("zip code"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input id="zip-code" class="form-control" type="text" name="zip_code" required=""
                                value="<?php echo $professor->zip; ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("date of birth"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("date of birth"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input id="date-of-birth" class="form-control datepicker-normal" type="text" name="dob" required=""
                                value="<?php echo $professor->dob; ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("occupation"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("occupation"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input id="occupation" class="form-control" type="text" name="occupation" required=""
                                value="<?php echo $professor->occupation; ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("designation"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("designation"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <input id="designation" class="form-control" type="text" name="designation" required=""
                                value="<?php echo $professor->designation; ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <select id="degree" name="degree" class="form-control" required="">
                             <option value="">Select</option>
                             <?php foreach ($degree_list as $degree) { ?>
@@ -95,28 +95,28 @@ $degree_list = $this->db->get('degree')->result();
                     </div>	
                 </div>                        
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("branch"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("branch"); ?><span style="color:red">*</span></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <select id="branch" name="branch" class="form-control" required="">
                             <option value="">Select</option>                                   
                         </select>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("photo"); ?></label>
-                    <div class="col-sm-5">
-                        <input id="photo" class="form-control coverimage2" type="file" name="userfile" accept="image/*"/>
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("photo"); ?></label>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <input id="photo" class="coverimage2" type="file" name="userfile" accept="image/*"/>
                     </div>	
-                    <div id="image_container1"><img class='img-thumbnail' style='width:200px;margin-left:50px;' src='<?php echo base_url('uploads/professor/' . $professor->image_path) ?>' ></div>
+                    <div id="image_container1" class="col-lg-2 col-md-2 col-sm-6 col-xs-12"><img class='img-thumbnail' src='<?php echo base_url('uploads/professor/' . $professor->image_path) ?>' ></div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ucwords("about"); ?></label>
-                    <div class="col-sm-5">
+                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("about"); ?></label>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <textarea id="about" class="form-control" name="about"></textarea>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-5">
+                    <div class="col-md-offset-3 col-sm-offset-6 col-lg-offset-3 col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("update"); ?></button>
                     </div>
                 </div>

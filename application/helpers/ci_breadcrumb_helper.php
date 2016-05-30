@@ -7,6 +7,7 @@ if (!function_exists('create_breadcrumb')) {
         $i = 1;
         $uri = $ci->uri->segment($i);
         $link = '<ul class="breadcrumb1"><li>You are here:</li>';
+        $link.='<li><a title="" class="tip" href="' . base_url() .'" data-original-title="Home"><i class="s16 icomoon-icon-screen-2"></i></a></li>';
 
         while ($uri != '') {
             $prep_link = '';
@@ -15,16 +16,15 @@ if (!function_exists('create_breadcrumb')) {
             }
 
             if ($ci->uri->segment($i + 1) == '') {
-                $link.='<li><a title="" class="tip" href="index.php" data-original-title="back to dashboard"><i class="s16 icomoon-icon-screen-2"></i></a></li>';
+                
                 $link.='<span class="divider"><i class="s16 icomoon-icon-arrow-right-3"></i></span>';
-                $link.='<li><a href="' . site_url($prep_link) . '">';
-                $link.=$ci->uri->segment($i) . '</a></li> ';
+                $link.='<li>';
+                $link .= ucwords(str_replace('_', ' ', $ci->uri->segment($i))) . '</a></li> ';
             } else {
                 $link.='<span class="divider"><i class="s16 icomoon-icon-arrow-right-3"></i></span>';
-                $link.='<li><a href="' . site_url($prep_link) . '">';
-                $link.=$ci->uri->segment($i) . '</a></li> ';
+                $link.='<li><a class="tip" data-original-title="' . ucwords($ci->uri->segment($i)) . '" href="' . site_url($prep_link) . '">';
+                $link .= ucwords($ci->uri->segment($i)) . '</a></li> ';
             }
-
             $i++;
             $uri = $ci->uri->segment($i);
         }

@@ -15,7 +15,7 @@
                 <div class=you>
                     <ul class=list-unstyled>
                         <li>
-                            <h3>Lore Brain</h3>
+                            <h4>Lore Brain</h4>
                         </li>
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Address:</strong> 207, campus corner 2 , Opp. Prahladnagar Garden, <br/><span style="margin-left: 25px;"></span>Anandnagar road, Prahladnagar, Ahmedabad 380015</li>
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>City: </strong>Ahmedabad</li>
@@ -28,7 +28,7 @@
                 <div class=client>
                     <ul class=list-unstyled>
                         <li>
-                            <h3>Student Details</h3>
+                            <h4>Student Details</h4>
                         </li>
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Student Name:</strong> <?php echo $invoice->std_first_name . ' ' . $invoice->std_last_name; ?></li>
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Email: </strong><?php echo $invoice->email; ?><br></li>
@@ -71,8 +71,10 @@
                 </div>
             </div>
         </div>
+		
         <!-- End .panel -->
     </div>
     <!-- col-md-12 end here -->
 </div>
 <!-- End .row -->
+

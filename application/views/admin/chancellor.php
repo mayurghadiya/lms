@@ -14,7 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addchanceller/');" href="#" id="navfixed" data-toggle="tab">Add Chancellor</a>
+                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addchanceller/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Chancellor</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
