@@ -3,7 +3,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel panel-default toggle">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title><?php echo $title; ?></h4>
@@ -14,7 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addprofessor');" data-toggle="modal">Add New Professor</a>
+                <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addprofessor');" data-toggle="modal"><i class="fa fa-plus"></i> New Professor</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>

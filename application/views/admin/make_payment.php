@@ -14,7 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addpayment');" data-toggle="modal">Add Make Payment</a>
+                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addpayment');" data-toggle="modal"><i class="fa fa-plus"></i> Make Payment</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -43,7 +43,7 @@
                                 <td><?php echo date('M d, Y', strtotime(strtotime($row->paid_created_at))); ?></td>
                                 <td class="menu-action">
                                     <a href="<?php echo base_url('admin/invoice/' . $row->fees_structure_id); ?>" target="_blank"><span class="label label-primary mr6 mb6">View</span></a>
-                                    <a target="_blank" href="<?php echo base_url('admin/invoice_print/' . $row->student_fees_id); ?>"><span class="label label-success mr6 mb6">Download</span></a>
+                                    <a target="_blank" href="<?php echo base_url('admin/invoice_print/' . $row->student_fees_id); ?>"><span class="label label-danger mr6 mb6">Download</span></a>
                                 </td>
                             </tr>
                         <?php } ?>														

@@ -3,7 +3,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel panel-default toggle">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title><?php echo $title; ?></h4>
@@ -14,9 +14,10 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <div class="row">
+                <div class="row filter-row">
+				<form class="form-groups-bordered validate">
                     <div class="col-md-12">
-                        <div class="form-group col-sm-4 validating">
+                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
                             <label><?php echo ucwords("department"); ?></label>
                             <select id="degree" name="degree" class="form-control">
                                 <option value="">Select</option>
@@ -25,31 +26,31 @@
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="form-group col-sm-4 validating">
+                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 col-xs-12 validating">
                             <label><?php echo ucwords("Branch"); ?></label>
                             <select id="course" name="course" class="form-control">
                                 <option value="">Select</option>
                             </select>
                         </div>
-                        <div class="form-group col-sm-4 validating">
+                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
                             <label><?php echo ucwords("Batch"); ?></label>
                             <select id="batch" name="batch" class="form-control">
                                 <option value="">Select</option>
                             </select>
                         </div>
-                        <div class="form-group col-sm-4 validating">
+                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
                             <label><?php echo ucwords("Semester"); ?></label>
                             <select id="semester" name="semester" class="form-control">
                                 <option value="">Select</option>                                                    
                             </select>
                         </div>
-                        <div class="form-group col-sm-4 validating">
+                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
                             <label><?php echo ucwords("Exam"); ?></label>
                             <select id="exam" name="exam" class="form-control">
                                 <option value="">Select</option>
                             </select>
                         </div>
-                        <div class="form-group col-sm-4 validating">
+                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
                             <label><?php echo ucwords("Students"); ?></label>
                             <select id="student" name="student" class="form-control">
                                 <option value="">All</option>
@@ -60,6 +61,7 @@
                             </select>
                         </div>
                     </div>
+					</form>
                 </div>
 
                 <?php

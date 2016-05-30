@@ -33,7 +33,7 @@ class Admin extends MY_Controller {
         $this->data['male_vs_female_course_wise'] = male_vs_female_course_wise();
         $this->data['title'] = 'Admin Dashboard';
         $this->calendar_json();
-         $this->data['todolist'] = $this->Crud_model->get_todo();
+        $this->data['todolist'] = $this->Crud_model->get_todo();
         $this->__site_template('admin/dashboard', $this->data);
     }
 
@@ -4526,7 +4526,7 @@ class Admin extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
+                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
@@ -4557,7 +4557,7 @@ class Admin extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
+                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
@@ -5725,7 +5725,7 @@ class Admin extends MY_Controller {
             $title = $this->input->post('title');
             $todo_date = $this->input->post('todo_date');
             $todo_time = $this->input->post('todo_time');
-            $datetime = $todo_date.' '.$todo_time;
+            $datetime = $todo_date . ' ' . $todo_time;
             $datetime = strtotime($datetime);
             $datetime = date('Y-m-d H:i:s', $datetime);
 
@@ -5756,8 +5756,7 @@ class Admin extends MY_Controller {
         }
     }
 
-    function todoupdateform($param= '')
-    {
+    function todoupdateform($param = '') {
         $this->data['todolist'] = $this->Crud_model->gettododata($param);
         $this->load->view("admin/todoupdateform", $this->data);
     }
@@ -5773,7 +5772,7 @@ class Admin extends MY_Controller {
 
             $datetime = date('Y-m-d H:i:s', $datetime);
 
-            $datetime = date('Y-m-d H:i:s',$datetime);
+            $datetime = date('Y-m-d H:i:s', $datetime);
             $data['todo_role'] = $this->session->userdata('login_type');
             $data['todo_role_id'] = $this->session->userdata('login_user_id');
             $data['todo_datetime'] = $datetime;
@@ -5820,6 +5819,10 @@ class Admin extends MY_Controller {
         }
         //$this->data['page'] = 'search_result';
         $this->__site_template('admin/search_result', $this->data);
+    }
+
+    function demo() {
+        $this->load->view('highchart');
     }
 
 }
