@@ -90,7 +90,7 @@
             },
             messages: {
                     group_name: "Select group name",				
-                    'module_name[]': "Module name required ",			
+                    'module_name[]': "Select module",			
             }
     });
     });
