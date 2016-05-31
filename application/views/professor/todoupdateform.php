@@ -15,7 +15,7 @@
                         <div class=form-group>
                             <label class="control-label col-lg-4">Task Date</label>
                              <div class="col-sm-8">
-                                 <input id="basic-datepickeredit" type="text" name="tado_date" class="form-control"  value="<?php echo date("m/d/Y",  strtotime($todolist->todo_datetime)); ?>" >
+                                 <input id="basic-datepickeredit" type="text" name="tado_date" class="form-control"  value="<?php echo date("m/d/Y",  strtotime($todolist->todo_datetime)); ?>" readonly="" >
                             </div>                           
                         </div>
 
@@ -24,7 +24,7 @@
                             <div class="col-sm-8">
                                 <div class="input-group bootstrap-timepicker">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                    <input id="minute-step-timepickeredit" name="todo_time" type="text" class="form-control" value="<?php echo date("h:i A",  strtotime($todolist->todo_datetime)); ?>" >
+                                    <input id="minute-step-timepickeredit" name="todo_time" type="text" class="form-control" value="<?php echo date("h:i A",  strtotime($todolist->todo_datetime)); ?>"  readonly="">
                                 </div>
                             </div>
                         </div>

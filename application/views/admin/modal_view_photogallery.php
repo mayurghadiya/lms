@@ -64,7 +64,7 @@ function removeimg(image , id , img )
                                 $img = explode(".",$images[$i]);
                             ?>           
                                      <div class="gallery_img" id="<?php echo $img[0]; ?>">
-                                         <a href="#" id="remove_gallery_img" data-toggle="tooltip" data-placement="top" class="removeimgbtn" onclick="removeimg('<?php echo $images[$i]; ?>','<?php echo $param2; ?>','<?php echo $img[0]; ?>')"  data-original-title="Remove Image"  ><i class="fa fa-times"></i></a>
+                                         <a href="#" id="remove_gallery_img" data-toggle="tooltip" data-placement="top" class="removeimgbtn" onclick="removeimg('<?php echo $images[$i]; ?>','<?php echo $param2; ?>','<?php echo $img[0]; ?>')"  data-original-title="Remove Image"  ><i class="icomoon-icon-cancel-circle"></i></a>
                                          <img src="<?php echo base_url(); ?>uploads/photogallery/<?php echo $images[$i]; ?>"  height="100" width="100"  ></div>
                             <?php } ?>
                                      

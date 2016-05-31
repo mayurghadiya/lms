@@ -750,7 +750,7 @@ $this->load->helper('report_chart');
                                                 <div class=form-group>
                                                     <label class="control-label col-lg-4">Task Date</label>
                                                     <div class="col-sm-8">
-                                                        <input id="basic-datepicker" type="text" name="tado_date" class="form-control">
+                                                        <input id="basic-datepicker" type="text" name="tado_date" class="form-control" readonly="">
                                                     </div>
                                                 </div>
                                                 <div class=form-group>
@@ -758,7 +758,7 @@ $this->load->helper('report_chart');
                                                     <div class="col-sm-8">
                                                         <div class="input-group bootstrap-timepicker">
                                                             <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                                            <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8">
+                                                            <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8" readonly="">
                                                         </div>
                                                     </div>
                                                 </div>
