@@ -24,6 +24,7 @@
         <div class=form-group>
 
             <input type="button" class="btn btn-primary" name="submit" value="Update Task" id="updatebutton" >
+            <input type="button" class="btn btn-primary" name="submit" value="Close" id="updatecloseform">
         </div>
     </form>
 </div>
@@ -42,6 +43,9 @@
             minDate: '0 days',
             autoclose: true,
         });
+        $("#updatecloseform").click(function () {
+    $("#todo-updateform").hide(500);
+    });
 
         $('#minute-step-timepickeredit').timepicker({
             upArrowStyle: 'fa fa-angle-up',

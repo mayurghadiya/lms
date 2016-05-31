@@ -32,6 +32,7 @@
                         <div class=form-group>
                             <div class="col-sm-offset-4 col-sm-8">
                                 <input type="button" class="btn btn-primary" name="submit" value="Update Task" id="updatebutton" >                                
+                                <input type="button" class="btn btn-primary" name="submit" value="Close" id="updatecloseform">
                             </div>
                         </div>
 
@@ -62,6 +63,9 @@
             minuteStep: 30,
             autoclose:true,
         });
+         $("#updatecloseform").click(function () {
+    $("#todo-updateform").hide(500);
+    });
         
          $("#frmtodoedit #updatebutton").click(function ()
         {
