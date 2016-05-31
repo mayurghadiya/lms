@@ -128,6 +128,44 @@ $degree_list = $this->db->get('degree')->result();
     <!-- col-lg-12 end here -->
     <script type="text/javascript">
 
+ $("#professor-form").validate({
+             rules: {
+                professor_name: "required",
+                email: "required",
+                password: "required",
+                mobile: "required",
+                address: "required",
+                city: "required",
+                zip_code: "required",
+                dob: "required",
+                occupation: "required",
+                designation: "required",
+                degree: "required",
+                branch: "required",
+                userfile:{
+                        extension:'gif|jpg|png|jpeg', 
+                    },
+                
+            },
+            messages: {
+                 professor_name: "Enter professor name",
+                email: "Enter email",
+                password: "Enter password",
+                mobile: "Enter mobile",
+                address: "Enter address",
+                city: "Enter city",
+                zip_code: "Enter zipcode",
+                dob: "Select date of birth",
+                occupation: "Enter occupation",
+                designation: "Enter designation",
+                degree: "Select department",
+                branch: "Select branch",
+                userfile:{
+                        extension:'Only gif,jpg,png file is allowed!', 
+                    },
+            }
+        });
+
         $(document).ready(function () {
 
             $('#branch').find('option').remove().end();
