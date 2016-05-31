@@ -20,32 +20,32 @@ foreach ($edit_data as $row):
                             <form name="frmstudentedit" id="frmstudentedit" method="post" action="<?= base_url() ?>admin/student/do_update/<?php echo $row['std_id'] ?>" enctype="multipart/form-data" class="form-horizontal form-groups-bordered validate"> 
 
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("First Name"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("First Name"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="f_name" id="f_name" value="<?php echo $row['std_first_name']; ?>"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Last Name"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Last Name"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="l_name" id="l_name" value="<?php echo $row['std_last_name'] ?>"/>
                                     </div>
                                 </div>												
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Email Id"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Email Id"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="email_id" id="email_id" value="<?php echo $row['email'] ?>"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Password"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Password"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <input type="password" class="form-control" name="password" id="password"  value="<?php echo $row['real_pass'] ?>" />
                                     </div>
                                 </div>	
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Gender"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Gender"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <?php
                                         $male = "";
                                         $female = "";
@@ -60,51 +60,51 @@ foreach ($edit_data as $row):
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Parent Name"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Parent Name"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="parentname" id="parentname" value="<?php echo $row['parent_name'] ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Parent Contact No"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Parent Contact No"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="parentcontact" id="parentcontact" value="<?php echo $row['parent_contact'] ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Parent Email Id"); ?><span style="color:red"></span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Parent Email Id"); ?><span style="color:red"></span></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="parent_email_id" id="parent_email_id" value="<?php echo $row['parent_email'] ?>" />
                                         <span id="emailerror" style="color: red"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Address"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Address"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <textarea class="form-control" name="address" id="address"><?php echo $row['address'] ?></textarea>
                                     </div>
                                 </div>	
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("City"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("City"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="city" id="city" value="<?php echo $row['city'] ?>"/>
                                     </div>
                                 </div>	
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Zip"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Zip"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="zip" id="zip" value="<?php echo $row['zip'] ?>"/>
                                     </div>
                                 </div>	
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Birth Date"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Birth Date"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="birthdate1" id="basic-datepicker" value="<?php echo $row['std_birthdate'] ?>" />
                                     </div>
                                 </div>	
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Marital Status"); ?></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Marital Status"); ?></label>
+                                    <div class="col-sm-8">
                                         <?php
                                         $single = "";
                                         $married = "";
@@ -130,8 +130,8 @@ foreach ($edit_data as $row):
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <select name="degree" class="form-control" id="degree2">
                                             <option value="">Select department</option>
                                             <?php
@@ -151,8 +151,8 @@ foreach ($edit_data as $row):
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <select name="course" class="form-control" id="course2">
                                             <option value="">Select branch</option>
                                             <?php
@@ -174,8 +174,8 @@ foreach ($edit_data as $row):
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <select name="batch" class="form-control" id="batch2">
                                             <option value="">Select batch</option>
                                             <?php
@@ -197,8 +197,8 @@ foreach ($edit_data as $row):
                                     </div>
                                 </div>	
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <select name="semester" class="form-control"  id="semester1">
                                             <option value="">Select semester</option>
                                             <?php
@@ -219,8 +219,8 @@ foreach ($edit_data as $row):
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("class"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("class"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <select name="class" class="form-control" id="class1">
                                             <option value="">Select class</option>
                                             <?php
@@ -242,38 +242,38 @@ foreach ($edit_data as $row):
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Mobile No"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Mobile No"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="mobileno" id="mobileno"  value="<?php echo $row['std_mobile'] ?>"/>
                                     </div>
                                 </div>	
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Facebook URL"); ?></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Facebook URL"); ?></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="facebook" id="facebook" value="<?php echo $row['std_fb'] ?>"/>
                                     </div>
                                 </div>	
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Twitter URL"); ?></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Twitter URL"); ?></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="twitter" id="twitter" value="<?php echo $row['std_twitter'] ?>"/>
                                     </div>
                                 </div>	
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Group "); ?></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Group "); ?></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="group" id="group" placeholder="readonly" readonly value="<?php echo $row['group_id'] ?>"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("User Type"); ?></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("User Type"); ?></label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="usertype" id="usertype" placeholder="readonly" readonly value="<?php echo $row['user_type'] ?>" />
                                     </div>
                                 </div>	
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Admission Type"); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Admission Type"); ?><span style="color:red">*</span></label>
+                                    <div class="col-sm-8">
 
                                         <select name="admissiontype" class="form-control" id="admissiontype">
                                             <option value="">Select admission type</option>
@@ -297,8 +297,8 @@ foreach ($edit_data as $row):
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("File Upload"); ?></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("File Upload"); ?></label>
+                                    <div class="col-sm-8">
                                         <input type="hidden" name="txtoldfile" id="txtoldfile" value="<?php echo $row['profile_photo']; ?>" />
                                         <input type="file" class="form-control" name="profilefile" id="profilefile" />
 
@@ -307,13 +307,13 @@ foreach ($edit_data as $row):
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Description"); ?></label>
-                                    <div class="col-sm-5">
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Description"); ?></label>
+                                    <div class="col-sm-8">
                                         <textarea class="form-control" name="std_about" id="std_about" ><?php echo $row['std_about'] ?></textarea>
                                     </div>
                                 </div>	
                                 <div class="form-group">
-                                    <div class="col-sm-offset-3 col-sm-5">
+                                    <div class="col-sm-offset-4 col-sm-8">
                                         <button type="submit" class="submit btn btn-info vd_bg-green"><?php echo ucwords("Update"); ?></button>
                                     </div>
                                 </div>

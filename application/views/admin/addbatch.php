@@ -23,14 +23,14 @@ $semesters = $this->db->get('semester')->result_array();
                     <?php echo form_open(base_url() . 'admin/batch/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmassignment', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                     <div class="padded">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("batch name"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("batch name"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="b_name" id="b_name"/>
                             </div>
                         </div>	
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("course"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("course"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select id="degree" name="degree[]" class="form-control" multiple>
                                     <option value="default">Select Course</option>
                                     <?php foreach ($degree as $srow) { ?>
@@ -41,16 +41,16 @@ $semesters = $this->db->get('semester')->result_array();
                             </div>	
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("branch"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("branch"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select id="course" name="course[]" class="form-control" multiple>
 
                                 </select>
                             </div>	
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("status"); ?></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("status"); ?></label>
+                            <div class="col-sm-8">
                                 <select name="batch_status" class="form-control">
                                     <option value="1">Active</option>
                                     <option value="0">Inactive</option>	
@@ -61,7 +61,7 @@ $semesters = $this->db->get('semester')->result_array();
 
                         </div>	
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" id="btnadd" class="btn btn-info vd_bg-green"><?php echo ucwords("Add "); ?></button>
                             </div>
                         </div>
