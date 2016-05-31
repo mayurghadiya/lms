@@ -32,7 +32,7 @@
                             foreach ($inbox as $row) {
                                 $counter++;
                                 ?>
-                                <tr class="<?php if ($row->read == 0) echo 'info'; ?>">
+                                   <tr class="<?php if ($row->read == 0) echo 'info'; ?>">
                                     <td style="width:20px"><div class="vd_checkbox">
                                             <input type="checkbox" id="checkbox-<?php echo $counter; ?>" class="checkbox-group">
                                             <label for="checkbox-<?php echo $counter; ?>" ></label>
@@ -47,19 +47,14 @@
                                         <a href="<?php echo base_url('professor/inbox_email/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">View</span></a>
                                         <a href="<?php echo base_url('professor/delete_email/' . $row->email_id); ?>"
                                            onclick="return confirm('Are you sure to delete this email?');"><span class="label label-danger mr6 mb6">
-<i class="fa fa-trash-o" aria-hidden="true"></i>
-Delete
-</span></a>
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            Delete
+                                            </span></a>
                                     </td>
                                 </tr>
                                 <?php
                             }
-                        } else {
-                            ?>
-                            <tr>
-                                <td colspan="3">No email found in your inbox</td>
-                            </tr>
-                        <?php } ?>
+                        }  ?>
 
                     </tbody>
                 </table>

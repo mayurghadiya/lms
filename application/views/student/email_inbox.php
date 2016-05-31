@@ -52,16 +52,7 @@
                                 </tr>
                                 <?php
                             }
-                        } else {
-                            ?>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        <?php } ?>
+                        }  ?>
 
                     </tbody>
                 </table>

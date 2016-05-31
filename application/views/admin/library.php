@@ -14,6 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
+                <div class="row filter-row">
                 <form action="#" method="post" id="searchform">
                     <div class="form-group col-sm-3 validating">
                         <label><?php echo ucwords("department"); ?></label>
@@ -58,6 +59,7 @@
                         <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>                                    
                     </div>
                 </form>
+                </div>
                  <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addlibrary/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Library</a>
                 <div id="getresponse">
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>

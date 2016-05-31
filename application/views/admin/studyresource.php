@@ -15,6 +15,7 @@
                         </div>-->
             <div class=panel-body>
                 <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addstudyresource');" data-toggle="modal"><i class="fa fa-plus"></i> Study Resource</a>
+                <div class="row filter-row">
                 <form action="#" method="post" id="searchform">
                     <div class="form-group col-sm-3 validating">
                         <label>Department</label>
@@ -60,6 +61,7 @@
                     </div>
 
                 </form>
+                </div>
                 <div id="getresponse">
                         
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>

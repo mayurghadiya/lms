@@ -15,6 +15,7 @@
                         </div>-->
             <div class=panel-body>
                 <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_student/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Student </a>
+                <div class="row filter-row">
                 <form id="frmstudentlist" name="frmfilterlist" action="#" enctype="multipart/form-data" class="form-vertical form-groups-bordered validate">
                     <div class="form-group col-sm-2">
                         <label ><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
@@ -65,11 +66,11 @@
                         </select>
                     </div>    
                     <div class="form-group col-sm-2">
-                        <label>&nbsp;</label>
-                        <button type="button" class="btn btn-primary form-control" id="btnsubmit"><?php echo ucwords("Search"); ?></button>
+                        <label>&nbsp;</label><br/>
+                        <input id="btnsubmit" type="button" value="Go" class="btn btn-info"/>
                     </div>
                 </form>
-
+                </div>
                 <div class="panel-body table-responsive" >
                     <div id="filterdata" >
 
