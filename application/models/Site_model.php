@@ -227,4 +227,26 @@ class Site_model extends CI_Model {
                 break;
         }
     }
+    
+    /**
+     * user comment delete permission
+     * @param String $user_role
+     * @param int $user_id
+     * @param int $comment_id
+     */
+    function get_user_comment_delete_permission($user_role,$user_id,$comment_id)
+    {
+        $this->db->where("user_role",$user_role);
+        $this->db->where("user_role_id",$user_id);
+        $this->db->where("forum_comment_id",$comment_id);
+        return $this->db->get("forum_comment")->row();
+    }
+    /**
+     * delete comment
+     * @param int $id
+     */
+    function delete_comment($id='')
+    {
+        $this->db->delete("forum_comment",array("forum_comment_id"=>$id));
+    }
 }

@@ -113,7 +113,7 @@ class Site extends MY_Controller {
             $this->email->send();
 
             $this->session->set_flashdata('message', 'Your inquiry successfully sent.');
-            redirect(base_url('index.php?contact'));
+            redirect(base_url('contact'));
         }
         $this->data['title'] = 'Contact us';
         $this->__template('contact', $this->data);
@@ -419,7 +419,7 @@ class Site extends MY_Controller {
             $data['user_role_id'] = $this->session->userdata('login_user_id');
             $this->Site_model->create_comment($data);
             $this->session->set_flashdata('message', ' Your comment has been queued for review by site administrators and will be published after approval.');
-            redirect(base_url('index.php?site/viewtopic/' . $data['forum_topic_id']));
+            redirect(base_url('site/viewtopic/' . $data['forum_topic_id']));
         }
     }
 
@@ -434,7 +434,30 @@ class Site extends MY_Controller {
 
             $this->Site_model->create_topic($data);
             $this->session->set_flashdata('message', ' Your Topic has been queued for review by site administrators and will be published after approval.');
-            redirect(base_url('index.php?site/topics/' . $data['forum_id']));
+            redirect(base_url('site/topics/' . $data['forum_id']));
+        }
+    }
+    
+    /**
+     * Delete comment
+     * @param int $id 
+     * @param int $topic id   
+     */
+    function delete_comment($id='',$topic_id='')
+    {
+        $user_role = $this->session->userdata("login_type");
+        $user_id = $this->session->userdata("login_user_id");
+        $comment_id = $id;
+        $res = $this->Site_model->get_user_comment_delete_permission($user_role,$user_id,$comment_id);
+        if(!empty($res))
+        {
+          $this->Site_model->delete_comment($id);
+          $this->session->set_flashdata('message', 'Comment Deleted Successfully');
+          redirect(base_url('site/viewtopic/' . $topic_id));
+        }
+        else{
+          $this->session->set_flashdata('message', 'You have not permission to delete this comment.');
+          redirect(base_url('site/viewtopic/' . $topic_id));
         }
     }
 
