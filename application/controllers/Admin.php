@@ -2427,7 +2427,7 @@ class Admin extends MY_Controller {
                 $data['c_status'] = $this->status($this->input->post('c_status'));
                 $this->db->insert('cms_manager', $data);
                 $this->session->set_flashdata('flash_message', 'CMS page is successfullt added.');
-                redirect(base_url() . 'admin/cms/', 'refresh');
+                redirect(base_url() . 'admin/cms_pages/', 'refresh');
             }
             if ($param1 == 'do_update') {
                 $data['c_title'] = $this->input->post('c_title');
@@ -2437,7 +2437,7 @@ class Admin extends MY_Controller {
                 $this->db->where('c_id', $param2);
                 $this->db->update('cms_manager', $data);
                 $this->session->set_flashdata('flash_message', 'CMS page is successfully updated.');
-                redirect(base_url() . 'admin/cms/', 'refresh');
+                redirect(base_url() . 'admin/cms_pages/', 'refresh');
             } else if ($param1 == 'edit') {
                 $page_data['edit_data'] = $this->db->get_where('cms_manager', array(
                             'c_id' => $param2
@@ -2448,7 +2448,7 @@ class Admin extends MY_Controller {
             $this->db->where('c_id', $param2);
             $this->db->delete('cms_manager');
             $this->session->set_flashdata('flash_message', 'CMS page is successfully deleted.');
-            redirect(base_url() . 'admin/cms/', 'refresh');
+            redirect(base_url() . 'admin/cms_pages/', 'refresh');
         }
         $this->data['cms'] = $this->db->get('cms_manager')->result_array();
         $this->data['page'] = 'cms';

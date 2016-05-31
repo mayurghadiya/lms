@@ -22,13 +22,13 @@ foreach ($edit_data as $row) {
             <div class="form-group">
                 <label class="col-sm-3 control-label"><?php echo ucwords("Page Title"); ?><span style="color:red">*</span></label>
                 <div class="col-sm-9 controls">
-                    <input type="text" class="form-control" name="c_title" value="<?php echo $row['c_title']; ?>" id="c_title" required />
+                    <input type="text" class="form-control" name="c_title" value="<?php echo $row['c_title']; ?>" id="c_title"/>
                 </div>
             </div>                   
             <div class="form-group">
                 <label class="col-sm-3 control-label"><?php echo ucwords("Page Slug"); ?><span style="color:red">*</span></label>
                 <div class="col-sm-9 controls">
-                    <input type="text" class="form-control" required="" name="c_slug" value="<?php echo $row['c_slug']; ?>" id="c_slug"/>
+                    <input type="text" class="form-control" name="c_slug" value="<?php echo $row['c_slug']; ?>" id="c_slug"/>
                 </div>
             </div>
             <div class="form-group">
@@ -51,7 +51,7 @@ foreach ($edit_data as $row) {
             <div class="form-group">
                 <label class="col-sm-3 control-label"><?php echo ucwords("Page Content"); ?><span style="color:red">*</span></label>
                 <div class="col-sm-9 controls">
-                    <textarea required="" name="edit_content_data"  class="form-control summernote" rows="3" ><?php echo $row['c_description']; ?></textarea>
+                    <textarea name="edit_content_data"  class="form-control summernote" rows="3" ><?php echo $row['c_description']; ?></textarea>
                 </div>
             </div>             
             <div class="form-group form-actions">
@@ -67,10 +67,28 @@ foreach ($edit_data as $row) {
 </div>
 <!-- col-lg-12 end here -->
 
-<script>
-    $(document).ready(function () {
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+        $().ready(function () {
+            $("#editcmsform").validate({
+                //ignore: [],
+                rules: {
+                    c_title: "required",
+                    c_slug: "required",
+                    edit_content_data: "required",
+                },
+                messages: {
+                    c_title: "Enter title",
+                    c_slug: "Select slug",
+                    edit_content_data: "Enter page content",
+                }
+            });
+        });        
         $('.summernote').summernote({
             height: 200
         });
-    });
-</script>
+    </script>
