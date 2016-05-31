@@ -47,12 +47,12 @@
 
                                 </td>
                                 <td class="menu-action">                                                            
-                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>forum/commentdelete/<?php echo $row['forum_comment_id']; ?>/<?php echo $row['forum_topic_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"><i class="fa fa-times"></i> </a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/commentdelete/<?php echo $row['forum_comment_id']; ?>/<?php echo $row['forum_topic_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"><i class="fa fa-times"></i> </a>
 
                                 </td>
                                 <td class="menu-action">
                                     <?php if ($row['forum_comment_status'] == '0') { ?>
-                                        <a href="<?php echo base_url(); ?>index.php?forum/confirmcomment/<?php echo $row['forum_comment_id']; ?>/<?php echo $row['forum_topic_id']; ?>" class="btn btn-info vd_bg-green">Approve</a>
+                                        <a href="<?php echo base_url(); ?>admin/confirmcomment/<?php echo $row['forum_comment_id']; ?>/<?php echo $row['forum_topic_id']; ?>" class="btn btn-info vd_bg-green">Approve</a>
                                     <?php } ?>
                                 </td>
                             </tr>

@@ -696,7 +696,7 @@ $this->load->helper('report_chart');
                             <!-- .todo-widget -->
                             <div class=todo-header>
                                 <div id="updateformhtml"></div>
-                                <div class="todo-addform todo-search" id="todo-addform">
+                                <div class="todo-addform" id="todo-addform">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <h4 class=todo-period>Add New ToDo</h4>
@@ -758,7 +758,7 @@ $this->load->helper('report_chart');
                                     }
                                     ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
                                         <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
-                                        <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo $todo->todo_datetime; ?></div>
+                                        <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
                                         <div class="updateclick_box">
                                             <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                         </div>
@@ -914,7 +914,7 @@ $this->load->helper('report_chart');
     $(document).ajaxComplete(function () {
     $("#wait").css("display", "none");
     });
-    $(".todo-close").click(function () {
+    $(".close").click(function () {      
     var id = $(this).val();
     var dataString = "id=" + id;
     $.ajax({
@@ -1017,7 +1017,7 @@ $this->load->helper('report_chart');
             {
             $("#todo-addform").hide();
             $("#updateformhtml").html(response);
-            $('.todo-close').css('pointer-events', 'none');
+            $('.todo-close_box').css('pointer-events', 'none');
             }
     });
     });

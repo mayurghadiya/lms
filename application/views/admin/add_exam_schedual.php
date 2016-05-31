@@ -103,6 +103,18 @@
     </div>
 
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".datepicker-normal").datepicker({
+                dateFormat: 'dd M yy',
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date()
+
+            });
+        });
+
+    </script>
 
     <script type="text/javascript">      
 

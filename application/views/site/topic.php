@@ -130,7 +130,7 @@
                                         <h3 class="cs-color"><a style="color:#fff !important;" href="<?php echo base_url().'site/viewtopic/'.$topic->forum_topic_id; ?>"><?php echo $topic->forum_topic_title; ?></a></h3>
                                         <p style="color:#fff !important;"> <?php echo "Created By ".roleuserdatatopic($topic->user_role,$topic->user_role_id);                                       
                                        
-                                        ?> <span><?php echo date("F d, Y h:i:s A",  strtotime($topic->created_date)); ?></span>
+                                        ?> <span><?php echo date_duration($topic->created_date); ?></span>
                                             
                                         </p>
                                        

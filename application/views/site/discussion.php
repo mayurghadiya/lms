@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="cs-page-title">
-                    <h1>Forum Topic Discussion</h1>
+                    <h1>Forum Topic</h1>
                 </div>
             </div>
         </div>
@@ -40,8 +40,11 @@
                                          <img src="<?php echo base_url().$path; ?>" height="50" width="50" />
                                         <?php echo "  ".$comment->forum_comments;  
                                               echo "<br>";
-                                              echo roleuserdatatopic($comment->user_role,$comment->user_role_id).' '.date("F d, Y h:i:s A",  strtotime($comment->created_date));
+                                              echo roleuserdatatopic($comment->user_role,$comment->user_role_id).' '.date_duration($comment->created_date);
                                         ?>
+                                         <?php if($this->session->userdata('login_type')==$comment->user_role && $this->session->userdata('login_user_id')==$comment->user_role_id){ ?>
+                                         <a style="color:red" href="<?php echo base_url(); ?>site/delete_comment/<?php echo $comment->forum_comment_id;  ?>/<?php echo $param; ?>">Delete</a>
+                                         <?php } ?>
                                         </p>
                                     </div>
                                 </div>

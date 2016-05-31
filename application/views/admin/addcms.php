@@ -58,16 +58,16 @@
         });
         $().ready(function () {
             $("#cmsform").validate({
-                ignore: [],
+                //ignore: [],
                 rules: {
                     c_title: "required",
                     c_slug: "required",
                     c_description: "required",
                 },
                 messages: {
-                    c_title: "Please enter title",
-                    c_slug: "Please select slug",
-                    c_description: "Please enter page content",
+                    c_title: "Enter title",
+                    c_slug: "Select slug",
+                    c_description: "Enter page content",
                 }
             });
         });        

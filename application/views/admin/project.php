@@ -229,6 +229,7 @@
                                     <button type="submit" id="btnsubmitted" class="submit btn btn-info vd_bg-green">Go</button>
                                 </div>
                             </form>
+                            <div id="getsubmit">
                             <table class="table table-striped table-bordered table-responsive" id="sub-tables">
                                 <thead>
                                     <tr>
@@ -298,6 +299,7 @@
                                     <?php endforeach; ?>			 			
                                 </tbody>
                             </table>
+                            </div>
                         </div>
 
                     </div>
@@ -350,7 +352,7 @@
             url: "<?php echo base_url(); ?>admin/getprojects/allproject",
             data: {'degree': degree, 'course': course, 'batch': batch, "semester": semester, "divclass": divclass},
             success: function (response)
-            {
+            {               
                 $("#getresponse").html(response);
             }
 

@@ -48,3 +48,30 @@
     </div>
     <!-- col-lg-12 end here -->
 </div>
+
+ <script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#gradeform").validate({
+            rules: {
+                grade_name: "required",
+                from_marks: "required",
+                to_marks: "required"
+            },
+            messages: {
+                grade_name: "Enter grade name",
+                from_marks: "Enter valid grade number percentage",
+                to_marks: "Enter valid grade number percentage"
+            },
+        });
+    });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#from_marks').on('blur', function () {
+                $('#to_marks').attr('min', $(this).val());
+                $('#to_marks').attr('required', 'required');
+            });
+        })
+    </script>

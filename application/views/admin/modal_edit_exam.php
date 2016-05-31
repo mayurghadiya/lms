@@ -142,8 +142,8 @@ $centerlist = $this->db->get('center_user')->result();
                 <div class="form-group">
                     <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Start Date"); ?><span style="color:red">*</span></label>
                     <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-                        <input readonly="" type="text" required="" id="datepicker-date123" name="date" class="form-control datepicker-normal-edit"
-                               value="<?php echo $edit_data->em_date; ?>"/>
+                        <input readonly="" type="text" id="datepicker-date123" name="date" class="form-control datepicker-normal-edit"
+                               value="<?php echo date('F d, Y', strtotime($edit_data->em_date));?>"/>
                     </div>
                 </div>
                 <div class="form-group" style="display: none;">
@@ -156,8 +156,8 @@ $centerlist = $this->db->get('center_user')->result();
                 <div class="form-group">
                     <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("End Date"); ?><span style="color:red">*</span></label>
                     <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-                        <input readonly="" type="text" required="" name="end_date_time" id="edit_end_date_time" class="form-control"
-                               value="<?php echo $edit_data->em_end_time; ?>"/>
+                        <input readonly="" type="text"  name="end_date_time" id="edit_end_date_time" class="form-control datepicker-normal-edit"
+                               value="<?php echo date('F d, Y', strtotime($edit_data->em_end_time)); ?>"/>
                     </div>
                 </div>	
                 <div class="form-group">
@@ -173,3 +173,138 @@ $centerlist = $this->db->get('center_user')->result();
 </div>
 <!-- col-lg-12 end here -->
 </div>
+<script>
+        $(document).ready(function () {
+            $('.datepicker-normal-edit').datepicker({
+                format: 'yyyy-mm-dd',
+               // autoclose:true,
+            });
+        })
+    </script>
+
+<script type="text/javascript">
+    $.validator.setDefaults({
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+
+    $().ready(function () {
+        $("#edit-exam-form").validate({
+            rules: {
+                exam_name: "required",
+                exam_type: "required",
+                year: "required",
+                degree: "required",
+                course: "required",
+                batch: "required",
+                semester: "required",
+                edit_total_marks: "required",
+                edit_passing_marks: "required",
+                status: "required",
+                date: "required",
+                start_date_time: "required",
+                end_date_time: "required"
+            },
+            messages: {
+                exam_name: "Please enter Exam Name",
+                exam_type: "Please select Exam type",
+                year: "Please select year",
+                degree: "Please select degree",
+                course: "Please select course",
+                batch: "Please select batch",
+                semester: "Please select semester",
+                edit_total_marks: "Please enter total marks",
+                edit_passing_marks: "Please enter passing marks",
+                status: "Please select status",
+                date: "Please enter date",
+                start_date_time: "Please enter start date time",
+                end_date_time: "Please enter end date"
+            }
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        //course by degree
+        $('#edit_degree').on('change', function () {
+            var course_id = $('#edit_course').val();
+            var degree_id = $(this).val();
+
+            //remove all present element
+            $('#edit_course').find('option').remove().end();
+            $('#edit_course').append('<option value="">Select</option>');
+            var degree_id = $(this).val();
+            $.ajax({
+                url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
+                type: 'get',
+                success: function (content) {
+                    var course = jQuery.parseJSON(content);
+                    $.each(course, function (key, value) {
+                        $('#edit_course').append('<option value=' + value.course_id + '>' + value.c_name + '</option>');
+                    })
+                }
+            })
+            batch_from_degree_and_course(degree_id, course_id);
+        });
+
+        //batch from course and degree
+        $('#edit_course').on('change', function () {
+            var degree_id = $('#edit_degree').val();
+            var course_id = $(this).val();
+            batch_from_degree_and_course(degree_id, course_id);
+            get_semester_from_branch(course_id);
+        })
+
+        //find batch from degree and course
+        function batch_from_degree_and_course(degree_id, course_id) {
+            //remove all element from batch
+            $('#edit_batch').find('option').remove().end();
+            $.ajax({
+                url: '<?php echo base_url(); ?>admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
+                type: 'get',
+                success: function (content) {
+                    $('#edit_batch').append('<option value="">Select</option>');
+                    var batch = jQuery.parseJSON(content);
+                    console.log(batch);
+                    $.each(batch, function (key, value) {
+                        $('#edit_batch').append('<option value=' + value.b_id + '>' + value.b_name + '</option>');
+                    })
+                }
+            })
+        }
+        
+        //get semester from brach
+            function get_semester_from_branch(branch_id) {
+                $('#edit_semester').find('option').remove().end();
+                $.ajax({
+                    url: '<?php echo base_url(); ?>admin/get_semesters_of_branch/' + branch_id,
+                    type: 'get',
+                    success: function (content) {
+                        $('#edit_semester').append('<option value="">Select</option>');
+                        var semester = jQuery.parseJSON(content);
+                        $.each(semester, function (key, value) {
+                            $('#edit_semester').append('<option value=' + value.s_id + '>' + value.s_name + '</option>');
+                        })
+                    }
+                })
+            }
+
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#edit_total_marks').on('blur', function () {
+            var total_marks = $(this).val();
+            $('#edit_passing_marks').attr('max', total_marks);
+        });
+
+        $('#edit_passing_marks').on('focus', function () {
+            var total_marks = $('#edit_total_marks').val();
+            $(this).attr('max', total_marks);
+        })
+    })
+</script>

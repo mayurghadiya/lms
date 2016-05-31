@@ -14,11 +14,11 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_exam_schedual');" data-toggle="modal"><i class="fa fa-plus"></i> Exam Schedule</a>
-                <form id="exam-schedule-search" action="#" class="form-groups-bordered validate">
-                    <div class="form-group col-sm-2">
+              <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_exam_schedual');" data-toggle="modal"><i class="fa fa-plus"></i> Exam Schedule</a>
+              <form id="exam-schedule-search" action="#" class="form-groups-bordered validate">
+                    
                 <div class="row filter-row">
-				<form id="exam-schedule-search" action="#" class="form-groups-bordered validate">
+				
                     <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                         <label><?php echo ucwords("department"); ?></label>
                         <select class="form-control" id="search-degree"name="degree">
@@ -58,10 +58,9 @@
                         <label>&nbsp;</label><br/>
                         <input id="search-exam-data" type="button" value="Go" class="btn btn-info vd_bg-green"/>
                     </div>
+                    </div>
                 </form>
-				</div>
-
-                <div class="main_exam_class_schedule">
+              <div id="main_exam_class_schedule" >
                     <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                         <thead>
                             <tr>
@@ -99,8 +98,7 @@
                         </tbody>
                     </table>
                 </div>
-
-                <div id="search-result-exam-schedule"></div>
+              <div id="search-result-exam-schedule"></div>
             </div>
         </div>
         <!-- End .panel -->
@@ -112,6 +110,7 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+
 
 <script>
     $(document).ready(function () {
@@ -149,8 +148,9 @@
                             + course + '/' + batch + '/' + semester + '/' + exam,
                     type: 'get',
                     success: function (content) {
-                        $("#search-result-exam-schedule").html(content);
                         $('#main_exam_class_schedule').hide();
+                        $("#search-result-exam-schedule").html(content);
+                        
                         $('#search-data-tables').DataTable();
                     }
                 });

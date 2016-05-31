@@ -60,3 +60,31 @@ foreach ($edit_data as $row) {
     </div>
     <!-- col-lg-12 end here -->
 </div>
+
+ <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#edit-grade-form").validate({
+                rules: {
+                    grade_name: "required",
+                    from_marks: "required",
+                    to_marks: "required",
+                },
+                messages: {
+                    grade_name: "Please enter grade name",
+                    from_marks: "Please enter valid number percentage",
+                    to_marks: "Please enter valid number percentage",
+                },
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#edit_from_marks').on('blur', function () {
+                $('#edit_to_marks').attr('min', $(this).val());
+                $('#edit_to_marks').attr('required', 'required');
+            });
+        })
+    </script>
