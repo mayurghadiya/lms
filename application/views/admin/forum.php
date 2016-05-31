@@ -19,7 +19,7 @@
                     <thead>
                         <tr>
                             <th><div>#</div></th>
-                            <th>Forum Name</th>
+                            <th>Forum Title</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>

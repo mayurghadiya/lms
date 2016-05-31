@@ -1,102 +1,249 @@
 /* -----------------------------------------
    Custom.css - put your own changes here 
 ----------------------------------------- */
-label.error { color: #ed7a53; }
 
-.panel.panel-default.toggle.panelMove.panelClose.panelRefresh {overflow: hidden;}
+label.error {
+    color: #ed7a53;
+}
+.panel.panel-default.toggle.panelMove.panelClose.panelRefresh {
+    overflow: hidden;
+}
 /* class_routine */
-.class_routine_box{overflow: hidden; border: none;}
-.modal-body{max-height: 450px !important;}
-#modal_ajax .form-horizontal .control-label{ text-align: center !important;  }
-.dashboard #content .contentwrapper{ padding-top: 60px; }
 
+.class_routine_box {
+    overflow: hidden;
+    border: none;
+}
+.modal-body {
+    max-height: 450px !important;
+}
+#modal_ajax .form-horizontal .control-label {
+    text-align: center !important;
+}
+.dashboard #content .contentwrapper,
+.index #content .contentwrapper {
+    padding-top: 60px;
+}
 /* Styles for search dropdown */
-.dashboard .page-content{background: #fff !important;}
-.dashboard .panel{box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); transition: all 1s ease 0s;}
-.dashboard .panel-body {padding: 0 10px;}
 
-
-
-.search_box {position: relative; margin-bottom: 0; width: 29.5%;}
-.search_box form .top-search{width: 97%;}
-.search_box .category {left: 20px; position: absolute; top: 1px; margin-left: 0; margin-top: 13px; width: 65px;}
-.search_box .category .open {position: absolute !important; top: 30px !important; left: -10px !important; width: 120% !important;}
-
-.search_box form .top-search{padding-left: 90px;}
-.search_box form .search-btn{right: 18px; left: auto;}
-.search_box .category > a { border-right: 1px dotted #ccc; display: block; color: #333; }
-.search_box .category > a:hover{} 
-.category .dropdown-menu::before { background: rgba(0, 0, 0, 0) url("../img/arrowup.png") no-repeat scroll 0 0 !important; border: medium none !important; content: ""; height: 14px !important;  position: absolute;  top: -13px !important;  width: 15px !important;  z-index: 999999;}
-.category .dropdown-menu {background: #efefef none repeat scroll 0 0 padding-box; border: 1px solid #c4c4c4; border-radius: 2px; box-shadow: 0 1px 0 #fff; float: left; font-size: 12px; list-style: outside none none; margin: 0; min-width: 160px; padding: 4px; position: absolute;  top: 34px; z-index: 999999;}
-.category .dropdown-menu li.menu > ul{padding: 0;}
-.category .dropdown-menu li.menu ul li {border-bottom: 1px solid #ebebeb;line-height: 14px; margin: 0; padding-bottom: 8px; padding-top: 10px; width: 100%; list-style: none; text-align: left;}
-.category .dropdown-menu li.menu label{padding-left: 10px;}
-.category .dropdown-menu li.menu { background: #fff none repeat scroll 0 0; border: 1px solid #c4c4c4; border-radius: 2px; display: block; float: left; margin-bottom: 0; min-width: 150px; padding: 0;}
-.category .dropdown-menu li.menu ul li a {clear: both;color: #333;display: inline-block; font-weight: 400; line-height: 14px; padding: 5px 0 5px 5px; white-space: normal; width: 100%;}
-.category .dropdown-menu li.menu ul li .checkbox-custom {display: inline-block;}
-.category .dropdown-menu li.menu span {display: inline-block; padding-left: 15px;}
-
+.dashboard .page-content,
+.index .page-content {
+    background: #fff !important;
+}
+.dashboard .panel,
+.index .panel {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    transition: all 1s ease 0s;
+}
+.dashboard .panel-body,
+.index .panel-body {
+    padding: 0 10px;
+}
+.search_box {
+    position: relative;
+    margin-bottom: 0;
+    width: 29.5%;
+}
+.search_box form .top-search {
+    width: 97%;
+}
+.search_box .category {
+    left: 20px;
+    position: absolute;
+    top: 1px;
+    margin-left: 0;
+    margin-top: 13px;
+    width: 65px;
+}
+.search_box .category .open {
+    position: absolute !important;
+    top: 30px !important;
+    left: -10px !important;
+    width: 120% !important;
+}
+.search_box form .top-search {
+    padding-left: 90px;
+}
+.search_box form .search-btn {
+    right: 18px;
+    left: auto;
+}
+.search_box .category > a {
+    border-right: 1px dotted #ccc;
+    display: block;
+    color: #333;
+}
+.search_box .category > a:hover {} .category .dropdown-menu::before {
+    background: rgba(0, 0, 0, 0) url("../img/arrowup.png") no-repeat scroll 0 0 !important;
+    border: medium none !important;
+    content: "";
+    height: 14px !important;
+    position: absolute;
+    top: -13px !important;
+    width: 15px !important;
+    z-index: 999999;
+}
+.category .dropdown-menu {
+    background: #efefef none repeat scroll 0 0 padding-box;
+    border: 1px solid #c4c4c4;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 #fff;
+    float: left;
+    font-size: 12px;
+    list-style: outside none none;
+    margin: 0;
+    min-width: 160px;
+    padding: 4px;
+    position: absolute;
+    top: 34px;
+    z-index: 999999;
+}
+.category .dropdown-menu li.menu > ul {
+    padding: 0;
+}
+.category .dropdown-menu li.menu ul li {
+    border-bottom: 1px solid #ebebeb;
+    line-height: 14px;
+    margin: 0;
+    padding-bottom: 8px;
+    padding-top: 10px;
+    width: 100%;
+    list-style: none;
+    text-align: left;
+}
+.category .dropdown-menu li.menu label {
+    padding-left: 10px;
+}
+.category .dropdown-menu li.menu {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #c4c4c4;
+    border-radius: 2px;
+    display: block;
+    float: left;
+    margin-bottom: 0;
+    min-width: 150px;
+    padding: 0;
+}
+.category .dropdown-menu li.menu ul li a {
+    clear: both;
+    color: #333;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 14px;
+    padding: 5px 0 5px 5px;
+    white-space: normal;
+    width: 100%;
+}
+.category .dropdown-menu li.menu ul li .checkbox-custom {
+    display: inline-block;
+}
+.category .dropdown-menu li.menu span {
+    display: inline-block;
+    padding-left: 15px;
+}
 #content .contentwrapper .heading .breadcrumb1 {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: medium none;
-  box-shadow: none;
-  float: right;
-  margin: 0 20px 0 0;
-  padding: 15px 10px 6px;
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    box-shadow: none;
+    float: right;
+    margin: 0 20px 0 0;
+    padding: 15px 10px 6px;
 }
 #content .contentwrapper .heading .breadcrumb1 li:first-child {
-  margin-right: 8px;
+    margin-right: 8px;
 }
 .breadcrumb1 > li {
-  display: inline-block;
+    display: inline-block;
 }
 #content .contentwrapper .heading .breadcrumb1 li + li::before {
-  display: none;
+    display: none;
 }
 .breadcrumb1 > li + li::before {
-  color: #ccc;
-  content: "/ ";
-  padding: 0 5px;
+    color: #ccc;
+    content: "/ ";
+    padding: 0 5px;
 }
 #content .contentwrapper .heading .breadcrumb1 li a {
-  color: #333;
+    color: #333;
 }
 #content .contentwrapper .heading .breadcrumb1 li i {
-  margin-left: 0;
-  margin-right: 0;
+    margin-left: 0;
+    margin-right: 0;
 }
 .breadcrumb1 {
-  list-style: outside none none;
+    list-style: outside none none;
 }
 .filter-row {
-margin:5px 0px 15px 0px;
-padding:10px 0px 4px 20px;
+    margin: 5px 0px 15px 0px;
+    padding: 10px 0px 4px 20px;
     background-color: #e0e0e0;
     background-image: linear-gradient(to bottom, #eee 0px, #e5e5e5 100%);
     background-repeat: repeat-x;
-    
     box-shadow: 0 0 1px #fff inset;
 }
-
 /* Todo list loading */
-.loading_img{ display:none; width:69px; height:89px; border:1px solid black; position:absolute; top:50%; left:50%; padding:2px;}
-.todo-widget .todo-list .todo-task-item .todo-task-text  { margin-top: -3px; padding-top: 0;  }
 
-.todo-task-item  div{ display: inline-block; float: left !important; margin-right: 0 !important; line-height: 20px; }
-.todo-task-item .checkbox-custom{width: 5%;}
-.todo-task-item .todo-task-text{width: 46%; line-height: 24px; }
-.todo-task-item .todo-category{width: 35%;}
-.todo-task-item .updateclick_box{width: 6%;}
-.todo-task-item .todo-close_box{width: 6%;}
-
-.updateclick_box .updateclick {background: transparent; border: none;}
-.updateclick_box .updateclick i{ color: #39c; }
-.todo-task-item .todo-close_box .todo-close1 i{ color: red; }
-.todo-task-item .todo-close_box .close{opacity:0.9;}
-.updateclick_box .updateclick:hover i, .todo-task-item .todo-close_box .todo-close1:hover i{color: #000;}
-.marginzero{margin:0 !important;}
-
+.loading_img {
+    display: none;
+    width: 69px;
+    height: 89px;
+    border: 1px solid black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 2px;
+}
+.todo-widget .todo-list .todo-task-item .todo-task-text {
+    margin-top: -3px;
+    padding-top: 0;
+}
+.todo-task-item:nth-of-type(odd) {
+    background: #f8f8f8;
+}
+.todo-task-item div {
+    display: inline-block;
+    float: left !important;
+    margin-right: 0 !important;
+    line-height: 20px;
+}
+.todo-task-item .checkbox-custom {
+    width: 6%;
+}
+.todo-task-item .todo-task-text {
+    width: 46%;
+    line-height: 24px;
+}
+.todo-task-item .todo-category {
+    width: 31%;
+}
+.todo-task-item .updateclick_box {
+    width: 7%;
+}
+.todo-task-item .todo-close_box {
+    width: 7%;
+}
+.updateclick_box .updateclick {
+    background: transparent;
+    border: none;
+}
+.updateclick_box .updateclick i {
+    color: #39c;
+}
+.todo-task-item .todo-close_box .todo-close1 i {
+    color: red;
+}
+.todo-task-item .todo-close_box .close {
+    opacity: 0.9;
+}
+.updateclick_box .updateclick:hover i,
+.todo-task-item .todo-close_box .todo-close1:hover i {
+    color: #000;
+}
+.marginzero {
+    margin: 0 !important;
+}
 /* Time list style deshboard */
+
 .popover {
     z-index: 1049;
     top: 0;
@@ -210,6 +357,7 @@ padding:10px 0px 4px 20px;
     -webkit-transform: translate3d(0, 0, 0)
 }
 /**********************/
+
 .timeline-box {
     position: relative
 }
@@ -275,7 +423,9 @@ padding:10px 0px 4px 20px;
     margin: 0 0 10px;
     opacity: .8;
     -moz-opacity: .8;
-    filter: alpha(opacity: 80)
+    filter: alpha(opacity: 80);
+    height: 70px;
+    overflow: hidden;
 }
 .timeline-box .tl-row .tl-item .tl-time {
     font-style: italic;
@@ -366,6 +516,7 @@ padding:10px 0px 4px 20px;
     bottom: auto
 }
 /* color style */
+
 .badge-info,
 .bg-blue,
 .bootstrap-switch-info,
@@ -380,7 +531,6 @@ padding:10px 0px 4px 20px;
     background: #5bccf6
 }
 /* helper-css */
-
 
 .badge-info,
 .bg-blue,
@@ -399,10 +549,24 @@ padding:10px 0px 4px 20px;
     background: #ddd;
     width: 100%;
 }
-
-
-#content-1{width: 260px;height: 430px !important;overflow: hidden;background: #fdfdfd; padding: 0px; margin:0;}
-.panel-body .todo-widget .todo-list{ height: 350px; overflow-y:auto;  }
-@media only screen and (min-width: 1024px){
-#content-1 {height: 430px !important;width: 100%; box-sizing: border-box; margin:0;padding: 0;}
+#content-1 {
+    width: 260px;
+    height: 430px !important;
+    overflow: hidden;
+    background: #fdfdfd;
+    padding: 0px;
+    margin: 0;
+}
+.panel-body .todo-widget .todo-list {
+    height: 350px;
+    overflow-y: auto;
+}
+@media only screen and (min-width: 1024px) {
+    #content-1 {
+        height: 430px !important;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 }

@@ -97,8 +97,7 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="seperator"><strong>or</strong><hr></div>
-                        <div class="social-buttons text-center mt5 mb5"><a class="btn btn-primary btn-alt mr10" href="#">Sign in with <i class="fa fa-facebook s20 ml5 mr0"></i></a> <a class="btn btn-danger btn-alt ml10" href="#">Sign in with <i class="fa fa-google-plus s20 ml5 mr0"></i></a></div>
+                        
 
                         <?php
                         $flash_message = $this->session->flashdata('message');
