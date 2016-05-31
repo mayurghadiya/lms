@@ -20,10 +20,10 @@ class Admin extends MY_Controller {
         $this->load->model('forum_model');
         $this->load->model('professor/Professor_model');
         $this->load->model('photo_gallery');
-         if (!$this->input->is_ajax_request()) {
-            $this->load->helper('permission');        
-             user_permission();
-        }
+//         if (!$this->input->is_ajax_request()) {
+//            $this->load->helper('permission');        
+//             user_permission();
+//        }
     }
 
     /**
@@ -2026,6 +2026,7 @@ class Admin extends MY_Controller {
                     'about' => $this->input->post('about')
                 );
                 if ($_FILES['userfile']['name'] != '') {
+                    
                     //upload config
                     $config = array(
                         'upload_path' => './uploads/professor/',
@@ -2038,8 +2039,7 @@ class Admin extends MY_Controller {
                     $upload_data = $this->upload->data();
                     $data['image_path'] = isset($upload_data['file_name']) ? $upload_data['file_name'] : '';
                 }
-                print_r($data);
-                exit;
+               
                 $this->Crud_model->save_professor($data, $param2);
                 $this->session->set_flashdata('flash_message', $this->lang_message('update_professor'));
             }

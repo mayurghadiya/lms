@@ -4,14 +4,14 @@
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
+            <!--<div class=panel-heading>
                 <h4 class=panel-title><?php echo $title; ?></h4>
                 <div class="panel-controls panel-controls-right">
                     <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
                     <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
                     <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
                 </div>
-            </div>
+            </div>-->
             <div class="vd_content-section clearfix">
                 <div class="row">
                     <div class="col-sm-12">
@@ -20,7 +20,7 @@
                         </div> 
                         <?php echo form_open(base_url() . 'admin/list_module/do_update', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'list_module')); ?>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Group Name</label>
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Group Name"); ?> <span style="color:red">*</span></label>
                             <div class="col-sm-7 controls">
                                 <select name="group_name" class="form-control" onchange="return get_module_ajax(this.value)">
                                     <option value="">Select Group Name</option>

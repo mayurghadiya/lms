@@ -1,17 +1,26 @@
-<div class="vd_content-wrapper">
-    <div class="vd_container">
-        <div class="vd_content clearfix">
-            <div class="vd_title-section clearfix">
-                <div class="vd_panel-header no-subtitle">
-                    <h1>Assign User</h1>
+<div class=row>                      
+
+    <div class=col-lg-12>
+        <!-- col-lg-12 start here -->
+        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+            <!-- Start .panel -->
+           <!-- <div class=panel-heading>
+                <h4 class=panel-title><?php echo $title; ?></h4>
+                <div class="panel-controls panel-controls-right">
+                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
+                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
+                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
                 </div>
-            </div>
+            </div>-->
             <div class="vd_content-section clearfix">
                 <div class="row">
                     <div class="col-sm-12">
+                          <div class="">
+                            <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
+                        </div> 
                         <?php echo form_open(base_url() . 'admin/assign_module/create', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'assign_module')); ?>						
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Group Name</label>
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Group Name"); ?> <span style="color:red">*</span></label>
                             <div class="col-sm-7 controls">
                                 <select name="group_name" id="group_name" class="form-control" style="width:100%;" >
                                     <option value="">Select Group Name</option>
@@ -68,9 +77,10 @@
 
     </div>
 
-    <!-- row --> 
+    <!-- row -->
 
 </div>
+
 
 <!-- End .row -->
 </div>
