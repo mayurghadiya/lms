@@ -2906,7 +2906,7 @@ class Admin extends MY_Controller {
             $data['forum_topic_status'] = $this->input->post('topic_status');
             $data['forum_topic_desc'] = $this->input->post('description');
             $data['user_role'] = $this->session->userdata('login_type');
-            $data['user_role_id'] = $this->session->userdata('login_id');
+            $data['user_role_id'] = $this->session->userdata('login_user_id');
             $data['forum_id'] = $this->input->post('forum_id');
 
 
@@ -2921,16 +2921,15 @@ class Admin extends MY_Controller {
             $data['forum_id'] = $this->input->post('forum_id');
             $data['forum_topic_desc'] = $this->input->post('description');
             if ($topic[0]['user_role'] == $this->session->userdata('login_type')) {
-                $data['user_role'] = $this->session->userdata('login_type');
-                $data['user_role_id'] = $this->session->userdata('login_id');
+                $data['user_role'] = $this->session->userdata('login_type');                
                 $data['user_role_id'] = $this->session->userdata('login_user_id');
                 $data['forum_id'] = $this->input->post('forum_id');
+            
 
-
-                $this->forum_model->create_topic($data);
-                $this->session->set_flashdata('flash_message', 'Forum Topic updated Successfully');
-                redirect(base_url() . 'admin/forumtopics', 'refresh');
             }            
+            $this->forum_model->update_topic($data, $id);
+            $this->session->set_flashdata('flash_message', 'Forum Topic Updated Successfully');
+            redirect(base_url() . 'admin/forumtopics', 'refresh');
         }
         if ($param == "delete") {
             $this->forum_model->forum_topicsdelete($id);
