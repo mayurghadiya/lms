@@ -18,14 +18,14 @@ foreach ($edit_data as $row):
                             </div>
                             <?php echo form_open(base_url() . 'admin/semester/do_update/' . $row['s_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'editsem', 'target' => '_top')); ?>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Semester Name"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Semester Name"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="s_name" id="s_name" value="<?php echo $row['s_name']; ?>"   />
                                 </div>
                             </div>                  
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Status"); ?></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Status"); ?></label>
+                                <div class="col-sm-8">
                                     <select name="semester_status" class="form-control">
                                         <option value="1" <?php if ($row['s_status'] == '1') {
                             echo "selected";
@@ -37,7 +37,7 @@ foreach ($edit_data as $row):
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-5">
+                                <div class="col-sm-offset-4 col-sm-8">
                                     <button type="submit" class="submit btn btn-info vd_bg-green"><?php echo ucwords("Update"); ?></button>
                                 </div>
                             </div>

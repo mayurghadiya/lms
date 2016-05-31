@@ -21,21 +21,21 @@ $professor = $this->db->get('professor')->result_array();
                     <?php echo form_open(base_url() . 'admin/subject/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmsubject', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                     <div class="padded">	
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Subject Name"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Subject Name"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="subname" id="subname" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Subject Code"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Subject Code"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="subcode" id="subcode" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="course" class="form-control"  id="course">
                                     <option value="">Select branch</option>
                                     <?php
@@ -50,8 +50,8 @@ $professor = $this->db->get('professor')->result_array();
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="semester" class="form-control" id="semester">
                                     <option value="">Select semester</option>
 
@@ -60,8 +60,8 @@ $professor = $this->db->get('professor')->result_array();
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("professor"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("professor"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="professor[]" class="form-control" id="professor" multiple=""> 
                                     <option value="">Select Professor</option>
                                     <?php foreach ($professor as $prof) : ?>
@@ -74,7 +74,7 @@ $professor = $this->db->get('professor')->result_array();
                         </div>
 
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" id="addsubject" class="btn btn-info vd_bg-green"><?php echo ucwords("Add "); ?></button>
                             </div>
                         </div>

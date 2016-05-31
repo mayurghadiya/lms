@@ -18,21 +18,21 @@ foreach ($edit_data as $row):
                                 </div>
                             <?php echo form_open(base_url() . 'admin/subject/do_update/' . $row['sm_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'frmeditsubject', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Subject Name");?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Subject Name");?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="subname" id="subname" value="<?php echo $row['subject_name']; ?>"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Subject Code");?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Subject Code");?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="subcode" id="subcode" value="<?php echo $row['subject_code']; ?>" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Branch");?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Branch");?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <select name="course" class="form-control" id="course1">
                                         <option value="">Select branch</option>
                                         <?php
@@ -53,8 +53,8 @@ foreach ($edit_data as $row):
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Semester");?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Semester");?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <select name="semester" class="form-control" id="semester1">
                                         <option value="">Select semester</option>
                                             <?php
@@ -75,8 +75,8 @@ foreach ($edit_data as $row):
                                 </div>
                             </div>
                               <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Professor");?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Professor");?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                       <select name="professor[]" class="form-control" id="professor1" multiple="">                                      
                                             <?php
                                                $professor_id=explode(',',$row['professor_id']);
@@ -97,7 +97,7 @@ foreach ($edit_data as $row):
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-5">
+                                <div class="col-sm-offset-4 col-sm-8">
                                     <button type="submit" class="submit btn btn-info vd_bg-green"><?php echo ucwords("Update");?></button>
                                 </div>
                             </div>

@@ -18,26 +18,26 @@ foreach ( $edit_data as $row):
                                 </div>
                 <?php echo form_open(base_url() . 'admin/holiday/do_update/'.$row['holiday_id'] , array('class' => 'form-horizontal form-groups-bordered validate','id'=>'holidayformedit','target'=>'_top'));?>
                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("holiday name");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
+                                            <label class="col-sm-4 control-label"><?php echo ucwords("holiday name");?><span style="color:red">*</span></label>
+                                            <div class="col-sm-8">
                                                 <input type="text" class="form-control" name="holiday_name" id="holiday_name" value="<?php echo $row['holiday_name'];?>" />
                                             </div>
                                         </div>	
                                          <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("start date");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
+                                            <label class="col-sm-4 control-label"><?php echo ucwords("start date");?><span style="color:red">*</span></label>
+                                            <div class="col-sm-8">
                                                 <input type="text" class="form-control" name="holiday_startdate1" id="holiday_startdate1" value="<?php echo date('d F Y', strtotime($row['holiday_startdate'])); ?>"/>
                                             </div>	
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("end date");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-5">
+                                            <label class="col-sm-4 control-label"><?php echo ucwords("end date");?><span style="color:red">*</span></label>
+                                            <div class="col-sm-8">
                                                 <input type="text" class="form-control" name="holiday_enddate1" id="holiday_enddate1" value="<?php echo date('d F Y', strtotime($row['holiday_enddate'])); ?>" />
                                             </div>	
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"><?php echo ucwords("status");?></label>
-                                            <div class="col-sm-5">
+                                            <label class="col-sm-4 control-label"><?php echo ucwords("status");?></label>
+                                            <div class="col-sm-8">
                                                 <select name="batch_status"  class="form-control">
                                                   <option value="1" <?php if($row['holiday_status'] == '1'){ echo "selected"; } ?>>Active</option>
                                     <option value="0" <?php if($row['holiday_status'] == '0'){ echo "selected"; } ?>>Inactive</option>	
@@ -48,7 +48,7 @@ foreach ( $edit_data as $row):
                                              
                                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" class="submit btn btn-info vd_bg-green"><?php echo ucwords("Update");?></button>
                             </div>
                         </div>
