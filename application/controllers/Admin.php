@@ -2056,7 +2056,13 @@ class Admin extends MY_Controller {
      * Examination
      * Contains the exam, exam schedule and its marks
      */
+    
+      function exam_list_from_degree_and_course($degree, $course, $batch, $semester, $type = '') {
+        $this->load->model('admin/Crud_model');
+        $exam_list = $this->Crud_model->exam_list_from_degree_and_course($degree, $course, $batch, $semester, $type);
 
+        echo json_encode($exam_list);
+    }
     /**
      * Exam management
      * @param string $param1
@@ -2072,6 +2078,7 @@ class Admin extends MY_Controller {
         }
         if ($_POST) {
             if ($param1 == 'create') {
+               
                 //check for duplication
                 $is_record_present = $this->Crud_model->exam_duplication_check(
                         $_POST['degree'], $_POST['course'], $_POST['batch'], $_POST['semester'], $_POST['exam_name']);
@@ -2097,6 +2104,7 @@ class Admin extends MY_Controller {
                         );
                         $this->Crud_model->insert_exam($data);
                         $insert_id = $this->db->insert_id();
+                     
                         //$this->exam_email_notification($_POST);
                         $this->session->set_flashdata('flash_message', $this->lang_message('save_exam'));
 
@@ -2157,6 +2165,7 @@ class Admin extends MY_Controller {
                     $page_data['edit_error'] = validation_errors();
                 }
             }
+           
         }
 
         $this->data['page'] = 'exam';
@@ -2396,14 +2405,14 @@ class Admin extends MY_Controller {
                         ), $param2);
                 $this->session->set_flashdata('flash_message', 'Exam grade is successfully updated.');
             }
-            redirect(base_url('admin/grade'));
+            redirect(base_url('admin/exam_grade'));
         }
         if ($param1 === 'delete') {
             $this->db->where('grade_id', $param2);
             $this->db->delete('grade');
             $this->session->set_flashdata('flash_message', 'Exam grade is successfully deleted.');
 
-            redirect(base_url('admin/grade'));
+            redirect(base_url('admin/exam_grade'));
         }
         $this->data['title'] = 'Exam Grade';
         $this->data['edit_title'] = $this->lang_message('edit_grade');
