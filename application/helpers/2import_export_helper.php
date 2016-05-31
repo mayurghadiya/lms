@@ -59,8 +59,8 @@ if (!function_exists('batch')) {
     function batch() {
         $handle = fopen('php://output', 'w');
         fputcsv($handle, array(
-            'Batch Name',
-            'Degree Name'
+            'Batch',
+            'Department'
         ));
         fclose($handle);
     }

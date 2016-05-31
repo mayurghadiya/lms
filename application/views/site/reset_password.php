@@ -7,7 +7,7 @@
 
         <head>
             <meta charset=utf-8>
-            <title>User Login</title>
+            <title><?php echo $title; ?></title>
             <!-- Mobile specific metas -->
             <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
             <!-- Force IE9 to render in normal mode -->
@@ -55,21 +55,10 @@
                     <!-- Start .panel -->
 
                     <div class=panel-body>
+                        <h3><center>Reset Password</center></h3><br/>
                         <form class="form-horizontal mt0" action="" 
-                              id="login-form role=form" method="post">
+                              id="login-form" role="form" method="post">
 
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <!-- col-md-12 start here -->
-                                    <label for="">Username:</label>
-                                </div>
-                                <!-- col-md-12 end here -->
-                                <div class="col-md-12">
-                                    <div class="input-group input-icon">
-                                        <input name="email" id=username class=form-control placeholder=""> <span class=input-group-addon><i class="fa fa-user" aria-hidden="true"></i></span>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <!-- col-md-12 start here -->
@@ -78,27 +67,41 @@
                                 <!-- col-md-12 end here -->
                                 <div class="col-md-12">
                                     <div class="input-group input-icon">
-                                        <input type="password" name="password" id="password" class=form-control placeholder=""> <span class=input-group-addon><i class="fa fa-lock s16"></i></span>
+                                        <input type="password" name="password" id="password" class=form-control placeholder="" required=""> 
+                                        <span class=input-group-addon>
+                                            <i class="fa fa-lock s16"></i>
+                                        </span>
                                     </div>
-                                    <span class="help-block text-right">
-                                        <a id="forgot-password-link" href="#forgot-password" data-toggle="modal">Forgot password ?</a>
-                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <label for="">Confirm Password:</label>
+                                </div>
+                                <!-- col-md-12 end here -->
+                                <div class="col-md-12">
+                                    <div class="input-group input-icon">
+                                        <input type="password" name="confirm_password" id="confirm-password" class=form-control placeholder="" required=""> 
+                                        <span class=input-group-addon>
+                                            <i class="fa fa-lock s16"></i>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group mb0">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
-                                    <div class=checkbox-custom>
-                                        <input type=checkbox name=remember id="remember" value="option">
-                                        <label for="remember">Remember me ?</label>
-                                    </div>
+                                   
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 mb25">
-                                    <button class="btn btn-default pull-right" type="submit" value="login">Login</button>
+                                    <button class="btn btn-primary pull-right" type="submit" value="login">Reset Password</button>
                                 </div>
                             </div>
                         </form>
                         <div class="seperator"><strong>or</strong><hr></div>
-                        <div class="social-buttons text-center mt5 mb5"><a class="btn btn-primary btn-alt mr10" href="#">Sign in with <i class="fa fa-facebook s20 ml5 mr0"></i></a> <a class="btn btn-danger btn-alt ml10" href="#">Sign in with <i class="fa fa-google-plus s20 ml5 mr0"></i></a></div>
+                        <div class="social-buttons text-center mt5 mb5">
+                            <a href="<?php echo base_url('site/user_login'); ?>">Back to Login</a>   
+                        </div>
 
                         <?php
                         $flash_message = $this->session->flashdata('message');
@@ -146,31 +149,20 @@
 
             <!-- Modal -->
             <div id="forgot-password" class="modal fade" role="dialog">
-
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
                     <div class="modal-content">
-
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Forgot Password</h4>
                         </div>
                         <form class="form-horizontal" action="<?php echo base_url(); ?>site/forgot_password" method="post">
                             <div class="modal-body">
-                                <?php
-                                $error = $this->session->flashdata('email_not_found');
-                                if ($error != '') {
-                                    ?>
-                                    <div class="alert alert-danger">
-                                        <button class="close" data-dimiss="alert">&times;</button>
-                                        <p><?php echo $error; ?></p>
-                                    </div>
-                                <?php } ?>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Email</label>
                                     <div class="col-sm-8">
-                                        <input autofocus="" required="" type="email" class="form-control" name="email" />
+                                        <input required="" type="email" class="form-control" name="email" />
                                     </div>
                                 </div>	
                             </div>
@@ -184,12 +176,4 @@
                 </div>
             </div>
         </body>
-        <?php
-        $error = $this->session->flashdata('email_not_found');
-        if ($error != '') {
-            ?>
-            <script>
-                    $('#forgot-password').modal('show');
-            </script>
-        <?php } ?>
     </html>

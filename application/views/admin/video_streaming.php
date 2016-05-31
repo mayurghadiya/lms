@@ -151,7 +151,7 @@
                                         <td><?php echo $mul->c_name; ?></td>
                                         <td><?php echo $mul->s_name; ?></td>
                                         <td>
-                                            <button onclick="window.open('<?php echo base_url(); ?>index.php?video_streaming#<?php echo $mul->url_link; ?>')">View Streaming</button>
+                                            <button onclick="window.open('<?php echo base_url(); ?>video_streaming#<?php echo $mul->url_link; ?>')">View Streaming</button>
 
                                         </td>
                                     </tr>                                                    
@@ -232,7 +232,7 @@
                                 var session_clicked = $(this).attr('session_id');
                                 var streaming_status = $(this).html();
                                 $.ajax({
-                                    url: '<?php echo base_url(); ?>index.php?admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
+                                    url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
                                     type: 'get',
                                     success: function () {
                                         alert('Streaming is successfully ' + streaming_status);
@@ -246,7 +246,7 @@
                                 var streaming_status = $(this).html();
                                 if (streaming_status == 'Start') {
                                     $.ajax({
-                                        url: '<?php echo base_url(); ?>index.php?admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
+                                        url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
                                         type: 'get',
                                         success: function () {
 
@@ -256,7 +256,7 @@
                                     alert('Streaming is started');
                                 } else {
                                     $.ajax({
-                                        url: '<?php echo base_url(); ?>index.php?admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
+                                        url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
                                         type: 'get',
                                         success: function () {
 
@@ -273,7 +273,7 @@
                                 var current_milticast_status = $(this).html();
                                 if (current_milticast_status == 'Start') {
                                     $.ajax({
-                                        url: '<?php echo base_url(); ?>index.php?admin/start_stop_streaming/' + current_multicast_session + '/' + current_milticast_status,
+                                        url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + current_multicast_session + '/' + current_milticast_status,
                                         type: 'get',
                                         success: function () {
 
@@ -283,7 +283,7 @@
                                     alert('Streaming is started');
                                 } else {
                                     $.ajax({
-                                        url: '<?php echo base_url(); ?>index.php?admin/start_stop_streaming/' + current_multicast_session + '/' + current_milticast_status,
+                                        url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + current_multicast_session + '/' + current_milticast_status,
                                         type: 'get',
                                         success: function () {
 
@@ -314,7 +314,7 @@
                                     start_stop_status = 'stop';
 
                                     $.ajax({
-                                        url: '<?php echo base_url(); ?>index.php?video_streaming/in_active_streaming/' + video_session_id,
+                                        url: '<?php echo base_url(); ?>video_streaming/in_active_streaming/' + video_session_id,
                                         type: 'post',
                                         success: function () {
                                             //alert('Video stream is stopped.');
@@ -519,7 +519,7 @@
                 is_active: $('#stream_status').val()
             };
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?video_streaming/assign_live_stream',
+                url: '<?php echo base_url(); ?>video_streaming/assign_live_stream',
                 type: 'post',
                 data: formdata,
                 success: function () {
@@ -571,7 +571,7 @@
                     url_link: result[1]
                 };
                 $.ajax({
-                    url: '<?php echo base_url(); ?>index.php?video_streaming/create_private_broadcast',
+                    url: '<?php echo base_url(); ?>video_streaming/create_private_broadcast',
                     type: 'post',
                     data: form_data,
                     success: function () {
@@ -593,7 +593,7 @@
                 };
                 console.log(form_data);
                 $.ajax({
-                    url: '<?php echo base_url(); ?>index.php?video_streaming/create_private_broadcast',
+                    url: '<?php echo base_url(); ?>video_streaming/create_private_broadcast',
                     type: 'post',
                     data: form_data,
                     success: function () {
@@ -618,7 +618,7 @@
             $('#course').append('<option value="">Select</option>');
             var degree_id = $(this).val();
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/course_list_from_degree/' + degree_id,
+                url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
                 type: 'get',
                 success: function (content) {
                     var course = jQuery.parseJSON(content);
@@ -643,7 +643,7 @@
             //remove all element from batch
             $('#batch').find('option').remove().end();
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
+                url: '<?php echo base_url(); ?>admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
                 type: 'get',
                 success: function (content) {
                     $('#batch').append('<option value="">Select</option>');
@@ -660,7 +660,7 @@
         function get_semester_from_branch(branch_id) {
             $('#semester').find('option').remove().end();
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/get_semesters_of_branch/' + branch_id,
+                url: '<?php echo base_url(); ?>admin/get_semesters_of_branch/' + branch_id,
                 type: 'get',
                 success: function (content) {
                     $('#semester').append('<option value="">Select</option>');

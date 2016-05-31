@@ -62,7 +62,7 @@ if (!function_exists('user_permission')) {
         {
             //echo 'iffffffff';
            $url=base_url().$CI->session->userdata('login_type').'/dashboard';
-           echo "<script>alert('You haven not permission of this module by admin'); window.location.href ='".$url."'</script>";
+           echo "<script>alert('You have not permission to access this page.'); window.location.href ='".$url."'</script>";
         }
 //        echo $CI->uri->segment(2);
 //       exit;

@@ -2038,6 +2038,8 @@ class Admin extends MY_Controller {
                     $upload_data = $this->upload->data();
                     $data['image_path'] = isset($upload_data['file_name']) ? $upload_data['file_name'] : '';
                 }
+                print_r($data);
+                exit;
                 $this->Crud_model->save_professor($data, $param2);
                 $this->session->set_flashdata('flash_message', $this->lang_message('update_professor'));
             }
@@ -2056,7 +2058,13 @@ class Admin extends MY_Controller {
      * Examination
      * Contains the exam, exam schedule and its marks
      */
+    
+      function exam_list_from_degree_and_course($degree, $course, $batch, $semester, $type = '') {
+        $this->load->model('admin/Crud_model');
+        $exam_list = $this->Crud_model->exam_list_from_degree_and_course($degree, $course, $batch, $semester, $type);
 
+        echo json_encode($exam_list);
+    }
     /**
      * Exam management
      * @param string $param1
@@ -2072,6 +2080,7 @@ class Admin extends MY_Controller {
         }
         if ($_POST) {
             if ($param1 == 'create') {
+               
                 //check for duplication
                 $is_record_present = $this->Crud_model->exam_duplication_check(
                         $_POST['degree'], $_POST['course'], $_POST['batch'], $_POST['semester'], $_POST['exam_name']);
@@ -2097,6 +2106,7 @@ class Admin extends MY_Controller {
                         );
                         $this->Crud_model->insert_exam($data);
                         $insert_id = $this->db->insert_id();
+                     
                         //$this->exam_email_notification($_POST);
                         $this->session->set_flashdata('flash_message', $this->lang_message('save_exam'));
 
@@ -2157,6 +2167,7 @@ class Admin extends MY_Controller {
                     $page_data['edit_error'] = validation_errors();
                 }
             }
+           
         }
 
         $this->data['page'] = 'exam';
@@ -2396,14 +2407,14 @@ class Admin extends MY_Controller {
                         ), $param2);
                 $this->session->set_flashdata('flash_message', 'Exam grade is successfully updated.');
             }
-            redirect(base_url('admin/grade'));
+            redirect(base_url('admin/exam_grade'));
         }
         if ($param1 === 'delete') {
             $this->db->where('grade_id', $param2);
             $this->db->delete('grade');
             $this->session->set_flashdata('flash_message', 'Exam grade is successfully deleted.');
 
-            redirect(base_url('admin/grade'));
+            redirect(base_url('admin/exam_grade'));
         }
         $this->data['title'] = 'Exam Grade';
         $this->data['edit_title'] = $this->lang_message('edit_grade');
@@ -3552,10 +3563,10 @@ class Admin extends MY_Controller {
                     //import degree CSV
                     foreach ($csv_result as $result) {
                         $where = array(
-                            'd_name' => $result['Degree Name']
+                            'd_name' => $result['Department']
                         );
                         $data = array(
-                            'd_name' => $result['Degree Name'],
+                            'd_name' => $result['Department'],
                             'd_status' => 1
                         );
                         import_degree($data, $where);
@@ -3580,14 +3591,14 @@ class Admin extends MY_Controller {
                     foreach ($csv_result as $result) {
                         $where = array(
                             'degree' => array(
-                                'd_name' => $result['Degree Name']
+                                'd_name' => $result['Department']
                             ),
                             'course' => array(
-                                'c_name' => $result['Course Name']
+                                'c_name' => $result['Branch']
                             )
                         );
                         $data = array(
-                            'b_name' => $result['Batch Name'],
+                            'b_name' => $result['Batch'],
                             'b_status' => 1
                         );
                         import_batch($data, $where);
@@ -3601,6 +3612,7 @@ class Admin extends MY_Controller {
                         );
                         $data = array(
                             'event_name' => $result['Event Name'],
+                            'event_location'    => $result['Event Location'],
                             'event_desc' => $result['Event Description'],
                             'event_date' => $result['Event Date'],
                             'event_time' => $result['Event Time']
@@ -3613,10 +3625,10 @@ class Admin extends MY_Controller {
                     foreach ($csv_result as $result) {
                         $where = array(
                             'degree' => array(
-                                'd_name' => $result['Degree Name'],
+                                'd_name' => $result['Department'],
                             ),
                             'course_name' => array(
-                                'c_name' => $result['Course Name']
+                                'c_name' => $result['Branch']
                             ),
                             'batch' => array(
                                 'b_name' => $result['Batch']
@@ -3645,13 +3657,13 @@ class Admin extends MY_Controller {
                                 's_name' => $result['Semester']
                             ),
                             'course' => array(
-                                'c_name' => $result['Branch Name']
+                                'c_name' => $result['Branch']
                             ),
                             'degree' => array(
-                                'd_name' => $result['Course Name']
+                                'd_name' => $result['Department']
                             ),
                             'batch' => array(
-                                'b_name' => $result['Batch Name']
+                                'b_name' => $result['Batch']
                             ),
                             'fees_structure' => array(
                                 'title' => $result['Title']
@@ -3659,7 +3671,10 @@ class Admin extends MY_Controller {
                         );
                         $data = array(
                             'title' => $result['Title'],
-                            'total_fee' => $result['Fees']
+                            'total_fee' => $result['Fee'],
+                            'fee_start_date'    => $result['Start Date'],
+                            'fee_end_date'  => $result['Due Date'],
+                            'penalty'   => $result['Penalty']
                         );
                         import_fees_structure($data, $where);
                     }
@@ -3672,7 +3687,7 @@ class Admin extends MY_Controller {
                                 's_name' => $result['Semester']
                             ),
                             'course' => array(
-                                'c_name' => $result['Course']
+                                'c_name' => $result['Branch']
                             ),
                             'subject' => array(
                                 'subject_name' => $result['Subject Name']
@@ -3722,13 +3737,13 @@ class Admin extends MY_Controller {
                                 's_name' => $result['Semester']
                             ),
                             'course' => array(
-                                'c_name' => $result['Course Name']
+                                'c_name' => $result['Branch']
                             ),
                             'batch' => array(
                                 'b_name' => $result['Batch']
                             ),
                             'degree' => array(
-                                'd_name' => $result['Degree Name']
+                                'd_name' => $result['Department']
                             ),
                             'admission_type' => array(
                                 'at_name' => $result['Admission Type']
@@ -3758,16 +3773,16 @@ class Admin extends MY_Controller {
                     foreach ($csv_result as $result) {
                         $where = array(
                             'course' => array(
-                                'c_name' => $result['Course Name']
+                                'c_name' => $result['Branch']
                             ),
                             'degree' => array(
-                                'd_name' => $result['Degree Name']
+                                'd_name' => $result['Department']
                             )
                         );
                         $data = array(
-                            'c_name' => $result['Course Name'],
+                            'c_name' => $result['Branch'],
                             'c_description' => $result['Description'],
-                            'course_alias_id' => $result['Course Alias']
+                            'course_alias_id' => $result['Branch Code']
                         );
                         import_course($data, $where);
                     }
@@ -3828,7 +3843,7 @@ class Admin extends MY_Controller {
                 course();
                 break;
             case 'degree':
-                $this->import_demo_sheet_download_config('Course');
+                $this->import_demo_sheet_download_config('Department');
                 degree();
                 break;
             case 'admission_type':
@@ -3848,7 +3863,7 @@ class Admin extends MY_Controller {
                 exam_manager();
                 break;
             case 'fees_structure':
-                $this->import_demo_sheet_download_config('Fees Structure');
+                $this->import_demo_sheet_download_config('Fee Structure');
                 fees_structure();
                 break;
             case 'subject':
