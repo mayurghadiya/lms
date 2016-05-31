@@ -23,6 +23,7 @@
             <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel=stylesheet type=text/css>
             <!-- Css files -->
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/main.min.css>
+            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css"/>
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
 
             <!-- jQuery -->
@@ -39,7 +40,7 @@
             <script>
                 var base_url = '<?php echo base_url(); ?>';
             </script>
-        <body class="<?php echo $this->uri->segment(2); ?>">
+        <body class="<?php echo $this->router->fetch_method(); ?>">
             <!--[if lt IE 9]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]--><!-- .#header -->

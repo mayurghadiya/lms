@@ -13,7 +13,8 @@
     "require": {
         "php": ">=5.2.4",
         "rlanvin/php-rrule": "^1.2",
-        "components/bootstrap-datetimepicker": "^2.3"
+        "components/bootstrap-datetimepicker": "^2.3",
+        "fzaninotto/faker": "^1.6"
     },
     "suggest": {
         "paragonie/random_compat": "Provides better randomness in PHP 5.x"

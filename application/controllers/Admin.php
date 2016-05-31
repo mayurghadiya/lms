@@ -20,10 +20,6 @@ class Admin extends MY_Controller {
         $this->load->model('forum_model');
         $this->load->model('professor/Professor_model');
         $this->load->model('photo_gallery');
-//         if (!$this->input->is_ajax_request()) {
-//            $this->load->helper('permission');        
-//             user_permission();
-//        }
     }
 
     /**
@@ -2058,13 +2054,13 @@ class Admin extends MY_Controller {
      * Examination
      * Contains the exam, exam schedule and its marks
      */
-    
-      function exam_list_from_degree_and_course($degree, $course, $batch, $semester, $type = '') {
+    function exam_list_from_degree_and_course($degree, $course, $batch, $semester, $type = '') {
         $this->load->model('admin/Crud_model');
         $exam_list = $this->Crud_model->exam_list_from_degree_and_course($degree, $course, $batch, $semester, $type);
 
         echo json_encode($exam_list);
     }
+
     /**
      * Exam management
      * @param string $param1
@@ -2080,7 +2076,7 @@ class Admin extends MY_Controller {
         }
         if ($_POST) {
             if ($param1 == 'create') {
-               
+
                 //check for duplication
                 $is_record_present = $this->Crud_model->exam_duplication_check(
                         $_POST['degree'], $_POST['course'], $_POST['batch'], $_POST['semester'], $_POST['exam_name']);
@@ -2106,7 +2102,7 @@ class Admin extends MY_Controller {
                         );
                         $this->Crud_model->insert_exam($data);
                         $insert_id = $this->db->insert_id();
-                     
+
                         //$this->exam_email_notification($_POST);
                         $this->session->set_flashdata('flash_message', $this->lang_message('save_exam'));
 
@@ -2167,7 +2163,6 @@ class Admin extends MY_Controller {
                     $page_data['edit_error'] = validation_errors();
                 }
             }
-           
         }
 
         $this->data['page'] = 'exam';
@@ -2924,8 +2919,6 @@ class Admin extends MY_Controller {
                 $data['user_role'] = $this->session->userdata('login_type');                
                 $data['user_role_id'] = $this->session->userdata('login_user_id');
                 $data['forum_id'] = $this->input->post('forum_id');
-            
-
             }            
             $this->forum_model->update_topic($data, $id);
             $this->session->set_flashdata('flash_message', 'Forum Topic Updated Successfully');
@@ -3611,7 +3604,7 @@ class Admin extends MY_Controller {
                         );
                         $data = array(
                             'event_name' => $result['Event Name'],
-                            'event_location'    => $result['Event Location'],
+                            'event_location' => $result['Event Location'],
                             'event_desc' => $result['Event Description'],
                             'event_date' => $result['Event Date'],
                             'event_time' => $result['Event Time']
@@ -3671,9 +3664,9 @@ class Admin extends MY_Controller {
                         $data = array(
                             'title' => $result['Title'],
                             'total_fee' => $result['Fee'],
-                            'fee_start_date'    => $result['Start Date'],
-                            'fee_end_date'  => $result['Due Date'],
-                            'penalty'   => $result['Penalty']
+                            'fee_start_date' => $result['Start Date'],
+                            'fee_end_date' => $result['Due Date'],
+                            'penalty' => $result['Penalty']
                         );
                         import_fees_structure($data, $where);
                     }
@@ -4256,7 +4249,6 @@ class Admin extends MY_Controller {
      * @param string $branch_id
      */
     function semesters_list_from_branch($branch_id) {
-        $this->load->model('admin/Crud_model');
         $semester = $this->Crud_model->get_semesters_of_branch($branch_id);
 
         echo json_encode($semester);
@@ -5767,7 +5759,7 @@ class Admin extends MY_Controller {
 
             $datetime = strtotime($datetime);
 
-            $datetime = date('Y-m-d H:i:s', $datetime);           
+            $datetime = date('Y-m-d H:i:s', $datetime);
             $data['todo_role'] = $this->session->userdata('login_type');
             $data['todo_role_id'] = $this->session->userdata('login_user_id');
             $data['todo_datetime'] = $datetime;
@@ -5815,48 +5807,83 @@ class Admin extends MY_Controller {
         //$this->data['page'] = 'search_result';
         $this->__site_template('admin/search_result', $this->data);
     }
-    
-    function time_line($param='' , $param2 = '')
-    {
-        if($_POST)
-        {
-            if($param=="create")
-            {
-               $data['timeline_title'] = $this->input->post('timeline_title'); 
-               $data['timeline_desc'] = $this->input->post('timeline_desc'); 
-               $data['timeline_year'] = $this->input->post('timeline_year'); 
-               $data['timeline_status'] = $this->input->post('timeline_status'); 
-               $this->Crud_model->addtimeline($data);
-               $this->session->set_userdata('flash_message', 'Timeline Added Successfully');
-               redirect(base_url('admin/time_line'));
+
+    function time_line($param = '', $param2 = '') {
+        if ($_POST) {
+            if ($param == "create") {
+                $data['timeline_title'] = $this->input->post('timeline_title');
+                $data['timeline_desc'] = $this->input->post('timeline_desc');
+                $data['timeline_year'] = $this->input->post('timeline_year');
+                $data['timeline_status'] = $this->input->post('timeline_status');
+                $this->Crud_model->addtimeline($data);
+                $this->session->set_userdata('flash_message', 'Timeline Added Successfully');
+                redirect(base_url('admin/time_line'));
             }
-            if($param=="do_update")
-            {
-               $data['timeline_title'] = $this->input->post('timeline_title'); 
-               $data['timeline_desc'] = $this->input->post('timeline_desc'); 
-               $data['timeline_year'] = $this->input->post('timeline_year'); 
-               $data['timeline_status'] = $this->input->post('timeline_status'); 
-               $this->Crud_model->update_timeline($data,$param2);
-               $this->session->set_userdata('flash_message', 'Timeline Updated Successfully');
-               redirect(base_url('admin/time_line'));
+            if ($param == "do_update") {
+                $data['timeline_title'] = $this->input->post('timeline_title');
+                $data['timeline_desc'] = $this->input->post('timeline_desc');
+                $data['timeline_year'] = $this->input->post('timeline_year');
+                $data['timeline_status'] = $this->input->post('timeline_status');
+                $this->Crud_model->update_timeline($data, $param2);
+                $this->session->set_userdata('flash_message', 'Timeline Updated Successfully');
+                redirect(base_url('admin/time_line'));
             }
-             
-            
         }
-        if($param=="delete")
-        {
+        if ($param == "delete") {
             $this->session->set_userdata('flash_message', 'Timeline Deleted Successfully');
             $this->Crud_model->delete_timeline($param2);
-             redirect(base_url('admin/time_line'));
+            redirect(base_url('admin/time_line'));
         }
-        
-        
+
+
         $this->data['title'] = 'timeline';
-        $this->data['page'] = 'timeline';   
+        $this->data['page'] = 'timeline';
         $this->data['timeline'] = $this->Crud_model->gettimeline();
         $this->data['edit_title'] = 'Update Timeline';
         $this->data['add_title'] = 'Add Timeline';
         $this->__site_template('admin/timeline', $this->data);
     }
 
+    function demo_faker() {
+        require 'vendor/autoload.php';
+        // use the factory to create a Faker\Generator instance
+        $faker = Faker\Factory::create();
+        $roll_no = rand();
+        for ($i = 1; $i <= 5000; $i++) {
+            $male_female = (rand(1, 100) > 50) ? 'male' : 'female';
+            $this->db->insert('student', array(
+                'email' => $faker->safeEmail,
+                'name' => $faker->name($male_female),
+                'password' => hash('md5', '12345'),
+                'std_roll' => $roll_no++,
+                'std_first_name' => $faker->firstName($male_female),
+                'std_last_name' => $faker->lastName,
+                'std_gender' => ucfirst($male_female),
+                'address' => $faker->address,
+                'country' => $faker->country,
+                'state' => $faker->state,
+                'city' => $faker->city,
+                'zip' => $faker->postcode,
+                'std_birthdate' => $faker->date,
+                //'std_merital' => '',
+                'std_about' => $faker->text,
+                'std_mobile' => $faker->e164PhoneNumber,
+                'parent_name' => $faker->name,
+                'parent_contact' => $faker->e164PhoneNumber,
+                'parent_email' => $faker->safeEmail,
+                'real_pass' => '12345',
+            ));
+        }
+
+    }
+    
+    /**
+     * Start or stop video streaming
+     * @param type $stream_name
+     */
+    function start_stop_streaming($stream_name, $status) {
+        $this->Crud_model->start_stop_streaming($stream_name, $status);
+    }
+    
+    
 }
