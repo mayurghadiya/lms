@@ -754,4 +754,10 @@ class Student_model extends CI_Model {
     {
           $this->db->update("todo_list",$data,array("todo_id"=>$id));
     }
+    
+     function get_timline()
+    {
+        $this->db->order_by('timeline_year','desc');
+        return $this->db->get_where("timeline",array("timeline_status"=>'1'))->result();
+    }
 }

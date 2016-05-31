@@ -7,7 +7,7 @@
                         <div class=form-group>
                             <label class="control-label col-lg-4">Task Title</label>
                             <div class="col-sm-8">
-                                <input type="text" id="todo_titleedit" class=form-control name="todo_title" value="<?php echo $todolist->todo_title; ?>" >
+                                <input type="text" id="todo_titleedit" class=form-control name="todo_title" value="<?php echo $todolist->todo_title; ?>"  >
                             <input type="hidden" value="<?php echo $todolist->todo_id; ?>" id="todo_id">
                             </div>                            
                         </div>
@@ -15,7 +15,7 @@
                         <div class=form-group>
                             <label class="control-label col-lg-4">Task Date</label>
                              <div class="col-sm-8">
-                                 <input id="basic-datepickeredit" type="text" name="tado_date" class="form-control"  value="<?php echo date("m/d/Y",  strtotime($todolist->todo_datetime)); ?>" >
+                                 <input id="basic-datepickeredit" type="text" name="tado_date" class="form-control"  value="<?php echo date("m/d/Y",  strtotime($todolist->todo_datetime)); ?>" readonly="" >
                             </div>                           
                         </div>
 
@@ -24,7 +24,7 @@
                             <div class="col-sm-8">
                                 <div class="input-group bootstrap-timepicker">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                    <input id="minute-step-timepickeredit" name="todo_time" type="text" class="form-control" value="<?php echo date("h:i A",  strtotime($todolist->todo_datetime)); ?>" >
+                                    <input id="minute-step-timepickeredit" name="todo_time" type="text" class="form-control" value="<?php echo date("h:i A",  strtotime($todolist->todo_datetime)); ?>" readonly="" >
                                 </div>
                             </div>
                         </div>
@@ -32,6 +32,7 @@
                         <div class=form-group>
                             <div class="col-sm-offset-4 col-sm-8">
                                 <input type="button" class="btn btn-primary" name="submit" value="Update Task" id="updatebutton" >                                
+                                <input type="button" class="btn btn-primary" name="submit" value="Close" id="updatecloseform">
                             </div>
                         </div>
 
@@ -62,6 +63,9 @@
             minuteStep: 30,
             autoclose:true,
         });
+         $("#updatecloseform").click(function () {
+    $("#todo-updateform").hide(500);
+    });
         
          $("#frmtodoedit #updatebutton").click(function ()
         {

@@ -43,6 +43,7 @@ class Student extends MY_Controller {
         $this->data['all'] = $streaming['all'];
         $this->data['live_streaming'] = $streaming['live_streaming'];
         $this->data['todolist'] = $this->Student_model->get_todo();
+        $this->data['timeline'] = $this->Student_model->get_timline();
         $this->__site_template('student/dashboard', $this->data);
     }
 

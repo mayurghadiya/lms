@@ -99,7 +99,7 @@
                         </div>	
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("date"); ?><span style="color:red">*</span></label>
+                        <label class="col-sm-3 control-label"><?php echo ucwords("date"); ?></label>
                         <div class="col-sm-5">
                             <input class="form-control datepicker-normal" readonly="" required="" type="text" name="date"/>
                         </div>	
