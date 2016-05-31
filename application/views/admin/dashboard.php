@@ -100,8 +100,9 @@
 
             }]
     });
-    });</script>
-<!-- bar chart course wise male and female -->
+    });
+</script>
+    <!-- bar chart course wise male and female -->
 <script>
     $(function () {
 <?php
@@ -668,7 +669,7 @@ $this->load->helper('report_chart');
     });</script>
 <!-- Start .row -->
 <div class=row>
-    <div class=>
+    <div class="">
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle">
             <!-- Start .panel -->

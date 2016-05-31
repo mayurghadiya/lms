@@ -1,4 +1,4 @@
-<table id="datatable-list2" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+<table id="datatable-list2" class="table table-striped table-bordered table-responsive text-center" cellspacing=0 width=100%>
     <thead>
         <tr>
             <th>#</th>	
