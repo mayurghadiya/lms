@@ -130,6 +130,8 @@ $('#summernote').summernote({
     height: 200
 });
 
+ $('.select2').select2();
+
 
 //custom datatable filtering
 $(document).ready(function () {
