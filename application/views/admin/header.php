@@ -25,6 +25,7 @@
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/main.min.css>
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css"/>
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
+            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/plugins.css>
 
             <!-- jQuery -->
             <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>

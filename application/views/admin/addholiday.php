@@ -27,6 +27,7 @@
                                             <label class="col-sm-4 control-label"><?php echo ucwords("start date");?><span style="color:red">*</span></label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" name="holiday_startdate" id="holiday_startdate"/>
+
                                             </div>	
                                         </div>
                                         <div class="form-group">
