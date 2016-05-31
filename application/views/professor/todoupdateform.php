@@ -76,7 +76,7 @@
             if (title != "" && todo_date!="" && todo_time!="")
             { 
                 var todo_id = $("#todo_id").val();
-                var dataString = "title=" + title+"&todo_date="+todo_date+"&todo_time="+todo_time+"&todo_id="+todo_id;
+                var dataString = "title=" + encodeURIComponent(title)+"&todo_date="+todo_date+"&todo_time="+todo_time+"&todo_id="+todo_id;
                 $.ajax({
                     type: "POST",
                     url: "<?php echo base_url(); ?>professor/updatetodolist",
