@@ -9,14 +9,14 @@
 
         <div class=form-group>
             <label class="col-lg-2 col-md-3 control-label">Task Date</label>
-            <input id="basic-datepickeredit" type="text" name="tado_date" class="form-control"  value="<?php echo date("m/d/Y", strtotime($todolist->todo_datetime)); ?>" >
+            <input id="basic-datepickeredit" type="text" name="tado_date" class="form-control"  value="<?php echo date("m/d/Y", strtotime($todolist->todo_datetime)); ?>" readonly="" >
         </div>
         <div class=form-group>
             <label class="col-lg-2 col-md-3 control-label">Task Time</label>
             <div class="col-lg-5 col-md-5">
                 <div class="input-group bootstrap-timepicker">
                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                    <input id="minute-step-timepickeredit" name="todo_time" type="text" class="form-control" value="<?php echo date("h:i A", strtotime($todolist->todo_datetime)); ?>" >
+                    <input id="minute-step-timepickeredit" name="todo_time" type="text" class="form-control" value="<?php echo date("h:i A", strtotime($todolist->todo_datetime)); ?>" readonly="" >
                 </div>
             </div>
         </div>
@@ -28,8 +28,7 @@
     </form>
 </div>
 
-<script type="text/javascript">
-      alert('asdasd');
+<script type="text/javascript">      
   
         
         $(document).ajaxStart(function () {

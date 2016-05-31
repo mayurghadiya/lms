@@ -84,8 +84,8 @@ padding:10px 0px 4px 20px;
 
 .todo-task-item  div{ display: inline-block; float: left !important; margin-right: 0 !important; line-height: 20px; }
 .todo-task-item .checkbox-custom{width: 5%;}
-.todo-task-item .todo-task-text{width: 51%; line-height: 24px; }
-.todo-task-item .todo-category{width: 32%;}
+.todo-task-item .todo-task-text{width: 46%; line-height: 24px; }
+.todo-task-item .todo-category{width: 35%;}
 .todo-task-item .updateclick_box{width: 6%;}
 .todo-task-item .todo-close_box{width: 6%;}
 
@@ -95,3 +95,314 @@ padding:10px 0px 4px 20px;
 .todo-task-item .todo-close_box .close{opacity:0.9;}
 .updateclick_box .updateclick:hover i, .todo-task-item .todo-close_box .todo-close1:hover i{color: #000;}
 .marginzero{margin:0 !important;}
+
+/* Time list style deshboard */
+.popover {
+    z-index: 1049;
+    top: 0;
+    left: 0;
+    display: none;
+    min-width: 250px;
+    margin: 0;
+    padding: 0
+}
+.popover .popover-content {
+    padding: 15px
+}
+.display-block.popover {
+    box-shadow: 0 0 0 transparent
+}
+.popover.top {
+    margin-top: -10px
+}
+.popover.right {
+    margin-left: 10px
+}
+.popover.bottom {
+    margin-top: 10px
+}
+.popover.left {
+    margin-left: -10px
+}
+.popover-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent
+}
+.popover-title:empty {
+    display: none
+}
+.popover .arrow,
+.popover .arrow:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent
+}
+.popover .arrow {
+    border-width: 10px
+}
+.popover .arrow:after {
+    content: '';
+    border-width: 10px
+}
+.popover.top .arrow {
+    bottom: -11px;
+    left: 50%;
+    margin-left: -11px
+}
+.popover.top .arrow:after {
+    bottom: 1px;
+    margin-left: -10px;
+    border-top-color: rgba(0, 0, 0, .2);
+    border-bottom-width: 0
+}
+.popover.right .arrow {
+    top: 50%;
+    left: -22px;
+    margin-top: -11px
+}
+.popover.right .arrow:after {
+    bottom: -10px;
+    left: 1px;
+    border-right-color: rgba(0, 0, 0, .2);
+    border-left-width: 0
+}
+.popover.bottom .arrow {
+    top: -11px;
+    left: 50%;
+    margin-left: -11px
+}
+.popover.bottom .arrow:after {
+    top: 1px;
+    margin-left: -10px;
+    border-top-width: 0;
+    border-bottom-color: rgba(0, 0, 0, .2)
+}
+.popover.left .arrow {
+    top: 50%;
+    right: -22px;
+    margin-top: -11px
+}
+.popover.left .arrow:after {
+    right: 1px;
+    bottom: -10px;
+    border-right-width: 0;
+    border-left-color: rgba(0, 0, 0, .2)
+}
+.popover .dropdown-menu,
+.popover .nav-list {
+    margin: 0;
+    border: 0
+}
+.display-block.popover {
+    float: none;
+    width: auto;
+    margin: 0
+}
+.fixed-header .popover {
+    position: fixed;
+    -webkit-transform: translate3d(0, 0, 0)
+}
+/**********************/
+.timeline-box {
+    position: relative
+}
+.timeline-box:before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 100%;
+    margin-left: 0;
+    content: '';
+    border-left: 1px solid transparent
+}
+.timeline-box .tl-row {
+    position: relative;
+    padding: 10px 0
+}
+.timeline-box .tl-row .tl-item {
+    width: 50%
+}
+.timeline-box .tl-row .tl-item .popover {
+    position: relative;
+    display: block;
+    margin: 0;
+    box-shadow: 0 0 0 transparent
+}
+.timeline-box .tl-row .tl-item .popover.left {
+    float: right;
+    margin-right: 35px
+}
+.timeline-box .tl-row .tl-item.float-right .popover.right {
+    margin-left: 35px
+}
+.timeline-box .tl-row .tl-item .tl-panel {
+    font-weight: 700;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    margin-top: -8px;
+    margin-left: 23px;
+    text-align: left
+}
+.timeline-box .tl-row .tl-item.float-right .tl-panel {
+    right: 50%;
+    left: auto;
+    margin-right: 23px;
+    margin-left: 0;
+    text-align: right
+}
+.timeline-box .tl-row .tl-item .tl-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 10px
+}
+.timeline-box .tl-row .tl-item .tl-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 5px 8px
+}
+.timeline-box .tl-row .tl-item .tl-content {
+    font-size: 13px;
+    margin: 0 0 10px;
+    opacity: .8;
+    -moz-opacity: .8;
+    filter: alpha(opacity: 80)
+}
+.timeline-box .tl-row .tl-item .tl-time {
+    font-style: italic;
+    opacity: .4;
+    -moz-opacity: .4;
+    filter: alpha(opacity: 40)
+}
+.timeline-box .tl-row .tl-item .tl-bullet,
+.timeline-box .tl-row .tl-item .tl-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 17px;
+    height: 17px;
+    margin-top: -9px;
+    margin-left: -8px;
+    border-radius: 100px
+}
+.timeline-box .tl-row .tl-item .tl-bullet:before {
+    display: block;
+    width: 9px;
+    height: 9px;
+    margin: 4px 0 0 4px;
+    content: '';
+    border-radius: 100px;
+    background: #fff
+}
+.timeline-box .tl-row .tl-item .tl-icon {
+    font-size: 18px;
+    line-height: 34px;
+    width: 34px;
+    height: 34px;
+    margin-top: -18px;
+    margin-left: -17px;
+    text-align: center
+}
+.timeline-scroll {
+    overflow-x: scroll;
+    overflow-y: hidden
+}
+.timeline-horizontal {
+    height: 400px;
+    padding: 10px 0
+}
+.timeline-horizontal .tl-row {
+    float: left;
+    width: 260px;
+    height: 173px
+}
+.timeline-horizontal.timeline-box:before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    border: 0
+}
+.timeline-horizontal.timeline-box .tl-row .tl-item {
+    width: auto
+}
+.timeline-horizontal.timeline-box .tl-row .tl-item .tl-panel {
+    top: auto;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    text-align: center
+}
+.timeline-horizontal.timeline-box .tl-row .tl-item .tl-bullet {
+    margin-left: -9px
+}
+.timeline-horizontal.timeline-box .tl-row .tl-item .tl-bullet,
+.timeline-horizontal.timeline-box .tl-row .tl-item .tl-icon {
+    top: auto;
+    bottom: -27px
+}
+.timeline-horizontal.timeline-box .tl-row .tl-item .popover {
+    position: absolute;
+    top: auto;
+    bottom: 10px;
+    width: 100%
+}
+.timeline-horizontal.timeline-box .tl-row .tl-item.float-right .tl-panel {
+    bottom: 0
+}
+.timeline-horizontal.timeline-box .tl-row .tl-item.float-right .popover {
+    top: 230px;
+    bottom: auto
+}
+/* color style */
+.badge-info,
+.bg-blue,
+.bootstrap-switch-info,
+.btn-info,
+.checkbox-info div[id^=uniform-] span.checked,
+.hover-blue:hover,
+.hover-info:hover,
+.label-info,
+.radio-info div[id^=uniform-] span.checked {
+    color: #fff;
+    border-color: #3dc4f5;
+    background: #5bccf6
+}
+/* helper-css */
+
+
+.badge-info,
+.bg-blue,
+.bootstrap-switch-info,
+.btn-info,
+.checkbox-info div[id^=uniform-] span.checked,
+.hover-blue:hover,
+.hover-info:hover,
+.label-info,
+.radio-info div[id^=uniform-] span.checked {
+    color: #fff;
+    border-color: #3dc4f5;
+    background: #5bccf6
+}
+.timeline-horizontal.timeline-box:before {
+    background: #ddd;
+    width: 100%;
+}
+
+
+#content-1{width: 260px;height: 430px !important;overflow: hidden;background: #fdfdfd; padding: 0px; margin:0;}
+.panel-body .todo-widget .todo-list{ height: 350px; overflow-y:auto;  }
+@media only screen and (min-width: 1024px){
+#content-1 {height: 430px !important;width: 100%; box-sizing: border-box; margin:0;padding: 0;}
+}

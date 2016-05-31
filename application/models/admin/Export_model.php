@@ -24,9 +24,9 @@ class Export_model extends CI_Model {
         $this->db->select('em.em_name AS Exam Name, '
                 . 'em.total_marks AS Total Marks, em.passing_mark AS Passing Marks');
         $this->db->select('et.exam_type_name AS ExamType');
-        $this->db->select('d.d_name AS Degree Name');
-        $this->db->select('c.c_name AS Course Name, c.course_alias_id AS Course Alias');
-        $this->db->select('b.b_name AS Batch Name');
+        $this->db->select('d.d_name AS Department');
+        $this->db->select('c.c_name AS Branch, c.course_alias_id AS Branch Id');
+        $this->db->select('b.b_name AS Batch');
         $this->db->select('s.s_name AS Semester');
         $this->db->from('exam_manager AS em');
         $this->db->join('exam_type AS et', 'et.exam_type_id = em.em_type');
@@ -45,6 +45,7 @@ class Export_model extends CI_Model {
     function event_manager() {
         //event_manager em
         $this->db->select('em.event_name AS Event Name, em.event_desc AS Description,'
+                 . 'em.event_location AS Event Location,'
                 . 'DATE_FORMAT(em.event_date, "%d %b %y") AS Date, TIME_FORMAT(em.event_date, "%h:%i%p") AS Time');
         $this->db->from('event_manager em');
         
@@ -58,9 +59,9 @@ class Export_model extends CI_Model {
     function course() {
         //course c
         //degree d
-        $this->db->select('c.c_name AS Branch Name, c.course_alias_id AS Branch ID, '
+        $this->db->select('c.c_name AS Branch, c.course_alias_id AS Branch ID, '
                 . 'c.c_description AS Description');
-        $this->db->select('d.d_name AS Course Name');
+        $this->db->select('d.d_name AS Department');
         $this->db->from('course AS c');
         $this->db->join('degree AS d', 'd.d_id = c.degree_id');
         
@@ -73,7 +74,7 @@ class Export_model extends CI_Model {
      */
     function degree() {
         //degree d
-        $this->db->select('d.d_name AS Course Name');
+        $this->db->select('d.d_name AS Department');
         $this->db->from('degree d');
         
         return $this->db->get();
@@ -85,7 +86,7 @@ class Export_model extends CI_Model {
      */
     function semester() {
         //semester s
-        $this->db->select('s.s_name AS Semester Name');
+        $this->db->select('s.s_name AS Semester');
         $this->db->from('semester s');
         
         return $this->db->get();
@@ -106,7 +107,7 @@ class Export_model extends CI_Model {
                 . 's.zip AS Zip, s.std_birthdate AS Birth Date, '
                 . 's.std_marital AS Merital, s.std_mobile AS Mobile, s.std_about AS About');
         $this->db->select('d.d_name AS Degree');
-        $this->db->select('c.c_name AS Course Name');
+        $this->db->select('c.c_name AS Branch');
         $this->db->select('b.b_name AS Batch');
         $this->db->select('sm.s_name AS Semester');
         $this->db->from('student s');
@@ -144,8 +145,8 @@ class Export_model extends CI_Model {
         $this->db->select('pm.pm_title AS Title, pm.pm_desc AS Description, pm.pm_status AS Status');
         $this->db->select('s.name AS Student Name, s.email AS Student Email');
         $this->db->select('d.d_name AS Degree');
-        $this->db->select('c.c_name AS Course');
-        $this->db->select('b.b_name AS Batch Name');
+        $this->db->select('c.c_name AS Branch');
+        $this->db->select('b.b_name AS Batch');
         $this->db->select('sm.s_name AS Semester');
         $this->db->from('project_manager pm');
         $this->db->join('student s', 's.std_id = pm.pm_student_id');
@@ -163,7 +164,7 @@ class Export_model extends CI_Model {
      */
     function admission_type() {
         //admission_type a
-        $this->db->select('a.at_name AS Admission Name');
+        $this->db->select('a.at_name AS Admission Type');
         $this->db->from('admission_type a');
         
         return $this->db->get();
@@ -177,9 +178,9 @@ class Export_model extends CI_Model {
         //batch b
         //degree d
         //course c
-        $this->db->select('b.b_name AS Batch Name');
-        $this->db->select('d.d_name AS Degree Name');
-        $this->db->select('c.c_name AS Course Name');
+        $this->db->select('b.b_name AS Batch');
+        $this->db->select('d.d_name AS Department');
+        $this->db->select('c.c_name AS Branch');
         $this->db->from('batch b');
         $this->db->join('degree d', 'd.d_id = b.degree_id');
         $this->db->join('course AS c', 'c.course_id = b.course_id');
@@ -197,10 +198,12 @@ class Export_model extends CI_Model {
         //degree d
         //batch b
         $this->db->select('f.title AS Title, f.total_fee AS Total Fee');
-        $this->db->select('d.d_name AS Degree');
-        $this->db->select('c.c_name AS Course');
+        $this->db->select('d.d_name AS Department');
+        $this->db->select('c.c_name AS Branch');
         $this->db->select('b.b_name AS Batch');
         $this->db->select('s.s_name AS Semester');
+        //DATE_FORMAT(em.event_date, "%d %b %y")
+        $this->db->select('DATE_FORMAT(f.fee_start_date, "%d %b %y") AS Start Date, DATE_FORMAT(f.fee_end_date, "%d %b %y") AS Due Date, f.penalty AS Penalty');
         $this->db->from('fees_structure AS f');
         $this->db->join('degree AS d', 'd.d_id = f.degree_id');
         $this->db->join('course AS c', 'c.course_id = f.course_id');
@@ -219,7 +222,7 @@ class Export_model extends CI_Model {
         //semester sm
         //course c
         $this->db->select('s.subject_name AS Subject Name, s.subject_code AS Subject Code');
-        $this->db->select('c.c_name AS Course');
+        $this->db->select('c.c_name AS Branch');
         $this->db->select('sm.s_name AS Semester');
         $this->db->from('subject_manager s');
         $this->db->join('course AS c', 'c.course_id = s.sm_course_id');
