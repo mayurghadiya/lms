@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar_theme_responsive.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/event_calendar/moment.js"></script> 
 <!-- charts js and library -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -680,50 +681,9 @@ $this->load->helper('report_chart');
         </div>
         <!-- End .panel -->
 
-        <div class="panel panel-default toggle">
-            <div class="panel-heading">
-                <h4 class=panel-title>Report Charts</h4>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Male to Female Course count Ratio</div>
-                            </div>
-                            <div class="panel-body" id="container" style="width: 450px; height: 450px;"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Students enrolled</div>
-                            </div>
-                            <div class="panel-body" id="stduent-enrolled" style="height: 450px; width: 450px;"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Male to Female Course count Ratio</div>
-                            </div>
-                            <div class="panel-body" id="course-male-female" style="height: 500px;"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Students Enrolled (Coursewise)</div>
-                            </div>
-                            <div class="panel-body" id="course-wise-student" style="height: 500px;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+<!-- start todo & time line -->
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <div class="panel panel-default toggle">
                     <!-- Start .panel -->
                     <div class=panel-heading>
@@ -773,26 +733,30 @@ $this->load->helper('report_chart');
                                     </div>
                                 </div>
                                 <div class=todo-search>
-                                    <form><input class=form-control name=search placeholder="Search for todo ..."></form>
+                                    <form>
+                                    <input class=form-control name=search placeholder="Search for todo ...">
+                                    </form>
                                 </div>
-                                <div class=todo-add><a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a></div>
-
+                                <div class=todo-add>
+                                <a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a>
+                                </div>
                             </div>
                             <h4 class=todo-period>To Do List</h4>
-                            <div id="wait" class="loading_img"><img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading...
+                            <div id="wait" class="loading_img">
+                                <img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading...
                             </div>
                             <ul class="todo-list" id="today">
-<?php foreach ($todolist as $todo) { ?>  
-                                    <li class="todo-task-item <?php
-    if ($todo->todo_status == "0") {
-        echo "task-done";
-    }
-    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
-                                        <div class=checkbox-custom><input type="checkbox" <?php
-    if ($todo->todo_status == "0") {
-        echo "checked=''";
-    }
-    ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
+                                <?php foreach ($todolist as $todo) { ?>  
+                                <li class="todo-task-item <?php
+                                    if ($todo->todo_status == "0") {
+                                        echo "task-done";
+                                    }
+                                    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
+                                                                        <div class=checkbox-custom><input type="checkbox" <?php
+                                    if ($todo->todo_status == "0") {
+                                        echo "checked=''";
+                                    }
+                                    ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
                                         <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
                                         <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo $todo->todo_datetime; ?></div>
                                         <div class="updateclick_box">
@@ -801,15 +765,105 @@ $this->load->helper('report_chart');
                                         <div class="todo-close_box">
                                             <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
                                         </div>
-                                    </li>
-<?php } ?>
+                                </li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
                     <!-- End .todo-widget -->
                 </div>
             </div>
+
+            <div class="col-lg-7">
+                <div class="panel panel-default toggle">
+                    <!-- Start .panel -->
+                    <div class=panel-heading>
+                        <h4 class="panel-title marginzero">
+                            Timeline
+                        </h4>
+                    </div>
+                    <div class=panel-body>
+                            <div id="demo">
+                                <section id="examples">         
+                                    <!-- content -->
+                                    <div id="content-1">
+                                        <div class="timeline-box timeline-horizontal" style="width: 2500px;">
+                                            <?php $i = 0;
+                                            foreach ($timeline as $time_line) {
+                                                ?>
+                                                <div class="tl-row">
+                                                    <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                        <div class="tl-bullet bg-blue"></div>
+                                                        <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
+                                                        <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                            <div class="arrow"></div>
+                                                            <div class="popover-content">
+                                                                <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
+                                                                <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
+                                                                <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo $time_line->timeline_created_date; ?></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php $i++;
+                                            }
+                                            ?>
+
+                                        </div>
+                                    </div>          
+                                </section>
+                            </div>
+                    </div>
+                </div>
+            </div>
         </div>
+<!-- end todo & time line -->
+
+<!-- Start Report Charts -->
+        <div class="panel panel-default toggle">
+            <div class="panel-heading">
+                <h4 class="panel-title marginzero">Report Charts</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">Male to Female Course count Ratio</div>
+                            </div>
+                            <div class="panel-body" id="container" style="width: 450px; height: 450px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">Students enrolled</div>
+                            </div>
+                            <div class="panel-body" id="stduent-enrolled" style="height: 450px; width: 450px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">Male to Female Course count Ratio</div>
+                            </div>
+                            <div class="panel-body" id="course-male-female" style="height: 500px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">Students Enrolled (Coursewise)</div>
+                            </div>
+                            <div class="panel-body" id="course-wise-student" style="height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- End Report Charts -->
+
+
     </div>
     <!-- col-lg-12 end here -->
 </div>
@@ -972,3 +1026,51 @@ $this->load->helper('report_chart');
     });
     });</script>
 <!-- end To do Js -->
+<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script>
+ (function($) {
+
+     $(window).load(function() {
+
+         $("#content-1").mCustomScrollbar({
+             theme: "inset-2-dark",
+             axis: "yx",
+             advanced: {
+                 autoExpandHorizontalScroll: true
+             },
+             /* change mouse-wheel axis on-the-fly */
+             callbacks: {
+                 // onOverflowY:function(){
+                 //  var opt=$(this).data("mCS").opt;
+                 //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+                 // },
+                 onOverflowX: function() {
+                     var opt = $(this).data("mCS").opt;
+                     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                 },
+             }
+         });
+     });
+
+     $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
+             theme: "inset-2-dark",
+             axis: "yx",
+             advanced: {
+                 autoExpandHorizontalScroll: true
+             },
+             /* change mouse-wheel axis on-the-fly */
+             callbacks: {
+                 onOverflowY:function(){
+                  var opt=$(this).data("mCS").opt;
+                  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+                 },
+                 // onOverflowX: function() {
+                 //     var opt = $(this).data("mCS").opt;
+                 //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                 // },
+             }
+         });
+
+
+ })(jQuery);</script>

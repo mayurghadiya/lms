@@ -227,4 +227,60 @@ class Site_model extends CI_Model {
                 break;
         }
     }
+    
+    /**
+     * Check for forgot password link
+     * @param string $type
+     * @param string $key
+     * @return int
+     */
+    function check_for_forgot_password_key($type, $key) {
+        return $this->db->get_where($type, [
+            'forgot_password_link'  => $key
+        ])->num_rows();
+    }
+    
+    /**
+     * Update user password
+     * @param string $type
+     * @param string $id
+     * @param string $data
+     */
+    function update_password($type, $id, $data) {
+        $user_data = array();
+        switch ($type) {
+            case 'admin':
+                $this->db->where('admin_id', $id);
+                $this->db->update('admin', $data);
+                $user_data['type_id'] = 'admin_id';
+                break;
+            case 'student':
+                $this->db->where('std_id', $id);
+                $this->db->update('student', $data);
+                $user_data['type_id'] = 'std_id';
+                break;
+            case 'professor':
+                $this->db->where('professor_id', $id);
+                $this->db->update('professor', $data);
+                $user_data['type_id'] = 'professor_id';
+                break;
+        }
+        $user_data['type'] = $type;
+        $user_data['user_id'] = $id;
+        
+        return $user_data;
+    }
+    
+    /**
+     * Reset forgot password link
+     * @param string $type
+     * @param string $type_id
+     * @param string $id
+     */
+    function reset_forgot_password_key($type, $type_id, $id) {
+        $this->db->where($type_id, $id);
+        $this->db->update($type, [
+            'forgot_password_link'  => ''
+        ]);
+    }
 }

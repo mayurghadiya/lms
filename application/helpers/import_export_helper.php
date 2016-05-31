@@ -11,9 +11,9 @@ if (!function_exists('course')) {
     function course() {
         $handle = fopen('php://output', 'w');
         fputcsv($handle, array(
-            'Branch Name',
-            'Branch Alias',
-            'Course Name',
+            'Branch',
+            'Branch Code',
+            'Department',
             'Description'
         ));
         fclose($handle);
@@ -29,7 +29,7 @@ if (!function_exists('degree')) {
     function degree() {
         $handle = fopen('php://output', 'w');
         fputcsv($handle, array(
-            'Course Name',
+            'Department',
         ));
         fclose($handle);
     }
@@ -77,6 +77,7 @@ if (!function_exists('event_manager')) {
         $handle = fopen('php://output', 'w');
         fputcsv($handle, array(
             'Event Name',
+            'Event Location',
             'Event Description',
             'Event Date',
             'Event Time'
@@ -121,7 +122,10 @@ if (!function_exists('fees_structure')) {
             'Branch',
             'Batch',
             'Semester',
-            'Fee'
+            'Fee',
+            'Start Date',
+            'Due Date',
+            'Penalty'
         ));
         fclose($handle);
     }
@@ -138,7 +142,7 @@ if (!function_exists('subject')) {
         fputcsv($handle, array(
             'Subject Name',
             'Subject Code',
-            'Department',
+            'Branch',
             'Semester'
         ));
         fclose($handle);
@@ -632,7 +636,7 @@ if (!function_exists('import_student')) {
                 $data['semester_id'] = $semester->s_id;
                 $data['course_id'] = $course->course_id;
                 $data['std_degree'] = $degree->d_id;
-                $data['password'] = hash('md5', 'test@123');
+                $data['password'] = hash('md5', '12345');
                 $data['created_date'] = date('Y-m-d H:i:s');
                 $CI->db->insert('student', $data);
                 $insert_id = $CI->db->insert_id();

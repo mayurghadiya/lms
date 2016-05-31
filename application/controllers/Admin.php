@@ -3574,10 +3574,10 @@ class Admin extends MY_Controller {
                     //import degree CSV
                     foreach ($csv_result as $result) {
                         $where = array(
-                            'd_name' => $result['Degree Name']
+                            'd_name' => $result['Department']
                         );
                         $data = array(
-                            'd_name' => $result['Degree Name'],
+                            'd_name' => $result['Department'],
                             'd_status' => 1
                         );
                         import_degree($data, $where);
@@ -3602,14 +3602,14 @@ class Admin extends MY_Controller {
                     foreach ($csv_result as $result) {
                         $where = array(
                             'degree' => array(
-                                'd_name' => $result['Degree Name']
+                                'd_name' => $result['Department']
                             ),
                             'course' => array(
-                                'c_name' => $result['Course Name']
+                                'c_name' => $result['Branch']
                             )
                         );
                         $data = array(
-                            'b_name' => $result['Batch Name'],
+                            'b_name' => $result['Batch'],
                             'b_status' => 1
                         );
                         import_batch($data, $where);
@@ -3623,6 +3623,7 @@ class Admin extends MY_Controller {
                         );
                         $data = array(
                             'event_name' => $result['Event Name'],
+                            'event_location'    => $result['Event Location'],
                             'event_desc' => $result['Event Description'],
                             'event_date' => $result['Event Date'],
                             'event_time' => $result['Event Time']
@@ -3635,10 +3636,10 @@ class Admin extends MY_Controller {
                     foreach ($csv_result as $result) {
                         $where = array(
                             'degree' => array(
-                                'd_name' => $result['Degree Name'],
+                                'd_name' => $result['Department'],
                             ),
                             'course_name' => array(
-                                'c_name' => $result['Course Name']
+                                'c_name' => $result['Branch']
                             ),
                             'batch' => array(
                                 'b_name' => $result['Batch']
@@ -3667,13 +3668,13 @@ class Admin extends MY_Controller {
                                 's_name' => $result['Semester']
                             ),
                             'course' => array(
-                                'c_name' => $result['Branch Name']
+                                'c_name' => $result['Branch']
                             ),
                             'degree' => array(
-                                'd_name' => $result['Course Name']
+                                'd_name' => $result['Department']
                             ),
                             'batch' => array(
-                                'b_name' => $result['Batch Name']
+                                'b_name' => $result['Batch']
                             ),
                             'fees_structure' => array(
                                 'title' => $result['Title']
@@ -3681,7 +3682,10 @@ class Admin extends MY_Controller {
                         );
                         $data = array(
                             'title' => $result['Title'],
-                            'total_fee' => $result['Fees']
+                            'total_fee' => $result['Fee'],
+                            'fee_start_date'    => $result['Start Date'],
+                            'fee_end_date'  => $result['Due Date'],
+                            'penalty'   => $result['Penalty']
                         );
                         import_fees_structure($data, $where);
                     }
@@ -3694,7 +3698,7 @@ class Admin extends MY_Controller {
                                 's_name' => $result['Semester']
                             ),
                             'course' => array(
-                                'c_name' => $result['Course']
+                                'c_name' => $result['Branch']
                             ),
                             'subject' => array(
                                 'subject_name' => $result['Subject Name']
@@ -3744,13 +3748,13 @@ class Admin extends MY_Controller {
                                 's_name' => $result['Semester']
                             ),
                             'course' => array(
-                                'c_name' => $result['Course Name']
+                                'c_name' => $result['Branch']
                             ),
                             'batch' => array(
                                 'b_name' => $result['Batch']
                             ),
                             'degree' => array(
-                                'd_name' => $result['Degree Name']
+                                'd_name' => $result['Department']
                             ),
                             'admission_type' => array(
                                 'at_name' => $result['Admission Type']
@@ -3780,16 +3784,16 @@ class Admin extends MY_Controller {
                     foreach ($csv_result as $result) {
                         $where = array(
                             'course' => array(
-                                'c_name' => $result['Course Name']
+                                'c_name' => $result['Branch']
                             ),
                             'degree' => array(
-                                'd_name' => $result['Degree Name']
+                                'd_name' => $result['Department']
                             )
                         );
                         $data = array(
-                            'c_name' => $result['Course Name'],
+                            'c_name' => $result['Branch'],
                             'c_description' => $result['Description'],
-                            'course_alias_id' => $result['Course Alias']
+                            'course_alias_id' => $result['Branch Code']
                         );
                         import_course($data, $where);
                     }
@@ -3850,7 +3854,7 @@ class Admin extends MY_Controller {
                 course();
                 break;
             case 'degree':
-                $this->import_demo_sheet_download_config('Course');
+                $this->import_demo_sheet_download_config('Department');
                 degree();
                 break;
             case 'admission_type':
@@ -3870,7 +3874,7 @@ class Admin extends MY_Controller {
                 exam_manager();
                 break;
             case 'fees_structure':
-                $this->import_demo_sheet_download_config('Fees Structure');
+                $this->import_demo_sheet_download_config('Fee Structure');
                 fees_structure();
                 break;
             case 'subject':

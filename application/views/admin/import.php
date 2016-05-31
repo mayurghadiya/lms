@@ -43,7 +43,7 @@
                                             <option value="exam_marks">Exam Marks</option>
                                             <option value="exam_time_table">Exam Time Table</option>
                                             <option value="event_manager">Event Manager</option>
-                                            <option value="fees_structure">Fees Structure</option>
+                                            <option value="fees_structure">Fee Structure</option>
                                             <option value="student">Student</option>
                                             <option value="subject">Subject</option>
                                         </select>
@@ -136,7 +136,7 @@
                                 <li><a href="<?php echo base_url('admin/download_import/exam_manager'); ?>">Exam Manager</a></li>
                                 <li><a href="<?php echo base_url('admin/download_import/exam_time_table'); ?>">Exam Time Table</a></li>
                                 <li><a href="<?php echo base_url('admin/download_import/event_manager'); ?>">Event Manager</a></li>
-                                <li><a href="<?php echo base_url('admin/download_import/fees_structure'); ?>">Fees Structure</a></li>
+                                <li><a href="<?php echo base_url('admin/download_import/fees_structure'); ?>">Fee Structure</a></li>
                                 <li><a href="<?php echo base_url('admin/download_import/student') ?>">Student</a></li>
                                 <li><a href="<?php echo base_url('admin/download_import/subject'); ?>">Subject</a></li>
                                 

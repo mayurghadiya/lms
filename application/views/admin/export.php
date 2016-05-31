@@ -31,7 +31,7 @@
                                     <option value="<?php echo base_url('admin/export_csv/exam_manager'); ?>">Exam Manager</option>
                                     <option value="exam_marks">Exam Marks</option>
                                     <option value="<?php echo base_url('admin/export_csv/event_manager'); ?>">Event Manager</option>
-                                    <option value="<?php echo base_url('admin/export_csv/fees_structure'); ?>">Fees Structure</option>
+                                    <option value="<?php echo base_url('admin/export_csv/fees_structure'); ?>">Fee Structure</option>
                                     <option value="<?php echo base_url('admin/export_csv/project_manager'); ?>">Project Manager</option>
                                     <option value="<?php echo base_url('admin/export_csv/semester'); ?>">Semester</option>
                                     <option value="<?php echo base_url('admin/export_csv/student'); ?>">Student</option>    

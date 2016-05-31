@@ -21,7 +21,7 @@ foreach ($edit_data as $row) {
             </div>
             <div class=panel-body>
                 <?php foreach ($edit_data as $row): ?>
-                    <div class="panel widget light-widget">
+                    <div class="widget light-widget">
                         <?php echo form_open(base_url() . 'admin/manage_profile/update_profile_info', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'role' => 'form', 'id' => 'edit_profile', 'enctype' => 'multipart/form-data')); ?>
                         <div  class="panel-body">
                             <h3 class="mgbt-xs-20"> Profile: <span class="font-semibold"><?php echo $row['ad_first_name'] . '&nbsp;' . $row['ad_last_name']; ?></span> </h3>
@@ -288,7 +288,7 @@ foreach ($edit_data as $row) {
         </div>
     </div>
 </div>
-
+</div></div>
 <script type="text/javascript">
     $(function () {
         $("#upload_link").on('click', function (e) {
