@@ -2912,7 +2912,7 @@ class Admin extends MY_Controller {
 
             $this->forum_model->create_topic($data);
             $this->session->set_flashdata('flash_message', 'Forum Topic Added Successfully');
-            redirect(base_url() . 'forum/forumtopics', 'refresh');
+            redirect(base_url() . 'admin/forumtopics', 'refresh');
         }
         if ($param == "update") {
             $topic = $this->forum_model->getforumtopic($id);
@@ -2935,7 +2935,7 @@ class Admin extends MY_Controller {
         if ($param == "delete") {
             $this->forum_model->forum_topicsdelete($id);
             $this->session->set_flashdata('flash_message', 'Forum Topic Deleted Successfully');
-            redirect(base_url() . 'forum/forumtopics', 'refresh');
+            redirect(base_url() . 'admin/forumtopics', 'refresh');
         }
     }
 
@@ -2961,7 +2961,7 @@ class Admin extends MY_Controller {
     function commentdelete($param = '', $topic) {
         $this->forum_model->delete_comment($param);
         $this->session->set_flashdata('flash_message', 'Forum Comment Delete Successfully');
-        redirect(base_url() . 'forum/forumcomment/' . $topic, 'refresh');
+        redirect(base_url() . 'admin/forumcomment/' . $topic, 'refresh');
     }
 
     /**
@@ -2972,7 +2972,7 @@ class Admin extends MY_Controller {
     function confirmcomment($param = '', $topic) {
         $this->forum_model->confirm($param);
         $this->session->set_flashdata('flash_message', 'Forum Comment Approve Successfully');
-        redirect(base_url() . 'forum/forumcomment/' . $topic, 'refresh');
+        redirect(base_url() . 'admin/forumcomment/' . $topic, 'refresh');
     }
 
     /**

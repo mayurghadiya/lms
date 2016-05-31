@@ -800,7 +800,7 @@ $this->load->helper('report_chart');
                                                             <div class="popover-content">
                                                                 <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
                                                                 <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
-                                                                <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo $time_line->timeline_created_date; ?></div>
+                                                                <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
                                                             </div>
                                                         </div>
                                                     </div>
