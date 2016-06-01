@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
                         <div class="col-sm-9">
-                            <textarea name="message" readonly="" class="width-100 form-control"  rows="15" placeholder="Write your message here"><?php echo $email->message; ?></textarea>
+                            <textarea name="message" readonly="" class="width-100 form-control summernote"  rows="15" placeholder="Write your message here"><?php echo $email->message; ?></textarea>
                         </div>
                     </div>
 
@@ -89,3 +89,11 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+
+<script>
+$(document).ready(function(){
+    $('.summernote').summernote({
+            height: 200
+        });
+})
+</script>

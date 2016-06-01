@@ -125,7 +125,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label"><?php echo ucwords("Start Date"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-6">
-                            <input type="text" name="date" id="date" class="form-control datepicker-normal"
+                            <input type="text" name="date" id="datepicker-startdate" class="form-control date-picker"
                                    value="<?php echo set_value('date'); ?>"/>
                         </div>
                     </div>
@@ -139,8 +139,8 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label"><?php echo ucwords("End Date"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-6">
-                            <input  type="text" name="end_date_time" id="end_date_time" class="form-control datepicker-normal"
-                                   value="<?php echo set_value('end_date_time'); ?>"/>
+                            <input  type="text" name="end_date_time" id="end_date_time" class="form-control date-picker"
+                                    value="<?php echo set_value('end_date_time'); ?>"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -155,62 +155,57 @@
         </div>
         <!-- col-lg-12 end here -->
     </div>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css"/>
-    <script src="<?php echo base_url(); ?>assets/js/bootstrap-datetimepicker.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('.datepicker-normal').datepicker({
-                format: 'yyyy-mm-dd'
+        $('.date-picker').datepicker({
+        });
+    </script>
+
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+        $().ready(function () {
+            $("#examform").validate({
+                rules: {
+                    exam_name: "required",
+                    exam_type: "required",
+                    year: "required",
+                    degree: "required",
+                    course: "required",
+                    batch: "required",
+                    semester: "required",
+                    total_marks: "required",
+                    passing_marks: {
+                        required: true
+                    },
+                    status: "required",
+                    date: "required",
+                    start_date_time: "required",
+                    end_date_time: "required"
+                },
+                messages: {
+                    exam_name: "Please enter exam name",
+                    exam_type: "Please select exam type",
+                    year: "Please select year",
+                    degree: "Please select department",
+                    course: "Please select branch",
+                    batch: "Please select batch",
+                    semester: "Please select semester",
+                    total_marks: "Please enter total marks",
+                    passing_marks: {
+                        required: "Please enter passing marks"
+                    },
+                    status: "Please select status",
+                    date: "Please enter date",
+                    start_date_time: "Please enter start date time",
+                    end_date_time: "Please enter end date"
+                }
             });
-        })
+        });
     </script>
-    
-  <script type="text/javascript">
-                                            $.validator.setDefaults({
-                                                submitHandler: function (form) {
-                                                    form.submit();
-                                                }
-                                            });
-                                            $().ready(function () {
-                                                $("#examform").validate({
-                                                    rules: {
-                                                        exam_name: "required",
-                                                        exam_type: "required",
-                                                        year: "required",
-                                                        degree: "required",
-                                                        course: "required",
-                                                        batch: "required",
-                                                        semester: "required",
-                                                        total_marks: "required",
-                                                        passing_marks: {
-                                                            required: true
-                                                        },
-                                                        status: "required",
-                                                        date: "required",
-                                                        start_date_time: "required",
-                                                        end_date_time: "required"
-                                                    },
-                                                    messages: {
-                                                        exam_name: "Please enter exam name",
-                                                        exam_type: "Please select exam type",
-                                                        year: "Please select year",
-                                                        degree: "Please select department",
-                                                        course: "Please select branch",
-                                                        batch: "Please select batch",
-                                                        semester: "Please select semester",
-                                                        total_marks: "Please enter total marks",
-                                                        passing_marks: {
-                                                            required: "Please enter passing marks"
-                                                        },
-                                                        status: "Please select status",
-                                                        date: "Please enter date",
-                                                        start_date_time: "Please enter start date time",
-                                                        end_date_time: "Please enter end date"
-                                                    }
-                                                });
-                                            });
-    </script>
-    
+
     <script>
         $(document).ready(function () {
             //course by degree
@@ -277,8 +272,8 @@
 
         })
     </script>
-    
-    
+
+
     <script>
         $(document).ready(function () {
             $('#total_marks').on('blur', function () {

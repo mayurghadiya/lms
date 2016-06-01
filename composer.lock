@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f115d6547f01b93590d2482f414b0e34",
+    "hash": "6927b26c887e64d4c81b038b3e22e643",
     "packages": [
         {
             "name": "components/bootstrap",
@@ -221,6 +221,34 @@
                 "fixtures"
             ],
             "time": "2016-04-29 12:21:54"
+        },
+        {
+            "name": "jdewit/bootstrap-timepicker",
+            "version": "0.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/noirbizarre/bootstrap-timepicker.git",
+                "reference": "14daa4c3533313491eb72292ffdfb655044a34b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/noirbizarre/bootstrap-timepicker/zipball/14daa4c3533313491eb72292ffdfb655044a34b2",
+                "reference": "14daa4c3533313491eb72292ffdfb655044a34b2",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joris de Wit",
+                    "email": "joris.w.dewit@gmail.com"
+                }
+            ],
+            "description": "A simple timepicker component for Twitter Bootstrap.",
+            "time": "2013-04-10 05:31:54"
         },
         {
             "name": "rlanvin/php-rrule",

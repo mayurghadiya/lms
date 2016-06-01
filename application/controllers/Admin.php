@@ -2022,7 +2022,7 @@ class Admin extends MY_Controller {
                     'about' => $this->input->post('about')
                 );
                 if ($_FILES['userfile']['name'] != '') {
-                    
+
                     //upload config
                     $config = array(
                         'upload_path' => './uploads/professor/',
@@ -2035,7 +2035,7 @@ class Admin extends MY_Controller {
                     $upload_data = $this->upload->data();
                     $data['image_path'] = isset($upload_data['file_name']) ? $upload_data['file_name'] : '';
                 }
-               
+
                 $this->Crud_model->save_professor($data, $param2);
                 $this->session->set_flashdata('flash_message', $this->lang_message('update_professor'));
             }
@@ -2135,7 +2135,7 @@ class Admin extends MY_Controller {
                         create_notification('exam_manager', $_POST['degree'], $_POST['course'], $_POST['batch'], $_POST['semester'], $insert_id);
                         redirect(base_url('admin/exam'));
                     } else {
-                        $page_data['edit_error'] = validation_errors();
+                        $page_data['edit_error'] = validation_errors();                       
                     }
                 }
             } elseif ($param1 == 'do_update') {
@@ -2916,10 +2916,10 @@ class Admin extends MY_Controller {
             $data['forum_id'] = $this->input->post('forum_id');
             $data['forum_topic_desc'] = $this->input->post('description');
             if ($topic[0]['user_role'] == $this->session->userdata('login_type')) {
-                $data['user_role'] = $this->session->userdata('login_type');                
+                $data['user_role'] = $this->session->userdata('login_type');
                 $data['user_role_id'] = $this->session->userdata('login_user_id');
                 $data['forum_id'] = $this->input->post('forum_id');
-            }            
+            }
             $this->forum_model->update_topic($data, $id);
             $this->session->set_flashdata('flash_message', 'Forum Topic Updated Successfully');
             redirect(base_url() . 'admin/forumtopics', 'refresh');
@@ -3472,7 +3472,7 @@ class Admin extends MY_Controller {
             //var_dump($teacher_list);
             //exit;
             $this->setemail($teacher_list, $_POST['subject'], $_POST['message'], $email_cc_list, $attachments);
-
+            $this->session->set_flashdata('flash_message', 'Message is successully sent.');
             redirect(base_url('admin/email_inbox'));
         }
 
@@ -4223,7 +4223,6 @@ class Admin extends MY_Controller {
      * @param string $semester_id
      */
     function course_semester_student($course_id = '', $semester_id = '') {
-        $this->load->model('admin/Crud_model');
         $students = $this->Crud_model->course_semester_student($course_id, $semester_id);
         foreach ($students as $row) {
             ?>
@@ -5848,6 +5847,21 @@ class Admin extends MY_Controller {
         require 'vendor/autoload.php';
         // use the factory to create a Faker\Generator instance
         $faker = Faker\Factory::create();
+//        for($i=1; $i<=50; $i++){
+//            $male_female = (rand(1, 100) > 50) ? 'male' : 'female';
+//            $this->db->insert('professor', array(
+//                'name'  => $faker->name($male_female),
+//                'email' => $faker->safeEmail,
+//                'password'  => hash('md5', '12345'),
+//                'real_pass' => '12345',
+//                'address'   => $faker->address,
+//                'city'  => $faker->city,
+//                'zip'   => $faker->postcode,
+//                'mobile'    => $faker->e164PhoneNumber,
+//                'dob'   => $faker->date,
+//                'about' => $faker->text
+//            ));
+//        }
         $roll_no = rand();
         for ($i = 1; $i <= 5000; $i++) {
             $male_female = (rand(1, 100) > 50) ? 'male' : 'female';
@@ -5874,9 +5888,8 @@ class Admin extends MY_Controller {
                 'real_pass' => '12345',
             ));
         }
-
     }
-    
+
     /**
      * Start or stop video streaming
      * @param type $stream_name
@@ -5884,6 +5897,5 @@ class Admin extends MY_Controller {
     function start_stop_streaming($stream_name, $status) {
         $this->Crud_model->start_stop_streaming($stream_name, $status);
     }
-    
-    
+
 }

@@ -1,6 +1,4 @@
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar_theme_responsive.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
+
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/event_calendar/moment.js"></script> 
 <!-- charts js and library -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -788,7 +786,7 @@ $this->load->helper('report_chart');
                                 <section id="examples">         
                                     <!-- content -->
                                     <div id="content-1">
-                                        <div class="timeline-box timeline-horizontal" style="width: 2500px;">
+                                        <div class="timeline-box timeline-horizontal" style="width: 3000px;">
                                             <?php $i = 0;
                                             foreach ($timeline as $time_line) {
                                                 ?>

@@ -64,7 +64,7 @@ $degree_list = $this->db->get('degree')->result();
                 <div class="form-group">
                     <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("date of birth"); ?><span style="color:red">*</span></label>
                     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-                        <input id="date-of-birth" class="form-control datepicker-normal" type="text" name="dob" required=""
+                        <input id="date-of-birth" class="form-control date-picker" type="text" name="dob" required=""
                                value="<?php echo $professor->dob; ?>"/>
                     </div>	
                 </div>
@@ -127,9 +127,9 @@ $degree_list = $this->db->get('degree')->result();
     </div>
     <!-- col-lg-12 end here -->
     <script type="text/javascript">
-
- $("#professor-form").validate({
-             rules: {
+        $(".date-picker").datepicker({});
+        $("#professor-form").validate({
+            rules: {
                 professor_name: "required",
                 email: "required",
                 password: "required",
@@ -142,13 +142,12 @@ $degree_list = $this->db->get('degree')->result();
                 designation: "required",
                 degree: "required",
                 branch: "required",
-                userfile:{
-                        extension:'gif|jpg|png|jpeg', 
-                    },
-                
+                userfile: {
+                    extension: 'gif|jpg|png|jpeg',
+                },
             },
             messages: {
-                 professor_name: "Enter professor name",
+                professor_name: "Enter professor name",
                 email: "Enter email",
                 password: "Enter password",
                 mobile: "Enter mobile",
@@ -160,9 +159,9 @@ $degree_list = $this->db->get('degree')->result();
                 designation: "Enter designation",
                 degree: "Select department",
                 branch: "Select branch",
-                userfile:{
-                        extension:'Only gif,jpg,png file is allowed!', 
-                    },
+                userfile: {
+                    extension: 'Only gif,jpg,png file is allowed!',
+                },
             }
         });
 
@@ -192,7 +191,7 @@ $degree_list = $this->db->get('degree')->result();
                     url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
                     type: 'get',
                     success: function (content) {
-                        var branch = jQuery.parseJSON(content);                        
+                        var branch = jQuery.parseJSON(content);
                         $.each(branch, function (key, value) {
                             $('#branch').append('<option value=' + value.course_id + '>' + value.c_name + '</option>');
                         });

@@ -49,17 +49,7 @@ $config = array(
             'field' => 'date',
             'label' => 'Date',
             'rules' => $base_rule
-        ),
-        array(
-            'field' => 'start_date_time',
-            'label' => 'Start date time',
-            'rules' => $base_rule
-        ),
-        array(
-            'field' => 'end_date_time',
-            'label' => 'End date time',
-            'rules' => $base_rule
-        )
+        )        
     ),
     'time_table_insert_update' => array(
         array(
