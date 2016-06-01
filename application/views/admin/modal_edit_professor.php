@@ -127,9 +127,14 @@ $degree_list = $this->db->get('degree')->result();
     </div>
     <!-- col-lg-12 end here -->
     <script type="text/javascript">
-
- $("#professor-form").validate({
-             rules: {
+        $(".datepicker-normal").datepicker({
+            dateFormat: 'dd M yy',
+            changeMonth: true,
+            changeYear: true,
+            mixDate: new Date()
+        });
+        $("#professor-form").validate({
+            rules: {
                 professor_name: "required",
                 email: "required",
                 password: "required",
@@ -142,13 +147,12 @@ $degree_list = $this->db->get('degree')->result();
                 designation: "required",
                 degree: "required",
                 branch: "required",
-                userfile:{
-                        extension:'gif|jpg|png|jpeg', 
-                    },
-                
+                userfile: {
+                    extension: 'gif|jpg|png|jpeg',
+                },
             },
             messages: {
-                 professor_name: "Enter professor name",
+                professor_name: "Enter professor name",
                 email: "Enter email",
                 password: "Enter password",
                 mobile: "Enter mobile",
@@ -160,9 +164,9 @@ $degree_list = $this->db->get('degree')->result();
                 designation: "Enter designation",
                 degree: "Select department",
                 branch: "Select branch",
-                userfile:{
-                        extension:'Only gif,jpg,png file is allowed!', 
-                    },
+                userfile: {
+                    extension: 'Only gif,jpg,png file is allowed!',
+                },
             }
         });
 
@@ -192,7 +196,7 @@ $degree_list = $this->db->get('degree')->result();
                     url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
                     type: 'get',
                     success: function (content) {
-                        var branch = jQuery.parseJSON(content);                        
+                        var branch = jQuery.parseJSON(content);
                         $.each(branch, function (key, value) {
                             $('#branch').append('<option value=' + value.course_id + '>' + value.c_name + '</option>');
                         });

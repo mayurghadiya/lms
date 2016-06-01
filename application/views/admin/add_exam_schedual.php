@@ -20,8 +20,8 @@
                         </div>                                            
                     <?php } ?>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <select name="degree" id="degree" class="form-control">
                                 <option value="">Select</option>
                                 <?php foreach ($degree as $row) { ?>
@@ -31,24 +31,24 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <select name="course" id="course" class="form-control">
 
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <select class="form-control" name="batch" id="batch">
 
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <select class="form-control" id="semester" name="semester">
                                 <option value="">Select</option>
 
@@ -56,42 +56,65 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Exam"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("Exam"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <select class="form-control" id="exam" name="exam">
 
                             </select>
                         </div>
                     </div> 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <select class="form-control" id="subject" name="subject">
 
                             </select>
                         </div>
                     </div> 
                     <div class="form-group">
+
+                        <label class="col-sm-4 control-label"><?php echo ucwords("Date"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
+                            <input readonly="" type="text" id="exam_date" class="form-control datepicker-normal" name="exam_date"/>
+                        </div>	
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("Start Time"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="time" id="start_time" class="form-control timepicker" name="start_time"/>
+                        </div>	
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("End Time"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="time" id="end_time" class="form-control timepicker" name="end_time"/>
+                        </div>	
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add "); ?></button>
+
                         <label class="col-sm-3 control-label"><?php echo ucwords("Date"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-5">
-                            <input readonly="" type="text" id="exam_date" class="form-control datepicker-normal" name="exam_date"/>
+                            <input type="text" id="exam_date" class="form-control datepicker-normal" name="exam_date"/>
                         </div>	
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label"><?php echo ucwords("Start Time"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-5">
-                            <input type="time" id="start_time" class="form-control timepicker" name="start_time"/>
+                            <input type="text" id="start_time" class="form-control timepicker" name="start_time"/>
                         </div>	
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label"><?php echo ucwords("End Time"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-5">
-                            <input type="time" id="end_time" class="form-control timepicker" name="end_time"/>
+                            <input type="text" id="end_time" class="form-control timepicker" name="end_time"/>
                         </div>	
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-5">
-                            <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add "); ?></button>
+                            <button type="submit" class="btn btn-info"><?php echo ucwords("Add "); ?></button>
+
                         </div>
                     </div>
                     <?php echo form_close(); ?>    
@@ -104,16 +127,8 @@
 
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(".datepicker-normal").datepicker({
-                dateFormat: 'dd M yy',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date()
-
-            });
-        });
-
+        $('#exam_date').datepicker({});
+        $('#start_time').timepicker();
     </script>
 
     <script type="text/javascript">      

@@ -14,8 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <div class="row filter-row">
-				<form class="form-groups-bordered validate">
+                <form class="form-groups-bordered validate">
                     <div class="col-md-12">
                         <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
                             <label><?php echo ucwords("department"); ?></label>
@@ -61,8 +60,7 @@
                             </select>
                         </div>
                     </div>
-					</form>
-                </div>
+                </form>
 
                 <?php
                 $show_exam_details = $this->db->select('exam_manager.*, exam_type.*, course.*, batch.*, semester.*, degree.*')
@@ -113,10 +111,11 @@
                             </div>
                             <form class="form-horizontal" action="" method="post">
                                 <div class="table-responsive">                                    
-                                    <table data-filter="#filter" id="marklist" class="table table-bordered table-striped">
+                                    <table data-filter="#filter" id="marklist" class="table table-bordered table-striped table-responsive">
                                         <thead>
                                             <tr>
-                                                <th width="5%"><?php echo ucwords("Student ID"); ?></th>
+                                                <th width="5%">#</th>
+                                                <th>Roll No</th>
                                                 <th width="20%"><?php echo ucwords("Student Name"); ?></th>
                                                 <?php foreach ($subject_details as $subject) { ?>
                                                     <th>Sub: <?php echo $subject->subject_name; ?></th>
@@ -132,6 +131,7 @@
                                             ?>
                                             <?php if (count($student_list)) { ?>
                                                 <?php
+                                                $student_count = 1;
                                                 foreach ($student_list as $student) {
                                                     if ($student_id != '') {
                                                         if ($student_id != $student->std_id) {
@@ -140,7 +140,8 @@
                                                     }
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $student->std_id; ?></td>
+                                                        <td><?php echo $student_count++; ?></td>
+                                                        <td><?php echo $student->std_roll; ?></td>
                                                         <td data-id="63"><?php echo $student->std_first_name . ' ' . $student->std_last_name; ?></td>
 
                                                         <?php foreach ($subject_details as $subject) { ?>
@@ -174,7 +175,7 @@
                                             <?php } ?>
                                         <?php } else { ?>
                                             <tr>
-                                                <td colspan="4">Exam schedule not found</td>
+                                                <td colspan="4" style="text-align: left">Exam schedule not found</td>
                                             </tr>
 
                                         <?php } ?>
@@ -187,7 +188,7 @@
                                     <div class="row">
                                         <div class="col-sm-5">
                                             <div class="form_sep">
-                                                &nbsp;<input type="submit" class="btn btn-success" value="Submit"/> 
+                                                &nbsp;<input type="submit" class="btn btn-primary" value="Submit"/> 
                                             </div>
                                         </div>
                                     </div>

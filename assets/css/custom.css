@@ -39,6 +39,8 @@ label.error {
 .index .panel-body {
     padding: 0 10px;
 }
+.dashboard #header,
+.index #header{z-index: 999999;}
 .search_box {
     position: relative;
     margin-bottom: 0;
@@ -561,6 +563,15 @@ label.error {
     height: 350px;
     overflow-y: auto;
 }
+.tooltip {
+    z-index: 9999999;
+}
+
+
+/*********************** media *****************************/
+
+@media screen and (max-width:1279px) { }
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {}
 @media only screen and (min-width: 1024px) {
     #content-1 {
         height: 430px !important;
@@ -570,3 +581,35 @@ label.error {
         padding: 0;
     }
 }
+@media screen and (max-width: 1024px) { }
+@media screen and (max-width: 1023px) {
+
+.eventCalendar-subtitle{ font-size: 20px !important; }
+.eventCalendar-list-wrap { margin: 20px auto 0 !important;}
+.eventCalendar-list-content, .panel-body .todo-widget .todo-list {height: 180px !important;/* overflow-y: hidden !important;*/}
+
+.eventCalendar-slider .eventCalendar-monthWrap.eventCalendar-currentMonth {width: 100% !important;}
+.eventCalendar-slider {float: none !important; height: 280px !important; width: 100% !important;}
+.eventCalendar-slider, .eventCalendar-details {width: 100% !important;}
+.eventCalendar-details {float: none !important;}
+#content-1, #highcharts-4, #highcharts-4 svg, #highcharts-6, #highcharts-6 svg{width: 100% !important;}
+
+}
+@media screen and (max-width:767px) { 
+
+.eventCalendar-slider, .eventCalendar-details{width:100% !important;}
+.eventCalendar-slider{float:none;}
+.eventCalendar-details{float:none;}
+.eventCalendar-slider .eventCalendar-monthWrap.eventCalendar-currentMonth{ width:100% !important; }
+.arrow-nav-block { max-width:100%;}
+.eventCalendar-list-wrap { margin: 20px auto 0 !important;}
+.eventCalendar-showAsWeek .eventCalendar-day a { line-height:27px;}
+.eventCalendar-daysList li.eventCalendar-dayWithEvents a { border-radius:0px;}
+.eventCalendar-list-wrap { min-width:88% !important;}
+.eventCalendar-subtitle { font-size:105%; } 
+
+}
+@media screen and (min-width : 320px) and (max-width : 568px) { }
+@media screen and (min-width : 480px) and (max-width : 599px) { }
+@media screen and (min-width : 320px) and (max-width : 479px) { }
+

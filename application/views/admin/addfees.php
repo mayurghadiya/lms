@@ -12,14 +12,14 @@
                     <br/>
                     <div class="padded">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Title"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Title"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" id="title" name="title" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select class="form-control" id="degree" name="degree">
                                     <option value="">Select</option>
                                     <?php foreach ($degree as $row) { ?>
@@ -29,67 +29,67 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select class="form-control" id="course" name="course">
 
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select class="form-control" id="batch" name="batch">
 
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select class="form-control" id="semester" name="semester">
                                     <option value="">Select</option>                                                        
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Fee"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Fee"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" id="fees" class="form-control" name="fees"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Start Date"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Start Date"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" id="start_date" class="form-control datepicker" name="start_date"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("End Date"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("End Date"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" id="end_date" class="form-control datepicker" name="end_date"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Expiry Date"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Expiry Date"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" id="expiry_date" class="form-control datepicker" name="expiry_date"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Penalty"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Penalty"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" id="penalty" class="form-control" name="penalty"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Description"); ?></label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Description"); ?></label>
+                            <div class="col-sm-8">
                                 <textarea id="description" name="description" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-6">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add"); ?></button>
                             </div>
                         </div>

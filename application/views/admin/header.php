@@ -22,8 +22,11 @@
             <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel=stylesheet type=text/css>
             <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel=stylesheet type=text/css>
             <!-- Css files -->
-            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/main.min.css>
+            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar.css">
+            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar_theme_responsive.css">
+            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css"/>
+            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/main.min.css>
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/plugins.css>
 
@@ -653,8 +656,8 @@
                                         </ul> 
                                     </div>
                                 </form>
-                            </div>
+                            </div>                           
                             <!--  /search -->
-                            <?php echo create_breadcrumb(); ?>
+                            <?php echo create_breadcrumb(); ?>                           
                         </div>
                         <!-- End  / heading-->

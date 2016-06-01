@@ -26,6 +26,7 @@
                     <div id="import-tab-content" class="tab-content">
                         <div class="tab-pane fade active in" id="list">
                             <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addproject/');" data-original-title="" data-toggle="tooltip" data-placement="top">Add New Project</a>
+                            <div class="row filter-row">
                             <form action="#" method="post" id="searchform">
                                 <div class="form-group col-sm-3 validating">
                                     <label>Department</label>
@@ -79,6 +80,7 @@
                                     <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>
                                 </div>
                             </form>
+                            </div>
                             <div id="getresponse">
                                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                     <thead>

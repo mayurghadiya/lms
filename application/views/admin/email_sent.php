@@ -17,7 +17,7 @@
                         </div>-->
             <div class="panel-body">
 
-                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                <table id="email-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
                             <th><div>#</div></th>
@@ -36,7 +36,7 @@
                                 ?> 
 
                                 <tr>
-                                    <td></td>
+                                    <td><?php echo $counter; ?></td>
 
                                     <td style="width: 20%">
                                         <?php
@@ -92,3 +92,8 @@
 
 </div>
 <!-- Middle Content End --> 
+<script>
+$(document).ready(function(){
+    $('#email-datatable-list').DataTable();
+});
+</script>

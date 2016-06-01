@@ -203,7 +203,7 @@ class Export_model extends CI_Model {
         $this->db->select('b.b_name AS Batch');
         $this->db->select('s.s_name AS Semester');
         //DATE_FORMAT(em.event_date, "%d %b %y")
-        $this->db->select('DATE_FORMAT(f.fee_start_date, "%d %b %y") AS Start Date, DATE_FORMAT(f.fee_end_date, "%d %b %y") AS Due Date, f.penalty AS Penalty');
+        $this->db->select('DATE_FORMAT(f.fee_start_date, "%d %b %y") AS StartDate, DATE_FORMAT(f.fee_end_date, "%d %b %y") AS DueDate, f.penalty AS Penalty');
         $this->db->from('fees_structure AS f');
         $this->db->join('degree AS d', 'd.d_id = f.degree_id');
         $this->db->join('course AS c', 'c.course_id = f.course_id');
