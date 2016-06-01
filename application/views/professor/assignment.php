@@ -3,7 +3,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default">
+        <div class="panel-default">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title><?php echo $title; ?></h4>
@@ -77,7 +77,7 @@
                             </form>
                              </div>
                             <div id="getresponse">
-                                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                                <table id="assignmenttable" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                     <thead>
                                         <tr>
                                             <th>#</th>												
@@ -299,19 +299,16 @@ Delete
     </div>
 </div>
 
-
-
 <script type="text/javascript">
-
     $(document).ready(function () {
-        $('#data-tabless').DataTable();
+        $('#assignmenttable').dataTable();
+        $('#sub-tables').dataTable();
 
     });
 </script>
+
 <script type="text/javascript">
     $(document).ready(function () {
-
-        $('#assignment-list').dataTable();
 
         $.validator.setDefaults({
             submitHandler: function (form) {
@@ -496,16 +493,6 @@ Delete
 
     });
 </script>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('#sub-tables').dataTable();
-
-    });
-</script>
-
 
 <script>
     $().ready(function () {

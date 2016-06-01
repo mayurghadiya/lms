@@ -24,6 +24,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
+                 <div class="row filter-row">
                 <form id="exam-search" method="post" action="#" class="form-groups-bordered validate">
                     <div class="form-group col-sm-4">
                         <label><?php echo ucwords("Department"); ?></label>
@@ -64,7 +65,7 @@
                         <input id="search-exam-data-list" type="submit" value="Go" class="btn btn-info"/>
                     </div>
                 </form>  
-
+                 </div>
                 <script>
                     $(document).ready(function () {
                         $('#department_search').val('<?php echo $this->session->userdata('filter_data')['DepartmentID']; ?>');

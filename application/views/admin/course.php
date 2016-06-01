@@ -3,7 +3,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
 <!--            <div class=panel-heading>
                 <h4 class=panel-title><?php echo $title; ?></h4>
@@ -21,8 +21,7 @@
                             <th>#</th>
                             <th>Branch Code</th>
                             <th width="30%">Branch</th>
-                            <th>Department</th>
-                            <th>Semester</th>
+                            <th>Department</th>                            
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -42,17 +41,7 @@
                                             echo $deg['d_name'] . "<br> ";
                                         }
                                     }
-                                    ?></td>
-                                <td>
-                                    <?php
-                                    $semexplode = explode(',', $row['semester_id']);
-                                    foreach ($semesters as $sem) {
-                                        if (in_array($sem['s_id'], $semexplode)) {
-                                            echo $sem['s_name'] . "<br> ";
-                                        }
-                                    }
-                                    ?>
-                                </td>
+                                    ?></td>                               
                                 <td>
                                     <?php if ($row['course_status'] == '1') { ?>
                                         <span>Active</span>

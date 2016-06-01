@@ -3,7 +3,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title><?php echo $title; ?></h4>
@@ -15,6 +15,7 @@
                         </div>-->
             <div class=panel-body>
                 <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_exam_schedule');" data-toggle="modal"><i class="fa fa-plus"></i> Exam Schedule</a>
+                 <div class="row filter-row">
                 <form id="exam-schedule-search" action="#" class="form-groups-bordered validate">
                     <div class="form-group col-sm-2">
                         <label><?php echo ucwords("Course"); ?></label>
@@ -56,6 +57,7 @@
                         <input id="search-exam-data" type="button" value="Go" class="btn btn-info vd_bg-green"/>
                     </div>
                 </form>
+                 </div>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>

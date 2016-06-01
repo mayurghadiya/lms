@@ -220,7 +220,7 @@ class Student extends MY_Controller {
         clear_notification('participate_manager', $this->session->userdata('student_id'));
         unset($this->session->userdata('notifications')['participate_manager']);
         $this->data['page'] = 'participate_form';
-        $this->data['title'] = 'Participate Form';
+        $this->data['title'] = 'Volunteer Form';
         $this->__site_template('student/participate_form', $this->data);
     }
 
