@@ -130,7 +130,7 @@
                 <div id="sidebar" class="page-sidebar hidden-lg hidden-md hidden-sm hidden-xs">
                     <div class=shortcuts>
                         <ul>
-                            <li><a href="support.html" title="Support section" class=tip>
+                            <li><a href="<?php echo base_url(); ?>admin/system_settings" title="System Settings" class=tip>
                                     <i class="fa fa-life-ring" aria-hidden="true"></i>
                                 </a>
                             </li>
@@ -142,8 +142,8 @@
                                     <i class="fa fa-pie-chart" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href=# title="Write post" class=tip>
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <li><a href="<?php echo base_url(); ?>admin/manage_profile" title="Profile" class=tip>
+                                    <i class="fa fa-user" aria-hidden="true"></i>
                                 </a>
                             </li>
                         </ul>

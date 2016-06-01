@@ -3,6 +3,7 @@
 </div>
 <div id=footer class="clearfix sidebar-page">
     <!-- Start #footer  Copyright © 2016 Lore Brain. All Rights Reserved  -->
+
     <p class=pull-left>Copyrights &copy; 2016 <a href="#" class="color-blue strong" target=_blank>Learning Management System</a>. All rights reserved.</p>
 
 </p>

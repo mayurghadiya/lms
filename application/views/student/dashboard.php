@@ -579,11 +579,12 @@
             <!-- Start .panel -->
             <div class=panel-heading>
                 <h4 class=panel-title>To Do List</h4>
+                <div class="panel-controls panel-controls-right"><a class="toggle panel-minimize" href="#"><i class="icomoon-icon-plus"></i></a></div>
             </div>
-            <div class=panel-body>
-                <div class=todo-widget>
+            <div class="panel-body">
+                <div class="todo-widget">
                     <!-- .todo-widget -->
-                    <div class=todo-header>
+                    <div class="todo-header">
 
                         <div class="todo-addform col-sm-5" id="todo-addform"  >
                             <form id="frmtodo">
@@ -771,8 +772,8 @@
         </div>
     </div>
 </div>
-    
-    <div class="col-lg-7">
+<div class="row">    
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="panel panel-default toggle">
                     <!-- Start .panel -->
                     <div class=panel-heading>
@@ -813,7 +814,9 @@
                             </div>
                     </div>
                 </div>
-            </div>
+    </div>
+</div>
+
 <!-- / .row -->
 </div>
 <!-- End contentwrapper -->

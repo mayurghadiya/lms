@@ -98,9 +98,8 @@
 
             }]
     });
-    });
-</script>
-    <!-- bar chart course wise male and female -->
+    });</script>
+<!-- bar chart course wise male and female -->
 <script>
     $(function () {
 <?php
@@ -680,7 +679,7 @@ $this->load->helper('report_chart');
         </div>
         <!-- End .panel -->
 
-<!-- start todo & time line -->
+        <!-- start todo & time line -->
         <div class="row">
             <div class="col-lg-5">
                 <div class="panel panel-default toggle">
@@ -733,11 +732,11 @@ $this->load->helper('report_chart');
                                 </div>
                                 <div class=todo-search>
                                     <form>
-                                    <input class=form-control name=search placeholder="Search for todo ...">
+                                        <input class=form-control name=search placeholder="Search for todo ...">
                                     </form>
                                 </div>
                                 <div class=todo-add>
-                                <a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a>
+                                    <a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a>
                                 </div>
                             </div>
                             <h4 class=todo-period>To Do List</h4>
@@ -746,16 +745,16 @@ $this->load->helper('report_chart');
                             </div>
                             <ul class="todo-list" id="today">
                                 <?php foreach ($todolist as $todo) { ?>  
-                                <li class="todo-task-item <?php
+                                    <li class="todo-task-item <?php
                                     if ($todo->todo_status == "0") {
                                         echo "task-done";
                                     }
                                     ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
-                                                                        <div class=checkbox-custom><input type="checkbox" <?php
-                                    if ($todo->todo_status == "0") {
-                                        echo "checked=''";
-                                    }
-                                    ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
+                                        <div class=checkbox-custom><input type="checkbox" <?php
+                                            if ($todo->todo_status == "0") {
+                                                echo "checked=''";
+                                            }
+                                            ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
                                         <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
                                         <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
                                         <div class="updateclick_box">
@@ -764,7 +763,7 @@ $this->load->helper('report_chart');
                                         <div class="todo-close_box">
                                             <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
                                         </div>
-                                </li>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -782,43 +781,45 @@ $this->load->helper('report_chart');
                         </h4>
                     </div>
                     <div class=panel-body>
-                            <div id="demo">
-                                <section id="examples">         
-                                    <!-- content -->
-                                    <div id="content-1">
-                                        <div class="timeline-box timeline-horizontal" style="width: 3000px;">
-                                            <?php $i = 0;
-                                            foreach ($timeline as $time_line) {
-                                                ?>
-                                                <div class="tl-row">
-                                                    <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                                                        <div class="tl-bullet bg-blue"></div>
-                                                        <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
-                                                        <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                                            <div class="arrow"></div>
-                                                            <div class="popover-content">
-                                                                <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
-                                                                <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
-                                                                <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
-                                                            </div>
+                        <div id="demo">
+                            <section id="examples">         
+                                <!-- content -->
+                                <div id="content-1">
+                                    <div class="timeline-box timeline-horizontal" style="width: 3000px;">
+                                        <?php
+                                        $i = 0;
+                                        foreach ($timeline as $time_line) {
+                                            ?>
+                                            <div class="tl-row">
+                                                <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                    <div class="tl-bullet bg-blue"></div>
+                                                    <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
+                                                    <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                        <div class="arrow"></div>
+                                                        <div class="popover-content">
+                                                            <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
+                                                            <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
+                                                            <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php $i++;
-                                            }
-                                            ?>
+                                            </div>
+                                            <?php
+                                            $i++;
+                                        }
+                                        ?>
 
-                                        </div>
-                                    </div>          
-                                </section>
-                            </div>
+                                    </div>
+                                </div>          
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-<!-- end todo & time line -->
+        <!-- end todo & time line -->
 
-<!-- Start Report Charts -->
+        <!-- Start Report Charts -->
         <div class="panel panel-default toggle">
             <div class="panel-heading">
                 <h4 class="panel-title marginzero">Report Charts</h4>
@@ -860,7 +861,7 @@ $this->load->helper('report_chart');
                 </div>
             </div>
         </div>
-<!-- End Report Charts -->
+        <!-- End Report Charts -->
 
 
     </div>
@@ -913,7 +914,7 @@ $this->load->helper('report_chart');
     $(document).ajaxComplete(function () {
     $("#wait").css("display", "none");
     });
-    $(".close").click(function () {      
+    $(".close").click(function () {
     var id = $(this).val();
     var dataString = "id=" + id;
     $.ajax({
@@ -1028,48 +1029,102 @@ $this->load->helper('report_chart');
 <script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <script>
- (function($) {
+    (function($) {
 
-     $(window).load(function() {
+    $(window).load(function() {
 
-         $("#content-1").mCustomScrollbar({
-             theme: "inset-2-dark",
-             axis: "yx",
-             advanced: {
-                 autoExpandHorizontalScroll: true
-             },
-             /* change mouse-wheel axis on-the-fly */
-             callbacks: {
-                 // onOverflowY:function(){
-                 //  var opt=$(this).data("mCS").opt;
-                 //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
-                 // },
-                 onOverflowX: function() {
-                     var opt = $(this).data("mCS").opt;
-                     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
-                 },
-             }
-         });
-     });
+    $("#content-1").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            // onOverflowY:function(){
+            //  var opt=$(this).data("mCS").opt;
+            //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+            // },
+            onOverflowX: function() {
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+            },
+            }
+    });
+    });
+    $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            onOverflowY:function(){
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "y") opt.mouseWheel.axis = "y";
+            },
+                    // onOverflowX: function() {
+                    //     var opt = $(this).data("mCS").opt;
+                    //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                    // },
+            }
+    });
+    })(jQuery);</script>
 
-     $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
-             theme: "inset-2-dark",
-             axis: "yx",
-             advanced: {
-                 autoExpandHorizontalScroll: true
-             },
-             /* change mouse-wheel axis on-the-fly */
-             callbacks: {
-                 onOverflowY:function(){
-                  var opt=$(this).data("mCS").opt;
-                  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
-                 },
-                 // onOverflowX: function() {
-                 //     var opt = $(this).data("mCS").opt;
-                 //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
-                 // },
-             }
-         });
+<script>
+    $(document).ready(function(){        
+    
+    show_event_detail_on_load();
+    
+    //show_first_event_details();
+    
+    $('.eventCalendar-arrow').on('click', function(){
+        $('.eventCalendar-monthTitle').on('click',function(){
+            $('.eventCalendar-list li:first-child').each(function(index){
+                console.log($(this).text());
+                show_event_detail_on_load();
+            });
+        });
+        
+        $('.eventCalendar-day').on('click',function(){
+            show_event_detail_on_load();
+        });
+        
+        //show_event_detail_on_load();
+        setTimeout(function(){
+                $('.eventCalendar-list li:first-child').each(function(index){
+                    console.log($(this).text());
+                    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+                });
+            }, 1000);
+    });
+    
+    $('.eventCalendar-monthTitle').on('click',function(){
+        show_event_detail_on_load();
+    });
+    
+    $('.eventCalendar-day').on('click',function(){
+        show_event_detail_on_load();
+    });
+    
+    function show_first_event_details() {
+        $('.eventCalendar-day').on('click', function(){
+            $('.eventCalendar-eventDesc').css('display', 'block');
+            setTimeout(function(){
+                $('.eventCalendar-hidden').removeClass('eventCalendar-hidden');
+            }, 1000);
+        });
+    }
+        
+    function show_event_detail_on_load() {
+        setTimeout(function(){
+            $('.eventCalendar-list li:first-child').each(function(index){
+                console.log($(this).text());
+                $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+            });
+        }, 1000);
+        }
+    });
 
-
- })(jQuery);</script>
+</script>

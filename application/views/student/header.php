@@ -32,7 +32,7 @@
             <link rel=icon href=<?php echo base_url(); ?>assets/img/ico/favicon.ico type=image/png>
             <meta name=msapplication-TileColor content="#3399cc">
             <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
-        <body class="<?php echo $this->router->fetch_method(); ?>">
+        <body class="<?php echo $this->router->fetch_method(); ?> student_dashboard">
             <!--[if lt IE 9]>
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -304,11 +304,71 @@
                             <h3><?php echo $title; ?></h3>
                             <div class=resBtnSearch><a href=#><span class="s16 icomoon-icon-search-3"></span></a>
                             </div>
-                            <div class="search">
+                            <div class="search_box">
                                 <!-- .search -->
-                                <form id="searchform" class="form-horizontal" action=search.html>
-                                    <input class="top-search from-control" placeholder="Search here ...">
+                                <form action="http://192.168.1.28/lms/admin/search" method="post" class="form-horizontal" id="searchform">
+                                    <input value="" placeholder="Search here ..." class="top-search from-control" name="search"> 
                                     <input type="submit" class="search-btn">
+                                    <div class="category">
+                                        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            Category                                     
+                                        </a>
+
+                                        <ul class="dropdown-menu" style="margin-left: -46.3833px;">
+                                            <li class="menu">
+                                                <ul>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom"><input type="checkbox" name="degree" value="degree" id="chbox0"><label for="chbox0"></label></div>
+                                                            <span>Department</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom"><input type="checkbox" name="student" value="student" id="chbox1"><label for="chbox1"></label></div>
+                                                            <span>Student</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom"><input type="checkbox" name="course" value="course" id="chbox2"><label for="chbox2"></label></div>
+                                                            <span>Branch</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom"><input type="checkbox" name="exam" value="exam" id="chbox3"><label for="chbox3"></label></div>
+                                                            <span>Exam</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom"><input type="checkbox" name="event" value="event" id="chbox4"><label for="chbox4"></label></div>
+                                                            <span>Event</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom"><input type="checkbox" name="batch" value="batch" id="chbox5"><label for="chbox5"></label></div>
+                                                            <span>Batch</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom"><input type="checkbox" name="assignment" value="assignment" id="chbox6"><label for="chbox6"></label></div>
+                                                            <span>Assignment</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom"><input type="checkbox" name="participate" value="participate" id="chbox7"><label for="chbox7"></label></div>
+                                                            <span>Participate</span>
+                                                        </label>
+                                                    </li>                                                     
+                                                </ul>                                           
+                                            </li>
+                                        </ul> 
+                                    </div>
                                 </form>
                             </div>
                             <!--  /search -->  

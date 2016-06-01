@@ -1,0 +1,220 @@
+Searching 39 files for "panel-default toggle panelMove panelClose panelRefresh"
+
+\\192.168.1.28\htdocs\lms\application\views\student\assessment.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\assignment.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\class_routine.php:
+   14      <div class=col-lg-12>
+   15          <!-- col-lg-12 start here -->
+   16:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+   17              <!-- Start .panel -->
+   18              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\courseware.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\email_compose.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\email_inbox.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\email_inbox_view.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\email_reply.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\email_sent.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\email_view.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\exam_listing.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\exam_marks.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\exam_schedule.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\fees_record.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\gallery.php:
+   11      <div class=col-lg-12>
+   12          <!-- col-lg-12 start here -->
+   13:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+   14              <!-- Start .panel -->
+   15              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\holiday.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\make_payment.php:
+    3      <div class=col-lg-12>
+    4          <!-- col-lg-12 start here -->
+    5:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    6              <!-- Start .panel -->
+    7              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\modal_register_vocational_course.php:
+    3      <div class=col-lg-12>
+    4          <!-- col-lg-12 start here -->
+    5:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    6              <!-- Start .panel -->
+    7              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\modal_submit_assignment.php:
+    2      <div class=col-lg-12>
+    3          <!-- col-lg-12 start here -->
+    4:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    5              <!-- Start .panel -->
+    6              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\modal_submit_project.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\pages.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\participate.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\participate_form.php:
+    8      <div class=col-lg-12>
+    9          <!-- col-lg-12 start here -->
+   10:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+   11              <!-- Start .panel -->
+   12              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\project.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\student_fees.php:
+    3      <div class=col-lg-12>
+    4          <!-- col-lg-12 start here -->
+    5:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    6              <!-- Start .panel -->
+    7              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\student_profile.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\student_vocational_course.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\syllabus.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\upload_data.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\vocational_course.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+\\192.168.1.28\htdocs\lms\application\views\student\vocational_make_payment.php:
+    4      <div class=col-lg-12>
+    5          <!-- col-lg-12 start here -->
+    6:         <div class="panel-default toggle panelMove panelClose panelRefresh">
+    7              <!-- Start .panel -->
+    8              <!--            <div class=panel-heading>
+
+31 matches across 31 files

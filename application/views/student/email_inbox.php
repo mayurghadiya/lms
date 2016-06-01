@@ -14,7 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                <table id="inbox_email-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
                             <th>#</th>
@@ -40,10 +40,10 @@
                                 $result = $this->db->query($query)->num_rows();
                                 ?>
                                 <tr class="<?php if ($result == 0) echo 'info'; ?>">
-                                    <td></td>
+                                    <td><?php echo $counter; ?></td>
                                     <td><?php echo $row->email_from; ?></td>
                                     <td>
-                                        <span class="label vd_bg-green append-icon"><?php echo $row->subject; ?></span> 
+                                        <?php echo $row->subject; ?>
                                     </td>
                                     <td><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></td>
                                     <td>
@@ -67,3 +67,6 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+<script type="text/javascript">
+    $('#inbox_email-list').DataTable();
+</script>
