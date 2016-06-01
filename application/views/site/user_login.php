@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <!-- col-md-12 start here -->
-                                    <label for="">Username:</label>
+                                    <label for="">Email</label>
                                 </div>
                                 <!-- col-md-12 end here -->
                                 <div class="col-md-12">
@@ -73,7 +73,7 @@
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <!-- col-md-12 start here -->
-                                    <label for="">Password:</label>
+                                    <label for="">Password</label>
                                 </div>
                                 <!-- col-md-12 end here -->
                                 <div class="col-md-12">

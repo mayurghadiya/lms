@@ -264,7 +264,7 @@ $(document).ready(function () {
 //     $(this).next('div').slideUp();   
 //});
 
-    $(".nav li.dropdown").click(function (e) {
+    $(".nav li.dropdown").click(function (e) {        
         $(this).toggleClass("open");
     });
     $(".search_box .category").click(function (e) {

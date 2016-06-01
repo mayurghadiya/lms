@@ -34,7 +34,7 @@ foreach ( $edit_data as $row):
                             </div>
                         </div>                            
                         <div class="form-group">
-                            <label class="col-sm-4 control-label"><?php echo ucwords("designation");?><span style="color:red">*</span></label>
+                            <label class="col-sm-4 control-label"><?php echo ucwords("speciality");?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="designation" id="designation" value="<?php echo $row['people_designation'];?>"/>
                             </div>
