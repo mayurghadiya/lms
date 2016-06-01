@@ -27,6 +27,7 @@ class Professor extends MY_Controller {
      * Index action
      */
     function index() {
+        $this->data['todolist'] = $this->Professor_model->get_todo();
         $this->__site_template('professor/dashboard', $this->data);
     }
 
