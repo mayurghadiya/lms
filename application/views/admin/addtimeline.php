@@ -8,7 +8,7 @@ $semesters = $this->db->get('semester')->result_array();
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">          
+        <div class="panel-default toggle panelMove panelClose panelRefresh">          
             <div class="panel-body"> 
                 <div class="box-content">     
                     <div class="">

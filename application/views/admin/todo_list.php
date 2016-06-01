@@ -1,6 +1,6 @@
 
 
-<div class="panel panel-default toggle panelClose panelRefresh panelMove">
+<div class="panel-default toggle panelClose panelRefresh panelMove">
     <!-- Start .panel -->
     <div class=panel-heading>
         <h4 class=panel-title>To Do List</h4>

@@ -760,4 +760,29 @@ class Student_model extends CI_Model {
         $this->db->order_by('timeline_year','desc');
         return $this->db->get_where("timeline",array("timeline_status"=>'1'))->result();
     }
+    
+    function get_timline_todolist()
+    {
+        return $this->db->get_where('todo_list',array('todo_role'=>'student','todo_role_id'=>$this->session->userdata('student_id')))->result();
+      //  return $this->db->get_where('todo_list',array('todo_datetime >='=> date('Y-m-d H:m:s'),'todo_role'=>'student','todo_role_id'=>$this->session->userdata('student_id')))->result();
+    }
+    function get_timline_event()
+    {
+        return $this->db->get('event_manager')->result();
+        //return $this->db->get_where('event_manager',array('event_date >='=> date('Y-m-d H:m:s')))->result();
+    }
+    function get_timeline_date_count()
+    {
+        $todolist=$this->db->query('SELECT DISTINCT date(todo_datetime) from todo_list where todo_datetime >= "'.date('Y-m-d').'"')->result();
+        $event=$this->db->query('SELECT DISTINCT date(event_date) from event_manager where event_date >= "'.date('Y-m-d').'"')->result();
+        
+        if(count($todolist)>count($event))
+        {
+            return $todolist;
+        }
+        else
+        {
+            return $event;
+        }
+    }
 }

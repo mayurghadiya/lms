@@ -640,7 +640,7 @@
                                         echo "checked=''";
                                     }
                                     ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>               
-                                    <span class="todo-category label label-primary"><?php echo date_duration($todo->todo_datetime); ?></span>
+                                <span class="todo-category label label-primary"><?php echo date_duration($todo->todo_datetime); ?></span>
 
                                 <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
                                 <button type=button class="label label-primary updateclick" value="<?php echo $todo->todo_id; ?>">Edit</button>
@@ -774,46 +774,85 @@
 </div>
 <div class="row">    
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="panel panel-default toggle">
-                    <!-- Start .panel -->
-                    <div class=panel-heading>
-                        <h4 class="panel-title marginzero">
-                            Timeline
-                        </h4>
-                    </div>
-                    <div class=panel-body>
-                            <div id="demo">
-                                <section id="examples">         
-                                    <!-- content -->
-                                    <div id="content-1">
-                                        <div class="timeline-box timeline-horizontal" style="width: 2500px;">
-                                            <?php $i = 0;
-                                            foreach ($timeline as $time_line) {
-                                                ?>
-                                                <div class="tl-row">
-                                                    <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                                                        <div class="tl-bullet bg-blue"></div>
-                                                        <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
-                                                        <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                                            <div class="arrow"></div>
-                                                            <div class="popover-content">
-                                                                <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
-                                                                <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
-                                                                <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
+        <div class="panel panel-default toggle">
+            <!-- Start .panel -->
+            <div class=panel-heading>
+                <h4 class="panel-title marginzero">
+                    Timeline
+                </h4>
+            </div>
+            <div class=panel-body>
+                <div id="demo">
+                    <section id="examples">         
+                        <!-- content -->
+                        <div id="content-1">
+                            <div class="timeline-box timeline-horizontal" style="width: 2500px;">
+                                <?php
+                                $i = 0;
+                                foreach ($timelinecount as $c) {
+                                    foreach ($c as $cc) {
+                                        $j = 0;
+                                        ?>
+                                        <div class="tl-row">
+                                            <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                <div class="tl-bullet bg-blue"></div>
+                                                <div class="tl-panel"><?php echo $cc; ?></div>
+                                                <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                    <div class="arrow"></div>
+                                                    <div class="popover-content">
+                                                        <h3 class="tl-title">Event</h3>                                                               
+                                                             <?php
+                                                                foreach ($timline_event as $event) {
+                                                                    if (date('Y-m-d', strtotime($event->event_date)) == $cc) {
+                                                                        $j++;
+                                                                        if ($j <= 3) {
+                                                                            ?>
+                                                                            <p class=""><?php echo $event->event_name; ?></p>
+                                                                            <?php
+                                                                        }
+                                                                    }
+                                                                }
+                                                                
+                                                                ?>
+                                                                            
                                                             </div>
+                                                            <?php
+                                                            if ($j < 3) {
+                                                                ?>
+                                                                <div class="popover-content">
+                                                                    <h3 class="tl-title">Todolist</h3>
+                                                                    <?php
+                                                                    foreach ($timline_todolist as $time_line) {
+                                                                        if (date('Y-m-d', strtotime($time_line->todo_datetime)) == $cc) {
+                                                                             $j++;
+                                                                        if ($j <= 3) {
+                                                                            ?>
+                                                                            <p class=""><?php echo $time_line->todo_title; ?></p>
+                                                                            <?php
+                                                                        }
+                                                                        }
+                                                                    }
+                                                                    ?>   
+                                                                    <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($time_line->todo_datetime); ?></div>
+                                                                </div>
+                                                                <?php
+                                                            }
+                                                            ?>                                                            
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php $i++;
+                                                <?php
+                                                $i++;
                                             }
-                                            ?>
+                                        }
+                                        ?>
 
-                                        </div>
-                                    </div>          
-                                </section>
                             </div>
-                    </div>
+                        </div>          
+                    </section>
                 </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -963,7 +1002,7 @@
                 }
             });
         });
-       
+
         $("#closeform").click(function () {
             $("#todo-addform").hide(500);
         });
