@@ -37,7 +37,7 @@
                     <li class="">
                         <a href="#uploads" data-toggle="tab" aria-expanded="false"> <?php echo ucwords("Upload List"); ?></a>
                     </li>                        
-                </ul>
+                </ul> 
                 <div id="import-tab-content" class="tab-content">
                     <div class="tab-pane fade out" id="list">
                         <div class="panel-body table-responsive">
