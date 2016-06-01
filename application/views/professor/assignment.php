@@ -26,6 +26,7 @@
                     <div id="import-tab-content" class="tab-content">
                         <div class="tab-pane fade active in" id="assignment-list">
                             <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addassignment/');" data-original-title="" data-toggle="tooltip" data-placement="top"><i class="fa fa-plus"></i> Assignment</a>
+                             <div class="row filter-row">
                             <form id="assignment-search" action="#" class="form-groups-bordered validate">
                                 <div class="form-group col-sm-3">
                                     <label><?php echo ucwords("department"); ?></label>
@@ -74,7 +75,7 @@
                                     <input id="search-assignment-structure-data"  type="button" value="Go" class="btn btn-info vd_bg-green"/>
                                 </div>
                             </form>
-
+                             </div>
                             <div id="getresponse">
                                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                     <thead>
@@ -168,6 +169,7 @@ Delete
 
                         <!-- tab content -->
                         <div class="tab-pane fade" id="submitted-assignment-list">
+                             <div class="row filter-row">
                             <form id="assignment-search-submitted" action="#" class="form-groups-bordered validate">
                                 <div class="form-group col-sm-3">
                                     <label><?php echo ucwords("department"); ?></label>
@@ -216,6 +218,7 @@ Delete
                                     <input id="submitted" type="button" value="Go" class="btn btn-info"/>
                                 </div>
                             </form>
+                             </div>
                             <div id="getsubmit">
                                 <table class="table table-striped table-bordered table-responsive" id="sub-tables">
                                     <thead>
