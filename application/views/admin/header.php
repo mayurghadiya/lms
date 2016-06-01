@@ -127,7 +127,7 @@
                 <!-- #wrapper --><!--Sidebar background-->
                 <div id=sidebarbg class="hidden-lg hidden-md hidden-sm hidden-xs"></div>
                 <!--Sidebar content-->
-                <div id="sidebar" class="page-sidebar hidden-lg hidden-md hidden-sm hidden-xs">
+                <div id="sidebar" class="page-sidebar sidebar-fixed">
                     <div class=shortcuts>
                         <ul>
                             <li><a href="<?php echo base_url(); ?>admin/system_settings" title="System Settings" class=tip>

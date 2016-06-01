@@ -1581,6 +1581,23 @@ class Crud_model extends CI_Model {
         $this->db->order_by('timeline_year','desc');
         return $this->db->get_where("timeline",array("timeline_status"=>'1'))->result();
     }
-
+    
+    /**
+     * submitted assignment 
+     * @param int $id
+     */
+    function get_submitted_assignment($id)
+    {
+        return $this->db->get_where("assignment_submission",array("assignment_submit_id"=>$id))->result();
+    }
+    /**
+     * update submitted assignment
+     * @param mixed array $data
+     * @param int $id
+     */
+    function update_submitted_assessment($data,$id)
+    {
+        $this->db->update("assignment_submission",$data,array("assignment_submit_id"=>$id));
+    }
 }
 

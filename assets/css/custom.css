@@ -570,6 +570,9 @@ label.error {
 .dashboard.student_dashboard #content{background: #eceff1 !important; }
 
 .dashboard.student_dashboard #content .contentwrapper{ padding-top: 67px;  }
+
+
+#sidebar.sidebar-fixed .active .indicator {background-color: #39c; height: 36px; left: 0; position: absolute; top: 0; width: 4px;}
 /*********************** media *****************************/
 
 @media screen and (max-width:1279px) { }

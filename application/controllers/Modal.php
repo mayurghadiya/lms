@@ -158,6 +158,15 @@ class Modal extends MY_Controller {
                 $page_data['semesters'] = $this->db->get('semester')->result_array();
             }
         }
+        if($page_name=="modal_assessment")
+        {
+             $this->db->select("ass.*,am.*,s.* ");
+        $this->db->from('assignment_submission ass');
+        $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+        $this->db->join("student s", "s.std_id=ass.student_id");
+        $this->db->where("ass.assignment_submit_id",$param2);
+        $page_data['assessment'] = $this->db->get()->result();
+        }
         $page_data['action_page_name'] = 'abd';
         $this->load->view($account_type . '/' . $page_name . '.php', $page_data);
        
