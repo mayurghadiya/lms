@@ -1,8 +1,8 @@
 <div id=footer class="clearfix sidebar-page">
     <!-- Start #footer  Copyright © 2016 Lore Brain. All Rights Reserved  -->
     <p class=pull-left>Copyrights &copy; 2016 <a href="#" class="color-blue strong" target=_blank>Lore Brain</a>. All rights reserved.</p>
-    <p class=pull-right><a href=# class=mr5>Terms of use</a> | <a href=# class="ml5 mr25">Privacy police</a>
-    </p>
+    <!-- <p class=pull-right><a href=# class=mr5>Terms of use</a> | <a href=# class="ml5 mr25">Privacy police</a>
+    </p> -->
 </div>
 <!-- End #footer  -->
 </div>
