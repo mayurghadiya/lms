@@ -21,7 +21,7 @@
                         <?php echo form_open(base_url() . 'admin/list_group/do_update', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'list_group')); ?>
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Group"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6 controls">
+                            <div class="col-sm-5 controls">
                                 
                               <select class="form-control "  onchange="return get_group_ajax(this.value)" name="group_name" id="group_name" >
                                     <option value="">Select Group Name</option>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Type of Users"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6 controls">
+                            <div class="col-sm-5 controls">
                                 <select id="user_type" name="user_type" class="form-control " >
                                     <option value="">Select User Type</option>
                                 </select>

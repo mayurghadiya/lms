@@ -23,13 +23,13 @@
                         <?php echo form_open(base_url() . 'admin/create_group/create', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'create_group')); ?>
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Group Name"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-6 controls">
+                            <div class="col-sm-5 controls">
                                 <input type="text" class="form-control" placeholder="Group Name" name="group_name" >
                                 <span class="help-inline"></span> </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Type of Users<span style="color:red">*</span></label>
-                            <div class="col-sm-6 controls">
+                            <div class="col-sm-5 controls">
                                 <select id="user_type" class="form-control" onchange="return get_user(this.value)" name="user_type"  >
                                     <option value="">Select User Type</option>
                                     <option value="admin">Admin</option>
@@ -42,7 +42,7 @@
                         <div id="divfilter" hidden>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <select name="degree" id="degree" class="form-control">
                                         <option value="">Select department</option>
                                         <?php
@@ -58,7 +58,7 @@
                             </div>	
                             <div class="form-group">
                                 <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <select name="course" id="course"  class="form-control">
                                         <option value="">Select Branch</option>
 
@@ -67,7 +67,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <select class="form-control" name="batch" id="batch" onchange="get_student2(this.value);" >
                                         <option value="">Select batch</option>
 
@@ -76,7 +76,7 @@
                             </div>	
                             <div class="form-group">
                                 <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <select class="form-control" name="semester" id="semester"  onchange="get_students2(this.value);" >
                                         <option value="">Select semester</option>
                                         <?php

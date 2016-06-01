@@ -21,7 +21,7 @@
                         <?php echo form_open(base_url() . 'admin/list_module/do_update', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'list_module')); ?>
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Group Name"); ?> <span style="color:red">*</span></label>
-                            <div class="col-sm-7 controls">
+                            <div class="col-sm-5 controls">
                                 <select name="group_name" class="form-control" onchange="return get_module_ajax(this.value)">
                                     <option value="">Select Group Name</option>
                                     <?php
@@ -58,7 +58,7 @@
                         <!-- col-sm-9-->
                         <div class="col-sm-3">                
                             <div class="mgbt-xs-5"><br/>
-                                <button class="submit btn btn-info" type="submit">Update Module</button>
+                                <button class="submit btn btn-info" type="submit">Update</button>
                             </div>
                         </div>
                     </div>

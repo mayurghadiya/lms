@@ -21,7 +21,7 @@
                         <?php echo form_open(base_url() . 'admin/assign_module/create', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'assign_module')); ?>						
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Group Name"); ?> <span style="color:red">*</span></label>
-                            <div class="col-sm-7 controls">
+                            <div class="col-sm-5 controls">
                                 <select name="group_name" id="group_name" class="form-control" style="width:100%;" >
                                     <option value="">Select Group Name</option>
                                     <?php

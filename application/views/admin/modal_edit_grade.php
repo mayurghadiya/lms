@@ -18,21 +18,21 @@ foreach ($edit_data as $row) {
                 <div class="padded">
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><?php echo ucwords("Grade Name"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-8">
                             <input id="grade_name" class="form-control" type="text" name="grade_name"
                                    value="<?php echo $row['grade_name']; ?>"/>
                         </div>	
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><?php echo ucwords("From Percentage"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-8">
                             <input type="number" class="form-control" name="from_marks" id="edit_from_marks"
                                    value="<?php echo $row['from_marks']; ?>"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><?php echo ucwords("To Percentage"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-8">
                             <input type="number" class="form-control" name="to_marks" id="edit_to_marks"
                                    value="<?php echo $row['to_marks']; ?>"/>
                         </div>
@@ -40,7 +40,7 @@ foreach ($edit_data as $row) {
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><?php echo ucwords("Description"); ?></label>
-                        <div class="col-sm-7">	
+                        <div class="col-sm-8">	
                             <div class="chat-message-box">
                                 <textarea name="description" id="description" rows="3" class="form-control"><?php echo $row['comment']; ?></textarea>
                             </div>
@@ -48,7 +48,7 @@ foreach ($edit_data as $row) {
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-7">
+                        <div class="col-sm-offset-4 col-sm-8">
                             <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Update"); ?></button>
                         </div>
                     </div>                                              

@@ -11,8 +11,8 @@
                     <br/>
                     <div class="padded">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Department<span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Department<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select class="form-control" name="degree" id="degree" required="">
                                     <option value="">Select</option>
                                     <?php foreach ($degree as $row) { ?>
@@ -22,78 +22,78 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Branch<span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Branch<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select class="form-control" name="course" id="course" required="">
 
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Batch<span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Batch<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select class="form-control" name="batch" id="batch" required="">
 
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Semester<span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Semester<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select class="form-control" name="semester" id="semester" required="">
                                     <option value="">Select</option>                                                        
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Student<span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Student<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select style="width: 100%;" class="student form-control" id="student" name="student" required="">
 
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Fees Structure<span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Fees Structure<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select class="form-control" id="fees_structure" name="fees_structure" required="">
 
                                 </select>
                             </div>
                         </div>
                         <div id="main_total_fees" class="form-group" style="display: none;">
-                            <label class="col-sm-3 control-label">Total Fees<span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Total Fees<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" name="total_fees" id="total_fees" class="form-control" readonly=""/>
                             </div>
                         </div>
                         <div id="main_total_amount" class="form-group" style="display: none;">
-                            <label class="col-sm-3 control-label">Total Paid Amount</label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Total Paid Amount</label>
+                            <div class="col-sm-8">
                                 <input type="text" name="total_fees_amount" id="total_fees_amount" class="form-control" readonly=""/>
                             </div>
                         </div>
                         <div id="main_due_amount" class="form-group" style="display: none;">
-                            <label class="col-sm-3 control-label">Due Amount<span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Due Amount<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" name="due_amount" id="due_amount" class="form-control" readonly=""/>
                             </div>
                         </div>
                         <div id="fees_main" class="form-group">
-                            <label class="col-sm-3 control-label">Amount<span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Amount<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" name="fees" id="fees" class="form-control" placeholder="In dollar" required=""/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Description</label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Description</label>
+                            <div class="col-sm-8">
                                 <textarea name="c_description" id="c_description" rows="5" class="form-control"></textarea>
                             </div>
                         </div> 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Payment Gateway</label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Payment Gateway</label>
+                            <div class="col-sm-8">
                                 <select class="form-control" id="payment_gateway" name="payment_gateway" required="">
                                     <option value="authorize">Authorize.net Payment Gatway</option>
                                     <option value="paypal">Paypal</option>
@@ -101,7 +101,7 @@
                             </div>	
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button id="submit-form" type="submit" class="btn btn-info vd_bg-green">Make Payment</button>
                             </div>
                         </div>

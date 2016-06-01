@@ -43,8 +43,8 @@ $semester = $this->db->get('semester')->result();
             <div class=panel-body>
                 <?php echo form_open(base_url() . 'admin/exam_time_table/update/' . $edit_data->exam_time_table_id, array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'edit-exam-time-table', 'target' => '_top')); ?>
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <select name="degree" id="edit_degree" class="form-control" required="">
                             <option value="">Select</option>
                             <?php foreach ($degree as $d) { ?>
@@ -55,8 +55,8 @@ $semester = $this->db->get('semester')->result();
                     </div>
                 </div>                  
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <select name="course" id="edit_course" class="form-control" required="">
                             <option value="">Select</option>
                             <?php foreach ($course as $c) { ?>
@@ -67,8 +67,8 @@ $semester = $this->db->get('semester')->result();
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <select name="batch" id="edit_batch" class="form-control" required="">
                             <option value="">Select</option>
                             <?php foreach ($batch as $b) { ?>
@@ -79,8 +79,8 @@ $semester = $this->db->get('semester')->result();
                     </div>
                 </div>                 
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <select class="form-control" id="edit_semester" name="semester" required="">
                             <option value="">Select</option>
                             <?php foreach ($semester as $row) { ?>
@@ -91,8 +91,8 @@ $semester = $this->db->get('semester')->result();
                     </div>
                 </div>                   
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Exam"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Exam"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <select class="form-control" id="edit_exam" name="exam" required="">
                             <option value="">Select</option>
                             <?php foreach ($exam_list as $exams) { ?>
@@ -106,8 +106,8 @@ $semester = $this->db->get('semester')->result();
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <select class="form-control" id="edit_subject" name="subject" required="">
                             <option value="">Select</option>
 
@@ -115,28 +115,28 @@ $semester = $this->db->get('semester')->result();
                     </div>
                 </div> 
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Date"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Date"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <input readonly="" type="text" required=""  name="exam_date" class="form-control datepicker-normal-edit"
                                value="<?php echo $edit_data->em_date; ?>"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Start Time"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Start Time"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <input type="time" id="start_time" class="form-control" name="start_time"
                                value="<?php echo $edit_data->exam_start_time; ?>" required=""/>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("End Time"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("End Time"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <input type="time" id="end_time" class="form-control" name="end_time"
                                value="<?php echo $edit_data->exam_end_time ?>" required=""/>
                     </div>	
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                    <div class="col-sm-offset-4 col-sm-8">
                         <button type="submit" class="submit btn btn-info vd_bg-green"><?php echo ucwords("Update"); ?></button>
                     </div>
                 </div>
