@@ -19,14 +19,14 @@ $semesters = $this->db->get('semester')->result_array();
                     <?php echo form_open(base_url() . 'admin/admission_type/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmadmission_type', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Admission Type Name<span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Admission Type Name<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="at_name" id="at_name" />
                             </div>
                         </div>												
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Status</label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Status</label>
+                            <div class="col-sm-8">
                                 <select name="at_status" class="form-control" >
                                     <option value="1">Active</option>
                                     <option value="0">Inactive</option>		
@@ -35,7 +35,7 @@ $semesters = $this->db->get('semester')->result_array();
                             </div>	
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" class="btn btn-info vd_bg-green">Add Admission Type</button>
                             </div>
                         </div>

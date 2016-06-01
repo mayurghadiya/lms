@@ -1,44 +1,29 @@
-<<<<<<< HEAD
+
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-primary" data-collapsed="0">
-            <div class="panel-heading">
-                <div class="panel-title" >
-                    <i class="entypo-plus-circled"></i>
-                    <?php echo ucwords("Add Study Resources"); ?>
-                </div>
-            </div>
-=======
-<div class=row>                      
-    <div class=col-lg-12>
-        <!-- col-lg-12 start here -->
+        
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title>  <?php echo ucwords("Add Study Resources"); ?></h4>                
                         </div>    -->
->>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
+
             <div class="panel-body"> 
 
                 <div class="box-content">  
 
                     <div class="">
                         <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
-                    </div>                                       
-<<<<<<< HEAD
-                    <?php echo form_open(base_url() . 'index.php?admin/studyresource/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmstudyresource', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
-=======
+                    </div> 
                     <?php echo form_open(base_url() . 'admin/studyresource/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmstudyresource', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
->>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
+
                     <div class="padded">											
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?> <span style="color:red">*</span></label>
-                            <div class="col-sm-5">
-<<<<<<< HEAD
-                                <select name="degree" id="degree">
-=======
+                            <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?> <span style="color:red">*</span></label>
+                            <div class="col-sm-8">
+
                                 <select name="degree" id="degree" class="form-control">
->>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
+
                                     <option value="">Select department</option>
                                     <option value="All">All</option>
                                     <?php
@@ -53,13 +38,10 @@
                             </div>
                         </div>	
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Branch "); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
-<<<<<<< HEAD
-                                <select name="course" id="course">
-=======
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Branch "); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="course" id="course" class="form-control">
->>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
+
                                     <option value="">Select Branch</option>
                                     <option value="All">All</option>
                                     <?php
@@ -75,13 +57,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Batch "); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
-<<<<<<< HEAD
-                                <select name="batch" id="batch" onchange="get_student2(this.value);" >
-=======
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Batch "); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
+
                                 <select name="batch" id="batch" onchange="get_student2(this.value);" class="form-control" >
->>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
+
                                     <option value="">Select batch</option>
                                     <option value="All">All</option>
                                     <?php
@@ -96,13 +76,11 @@
                             </div>
                         </div>	
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Semester "); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
-<<<<<<< HEAD
-                                <select name="semester" id="semester" onchange="get_students2(this.value);">
-=======
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Semester "); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
+
                                 <select name="semester" id="semester" onchange="get_students2(this.value);" class="form-control">
->>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
+
                                     <option value="">Select Semester</option>
                                     <option value="All">All</option>
                                     <?php
@@ -118,8 +96,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Title "); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Title "); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="title" id="title" />
                             </div>
                         </div>   
@@ -130,15 +108,15 @@
                               </div>
                           </div>-->
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("File Upload "); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("File Upload "); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="file" class="form-control" name="resourcefile" id="resourcefile" />
                             </div>
                         </div>
 
 
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add"); ?></button>
                             </div>
                         </div>
@@ -253,11 +231,11 @@
                         },
                 resourcefile: {
                     required: true,
-<<<<<<< HEAD
+
                   extension: 'gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf|txt',
-=======
+
                     extension: 'gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf|txt',
->>>>>>> 3c39f026f9259af4cd544c26eb8c4819ce08ec85
+
                 },
             },
             messages: {

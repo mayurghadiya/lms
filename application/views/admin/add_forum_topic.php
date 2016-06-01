@@ -16,8 +16,8 @@
                     <?php echo form_open(base_url() . 'admin/topicscrud/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmadmission_type', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Forum <span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Forum <span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="forum_id"  class="form-control">
                                     <option value="">Select Forum</option>
                                     <?php foreach ($forum as $form): ?>
@@ -28,20 +28,20 @@
                             </div>	
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Topic Title<span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Topic Title<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="topic_title" id="topic_title" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Description"); ?></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Description"); ?></label>
+                            <div class="col-sm-8">
                                 <textarea class="form-control" name="description" id="description"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Status <span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label">Status <span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="topic_status" class="form-control">
                                     <option value="1">Active</option>
                                     <option value="0">Inactive</option>		
@@ -50,7 +50,7 @@
                             </div>	
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" class="btn btn-info vd_bg-green">Add forum Topic</button>
                             </div>
                         </div>

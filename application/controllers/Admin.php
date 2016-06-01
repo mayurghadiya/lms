@@ -2135,7 +2135,7 @@ class Admin extends MY_Controller {
                         create_notification('exam_manager', $_POST['degree'], $_POST['course'], $_POST['batch'], $_POST['semester'], $insert_id);
                         redirect(base_url('admin/exam'));
                     } else {
-                        $page_data['edit_error'] = validation_errors();                       
+                        $page_data['edit_error'] = validation_errors();
                     }
                 }
             } elseif ($param1 == 'do_update') {

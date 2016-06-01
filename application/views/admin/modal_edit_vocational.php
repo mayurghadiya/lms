@@ -18,26 +18,26 @@ foreach ($edit_data as $row):
                             </div>
                             <?php echo form_open(base_url() . 'admin/vocationalcourse/do_update/' . $row['vocational_course_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'frmvocationalcourseedit', 'target' => '_top')); ?>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("course name"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("course name"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="course_name" id="course_name" value="<?php echo $row['course_name']; ?>" />
                                 </div>
                             </div>	
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("start date"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("start date"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" readonly="" name="startdate1" id="startdate1" value="<?php echo date('d F Y', strtotime($row['course_startdate'])); ?>"/>
                                 </div>	
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("end date"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("end date"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" readonly="" name="enddate1" id="enddate1" value="<?php echo date('d F Y', strtotime($row['course_enddate'])); ?>" />
                                 </div>	
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Course Category"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Course Category"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <?php
                                     $category = $this->db->get('course_category')->result_array();
                                     ?>
@@ -55,14 +55,14 @@ foreach ($edit_data as $row):
                                 </div>	
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("course fee"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("course fee"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="fee" id="fee" value="<?php echo $row['course_fee']; ?>" />
                                 </div>	
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Professor"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Professor"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <?php
                                     $professor = $this->db->get('professor')->result_array();
                                     ?>
@@ -87,8 +87,8 @@ foreach ($edit_data as $row):
                                 </div>	
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("status"); ?></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("status"); ?></label>
+                                <div class="col-sm-8">
                                     <select name="course_status" class="form-control">
                                         <option value="1" <?php
                                         if ($row['status'] == '1') {
@@ -107,7 +107,7 @@ foreach ($edit_data as $row):
 
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-5">
+                                <div class="col-sm-offset-4 col-sm-8">
                                     <button type="submit" class="submit btn btn-info vd_bg-green"><?php echo ucwords("Update"); ?></button>
                                 </div>
                             </div>

@@ -73,35 +73,35 @@ foreach ($edit_data as $row):
                         <div class="padded">											
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Title <span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label">Title <span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="title" value="<?php echo $row['gallery_title']; ?>" id="title" />
                                 </div>
                             </div>
 
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Description <span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label">Description <span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <textarea class="form-control" name="description" id="description"><?php echo $row['gallery_desc']; ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Main Image <span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label">Main Image <span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input id="main_img" class="form-control coverimage2" type="file" name="main_img" />
                                 </div>
                                 <div id="image_container1"><img class='img-thumbnail' style='width:300px;margin:20px;' src='<?php echo base_url() . "uploads/photogallery/" . $row['main_img']; ?>' ></div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">File Upload <span style="color:red"></span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label">File Upload <span style="color:red"></span></label>
+                                <div class="col-sm-8">
                                     <input id="fileupload2" class="form-control" type="file" name="galleryimg2[]" multiple="multiple" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Status <span style="color:red"> *</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label">Status <span style="color:red"> *</span></label>
+                                <div class="col-sm-8">
                                     <select name="status" class="form-control">
                                         <option value="">Select</option>
                                         <option value="1" <?php if ($row['gal_status'] == "1") {
@@ -114,7 +114,7 @@ foreach ($edit_data as $row):
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-5">
+                                <div class="col-sm-offset-4 col-sm-8">
                                     <button type="submit" class="btn btn-info vd_bg-green">Update Photo Gallery</button>
                                 </div>
                             </div>

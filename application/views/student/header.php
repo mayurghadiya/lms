@@ -20,6 +20,7 @@
             <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel=stylesheet type=text/css>
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">
             <!-- Css files -->
+            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/plugins.css>
             <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">
             <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/main.min.css">
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>

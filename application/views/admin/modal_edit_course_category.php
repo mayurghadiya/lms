@@ -19,21 +19,21 @@ foreach ($edit_data as $row):
                             </div>
                             <?php echo form_open(base_url() . 'admin/category/do_update/' . $row['category_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'frmeditclass', 'target' => '_top')); ?>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("class name"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("class name"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="category_name" id="category_name" value="<?php echo $row['category_name']; ?>"   />
                                 </div>
                             </div> 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("category Description"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("category Description"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <textarea class="form-control" name="category_desc"><?php echo $row['category_desc']; ?></textarea>
                                 </div>
 
                             </div>	
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Status"); ?></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Status"); ?></label>
+                                <div class="col-sm-8">
                                     <select name="category_status" class="form-control">
                                         <option value="1" <?php if ($row['category_status'] == '1') {
                             echo "selected=selected";
@@ -45,7 +45,7 @@ foreach ($edit_data as $row):
                                 </div>	
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-5">
+                                <div class="col-sm-offset-4 col-sm-8">
                                     <button type="submit" class="submit btn btn-info vd_bg-green"><?php echo ucwords("update"); ?></button>
                                 </div>
                             </div>

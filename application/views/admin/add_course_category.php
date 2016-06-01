@@ -16,22 +16,22 @@
                     <?php echo form_open(base_url() . 'admin/category/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmcategory', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("category name"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("category name"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="category_name" id="category_name" value="" />
                             </div>
                             <lable class="error" id="error_lable_exist" style="color:#f85d2c"></lable>
                         </div>	
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("category Description"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("category Description"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <textarea name="category_desc" class="form-control"></textarea>
                             </div>
                             <lable class="error" id="error_lable_exist" style="color:#f85d2c"></lable>
                         </div>	
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Status"); ?></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Status"); ?></label>
+                            <div class="col-sm-8">
                                 <select name="category_status" class="form-control" > 
                                     <option value="1">Active</option>
                                     <option value="0">Inactive</option>		
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" id="btnadd"  class="btn btn-info vd_bg-green" ><?php echo ucwords("add"); ?></button>
                             </div>
                         </div>

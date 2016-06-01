@@ -64,13 +64,8 @@
                                 </div>                                      
 <?php echo form_open(base_url() . 'admin/bannerslider/general', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmgeneral', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                                     <div class="padded">											
-                                        
-                                      
-                              
-                                       
-                                        
-                                          <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Pause Time <span style="color:red">*</span></label>
+                                        <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Pause Time <span style="color:red">*</span></label>
                                                     <div class="col-sm-5">
                                                         
                                                         <input type="text" class="form-control" name="pause_time" placeholder="Ex 4000" id="pause_time" value="<?php if(!empty($general)) { echo $general[0]->pause_time; } ?>" />
@@ -78,7 +73,7 @@
                                                     </div>
                                                 </div>
                                         <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Animation Speed <span style="color:red">*</span></label>
+                                                    <label class="col-sm-4 control-label">Animation Speed <span style="color:red">*</span></label>
                                                     <div class="col-sm-5">                                                        
                                                         <input type="text" placeholder="Ex 340" class="form-control" name="anim_speed" id="anim_speed" value="<?php if(!empty($general)) {  echo $general[0]->anim_speed; } ?>" />
                                                     </div>
@@ -86,7 +81,7 @@
                                         
                                         
                                         <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Pause On Hover  <span style="color:red">*</span></label>
+                                                    <label class="col-sm-4 control-label">Pause On Hover  <span style="color:red">*</span></label>
                                                     <div class="col-sm-5">
                                                         <select name="pause_on_hover" class="form-control">
                                                             <option value="">Select</option>
@@ -96,7 +91,7 @@
                                                     </div>
                                                 </div>
                                          <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Caption Opacity  <span style="color:red">*</span></label>
+                                                    <label class="col-sm-4 control-label">Caption Opacity  <span style="color:red">*</span></label>
                                                     <div class="col-sm-5">                                                        
                                                         <input type="text" placeholder="Ex 0.8" class="form-control" name="caption_opacity" id="caption_opacity" value="<?php  if(!empty($general)) {  echo $general[0]->caption_opacity; } ?>" />
                                                     </div>
@@ -105,7 +100,7 @@
                                         
 
                                         <div class="form-group">
-                                            <div class="col-sm-offset-3 col-sm-5">
+                                            <div class="col-sm-offset-4 col-sm-5">
                                                 <button type="submit" class="btn btn-info vd_bg-green">Update</button>
                                             </div>
                                         </div>

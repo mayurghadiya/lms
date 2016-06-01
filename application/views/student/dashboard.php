@@ -871,7 +871,7 @@
             var todo_time = $("#minute-step-timepicker").val();
             if (title != "" && todo_date != "" && todo_time != "")
             {
-                var dataString = "title=" + title + "&todo_date=" + todo_date + "&todo_time=" + todo_time;
+                var dataString = "title=" + encodeURIComponent(title) + "&todo_date=" + todo_date + "&todo_time=" + todo_time;
                 $.ajax({
                     type: "POST",
                     url: "<?php echo base_url(); ?>student/add_to_do",

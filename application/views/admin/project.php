@@ -26,6 +26,7 @@
                     <div id="import-tab-content" class="tab-content">
                         <div class="tab-pane fade active in" id="project-list">
                             <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addproject/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Project</a>
+                            <div class="row filter-row">
                             <form action="#" method="post" id="searchform">
                                 <div class="form-group col-sm-3 validating">
                                     <label>Department</label>
@@ -79,6 +80,7 @@
                                     <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>
                                 </div>
                             </form>
+                            </div>
                             <div id="getresponse">
                                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                     <thead>
@@ -176,6 +178,7 @@
 
                         <!-- tab content -->
                         <div class="tab-pane fade" id="submitted-project-list">
+                            <div class="row filter-row">
                             <form action="#" method="post" id="searchform-submitted">
                                 <div class="form-group col-sm-3 validating">
                                     <label>Department</label>
@@ -229,6 +232,7 @@
                                     <button type="submit" id="btnsubmitted" class="submit btn btn-info vd_bg-green">Go</button>
                                 </div>
                             </form>
+                            </div>
                             <div id="getsubmit">
                             <table class="table table-striped table-bordered table-responsive" id="sub-tables">
                                 <thead>

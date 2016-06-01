@@ -18,27 +18,27 @@ foreach ($edit_data as $row):
                             </div>
                             <?php echo form_open(base_url() . 'admin/time_line/do_update/' . $row['timeline_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'frmeditclass', 'target' => '_top')); ?>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Timeline Title"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Timeline Title"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="timeline_title" id="timeline_title" value="<?php echo $row['timeline_title']; ?>"   />
                                 </div>
                             </div>
                             <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Timeline Year"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Timeline Year"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="timeline_year" id="timeline_year"  value="<?php echo $row['timeline_year']; ?>"  />
                             </div>
                         </div>	
                             <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Timeline Description"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Timeline Description"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <textarea name="timeline_desc" class="form-control"><?php echo $row['timeline_desc']; ?></textarea>
                             </div>
                             <lable class="error" id="error_lable_exist" style="color:#f85d2c"></lable>
                         </div>
                             <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("timeline status"); ?></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("timeline status"); ?></label>
+                            <div class="col-sm-8">
                                 <select name="timeline_status"  class="form-control">
                                     <option value="1" <?php if($row['timeline_status']=='1'){ echo "selected=selected"; } ?>>Active</option>
                                     <option value="0"  <?php if($row['timeline_status']=='0'){ echo "selected=selected"; } ?>>Inactive</option>		
@@ -46,7 +46,7 @@ foreach ($edit_data as $row):
                             </div>	
                         </div>
                             <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-5">
+                                <div class="col-sm-offset-4 col-sm-8">
                                     <button type="submit" class="submit btn btn-info vd_bg-green"><?php echo ucwords("update"); ?></button>
                                 </div>
                             </div>

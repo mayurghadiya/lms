@@ -16,8 +16,8 @@
                     <div class="padded">
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="degree"  class="form-control" id="degree">
                                     <option value="">Select department</option>
                                     <?php
@@ -33,8 +33,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="course"  class="form-control" id="course">
                                     <option value="">Select Branch</option>
 
@@ -42,8 +42,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="batch"  class="form-control" id="batch">
                                     <option value="">Select Batch</option>
 
@@ -51,8 +51,8 @@
                             </div>
                         </div>	
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="semester"  class="form-control" id="semester">
                                     <option value="">Select Semester</option>
                                     <?php
@@ -67,8 +67,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Student"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Student"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="student"  class="form-control" id="student">
                                     <option value="">Select Student</option>               
                                 </select>
@@ -76,32 +76,32 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Instructions & Guidance"); ?> <span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Instructions & Guidance"); ?> <span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <textarea class="form-control" name="instruction" id="instruction"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Submissions"); ?> <span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Submissions"); ?> <span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <textarea class="form-control" name="submissions" id="submissions"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Feedback by Tutors"); ?> <span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Feedback by Tutors"); ?> <span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <textarea class="form-control" name="feedback" id="feedback"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Marks"); ?> <span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Marks"); ?> <span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <textarea class="form-control" name="marks" id="marks"></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" id="btnadd" class="btn btn-info vd_bg-green"><?php echo ucwords("Add "); ?></button>
                             </div>
                         </div>

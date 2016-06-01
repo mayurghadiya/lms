@@ -14,26 +14,26 @@
                     <?php echo form_open(base_url() . 'admin/vocationalcourse/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmvocationalcourse', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("course name"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("course name"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="course_name" id="course_name"/>
                             </div>
                         </div>	
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("start date"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("start date"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" readonly="" name="startdate" id="startdate"/>
                             </div>	
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("end date"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("end date"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" readonly="" name="enddate" id="enddate"/>
                             </div>	
                         </div>
                          <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Course Category"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Course Category"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <?php
                                 $category = $this->db->get('course_category')->result_array();
                                 ?>
@@ -47,14 +47,14 @@
                             </div>	
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("course fee"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("course fee"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="fee" id="fee"/>
                             </div>	
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Professor"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Professor"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <?php
                                 $professor = $this->db->get('professor')->result_array();
                                 ?>
@@ -68,8 +68,8 @@
                             </div>	
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("status"); ?></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("status"); ?></label>
+                            <div class="col-sm-8">
                                 <select name="course_status" class="form-control">
                                     <option value="1">Active</option>
                                     <option value="0">Inactive</option>	
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("add"); ?></button>
                             </div>
                         </div>

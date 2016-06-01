@@ -19,15 +19,15 @@ $semesters = $this->db->get('semester')->result_array();
                     <?php echo form_open(base_url() . 'admin/syllabus/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmsyllabus', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                     <div class="padded">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Syllabus Title"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Syllabus Title"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="title" id="title" />
                             </div>
                             <lable class="error" id="error_lable_exist" style="color:#f85d2c"></lable>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="degree" class="form-control" id="degree">
                                     <option value="">Select department</option>
                                     <?php
@@ -43,8 +43,8 @@ $semesters = $this->db->get('semester')->result_array();
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="course" class="form-control" id="course">
                                     <option value="">Select Branch</option>
 
@@ -53,8 +53,8 @@ $semesters = $this->db->get('semester')->result_array();
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <select name="semester" class="form-control" id="semester">
                                     <option value="">Select Semester</option>
                                     <?php
@@ -71,19 +71,19 @@ $semesters = $this->db->get('semester')->result_array();
 
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Description"); ?></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Description"); ?></label>
+                            <div class="col-sm-8">
                                 <textarea class="form-control" name="description" id="description"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("File Upload"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("File Upload"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="file" class="form-control" name="syllabusfile" id="syllabusfile" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add "); ?></button>
                             </div>
                         </div>
@@ -95,9 +95,6 @@ $semesters = $this->db->get('semester')->result_array();
         </div>
     </div>
 </div>  <script type="text/javascript">
-
-
-
     $("#degree").change(function () {
         var degree = $(this).val();
         var dataString = "degree=" + degree;

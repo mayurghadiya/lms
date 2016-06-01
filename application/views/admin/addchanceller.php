@@ -20,66 +20,66 @@ $semesters = $this->db->get('semester')->result_array();
                     <?php echo form_open(base_url() . 'admin/chancellor/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmchancellor', 'target' => '_top', "enctype" => "multipart/form-data")); ?>
                     <div class="padded">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Name"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Name"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="name" id="name" />
                             </div>
                         </div>												
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Email Id"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Email Id"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="email_id" id="email_id"  />
                                 <span id="emailerror" style="color: red"></span>
                             </div>
                         </div>                            
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("designation"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("designation"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="designation" id="designation" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Mobile No"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Mobile No"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="mobileno" id="mobileno" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Facebook URL"); ?></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Facebook URL"); ?></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="facebook" id="facebook" />
                             </div>
                         </div>	
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Twitter URL"); ?></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Twitter URL"); ?></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="twitter" id="twitter" />
                             </div>
                         </div>	
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("google plus link"); ?></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("google plus link"); ?></label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" name="googleplus" id="googleplus" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Profile Photo"); ?><span style="color:red">*</span></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Profile Photo"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
                                 <input type="file" class="form-control" name="profilefile" id="profilefile"  />
                                 <span id="imgerror" style="color:red;"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><?php echo ucwords("Description"); ?></label>
-                            <div class="col-sm-5">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Description"); ?></label>
+                            <div class="col-sm-8">
                                 <textarea class="form-control" name="description" id="description" ></textarea>
                             </div>
                         </div>	
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add"); ?></button>
                             </div>
                         </div>
