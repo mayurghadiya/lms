@@ -93,7 +93,7 @@ $semesters = $this->db->get('semester')->result_array();
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Birth Date"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control basic-datepicker" name="birthdate"/>
+                                <input type="text" class="form-control datepicker-normal" name="birthdate"/>
                             </div>
                         </div>	
                         <div class="form-group">
@@ -282,14 +282,14 @@ $semesters = $this->db->get('semester')->result_array();
 
         }
     });
-     $(".basic-datepicker").datepicker();
+     
     $(document).ready(function () {
-        $("#birthdate").datepicker({
+        $(".datepicker-normal").datepicker({
+            dateFormat: 'dd M yy',
+            changeMonth: true,
+            changeYear: true,
+            mixDate: new Date()
         });
-        $("#basic-datepicker").datepicker({
-            maxDate: 0,
-            format: "M d, yyyy",
-            autoclose: true});
 
         jQuery.validator.addMethod("mobile_no", function (value, element) {
             return this.optional(element) || /^[0-9-+]+$/.test(value);

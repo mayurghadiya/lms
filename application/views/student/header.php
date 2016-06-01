@@ -20,9 +20,14 @@
             <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel=stylesheet type=text/css>
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">
             <!-- Css files -->
+            
+            <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">            
+            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar.css">
+            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar_theme_responsive.css">
+            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
+            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css"/>
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/plugins.css>
-            <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">
-            <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/main.min.css">
+            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/main.min.css>
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
             <!-- Fav and touch icons -->
             <link rel=apple-touch-icon-precomposed sizes=144x144 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-144-precomposed.png>

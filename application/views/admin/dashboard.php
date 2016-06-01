@@ -681,6 +681,7 @@ $this->load->helper('report_chart');
 
         <!-- start todo & time line -->
         <div class="row">
+<!-- To do list Start div-->
             <div class="col-lg-5">
                 <div class="panel panel-default toggle">
                     <!-- Start .panel -->
@@ -771,7 +772,9 @@ $this->load->helper('report_chart');
                     <!-- End .todo-widget -->
                 </div>
             </div>
+<!-- To do list End div-->            
 
+<!-- To Time line Start div-->
             <div class="col-lg-7">
                 <div class="panel panel-default toggle">
                     <!-- Start .panel -->
@@ -816,6 +819,8 @@ $this->load->helper('report_chart');
                     </div>
                 </div>
             </div>
+<!-- To Time line End div-->
+
         </div>
         <!-- end todo & time line -->
 
@@ -872,6 +877,9 @@ $this->load->helper('report_chart');
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+
+
+<!-- Event Calendar Start JS-->
 <script>
     $(document).ready(function () {
     setTimeout(function () {
@@ -888,15 +896,18 @@ $this->load->helper('report_chart');
     }, 500);
     })
 </script>
-<!-- Start to do list -->
-<div class="row">
+<!-- Event Calendar End JS-->
+
+
+<!-- <div class="row">
     <div class="col-md-6">
     </div>
-</div>
-<!-- To do Js -->
+</div> -->
+
+<!-- To do list Start JS-->
 <script type="text/javascript">
 
-            $(document).ready(function () {
+    $(document).ready(function () {
     $("#todo-addform").hide();
     $("#basic-datepicker").datepicker({
     autoclose: true
@@ -1024,10 +1035,12 @@ $this->load->helper('report_chart');
     $("#closeform").click(function () {
     $("#todo-addform").hide(500);
     });
-    });</script>
-<!-- end To do Js -->
-<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    });
+</script>
+<!-- To do list Js End-->
 
+<!-- jQuery Scrollbar Js start -->
+<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script>
     (function($) {
 
@@ -1070,8 +1083,11 @@ $this->load->helper('report_chart');
                     // },
             }
     });
-    })(jQuery);</script>
+    })(jQuery);
+</script>
+<!-- Scrollbar Js end -->
 
+<!-- Event Calendar Js start -->
 <script>
     $(document).ready(function(){        
     
@@ -1126,5 +1142,5 @@ $this->load->helper('report_chart');
         }, 1000);
         }
     });
-
 </script>
+<!-- Event Calendar Js end -->

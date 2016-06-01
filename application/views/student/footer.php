@@ -10,35 +10,36 @@
 </div>
 <!-- End #footer  -->
 </div>
-<!-- / #wrapper -->
-<!-- Back to top -->
-<div id="back-to-top"><a href=#>Back to Top</a>
-</div>
+<!-- / #wrapper --><!-- Back to top -->
+<div id=back-to-top><a href=#>Back to Top</a></div>
+<style type="text/css">
+    .panel.panel-default.toggle.panelMove.panelClose.panelRefresh {overflow: hidden;}
+</style>
 <!-- Javascripts -->
-<!-- Load pace first -->
+
 <script src=<?php echo base_url(); ?>assets/plugins/core/pace/pace.min.js></script>
+
 <!-- Important javascript libs(put in all pages) -->
-<script>
-    window.jQuery || document.write('<script src="<?php echo base_url(); ?>assets/js/libs/jquery-2.1.1.min.js">\x3C/script>')
-</script>
-<script src=http://code.jquery.com/ui/1.10.4/jquery-ui.js></script>
-<script>
-    window.jQuery || document.write('<script src="<?php echo base_url(); ?>assets/js/libs/jquery-ui-1.10.4.min.js">\x3C/script>')
-</script>
-<script src=http://code.jquery.com/jquery-migrate-1.2.1.min.js></script>
-<script>
-    window.jQuery || document.write('<script src="<?php echo base_url(); ?>assets/js/libs/jquery-migrate-1.2.1.min.js">\x3C/script>')
-</script>
+<script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery-migrate-1.2.1.min.js"></script>
+<!--[if lt IE 9]>
+    <script type="text/javascript" src="js/libs/excanvas.min.js"></script>
+    <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script type="text/javascript" src="js/libs/respond.min.js"></script>
+    <![endif]-->
 
 <script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 
 <script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-timepicker/bootstrap-timepicker.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/forms/select2/select2.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/forms/dual-list-box/jquery.bootstrap-duallistbox.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/forms/summernote/summernote.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/pages/forms-validation.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/pages/tables-data.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 
 <script src="<?php echo base_url(); ?>assets/js/jquery.toaster.js"></script>
+<script src="<?php echo base_url();?>assets/js/multiselect.min.js"></script>
 <script>
 <?php
 $message = $this->session->flashdata('flash_message');
@@ -53,12 +54,14 @@ if ($message != '') {
 <?php } ?>
 </script> 
 
+<script>
+    var method_name = '<?php echo $this->router->fetch_method(); ?>';
+    if (method_name == 'dashboard' || method_name == 'index') {
+        $('#body').addClass('dashboard');
+    }
+</script>
+
 <?php include 'modal.php'; ?>
-<!--[if lt IE 9]>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/libs/excanvas.min.js"></script>
-<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/libs/respond.min.js"></script>
-<![endif]-->
-<script src=<?php echo base_url(); ?>assets/js/pages/dashboard.js></script>
+</head>
 </body>
 </html>
