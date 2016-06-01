@@ -242,6 +242,18 @@ class Professor extends MY_Controller {
             $this->session->set_flashdata('flash_message', 'Assessment update Successfully.');
             redirect(base_url('professor/assessments'));
         }
+         if($param=="submitted")            
+            {              
+                $data['feedback'] = $this->input->post('feedback');
+                $data['grade'] = $this->input->post('grade');
+                $data['user_role'] = $this->session->userdata("login_type");
+                $data['user_role_id'] = $this->session->userdata("login_user_id");
+                $data['assessment_status'] = '1';
+                $this->Professor_model->update_submitted_assessment($data, $id);
+                 $this->session->set_flashdata('flash_message', $this->lang_message('update_submitted_assessment'));
+                redirect(base_url('professor/assessments'));
+               
+            }
         if ($param == 'delete') {
             $this->Professor_model->delete_assessment($id);
             $this->session->set_flashdata('flash_message', 'Assessment delete Successfully.');
@@ -251,8 +263,9 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Assessments';
         $this->data['add_title'] = $this->lang_message('add_assessments');
         $this->data['edit_title'] = $this->lang_message('edit_assessments');
-        $this->data['pge'] = 'assessments';
-        $this->data['assessments'] = $this->Professor_model->assessment();
+        $this->data['page'] = 'assessments';
+        $this->data['assessment'] = $this->Professor_model->get_submitted_assessment();
+        $this->data['submitedassignment'] = $this->Professor_model->submitttedassignment();
         $this->data['degree'] = $this->Professor_model->get_all_degree();
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
@@ -307,6 +320,7 @@ class Professor extends MY_Controller {
                 $data['assign_sem'] = $this->input->post('semester');
                 $data['class_id'] = $this->input->post('class');
                 $data['assign_desc'] = $this->input->post('description');
+                $data['assignment_instruction'] = $this->input->post('instruction');                
                 $data['assign_dos'] = $this->input->post('submissiondate');
                 $data['assign_status'] = 1;
                 $data['created_date'] = date('Y-m-d');
@@ -384,6 +398,7 @@ class Professor extends MY_Controller {
                 $data['assign_sem'] = $this->input->post('semester');
                 $data['class_id'] = $this->input->post('class');
                 $data['assign_desc'] = $this->input->post('description');
+                $data['assignment_instruction'] = $this->input->post('instruction');                
                 $data['assign_dos'] = $this->input->post('submissiondate1');
                 $data['assign_degree'] = $this->input->post('degree');
                 $data['assign_status'] = 1;

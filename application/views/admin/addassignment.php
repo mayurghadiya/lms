@@ -102,6 +102,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Instructions & guidance"); ?></label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" name="instruction" id="instruction"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("File Upload"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <input type="file" class="form-control" name="assignmentfile" id="assignmentfile" />

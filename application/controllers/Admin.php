@@ -787,6 +787,18 @@ class Admin extends MY_Controller {
                 $this->session->set_flashdata('flash_message', $this->lang_message('update_assessment'));
                 redirect(base_url('admin/assessments'));
             }
+            if($param=="submitted")            
+            {              
+                $data['feedback'] = $this->input->post('feedback');
+                $data['grade'] = $this->input->post('grade');
+                $data['user_role'] = $this->session->userdata("login_type");
+                $data['user_role_id'] = $this->session->userdata("login_user_id");
+                $data['assessment_status'] = '1';
+                $this->Crud_model->update_submitted_assessment($data, $id);
+                 $this->session->set_flashdata('flash_message', $this->lang_message('update_submitted_assessment'));
+                redirect(base_url('admin/assessments'));
+               
+            }
         }
 
         if ($param == 'delete') {
@@ -804,6 +816,17 @@ class Admin extends MY_Controller {
         $this->data['course'] = $this->Crud_model->get_all_course();
         $this->data['semester'] = $this->Crud_model->get_all_semester();
         $this->data['batch'] = $this->Crud_model->get_all_bacth();
+        $this->db->select("ass.*,am.*,s.* ");
+        $this->db->from('assignment_submission ass');
+        $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+        $this->db->join("student s", "s.std_id=ass.student_id");
+        $this->data['submitedassignment'] = $this->db->get();
+        $this->db->select("ass.*,am.*,s.* ");
+        $this->db->from('assignment_submission ass');
+        $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+        $this->db->join("student s", "s.std_id=ass.student_id");
+        $this->db->where("ass.assessment_status",'1');
+        $this->data['assessment'] = $this->db->get();        
         $this->__site_template('admin/assessments', $this->data);
     }
 
@@ -901,6 +924,7 @@ class Admin extends MY_Controller {
                 $data['class_id'] = $this->input->post('class');
                 $data['assign_desc'] = $this->input->post('description');
                 $data['assign_dos'] = $this->input->post('submissiondate');
+                $data['assignment_instruction'] = $this->input->post('instruction');                
                 $data['assign_status'] = 1;
                 $data['created_date'] = date('Y-m-d');
                 $data['assign_degree'] = $this->input->post('degree');
@@ -976,6 +1000,7 @@ class Admin extends MY_Controller {
                 $data['assign_title'] = $this->input->post('title');
                 $data['assign_batch'] = $this->input->post('batch');
                 $data['assign_url'] = $file_url;
+                $data['assignment_instruction'] = $this->input->post('instruction');                
                 $data['assign_sem'] = $this->input->post('semester');
                 $data['class_id'] = $this->input->post('class');
                 $data['assign_desc'] = $this->input->post('description');

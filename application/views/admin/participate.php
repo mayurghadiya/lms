@@ -366,11 +366,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label"><?php echo ucwords("Status "); ?><span style="color:red">*</span></label>
-                                    <div class="col-sm-5">
-                                        <input type="radio" id="status" name="status" value="1" >Active
-                                        <input type="radio" id="status" name="status" value="0" > Deactive
-                                        <label for="status" class="error"></label>
-                                    </div>
+                                      <div class="col-sm-5">
+                                                <label class="radio-inline">
+                                                <input type="radio" id="status" name="status" value="1" >Active
+                                                </label>
+                                                <label class="radio-inline">
+                                                <input type="radio" id="status" name="status" value="0" > Deactive
+                                                </label>
+                                                <label for="status" class="error"></label>
+                                      </div>
                                 </div>
 
 

@@ -744,7 +744,7 @@ class Student extends MY_Controller {
     public function assessment() {
 
         $this->load->model('Student/Student_model');
-        $this->data['assessments'] = $this->Student_model->student_assessment();
+       $this->data['assessment'] = $this->Student_model->student_assessment();
 
         $this->data['page'] = 'assessment';
         $this->data['title'] = 'Assessment';
