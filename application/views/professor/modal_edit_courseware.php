@@ -22,8 +22,8 @@ foreach ($edit_data as $row):
                             <?php echo form_open(base_url() . 'professor/courseware/do_update/' . $row['courseware_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'frmcoursewareedit', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <select name="branch" id="branch" class="form-control" >
                                         <option value="">Select Branch</option>                                    
                                         <?php
@@ -43,27 +43,27 @@ foreach ($edit_data as $row):
                                 </div>
                             </div>												
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("topic"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("topic"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="topic" id="topic" value="<?php echo $row['topic'] ?>"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("attachment"); ?><span style="color:red"></span></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("attachment"); ?><span style="color:red"></span></label>
+                                <div class="col-sm-8">
                                     <input type="file" class="form-control" name="attachment" id="attachment"/>
                                     <input type="hidden" class="form-control" name="oldfile" id="oldfile" value="<?php echo $row['attachment'] ?>"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("Description"); ?></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Description"); ?></label>
+                                <div class="col-sm-8">
                                     <textarea class="form-control" name="description" id="description"> <?php echo $row['description'] ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ucwords("status"); ?></label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("status"); ?></label>
+                                <div class="col-sm-8">
                                     <select name="status" class="form-control" >
                                         <option value="1" <?php
                                         if ($row['status'] == '1') {
@@ -79,7 +79,7 @@ foreach ($edit_data as $row):
                                 </div>	
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-offset-3 col-sm-5">
+                                <div class="col-sm-offset-4 col-sm-8">
                                     <button type="submit" class="btn btn-info vd_bg-green" ><?php echo ucwords("update"); ?></button>
                                 </div>
                             </div>
