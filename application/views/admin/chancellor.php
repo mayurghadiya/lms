@@ -23,7 +23,7 @@
                             <th>Chancellor Name</th>
                             <th>Mobile</th>
                             <th>Email</th>
-                            <th>Designation</th>
+                            <th>Speciality</th>
                             <th>Action</th>
                         </tr>
                     </thead>
