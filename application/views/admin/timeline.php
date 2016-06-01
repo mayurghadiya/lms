@@ -3,7 +3,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
           
             <div class=panel-body>
                 <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addtimeline/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Timeline</a>

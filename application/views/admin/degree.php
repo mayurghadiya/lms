@@ -1,6 +1,6 @@
 <!-- Start .row -->
 <div class=row> 
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class=" panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title><?php echo $title; ?></h4>
