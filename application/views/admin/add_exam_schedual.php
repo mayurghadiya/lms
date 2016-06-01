@@ -72,6 +72,7 @@
                         </div>
                     </div> 
                     <div class="form-group">
+
                         <label class="col-sm-4 control-label"><?php echo ucwords("Date"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-8">
                             <input readonly="" type="text" id="exam_date" class="form-control datepicker-normal" name="exam_date"/>
@@ -92,6 +93,28 @@
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-8">
                             <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add "); ?></button>
+
+                        <label class="col-sm-3 control-label"><?php echo ucwords("Date"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                            <input type="text" id="exam_date" class="form-control datepicker-normal" name="exam_date"/>
+                        </div>	
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"><?php echo ucwords("Start Time"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                            <input type="text" id="start_time" class="form-control timepicker" name="start_time"/>
+                        </div>	
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"><?php echo ucwords("End Time"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                            <input type="text" id="end_time" class="form-control timepicker" name="end_time"/>
+                        </div>	
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-5">
+                            <button type="submit" class="btn btn-info"><?php echo ucwords("Add "); ?></button>
+
                         </div>
                     </div>
                     <?php echo form_close(); ?>    
@@ -104,16 +127,8 @@
 
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(".datepicker-normal").datepicker({
-                dateFormat: 'dd M yy',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date()
-
-            });
-        });
-
+        $('#exam_date').datepicker({});
+        $('#start_time').timepicker();
     </script>
 
     <script type="text/javascript">      

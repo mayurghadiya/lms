@@ -338,7 +338,7 @@
                                                             ?></td>
 
                                                         <td class="menu-action">
-                                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_survey_detal/<?php echo $row->survey_id; ?>');" data-original-title="View Detail" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"><i class="fa fa-file-o"></i></a>
+                                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_survey_detal/<?php echo $row->survey_id; ?>');" data-original-title="View Detail" data-toggle="tooltip" data-placement="top" class="icon_link"><i class="fa fa-file-o"></i></a>
                                                         </td>  
                                                     </tr>
                                                 <?php endforeach; ?>                        

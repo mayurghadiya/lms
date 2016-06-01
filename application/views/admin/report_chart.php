@@ -1,169 +1,258 @@
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-<!--Male vs Female-->
-<script type="text/javascript">
-    google.charts.load('current', {'packages': ['corechart', 'bar']});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-            ['Task', 'Male/Female'],
-            ['Male', <?php echo $male_female_pie_chart['total_male_student']; ?>],
-            ['Female', <?php echo $male_female_pie_chart['total_female_student']; ?>]
-        ]);
-
-        var options = {
-            title: 'Male vs Female Students'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-    }
-</script>
-
-<!--Year wise student-->
-<script type="text/javascript">
-    //google.charts.load('current', {'packages': ['bar']});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Year', 'Total Student'],
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<!-- pie chart (male vs female) -->
+<script>
+    $(function () {
+    $('#container').highcharts({
+    chart: {
+    plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+    },
+            title: {
+            text: 'Male to Female course count ratio'
+            },
+            tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+            pie: {
+            allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                    enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                    }
+            }
+            },
+            series: [{
+            name: 'Genger',
+                    colorByPoint: true,
+                    data: [{
+                    name: 'Male',
+                            y: <?php echo $male_female_pie_chart['total_male_student']; ?>,
+                            //sliced: true,
+                            selected: true
+                    }, {
+                    name: 'Female',
+                            y: <?php echo $male_female_pie_chart['total_female_student']; ?>
+                    }]
+            }]
+    });
+    });</script>
+<!-- bar chart year wise students -->
+<script>
+    $(function () {
+    $('#stduent-enrolled').highcharts({
+    chart: {
+    type: 'column'
+    },
+            title: {
+            text: 'Student Enrolled'
+            },
+            subtitle: {
+            text: ''
+            },
+            xAxis: {
+            categories: [
 <?php foreach ($new_student_joining as $row) { ?>
-                ['<?php echo $row->Year; ?>', <?php echo (int) $row->Total ?>],
+                '<?php echo $row->Year; ?>',
 <?php } ?>
-        ]);
-
-        var options = {
-            chart: {
-                title: 'Year wise student',
-                subtitle: 'Year wise student registration count',
+            ],
+                    crosshair: true
+            },
+            yAxis: {
+            min: 0,
+                    title: {
+                    text: 'Students Enrolled'
+                    }
+            },
+            tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+            },
+            plotOptions: {
+            column: {
+            pointPadding: 0.2,
+                    borderWidth: 0
             }
-        };
+            },
+            series: [{
+            name: 'Students',
+                    data: [
+<?php foreach ($new_student_joining as $row) { ?>
+    <?php echo $row->Total; ?>,
+<?php } ?>
+                    ]
 
-        var chart = new google.charts.Bar(document.getElementById('year_wise_student'));
-
-        chart.draw(data, options);
-    }
-</script>
-
-
-<!--Male vs female course wise-->
-<script type="text/javascript">
-    //google.charts.load('current', {'packages':['bar']});
+            }]
+    });
+    });</script>
+<!-- bar chart course wise male and female -->
+<script>
+    $(function () {
 <?php
 $course = $this->db->get('course')->result();
 $this->load->helper('report_chart');
 ?>
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Course', 'Male', 'Female'],
-<?php foreach ($course as $co) { ?>
-                ['<?php echo $co->course_alias_id; ?>', <?php echo course_male_student_count($co->course_id); ?>, <?php echo course_female_student_count($co->course_id); ?>],
+    $('#course-male-female').highcharts({
+    chart: {
+    type: 'column'
+    },
+            title: {
+            text: 'Male to Female Course count Ratio'
+            },
+            subtitle: {
+            text: ''
+            },
+            xAxis: {
+            categories: [
+<?php foreach ($course as $row) { ?>
+                '<?php echo $row->c_name; ?>',
 <?php } ?>
-        ]);
-
-        var options = {
-            chart: {
-                title: 'Male vs Female Student Course Wise',
-                subtitle: 'Male vs Female students course wise 2016',
+            ],
+                    crosshair: true
+            },
+            yAxis: {
+            min: 0,
+                    title: {
+                    text: 'Students'
+                    }
+            },
+            tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+            },
+            plotOptions: {
+            column: {
+            pointPadding: 0.2,
+                    borderWidth: 0
             }
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('male_female_count_course'));
-
-        chart.draw(data, options);
-    }
-</script>
-
-<!--Corse wise student count-->
-<script type="text/javascript">
-    //google.charts.load('current', {'packages': ['bar']});
-<?php
-$course = $this->db->get('course')->result();
-$this->load->helper('report_chart');
-?>
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Course', 'Total Students'],
-<?php foreach ($course as $co) { ?>
-                ['<?php echo $co->course_alias_id; ?>', <?php echo course_wise_student($co->course_id); ?>],
+            },
+            series: [
+            {
+            name: 'Male',
+                    data: [
+<?php foreach ($course as $row) { ?>
+    <?php echo course_male_student_count($row->course_id); ?>,
 <?php } ?>
-        ]);
+                    ]
 
-        var options = {
-            chart: {
-                title: 'Total Student Count',
-                subtitle: 'Course wise total student count 2016',
+            },
+            {
+            name: 'Female',
+                    data: [
+<?php foreach ($course as $row) { ?>
+    <?php echo course_female_student_count($row->course_id); ?>,
+<?php } ?>
+                    ]
+            }]
+    });
+    });</script>
+<!-- bar chart course wise students -->
+<script>
+    $(function () {
+    $('#course-wise-student').highcharts({
+    chart: {
+    type: 'column'
+    },
+            title: {
+            text: 'Students Enrolled in Courses'
+            },
+            subtitle: {
+            text: ''
+            },
+            xAxis: {
+            categories: [
+<?php foreach ($course as $row) { ?>
+                '<?php echo $row->c_name; ?>',
+<?php } ?>
+            ],
+                    crosshair: true
+            },
+            yAxis: {
+            min: 0,
+                    title: {
+                    text: 'Students'
+                    }
+            },
+            tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+            },
+            plotOptions: {
+            column: {
+            pointPadding: 0.2,
+                    borderWidth: 0
             }
-        };
+            },
+            series: [{
+            name: 'Students',
+                    data: [
+<?php foreach ($course as $row) { ?>
+    <?php echo course_wise_student($row->course_id); ?>,
+<?php } ?>
+                    ]
 
-        var chart = new google.charts.Bar(document.getElementById('course_wise_student_count'));
+            }]
+    });
+    });</script>
 
-        chart.draw(data, options);
-    }
-</script>
-<!-- Start .row -->
-<div class=row>                      
 
-    <div class=col-lg-12>
-        <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
-            <div class=panel-body>
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Male vs Female Student</div>
-                            </div>
-                            <div class="panel-body" id="piechart" style="height: 300px;"></div>
-                        </div>
+<!-- Start Report Charts -->
+<div class="panel panel-default toggle">
+    
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">Male to Female Course count Ratio</div>
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Year Wise Student</div>
-                            </div>
-                            <div class="panel-body" id="year_wise_student" style="height: 300px;"></div>
-                        </div>
-                    </div>
+                    <div class="panel-body" id="container" style="width: 450px; height: 450px;"></div>
                 </div>
-                <div class="col-md-12" style="min-height: 500px;">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">Male vs Female Course wise count</div>
-                        </div>
-                        <div class="panel-body" id="male_female_count_course" style="height: 500px;"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">Students enrolled</div>
                     </div>
+                    <div class="panel-body" id="stduent-enrolled" style="height: 450px; width: 450px;"></div>
                 </div>
-                <div class="col-md-12" style="min-height: 500px;">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">Course Wise Student Count</div>
-                        </div>
-                        <div class="panel-body" id="course_wise_student_count" style="height: 500px;"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">Male to Female Course count Ratio</div>
                     </div>
+                    <div class="panel-body" id="course-male-female" style="height: 500px;"></div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">Students Enrolled (Coursewise)</div>
+                    </div>
+                    <div class="panel-body" id="course-wise-student" style="height: 500px;"></div>
                 </div>
             </div>
         </div>
-        <!-- End .panel -->
     </div>
-    <!-- col-lg-12 end here -->
 </div>
-<!-- End .row -->
-</div>
-<!-- End contentwrapper -->
-</div>
-<!-- End #content -->
+<!-- End Report Charts -->
