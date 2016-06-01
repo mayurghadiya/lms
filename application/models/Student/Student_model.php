@@ -679,7 +679,14 @@ class Student_model extends CI_Model {
     function student_assessment() {
         $student_id = $this->session->userdata('login_user_id');
 
-        return $this->db->get_where("assessments", array("student" => $student_id))->result();
+        //return $this->db->get_where("assessments", array("student" => $student_id))->result();
+        $this->db->select("ass.*,am.*,s.* ");
+        $this->db->from('assignment_submission ass');
+        $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+        $this->db->join("student s", "s.std_id=ass.student_id");
+        $this->db->where("ass.student_id",$student_id);
+        $this->db->where("ass.assessment_status",'1');
+        return $this->db->get();   
     }
 
     /**

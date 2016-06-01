@@ -4,7 +4,7 @@
                <div class=todo-task-text><?php  echo $todo->todo_title; ?></div>
                <div class="todo-category"><i class="mar4top fa fa-calendar" aria-hidden="true"></i><?php  echo date_duration( $todo->todo_datetime); ?></div>
                <div class="updateclick_box">
-                 <button type=button class="label label-primary updateclick" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-pencil-square-o"></i></button>
+                 <button type=button class="updateclick" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-pencil-square-o"></i></button>
                </div>
                <div class="todo-close_box">
                    <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>

@@ -741,8 +741,9 @@ class Student extends MY_Controller {
         $pp_id = $this->input->post('pp_id');
         if ($pp_id != "") {
             $res = $this->db->get_where('participate_manager', array('pp_id' => $pp_id))->result_array();
-            echo '<label class="col-sm-3 control-label">Description : </label>'
-            . '<div class="col-sm-5" >' . $res[0]['pp_desc'] . '</div>';
+            $date = date("F d, Y",  strtotime($res[0]['pp_dos']));
+           $json = array("pp_desc"=>$res[0]['pp_desc'],"pp_dos"=>$date);
+            echo json_encode($json);        
         }
     }
 
@@ -752,7 +753,7 @@ class Student extends MY_Controller {
     public function assessment() {
 
         $this->load->model('Student/Student_model');
-        $this->data['assessments'] = $this->Student_model->student_assessment();
+       $this->data['assessment'] = $this->Student_model->student_assessment();
 
         $this->data['page'] = 'assessment';
         $this->data['title'] = 'Assessment';

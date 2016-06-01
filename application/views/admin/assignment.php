@@ -221,7 +221,7 @@
                                             <th><div>#</div></th>												
                                             <th><div><?php echo ucwords("Assignment Name"); ?></div></th>
                                             <th><div><?php echo ucwords("Student Name"); ?></div></th>
-                                            <th><div><?php echo ucwords("Course"); ?></div></th>
+                                            <th><div><?php echo ucwords("Department"); ?></div></th>
                                             <th><div><?php echo ucwords("Branch"); ?></div></th>												
                                             <th><div><?php echo ucwords("Batch"); ?></div></th>												
                                             <th><div><?php echo ucwords("Sem"); ?></div></th>	

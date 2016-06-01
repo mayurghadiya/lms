@@ -1545,4 +1545,34 @@ class Professor_model extends CI_Model {
           $this->db->update("todo_list",$data,array("todo_id"=>$id));
     }
     
+    /**
+     * 
+     */
+    function get_submitted_assessment()
+    {
+        $dept = $this->session->userdata('department');
+        $branch = $this->session->userdata('branch');
+        $this->db->select("ass.*,am.*,s.* ");
+        $this->db->from('assignment_submission ass');
+        $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+        $this->db->join("student s", "s.std_id=ass.student_id");
+        $this->db->where("s.std_degree", $dept);
+        $this->db->where("s.course_id", $branch);
+        $this->db->where("ass.assessment_status",'1');
+        
+        return $this->db->get();
+    }
+    /**
+     * submitted assignment 
+     * @param int $id
+     */
+    function get_submitted_assignment($id)
+    {
+        return $this->db->get_where("assignment_submission",array("assignment_submit_id"=>$id))->result();
+    }
+    
+    function update_submitted_assessment($data,$id)
+    {
+        $this->db->update("assignment_submission",$data,array("assignment_submit_id"=>$id));
+    }
 }

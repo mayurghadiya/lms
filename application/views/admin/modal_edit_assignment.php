@@ -152,6 +152,12 @@ foreach ($edit_data as $row):
                                     <textarea class="form-control" name="description" id="description"><?php echo $row['assign_desc']; ?></textarea>
                                 </div>
                             </div>
+                             <div class="form-group">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Instructions & guidance"); ?></label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" name="instruction" id="instruction"><?php echo $row['assignment_instruction']; ?></textarea>
+                                </div>
+                            </div>       
                             <div class="form-group">
                                 <label class="col-sm-4 control-label"><?php echo ucwords("File Upload");?></label>
                                 <div class="col-sm-8">

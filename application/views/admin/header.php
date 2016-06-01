@@ -127,7 +127,7 @@
                 <!-- #wrapper --><!--Sidebar background-->
                 <div id=sidebarbg class="hidden-lg hidden-md hidden-sm hidden-xs"></div>
                 <!--Sidebar content-->
-                <div id="sidebar" class="page-sidebar hidden-lg hidden-md hidden-sm hidden-xs">
+                <div id="sidebar" class="page-sidebar sidebar-fixed">
                     <div class=shortcuts>
                         <ul>
                             <li><a href="<?php echo base_url(); ?>admin/system_settings" title="System Settings" class=tip>
@@ -161,100 +161,109 @@
                                 <div class=mainnav>
                                     <ul>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>admin/dashboard">
-                                                <i class="fa fa-desktop" aria-hidden="true"></i>
-                                                <span class=txt>Dashboard</span>
+                                            <a <?php echo active_single_menu('dashboard', $page); ?> href="<?php echo base_url(); ?>admin/dashboard">
+                                                <i class="s16 icomoon-icon-screen-2"></i>
+                                                <span class="txt">Dashboard</span>
+                                                <span class="indicator"></span>
                                             </a>
-                                        </li>                             
+                                        </li>          
 
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                        <?php
+                                        $pages = [
+                                            'department', 'branch', 'batch', 'semester', 'class', 'admission_type', 'student',
+                                            'syllabus', 'subject', 'holiday', 'chancellor', 'course_category', 'vocational_course',
+                                            'assessments', 'timeline'
+                                        ];
+                                        ?>
+
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Basic Management</span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/department">
+                                                    <a id="link-department" href="<?php echo base_url(); ?>admin/department">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Department</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/branch">
+                                                    <a id="link-branch" href="<?php echo base_url(); ?>admin/branch">
                                                         <i class="s16 icomoon-icon-file"></i>
                                                         <span class="txt">Branch</span></a></li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/batch">
+                                                    <a id="link-batch" href="<?php echo base_url(); ?>admin/batch">
                                                         <i class="s16 icomoon-icon-image-2"></i>
                                                         <span class="txt">Batch</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/semester">
+                                                    <a id="link-semester" href="<?php echo base_url(); ?>admin/semester">
                                                         <i class="s16 entypo-icon-clock"></i>
                                                         <span class="txt">Semester</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/class">
+                                                    <a id="link-class" href="<?php echo base_url(); ?>admin/class">
                                                         <i class="s16 icomoon-icon-unlocked"></i>
                                                         <span class="txt">Class</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/admission_type">
+                                                    <a id="link-admission_type" href="<?php echo base_url(); ?>admin/admission_type">
                                                         <i class="s16 icomoon-icon-lock"></i>
                                                         <span class="txt">Admission Type</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/student">
+                                                    <a id="link-student" href="<?php echo base_url(); ?>admin/student">
                                                         <i class="s16 icomoon-icon-user-plus-2"></i>
                                                         <span class="txt">Student</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/subject">
+                                                    <a id="link-subject" href="<?php echo base_url(); ?>admin/subject">
                                                         <i class="s16 icomoon-icon-file"></i>
                                                         <span class="txt">Subject Association</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/syllabus">
+                                                    <a id="link-syllabus" href="<?php echo base_url(); ?>admin/syllabus">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Syllabus Management</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/holiday">
+                                                    <a id="link-holiday" href="<?php echo base_url(); ?>admin/holiday">
                                                         <i class="s16 icomoon-icon-file"></i>
                                                         <span class="txt">Holiday</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/chancellor">
+                                                    <a id="link-chancellor" href="<?php echo base_url(); ?>admin/chancellor">
                                                         <i class="s16 icomoon-icon-attachment"></i>
                                                         <span class="txt">Chancellor</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/category">
+                                                    <a id="link-course_category" href="<?php echo base_url(); ?>admin/category">
                                                         <i class="s16 icomoon-icon-attachment"></i>
                                                         <span class="txt"> Course Category</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/vocationalcourse">
+                                                    <a id="link-vocational_course" href="<?php echo base_url(); ?>admin/vocationalcourse">
                                                         <i class="s16 icomoon-icon-attachment"></i>
                                                         <span class="txt">Vocational Course</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/assessments">
+                                                    <a id="link-assessments" href="<?php echo base_url(); ?>admin/assessments">
                                                         <i class="s16 icomoon-icon-file"></i>
                                                         <span class="txt">Assessment</span>
                                                     </a>
                                                 </li>
-                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/time_line">
+                                                <li>
+                                                    <a id="link-timeline" href="<?php echo base_url(); ?>admin/time_line">
                                                         <i class="s16 icomoon-icon-file"></i>
                                                         <span class="txt">Time Line</span>
                                                     </a>
@@ -262,120 +271,147 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url() . 'admin/class_routine' ?>">
+                                            <a <?php echo active_single_menu('class_routine', $page); ?> href="<?php echo base_url() . 'admin/class_routine' ?>">
                                                 <i class="s16 fa fa-book"></i>
                                                 <span class=txt>Class Routine </span>
                                             </a>
                                         </li>
 
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                        <?php
+                                        $pages = [
+                                            'event', 'assignment', 'studyresource', 'project', 'library', 'courseware', 'subscriber',
+                                            'participate'
+                                        ];
+                                        ?>
+
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Assets Management</span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/events">
+                                                    <a id="link-event" href="<?php echo base_url(); ?>admin/events">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Events</span>
                                                     </a>
                                                 </li> 
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/assignment">
+                                                    <a id="link-assignment" href="<?php echo base_url(); ?>admin/assignment">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Assignments</span>
                                                     </a>
                                                 </li> 
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/studyresource">
+                                                    <a id="link-studyresource" href="<?php echo base_url(); ?>admin/studyresource">
                                                         <i class="s16 icomoon-icon-attachment"></i>
                                                         <span class="txt">Study Resources</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/project">
+                                                    <a id="link-project" href="<?php echo base_url(); ?>admin/project">
                                                         <i class="s16 icomoon-icon-unlocked"></i>
                                                         <span class="txt">Project/Synopsis</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/digital_library">
+                                                    <a id="link-library" href="<?php echo base_url(); ?>admin/digital_library">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Digital Library</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/participate">
+                                                    <a id="link-participate" href="<?php echo base_url(); ?>admin/participate">
                                                         <i class="s16 icomoon-icon-user-plus-2"></i>
                                                         <span class="txt">Participate</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/courseware">
+                                                    <a id="link-courseware" href="<?php echo base_url(); ?>admin/courseware">
                                                         <i class="s16 icomoon-icon-attachment"></i>
                                                         <span class="txt">Courseware</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/subscriber">
+                                                    <a id="link-subscriber" href="<?php echo base_url(); ?>admin/subscriber">
                                                         <i class="s16 icomoon-icon-user-plus-2"></i>
                                                         <span class="txt">Subscriber</span>
                                                     </a>
                                                 </li>
                                             </ul>
+                                        </li>
 
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                        <?php
+                                        $pages = [
+                                            'forum', 'forum_topic'
+                                        ];
+                                        ?>
+
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Forum</span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/forum">
+                                                    <a id="link-forum" href="<?php echo base_url(); ?>admin/forum">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Forum & Discussion</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/forumtopics">
+                                                    <a id="link-forum_topic" href="<?php echo base_url(); ?>admin/forumtopics">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Forum Topics</span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+
+                                        <?php
+                                        $pages = [
+                                            'photo_gallery', 'banner_slider'
+                                        ];
+                                        ?>
+
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Media</span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/photogallery">
+                                                    <a id="link-photo_gallery" href="<?php echo base_url(); ?>admin/photogallery">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Media Gallery</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/bannerslider">
+                                                    <a id="link-banner_slider" href="<?php echo base_url(); ?>admin/bannerslider">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Banner Slider</span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+
+                                        <?php
+                                        $pages = [
+                                            'compose', 'inbox', 'sent', 'reply'
+                                        ];
+                                        ?>
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Email </span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/email_compose">
+                                                    <a id="link-compose" href="<?php echo base_url(); ?>admin/email_compose">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Compose E-Mail</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/email_inbox">
+                                                    <a id="link-inbox" href="<?php echo base_url(); ?>admin/email_inbox">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Inbox</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/email_sent">
+                                                    <a id="link-sent" href="<?php echo base_url(); ?>admin/email_sent">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Sent</span>
                                                     </a>
@@ -383,57 +419,75 @@
 
                                             </ul>
                                         </li>
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+
+                                        <?php
+                                        $pages = [
+                                            'import', 'export'
+                                        ];
+                                        ?>
+
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Import & Export </span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/import">
+                                                    <a id="link-import" href="<?php echo base_url(); ?>admin/import">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Import</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/export">
+                                                    <a id="link-export" href="<?php echo base_url(); ?>admin/export">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Export</span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
+                                        
+                                        <?php 
+                                        $pages = [
+                                            'system_setting', 'authorize_config'
+                                        ];
+                                        ?>
 
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">System Setting</span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-
-                                                    <a href="<?php echo base_url(); ?>admin/system_settings">
+                                                    <a id="link-system_setting" href="<?php echo base_url(); ?>admin/system_settings">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">System Settings</span>
                                                     </a>
                                                 </li> 
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/authorize_payment_config">
+                                                    <a id="link-authorize_config" href="<?php echo base_url(); ?>admin/authorize_payment_config">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Authorize.net Config</span>
                                                     </a>
                                                 </li>                                                 
                                             </ul>
                                         </li>
+                                        
+                                        <?php
+                                        $pages = [
+                                            'graduate', 'charity'
+                                        ];
+                                        ?>
 
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">University</span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/graduate">
+                                                    <a id="link-graduate" href="<?php echo base_url(); ?>admin/graduate">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Toppers Graduate</span>
                                                     </a>
                                                 </li> 
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/charity_fund">
+                                                    <a id="link-charity" href="<?php echo base_url(); ?>admin/charity_fund">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Charity Fund</span>
                                                     </a>
@@ -441,35 +495,42 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>admin/professor">
+                                            <a <?php echo active_single_menu('professor', $page); ?> href="<?php echo base_url(); ?>admin/professor">
                                                 <i class="s16 fa fa-university"></i>
                                                 <span class=txt>Professor </span>
                                             </a>
                                         </li>
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        
+                                        <?php
+                                        $pages = [
+                                            'exam', 'exam_schedule', 'exam_grade', 'marks'
+                                        ];
+                                        ?>
+                                        
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">Examination</span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/exam">
+                                                    <a id="link-exam" href="<?php echo base_url(); ?>admin/exam">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Exam</span>
                                                     </a>
                                                 </li> 
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/exam_schedule">
+                                                    <a id="link-exam_schedule" href="<?php echo base_url(); ?>admin/exam_schedule">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Exam Schedule</span>
                                                     </a>
                                                 </li> 
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/exam_marks">
+                                                    <a id="link-marks" href="<?php echo base_url(); ?>admin/exam_marks">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Exam Marks</span>
                                                     </a>
                                                 </li>     
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/exam_grade">
+                                                    <a id="link-exam_grade" href="<?php echo base_url(); ?>admin/exam_grade">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Exam Grade</span>
                                                     </a>
@@ -477,22 +538,29 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>admin/cms_pages">
+                                            <a <?php echo active_single_menu('cms', $page); ?> href="<?php echo base_url(); ?>admin/cms_pages">
                                                 <i class="s16 fa fa-picture-o"></i>
                                                 <span class=txt>CMS Pages</span></a>
                                         </li>
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        
+                                        <?php
+                                        $pages = [
+                                            'fee_structure', 'make_payment'
+                                        ];
+                                        ?>
+                                        
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">Payment</span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/fees_structure">
+                                                    <a id="link-fee_structure" href="<?php echo base_url(); ?>admin/fees_structure">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Fee Structure</span>
                                                     </a>
                                                 </li> 
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/make_payment">
+                                                    <a id="link-make_payment" href="<?php echo base_url(); ?>admin/make_payment">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Make Payment</span>
                                                     </a>
@@ -501,23 +569,30 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>admin/report_chart">
+                                            <a <?php echo active_single_menu('report_chart', $page); ?> href="<?php echo base_url(); ?>admin/report_chart">
                                                 <i class="s16 fa fa-clock-o"></i>
                                                 <span class=txt>Reports</span>
                                             </a>
                                         </li>
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        
+                                        <?php
+                                        $pages = [
+                                            'backup', 'restore'
+                                        ];
+                                        ?>
+                                        
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">Backup/Restore</span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/backup">
+                                                    <a id="link-backup" href="<?php echo base_url(); ?>admin/backup">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Backup</span>
                                                     </a>
                                                 </li> 
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/restore">
+                                                    <a id="link-restore" href="<?php echo base_url(); ?>admin/restore">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="txt">Restore</span>
                                                     </a>
@@ -525,35 +600,42 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>video_streaming">
+                                            <a <?php echo active_single_menu('video_streaming', $page); ?> href="<?php echo base_url(); ?>video_streaming">
                                                 <i class="s16 icomoon-icon-image-2"></i>
                                                 <span class=txt>Video Streaming </span>
                                             </a>
                                         </li>
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        
+                                        <?php
+                                        $pages = [
+                                            'create_group', 'list_group', 'assign_module', 'list_module'
+                                        ];
+                                        ?>
+                                        
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">User Management</span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li >
-                                                    <a href="<?php echo base_url(); ?>admin/create_group">
+                                                    <a id="link-create_group" href="<?php echo base_url(); ?>admin/create_group">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="menu-text">Create Groups</span>  
                                                     </a>
                                                 </li>
                                                 <li >
-                                                    <a href="<?php echo base_url(); ?>admin/list_group">
+                                                    <a id="link-list_group" href="<?php echo base_url(); ?>admin/list_group">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="menu-text">List Groups</span>  
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/assign_module">
+                                                    <a id="link-assign_module" href="<?php echo base_url(); ?>admin/assign_module">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="menu-text">Assign Module</span>  
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>admin/list_module">
+                                                    <a id="list_module" href="<?php echo base_url(); ?>admin/list_module">
                                                         <i class="s16 icomoon-icon-screen-2"></i>
                                                         <span class="menu-text">List Module</span>  
                                                     </a>
@@ -658,6 +740,8 @@
                                 </form>
                             </div>                           
                             <!--  /search -->
-                            <?php echo create_breadcrumb(); ?>                           
+                            <?php echo create_breadcrumb(); ?>        
+
+                            <?php echo set_active_menu($page); ?>
                         </div>
                         <!-- End  / heading-->
