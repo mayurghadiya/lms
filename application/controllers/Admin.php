@@ -5885,5 +5885,5 @@ class Admin extends MY_Controller {
         $this->Crud_model->start_stop_streaming($stream_name, $status);
     }
     
-    
+      
 }
