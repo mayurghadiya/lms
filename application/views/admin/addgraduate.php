@@ -37,8 +37,8 @@ $semesters = $this->db->get('semester')->result_array();
                 <?php echo form_open(base_url() . 'admin/graduate/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'graduatesform', 'enctype' => 'multipart/form-data', 'target' => '_top')); ?>
                 <div class="padded">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <select class="form-control" id="degree" name="degree">
                                 <option value="">Select</option>
                                 <?php foreach ($degree as $row) { ?>
@@ -48,55 +48,55 @@ $semesters = $this->db->get('semester')->result_array();
                         </div>
                     </div>	
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <select class="form-control" name="course" id="course">
 
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <select class="form-control" name="batch" id="batch">
 
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <select class="form-control" name="semester" id="semester">
 
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Student"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("Student"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <select class="form-control" name="student" id="student">
 
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"> Student Image <span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"> Student Image <span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <input id="main_img" class="form-control coverimage" type="file" name="main_img"  />
                         </div>
                         <div id="image_container"></div>
                     </div>      
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("graduation year"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("graduation year"); ?><span style="color:red">*</span></label>
+                        <div class="col-sm-8">
                             <input type="text" name="year" id="year" class="form-control"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("description"); ?></label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("description"); ?></label>
+                        <div class="col-sm-8">
                             <textarea class="form-control" name="description" id="description"></textarea>
 
                         </div>
@@ -104,7 +104,7 @@ $semesters = $this->db->get('semester')->result_array();
 
 
                     <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-5">
+                        <div class="col-sm-offset-4 col-sm-8">
                             <button type="submit" class="btn btn-info vd_bg-green" ><?php echo ucwords("add"); ?></button>
                         </div>
                     </div>

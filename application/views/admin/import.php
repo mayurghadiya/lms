@@ -31,7 +31,7 @@
                             <form id="importform" class="myimportform form-horizontal form-groups-bordered validate" role="form" method="post" action="" 
                                   enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Module"); ?><span style="color:red">*</span></label>
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Module"); ?><span style="color:red">*</span></label>
                                     <div class="col-sm-5">
                                         <select class="form-control" id="module" name="module">
                                             <option value="">Select</option>
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group" id="degree_main" style="display: none;">
-                                    <label class="col-sm-3 control-label">Department</label>                                            
+                                    <label class="col-sm-4 control-label">Department</label>                                            
                                     <div class="col-sm-5">
                                         <select id="degree" name="degree" class="form-control">
                                             <option value="">Select</option>
@@ -62,7 +62,7 @@
 
                                 </div>
                                 <div class="form-group" id="course_main" style="display: none;">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?></label>
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?></label>
 
                                     <div class="col-sm-5">
                                         <select id="course" name="course" class="form-control">
@@ -72,7 +72,7 @@
 
                                 </div>
                                 <div class="form-group" id="batch_main" style="display: none;">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("Batch"); ?></label>
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("Batch"); ?></label>
 
                                     <div class="col-sm-5">
                                         <select id="batch" name="batch" class="form-control">
@@ -82,7 +82,7 @@
 
                                 </div>
                                 <div class="form-group" id="semester_main" style="display: none;">
-                                    <label class="col-sm-3 control-label">Semester</label>
+                                    <label class="col-sm-4 control-label">Semester</label>
                                     <?php
                                     $semester = $this->db->get('semester')->result();
                                     ?>
@@ -97,7 +97,7 @@
 
                                 </div>
                                 <div class="form-group" id="exam_main" style="display: none;">
-                                    <label class="col-sm-3 control-label">Exam</label>
+                                    <label class="col-sm-4 control-label">Exam</label>
 
                                     <div class="col-sm-5">
                                         <select id="exam" name="exam" class="form-control">
@@ -107,7 +107,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><?php echo ucwords("File"); ?><span style="color:red">*</span></label>
+                                    <label class="col-sm-4 control-label"><?php echo ucwords("File"); ?><span style="color:red">*</span></label>
                                     <div class="col-sm-5">
                                         <input type="file" class="form-control" name="userfile" id="userfile"/>
                                         <label id="userfile-error" class="error" for="userfile"></label>
@@ -118,7 +118,7 @@
                                 <input id="course_post_details" type="hidden" name="course_detail"/>
 
                                 <div class="form-group">
-                                    <div class="col-sm-offset-3 col-sm-5">
+                                    <div class="col-sm-offset-4 col-sm-5">
                                         <a style="display: none;" id="show_download" class="btn btn-warning">Download Sample File</a>
                                         <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("upload"); ?></button>
                                     </div>

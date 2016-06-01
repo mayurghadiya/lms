@@ -64,8 +64,8 @@ $students = $this->db->get_where('student', array(
                 <?php echo form_open(base_url() . 'admin/graduate/update/' . $edit_data->graduates_id, array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'editgraduatesform', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
 
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("course"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("course"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <select class="form-control" id="edit_degree" name="degree">
                             <option value="">Select</option>
                             <?php foreach ($degree as $row) { ?>
@@ -76,8 +76,8 @@ $students = $this->db->get_where('student', array(
                     </div>
                 </div>	
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <select class="form-control" name="course" id="edit_course">
                             <option value="">Select</option>
                             <?php foreach ($course as $c) { ?>
@@ -88,8 +88,8 @@ $students = $this->db->get_where('student', array(
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <select class="form-control" name="batch" id="edit_batch">
                             <option value="">Select</option>
                             <?php foreach ($batch as $b) { ?>
@@ -100,8 +100,8 @@ $students = $this->db->get_where('student', array(
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <select class="form-control" name="semester" id="edit_semester">
                             <option value="">Select</option>
                             <?php foreach ($semester as $s) { ?>
@@ -112,8 +112,8 @@ $students = $this->db->get_where('student', array(
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Student"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Student"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <select class="form-control" name="student" id="edit_student">
                             <option value="">Select</option>
                             <?php foreach ($students as $student) { ?>
@@ -124,30 +124,30 @@ $students = $this->db->get_where('student', array(
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label">Student Image <span style="color:red">*</span></label>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label">Student Image <span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <input id="main_img" class="coverimage2" type="file" name="main_img" />
                     </div>
                     <div id="image_container1" class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><img class='img-thumbnail' src='<?php echo base_url() . "uploads/student_image/" . $edit_data->student_img; ?>' ></div>
                 </div>   
 
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("graduation year"); ?><span style="color:red">*</span></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("graduation year"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
                         <input type="text" name="year" id="year" class="form-control" value="<?php echo $edit_data->graduate_year; ?>"/>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("description"); ?></label>
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("description"); ?></label>
+                    <div class="col-sm-8">
                         <textarea class="form-control" name="description" id="description"><?php echo $edit_data->description; ?></textarea>
 
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                    <div class="col-sm-offset-4 col-sm-8">
                         <button type="submit" class="submit btn btn-info vd_bg-green"><?php echo ucwords("Update"); ?></button>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
                     </div>              
                     <form id="exportform" class="form-horizontal validate" action="#" method="post">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Module <span style="color:red">*</span></label>
+                            <label class="col-sm-4 control-label">Module <span style="color:red">*</span></label>
                             <div class="col-sm-5">
                                 <select id="export_module" class="form-control" name="module_name" >
                                     <option value="">Select</option>
@@ -41,7 +41,7 @@
                             </div>
                         </div> 
                         <div id="main_degree" style="display: none;" class="form-group">
-                            <label class="col-sm-3 control-label">Department</label>
+                            <label class="col-sm-4 control-label">Department</label>
                             <div class="col-sm-5">
                                 <select id="degree" name="degree" class="form-control">
                                     <option value="">Select</option>
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div id="main_course" style="display: none;" class="form-group">
-                            <label class="col-sm-3 control-label">Branch</label>
+                            <label class="col-sm-4 control-label">Branch</label>
                             <div class="col-sm-5">
                                 <select id="course" name="course" class="form-control">
 
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div id="main_batch" style="display: none;" class="form-group">
-                            <label class="col-sm-3 control-label">Batch</label>
+                            <label class="col-sm-4 control-label">Batch</label>
                             <div class="col-sm-5">
                                 <select id="batch" name="batch" class="form-control">
 
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div id="main_semester" style="display: none;" class="form-group">
-                            <label class="col-sm-3 control-label">Semester</label>
+                            <label class="col-sm-4 control-label">Semester</label>
                             <div class="col-sm-5">
                                 <select id="semester" name="semester" class="form-control">
                                     <option value="">Select</option>
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div id="main_exam" style="display: none;" class="form-group">
-                            <label class="col-sm-3 control-label">Exam</label>
+                            <label class="col-sm-4 control-label">Exam</label>
                             <div class="col-sm-5">
                                 <select id="exam" name="exam" class="form-control">
 
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
+                            <div class="col-sm-offset-4 col-sm-5">
                                 <button id="export" type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("export"); ?></button>
                             </div>
                         </div>
