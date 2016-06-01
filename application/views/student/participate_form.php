@@ -25,7 +25,7 @@ $res = $this->db->query("SELECT * FROM participate_manager WHERE pp_id not in (s
                 ?>                                        
                 <?php echo form_open(base_url() . 'student/volunteer/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmproject', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Participate Title <span style="color:red">*</span></label>
+                    <label class="col-sm-3 control-label">Activity Title <span style="color:red">*</span></label>
                     <div class="col-sm-5">
                         <select class="form-control" id="pp_id" name="pp_id">
                             <option value="<?php ?>" > Select  </option>
@@ -44,7 +44,7 @@ $res = $this->db->query("SELECT * FROM participate_manager WHERE pp_id not in (s
 
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Date Of Participate </label>
+                    <label class="col-sm-3 control-label">Date of Activity</label>
                     <div class="col-sm-5">
                         <input type="text" class="form-control" name="dos" readonly="" value="<?php
                         if (!empty($res)) {
@@ -69,7 +69,7 @@ $res = $this->db->query("SELECT * FROM participate_manager WHERE pp_id not in (s
 
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-5">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Volunteer</button>
                     </div>
                 </div>
                 <?php echo form_close(); ?>
@@ -83,49 +83,48 @@ $res = $this->db->query("SELECT * FROM participate_manager WHERE pp_id not in (s
 </div>
 
 
- 
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
 <!-- End #content -->
-    <script type="text/javascript">
-        
-        $("#pp_id").change(function(){
-            var pp_id = $(this).val();
-           $.ajax({
-              type:"POST" ,
-              url:"<?php echo base_url(); ?>student/get_desc",
-              data:{'pp_id':pp_id},
-              success:function(response)
-              {
-                 $("#description").html(response);
-              }    
-               
-           }); 
+<script type="text/javascript">
+
+    $("#pp_id").change(function () {
+        var pp_id = $(this).val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>student/get_desc",
+            data: {'pp_id': pp_id},
+            success: function (response)
+            {
+                $("#description").html(response);
+            }
+
         });
-       
+    });
 
-                                                    $.validator.setDefaults({
-                                                        submitHandler: function (form) {
 
-                                                            //  filecheck(img);
-                                                            form.submit();
+    $.validator.setDefaults({
+        submitHandler: function (form) {
 
-                                                        }
-                                                    });
+            //  filecheck(img);
+            form.submit();
 
-                                                    $().ready(function () {
-                                                        
+        }
+    });
 
-                                                       
-                                                        $("#frmproject").validate({
-                                                            rules: {
-                                                                pp_id:"required",
-                                                                p_status:"required",                                                               
-                                                            },
-                                                            messages: {
-                                                                pp_id:"Please select participation",
-                                                                p_status:"Please select your interest",                                                                        
-                                                               
-                                                            }
-                                                        });
-                                                    });
-    </script>
+    $().ready(function () {
+
+
+
+        $("#frmproject").validate({
+            rules: {
+                pp_id: "required",
+                p_status: "required",
+            },
+            messages: {
+                pp_id: "Please select participation",
+                p_status: "Please select your interest",
+            }
+        });
+    });
+</script>

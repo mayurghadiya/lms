@@ -94,7 +94,7 @@
                                 </ul>
                             </li>
                             <li class=dropdown>
-                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt="" class="image"> 
+                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo $this->Crud_model->get_image_url('admin', $this->session->userdata('admin_id')); ?> alt="" class="image"> 
                                     <span class=txt><?php echo $this->session->userdata('email'); ?></span> <b class=caret></b>
                                 </a>
                                 <ul class="dropdown-menu right">
