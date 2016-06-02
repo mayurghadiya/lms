@@ -1,19 +1,14 @@
-
+<style>
+    td{
+        text-align: left;
+    }
+</style>
 <!-- Start .row -->
 <div class=row>                      
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class=" panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
             <div class=panel-body>
                 <!-- scripts used for broadcasting -->
                 <script src="//cdn.webrtc-experiment.com/firebase.js">
@@ -97,7 +92,7 @@
                         </div>
                         <!-- list of all available broadcasting rooms -->
                         <h4>All Broadcast</h4>
-                        <table style="width: 100%;" id="rooms-list" class="table table-bordered"></table>
+                        <table style="width: 100%;" id="rooms-list" class="table table-bordered table-responsive"></table>
 
                         <!-- local/remote videos container -->
                         <div id="videos-container" style="margin-right: 5px;"></div>
@@ -116,7 +111,7 @@
                                 ->result();
                         if (count($multicast)) {
                             ?>
-                            <table class="table table-bordered multicast">
+                            <table class="table table-responsive table-bordered multicast">
                                 <tr>
                                     <th>Title</th>
                                     <th>Course</th>
@@ -131,7 +126,7 @@
                                         <td><?php echo $mul->c_name; ?></td>
                                         <td><?php echo $mul->s_name; ?></td>
                                         <td>
-                                            <button onclick="window.open('<?php echo base_url(); ?>video_streaming#<?php echo $mul->url_link; ?>')">View Streaming</button>
+                                            <button class="btn btn-primary" onclick="window.open('<?php echo base_url(); ?>video_streaming#<?php echo $mul->url_link; ?>')">View Streaming</button>
 
                                         </td>
                                     </tr>                                                    
@@ -187,9 +182,9 @@
                                                     sessions[session.sessionid] = session;
 
                                                     var tr = document.createElement('tr');
-                                                    tr.innerHTML = '<td><strong>' + session.sessionid + '</strong> is sharing his webcam in one-way direction!</td>' +
-                                                            '<td><button class="join">View His Webcam</button></td>' +
-                                                            '<td><button session_id=' + session.sessionid + ' class="startstop" style="margin-left: -100px">Start</button></td>';
+                                                    tr.innerHTML = '<td align="left"><strong>' + session.sessionid + '</strong> is sharing his webcam in one-way direction!</td>' +
+                                                            '<td><button class="join btn btn-primary" style="margin-right: 20px;">View</button></td>' +
+                                                            '<td><button class="btn btn-success startstop" session_id=' + session.sessionid + ' style="margin-left: -100px">Start</button></td>';
                                                     roomsList.insertBefore(tr, roomsList.firstChild);
 
                                                     var joinRoomButton = tr.querySelector('.join');

@@ -1,11 +1,10 @@
+<!-- Start .row -->
 <div class=row>                      
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            
-            <div class="panel-body">
+        <div class="panel-default toggle">            
+            <div class=panel-body>
                 <form class="form-horizontal" role="form" action="" method="post">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">To</label>
@@ -49,16 +48,17 @@
                     <div class="form-group form-actions">
                         <div class="col-sm-12 col-md-offset-2">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-envelope append-icon"></i> SEND</button>
-                         </div>
+                        </div>
                     </div>
                 </form>
             </div>
-            <!-- panel-body  --> 
-
         </div>
-        <!-- panel --> 
+        <!-- End .panel -->
     </div>
-    
+    <!-- col-lg-12 end here -->
 </div>
-<!-- row --> 
-</div></div>
+<!-- End .row -->
+</div>
+<!-- End contentwrapper -->
+</div>
+<!-- End #content -->

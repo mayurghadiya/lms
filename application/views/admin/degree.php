@@ -1,5 +1,6 @@
 <!-- Start .row -->
 <div class=row> 
+    <div class="col-lg-12">
         <div class=" panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
@@ -37,8 +38,8 @@
                                     <?php } ?>
                                 </td>
                                 <td class="menu-action">
-                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_degree/<?php echo $row['d_id']; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
-                                     <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/degree/delete/<?php echo $row['d_id']; ?>');" data-toggle="modal" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_degree/<?php echo $row['d_id']; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/degree/delete/<?php echo $row['d_id']; ?>');" data-toggle="modal" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>						
@@ -47,10 +48,12 @@
             </div>
         </div>
         <!-- End .panel -->
-    
+    </div>
+
+</div>
+
 </div>
 <!-- End .row -->
 </div>
 <!-- End contentwrapper -->
-</div>
-<!-- End #content -->
+
