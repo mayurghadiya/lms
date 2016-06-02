@@ -1637,6 +1637,7 @@ class Professor extends MY_Controller {
         $this->load->model('professor/Professor_model');
         $this->load->model('admin/Crud_model');
         $this->load->helper('system_email');
+        $this->load->library('upload');
         if ($_POST) {
             $filename = '';
             $attachments = array();
@@ -1713,6 +1714,16 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Compose Email';
         $this->data['content'] = 'email_compose';
         $this->__site_template('professor/email_compose', $this->data);
+    }
+    
+    function set_upload_options() {
+        //upload an image options
+        $config = array(
+            'upload_path' => './uploads/emails/',
+            'allowed_types' => 'gif|jpg|png|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf',
+            'max_size' => '10000'
+        );
+        return $config;
     }
 
     /**
@@ -1987,7 +1998,7 @@ class Professor extends MY_Controller {
             $data['submitedassignment'] = $this->db->get()->result();
            
              $data['param'] = $param;
-              $this->load->view("admin/getassignment", $data);
+              $this->load->view("professor/getassignment", $data);
             
         }
      
@@ -2535,9 +2546,9 @@ class Professor extends MY_Controller {
     {
         if($_POST)
         {
-            $data['todo_id'] = $this->input->post('id');
-            $data['todo_status'] = $this->input->post('status');
-            $this->Professor_model->change_status($data);
+            $id = $this->input->post('id');
+            $data['todo_status'] = $this->input->post('status');            
+            $this->Professor_model->change_status($data,$id);
         }
     }
     

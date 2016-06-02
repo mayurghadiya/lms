@@ -1506,11 +1506,12 @@ class Crud_model extends CI_Model {
     /**
      * change status of to do list item
      * @param mixed $data
+     * @param int $id
      */
     
-    function change_status($data)
+    function change_status($data,$id)
     {        
-        $this->db->update("todo_list",$data,array("todo_id"=>$data['todo_id']));
+        $this->db->update("todo_list",$data,array("todo_id"=>$id));
     }
     
     /**

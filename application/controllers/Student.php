@@ -359,6 +359,7 @@ class Student extends MY_Controller {
     function email_reply($id) {
         $this->load->model('admin/Crud_model');
         $this->load->helper('system_email');
+         $this->load->library('upload');
         if ($_POST) {
             $filename = '';
             if ($_FILES) {
@@ -399,6 +400,7 @@ class Student extends MY_Controller {
         $this->load->model('admin/Crud_model');
         $this->load->model('Student/Student_model');
         $this->load->helper('system_email');
+         $this->load->library('upload');
         if ($_POST) {
             if ($_POST) {
                 $filename = '';
@@ -413,6 +415,7 @@ class Student extends MY_Controller {
                         $_FILES['userfile']['error'] = $files['userfile']['error'][$i];
                         $_FILES['userfile']['size'] = $files['userfile']['size'][$i];
                         $this->upload->initialize($this->set_upload_options());
+                         
                         $this->upload->do_upload();
                         $uploaded = $this->upload->data();
                         $filename .= $uploaded['file_name'] . ',';
@@ -446,6 +449,16 @@ class Student extends MY_Controller {
         $this->data['page'] = 'email_compose';
         $this->__site_template('student/email_compose', $this->data);
     }
+    
+    function set_upload_options() {
+        //upload an image options
+        $config = array(
+            'upload_path' => './uploads/emails/',
+            'allowed_types' => 'gif|jpg|png|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf',
+            'max_size' => '10000'
+        );
+        return $config;
+    }
 
     /**
      * View sent email of the admin
@@ -465,7 +478,7 @@ class Student extends MY_Controller {
     function email_view($id) {
         $this->load->model('admin/Crud_model');
         $this->data['email'] = $this->Crud_model->view_mail($id);
-        if ($data['email']->email_to == $this->session->userdata('email')) {
+        if ($this->data['email']->email_to == $this->session->userdata('email')) {
             //update read status
             $update = array(
                 'read' => 1
@@ -476,6 +489,71 @@ class Student extends MY_Controller {
         $this->data['page'] = 'email_view';
         $this->__site_template('student/email_view', $this->data);
     }
+    
+    /**
+     * Set mail config
+     */
+    function setemail($emails, $subject = '', $message = '', $cc, $attachment) {
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'mayur.ghadiya@searchnative.in',
+            'smtp_pass' => 'the mayurz97375',
+            'mailtype' => 'html',
+            'charset' => 'iso-8859-1'
+        );
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        //$this->load->library('email');
+        $subject = $subject;
+        $message = $message;
+        foreach ($emails as $email) {
+            $this->email->clear(TRUE);
+            $this->sendEmail($email, $subject, $message, $cc, $attachment);
+        }
+    }
+    
+    /**
+     * Send email
+     * @param string $email
+     * @param string $subject
+     * @param string $message
+     */
+    public function sendEmail($email, $subject, $message, $cc, $attachments) {
+        //$this->email->set_newline("\r\n");
+        $this->email->from('mayur.ghadiya@searchnative.in', 'Search Native India');
+        $this->email->to($email);
+        foreach ($cc as $row) {
+            $this->email->cc($row);
+        }
+        $this->email->subject($subject);
+        $this->email->message($message);
+        //$files = array('D:\unit testing.docx', 'D:\vtiger trial version features.docx');
+        foreach ($attachments as $row) {
+            $this->email->attach($row);
+        }
+        if ($this->email->send()) {
+            echo 'Email send.';
+        } else {
+            show_error($this->email->print_debugger());
+        }
+    }
+
+    //send mail
+    function sendmail($from, $from_name, $to, $subject, $cc, $bcc, $message) {
+        $this->email->clear();
+        $this->email->from($from, $from_name);
+        //$list = array($to);
+        $this->email->to($to);
+        $this->email->cc($cc);
+        $this->email->bcc($bcc);
+        $this->email->subject($subject);
+        $this->email->message($message);
+        $this->email->send();
+    }
+
+
 
     /**
      * Project
@@ -1443,9 +1521,9 @@ class Student extends MY_Controller {
     {
         if($_POST)
         {
-            $data['todo_id'] = $this->input->post('id');
+           $id = $this->input->post('id');
             $data['todo_status'] = $this->input->post('status');
-            $this->Student_model->change_status($data);
+            $this->Student_model->change_status($data,$id);
         }
     }
     

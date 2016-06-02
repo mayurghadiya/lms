@@ -54,7 +54,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
                         <div class="col-sm-7">
-                            <textarea id="message" name="message" readonly="" class="width-100 form-control"  rows="15" placeholder="Write your message here">
+                            <textarea id="summernote" name="message" readonly="" class="width-100 form-control"  rows="15" placeholder="Write your message here" disabled="">
                                 <?php echo $email->message; ?>
                             </textarea>                                          
                         </div>

@@ -132,6 +132,7 @@ $('#summernote').summernote({
 });
 
  $('.select2').select2();
+ $('.select3').select2();
 
 
 //custom datatable filtering

@@ -553,7 +553,7 @@
                                                     echo $user1[0]['s_name'];
                                                 }
                                                 ?></td>	
-                                            <td id="downloadedfile"><a href="<?php echo $rowsupl['upload_url']; ?>" download=""><i class="fa fa-download" title="<?php echo $rowsupl['upload_file_name']; ?>"></i></a></td>	
+                                            <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/'.$rowsupl['upload_file_name']; ?>" download=""><i class="fa fa-download" title="<?php echo $rowsupl['upload_file_name']; ?>"></i></a></td>	
 
                                         </tr>
                                     <?php endforeach; ?>						

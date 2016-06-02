@@ -149,7 +149,7 @@
                                                 <!-- id="inlinedate" contenteditable="true" onBlur="saveToDatabase(this,'assign_dos','<?php echo $row->assign_id; ?>')" onClick="showEdit(this);"-->
                                                 <td><?php echo wordwrap($row->assign_desc, 30, "<br>\n"); ?></td>                                	
                                                 <td><?php echo date('M d, Y', strtotime($row->assign_dos)); ?></td>	
-                                                <td><a href="<?php echo $row->assign_url; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>
+                                                <td><a href="<?php echo base_url().'uploads/project_file/'.$row->assign_filename; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>
                                                 <td class="menu-action">
                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
 <i class="fa fa-pencil" aria-hidden="true"></i>

@@ -1526,9 +1526,9 @@ class Professor_model extends CI_Model {
         
     }
     
-    function change_status($data)
+    function change_status($data,$id)
     {        
-        $this->db->update("todo_list",$data,array("todo_id"=>$data['todo_id']));
+        $this->db->update("todo_list",$data,array("todo_id"=>$id));
     }
     
     function removetodo($id)

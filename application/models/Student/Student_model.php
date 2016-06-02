@@ -742,10 +742,14 @@ class Student_model extends CI_Model {
         return $this->db->get("todo_list")->result();
         
     }
-    
-    function change_status($data)
+    /**
+     * change status
+     * @param mixed $data
+     * @param int $id
+     */
+    function change_status($data,$id)
     {        
-        $this->db->update("todo_list",$data,array("todo_id"=>$data['todo_id']));
+        $this->db->update("todo_list",$data,array("todo_id"=>$id));
     }
     
     function removetodo($id)

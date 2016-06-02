@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">To</label>
                         <div class="col-sm-7">
-                            <select id="to" class="form-control" name="to[]" multiple="" required="">
+                            <select id="to" class="form-control select2" name="to[]" multiple="" required="">
                                 <?php foreach ($all_admin as $row) { ?>
                                     <option value="<?php echo $row->admin_id; ?>"><?php echo $row->email . ' (Admin)'; ?></option>
                                 <?php } ?>
@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Professor</label>
                         <div class="col-sm-7">
-                            <select id="teacher" class="form-control" name="teacheremail[]" multiple="">
+                            <select id="teacher" class="form-control select3" name="teacheremail[]" multiple="">
                                 <?php foreach ($teacher as $row) { ?> 
                                     <option value="<?php echo $row->email; ?>"><?php echo $row->name . ' (' . $row->email . ')'; ?></option>
                                 <?php } ?>
@@ -54,7 +54,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
                         <div class="col-sm-7">
-                            <textarea id="message" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
+                            <textarea id="summernote" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
                         </div>
                     </div>
 

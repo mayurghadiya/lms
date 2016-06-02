@@ -149,7 +149,7 @@
                                                 </td>
                                                 <!-- id="inlinedate" contenteditable="true" onBlur="saveToDatabase(this,'assign_dos','<?php echo $row->assign_id; ?>')" onClick="showEdit(this);"-->
                                                 <td  ><?php echo wordwrap($row->assign_desc, 30, "<br>\n"); ?></td>
-                                                <td id="downloadedfile"><a href="<?php echo $row->assign_url; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>	
+                                                <td id="downloadedfile"><a href="<?php echo base_url().'uploads/project_file/'.$row->assign_filename; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>	
                                                 <td ><?php echo date('F d, Y', strtotime($row->assign_dos)); ?></td>	
                                                 <td class="menu-action">
                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Edit</span></a>
@@ -278,7 +278,7 @@
                                                 </td>	
                                                 <td><?php echo date_formats($rowsub->submited_date); ?></td>	
                                                 <td><?php echo $rowsub->comment; ?></td>
-                                                <td id="downloadedfile"><a href="uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                      	
+                                                <td id="downloadedfile"><a href="<?php echo base_url(); ?>uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                      	
                                             </tr>
 <?php endforeach; ?>						
                                     </tbody>

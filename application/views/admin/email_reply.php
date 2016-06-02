@@ -55,8 +55,7 @@
 
                     <div class="form-group form-actions">
                         <div class="col-sm-12 col-md-offset-2">
-                            <button type="submit" class="btn vd_btn vd_bg-green vd_white"><i class="fa fa-envelope append-icon"></i> SEND</button>
-                            <button id="save-draft" type="button" class="btn vd_btn vd_bg-yellow vd_white"><i class="fa fa-archive append-icon"></i> SAVE TO DRAFT</button>
+                            <button type="submit" class="btn vd_btn vd_bg-green vd_white"><i class="fa fa-envelope append-icon"></i> SEND</button>                            
                         </div>
                     </div>
                 </form>

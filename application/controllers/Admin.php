@@ -5765,9 +5765,9 @@ class Admin extends MY_Controller {
 
     function changestatus() {
         if ($_POST) {
-            $data['todo_id'] = $this->input->post('id');
-            $data['todo_status'] = $this->input->post('status');
-            $this->Crud_model->change_status($data);
+            $id = $this->input->post('id');
+            $data['todo_status'] = $this->input->post('status');           
+            $this->Crud_model->change_status($data,$id);
         }
     }
 

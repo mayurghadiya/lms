@@ -93,7 +93,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label"><?php echo ucwords("Message"); ?></label>
                         <div class="col-sm-5">
-                            <textarea id="message" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
+                            <textarea id="summernote" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
                         </div>
                     </div>
 
