@@ -34,3 +34,9 @@ $data=$this->db->get_where('todo_list',array('date(todo_datetime)'=>$param2,'tod
             </div>
         </div>
     </div>
+
+<script>
+ $(document).ready(function () {
+        $('#datatable-list').DataTable();
+    });
+</script>

@@ -40,3 +40,9 @@ $data=$this->db->get_where('event_manager',array('date(event_date)'=>$param2))->
             </div>
         </div>
     </div>
+
+<script>
+ $(document).ready(function () {
+        $('#datatable-list').DataTable();
+    });
+</script>
