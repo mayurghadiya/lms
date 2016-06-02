@@ -33,7 +33,7 @@
                                 ?> 
 
                                 <tr>
-                                    <td></td>
+                                    <td><?php echo $counter; ?></td>
                                     <td style="width: 20%">
                                         <?php
                                         if (!empty($row->email_to)) {
@@ -50,22 +50,20 @@
                                         ?>
                                         <?php //echo $row->email_to; ?>
                                     </td>
-                                    <td>
-                                        <span class="label vd_bg-green append-icon"><?php echo $row->subject; ?></span> 
-                                    </td>
+                                    <td><?php echo $row->subject; ?></td>
                                     <td style="width:20%;text-align: left">
                                         <strong><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></strong>
                                     </td>
                                     <td class="menu-action">
                                         <a href="<?php echo base_url('professor/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">
-<i class="fa fa-pencil" aria-hidden="true"></i>
-Edit
-</span></a>
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                View
+                                            </span></a>
                                         <a href="href="<?php echo base_url('professor/delete_email/' . $row->email_id) ?>" title="delete"
                                            onclick="return confirm('Are you sure to delete this email?');""><span class="label label-danger mr6 mb6">
-<i class="fa fa-trash-o" aria-hidden="true"></i>
-Delete
-</span></a>
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                Delete
+                                            </span></a>
                                     </td>
                                 </tr>
 

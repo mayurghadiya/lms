@@ -14,7 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                <table id="inbox-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
                             <th>#</th>
@@ -33,18 +33,12 @@
                                 $counter++;
                                 ?>
                                    <tr class="<?php if ($row->read == 0) echo 'info'; ?>">
-                                    <td style="width:20px"><div class="vd_checkbox">
-                                            <input type="checkbox" id="checkbox-<?php echo $counter; ?>" class="checkbox-group">
-                                            <label for="checkbox-<?php echo $counter; ?>" ></label>
-                                        </div>
-                                    </td>
+                                    <td><?php echo $counter; ?></td>
                                     <td><?php echo $row->email_from; ?></td>
-                                    <td>
-                                        <span class="label vd_bg-green append-icon"><?php echo $row->subject; ?></span> 
-                                    </td>
+                                    <td><?php echo $row->subject; ?></td>
                                     <td><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></td>
                                     <td class="menu-action">
-                                        <a href="<?php echo base_url('professor/inbox_email/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">View</span></a>
+                                        <a href="<?php echo base_url('professor/inbox_email/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil-square" aria-hidden="true"></i>View</span></a>
                                         <a href="<?php echo base_url('professor/delete_email/' . $row->email_id); ?>"
                                            onclick="return confirm('Are you sure to delete this email?');"><span class="label label-danger mr6 mb6">
                                             <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -69,3 +63,9 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+
+<script>
+$(document).ready(function(){
+    $('#inbox-datatable-list').DataTable();
+});
+</script>

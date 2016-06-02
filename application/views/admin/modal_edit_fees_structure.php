@@ -246,7 +246,7 @@ $batch = $this->db->query($query)->result();
 <script>
     $(document).ready(function () {
         $("#edit_start_date").datepicker({
-            format: ' MM d, yyyy',
+            format: 'mm/dd/yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose:true,
@@ -256,7 +256,7 @@ $batch = $this->db->query($query)->result();
             }
         });
         $("#edit_end_date").datepicker({
-            format: ' MM d, yyyy',
+            format: 'mm/dd/yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose:true,
@@ -266,7 +266,7 @@ $batch = $this->db->query($query)->result();
             }
         });
         $('#edit_expiry_date').datepicker({
-            format: ' MM d, yyyy',
+            format: 'mm/dd/yyyy',
             changeMonth: true,
             autoclose:true,
             changeYear: true,

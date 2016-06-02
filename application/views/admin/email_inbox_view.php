@@ -3,44 +3,12 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
             <div class="panel-body">
-                <ul class="nav navbar-right usernav">                          
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <span class="txt">Email Reply</span></a>
-                        <ul class="dropdown-menu right">
-                            <li class="menu">
-                                <ul class="messages">
-
-                                    <li> 
-                                        <a href="<?php echo base_url(); ?>admin/email_reply/<?php echo $email->email_id; ?>"> 
-
-                                            Reply
-                                        </a> 
-                                    </li>
-                                    <li> 
-                                        <a href="<?php echo base_url('admin/email_compose'); ?>">                                                     
-                                            Reply to all
-                                        </a> 
-                                    </li>                                                   
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <h2 class="mgtp--10"> <?php echo $email->subject; ?> </h2>
-                <br/>
+                <a class="btn btn-primary" href="<?php echo base_url(); ?>admin/email_reply/<?php echo $email->email_id; ?>"> 
+                    <span class="fa fa-reply"></span>Reply
+                </a> 
                 <form class="form-horizontal" role="form" action="" method="post">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">From</label>
@@ -69,7 +37,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
                         <div class="col-sm-10">
-                            <textarea id="message" readonly="" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here">
+                            <textarea id="summernote" readonly="" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here">
                                 <?php echo $email->message; ?>
                             </textarea>
                         </div>
@@ -99,3 +67,4 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+</div>

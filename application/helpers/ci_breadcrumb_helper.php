@@ -25,7 +25,7 @@ if (!function_exists('create_breadcrumb')) {
                 if (!is_numeric($ci->uri->segment($i))) {
                     $link.='<span class="divider"><i class="s16 icomoon-icon-arrow-right-3"></i></span>';
                     $link.='<li><a class="tip" data-original-title="' . ucwords($ci->uri->segment($i)) . '" href="' . site_url($prep_link) . '">';
-                    $link .= ucwords($ci->uri->segment($i)) . '</a></li> ';
+                    $link .= ucwords(str_replace('_', ' ', $ci->uri->segment($i))) . '</a></li> ';
                 }
             }
             $i++;

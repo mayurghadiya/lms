@@ -315,7 +315,7 @@
                             </div>
                             <div class="search_box">
                                 <!-- .search -->
-                                <form action="http://192.168.1.28/lms/admin/search" method="post" class="form-horizontal" id="searchform">
+                                <form action="<?php echo base_url(); ?>student/search" method="post" class="form-horizontal" id="searchform">
                                     <input value="" placeholder="Search here ..." class="top-search from-control" name="search"> 
                                     <input type="submit" class="search-btn">
                                     <div class="category">
@@ -328,52 +328,36 @@
                                                 <ul>
                                                     <li>
                                                         <label>
-                                                            <div class="checkbox-custom"><input type="checkbox" name="degree" value="degree" id="chbox0"><label for="chbox0"></label></div>
-                                                            <span>Department</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <div class="checkbox-custom"><input type="checkbox" name="student" value="student" id="chbox1"><label for="chbox1"></label></div>
-                                                            <span>Student</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <div class="checkbox-custom"><input type="checkbox" name="course" value="course" id="chbox2"><label for="chbox2"></label></div>
-                                                            <span>Branch</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <div class="checkbox-custom"><input type="checkbox" name="exam" value="exam" id="chbox3"><label for="chbox3"></label></div>
+                                                            <div class="checkbox-custom">
+                                                                <input type="checkbox" name="exam" value="exam" 
+                                                                    <?php if (isset($from['exam'])) echo 'checked'; ?>><label for="chbox0"></label></div>
                                                             <span>Exam</span>
                                                         </label>
                                                     </li>
                                                     <li>
                                                         <label>
-                                                            <div class="checkbox-custom"><input type="checkbox" name="event" value="event" id="chbox4"><label for="chbox4"></label></div>
-                                                            <span>Event</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <div class="checkbox-custom"><input type="checkbox" name="batch" value="batch" id="chbox5"><label for="chbox5"></label></div>
-                                                            <span>Batch</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <div class="checkbox-custom"><input type="checkbox" name="assignment" value="assignment" id="chbox6"><label for="chbox6"></label></div>
+                                                            <div class="checkbox-custom">
+                                                                <input type="checkbox" name="assignment" value="assignment"
+                                                                       <?php if (isset($from['assignment'])) echo 'checked'; ?>><label for="chbox1"></label></div>
                                                             <span>Assignment</span>
                                                         </label>
                                                     </li>
                                                     <li>
                                                         <label>
-                                                            <div class="checkbox-custom"><input type="checkbox" name="participate" value="participate" id="chbox7"><label for="chbox7"></label></div>
+                                                            <div class="checkbox-custom">
+                                                                <input type="checkbox" name="participate" value="participate"
+                                                                       <?php if (isset($from['participate'])) echo 'checked'; ?>><label for="chbox2"></label></div>
                                                             <span>Participate</span>
                                                         </label>
-                                                    </li>                                                     
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom">
+                                                                <input type="checkbox" name="event" value="event"
+                                                                       <?php if (isset($from['event'])) echo 'checked'; ?>><label for="chbox3"></label></div>
+                                                            <span>Events</span>
+                                                        </label>
+                                                    </li> 
                                                 </ul>                                           
                                             </li>
                                         </ul> 

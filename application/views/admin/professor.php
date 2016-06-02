@@ -11,9 +11,9 @@
                         <tr>
                             <th>#</th>
                             <th>Professor Name</th>
-                            <th>Email</th>
+                            <th width="10%">Email</th>
                             <th>Mobile</th>
-                            <th>Address</th>
+                            <th width="15%">Address</th>
                             <th>Designation</th>
                             <th>DOB</th>
                             <th>Action</th>

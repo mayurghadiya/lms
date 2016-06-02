@@ -13,6 +13,7 @@
                                 <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
                             </div>
                         </div>-->
+            <a href="<?php echo base_url(); ?>professor/email_reply/<?php echo $email->email_id; ?>" class="btn btn-primary">Reply</a>
             <div class=panel-body>
                
                 <form class="form-horizontal" role="form" action="" method="post">
@@ -43,7 +44,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
                         <div class="col-sm-7">
-                            <textarea id="message" readonly="" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here">
+                            <textarea id="summernote" readonly="" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here">
                                 <?php echo $email->message; ?>
                             </textarea>
                         </div>

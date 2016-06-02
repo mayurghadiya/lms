@@ -65,7 +65,7 @@ $degree_list = $this->db->get('degree')->result();
                     <label class="col-sm-4 control-label"><?php echo ucwords("date of birth"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
                         <input id="date-of-birth" class="form-control datepicker-normal" type="text" name="dob" required=""
-                               value="<?php echo $professor->dob; ?>"/>
+                               value="<?php echo date('m/d/Y', strtotime($professor->dob)); ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
@@ -128,7 +128,7 @@ $degree_list = $this->db->get('degree')->result();
     <!-- col-lg-12 end here -->
     <script type="text/javascript">
         $(".datepicker-normal").datepicker({
-             format: ' MM d, yyyy',
+             format: 'mm/dd/yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose:true,

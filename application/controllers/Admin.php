@@ -4919,7 +4919,7 @@ class Admin extends MY_Controller {
      */
     function invoice($id = '') {
         $this->load->model('Student/Student_model');
-        $this->data['page_name'] = 'invoice';
+        $this->data['page'] = 'make_payment';
         $this->data['page_title'] = 'Student invoice';
         $this->data['invoice'] = $this->Student_model->invoice_detail($id);
         $this->data['title'] = 'Invoice Details';
@@ -4942,6 +4942,7 @@ class Admin extends MY_Controller {
      */
     function invoice_print($id) {
         $this->load->model('Student/Student_model');
+        $this->data['page'] = 'make_payment';
         $this->data['invoice'] = $this->Student_model->invoice_detail($id);
         $paid_fees = $this->Student_model->student_paid_fees($this->data['invoice']->fees_structure_id, $this->data['invoice']->std_id);
         $total_paid = 0;

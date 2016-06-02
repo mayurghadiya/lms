@@ -91,6 +91,7 @@
     <!-- .vd_content-section --> 
 
 </div>
+</div></div>
 <!-- Middle Content End --> 
 <script>
 $(document).ready(function(){
