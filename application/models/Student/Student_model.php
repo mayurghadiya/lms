@@ -783,13 +783,25 @@ class Student_model extends CI_Model {
         $todolist=$this->db->query('SELECT DISTINCT date(todo_datetime) from todo_list where todo_datetime >= "'.date('Y-m-d').'"')->result();
         $event=$this->db->query('SELECT DISTINCT date(event_date) from event_manager where event_date >= "'.date('Y-m-d').'"')->result();
         
-        if(count($todolist)>count($event))
-        {
-            return $todolist;
+        foreach ($todolist as $todo) {
+            foreach ($todo as $row) {               
+                $data[]=$row;
+            }
         }
-        else
-        {
-            return $event;
+         foreach ($event as $ev) {
+            foreach ($ev as $row) {               
+                $data[]=$row;
+            }
         }
+        $result=  array_unique($data);
+        return $result;
+//        if(count($todolist)>count($event))
+//        {
+//            return $todolist;
+//        }
+//        else
+//        {
+//            return $event;
+//        }
     }
 }

@@ -47,7 +47,8 @@ class Student extends MY_Controller {
         $this->data['timline_todolist'] = $this->Student_model->get_timline_todolist();
         $this->data['timline_event'] = $this->Student_model->get_timline_event();
         $this->data['timelinecount']=$this->Student_model->get_timeline_date_count();
-        
+//          echo "<pre>";
+//        print_r($this->data['timelinecount']);
 //        echo "<pre>";
 //        print_r($this->data['timline_todolist']);
 //        print_r($this->data['timline_event']);

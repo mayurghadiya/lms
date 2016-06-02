@@ -1,5 +1,5 @@
 <?php
-$data=$this->db->get_where('todo_list',array('date(todo_datetime)'=>$param2,'todo_role'=>'student','todo_role_id'=>$this->session->userdata('student_id')))->result_array();
+$data=$this->db->get_where('event_manager',array('date(event_date)'=>$param2))->result_array();
    
 ?>
 <div class=row>                      
@@ -12,8 +12,11 @@ $data=$this->db->get_where('todo_list',array('date(todo_datetime)'=>$param2,'tod
                     <thead>
                         <tr>
                             <th><div>#</div></th>
-                            <th><?php echo ucwords("todo list title"); ?></th>
-                            <th><?php echo ucwords("date"); ?></th>
+                            <th><?php echo ucwords("event name"); ?></th>
+                            <th><?php echo ucwords("start date"); ?></th>
+                            <th><?php echo ucwords("end date"); ?></th>
+                            <th><?php echo ucwords("location"); ?></th>
+                            <th><?php echo ucwords("description"); ?></th>
                         </tr>
                     </thead>
 
@@ -24,8 +27,11 @@ $data=$this->db->get_where('todo_list',array('date(todo_datetime)'=>$param2,'tod
                             ?>
                             <tr>
                                 <td><?php echo $i++;?></td>
-                                <td><?php echo $row['todo_title']; ?></td>                         
-                                <td><?php echo date('d-m-Y', strtotime($row['todo_datetime'])); ?></td>
+                                <td><?php echo $row['event_name']; ?></td>                         
+                                <td><?php echo date('d-m-Y', strtotime($row['event_date'])); ?></td>
+                                <td><?php echo date('d-m-Y', strtotime($row['event_end_date'])); ?></td>
+                                <td><?php echo $row['event_location']; ?></td> 
+                                <td><?php echo $row['event_desc']; ?></td> 
                             </tr>
                         <?php endforeach; ?>						
                     </tbody>
