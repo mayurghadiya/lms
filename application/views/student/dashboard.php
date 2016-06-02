@@ -825,12 +825,12 @@
                                                                         }
                                                                     }
                                                                 }
-                                                                if($j>3)
+                                                              /*  if($j>3)
                                                                 {
                                                                     ?>
                                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
                                                                     <?php
-                                                                }
+                                                                }*/
                                                                 ?>
                                                                             
                                                             </div>
@@ -839,8 +839,9 @@
                                                         ?>
                                                     
                                                             <?php
-                                                             foreach ($timline_todolist as $time_line) {
-                                                                 $eventdate[]=date('Y-m-d', strtotime($time_line->todo_datetime));
+                                                             foreach ($timline_todolist as $time_line1) {
+                                                                 $eventdate[]=date('Y-m-d', strtotime($time_line1->todo_datetime));
+                                                             }
                                                                  if(in_array($c, $eventdate))
                                                                  {
                                                                        if ($j < 3) {
@@ -858,20 +859,20 @@
                                                                         }
                                                                         }
                                                                     }
-                                                                      if($j>3)
-                                                                {
-                                                                    ?>
-                                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_todolist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
-                                                                    <?php
-                                                                }
+                                                                  /*    if($j>3)
+                                                                        {
+                                                                            ?>
+                                                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
+                                                                            <?php
+                                                                       }*/
                                                                     ?>   
                                                                     
                                                                 </div>
                                                                 <?php
                                                             }
                                                                  }
-                                                             }
-                                                            ?>  
+                                                            ?> 
+                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
                                                     <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($time_line->todo_datetime); ?></div>
                                                         </div>
                                                     </div>

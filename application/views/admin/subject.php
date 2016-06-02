@@ -10,12 +10,12 @@
                 <table class="table table-striped table-responsive table-bordered" id="datatable-list">
                     <thead>
                         <tr>
-                            <th><div>#</div></th>											
-                            <th><div><?php echo ucwords("Subject Name"); ?></div></th>											
-                            <th><div><?php echo ucwords("Subject Code"); ?></div></th>											
-                            <th><div><?php echo ucwords("Branch"); ?></div></th>											
-                            <th><div><?php echo ucwords("Semester"); ?></div></th>									
-                            <th><div><?php echo ucwords("Action"); ?></div></th>											
+                            <th>#</th>											
+                            <th><?php echo ucwords("Subject Name"); ?></th>											
+                            <th><?php echo ucwords("Subject Code"); ?></th>											
+                            <th><?php echo ucwords("Branch"); ?></th>											
+                            <th><?php echo ucwords("Semester"); ?></th>									
+                            <th><?php echo ucwords("Action"); ?></th>											
                         </tr>
                     </thead>
                     <tbody>

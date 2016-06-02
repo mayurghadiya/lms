@@ -65,7 +65,7 @@
                     <div class="form-group" id="main_student" style="display: none;">
                         <label class="col-sm-2 control-label">Student</label>
                         <div class="col-sm-5">                                            
-                            <select class="form-control" multiple="" id="student" name="student[]">                                                
+                            <select class="form-control select2" multiple="" id="student" name="student[]">                                                
                                 <option value="all">All Student</option>
                             </select>
                         </div>
