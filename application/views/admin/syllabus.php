@@ -53,14 +53,14 @@
                     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="datatable-list">
                         <thead>
                             <tr>
-                                <th><div>#</div></th>												
-                                <th><div><?php echo ucwords("Syllabus Title"); ?></div></th>
-                                <th><div><?php echo ucwords("department"); ?></div></th>
-                                <th><div><?php echo ucwords("Branch"); ?></div></th>												                                                
-                                <th><div><?php echo ucwords("Semester"); ?></div></th>
-                                <th><div><?php echo ucwords("Description"); ?></div></th>
-                                <th><div><?php echo ucwords("File"); ?></div></th>                                            
-                                <th><div><?php echo ucwords("Action"); ?></div></th>											
+                                <th>#</th>												
+                                <th><?php echo ucwords("Syllabus Title"); ?></th>
+                                <th><?php echo ucwords("department"); ?></th>
+                                <th><?php echo ucwords("Branch"); ?></th>												                                                
+                                <th><?php echo ucwords("Semester"); ?></th>
+                                <th><?php echo ucwords("Description"); ?></th>
+                                <th><?php echo ucwords("File"); ?></th>                                            
+                                <th><?php echo ucwords("Action"); ?></th>											
                             </tr>
                         </thead>
                         <tbody>

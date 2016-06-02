@@ -6,6 +6,9 @@
             <file>file:/opt/lampp/htdocs/lms/application/models/Student/Student_model.php</file>
             <file>file:/opt/lampp/htdocs/lms/application/controllers/Student.php</file>
             <file>file:/opt/lampp/htdocs/lms/application/views/student/dashboard.php</file>
+            <file>file:/opt/lampp/htdocs/lms/application/views/admin/participate.php</file>
+            <file>file:/opt/lampp/htdocs/lms/application/views/student/modal_eventlist.php</file>
+            <file>file:/opt/lampp/htdocs/lms/application/views/student/modal_todolist.php</file>
         </group>
     </open-files>
 </project-private>
