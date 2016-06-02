@@ -2,7 +2,7 @@
 <div class=row>
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh" id="supr0">
+        <div class="panel-default toggle panelMove panelClose panelRefresh" id="supr0">
             <!-- Start .panel -->
             <div class=panel-heading>
                 <h4 class=panel-title>Form validation</h4>

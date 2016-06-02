@@ -35,6 +35,8 @@ class Admin extends MY_Controller {
         $this->calendar_json();
         $this->data['todolist'] = $this->Crud_model->get_todo();
         $this->data['timeline'] = $this->Crud_model->get_timline();
+        $this->data['title'] = 'Dashboard';
+        $this->data['page'] = 'dashboard';
         $this->__site_template('admin/dashboard', $this->data);
     }
 
@@ -303,7 +305,7 @@ class Admin extends MY_Controller {
         $this->data['add_title'] = $this->lang_message('add_admission_type');
         $this->data['edit_title'] = $this->lang_message('edit_admission_type');
         $this->data['admission_type'] = $this->db->get('admission_type')->result_array();
-        $page_data['page'] = 'admission_type';
+        $this->data['page'] = 'admission_type';
         $this->__site_template('admin/admission_type', $this->data);
     }
 
@@ -561,7 +563,7 @@ class Admin extends MY_Controller {
         $page_data['title'] = 'Syllabus Management';
         $this->data['add_title'] = $this->lang_message('add_syllabus');
         $this->data['edit_title'] = $this->lang_message('edit_syllabus');
-        $page_data['page_name'] = 'syllabus';
+        $this->data['page'] = 'syllabus';
         $this->__site_template('admin/syllabus', $this->data);
     }
 
@@ -879,7 +881,7 @@ class Admin extends MY_Controller {
         }
         $this->data['events'] = $this->Crud_model->event_manager();
         $this->data['group'] = $this->db->get('group')->result();
-        $this->data['page'] = 'events';
+        $this->data['page'] = 'event';
         $this->data['title'] = $this->lang_message('event_title');
         $this->data['add_title'] = $this->lang_message('add_events');
         $this->data['edit_title'] = $this->lang_message('edit_events');
@@ -1788,7 +1790,7 @@ class Admin extends MY_Controller {
         }
 
         $this->data['title'] = $this->lang_message('subscriber_title');
-        $this->data['page_name'] = 'subscriber';
+        $this->data['page'] = 'subscriber';
         $this->data['subscriber'] = $this->Crud_model->subscriber();
         $this->__site_template('admin/subscriber', $this->data);
     }
@@ -1980,7 +1982,7 @@ class Admin extends MY_Controller {
         $this->data['title'] = $this->lang_message('charity_title');
         $this->data['add_title'] = $this->lang_message('add_charity_fund');
         $this->data['edit_title'] = $this->lang_message('edit_charity_fund');
-        $this->data['page'] = 'charity_fund';
+        $this->data['page'] = 'charity';
         $this->data['charity_rund'] = $this->Crud_model->charity_fund();
         $this->__site_template('admin/charity_fund', $this->data);
     }
@@ -2272,7 +2274,7 @@ class Admin extends MY_Controller {
         $this->data['title'] = $this->lang_message('exam_schedule_title');
         $this->data['add_title'] = $this->lang_message('add_exam_schedule');
         $this->data['edit_title'] = $this->lang_message('edit_exam_schedule');
-        $this->data['page'] = 'exam_time_table';
+        $this->data['page'] = 'exam_schedule';
         $this->__site_template('admin/exam_time_table', $this->data);
     }
 
@@ -2399,7 +2401,7 @@ class Admin extends MY_Controller {
         $this->data['semester'] = $this->Crud_model->get_all_semester();
         $this->data['time_table'] = $this->Crud_model->time_table();
         $this->data['title'] = 'Exam Marks';
-        $this->data['page'] = 'exam_marks';
+        $this->data['page'] = 'marks';
         $this->__site_template('admin/exam_marks', $this->data);
     }
 
@@ -2439,7 +2441,7 @@ class Admin extends MY_Controller {
         $this->data['title'] = 'Exam Grade';
         $this->data['edit_title'] = $this->lang_message('edit_grade');
         $this->data['add_title'] = $this->lang_message('add_grade');
-        $this->data['page'] = 'grade';
+        $this->data['page'] = 'exam_grade';
         $this->data['grade'] = $this->Crud_model->grade();
         $this->__site_template('admin/grade', $this->data);
     }
@@ -2552,7 +2554,7 @@ class Admin extends MY_Controller {
         $this->data['title'] = 'Fee Structure';
         $this->data['add_title'] = $this->lang_message('add_fee_structure');
         $this->data['edit_title'] = $this->lang_message('edit_fee_structure');
-        $this->data['page'] = 'fees_structure';
+        $this->data['page'] = 'fee_structure';
         $this->__site_template('admin/fees_structure', $this->data);
     }
 
@@ -2770,9 +2772,15 @@ class Admin extends MY_Controller {
         $degree = $this->input->post("degree");
         $course = $this->input->post("course");
         $class = $this->input->post("divclass");
-        $data['datastudent'] = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree, 'class_id' => $class))->result();
-
-        $this->session->set_flashdata('flash_message', count($data['datastudent']) . ' records found.');
+        
+        $data['datastudent'] = $this->db->get_where("student", array(
+            "std_batch" => $batch, 
+            'std_status' => 1, 
+            "semester_id" => $sem, 
+            'course_id' => $course, 
+            'std_degree' => $degree, 
+            'class_id' => $class))->result();
+        //$this->session->set_flashdata('flash_message', count($data['datastudent']) . ' records found.');
         $this->load->view("admin/ajax_student", $data);
     }
 
@@ -2859,7 +2867,7 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/system_settings/', 'refresh');
         }
         $this->data['title'] = $this->lang_message('system_title');
-        $this->data['page'] = 'system_settings';
+        $this->data['page'] = 'system_setting';
         $this->data['settings'] = $this->db->get('system_setting')->result_array();
         $this->__site_template('admin/system_settings', $this->data);
     }
@@ -3393,6 +3401,7 @@ class Admin extends MY_Controller {
 
         $this->data['inbox'] = admin_inbox();
         $this->data['title'] = 'Inbox';
+        $this->data['page'] = 'inbox';
         //$this->data['content'] = 'backend/admin/email_inbox';
         $this->__site_template('admin/email_inbox', $this->data);
     }
@@ -3407,6 +3416,7 @@ class Admin extends MY_Controller {
 
         $this->data['email'] = admin_inbox_email_view($id);
         $this->data['title'] = $this->data['email']->subject;
+        $this->data['page'] = 'inbox';
         $this->__site_template('admin/email_inbox_view', $this->data);
     }
 
@@ -3508,7 +3518,7 @@ class Admin extends MY_Controller {
         //set the template and view
         $this->data['title'] = 'Compose Email';
         $this->data['content'] = 'backend/admin/email_compose';
-        $this->data['page'] = 'email_compose';
+        $this->data['page'] = 'compose';
         $this->__site_template('admin/email_compose', $this->data);
     }
 
@@ -3547,7 +3557,7 @@ class Admin extends MY_Controller {
 
         $this->data['email'] = admin_inbox_email_view($id);
         $this->data['title'] = $this->data['email']->subject;
-        $this->data['page'] = 'email_reply';
+        $this->data['page'] = 'reply';
 
 
         /// $this->data['content'] = 'backend/admin/email_reply';
@@ -3561,7 +3571,7 @@ class Admin extends MY_Controller {
         $this->load->helper('system_email');
         $this->data['sent_mail'] = admin_sent_email();
         $this->data['title'] = 'Sent Email';
-        $this->data['page'] = 'email_sent';
+        $this->data['page'] = 'sent';
         $this->__site_template('admin/email_sent', $this->data);
     }
 
@@ -5720,7 +5730,7 @@ class Admin extends MY_Controller {
             redirect(base_url('admin/authorize_payment_config'));
         }
         $this->data['title'] = 'Authorize.net Payment Gateway Configuration';
-        $this->data['page'] = 'authorize_payment_config';
+        $this->data['page'] = 'authorize_config';
         $this->data['authorize_net'] = $this->Crud_model->authorize_net_config();
         $this->__site_template('admin/authorize_payment_config', $this->data);
     }

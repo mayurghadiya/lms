@@ -379,9 +379,6 @@
                                                 <label for="status" class="error"></label>
                                       </div>
                                 </div>
-
-
-
                                 <div class="form-group">
                                     <div class="col-sm-offset-4 col-sm-5">
                                         <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add "); ?></button>

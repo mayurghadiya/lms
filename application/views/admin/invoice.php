@@ -2,7 +2,7 @@
 <div class="row printable">
     <div class=col-md-12>
         <!-- col-md-12 start here -->
-        <div class="panel panel-default invoice">
+        <div class="panel-default invoice">
             <!--            <div class="panel-heading clearfix">
                             <h4 class="panel-title pull-left"><span><?php echo $title; ?></span></h4>
                             <div class=print><a href=# class=tip title="Print invoice"><i class="s24 icomoon-icon-print"></i></a></div>

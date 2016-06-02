@@ -87,6 +87,7 @@ $(document).ready(function () {
             var batch = $("form#frmstudentlist #filterbatch").val();
             var sem = $("form#frmstudentlist #filtersemester").val();
             var divclass = $("form#frmstudentlist #filterclass").val();
+           
             $.ajax({
                 url: base_url + 'admin/get_filter_student',
                 type: 'POST',
