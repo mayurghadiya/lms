@@ -1,6 +1,6 @@
 
 <div class=row>  
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <div class="panel-body pt0 pb0" style="height:350px !important; max-height:350px !important;">
                 <form id=validate class="form-horizontal group-border stripped" role=form>
                     <div class=form-group>

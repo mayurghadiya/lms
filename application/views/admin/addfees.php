@@ -1,7 +1,7 @@
 <div class="row">
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title>Add Fee Structure</h4>
@@ -216,26 +216,29 @@
 <script>
     $(document).ready(function () {
         $("#start_date").datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             minDate: new Date(),
             onClose: function (selectedDate) {
                 $("#end_date").datepicker("option", "minDate", selectedDate);
             }
         });
         $("#end_date").datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             onClose: function (selectedDate) {
                 $("#start_date").datepicker("option", "maxDate", selectedDate);
                 $("#expiry_date").datepicker("option", "minDate", selectedDate);
             }
         });
         $('#expiry_date').datepicker({
-            dateFormat: 'dd M yy',
+           format: ' MM d, yyyy',
             changeMonth: true,
+            autoclose:true,
             changeYear: true,
         });
 

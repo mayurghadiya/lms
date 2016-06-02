@@ -6,7 +6,7 @@ $semesters = $this->db->get('semester')->result_array();
 <div class=row>                      
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title>  <?php echo ucwords("Add Student"); ?></h4>                
@@ -282,13 +282,15 @@ $semesters = $this->db->get('semester')->result_array();
 
         }
     });
-     
+
+     $(".basic-datepicker").datepicker({ format: ' MM d, yyyy',autoclose:true});         
     $(document).ready(function () {
         $(".datepicker-normal").datepicker({
             dateFormat: 'dd M yy',
             changeMonth: true,
             changeYear: true,
             mixDate: new Date()
+
         });
 
         jQuery.validator.addMethod("mobile_no", function (value, element) {

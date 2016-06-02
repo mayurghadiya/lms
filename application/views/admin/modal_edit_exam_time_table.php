@@ -35,7 +35,7 @@ $semester = $this->db->get('semester')->result();
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <div class=panel-heading>
                 <h4 class=panel-title>Update Exam Schedule</h4>
@@ -188,9 +188,10 @@ $semester = $this->db->get('semester')->result();
     $(function () {
 
         $(".datepicker-normal-edit").datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy',
             changeMonth: true,
-            changeYear: true
+            changeYear: true,
+            autoclose:true,
 
         });
     });

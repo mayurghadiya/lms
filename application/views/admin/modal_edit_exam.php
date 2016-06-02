@@ -27,7 +27,7 @@ $centerlist = $this->db->get('center_user')->result();
 <div class="row">
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title>Update Exam</h4>
@@ -176,8 +176,8 @@ $centerlist = $this->db->get('center_user')->result();
 <script>
         $(document).ready(function () {
             $('.datepicker-normal-edit').datepicker({
-                format: 'yyyy-mm-dd',
-               // autoclose:true,
+                format: ' MM d, yyyy',
+                autoclose:true,
             });
         })
     </script>

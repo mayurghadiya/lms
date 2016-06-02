@@ -5,7 +5,7 @@ foreach ( $edit_data as $row):
 <div class=row>                      
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                                 <h4 class=panel-title>  <?php echo ucwords("Update holiday"); ?></h4>                
@@ -64,18 +64,20 @@ endforeach;
   <script>
          $(document).ready(function () {
          $("#holiday_startdate1").datepicker({
-                dateFormat: 'dd M yy',
+                format: ' MM d, yyyy',
                 changeMonth: true,
                 changeYear: true,
+                autoclose:true,
                 onClose: function (selectedDate) {
                     $("#holiday_enddate1").datepicker("option", "minDate", selectedDate);
                 }
             });
             
             $("#holiday_enddate1").datepicker({
-                dateFormat: 'dd M yy',
+                format: ' MM d, yyyy', autoclose:true,
                 changeMonth: true,
                 changeYear: true,
+                autoclose:true,
                 onClose: function (selectedDate) {
                     $("#holiday_startdate1").datepicker("option", "maxDate", selectedDate);
                 }

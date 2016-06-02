@@ -1,7 +1,7 @@
 <div class=row>                      
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title>  <?php echo ucwords("Add vocational course"); ?></h4>                
@@ -94,19 +94,21 @@
 <script>
     $(document).ready(function () {
         $("#startdate").datepicker({
-            dateFormat: 'dd M yy',     
+             format: ' MM d, yyyy',
             minDate:'0',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             onClose: function (selectedDate) {
                 $("#enddate").datepicker("option", "minDate", selectedDate);
             }
         });
 
         $("#enddate").datepicker({
-            dateFormat: 'dd M yy',
+             format: ' MM d, yyyy',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             onClose: function (selectedDate) {
                 $("#startdate").datepicker("option", "maxDate", selectedDate);
             }

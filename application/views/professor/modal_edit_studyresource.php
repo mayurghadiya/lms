@@ -207,8 +207,9 @@ endforeach;
     $().ready(function () {
 
         $("#dateofsubmission1").datepicker({
-            dateFormat: ' MM dd, yy',
-            minDate: 0
+            format: ' MM d, yyyy',
+            minDate: 0,
+            autoclose:true
         });
         jQuery.validator.addMethod("character", function (value, element) {
             return this.optional(element) || /^[A-z]+$/.test(value);

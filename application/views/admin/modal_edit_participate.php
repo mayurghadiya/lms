@@ -5,7 +5,7 @@ foreach ($edit_data as $row):
     <div class=row>                      
         <div class=col-lg-12>
             <!-- col-lg-12 start here -->
-            <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+            <div class="panel-default toggle panelMove panelClose panelRefresh">
                 <!-- Start .panel -->
                 <!--                <div class=panel-heading>
                                         <h4 class=panel-title>                         
@@ -288,7 +288,8 @@ endforeach;
     $().ready(function () {
 
         $("#dateofsubmission1").datepicker({
-            dateFormat: ' MM dd, yy',
+            format: ' MM d, yyyy',
+            autoclose:true,
             minDate: 0
         });
         jQuery.validator.addMethod("character", function (value, element) {

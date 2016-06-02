@@ -206,7 +206,7 @@
             }
         });
         $(".datepicker-normal").datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy', autoclose:true,
             changeMonth: true,
             changeYear: true,
             maxDate: 0

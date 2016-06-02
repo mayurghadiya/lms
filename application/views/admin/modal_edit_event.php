@@ -4,7 +4,7 @@ $edit_data = $this->db->get_where('event_manager', array('event_id' => $param2))
 <div class=row>                      
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title>  <?php echo ucwords("Update Event"); ?></h4>                
@@ -96,7 +96,7 @@ $edit_data = $this->db->get_where('event_manager', array('event_id' => $param2))
 
             $().ready(function () {
                 $("#edit-datepicker-date").datepicker({
-                    dateFormat: 'dd M yy',
+                    format: ' MM d, yyyy', autoclose:true,
                     changeMonth: true,
                     changeYear: true,
                     minDate: new Date(),
@@ -105,7 +105,7 @@ $edit_data = $this->db->get_where('event_manager', array('event_id' => $param2))
                     }
                 });
                 $("#edit-datepicker-end-date").datepicker({
-                    dateFormat: 'dd M yy',
+                    format: ' MM d, yyyy', autoclose:true,
                     changeMonth: true,
                     changeYear: true,
                     minDate: new Date(),

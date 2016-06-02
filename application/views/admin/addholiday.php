@@ -5,7 +5,7 @@
 <div class=row>                      
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title>  <?php echo ucwords("Add holiday"); ?></h4>                
@@ -25,15 +25,17 @@
                                         </div>	
                                          <div class="form-group">
                                             <label class="col-sm-4 control-label"><?php echo ucwords("start date");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-8 input-group date">
                                                 <input type="text" class="form-control" name="holiday_startdate" id="holiday_startdate"/>
+                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 
                                             </div>	
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label"><?php echo ucwords("end date");?><span style="color:red">*</span></label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-8 input-group date">
                                                 <input type="text" class="form-control" name="holiday_enddate" id="holiday_enddate"/>
+                                                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                             </div>	
                                         </div>
                                         <div class="form-group">
@@ -64,17 +66,18 @@
         
          $(document).ready(function () {
          $("#holiday_startdate").datepicker({
-                dateFormat: 'dd M yy',
+                 format: ' MM d, yyyy',
                 changeMonth: true,
                 changeYear: true,
                 autoclose:true,
-                onClose: function (selectedDate) {
+                minDate:0,
+                onClose: function (selectedDate) {                   
                     $("#holiday_enddate").datepicker("option", "minDate", selectedDate);
                 }               
             });
             
             $("#holiday_enddate").datepicker({
-                dateFormat: 'dd M yy',
+                 format: ' MM d, yyyy',
                 changeMonth: true,
                 changeYear: true,
                  autoclose:true,
@@ -97,5 +100,7 @@
                      holiday_enddate:"Select date",
                 }
             });
-          });
+             
+               
+    }); 
         </script>

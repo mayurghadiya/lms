@@ -5,7 +5,7 @@ $degree_list = $this->db->get('degree')->result();
 
 <div class=col-lg-12>
     <!-- col-lg-12 start here -->
-    <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+    <div class="panel-default toggle panelMove panelClose panelRefresh">
         <!-- Start .panel -->
         <!--        <div class=panel-heading>
                     <h4 class=panel-title>Update Professor</h4>
@@ -128,9 +128,10 @@ $degree_list = $this->db->get('degree')->result();
     <!-- col-lg-12 end here -->
     <script type="text/javascript">
         $(".datepicker-normal").datepicker({
-            dateFormat: 'dd M yy',
+             format: ' MM d, yyyy',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             mixDate: new Date()
         });
         $("#professor-form").validate({

@@ -6,7 +6,7 @@ foreach ( $edit_data as $row):
 <div class=row>
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                                 <h4 class=panel-title>  <?php echo ucwords("Update chancellor"); ?></h4>                
@@ -110,7 +110,9 @@ endforeach;
     $(document).ready(function () {
 
         $("#birthdate").datepicker({
-            maxDate: 0
+             format: ' MM d, yyyy',
+            maxDate: 0,
+            autoclose:true
         });
 
         jQuery.validator.addMethod("mobile_no", function (value, element) {

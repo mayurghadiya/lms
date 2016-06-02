@@ -497,8 +497,10 @@ Delete
 <script>
     $().ready(function () {
         $("#inlinedate").datepicker({
-            dateFormat: ' MM dd, yy',
-            minDate: 0
+            format: ' MM d, yyyy',
+            minDate: 0,
+            autoclose:true
+            
         });
     });
     function showEdit(editableObj) {

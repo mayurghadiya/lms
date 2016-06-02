@@ -47,7 +47,7 @@
     <!-- col-lg-12 end here -->
 </div>
 <!-- End .row -->
-</div>
+
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
