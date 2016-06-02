@@ -652,10 +652,7 @@
                             </li>
                         <?php } ?>
                     </ul>
-
-
-                                    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
-                                        <div class=checkbox-custom><input type="checkbox" <?php
+   <div class=checkbox-custom><input type="checkbox" <?php
                                             if ($todo->todo_status == "0") {
                                                 echo "checked=''";
                                             }
@@ -669,7 +666,7 @@
                                             <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
                                         </div>
                                     </li>
-                                <?php } ?>
+                              
                             </ul>
                         </div>
                     </div>
@@ -832,7 +829,12 @@
                                                                         }
                                                                     }
                                                                 }
-                                                                
+                                                                if($j>3)
+                                                                {
+                                                                    ?>
+                                                                            <a href="#" >Read more</a>
+                                                                    <?php
+                                                                }
                                                                 ?>
                                                                             
                                                             </div>
@@ -852,6 +854,12 @@
                                                                         }
                                                                         }
                                                                     }
+                                                                      if($j>3)
+                                                                {
+                                                                    ?>
+                                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_todolist/<?php echo $time_line->todo_datetime?>');" data-toggle="modal"> Read More</a>
+                                                                    <?php
+                                                                }
                                                                     ?>   
                                                                     <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($time_line->todo_datetime); ?></div>
                                                                 </div>
