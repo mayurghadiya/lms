@@ -110,7 +110,9 @@ endforeach;
     $(document).ready(function () {
 
         $("#birthdate").datepicker({
-            maxDate: 0
+             format: ' MM d, yyyy',
+            maxDate: 0,
+            autoclose:true
         });
 
         jQuery.validator.addMethod("mobile_no", function (value, element) {

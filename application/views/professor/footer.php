@@ -18,7 +18,8 @@
     <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script type="text/javascript" src="js/libs/respond.min.js"></script>
     <![endif]-->
-<script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/datepick/bootstrap-datepicker.min.js" charset="UTF-8"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-timepicker/bootstrap-timepicker.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/forms/select2/select2.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/forms/dual-list-box/jquery.bootstrap-duallistbox.js"></script>

@@ -128,9 +128,10 @@ $degree_list = $this->db->get('degree')->result();
     <!-- col-lg-12 end here -->
     <script type="text/javascript">
         $(".datepicker-normal").datepicker({
-            dateFormat: 'dd M yy',
+             format: ' MM d, yyyy',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             mixDate: new Date()
         });
         $("#professor-form").validate({

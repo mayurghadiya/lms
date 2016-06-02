@@ -163,8 +163,9 @@ endforeach;
 
     $().ready(function () {
         $("#submissiondate1").datepicker({
-            dateFormat: ' MM dd, yy',
-            minDate: 0
+            format: ' MM d, yyyy',
+            minDate: 0,
+            autoclose:true
         });
 
         $("#frmeditsyllabus").validate({

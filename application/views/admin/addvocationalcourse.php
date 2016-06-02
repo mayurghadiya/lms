@@ -94,19 +94,21 @@
 <script>
     $(document).ready(function () {
         $("#startdate").datepicker({
-            dateFormat: 'dd M yy',     
+             format: ' MM d, yyyy',
             minDate:'0',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             onClose: function (selectedDate) {
                 $("#enddate").datepicker("option", "minDate", selectedDate);
             }
         });
 
         $("#enddate").datepicker({
-            dateFormat: 'dd M yy',
+             format: ' MM d, yyyy',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             onClose: function (selectedDate) {
                 $("#startdate").datepicker("option", "maxDate", selectedDate);
             }

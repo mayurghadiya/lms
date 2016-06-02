@@ -176,8 +176,8 @@ $centerlist = $this->db->get('center_user')->result();
 <script>
         $(document).ready(function () {
             $('.datepicker-normal-edit').datepicker({
-                format: 'yyyy-mm-dd',
-               // autoclose:true,
+                format: ' MM d, yyyy',
+                autoclose:true,
             });
         })
     </script>

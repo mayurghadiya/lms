@@ -52,7 +52,7 @@
         $("#wait").css("display", "none");
     });
         $("#basic-datepickeredit").datepicker({
-            dateFormat: ' MM dd, yy',
+            format: ' MM d, yyyy',
             minDate: '0 days',
             autoclose:true,
         });

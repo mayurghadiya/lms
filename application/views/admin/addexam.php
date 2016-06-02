@@ -156,8 +156,12 @@
         <!-- col-lg-12 end here -->
     </div>
     <script>
-        $('.date-picker').datepicker({
-        });
+        $(document).ready(function () {
+            $('.datepicker-normal').datepicker({
+                format: ' MM d, yyyy',
+                autoclose:true,
+            });
+        })
     </script>
 
     <script type="text/javascript">

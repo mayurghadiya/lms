@@ -246,26 +246,29 @@ $batch = $this->db->query($query)->result();
 <script>
     $(document).ready(function () {
         $("#edit_start_date").datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             minDate: new Date(),
             onClose: function (selectedDate) {
                 $("#edit_end_date").datepicker("option", "minDate", selectedDate);
             }
         });
         $("#edit_end_date").datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             onClose: function (selectedDate) {
                 $("#edit_start_date").datepicker("option", "maxDate", selectedDate);
                 $("#edit_expiry_date").datepicker("option", "minDate", selectedDate);
             }
         });
         $('#edit_expiry_date').datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy',
             changeMonth: true,
+            autoclose:true,
             changeYear: true,
         });
 

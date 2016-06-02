@@ -172,9 +172,10 @@ $degree_list = $this->db->get('degree')->result();
     $(document).ready(function () {
 
         $(".datepicker-normal").datepicker({
-            dateFormat: 'dd M yy',
+             format: ' MM d, yyyy',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             mixDate: new Date()
         });
 

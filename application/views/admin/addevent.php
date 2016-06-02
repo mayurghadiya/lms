@@ -78,18 +78,20 @@
 
     $().ready(function () {
         $("#datepicker-date").datepicker({
-            dateFormat: 'dd M yy',
+             format: ' MM d, yyyy',
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             minDate: new Date(),
             onClose: function (selectedDate) {
                 $("#datepicker-end-date").datepicker("option", "minDate", selectedDate);
             }
         });
         $("#datepicker-end-date").datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy', autoclose:true,
             changeMonth: true,
             changeYear: true,
+            autoclose:true,
             minDate: new Date(),
             onClose: function (selectedDate) {
                 //$(".datepicker-normal").datepicker("option", "maxDate", new Date());
