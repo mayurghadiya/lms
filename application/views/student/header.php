@@ -247,6 +247,10 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="<?php echo base_url(); ?>video_streaming"><i class="s16 fa fa-desktop"></i><span class=txt>Video Streaming </span>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="<?php echo base_url(); ?>student/holiday">
                                                 <i class="s16 fa fa-book"></i>
                                                 <span class=txt>Holiday </span>

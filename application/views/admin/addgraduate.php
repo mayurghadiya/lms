@@ -147,10 +147,10 @@ $semesters = $this->db->get('semester')->result_array();
                     semester: "Select semester",
                     student: "Select student",
                     main_img: {
-                        required: "Upload slide image",
+                        required: "Upload student image",
                         extension: "Only gif,jpg,png file is allowed!"
                     },
-                    year: "Enter year"
+                    year: "Enter graduation year"
                 }
             });
         });

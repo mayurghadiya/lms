@@ -90,7 +90,7 @@
                                                     <ul>
                                                         <li><a href="<?php echo $dashboard_url; ?>"><i class="icon-user3"></i> Dashboard</a></li>
                                                         <li><a href="<?php echo $profile_url; ?>"><i class="icon-gear"></i> Profile</a></li>
-                                                        <li><a href="<?php echo base_url('login/logout'); ?>"><i class="icon-log-out"></i> Logout</a></li>
+                                                        <li><a href="<?php echo base_url('site/logout'); ?>"><i class="icon-log-out"></i> Logout</a></li>
                                                     </ul>
                                                 </div>
                                             </li>
