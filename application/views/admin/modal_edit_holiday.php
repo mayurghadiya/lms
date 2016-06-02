@@ -64,18 +64,20 @@ endforeach;
   <script>
          $(document).ready(function () {
          $("#holiday_startdate1").datepicker({
-                dateFormat: 'dd M yy',
+                format: ' MM d, yyyy',
                 changeMonth: true,
                 changeYear: true,
+                autoclose:true,
                 onClose: function (selectedDate) {
                     $("#holiday_enddate1").datepicker("option", "minDate", selectedDate);
                 }
             });
             
             $("#holiday_enddate1").datepicker({
-                dateFormat: 'dd M yy',
+                format: ' MM d, yyyy', autoclose:true,
                 changeMonth: true,
                 changeYear: true,
+                autoclose:true,
                 onClose: function (selectedDate) {
                     $("#holiday_startdate1").datepicker("option", "maxDate", selectedDate);
                 }

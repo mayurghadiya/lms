@@ -214,7 +214,7 @@
 
     $().ready(function () {
         $("#submissiondate").datepicker({
-            dateFormat: ' MM dd, yy',
+            format: ' MM d, yyyy',
             minDate: 0,
             autoclose:true,
         });

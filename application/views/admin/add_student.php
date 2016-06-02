@@ -282,9 +282,10 @@ $semesters = $this->db->get('semester')->result_array();
 
         }
     });
-     $(".basic-datepicker").datepicker();
+     $(".basic-datepicker").datepicker({ format: ' MM d, yyyy',autoclose:true});
     $(document).ready(function () {
         $("#birthdate").datepicker({
+            autoclose:true
         });
         $("#basic-datepicker").datepicker({
             maxDate: 0,

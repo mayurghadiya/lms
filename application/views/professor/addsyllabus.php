@@ -141,8 +141,9 @@
 
     $().ready(function () {
         $("#submissiondate").datepicker({
-            dateFormat: ' MM dd, yy',
-            minDate: 0
+            format: ' MM d, yyyy',
+            minDate: 0,
+            autoclose:true,
         });
 
         jQuery.validator.addMethod("character", function (value, element) {

@@ -316,7 +316,7 @@ foreach ($edit_data as $row) {
     {
         "use strict";
         $("#datepicker-normal").datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy', autoclose:true,
             changeMonth: true,
             changeYear: true
 

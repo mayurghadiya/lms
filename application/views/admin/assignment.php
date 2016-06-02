@@ -26,7 +26,7 @@
                     <div id="import-tab-content" class="tab-content">
 
                         <div class="tab-pane fade active in" id="list">
-                            <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addassignment');" data-toggle="modal"><i class="fa fa-plus"></i> assignment</a>
+                            <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addassignment');" data-toggle="modal"><i class="fa fa-plus"></i> Assignment</a>
                             <div class="row filter-row">
                             <form id="assignment-search" action="#" class="form-groups-bordered validate">
                                 <div class="form-group col-sm-2">

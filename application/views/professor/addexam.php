@@ -212,7 +212,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(".datepicker-normal").datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy', 
+            autoclose:true,
             changeMonth: true,
             changeYear: true,
             minDate: new Date(),
@@ -221,7 +222,7 @@
             }
         });
         $("#end_date_time").datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy', autoclose:true,
             changeMonth: true,
             changeYear: true,
             minDate: new Date(),
