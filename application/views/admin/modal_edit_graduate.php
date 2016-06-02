@@ -192,7 +192,7 @@ $students = $this->db->get_where('student', array(
                 main_img: {
                     extension: "Only gif,jpg,png file is allowed!"
                 },
-                year: "Enter year"
+                year: "Enter graduation year"
 
             }
         });

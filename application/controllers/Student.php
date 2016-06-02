@@ -9,13 +9,13 @@ class Student extends MY_Controller {
         if ($this->session->userdata('student_login') != 1)
             redirect(base_url(), 'refresh');
         $this->load->model('Student/Student_model');
-          $notification = show_notification($this->session->userdata('student_id'));
+        $notification = show_notification($this->session->userdata('student_id'));
         $this->session->set_userdata('notifications', $notification);
-        
-          if (!$this->input->is_ajax_request()) {
-            $this->load->helper('permission');        
-             user_permission();
-        }
+
+        /*if (!$this->input->is_ajax_request()) {
+            $this->load->helper('permission');
+            user_permission();
+        }*/
     }
 
     function index() {
@@ -46,13 +46,14 @@ class Student extends MY_Controller {
         $this->data['timeline'] = $this->Student_model->get_timline();
         $this->data['timline_todolist'] = $this->Student_model->get_timline_todolist();
         $this->data['timline_event'] = $this->Student_model->get_timline_event();
-        $this->data['timelinecount']=$this->Student_model->get_timeline_date_count();
+        $this->data['timelinecount'] = $this->Student_model->get_timeline_date_count();
 //          echo "<pre>";
 //        print_r($this->data['timelinecount']);
 //        echo "<pre>";
 //        print_r($this->data['timline_todolist']);
 //        print_r($this->data['timline_event']);
 //        exit;
+        $this->data['page'] = 'dashboard';
         $this->__site_template('student/dashboard', $this->data);
     }
 
@@ -694,7 +695,7 @@ class Student extends MY_Controller {
                 $this->db->update('student', array(
                     'profile_photo' => $this->session->userdata('student_id') . '.jpg'
                 ));
-                $this->session->set_userdata('profile_photo',$this->session->userdata('student_id') . '.jpg');
+                $this->session->set_userdata('profile_photo', $this->session->userdata('student_id') . '.jpg');
                 $this->session->set_flashdata('message', 'Profile pic is changed');
                 redirect(base_url('student/profile'));
             }
@@ -820,9 +821,9 @@ class Student extends MY_Controller {
         $pp_id = $this->input->post('pp_id');
         if ($pp_id != "") {
             $res = $this->db->get_where('participate_manager', array('pp_id' => $pp_id))->result_array();
-            $date = date("F d, Y",  strtotime($res[0]['pp_dos']));
-           $json = array("pp_desc"=>$res[0]['pp_desc'],"pp_dos"=>$date);
-            echo json_encode($json);        
+            $date = date("F d, Y", strtotime($res[0]['pp_dos']));
+            $json = array("pp_desc" => $res[0]['pp_desc'], "pp_dos" => $date);
+            echo json_encode($json);
         }
     }
 
@@ -832,51 +833,45 @@ class Student extends MY_Controller {
     public function assessment() {
 
         $this->load->model('Student/Student_model');
-       $this->data['assessment'] = $this->Student_model->student_assessment();
+        $this->data['assessment'] = $this->Student_model->student_assessment();
 
         $this->data['page'] = 'assessment';
         $this->data['title'] = 'Assessment';
         $this->__site_template('student/assessment', $this->data);
     }
-    
-    
+
     /**
      * Vocational course detail
      * @param String $param1
      * @param int $param2
      */
-    
-    function vocationalcourse($param1 = '', $param2 = '')
-    {
+    function vocationalcourse($param1 = '', $param2 = '') {
         if ($param1 == 'register') {
-        $this->data['vocationalcourse']=$this->db->get_where('vocational_course',array('vocational_course_id'=>$param2))->result_array();
-        
-     
-         $this->data['page'] = 'modal_register_vocational_course';
-        $this->data['title'] = 'Vocational Course Fee';
-        $this->__site_template('student/modal_register_vocational_course', $this->data);
-        }
-        else
-        {
+            $this->data['vocationalcourse'] = $this->db->get_where('vocational_course', array('vocational_course_id' => $param2))->result_array();
 
-          $this->data['vocationalcourse']=$this->db->query('SELECT * FROM vocational_course 
+
+            $this->data['page'] = 'modal_register_vocational_course';
+            $this->data['title'] = 'Vocational Course Fee';
+            $this->__site_template('student/modal_register_vocational_course', $this->data);
+        } else {
+
+            $this->data['vocationalcourse'] = $this->db->query('SELECT * FROM vocational_course 
                     WHERE NOT EXISTS (SELECT vocational_course_id FROM vocational_course_fee
-                    WHERE vocational_course_fee.vocational_course_id = vocational_course.vocational_course_id and vocational_course_fee.student_id= '.$this->session->userdata('student_id').')')->result_array();
-        
-          //$page_data['vocationalcourse'] = $this->db->get_where('vocational_course',array('status'=>1))->result_array();
-       
-          $this->data['page'] = 'vocational_course';
-        $this->data['title'] = 'Vocational Course';
-        $this->__site_template('student/vocational_course', $this->data);
+                    WHERE vocational_course_fee.vocational_course_id = vocational_course.vocational_course_id and vocational_course_fee.student_id= ' . $this->session->userdata('student_id') . ')')->result_array();
+
+            //$page_data['vocationalcourse'] = $this->db->get_where('vocational_course',array('status'=>1))->result_array();
+
+            $this->data['page'] = 'vocational_course';
+            $this->data['title'] = 'Vocational Course';
+            $this->__site_template('student/vocational_course', $this->data);
         }
-      
     }
-    
-     function pay_online_vocational_course() {
+
+    function pay_online_vocational_course() {
         if ($_POST) {
             //set payment data in session
             $session['payment_info'] = array(
-                'student_id' => $this->session->userdata('student_id'),                
+                'student_id' => $this->session->userdata('student_id'),
                 'amount' => $_POST['amount'],
                 'vocational_courseid' => $_POST['voc_course'],
             );
@@ -888,28 +883,26 @@ class Student extends MY_Controller {
             redirect(base_url('student/vocationalcourse'));
         }
     }
-    
-     function vocational_payment_gateway_type($type) {
+
+    function vocational_payment_gateway_type($type) {
         $this->load->model('admin/Crud_model');
         if ($type == 'authorize.net') {
             //load authorize.net payment getaway page
             $this->data['authorize_net'] = $this->Crud_model->authorize_net_config();
-            
         }
         $this->data['title'] = 'Make Payment';
-        $this->data['page'] = 'vocational_make_payment';       
-         $this->__site_template('student/vocational_make_payment', $this->data);
+        $this->data['page'] = 'vocational_make_payment';
+        $this->__site_template('student/vocational_make_payment', $this->data);
     }
-    
-    function vocational_authorize_net_make_payment()
-    {
-         $this->load->library('authorize_net');
+
+    function vocational_authorize_net_make_payment() {
+        $this->load->library('authorize_net');
         $this->load->model('Student/Student_model');
         if ($_POST) {
             $student_detail = $this->db->get_where('student', array(
                         'std_id' => $this->session->userdata('login_user_id')
                     ))->row();
-            
+
             $cc_details = $this->validateCreditcard_number($_POST['card_number']);
             if ($cc_details['status'] == 'false') {
                 // invalid card details
@@ -939,9 +932,9 @@ class Student extends MY_Controller {
                 $status = array();
                 // Try to AUTH_CAPTURE
                 if ($this->authorize_net->authorizeAndCapture()) {
-                    
+
                     $this->session->set_flashdata('flash_message', 'Transaction is successfully done.');
-                    
+
                     $student_detail = $this->db->get_where('student', array(
                                 'std_id' => $this->session->userdata('login_user_id')
                             ))->row();
@@ -950,7 +943,7 @@ class Student extends MY_Controller {
                         'student_id' => $this->session->userdata('payment_info')['student_id'],
                         'pay_amount' => $this->session->userdata('payment_info')['amount'],
                         'vocational_course_id' => $this->session->userdata('payment_info')['vocational_courseid'],
-                        'pay_date'=>date('Y-m-d')
+                        'pay_date' => date('Y-m-d')
                     ));
                     //remove session
                     $this->session->unset_userdata('payment_info');
@@ -966,8 +959,7 @@ class Student extends MY_Controller {
             }
         }
     }
-    
-    
+
     //end
     /**
      * Pay online
@@ -991,10 +983,7 @@ class Student extends MY_Controller {
             redirect(base_url('student/student_fees'));
         }
     }
-    
-    
-   
-    
+
     function student_fees() {
         $this->load->model('Student/Student_model');
         $this->data['student_detail'] = $this->db->get_where('student', array(
@@ -1009,9 +998,7 @@ class Student extends MY_Controller {
         unset($this->session->userdata('notifications')['fees_structure']);
         $this->__site_template('student/student_fees', $this->data);
     }
-     
-   
-    
+
     /**
      * Validate credit card number
      * @param int $cc_num
@@ -1079,51 +1066,42 @@ class Student extends MY_Controller {
         $data['status'] = 'true';
         return $data;
     }
-  /**
+
+    /**
      * Sanitize the input
      */
     function sanitize($value) {
         return trim(strip_tags($value));
     }
-    
-   
-     /**
+
+    /**
      * Filter and redirect based on payment gateway
      */
     function process_payment() {
         if ($this->session->userdata('payment_data')['payment_gateway'] == 'authorize') {
             $this->data['title'] = 'Process Payment';
-            $this->data['page'] = 'authorize_payment';            
+            $this->data['page'] = 'authorize_payment';
             $this->__site_template('student/authorize_payment', $this->data);
         } else {
             redirect(base_url('student/make_payment'));
         }
     }
-    
-    
+
     /**
      * course ware
      * @param String $param
      * @param int $param2
      */
-    
-    function courseware($param = '', $param2 = '')
-    {        
+    function courseware($param = '', $param2 = '') {
         $this->db->select("cw.*,c.* ");
         $this->db->from('courseware cw');
-        $this->db->join('course c','c.course_id=cw.branch_id');
-        $this->data['courseware'] =  $this->db->get('courseware')->result_array();
+        $this->db->join('course c', 'c.course_id=cw.branch_id');
+        $this->data['courseware'] = $this->db->get('courseware')->result_array();
 
         $this->data['page'] = 'courseware';
         $this->data['title'] = 'Courseware Management';
         $this->__site_template('student/courseware', $this->data);
-        
     }
-
- 
-    
-    
-    
 
     /**
      * Fees structure details
@@ -1163,7 +1141,6 @@ class Student extends MY_Controller {
         echo json_encode($total_paid);
     }
 
-    
     /**
      * Payment gateway type
      * @param string $type
@@ -1189,9 +1166,6 @@ class Student extends MY_Controller {
         $cc_details = $this->validateCreditcard_number($cc_number);
         echo json_encode($cc_details);
     }
-
-    
-
 
     /**
      * Authorize.net payment
@@ -1424,18 +1398,16 @@ class Student extends MY_Controller {
         $this->data['title'] = 'Gallery';
         $this->__site_template('student/gallery', $this->data);
     }
-    
+
     /**
      * holiday List
      */
-    function holiday()
-       {
-            $this->data['page'] = 'holiday';
-            $this->data['title'] = 'Holiday List';      
-            $this->data['holiday'] = $this->db->get('holiday')->result_array();
-            $this->__site_template('student/holiday', $this->data);
-       }
-    
+    function holiday() {
+        $this->data['page'] = 'holiday';
+        $this->data['title'] = 'Holiday List';
+        $this->data['holiday'] = $this->db->get('holiday')->result_array();
+        $this->__site_template('student/holiday', $this->data);
+    }
 
     /**
      * Student class routine
@@ -1454,7 +1426,7 @@ class Student extends MY_Controller {
 
         echo json_encode($class_routine);
     }
-    
+
     /**
      * Student vocational course
      */
@@ -1463,7 +1435,7 @@ class Student extends MY_Controller {
         $this->data['vocational_course'] = $this->Student_model->student_vocational_course($this->session->userdata('login_user_id'));
         $this->__site_template('student/student_vocational_course', $this->data);
     }
-    
+
     /**
      * Clear Library Notification
      */
@@ -1473,50 +1445,46 @@ class Student extends MY_Controller {
         unset($this->session->userdata('notifications')['library_manager']);
         redirect(base_url() . 'index.php?student/dashboard/', 'refresh');
     }
-    
+
     /**
      * Clear Notification
      */
-    
-     function studyresources() {
+    function studyresources() {
         clear_notification('study_resources', $this->session->userdata('student_id'));
         unset($this->session->userdata('notifications')['study_resources']);
         redirect(base_url() . 'index.php?student/dashboard/', 'refresh');
     }
-    
+
     /**
      * student syllabus
      */
-     function syllabus() {        
+    function syllabus() {
         $this->data['title'] = 'Syllabus';
-         $this->data['page'] = 'syllabus';
+        $this->data['page'] = 'syllabus';
         $this->data['syllabus'] = $this->Student_model->student_syllabus();
         $this->__site_template('student/syllabus', $this->data);
     }
 
-    
-    function add_to_do()
-    {
-        if($_POST)
-        {
+    function add_to_do() {
+        if ($_POST) {
             $title = $this->input->post('title');
             $todo_date = $this->input->post('todo_date');
             $todo_time = $this->input->post('todo_time');
-            $datetime = $todo_date.' '.$todo_time;
-           
+            $datetime = $todo_date . ' ' . $todo_time;
+
             $datetime = strtotime($datetime);
-            $datetime = date('Y-m-d H:i:s',$datetime);
-            
+            $datetime = date('Y-m-d H:i:s', $datetime);
+
             $data['todo_datetime'] = $datetime;
             $data['todo_title'] = $title;
             $data['todo_role'] = $this->session->userdata('login_type');
             $data['todo_role_id'] = $this->session->userdata('login_user_id');
             $this->Student_model->insert_todo($data);
             $this->data['todolist'] = $this->Student_model->get_todo();
-            $this->load->view("student/gettodo",$this->data);
+            $this->load->view("student/gettodo", $this->data);
         }
     }
-    
+
     function changestatus()
     {
         if($_POST)
@@ -1526,43 +1494,58 @@ class Student extends MY_Controller {
             $this->Student_model->change_status($data,$id);
         }
     }
-    
-    function removetodolist()
-    {
-        if($_POST)
-        {
+
+    function removetodolist() {
+        if ($_POST) {
             $id = $this->input->post('id');
-           
+
             $this->Student_model->removetodo($id);
         }
     }
-    function todoupdateform($param= '')
-    {
-        
+
+    function todoupdateform($param = '') {
+
         $this->data['todolist'] = $this->Student_model->gettododata($param);
-        $this->load->view("student/todoupdateform",$this->data);
+        $this->load->view("student/todoupdateform", $this->data);
     }
-    
-    function updatetodolist()
-    {
-         if($_POST)
-         {
+
+    function updatetodolist() {
+        if ($_POST) {
             $title = $this->input->post('title');
             $todo_date = $this->input->post('todo_date');
             $todo_time = $this->input->post('todo_time');
-            $datetime = $todo_date.' '.$todo_time;
-            
+            $datetime = $todo_date . ' ' . $todo_time;
+
             $datetime = strtotime($datetime);
-            $datetime = date('Y-m-d H:i:s',$datetime);
+            $datetime = date('Y-m-d H:i:s', $datetime);
             $data['todo_role'] = $this->session->userdata('login_type');
             $data['todo_role_id'] = $this->session->userdata('login_user_id');
             $data['todo_datetime'] = $datetime;
             $data['todo_title'] = $title;
-            $id  = $this->input->post('todo_id');           
-            $this->Student_model->update_todo($data,$id);
+            $id = $this->input->post('todo_id');
+            $this->Student_model->update_todo($data, $id);
             $this->data['todolist'] = $this->Student_model->get_todo();
-            $this->load->view("student/gettodo",$this->data);
-         }
-     }
+            $this->load->view("student/gettodo", $this->data);
+        }
+    }
+
+    /**
+     * Search
+     */
+    function search() {
+        $this->load->model('admin/Crud_model');
+        $this->load->helper('student_search');
+        $this->data['search_result'] = array();
+        if ($_POST) {
+            $this->data['title'] = 'Search Result';
+            if ($_POST['search'] != '')
+                $this->data['search_result'] = global_search($_POST['search'], $_POST);
+            $this->data['search_string'] = $_POST['search'];
+            unset($_POST['search']);
+            $this->data['from'] = $_POST;
+        }
+        $this->data['page'] = 'search_result';
+        $this->__site_template('student/search_result', $this->data);
+    }
 
 }

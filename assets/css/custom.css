@@ -572,7 +572,38 @@ label.error {
 .dashboard.student_dashboard #content .contentwrapper{ padding-top: 67px;  }
 
 
-#sidebar.sidebar-fixed .active .indicator {background-color: #39c; height: 36px; left: 0; position: absolute; top: 0; width: 4px;}
+#sidebar.page-sidebar .active .indicator {background-color: #39c; height: 36px; left: 0; position: absolute; top: 0; width: 4px;}
+
+
+.bootstrap-timepicker-widget.dropdown-menu table tr td i.fa { color: #000; font-size: 18px;}
+.bootstrap-timepicker-widget table td a {
+  -moz-user-select: none;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1.42857;
+  margin-bottom: 0;
+  padding: 6px 12px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+.bootstrap-timepicker-widget.dropdown-menu::after {top: -11px; left: 16px;}
+.bootstrap-timepicker-widget.dropdown-menu::before {left: 22px; top: -12px;}
+
+
+
+
+
+
+
 /*********************** media *****************************/
 
 @media screen and (max-width:1279px) { }

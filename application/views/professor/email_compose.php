@@ -17,7 +17,7 @@
                 <form class="form-horizontal" role="form" action="" method="post" 
                       enctype="multipart/form-data">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?></label>
+                        <label class="col-sm-2 control-label"><?php echo ucwords("department"); ?></label>
                         <div class="col-sm-5">
                             <select class="form-control" id="degree" name="degree" required="">
                                 <option value="">Select</option>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Branch"); ?></label>
+                        <label class="col-sm-2 control-label"><?php echo ucwords("Branch"); ?></label>
                         <div class="col-sm-5">
                             <select class="form-control" id="course" name="course" required="">
 
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Batch"); ?></label>
+                        <label class="col-sm-2 control-label"><?php echo ucwords("Batch"); ?></label>
                         <div class="col-sm-5">
                             <select class="form-control" id="batch" name="batch" required="">
 
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="form-group" id="main_semester" style="display: none;">
-                        <label class="col-sm-3 control-label">Semester</label>
+                        <label class="col-sm-2 control-label">Semester</label>
                         <div class="col-sm-5">
                             <select class="form-control" id="semester" name="semester">
                                 <option value="all">All</option>   
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="form-group" id="main_student" style="display: none;">
-                        <label class="col-sm-3 control-label">Student</label>
+                        <label class="col-sm-2 control-label">Student</label>
                         <div class="col-sm-5">                                            
                             <select class="form-control select2" multiple="" id="student" name="student[]">                                                
                                 <option value="all">All Student</option>
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">To</label>
+                        <label class="col-sm-2 control-label">To</label>
                         <div class="col-sm-5">
                             <select id="to" class="form-control" name="to[]" multiple="" required="">
                                 <?php foreach ($all_admin as $row) { ?>
@@ -77,36 +77,38 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Subject"); ?></label>
+                        <label class="col-sm-2 control-label"><?php echo ucwords("Subject"); ?></label>
                         <div class="col-sm-5">
                             <textarea class="form-control" name="subject" required=""></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Cc"); ?></label>
+                        <label class="col-sm-2 control-label"><?php echo ucwords("Cc"); ?></label>
                         <div class="col-sm-5">
                             <input type="text" class="form-control" name="cc"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Message"); ?></label>
-                        <div class="col-sm-5">
+
+                        <label class="col-sm-2 control-label"><?php echo ucwords("Message"); ?></label>
+                        <div class="col-sm-7">
+
                             <textarea id="summernote" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo ucwords("Attachment"); ?></label>
+                        <label class="col-sm-2 control-label"><?php echo ucwords("Attachment"); ?></label>
                         <div class="col-sm-5">
                             <input type="file" class="form-control" name="userfile[]" multiple/>
                         </div>
                     </div>
 
                     <div class="form-group form-actions">
-                        <div class="col-sm-12 col-md-offset-3">
-                            <button type="submit" class="btn vd_btn vd_bg-green vd_white"><i class="fa fa-envelope append-icon"></i> <?php echo ucwords("Send"); ?></button>
+                        <div class="col-sm-12 col-md-offset-2">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-envelope append-icon"></i> <?php echo ucwords("Send"); ?></button>
 
                         </div>
                     </div>

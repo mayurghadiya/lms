@@ -4,14 +4,7 @@
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                <div class="panel-controls panel-controls-right">
-                    <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                    <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                    <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                </div>
-            </div>
+            
             <div class="panel-body">
                 <form class="form-horizontal" role="form" action="" method="post">
                     <div class="form-group">
@@ -174,6 +167,9 @@
                             <button type="button" id="insert-email-btn" class="btn vd_btn vd_bg-blue vd_white"><i class="fa fa-angle-double-left append-icon"></i> INSERT ADDRESS</button>
                             <button type="button" class="btn vd_btn vd_bg-grey vd_white"><i class="fa fa-plus append-icon"></i> ADD NEW</button>
                         </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-envelope append-icon"></i> SEND</button>
+                         </div>
+
                     </div>
                 </form>
             </div>
@@ -182,28 +178,7 @@
         </div>
         <!-- panel --> 
     </div>
-    <!-- col-md-8 --> 
+    
 </div>
 <!-- row --> 
-
-
-
-<!-- Middle Content End --> 
-
-<!-- Specific Page Scripts Put Here -->
-
-<script>
-    $(document).ready(function () {
-        $('#message').wysihtml5();
-    })
-
-    $("#checkbox").click(function () {
-        if ($("#checkbox").is(':checked')) {
-            $("#students > option").prop("selected", "selected");
-            $("#students").trigger("change");
-        } else {
-            $("#students > option").removeAttr("selected");
-            $("#students").trigger("change");
-        }
-    });
-</script>
+</div></div>

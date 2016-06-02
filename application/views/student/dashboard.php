@@ -572,92 +572,99 @@
 </div>
 <div class="row">
     <!-- .row start -->
-    <!-- col-md-8 end here -->
-    <div class=col-md-4>
-        <!-- col-md-4 start here -->
-        <div class="panel panel-default toggle panelClose panelRefresh panelMove">
-            <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>To Do List</h4>
-                <div class="panel-controls panel-controls-right"><a class="toggle panel-minimize" href="#"><i class="icomoon-icon-plus"></i></a></div>
-            </div>
-            <div class="panel-body">
-                <div class="todo-widget">
-                    <!-- .todo-widget -->
-                    <div class="todo-header">
-
-                        <div class="todo-addform col-sm-5" id="todo-addform"  >
-                            <form id="frmtodo">
-                                <div class=form-group>
-                                    <label class="col-lg-2 col-md-3 control-label">Task Title</label>
-                                    <input type="text" id="todo_title" class=form-control name="todo_title" >
-                                </div>
-
-                                <div class=form-group>
-                                    <label class="col-lg-2 col-md-3 control-label">Task Date</label>
-                                    <input id="basic-datepicker" type="text" name="tado_date" class="form-control" readonly="">
-                                </div>
-                                <div class=form-group>
-                                    <label class="col-lg-10 col-md-5">Task Time</label>
-                                    <div class="col-lg-5 col-md-5">
-                                        <div class="input-group bootstrap-timepicker">
-                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                            <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control"  readonly="" >
+<!-- To do list Start div-->
+            <div class="col-lg-5">
+                <div class="panel panel-default toggle">
+                    <!-- Start .panel -->
+                    <div class=panel-heading>
+                        <h4 class=panel-title>
+                            To Do
+                        </h4>
+                    </div>
+                    <div class=panel-body>
+                        <div class=todo-widget>
+                            <!-- .todo-widget -->
+                            <div class=todo-header>
+                                <div id="updateformhtml"></div>
+                                <div class="todo-addform" id="todo-addform">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h4 class=todo-period>Add New ToDo</h4>
+                                            <form id="frmtodo" class="form-horizontal form-groups-bordered validate">
+                                                <div class=form-group>
+                                                    <label class="control-label col-lg-4">Task Title</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" id="todo_title" class="form-control" name="todo_title" >
+                                                    </div>
+                                                </div>
+                                                <div class=form-group>
+                                                    <label class="control-label col-lg-4">Task Date</label>
+                                                    <div class="col-sm-8">
+                                                        <input id="basic-datepicker" type="text" name="tado_date" class="form-control" readonly="">
+                                                    </div>
+                                                </div>
+                                                <div class=form-group>
+                                                    <label class="control-label col-lg-4">Task Time</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group bootstrap-timepicker">
+                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                                            <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8" readonly="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class=form-group>
+                                                    <div class="col-sm-offset-4 col-sm-8">
+                                                        <input type="button" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
+                                                        <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform">
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class=form-group>
-
-                                    <input type="button" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton" >
-                                    <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform" >
+                                <div class=todo-search>
+                                    <form>
+                                        <input class=form-control name=search placeholder="Search for todo ...">
+                                    </form>
                                 </div>
-                            </form>
-                        </div>
-                        <div id="updateformhtml">
-
-                        </div>
-
-                        <div class=todo-add><a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a></div>
-
-
-                    </div>
-                    <div class=todo-search>
-                        <form><input class=form-control name=search placeholder="Search for todo ..."></form>
-                    </div>
-                    <h4 class=todo-period>To Do List</h4>
-
-                    <div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading..</div>
-                    <ul class=todo-list id=today>
-                        <?php foreach ($todolist as $todo) { ?>  
-                            <li class="todo-task-item <?php
-                            if ($todo->todo_status == "0") {
-                                echo "task-done";
-                            }
-                            ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
-                                <div class=checkbox-custom><input type="checkbox" <?php
+                                <div class=todo-add>
+                                    <a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a>
+                                </div>
+                            </div>
+                            <h4 class=todo-period>To Do List</h4>
+                            <div id="wait" class="loading_img">
+                                <img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" style="position:relative; z-index:99999;" /><br>Loading...
+                            </div>
+                            <ul class="todo-list" id="today">
+                                <?php foreach ($todolist as $todo) { ?>  
+                                    <li class="todo-task-item <?php
                                     if ($todo->todo_status == "0") {
-                                        echo "checked=''";
+                                        echo "task-done";
                                     }
-                                    ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>               
-                                    <span class="todo-category label label-primary"><?php echo date_duration($todo->todo_datetime); ?></span>
-
-                                <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
-                                <button type=button class="label label-primary updateclick" value="<?php echo $todo->todo_id; ?>">Edit</button>
-                                <button type=button class="close todo-close" value="<?php echo $todo->todo_id; ?>">&times;</button>
-
-                            </li>
-                        <?php } ?>
-                    </ul>
-
+                                    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
+                                        <div class=checkbox-custom><input type="checkbox" <?php
+                                            if ($todo->todo_status == "0") {
+                                                echo "checked=''";
+                                            }
+                                            ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
+                                        <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
+                                        <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
+                                        <div class="updateclick_box">
+                                            <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="todo-close_box">
+                                            <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
+                                        </div>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End .todo-widget -->
                 </div>
-            </div>   
-            <!-- End .todo-widget -->
-        </div>
-        <!-- End .panel -->
-    </div>
-    <!-- col-md-4 end here -->
-    <div class="col-md-5">
+            </div>
+<!-- To do list End div-->   
+    <div class="col-md-4">
         <!-- col-md-6 start here -->
         <div class="panel panel-default toggle panelClose panelRefresh panelMove" id="supr3">
             <!-- Start .panel -->
@@ -801,10 +808,12 @@
                                                     <?php
                                                          foreach ($timline_event as $event1) {
                                                              $tododate[]=date('Y-m-d', strtotime($event1->event_date));
-                                                         }                                                        
+                                                         }     
+                                                         if(!empty($tododate))
+                                                             {
                                                          if(in_array($c, $tododate))
                                                          {
-                                                             ?>
+                                                            ?>
                                                                 <div class="popover-content">
                                                                  <h3 class="tl-title">Event</h3>                                                               
                                                              <?php
@@ -818,25 +827,30 @@
                                                                         }
                                                                     }
                                                                 }
-                                                                if($j>3)
+                                                              /*  if($j>3)
                                                                 {
                                                                     ?>
                                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
                                                                     <?php
-                                                                }
+                                                                }*/
                                                                 ?>
                                                                             
                                                             </div>
-                                                          <?php                                                    
+                                                          <?php                                                 
                                                          }
+                                }
                                                         ?>
                                                     
                                                             <?php
-                                                             foreach ($timline_todolist as $time_line) {
-                                                                 $eventdate[]=date('Y-m-d', strtotime($time_line->todo_datetime));
+                                                            
+                                                             foreach ($timline_todolist as $time_line1) {
+                                                                 $eventdate[]=date('Y-m-d', strtotime($time_line1->todo_datetime));
+                                                             }
+                                                             if(!empty($eventdate))
+                                                             {
                                                                  if(in_array($c, $eventdate))
                                                                  {
-                                                                       if ($j < 3) {
+                                                                     if ($j < 3) {
                                                                 ?>
                                                                 <div class="popover-content">
                                                                     <h3 class="tl-title">Todolist</h3>
@@ -851,12 +865,12 @@
                                                                         }
                                                                         }
                                                                     }
-                                                                      if($j>3)
-                                                                {
-                                                                    ?>
-                                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_todolist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
-                                                                    <?php
-                                                                }
+                                                                  /*    if($j>3)
+                                                                        {
+                                                                            ?>
+                                                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
+                                                                            <?php
+                                                                       }*/
                                                                     ?>   
                                                                     
                                                                 </div>
@@ -864,8 +878,9 @@
                                                             }
                                                                  }
                                                              }
-                                                            ?>  
-                                                    <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($time_line->todo_datetime); ?></div>
+                                                            ?> 
+                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
+                                                    <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($c); ?></div>
                                                         </div>
                                                     </div>
                                                 </div>

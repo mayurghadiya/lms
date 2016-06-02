@@ -1,4 +1,4 @@
-<table class="table table-striped table-responsive" id="fee-structure-data-tables">
+<table class="table table-striped table-bordered table-responsive" id="fee-structure-data-tables">
     <thead>
         <tr>
             <th><div>#</div></th>

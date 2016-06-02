@@ -797,6 +797,8 @@ class Student_model extends CI_Model {
                 $data[]=$row;
             }
         }
+       
+        
         $result=  array_unique($data);
         return $result;
 //        if(count($todolist)>count($event))

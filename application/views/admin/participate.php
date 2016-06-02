@@ -5,6 +5,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
+<<<<<<< HEAD
         <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
@@ -15,7 +16,10 @@
                                 <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
                             </div>
                         </div>-->
-
+            <div class=panel-body>            
+=======
+        <div class="panel-default toggle">
+>>>>>>> 2c104028f729bb64b11a403db27e0a1bdd99a000
             <div class="tabs mb20">
                 <ul id="import-tab" class="nav nav-tabs">
                     <li  class="active">
@@ -46,14 +50,14 @@
                             <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="datatable-list">
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>											
-                                        <th><div><?php echo ucwords("Parti. Title"); ?> </div></th>											
-                                        <th><div><?php echo ucwords("department"); ?></div></th>											
-                                        <th><div><?php echo ucwords("Branch"); ?></div></th>
-                                        <th><div><?php echo ucwords("Batch"); ?></div></th>											
-                                        <th><div><?php echo ucwords("Semester"); ?></div></th>											                                              
-                                        <th><div><?php echo ucwords("Date of submission"); ?></div></th>									
-                                        <th><div><?php echo ucwords("Action"); ?></div></th>											
+                                        <th>#</th>											
+                                        <th><?php echo ucwords("Parti. Title"); ?></th>											
+                                        <th><?php echo ucwords("department"); ?></th>											
+                                        <th><?php echo ucwords("Branch"); ?></th>
+                                        <th><?php echo ucwords("Batch"); ?></th>											
+                                        <th><?php echo ucwords("Semester"); ?></th>											                                              
+                                        <th><?php echo ucwords("Date of submission"); ?></th>									
+                                        <th><?php echo ucwords("Action"); ?></th>											
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -246,15 +250,15 @@
                             <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="survey-table">
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>                                           
-                                        <th><div><?php echo ucwords("Student Name"); ?></div></th>       
-                                        <th><div><?php echo ucwords("department"); ?></div></th>
-                                        <th><div><?php echo ucwords("Branch"); ?></div></th>
-                                        <th><div><?php echo ucwords("Batch"); ?></div></th>											
-                                        <th><div><?php echo ucwords("Semester"); ?></div></th>	
-                                        <th><div><?php echo ucwords("Question"); ?></div></th>  
-                                        <th><div><?php echo ucwords("Answer"); ?></div></th>                               
-                                        <th><div><?php echo ucwords("Action"); ?></div></th>
+                                        <th>#</th>                                           
+                                        <th><?php echo ucwords("Student Name"); ?></th>       
+                                        <th><?php echo ucwords("department"); ?></th>
+                                        <th><?php echo ucwords("Branch"); ?></th>
+                                        <th><?php echo ucwords("Batch"); ?></th>											
+                                        <th><?php echo ucwords("Semester"); ?></th>	
+                                        <th><?php echo ucwords("Question"); ?></th>  
+                                        <th><?php echo ucwords("Answer"); ?></th>                               
+                                        <th><?php echo ucwords("Action"); ?></th>
 
                                     </tr>
                                 </thead>
@@ -395,11 +399,11 @@
                             <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tabless">
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>                                           
-                                        <th><div><?php echo ucwords("Question"); ?></div></th>       
-                                        <th><div><?php echo ucwords("Description"); ?></div></th>
-                                        <th><div><?php echo ucwords("Status"); ?></div></th>
-                                        <th><div><?php echo ucwords("Action"); ?></div></th>
+                                        <th>#</th>                                           
+                                        <th><?php echo ucwords("Question"); ?></th>       
+                                        <th><?php echo ucwords("Description"); ?></th>
+                                        <th><?php echo ucwords("Status"); ?></th>
+                                        <th><?php echo ucwords("Action"); ?></th>
 
                                     </tr>
                                 </thead>
@@ -436,15 +440,15 @@
                             <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables-activity">
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>											
-                                        <th><div><?php echo ucwords("Student Name"); ?></div></th>	
-                                        <th><div><?php echo ucwords("Parti. Title"); ?></div></th>
-                                        <th><div><?php echo ucwords("Comment"); ?></div></th>
-                                        <th><div><?php echo ucwords("department"); ?></div></th>											
-                                        <th><div><?php echo ucwords("Branch"); ?></div></th>
-                                        <th><div><?php echo ucwords("Batch"); ?></div></th>
-                                        <th><div><?php echo ucwords("Semester"); ?></div></th>											
-                                        <th><div><?php echo ucwords("Parti. Status"); ?></div></th>											
+                                        <th>#</th>											
+                                        <th><?php echo ucwords("Student Name"); ?></th>	
+                                        <th><?php echo ucwords("Parti. Title"); ?></th>
+                                        <th><?php echo ucwords("Comment"); ?></th>
+                                        <th><?php echo ucwords("department"); ?></th>											
+                                        <th><?php echo ucwords("Branch"); ?></th>
+                                        <th><?php echo ucwords("Batch"); ?></th>
+                                        <th><?php echo ucwords("Semester"); ?></th>											
+                                        <th><?php echo ucwords("Parti. Status"); ?></th>											
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -502,13 +506,13 @@
                             <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%  id="uploaded-table">
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>											
-                                        <th><div><?php echo ucwords("Student Name"); ?></div></th>	                                               
-                                        <th><div><?php echo ucwords("department"); ?></div></th>											
-                                        <th><div><?php echo ucwords("Branch"); ?></div></th>
-                                        <th><div><?php echo ucwords("Batch"); ?></div></th>
-                                        <th><div><?php echo ucwords("Semester"); ?></div></th>											
-                                        <th><div><?php echo ucwords("File"); ?></div></th>											                                                
+                                        <th>#</div></th>											
+                                        <th><?php echo ucwords("Student Name"); ?></th>	                                               
+                                        <th><?php echo ucwords("department"); ?></th>											
+                                        <th><?php echo ucwords("Branch"); ?></th>
+                                        <th><?php echo ucwords("Batch"); ?></th>
+                                        <th><?php echo ucwords("Semester"); ?></th>											
+                                        <th><?php echo ucwords("File"); ?></th>											                                                
 
                                     </tr>
                                 </thead>
@@ -566,11 +570,12 @@
                 </div>
 
             </div>                 
+            </div>                 
         </div>
         <!-- row --> 
     </div>
 </div>
-
+</div></div>
 
 <script type="text/javascript">
     $(document).ready(function () {

@@ -1469,10 +1469,10 @@ class Professor_model extends CI_Model {
     
     function  getcourseware()
     {
-        $this->db->select("cw.*,c.* ");
+        $this->db->select('cw.*,c.*');
         $this->db->from('courseware cw');
         $this->db->join('course c','c.course_id=cw.branch_id');
-        return $this->db->get('courseware')->result_array();
+        return $this->db->get()->result_array();
     }
     public function get_studyresource()
     {

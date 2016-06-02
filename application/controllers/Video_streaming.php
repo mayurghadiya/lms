@@ -14,17 +14,18 @@ class Video_streaming extends MY_Controller {
         if ($this->session->userdata('login_type') == 'admin') {
             $this->data['course'] = $this->Crud_model->get_all_course();
             $this->data['semester'] = $this->Crud_model->get_all_semester();
-            $this->data['page_name'] = 'video_streaming';
+            $this->data['page'] = 'video_streaming';
         } elseif ($this->session->userdata('login_type') == 'student') {
-            $this->data['page_name'] = 'video_streaming';
+            $this->data['page'] = 'video_streaming';
         } elseif ($this->session->userdata('login_type') == 'subadmin') {
             $this->data['course'] = $this->Crud_model->get_all_course();
-            $this->data['semester'] = $this->Crud_model->get_all_semester();            
+            $this->data['semester'] = $this->Crud_model->get_all_semester(); 
+            $this->data['page'] = 'video_streaming';
         }
         $this->data['title'] = 'Video Streaming';
-        $this->data['page'] = 'video_streaming';
+        //$this->data['page'] = 'video_streaming';
         $this->data['degree'] = $this->Crud_model->get_all_degree();
-        $this->__site_template('admin/video_streaming', $this->data);
+        $this->__site_template($this->session->userdata('login_type') . '/' . $this->data['page'], $this->data);
     }
 
     function create_private_broadcast() {

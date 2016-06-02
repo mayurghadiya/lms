@@ -1,5 +1,5 @@
 <?php
-$std_id = $ this->session->userdata('std_id');
+$std_id = $this->session->userdata('std_id');
 $res = $this->db->query("SELECT * FROM participate_manager WHERE pp_id not in (select pp_id from participate_student where student_id=$std_id )")->result_array();
 ?>
 <!-- Start .row -->
