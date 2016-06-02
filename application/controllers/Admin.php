@@ -4025,8 +4025,9 @@ class Admin extends MY_Controller {
             $data['group_name'] = $this->input->post('group_name');
             $data['user_type'] = $this->input->post('user_type');
             $data['user_role'] = implode(',', $this->input->post('user_role'));
-
+           
             $this->db->insert('group', $data);
+             exit;
             $this->session->set_flashdata('flash_message', 'Group Added Successfully');
 
             redirect(base_url() . 'admin/create_group', 'refresh');
@@ -4067,14 +4068,15 @@ class Admin extends MY_Controller {
         echo $html;
     }
 
-    function list_group($param1 = '', $param2 = '', $param3 = '') {
-        if ($this->session->userdata('admin_login') != 1)
-            redirect(base_url(), 'refresh');
+    function list_group($param1 = '', $param2 = '', $param3 = '') {       
         if ($param1 == 'do_update') {
+
             $data['user_role'] = implode(',', $this->input->post('user_role'));
+
             $this->db->where('g_id', $this->input->post('group_name'));
             $this->db->update('group', $data);
             $this->session->set_flashdata('flash_message', 'group Updated Successfully');
+            
             redirect(base_url() . 'admin/list_group', 'refresh');
         }
         if ($param1 == 'delete') {

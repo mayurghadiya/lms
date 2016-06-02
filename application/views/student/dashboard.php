@@ -801,10 +801,12 @@
                                                     <?php
                                                          foreach ($timline_event as $event1) {
                                                              $tododate[]=date('Y-m-d', strtotime($event1->event_date));
-                                                         }                                                        
+                                                         }     
+                                                         if(!empty($tododate))
+                                                             {
                                                          if(in_array($c, $tododate))
                                                          {
-                                                             ?>
+                                                            ?>
                                                                 <div class="popover-content">
                                                                  <h3 class="tl-title">Event</h3>                                                               
                                                              <?php
@@ -827,17 +829,21 @@
                                                                 ?>
                                                                             
                                                             </div>
-                                                          <?php                                                    
+                                                          <?php                                                 
                                                          }
+                                }
                                                         ?>
                                                     
                                                             <?php
+                                                            
                                                              foreach ($timline_todolist as $time_line1) {
                                                                  $eventdate[]=date('Y-m-d', strtotime($time_line1->todo_datetime));
                                                              }
+                                                             if(!empty($eventdate))
+                                                             {
                                                                  if(in_array($c, $eventdate))
                                                                  {
-                                                                       if ($j < 3) {
+                                                                     if ($j < 3) {
                                                                 ?>
                                                                 <div class="popover-content">
                                                                     <h3 class="tl-title">Todolist</h3>
@@ -864,9 +870,10 @@
                                                                 <?php
                                                             }
                                                                  }
+                                                             }
                                                             ?> 
                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
-                                                    <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($time_line->todo_datetime); ?></div>
+                                                    <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($c); ?></div>
                                                         </div>
                                                     </div>
                                                 </div>

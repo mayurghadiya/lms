@@ -29,10 +29,10 @@
                     <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th><div>#</div></th>
-                            <th><div>Title</div></th>  
-                            <th><div>Description</div></th>                                                                                  
-                            <th><div>Action</div></th>
+                            <th>#</th>
+                            <th>Title</th>  
+                            <th>Description</th>                                                                                  
+                            <th>Action</th>
                         </tr>
                     </thead>
 

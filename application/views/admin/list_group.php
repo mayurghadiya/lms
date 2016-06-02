@@ -137,12 +137,14 @@
 
         $.ajax({
             url: '<?php echo base_url(); ?>admin/get_group_ajax/' + group_id,
+            type:'post',
+            dataType:'json',
             success: function (response)
             {
-                var json = jQuery.parseJSON(response);
-                jQuery('.group_listing').html(json.group);
-                jQuery('#user_type').html(json.user_type);
-                jQuery('#multiselect').html(json.full_user_list);
+                //var json = jQuery.parseJSON(response);
+                jQuery('#multiselect_to').html(response.group);
+                jQuery('#user_type').html(response.user_type);
+                jQuery('#multiselect').html(response.full_user_list);                
             }
         });
     }

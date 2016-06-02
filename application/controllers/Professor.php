@@ -924,7 +924,7 @@ class Professor extends MY_Controller {
         if ($_POST) {
             if ($param == "create") {
                 if ($_FILES['attachment']['name'] != "") {
-                    $path = FCPATH . 'uploads/syllabus';
+                    $path = FCPATH . 'uploads/courseware';
                     if (!is_dir($path)) {
                         mkdir($path, 0777);
                     }
@@ -954,6 +954,7 @@ class Professor extends MY_Controller {
                 $insert['created_date'] = date('Y-m-d');
 
                 $this->Professor_model->add_courseware($insert);
+                
                 $this->session->set_flashdata('flash_message', "Courseware added successfully");
                 redirect(base_url() . 'professor/courseware/', 'refresh');
             }
@@ -997,7 +998,7 @@ class Professor extends MY_Controller {
 
         if ($param == 'delete') {
             $data = $this->db->get_where('courseware', array('courseware_id' => $param2))->result_array();
-
+            unlink("uploads/courseware/" . $data[0]['attachment']);
             $this->Professor_model->delete_courseware($param2);
             $this->session->set_flashdata('flash_message', "Courseware deleted successfully");
             redirect(base_url() . 'professor/courseware/', 'refresh');
@@ -1007,6 +1008,7 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Courseware Management';
         $this->data['add_title'] = $this->lang_message('add_courseware');
         $this->data['edit_title'] = $this->lang_message('edit_courseware');
+        
         $this->__site_template('professor/courseware', $this->data);
     }
 
