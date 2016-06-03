@@ -245,7 +245,7 @@ class Student extends MY_Controller {
             $status = $this->input->post('p_status');
             $res = $this->db->get_where('participate_student', array('pp_id' => $p_id, 'student_id' => $std_id))->num_rows();
             if ($res > 0) {
-                $this->session->set_flashdata('flash_message', 'Data already exists.');
+                $this->session->set_flashdata('flash_message', 'You are already request for participate.');
                 redirect(base_url() . 'student/participate_attend/' . $p_id, 'refresh');
             }
             $data['pp_id'] = $this->input->post('pp_id');
@@ -253,7 +253,7 @@ class Student extends MY_Controller {
             $data['p_status'] = $this->input->post('p_status');
             $data['comment'] = $this->input->post('comment');
             $this->db->insert("participate_student", $data);
-            $this->session->set_flashdata('flash_message', 'Data added successfullly.');
+            $this->session->set_flashdata('flash_message', 'Your request added successfullly.');
             redirect(base_url() . 'student/dashboard', 'refresh');
         }
         $this->data['page'] = 'participate_form';
@@ -270,6 +270,14 @@ class Student extends MY_Controller {
     function participate($param1 = '', $param2 = '') {
         if ($param1 == "create") {
             $survey = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
+//            $getcount = $this->db->query("SELECT s1.survey_status,s1.survey_question_id,count(s1.survey_result_id) as zero_status FROM survey_result s1 WHERE s1.survey_status='0' GROUP BY s1.survey_question_id")->result();
+//            $getcount2 = $this->db->query("SELECT s2.survey_status,s2.survey_question_id,count(s2.survey_result_id) as first_status FROM survey_result s2 WHERE s2.survey_status='1' GROUP BY s2.survey_question_id")->result();
+//            $getcount3 = $this->db->query("SELECT s3.survey_status,s3.survey_question_id,count(s3.survey_result_id) as second_status FROM survey_result s3 WHERE s3.survey_status='2' GROUP BY s3.survey_question_id")->result();
+//            echo "<pre>";
+//            print_r($getcount);
+//            print_r($getcount2);
+//            print_r($getcount3);
+//            die;
             $count = 1;
             foreach ($survey as $res) {
                 // echo $count;
@@ -279,18 +287,52 @@ class Student extends MY_Controller {
                 $status = implode(",", $field);
                 $count++;
             }
-
+            
+            
+            $insert_data = array_combine(explode(",",$que), explode(",",$status));
+            foreach($insert_data as $key => $val)
+            {
+                
+                $inst_data['survey_question_id'] = $key;
+                $inst_data['survey_status'] = $val;
+                $inst_data['survey_student_id'] = $this->session->userdata('std_id');
+                $this->db->insert("survey_result",$inst_data);
+                $no_status = $this->db->query("SELECT survey_question_id,survey_status,COUNT(survey_result_id) as no_status FROM survey_result WHERE survey_status='0' AND survey_question_id='".$key."'")->result();
+                
+                $no_status_value = $no_status[0]->no_status;
+                
+                $yes_status = $this->db->query("SELECT survey_question_id,survey_status,COUNT(survey_result_id) as yes_status FROM survey_result WHERE survey_status='1' AND survey_question_id='".$key."'")->result();
+                
+                $yes_status_value = $yes_status[0]->yes_status;
+                
+                $no_opinion = $this->db->query("SELECT survey_question_id,survey_status,COUNT(survey_result_id) as noopinion_status  FROM survey_result WHERE survey_status='2' AND survey_question_id='".$key."'")->result();
+                
+                $no_opinion_value = $no_opinion[0]->noopinion_status;
+                $update_data['survey_yes']=$yes_status_value;
+                $update_data['survey_no']=$no_status_value;
+                $update_data['survey_no_opinion']=$no_opinion_value;
+                $this->db->where("sq_id",$key);
+                $this->db->update("survey_question",$update_data);
+                
+                
+                
+                
+            }
+         
+            
             $data['sq_id'] = $que;
             $data['survey_status'] = $status;
 
             $data['student_id'] = $this->session->userdata('std_id');
-            +
+            
                     $this->db->insert('survey_list', $data);
             $this->session->set_flashdata('flash_message', 'Survey added successfully');
             redirect(base_url() . 'student/participate', 'refresh');
         }
         $std = $this->session->userdata('std_id');
-        //$page_data['survey']= $this->db->get_where('survey',array('student_id'=>$std,'created_date'=>date('Y')))->result();
+        //$getcount =  $this->db->query("SELECT survey_status,survey_question_id, COUNT(*) FROM survey_result GROUP BY survey_question_id")->result();
+        
+        
         $this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Survey Application Form';
@@ -360,6 +402,7 @@ class Student extends MY_Controller {
     function email_reply($id) {
         $this->load->model('admin/Crud_model');
         $this->load->helper('system_email');
+         $this->load->library('upload');
         if ($_POST) {
             $filename = '';
             if ($_FILES) {
@@ -400,6 +443,7 @@ class Student extends MY_Controller {
         $this->load->model('admin/Crud_model');
         $this->load->model('Student/Student_model');
         $this->load->helper('system_email');
+         $this->load->library('upload');
         if ($_POST) {
             if ($_POST) {
                 $filename = '';
@@ -414,6 +458,7 @@ class Student extends MY_Controller {
                         $_FILES['userfile']['error'] = $files['userfile']['error'][$i];
                         $_FILES['userfile']['size'] = $files['userfile']['size'][$i];
                         $this->upload->initialize($this->set_upload_options());
+                         
                         $this->upload->do_upload();
                         $uploaded = $this->upload->data();
                         $filename .= $uploaded['file_name'] . ',';
@@ -477,7 +522,7 @@ class Student extends MY_Controller {
         $this->data['page'] = 'inbox';
         $this->__site_template('student/email_view', $this->data);
     }
-
+    
     /**
      * Project
      * @param string $param1
@@ -1408,11 +1453,13 @@ class Student extends MY_Controller {
         }
     }
 
-    function changestatus() {
-        if ($_POST) {
-            $data['todo_id'] = $this->input->post('id');
+    function changestatus()
+    {
+        if($_POST)
+        {
+           $id = $this->input->post('id');
             $data['todo_status'] = $this->input->post('status');
-            $this->Student_model->change_status($data);
+            $this->Student_model->change_status($data,$id);
         }
     }
 

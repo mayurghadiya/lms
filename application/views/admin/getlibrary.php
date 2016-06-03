@@ -9,7 +9,7 @@
             <th><div>Batch</div></th>												
             <th><div>Semester</div></th>												
             <th><div>File</div></th>              
-            <th><div>Action</div></th>											
+            <th><div>Action</div></th>		
         </tr>
     </thead>
     <tbody>
@@ -70,7 +70,7 @@
                     }
                     ?>													
                 </td>	
-                <td><a href="<?php echo $row->lm_url; ?>" download="" target="_blank" title="<?php echo $row->lm_filename; ?>"><i class="fa fa-download"></i></a></td>	
+                <td><a href="<?php echo base_url() . 'uploads/project_file/'.$row->lm_filename; ?>" download="" target="_blank" title="<?php echo $row->lm_filename; ?>"><i class="fa fa-download"></i></a></td>	
                 <td><?php echo date('F d, Y', strtotime($row->lm_dos)); ?></td>	
 
                 <td class="menu-action">

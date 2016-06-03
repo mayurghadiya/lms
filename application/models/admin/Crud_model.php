@@ -1507,11 +1507,12 @@ class Crud_model extends CI_Model {
     /**
      * change status of to do list item
      * @param mixed $data
+     * @param int $id
      */
     
-    function change_status($data)
+    function change_status($data,$id)
     {        
-        $this->db->update("todo_list",$data,array("todo_id"=>$data['todo_id']));
+        $this->db->update("todo_list",$data,array("todo_id"=>$id));
     }
     
     /**
@@ -1623,6 +1624,15 @@ class Crud_model extends CI_Model {
      */
     function get_all_professor() {
         return $this->db->get('professor')->result();
+    }
+    
+    /**
+     * 
+     */
+    
+    function getquestion_status($queid,$field)
+    {
+        return $this->db->get_where("survey_question",array("sq_id"=>$queid))->row()->$field;
     }
 }
 

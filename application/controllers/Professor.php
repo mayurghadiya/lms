@@ -194,7 +194,7 @@ class Professor extends MY_Controller {
 
         $data['syllabus'] = $this->db->get('smart_syllabus')->result();
 
-        $this->load->view("admin/getsyllabus", $data);
+        $this->load->view("professor/getsyllabus", $data);
     }
 
     /**
@@ -924,7 +924,7 @@ class Professor extends MY_Controller {
         if ($_POST) {
             if ($param == "create") {
                 if ($_FILES['attachment']['name'] != "") {
-                    $path = FCPATH . 'uploads/syllabus';
+                    $path = FCPATH . 'uploads/courseware';
                     if (!is_dir($path)) {
                         mkdir($path, 0777);
                     }
@@ -954,6 +954,7 @@ class Professor extends MY_Controller {
                 $insert['created_date'] = date('Y-m-d');
 
                 $this->Professor_model->add_courseware($insert);
+                
                 $this->session->set_flashdata('flash_message', "Courseware added successfully");
                 redirect(base_url() . 'professor/courseware/', 'refresh');
             }
@@ -997,7 +998,7 @@ class Professor extends MY_Controller {
 
         if ($param == 'delete') {
             $data = $this->db->get_where('courseware', array('courseware_id' => $param2))->result_array();
-
+            unlink("uploads/courseware/" . $data[0]['attachment']);
             $this->Professor_model->delete_courseware($param2);
             $this->session->set_flashdata('flash_message', "Courseware deleted successfully");
             redirect(base_url() . 'professor/courseware/', 'refresh');
@@ -1007,6 +1008,7 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Courseware Management';
         $this->data['add_title'] = $this->lang_message('add_courseware');
         $this->data['edit_title'] = $this->lang_message('edit_courseware');
+        
         $this->__site_template('professor/courseware', $this->data);
     }
 
@@ -1606,39 +1608,22 @@ class Professor extends MY_Controller {
              */
             function email_inbox() {
                 $this->load->helper('system_email');
+            redirect(base_url('professor/email_inbox'));
+                }
 
-                $this->data['inbox'] = professor_inbox();
-                $this->data['title'] = 'Inbox';
-                $this->data['page'] = 'email_inbox';
-                $this->__site_template('professor/email_inbox', $this->data);
-            }
-
-            /**
-             * Professor inbox email view
-             * @param int $id
-             */
-            function inbox_email($id) {
-                $this->load->model('admin/Crud_model');
-                $this->load->helper('system_email');
-
-                $this->data['email'] = admin_inbox_email_view($id);
-                $this->data['title'] = $this->data['email']->subject;
-                $this->data['page'] = 'email_inbox';
-                $this->__site_template('professor/email_inbox_view', $this->data);
-            }
-
-            /**
-             * Email compose
-             * 
-             * @return response
-             */
-            function email_compose() {
-                ini_set('max_execution_time', 500);
-                //load the Crud model
-                $this->load->model('professor/Professor_model');
-                $this->load->model('admin/Crud_model');
-                $this->load->helper('system_email');
-                if ($_POST) {
+    /**
+     * Email compose
+     * 
+     * @return response
+     */
+    function email_compose() {
+        ini_set('max_execution_time', 500);
+        //load the Crud model
+        $this->load->model('professor/Professor_model');
+        $this->load->model('admin/Crud_model');
+        $this->load->helper('system_email');
+        $this->load->library('upload');
+         if ($_POST) {
                     $filename = '';
                     $attachments = array();
                     if ($_FILES['userfile']['name'][0] != '') {
@@ -1701,22 +1686,35 @@ class Professor extends MY_Controller {
                     $this->setemail($admin_list, $_POST['subject'], $_POST['message'], $email_cc_list, $attachments);
 
 
-                    redirect(base_url('professor/email_inbox'));
-                }
 
-                $this->data['course'] = $this->Professor_model->get_all_course();
-                $this->data['degree'] = $this->Professor_model->get_all_degree();
-                $this->data['semester'] = $this->Crud_model->get_all_semester();
-                $this->data['students'] = $this->Crud_model->get_all_students();
-                $this->data['teacher'] = $this->Crud_model->get_all_teacher();
-                $this->data['all_admin'] = $this->Crud_model->get_all_admin();
-                //set the template and view
-                $this->data['title'] = 'Compose Email';
-                $this->data['content'] = 'email_compose';
-                $this->data['page'] = 'email_compose';
-                $this->__site_template('professor/email_compose', $this->data);
-            }
+        $this->data['course'] = $this->Professor_model->get_all_course();
+        $this->data['degree'] = $this->Professor_model->get_all_degree();
+        $this->data['semester'] = $this->Crud_model->get_all_semester();
+        $this->data['students'] = $this->Crud_model->get_all_students();
+        $this->data['teacher'] = $this->Crud_model->get_all_teacher();
+        $this->data['all_admin'] = $this->Crud_model->get_all_admin();
+        //set the template and view
+        $this->data['title'] = 'Compose Email';
+        $this->data['content'] = 'email_compose';
+        $this->__site_template('professor/email_compose', $this->data);
+    }
+    }
 
+
+            
+
+        
+               
+    function set_upload_options() {
+        //upload an image options
+        $config = array(
+            'upload_path' => './uploads/emails/',
+            'allowed_types' => 'gif|jpg|png|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf',
+            'max_size' => '10000'
+        );
+        return $config;
+    }
+                
             /**
              * Set mail config
              */
@@ -1987,9 +1985,11 @@ class Professor extends MY_Controller {
             $this->db->where("am.assign_sem", $semester);
             //$this->db->where("am.class_id", $class);
             $data['submitedassignment'] = $this->db->get()->result();
-
-            $data['param'] = $param;
-            $this->load->view("admin/getassignment", $data);
+           
+             $data['param'] = $param;
+              $this->load->view("professor/getassignment", $data);
+                  
+            
         }
     }
 
@@ -2529,11 +2529,14 @@ class Professor extends MY_Controller {
     /**
      * Change status done undone
      */
-    function changestatus() {
-        if ($_POST) {
-            $data['todo_id'] = $this->input->post('id');
-            $data['todo_status'] = $this->input->post('status');
-            $this->Professor_model->change_status($data);
+
+    function changestatus()
+    {
+        if($_POST)
+        {
+            $id = $this->input->post('id');
+            $data['todo_status'] = $this->input->post('status');            
+            $this->Professor_model->change_status($data,$id);
         }
     }
 

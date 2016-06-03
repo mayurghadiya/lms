@@ -56,9 +56,8 @@
                                     </td>
                                     <td class="menu-action">
                                         <a href="<?php echo base_url('professor/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                View
-                                            </span></a>
+View
+</span></a>                       
                                         <a href="href="<?php echo base_url('professor/delete_email/' . $row->email_id) ?>" title="delete"
                                            onclick="return confirm('Are you sure to delete this email?');""><span class="label label-danger mr6 mb6">
                                                 <i class="fa fa-trash-o" aria-hidden="true"></i>

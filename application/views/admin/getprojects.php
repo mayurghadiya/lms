@@ -14,7 +14,7 @@
                 <th><div>File</div></th>
                 <th><div>Date of submission</div></th>											
 
-                <th><div>Action</div></th>											
+                <th><div>Action</div></th>
             </tr>
         </thead>
         <tbody>
@@ -82,7 +82,7 @@
                         }
                         ?>
                     </td>
-                    <td> <a href="<?php echo $row->pm_url; ?>" download=""><i class="fa fa-download"></i></a></td>
+                    <td> <a href="<?php echo base_url() . 'uploads/project_file/'.$row->pm_filename; ?>" download=""><i class="fa fa-download"></i></a></td>
                     <td><?php echo date("F d, Y", strtotime($row->pm_dos)); ?></td>	
 
                     <td class="menu-action">

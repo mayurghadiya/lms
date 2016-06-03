@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Professor</label>
                         <div class="col-sm-7">
-                            <select id="teacher" class="form-control select2" name="teacheremail[]" multiple="">
+                            <select id="teacher" class="form-control select3" name="teacheremail[]" multiple="">
                                 <?php foreach ($teacher as $row) { ?> 
                                     <option value="<?php echo $row->email; ?>"><?php echo $row->name . ' (' . $row->email . ')'; ?></option>
                                 <?php } ?>

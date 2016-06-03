@@ -82,7 +82,7 @@
                         }
                         ?>
                     </td>
-                    <td> <a href="<?php echo $row->pm_url; ?>" download=""><i class="fa fa-download"></i></a></td>
+                    <td> <a href="<?php echo base_url().'uploads/project_file/'.$row->pm_filename; ?>" download=""><i class="fa fa-download"></i></a></td>
                     <td><?php echo date("F d, Y", strtotime($row->pm_dos)); ?></td>	
 
                     <td class="menu-action">
@@ -170,7 +170,7 @@ if ($param == 'submitted') {
                         </td>	
                         <td><?php echo date_formats($rowsub->dos); ?></td>	
                         <td><?php echo $rowsub->description; ?></td>
-                        <td><a href="uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                                                    	
+                        <td><a href="<?php echo base_url(); ?>uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                                                    	
                     </tr>
                 <?php endforeach; ?>						
             </tbody>

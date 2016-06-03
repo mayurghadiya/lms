@@ -25,7 +25,7 @@
                     </ul>
                     <div id="import-tab-content" class="tab-content">
                         <div class="tab-pane fade active in" id="list">
-                            <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addproject/');" data-original-title="" data-toggle="tooltip" data-placement="top">Add New Project</a>
+                            <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addproject/');" data-original-title="" data-toggle="tooltip" data-placement="top"><i class="fa fa-plus"></i> New Project</a>
                             <div class="row filter-row">
                             <form action="#" method="post" id="searchform">
                                 <div class="form-group col-sm-3 validating">
@@ -161,7 +161,7 @@
                                                     }
                                                     ?>
                                                 </td>
-                                                <td id="downloadedfile"> <a href="<?php echo $row->pm_url; ?>" download=""><i class="fa fa-download"></i></a></td>
+                                                <td id="downloadedfile"> <a href="<?php echo base_url().'uploads/project_file/'.$row->pm_filename; ?>" download=""><i class="fa fa-download"></i></a></td>
                                                 <td><?php echo date('M d, Y', strtotime($row->pm_dos)); ?></td>	
                                                 <td class="menu-action">
                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">

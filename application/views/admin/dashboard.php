@@ -687,7 +687,7 @@ $this->load->helper('report_chart');
                     <!-- Start .panel -->
                     <div class=panel-heading>
                         <h4 class=panel-title>
-                            To Do
+                            To Do List
                         </h4>
                     </div>
                     <div class=panel-body>
@@ -775,9 +775,9 @@ $this->load->helper('report_chart');
 <!-- To do list End div-->            
 
 <!-- To Time line Start div-->
-            <div class="col-lg-7">
+           <!-- <div class="col-lg-7">
                 <div class="panel panel-default toggle">
-                    <!-- Start .panel -->
+                    
                     <div class=panel-heading>
                         <h4 class="panel-title marginzero">
                             Timeline
@@ -786,7 +786,7 @@ $this->load->helper('report_chart');
                     <div class=panel-body>
                         <div id="demo">
                             <section id="examples">         
-                                <!-- content -->
+                    
                                 <div id="content-1">
                                     <div class="timeline-box timeline-horizontal" style="width: 3000px;">
                                         <?php
@@ -818,7 +818,7 @@ $this->load->helper('report_chart');
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
 <!-- To Time line End div-->
 
         </div>

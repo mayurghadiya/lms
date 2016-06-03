@@ -278,7 +278,7 @@
                             <!-- form-group -->
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Course</label>
+                                <label class="col-sm-3 control-label">Department</label>
                                 <div class="col-sm-9 controls">
                                     <div class="row mgbt-xs-0">
                                         <div class="col-xs-9">

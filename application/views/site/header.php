@@ -17,7 +17,7 @@
               <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
               <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
             <![endif]-->
-        <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+        <script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
         <script src="<?php echo base_url(); ?>site_assets/scripts/jquery.js.pagespeed.jm.J-8M9bCq0j.js"></script>
         <script src="<?php echo base_url(); ?>site_assets/scripts/modernizr.js.pagespeed.jc._Ez36Dl5Ej.js"></script>
         <script>eval(mod_pagespeed_m5wYI4Lltk);</script>

@@ -14,7 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <form id="frmsurvey" name="frmsurvey" class="form-horizontal form-groups-bordered validate" accept-charset="UTF-8" enctype="multipart/form-data" method="post" novalidate="" action="<?= base_url() ?>/index.php?student/participate/create">
+                <form id="frmsurvey" name="frmsurvey" class="form-horizontal form-groups-bordered validate" accept-charset="UTF-8" enctype="multipart/form-data" method="post" novalidate="" action="<?php echo base_url(); ?>student/participate/create">
 
                     <table class="table table-striped" id="data-tables_survey">
                      <!--   <caption id="title1">As a student here: Please rate each of the following during your attendance, using a 1-5 scale where (1) means "Very dissatisfied" and (5) is "Very satisfied":</caption>-->

@@ -124,15 +124,15 @@
             <!-- Load pace first -->
             <script src=<?php echo base_url(); ?>assets/plugins/core/pace/pace.min.js></script>
             <!-- Important javascript libs(put in all pages) -->
-            <script src=http://code.jquery.com/jquery-2.1.1.min.js></script>
+            <script src=<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js></script>
             <script>
                 window.jQuery || document.write('<script src="<?php echo base_url(); ?>assets/js/libs/jquery-2.1.1.min.js">\x3C/script>')
             </script>
-            <script src=http://code.jquery.com/ui/1.10.4/jquery-ui.js></script>
+            <script src=<?php echo base_url(); ?>assets/js/jquery-ui.js></script>
             <script>
                 window.jQuery || document.write('<script src="<?php echo base_url(); ?>assets/js/libs/jquery-ui-1.10.4.min.js">\x3C/script>')
             </script>
-            <script src=http://code.jquery.com/jquery-migrate-1.2.1.min.js></script>
+            <script src=<?php echo base_url(); ?>assets/js/jquery-migrate-1.2.1.min.js></script>
             <script>
                 window.jQuery || document.write('<script src="<?php echo base_url(); ?>assets/js/libs/jquery-migrate-1.2.1.min.js">\x3C/script>')
             </script>

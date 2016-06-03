@@ -62,7 +62,7 @@
                         ?>													
                     </td>
                     <td  ><?php echo wordwrap($row->assign_desc, 30, "<br>\n"); ?></td>
-                    <td><a href="<?php echo $row->assign_url; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>	
+                    <td><a href="<?php echo base_url().'uploads/project_file/'.$row->assign_filename; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>	
                     <td><?php echo date('F d, Y', strtotime($row->assign_dos)); ?></td>	
                     <td class="menu-action">
                         <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"  ><span class="label label-primary mr6 mb6">

@@ -1292,9 +1292,10 @@ label.error {
   color: #4b4b4b;
 }
 
-
 #edit_profile img{max-width: 100%;}
 
+/*  Professor Dashboard */
+.professor_routine_box, .professor_routine_box html{ overflow: hidden !important; }
 
 
 

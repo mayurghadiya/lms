@@ -163,7 +163,7 @@
                                                     }
                                                     ?>
                                                 </td>
-                                                <td id="downloadedfile"> <a href="<?php echo $row->pm_url; ?>" download=""><i class="fa fa-download"></i></a></td>
+                                                <td id="downloadedfile"> <a href="<?php echo base_url().'uploads/project_file/'.$row->pm_filename; ?>" download=""><i class="fa fa-download"></i></a></td>
                                                 <td><?php echo date('F d, Y', strtotime($row->pm_dos)); ?></td>	
                                                 <td class="menu-action">
                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
@@ -247,6 +247,7 @@
                                         <th><div><?php echo ucwords("Submitted date"); ?></div></th>
                                         <th><div><?php echo ucwords("Comment"); ?></div></th>
                                         <th><div><?php echo ucwords("File"); ?></div></th>												                                            
+
                                     </tr>
                                 </thead>
                                 <tbody>
