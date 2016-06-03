@@ -74,7 +74,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo ucwords("Teacher Email"); ?></label>
                         <div class="col-sm-5">
-                            <select id="teacheremail" class="form-control select3" name="teacheremail[]" multiple="">
+                            <select id="teacheremail" class="form-control select2" name="teacheremail[]" multiple="">
+                                <option value="all">All</option>
                                 <?php foreach ($teacher as $row) { ?> 
                                     <option value="<?php echo $row->email; ?>"><?php echo $row->name . ' (' . $row->email . ')'; ?></option>
                                 <?php } ?>
@@ -123,7 +124,7 @@
         </div>
         <!-- panel --> 
     </div>
-    
+
 </div>
 <!-- row --> 
 
@@ -139,27 +140,11 @@
 
 <!-- Middle Content End --> 
 
-
-<script>
-    $(document).ready(function () {
-
-    });
-    $("#checkbox").click(function () {
-        if ($("#checkbox").is(':checked')) {
-            $("#students > option").prop("selected", "selected");
-            $("#students").trigger("change");
-        } else {
-            $("#students > option").removeAttr("selected");
-            $("#students").trigger("change");
-        }
-    });
-</script>
-
 <script>
     $(document).ready(function () {
         $('#semester').on('change', function () {
             var semester_id = $(this).val();
-            var course_id = $('#course').val();            
+            var course_id = $('#course').val();
             if (semester_id != '') {
                 if (semester_id == 'all') {
                     hide_student();
@@ -302,8 +287,28 @@
                 var course = $('#course').val();
                 var batch = $('#batch').val();
                 var semester = $('#semester').val();
-                // course_semester_student(course, semester);
+                course_semester_student(course, semester);
             }
-        })
-    })
+        });
+
+        $('#teacheremail').on('change', function () {
+            var teacher_id = $(this).val();
+            if (teacher_id == 'all') {
+                $(this).empty();
+                $(this).append('<option value="all" selected>All Student</option>');
+            } else {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>admin/get_all_professor',
+                    type: 'get',
+                    success: function (content) {
+                        $('#teacheremail').append('<option value="all">All</option>');
+                        var professor_list = jQuery.parseJSON(content);
+                        $.each(professor_list, function (key, value) {
+                            $('#teacheremail').append('<option value=' + value.email + '>' + value.email + '</option>');
+                        });
+                    }
+                });
+            }
+        });
+    });
 </script>

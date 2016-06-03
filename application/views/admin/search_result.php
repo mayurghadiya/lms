@@ -20,7 +20,7 @@
                                 <td colspan="11"><strong>Student Details</strong></td>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th>Username</th>
                                 <th>Name</th>
                                 <th>Roll No</th>
@@ -64,7 +64,7 @@
                                 <td colspan="9"><strong>Exam Details</strong></td>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th>Exam Name</th>
                                 <th>Department</th>
                                 <th>Branch</th>
@@ -104,7 +104,7 @@
                                 <td colspan="5"><strong>Branch Details</strong></td>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th>Department</th>
                                 <th>Branch Name</th>
                                 <th>Branch Alias</th>
@@ -136,7 +136,7 @@
                                 <td colspan="4"><strong>Batch Details</strong></td>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th>Department</th>
                                 <th>Batch Name</th>                                        
                             </tr>
@@ -164,7 +164,7 @@
                                 <td colspan="9"><strong>Assignment Details</strong></td>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Department</th>
@@ -204,7 +204,7 @@
                                 <td colspan="9"><strong>Participate Details</strong></td>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Student Name</th>
@@ -244,7 +244,7 @@
                                 <th colspan="2">Department Details</th>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th>Department</th>
                             </tr>
                             <?php
@@ -270,7 +270,7 @@
                                 <th colspan="4"></th>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th width="20%">Event Name</th>
                                 <th>Event Description</th>
                                 <th width="15%">Event Date</th>
@@ -302,7 +302,7 @@
                                 </th>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th>Center Name</th>
                                 <th>Name</th>
                                 <th>Email</th>

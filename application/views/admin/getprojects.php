@@ -3,17 +3,18 @@
     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables">
         <thead>
             <tr>
-                <th>#</th>											
-                <th>Project Title</th>
-                <th>Student Name</th>											
-                <th>Department</th>	
-                <th>Branch</th>
-                <th>Batch</th>											
-                <th>Semester</th>
-                <th><?php echo ucwords("class"); ?></th>
-                <th>File</th>
-                <th>Date of submission</th>
-                <th>Action</th>											
+                <th>No</th>											
+                <th><div>Project Title</div></th>
+                <th><div>Student Name</div></th>											
+                <th><div>Department</div></th>	
+                <th><div>Branch</div></th>
+                <th><div>Batch</div></th>											
+                <th><div>Semester</div></th>
+                <th><div><?php echo ucwords("class"); ?></div></th>
+                <th><div>File</div></th>
+                <th><div>Date of submission</div></th>											
+
+                <th><div>Action</div></th>
             </tr>
         </thead>
         <tbody>
@@ -102,7 +103,7 @@ if ($param == 'submitted') {
         <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tabless">
             <thead>
                 <tr>
-                    <th><div>#</div></th>												
+                    <th>No</th>												
                     <th><div>Project Name</div></th>
                     <th><div>Student Name</div></th>                                                											
                     <th><div>Department</div></th>	

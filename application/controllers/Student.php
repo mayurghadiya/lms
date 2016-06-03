@@ -377,7 +377,7 @@ class Student extends MY_Controller {
         $this->load->helper('system_email');
         $this->data['inbox'] = student_inbox();
         $this->data['title'] = 'Inbox';
-        $this->data['page'] = 'email_inbox';
+        $this->data['page'] = 'inbox';
         $this->__site_template('student/email_inbox', $this->data);
     }
 
@@ -391,7 +391,7 @@ class Student extends MY_Controller {
         //$data['email'] = $this->Crud_model->view_mail($id);
         $this->data['email'] = student_email_view($id);
         $this->data['title'] = $this->data['email']->subject;
-        $this->data['page'] = 'email_inbox_view';
+        $this->data['page'] = 'inbox';
         $this->__site_template('student/email_inbox_view', $this->data);
     }
 
@@ -489,18 +489,8 @@ class Student extends MY_Controller {
         $this->data['all_admin'] = $this->Crud_model->get_all_admin();
         //set the template and view
         $this->data['title'] = 'Compose Email';
-        $this->data['page'] = 'email_compose';
+        $this->data['page'] = 'compose';
         $this->__site_template('student/email_compose', $this->data);
-    }
-    
-    function set_upload_options() {
-        //upload an image options
-        $config = array(
-            'upload_path' => './uploads/emails/',
-            'allowed_types' => 'gif|jpg|png|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf',
-            'max_size' => '10000'
-        );
-        return $config;
     }
 
     /**
@@ -510,7 +500,7 @@ class Student extends MY_Controller {
         $this->load->model('admin/Crud_model');
         $this->data['sent_mail'] = $this->Crud_model->my_sent_mail($this->session->userdata('email')); //admin
         $this->data['title'] = 'Sent Email';
-        $this->data['page'] = 'email_sent';
+        $this->data['page'] = 'sent';
         $this->__site_template('student/email_sent', $this->data);
     }
 
@@ -529,75 +519,10 @@ class Student extends MY_Controller {
             $this->Crud_model->update_email_read_status($id, $update);
         }
         $this->data['title'] = $this->data['email']->subject;
-        $this->data['page'] = 'email_view';
+        $this->data['page'] = 'inbox';
         $this->__site_template('student/email_view', $this->data);
     }
     
-    /**
-     * Set mail config
-     */
-    function setemail($emails, $subject = '', $message = '', $cc, $attachment) {
-        $config = Array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'mayur.ghadiya@searchnative.in',
-            'smtp_pass' => 'the mayurz97375',
-            'mailtype' => 'html',
-            'charset' => 'iso-8859-1'
-        );
-        $this->load->library('email', $config);
-        $this->email->set_newline("\r\n");
-        //$this->load->library('email');
-        $subject = $subject;
-        $message = $message;
-        foreach ($emails as $email) {
-            $this->email->clear(TRUE);
-            $this->sendEmail($email, $subject, $message, $cc, $attachment);
-        }
-    }
-    
-    /**
-     * Send email
-     * @param string $email
-     * @param string $subject
-     * @param string $message
-     */
-    public function sendEmail($email, $subject, $message, $cc, $attachments) {
-        //$this->email->set_newline("\r\n");
-        $this->email->from('mayur.ghadiya@searchnative.in', 'Search Native India');
-        $this->email->to($email);
-        foreach ($cc as $row) {
-            $this->email->cc($row);
-        }
-        $this->email->subject($subject);
-        $this->email->message($message);
-        //$files = array('D:\unit testing.docx', 'D:\vtiger trial version features.docx');
-        foreach ($attachments as $row) {
-            $this->email->attach($row);
-        }
-        if ($this->email->send()) {
-            echo 'Email send.';
-        } else {
-            show_error($this->email->print_debugger());
-        }
-    }
-
-    //send mail
-    function sendmail($from, $from_name, $to, $subject, $cc, $bcc, $message) {
-        $this->email->clear();
-        $this->email->from($from, $from_name);
-        //$list = array($to);
-        $this->email->to($to);
-        $this->email->cc($cc);
-        $this->email->bcc($bcc);
-        $this->email->subject($subject);
-        $this->email->message($message);
-        $this->email->send();
-    }
-
-
-
     /**
      * Project
      * @param string $param1
@@ -805,7 +730,7 @@ class Student extends MY_Controller {
         $this->data['semester'] = $this->Student_model->get_all_semester();
         $this->data['fees_record'] = $this->Student_model->fees_record($this->session->userdata('login_user_id'));
         $this->data['page'] = 'fees_record';
-        $this->data['title'] = 'Student Fees Record';
+        $this->data['title'] = 'Student Fee Record';
         $this->__site_template('student/fees_record', $this->data);
     }
 
@@ -1233,13 +1158,13 @@ class Student extends MY_Controller {
                     'x_amount' => $this->session->userdata('payment_info')['amount'],
                     'x_first_name' => $student_detail->std_first_name,
                     'x_last_name' => $student_detail->std_last_name,
-                    'x_address' => 'Address',
+                    'x_address' => $student_detail->address,
                     'x_city' => $student_detail->city,
-                    'x_state' => 'State',
+                    'x_state' => $student_detail->state,
                     'x_zip' => $student_detail->zip,
-                    'x_country' => 'India',
+                    'x_country' => $student_detail->country,
                     'x_phone' => $student_detail->std_mobile,
-                    'x_email' => 'mayur.ghadiya@searchnative.in',
+                    'x_email' => $student_detail->email,
                     'x_customer_ip' => $this->input->ip_address(),
                 );
                 $this->authorize_net->setData($auth_net);
@@ -1408,7 +1333,7 @@ class Student extends MY_Controller {
                 }
             }
         }
-        $this->data['page'] = 'exam_listing';
+        $this->data['page'] = 'exam';
         $this->data['title'] = 'Exam Listing';
         clear_notification('exam_manager', $this->session->userdata('student_id'));
         clear_notification('exam_time_table', $this->session->userdata('student_id'));
@@ -1456,6 +1381,7 @@ class Student extends MY_Controller {
      */
     function class_routine() {
         $this->data['title'] = 'Class Routine';
+        $this->data['page'] = 'class_routine';
         $this->__site_template('student/class_routine', $this->data);
     }
 
@@ -1588,6 +1514,71 @@ class Student extends MY_Controller {
         }
         $this->data['page'] = 'search_result';
         $this->__site_template('student/search_result', $this->data);
+    }
+    
+    /**
+     * Set upload options
+     * @return mixed
+     */
+    function set_upload_options() {
+        //upload an image options
+        $config = array(
+            'upload_path' => './uploads/emails/',
+            'allowed_types' => 'gif|jpg|png|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf',
+            'max_size' => '10000'
+        );
+
+        return $config;
+    }
+    
+    /**
+     * Set mail config
+     */
+    function setemail($emails, $subject = '', $message = '', $cc, $attachment) {
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'mayur.ghadiya@searchnative.in',
+            'smtp_pass' => 'the mayurz97375',
+            'mailtype' => 'html',
+            'charset' => 'iso-8859-1'
+        );
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        //$this->load->library('email');
+        $subject = $subject;
+        $message = $message;
+        foreach ($emails as $email) {
+            $this->email->clear(TRUE);
+            $this->sendEmail($email, $subject, $message, $cc, $attachment);
+        }
+    }
+    
+    /**
+     * Send email
+     * @param string $email
+     * @param string $subject
+     * @param string $message
+     */
+    public function sendEmail($email, $subject, $message, $cc, $attachments) {
+        //$this->email->set_newline("\r\n");
+        $this->email->from('mayur.ghadiya@searchnative.in', 'Search Native India');
+        $this->email->to($email);
+        foreach ($cc as $row) {
+            $this->email->cc($row);
+        }
+        $this->email->subject($subject);
+        $this->email->message($message);
+        //$files = array('D:\unit testing.docx', 'D:\vtiger trial version features.docx');
+        foreach ($attachments as $row) {
+            $this->email->attach($row);
+        }
+        if ($this->email->send()) {
+            echo 'Email send.';
+        } else {
+            show_error($this->email->print_debugger());
+        }
     }
 
 }

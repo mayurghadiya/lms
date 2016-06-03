@@ -1,7 +1,7 @@
 <table class="table table-striped table-bordered table-responsive" id="search-data-tables">
     <thead>
         <tr>
-            <th>#</th>
+            <th>No</th>
             <th>Department</th>
             <th>Branch</th>
             <th>Batch</th>

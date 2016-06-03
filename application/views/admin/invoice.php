@@ -33,7 +33,8 @@
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Student Name:</strong> <?php echo $invoice->std_first_name . ' ' . $invoice->std_last_name; ?></li>
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Email: </strong><?php echo $invoice->email; ?><br></li>
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Mobile: </strong><?php echo $invoice->std_mobile; ?></li>
-                        <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Due Amount: </strong>$<?php echo $due_amount; ?></li>
+                        <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Date: </strong><?php echo date('M d, Y', strtotime($invoice->paid_created_at)); ?></li>
+                        <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Due Amount: </strong>$<?php echo $due_amount; ?></li>                        
                     </ul>
                 </div>
                 <div class=clearfix></div>
@@ -77,4 +78,4 @@
     <!-- col-md-12 end here -->
 </div>
 <!-- End .row -->
-
+</div></div>

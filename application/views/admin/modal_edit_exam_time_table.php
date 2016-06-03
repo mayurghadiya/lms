@@ -30,6 +30,10 @@ $batch = $this->db->query($query)->result();
 $semester = explode(',', $edit_data->semester_id);
 $this->db->where_in('s_id', $semester);
 $semester = $this->db->get('semester')->result();
+$subjects = $this->db->get_where('subject_manager',[
+    'sm_course_id'  => $course_id,
+    'sm_sem_id' => $semester_id
+])->result();
 ?>
 <div class="row">
 
@@ -107,7 +111,11 @@ $semester = $this->db->get('semester')->result();
                     <div class="col-sm-8">
                         <select class="form-control" id="edit_subject" name="subject" required="">
                             <option value="">Select</option>
-
+                            <?php
+                            foreach($subjects as $subject) { ?>
+                            <option value="<?php echo $subject->sm_id; ?>"
+                                    <?php if($edit_data->sm_id == $subject->sm_id) echo 'selected'; ?>><?php echo $subject->subject_name; ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div> 
@@ -224,6 +232,10 @@ $semester = $this->db->get('semester')->result();
                 $('#edit_exam').html(content);
             }
         });
+    }
+    
+    function exam_subjects(exam_id) {
+    
     }
 
     function subject_list(course_id, semester_id) {

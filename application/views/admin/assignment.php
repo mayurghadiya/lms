@@ -3,16 +3,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
+        <div class="panel-default toggle">
             <div class=panel-body>
                 <div class="tabs mb20">
                     <ul id="import-tab" class="nav nav-tabs">
@@ -28,61 +19,61 @@
                         <div class="tab-pane fade active in" id="list">
                             <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addassignment');" data-toggle="modal"><i class="fa fa-plus"></i> Assignment</a>
                             <div class="row filter-row">
-                            <form id="assignment-search" action="#" class="form-groups-bordered validate">
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("department"); ?></label>
-                                    <select class="form-control" id="courses" name="degree_search">
-                                        <option value="">Select</option>
-                                        <?php foreach ($degree as $row) { ?>
-                                            <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Branch"); ?></label>
-                                    <select id="branches" name="course_search" data-filter="4" class="form-control">
-                                        <option value="">Select</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Batch"); ?></label>
-                                    <select id="batches" name="batch_search" data-filter="5" class="form-control">
-                                        <option value="">Select</option>
-                                    </select>
-                                </div>                                
-                                <div class="form-group col-sm-2">
-                                    <label> <?php echo ucwords("Semester"); ?></label>
-                                    <select id="semesters" name="semester_search" data-filter="6" class="form-control">
-                                        <option value="">Select</option>
+                                <form id="assignment-search" action="#" class="form-groups-bordered validate">
+                                    <div class="form-group col-sm-2">
+                                        <label><?php echo ucwords("department"); ?></label>
+                                        <select class="form-control" id="courses" name="degree_search">
+                                            <option value="">Select</option>
+                                            <?php foreach ($degree as $row) { ?>
+                                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2">
+                                        <label><?php echo ucwords("Branch"); ?></label>
+                                        <select id="branches" name="course_search" data-filter="4" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2">
+                                        <label><?php echo ucwords("Batch"); ?></label>
+                                        <select id="batches" name="batch_search" data-filter="5" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>                                
+                                    <div class="form-group col-sm-2">
+                                        <label> <?php echo ucwords("Semester"); ?></label>
+                                        <select id="semesters" name="semester_search" data-filter="6" class="form-control">
+                                            <option value="">Select</option>
 
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
-                                    <select class="form-control filter-rows" name="divclass" id="filterclass" >
-                                        <option value="">Select</option>
-                                        <?php
-                                        $class = $this->db->get('class')->result_array();
-                                        foreach ($class as $c) {
-                                            ?>
-                                            <option value="<?php echo $c['class_id'] ?>"><?php echo $c['class_name'] ?></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2">
+                                        <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
+                                        <select class="form-control filter-rows" name="divclass" id="filterclass" >
+                                            <option value="">Select</option>
                                             <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div> 
-                                <div class="form-group col-sm-2">
-                                    <label>&nbsp;</label><br/>
-                                    <input id="search-assignment-structure-data" type="button" value="Go" class="btn btn-info"/>
-                                </div>
-                            </form>
+                                            $class = $this->db->get('class')->result_array();
+                                            foreach ($class as $c) {
+                                                ?>
+                                                <option value="<?php echo $c['class_id'] ?>"><?php echo $c['class_name'] ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div> 
+                                    <div class="form-group col-sm-2">
+                                        <label>&nbsp;</label><br/>
+                                        <input id="search-assignment-structure-data" type="button" value="Go" class="btn btn-info"/>
+                                    </div>
+                                </form>
                             </div>
                             <div class="panel-body table-responsive" id="getresponse">          
                                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                     <thead>
                                         <tr>
-                                            <th>#</th>												
-                                            <th>Assignment Name</th>
+                                            <th>No</th>												
+                                            <th>Assignment</th>
                                             <th>Department</th>
                                             <th>Branch</th>												
                                             <th>Batch</th>												
@@ -149,7 +140,7 @@
                                                 </td>
                                                 <!-- id="inlinedate" contenteditable="true" onBlur="saveToDatabase(this,'assign_dos','<?php echo $row->assign_id; ?>')" onClick="showEdit(this);"-->
                                                 <td  ><?php echo wordwrap($row->assign_desc, 30, "<br>\n"); ?></td>
-                                                <td id="downloadedfile"><a href="<?php echo base_url().'uploads/project_file/'.$row->assign_filename; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>	
+                                                <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $row->assign_filename; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>	
                                                 <td ><?php echo date('F d, Y', strtotime($row->assign_dos)); ?></td>	
                                                 <td class="menu-action">
                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Edit</span></a>
@@ -165,69 +156,69 @@
                         <!-- tab content -->
                         <div class="tab-pane fade" id="submittedlist">
                             <div class="row filter-row">
-                            <form id="assignment-search-submitted" action="#" class="form-groups-bordered validate">
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("department"); ?></label>
-                                    <select class="form-control" id="scourses" name="degree_search">
-                                        <option value="">Select</option>
-                                        <?php foreach ($degree as $row) { ?>
-                                            <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Branch"); ?></label>
-                                    <select id="sbranches" name="course_search" data-filter="4" class="form-control">
-                                        <option value="">Select</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Batch"); ?></label>
-                                    <select id="sbatches" name="batch_search" data-filter="5" class="form-control">
-                                        <option value="">Select</option>
-                                    </select>
-                                </div>                                
-                                <div class="form-group col-sm-2">
-                                    <label> <?php echo ucwords("Semester"); ?></label>
-                                    <select id="ssemesters" name="semester_search" data-filter="6" class="form-control">
-                                        <option value="">Select</option>
+                                <form id="assignment-search-submitted" action="#" class="form-groups-bordered validate">
+                                    <div class="form-group col-sm-2">
+                                        <label><?php echo ucwords("department"); ?></label>
+                                        <select class="form-control" id="scourses" name="degree_search">
+                                            <option value="">Select</option>
+                                            <?php foreach ($degree as $row) { ?>
+                                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2">
+                                        <label><?php echo ucwords("Branch"); ?></label>
+                                        <select id="sbranches" name="course_search" data-filter="4" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2">
+                                        <label><?php echo ucwords("Batch"); ?></label>
+                                        <select id="sbatches" name="batch_search" data-filter="5" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>                                
+                                    <div class="form-group col-sm-2">
+                                        <label> <?php echo ucwords("Semester"); ?></label>
+                                        <select id="ssemesters" name="semester_search" data-filter="6" class="form-control">
+                                            <option value="">Select</option>
 
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2" style="display: none;">
-                                    <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
-                                    <select class="form-control filter-rows" name="divclass" id="sfilterclass" >
-                                        <option value="">Select</option>
-                                        <?php
-                                        $class = $this->db->get('class')->result_array();
-                                        foreach ($class as $c) {
-                                            ?>
-                                            <option value="<?php echo $c['class_id'] ?>"><?php echo $c['class_name'] ?></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2" style="display: none;">
+                                        <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
+                                        <select class="form-control filter-rows" name="divclass" id="sfilterclass" >
+                                            <option value="">Select</option>
                                             <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div> 
-                                <div class="form-group col-sm-2">
-                                    <label>&nbsp;</label><br/>
-                                    <input id="submitted" type="button" value="Go" class="btn btn-info"/>
-                                </div>
-                            </form>
+                                            $class = $this->db->get('class')->result_array();
+                                            foreach ($class as $c) {
+                                                ?>
+                                                <option value="<?php echo $c['class_id'] ?>"><?php echo $c['class_name'] ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div> 
+                                    <div class="form-group col-sm-2">
+                                        <label>&nbsp;</label><br/>
+                                        <input id="submitted" type="button" value="Go" class="btn btn-info"/>
+                                    </div>
+                                </form>
                             </div>
                             <div class="panel-body table-responsive" id="getsubmit">
                                 <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="sub-tables">
                                     <thead>
                                         <tr>
-                                            <th>#</th>												
-                                            <th><?php echo ucwords("Assignment Name"); ?></th>
-                                            <th><?php echo ucwords("Student Name"); ?></th>
-                                            <th><?php echo ucwords("Department"); ?></th>
-                                            <th><?php echo ucwords("Branch"); ?></th>												
-                                            <th><?php echo ucwords("Batch"); ?></th>												
-                                            <th><?php echo ucwords("Sem"); ?></th>	
-                                            <th><?php echo ucwords("Submitted date"); ?></th>	
-                                            <th><?php echo ucwords("Comment"); ?></th>
-                                            <th><?php echo ucwords("File"); ?></th>												                                            
+                                            <th>No</th>												
+                                            <th><div><?php echo ucwords("Assignment"); ?></div></th>
+                                            <th><div><?php echo ucwords("Student"); ?></div></th>
+                                            <th><div><?php echo ucwords("Department"); ?></div></th>
+                                            <th><div><?php echo ucwords("Branch"); ?></div></th>												
+                                            <th><div><?php echo ucwords("Batch"); ?></div></th>												
+                                            <th><div><?php echo ucwords("Sem"); ?></div></th>	
+                                            <th><div><?php echo ucwords("Submitted-date"); ?></div></th>	
+                                            <th><div><?php echo ucwords("Comment"); ?></div></th>
+                                            <th><div><?php echo ucwords("File"); ?></div></th>	
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -268,19 +259,19 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                <?php
-                                                foreach ($semester as $sem) {
-                                                    if ($sem->s_id == $rowsub->assign_sem) {
-                                                        echo $sem->s_name;
+                                                    <?php
+                                                    foreach ($semester as $sem) {
+                                                        if ($sem->s_id == $rowsub->assign_sem) {
+                                                            echo $sem->s_name;
+                                                        }
                                                     }
-                                                }
-                                                ?>													
+                                                    ?>													
                                                 </td>	
                                                 <td><?php echo date_formats($rowsub->submited_date); ?></td>	
                                                 <td><?php echo $rowsub->comment; ?></td>
                                                 <td id="downloadedfile"><a href="<?php echo base_url(); ?>uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                      	
                                             </tr>
-<?php endforeach; ?>						
+                                        <?php endforeach; ?>						
                                     </tbody>
                                 </table>
                             </div>
@@ -289,7 +280,7 @@
                     </div>
 
                 </div>
- </div>
+            </div>
         </div>
         <!-- End .panel -->
     </div>

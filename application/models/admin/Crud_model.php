@@ -703,6 +703,7 @@ class Crud_model extends CI_Model {
                         ->join('semester', 'semester.s_id = student_fees.sem_id')
                         ->join('degree', 'degree.d_id = student.std_degree')
                         ->join('batch', 'batch.b_id = student.std_batch')
+                        ->order_by('paid_created_at', 'DESC')
                         ->get()
                         ->result();
     }
@@ -1600,6 +1601,31 @@ class Crud_model extends CI_Model {
     {
         $this->db->update("assignment_submission",$data,array("assignment_submit_id"=>$id));
     }
+    
+    /**
+     * Fee structure save and update
+     * @param mixed $data
+     * @param int $id
+     */
+    function student_pay_fee_structure_save($data, $id) {
+        if($id) {
+            //update
+            $this->db->where('stduent_fees_id', $id);
+            $this->db->update('student_fees');
+        } else {
+            //insert
+            $this->db->insert('student_fees', $data);
+        }
+    }
+    
+    /**
+     * Get all professor list
+     * @return mixed
+     */
+    function get_all_professor() {
+        return $this->db->get('professor')->result();
+    }
+    
     /**
      * 
      */

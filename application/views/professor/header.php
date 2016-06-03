@@ -71,22 +71,13 @@
                             <li class="dropdown">
                                 <a href=# class="dropdown-toggle" data-toggle=dropdown>
                                     <i class="fa fa-globe" aria-hidden="true"></i>
-                                    <span class="notification">3</span>
+                                    <span class="notification"></span>
                                 </a>
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul class=notif>
-                                            <li class=header><strong>Notifications</strong> (3) items</li>
-                                            <li><a href=#><span class=icon>
-                                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                    </span> <span class=event>1 User is registred</span></a>
-                                            </li>
-                                            <li><a href=#><span class=icon><i class="s16 fa fa-commenting"></i></span> <span class=event>Jony add 1 comment</span></a>
-                                            </li>
-                                            <li><a href=#><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>admin Julia added post with a long description</span></a>
-                                            </li>
-                                            <li class=view-all><a href=#>View all notifications <i class="s16 fa fa-angle-double-right"></i></a>
-                                            </li>
+                                            <li class=header><strong>Notifications</strong></li>
+                                            
                                         </ul>
                                     </li>
                                 </ul>
@@ -381,11 +372,60 @@
                         <div class=heading>
                             <!--  .heading-->
                             <h3><?php echo $title; ?></h3>
-                            <div class=resBtnSearch><a href=#><span class="s16 icomoon-icon-search-3"></span></a></div>
-                            <div class=search>
-                                <!-- .search -->
-                                <form id=searchform class=form-horizontal action=search.html><input class="top-search from-control" placeholder="Search here ..."> <input type=submit class=search-btn></form>
+                            <div class=resBtnSearch><a href=#><span class="s16 icomoon-icon-search-3"></span></a>
                             </div>
+                            <div class="search_box">
+                                <!-- .search -->
+                                <form action="<?php echo base_url(); ?>student/search" method="post" class="form-horizontal" id="searchform">
+                                    <input value="" placeholder="Search here ..." class="top-search from-control" name="search"> 
+                                    <input type="submit" class="search-btn">
+                                    <div class="category">
+                                        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            Category                                     
+                                        </a>
+
+                                        <ul class="dropdown-menu" style="margin-left: -46.3833px;">
+                                            <li class="menu">
+                                                <ul>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom">
+                                                                <input type="checkbox" name="exam" value="exam" 
+                                                                    <?php if (isset($from['exam'])) echo 'checked'; ?>><label for="chbox0"></label></div>
+                                                            <span>Exam</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom">
+                                                                <input type="checkbox" name="assignment" value="assignment"
+                                                                       <?php if (isset($from['assignment'])) echo 'checked'; ?>><label for="chbox1"></label></div>
+                                                            <span>Assignment</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom">
+                                                                <input type="checkbox" name="participate" value="participate"
+                                                                       <?php if (isset($from['participate'])) echo 'checked'; ?>><label for="chbox2"></label></div>
+                                                            <span>Participate</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <div class="checkbox-custom">
+                                                                <input type="checkbox" name="event" value="event"
+                                                                       <?php if (isset($from['event'])) echo 'checked'; ?>><label for="chbox3"></label></div>
+                                                            <span>Events</span>
+                                                        </label>
+                                                    </li> 
+                                                </ul>                                           
+                                            </li>
+                                        </ul> 
+                                    </div>
+                                </form>
+                            </div>
+                            <!--  /search -->  
                             <!--  /search -->
                             <ul class=breadcrumb>
                                 <li>You are here:</li>

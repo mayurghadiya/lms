@@ -9,7 +9,7 @@
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th><div>#</div></th>
+                            <th>No</th>
                             <th><?php echo ucwords("category name"); ?></th>
                             <th><?php echo ucwords("Status"); ?></th>
                             <th><?php echo ucwords("Action"); ?></th>

@@ -50,14 +50,6 @@ if ($message != '') {
         });
 <?php } ?>
 </script> 
-
-<script>
-    var method_name = '<?php echo $this->router->fetch_method(); ?>';
-    if (method_name == 'dashboard' || method_name == 'index') {
-        $('#body').addClass('dashboard');
-    }
-</script>
-
 <?php include 'modal.php'; ?>
 </head>
 </body>

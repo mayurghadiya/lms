@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Live Broadcast<span style="color:red">*</span></label>
                                 <div class="col-sm-5">
-                                    <input id="broadcast-name" type="text" class="form-control" placeholder="live streaming for all batch and course" name="title"/>
+                                    <input id="broadcast-name" type="text" class="form-control" placeholder="live streaming for all department and branch" name="title"/>
                                     <label style="display:none; color: red" id="name_error"></label>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                                 <section class="col-md-5 col-md-offset-3">
                                     <span>
                                         Private ??
-                                        <a href="" target="_blank" title="Open this link in new tab. Then your room will be private!">
+                                        <a href="" class="multicast-live-streaming" target="_blank" title="Open this link in new tab. Then your room will be private!">
                                             Click Here <code style="display:none;">
                                                 <strong id="unique-token">#123456789</strong>
                                             </code>
@@ -471,6 +471,12 @@
     <script>
         // start multicast
         $(document).ready(function () {
+            $('.multicast-live-streaming').on('click',function(){
+                var multicast_id = $(this).attr('href');
+                var url = $(location).attr('href');               
+                window.open(url + multicast_id);
+            });
+            
             $('.startmulticast').on('click', function () {
                 var session_id = $(this).attr('session_id');
                 $('#streamname').val(session_id);

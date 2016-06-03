@@ -21,18 +21,18 @@
                             <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                 <thead>
                                     <tr>
-                                        <th>#</th>		
-                                        <th>Assignment</th>
-                                        <th>Student</th>                           
-                                        <th>Assign. File</th>
-                                        <th>Submitted File</th>
-                                        <th>Department</th>
-                                        <th>Branch</th>												
-                                        <th>Batch</th>												
-                                        <th>Semester</th>
-                                        <th>Instruction</th>
-                                        <th>Feedback</th>                                                
-                                        <th>Grade</th>	
+                                        <th >No</th>		
+                                        <th >Assignment</th>
+                                        <th >Student</th>                           
+                                        <th >Assignment-File</th>
+                                        <th >Submitted-File</th>
+                                        <th >Department</th>
+                                        <th >Branch</th>												
+                                        <th >Batch</th>												
+                                        <th >Semester</th>
+                                        <th >Instruction</th>
+                                        <th >Feedback</th>                                                
+                                        <th >Grade</th>	
                                     </tr>
                                 </thead>
 
@@ -42,22 +42,22 @@
                                     foreach ($assessment->result_array() as $row):
                                         ?>
                                         <tr>
-                                            <td><?php echo $count++; ?></td>	
-                                            <td><?php echo $row['assign_title']; ?></td>   
-                                            <td><?php echo $row['name']; ?></td>                               
-                                            <td id="downloadedfile"><a href="<?php echo $row['assign_url']; ?>" download="" title="<?php echo $row['assign_title']; ?>"><i class="fa fa-download"></i></a></td>	
-                                            <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $row['document_file']; ?>" download=""><i class="fa fa-download"></i></a></td>	
-                                            <td><?php
-                                    foreach ($degree as $dgr):
-                                        if ($dgr->d_id == $row['std_degree']):
+                                            <td ><?php echo $count++; ?></td>	
+                                            <td ><?php echo $row['assign_title']; ?></td>   
+                                            <td ><?php echo $row['name']; ?></td>                               
+                                            <td  id="downloadedfile"><a href="<?php echo $row['assign_url']; ?>" download="" title="<?php echo $row['assign_title']; ?>"><i class="fa fa-download"></i></a></td>	
+                                            <td  id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $row['document_file']; ?>" download=""><i class="fa fa-download"></i></a></td>	
+                                            <td ><?php
+                                                    foreach ($degree as $dgr):
+                                                        if ($dgr->d_id == $row['std_degree']):
 
-                                            echo $dgr->d_name;
-                                        endif;
+                                                            echo $dgr->d_name;
+                                                        endif;
 
 
-                                    endforeach;
+                                                    endforeach;
                                         ?></td>
-                                            <td>
+                                            <td >
                                                 <?php
                                                 foreach ($course as $crs) {
                                                     if ($crs->course_id == $row['course_id']) {
@@ -66,7 +66,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td >
                                                 <?php
                                                 foreach ($batch as $bch) {
                                                     if ($bch->b_id == $row['std_batch']) {
@@ -75,7 +75,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td >
                                                 <?php
                                                 foreach ($semester as $sem) {
                                                     if ($sem->s_id == $row['semester_id']) {
@@ -84,9 +84,9 @@
                                                 }
                                                 ?>													
                                             </td>
-                                            <td><?php echo $row['assignment_instruction']; ?></td>	
-                                            <td><?php echo wordwrap($row['feedback'], 30, "<br>\n"); ?></td>                                                   
-                                            <td><?php echo $row['grade']; ?></td>                                                   
+                                            <td ><?php echo $row['assignment_instruction']; ?></td>	
+                                            <td ><?php echo wordwrap($row['feedback'], 30, "<br>\n"); ?></td>
+                                            <td ><?php echo $row['grade']; ?></td>
                                         </tr>
                                     <?php endforeach; ?>																									
                                 </tbody>
@@ -147,17 +147,17 @@
                                 <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="sub-tables">
                                     <thead>
                                         <tr>
-                                            <th><div>#</div></th>												
-                                            <th><div><?php echo ucwords("Assignment Name"); ?></div></th>
-                                            <th><div><?php echo ucwords("Student Name"); ?></div></th>
-                                            <th><div><?php echo ucwords("Department"); ?></div></th>
-                                            <th><div><?php echo ucwords("Branch"); ?></div></th>												
-                                            <th><div><?php echo ucwords("Batch"); ?></div></th>												
-                                            <th><div><?php echo ucwords("Sem"); ?></div></th>	
-                                            <th><div><?php echo ucwords("Submitted date"); ?></div></th>	
-                                            <th><div><?php echo ucwords("Comment"); ?></div></th>
-                                            <th><div><?php echo ucwords("File"); ?></div></th>	
-                                            <th><div><?php echo ucwords("Action"); ?></div></th>	
+                                            <th >No</th>												
+                                            <th ><?php echo ucwords("Assignment"); ?></th>
+                                            <th ><?php echo ucwords("Student"); ?></th>
+                                            <th ><?php echo ucwords("Department"); ?></th>
+                                            <th ><?php echo ucwords("Branch"); ?></th>												
+                                            <th ><?php echo ucwords("Batch"); ?></th>												
+                                            <th ><?php echo ucwords("Sem"); ?></th>	
+                                            <th ><?php echo ucwords("Submitted-date"); ?></th>	
+                                            <th ><?php echo ucwords("Comment"); ?></th>
+                                            <th ><?php echo ucwords("File"); ?></th>	
+                                            <th ><?php echo ucwords("Action"); ?></th>	
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -166,10 +166,10 @@
                                         foreach ($submitedassignment->result() as $rowsub):
                                             ?>
                                             <tr>
-                                                <td><?php echo $count++; ?></td>
-                                                <td><?php echo $rowsub->assign_title; ?></td>
-                                                <td><?php echo $rowsub->name; ?></td>
-                                                <td><?php
+                                                <td ><?php echo $count++; ?></td>
+                                                <td ><?php echo $rowsub->assign_title; ?></td>
+                                                <td ><?php echo $rowsub->name; ?></td>
+                                                <td ><?php
                                         foreach ($degree as $dgr):
                                             if ($dgr->d_id == $rowsub->assign_degree):
 
@@ -179,7 +179,7 @@
 
                                         endforeach;
                                             ?></td>
-                                                <td>
+                                                <td >
                                                     <?php
                                                     foreach ($course as $crs) {
                                                         if ($crs->course_id == $rowsub->course_id) {
@@ -188,7 +188,7 @@
                                                     }
                                                     ?>
                                                 </td>
-                                                <td>
+                                                <td >
                                                     <?php
                                                     foreach ($batch as $bch) {
                                                         if ($bch->b_id == $rowsub->assign_batch) {
@@ -197,7 +197,7 @@
                                                     }
                                                     ?>
                                                 </td>
-                                                <td>
+                                                <td >
                                                     <?php
                                                     foreach ($semester as $sem) {
                                                         if ($sem->s_id == $rowsub->assign_sem) {
@@ -206,10 +206,10 @@
                                                     }
                                                     ?>													
                                                 </td>	
-                                                <td><?php echo date_formats($rowsub->submited_date); ?></td>	
-                                                <td><?php echo $rowsub->comment; ?></td>
+                                                <td ><?php echo date_formats($rowsub->submited_date); ?></td>	
+                                                <td ><?php echo $rowsub->comment; ?></td>
                                                 <td id="downloadedfile"><a href="uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                      	
-                                                <td class="menu-action">
+                                                <td  class="menu-action">
                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_assessment/<?php echo $rowsub->assignment_submit_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Assessment</span></a>
 
                                                 </td>	

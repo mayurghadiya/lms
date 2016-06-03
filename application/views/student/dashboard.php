@@ -46,7 +46,7 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <div data-duration="2" data-suffix="%" data-to="99.9" data-from="0" data-count=".num" class="xe-widget xe-counter-block">
+                <div class="xe-widget xe-counter-block">
                     <div class="xe-upper">
                         <div class="xe-icon"> 
                             <i class="fa fa-money"></i> 
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <div data-duration="3" data-to="512" data-from="0" data-count=".num" class="xe-widget xe-counter-block xe-counter-block-purple">
+                <div class="xe-widget xe-counter-block xe-counter-block-purple">
                     <div class="xe-upper">
                         <div class="xe-icon"> <i class="fa fa-camera-retro" aria-hidden="true"></i> </div>
                         <div class="xe-label"> <strong class="num">STAFF & EMAIL DIRECTORY</strong> <span>Email</span> </div>
@@ -77,12 +77,10 @@
                             Email
                         </a> 
                     </div>
-
-
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <div data-easing="false" data-duration="4" data-to="310" data-from="0" data-count=".num" data-suffix="k" class="xe-widget xe-counter-block xe-counter-block-blue">
+                <div class="xe-widget xe-counter-block xe-counter-block-blue">
                     <div class="xe-upper">
                         <div class="xe-icon"> <i class="fa fa-television" aria-hidden="true"></i> </div>
                         <div class="xe-label"> <strong class="num">DIGITAL<br> LIBRARY</strong> <span>Daily Visits</span> </div>
@@ -99,6 +97,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                 <div class="xe-widget xe-counter-block xe-counter-block-orange">
+
                     <div class="xe-upper">
                         <div class="xe-icon"> <i class="fa fa-life-ring" aria-hidden="true"></i> </div>
                         <div class="xe-label"> <strong class="num">VIDEO CONFERENCING</strong> <span>Live Support</span> </div>
@@ -112,7 +111,9 @@
                                     <div class="menu-icon">
                                         <i class=" icon-trophy"></i>
                                     </div>
-                                    <div class="menu-text"><?php echo $video->title; ?></div>
+                                    <div class="menu-text">
+                                        <?php echo $video->title; ?>                                        
+                                    </div>
                                 </a>
                             </li>
                         <?php } ?>
@@ -130,7 +131,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <div data-duration="3" data-to="512" data-from="0" data-count=".num" class="xe-widget xe-counter-block xe-counter-block-black">
+                <div class="xe-widget xe-counter-block xe-counter-block-black">
                     <div class="xe-upper">
                         <div class="xe-icon"> <i class="fa fa-paperclip" aria-hidden="true"></i> </div>
                         <div class="xe-label"> <strong class="num">Assignment</strong> <span>Assignment List</span> </div>
@@ -143,7 +144,7 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <!-- col-md-8 start here -->
+            <!-- col-md-8 calendar start here -->
             <div class="panel panel-default chart">
                 <div class=panel-heading>
                     <h4 class=panel-title><i class="s16 fa fa-calendar"></i> <span>Calendar </span></h4>
@@ -504,7 +505,7 @@
             <!-- / .row -->
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <div data-duration="2" data-to="12425" data-from="0" data-count=".num" class="xe-widget xe-progress-counter xe-progress-counter-pink h400">
+            <div class="xe-widget xe-progress-counter xe-progress-counter-pink h400">
                 <div class="xe-background"> 
                     <i class="fa fa-heart" aria-hidden="true"></i> 
                 </div>
@@ -534,7 +535,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <div data-duration="3" data-suffix="k" data-to="520" data-from="0" data-count=".num" class="xe-widget xe-progress-counter xe-progress-counter-turquoise">
+            <div class="xe-widget xe-progress-counter xe-progress-counter-turquoise">
                 <div class="xe-background"> <i class="fa fa-weixin" aria-hidden="true"></i> </div>
                 <div class="xe-upper">
                     <div class="xe-icon"> <i class="fa fa-weixin" aria-hidden="true"></i> </div>
@@ -550,7 +551,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <div data-duration="2" data-suffix="%" data-to="99.9" data-from="0" data-count=".num" class="xe-widget xe-counter-block xe-counter-block-red">
+            <div class="xe-widget xe-counter-block xe-counter-block-red">
                 <div class="xe-upper">
                     <div class="xe-icon"> <i class="fa fa-first-order" aria-hidden="true"></i> </div>
                     <div class="xe-label"> <strong class="num">PARTICIPATE</strong> <span>Volunteer ,Survey ,Upload</span> </div>
@@ -572,98 +573,100 @@
 </div>
 <div class="row">
     <!-- .row start -->
-<!-- To do list Start div-->
-            <div class="col-lg-5">
-                <div class="panel panel-default toggle">
-                    <!-- Start .panel -->
-                    <div class=panel-heading>
-                        <h4 class=panel-title>
-                            To Do
-                        </h4>
-                    </div>
-                    <div class=panel-body>
-                        <div class=todo-widget>
-                            <!-- .todo-widget -->
-                            <div class=todo-header>
-                                <div id="updateformhtml"></div>
-                                <div class="todo-addform" id="todo-addform">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <h4 class=todo-period>Add New ToDo</h4>
-                                            <form id="frmtodo" class="form-horizontal form-groups-bordered validate">
-                                                <div class=form-group>
-                                                    <label class="control-label col-lg-4">Task Title</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" id="todo_title" class="form-control" name="todo_title" >
-                                                    </div>
-                                                </div>
-                                                <div class=form-group>
-                                                    <label class="control-label col-lg-4">Task Date</label>
-                                                    <div class="col-sm-8">
-                                                        <input id="basic-datepicker" type="text" name="tado_date" class="form-control" readonly="">
-                                                    </div>
-                                                </div>
-                                                <div class=form-group>
-                                                    <label class="control-label col-lg-4">Task Time</label>
-                                                    <div class="col-sm-8">
-                                                        <div class="input-group bootstrap-timepicker">
-                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                                            <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8" readonly="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class=form-group>
-                                                    <div class="col-sm-offset-4 col-sm-8">
-                                                        <input type="button" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
-                                                        <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform">
-                                                    </div>
-                                                </div>
-                                            </form>
+    <!-- To do list Start div-->
+    <div class="col-lg-5">
+        <div class="panel panel-default toggle">
+            <!-- Start .panel -->
+            <div class=panel-heading>
+                <h4 class=panel-title>
+                    To Do
+                </h4>
+            </div>
+            <div class=panel-body>
+                <div class=todo-widget>
+                    <!-- .todo-widget -->
+                    <div class=todo-header>
+                        <div id="updateformhtml"></div>
+                        <div class="todo-addform" id="todo-addform">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class=todo-period>Add New ToDo</h4>
+                                    <form id="frmtodo" class="form-horizontal form-groups-bordered validate">
+                                        <div class=form-group>
+                                            <label class="control-label col-lg-4">Task Title</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="todo_title" class="form-control" name="todo_title" >
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class=todo-search>
-                                    <form>
-                                        <input class=form-control name=search placeholder="Search for todo ...">
+                                        <div class=form-group>
+                                            <label class="control-label col-lg-4">Task Date</label>
+                                            <div class="col-sm-8">
+                                                <input id="basic-datepicker" type="text" name="tado_date" class="form-control" readonly="">
+                                            </div>
+                                        </div>
+                                        <div class=form-group>
+                                            <label class="control-label col-lg-4">Task Time</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group bootstrap-timepicker">
+                                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                                    <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8" readonly="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=form-group>
+                                            <div class="col-sm-offset-4 col-sm-8">
+                                                <input type="button" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
+                                                <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform">
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
-                                <div class=todo-add>
-                                    <a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a>
-                                </div>
                             </div>
-                            <h4 class=todo-period>To Do List</h4>
-                            <div id="wait" class="loading_img">
-                                <img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" style="position:relative; z-index:99999;" /><br>Loading...
-                            </div>
-                            <ul class="todo-list" id="today">
-                                <?php foreach ($todolist as $todo) { ?>  
-                                    <li class="todo-task-item <?php
-                                    if ($todo->todo_status == "0") {
-                                        echo "task-done";
-                                    }
-                                    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
-                                        <div class=checkbox-custom><input type="checkbox" <?php
-                                            if ($todo->todo_status == "0") {
-                                                echo "checked=''";
-                                            }
-                                            ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
-                                        <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
-                                        <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
-                                        <div class="updateclick_box">
-                                            <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                        </div>
-                                        <div class="todo-close_box">
-                                            <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
-                                        </div>
-                                    </li>
-                                <?php } ?>
-                            </ul>
+                        </div>
+                        <div class=todo-search>
+                            <form>
+                                <input class=form-control name=search placeholder="Search for todo ...">
+                            </form>
+                        </div>
+                        <div class=todo-add>
+                            <a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a>
                         </div>
                     </div>
-                    <!-- End .todo-widget -->
+                    <h4 class=todo-period>To Do List</h4>
+                    <div id="wait" class="loading_img">
+                        <img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" style="position:relative; z-index:99999;" /><br>Loading...
+                    </div>
+                    <ul class="todo-list" id="today">
+                        <?php foreach ($todolist as $todo) { ?>  
+                            <li class="todo-task-item <?php
+                            if ($todo->todo_status == "0") {
+                                echo "task-done";
+                            }
+                            ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
+                                <div class=checkbox-custom><input type="checkbox" <?php
+                                    if ($todo->todo_status == "0") {
+                                        echo "checked=''";
+                                    }
+                                    ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
+                                <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
+                                <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
+                                <div class="updateclick_box">
+                                    <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                </div>
+                                <div class="todo-close_box">
+                                    <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
+                                </div>
+                            </li>
+                        <?php } ?>
+                    </ul>
                 </div>
             </div>
-<!-- To do list End div-->   
+            <!-- End .todo-widget -->
+        </div>
+    </div>
+    <!-- To do list End div-->   
+
+    <!-- Growth Start div-->
     <div class="col-md-4">
         <!-- col-md-6 start here -->
         <div class="panel panel-default toggle panelClose panelRefresh panelMove" id="supr3">
@@ -734,6 +737,8 @@
         </div>
         <!-- End .panel --><!-- / .panel -->
     </div>
+    <!-- Growth end div-->
+
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
         <div class="xe-widget xe-counter-block xe-counter-block-red attendance-box" data-count=".num" data-from="0" data-to="99.9" data-suffix="%" data-duration="2">
             <div class="xe-upper">
@@ -765,8 +770,9 @@
             </div>
         </div>
     </div>
+
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-        <div data-duration="3" data-to="512" data-from="0" data-count=".num" class="xe-widget xe-counter-block xe-counter-block-black">
+        <div class="xe-widget xe-counter-block xe-counter-block-black">
             <div class="xe-upper">
                 <div class="xe-icon"> <i class="fa fa-paperclip" aria-hidden="true"></i> </div>
                 <div class="xe-label"> <strong class="num">PROJECT</strong> <span>Project List</span> </div>
@@ -778,7 +784,10 @@
             </div>
         </div>
     </div>
+
 </div>
+
+<!-- Timeline Start div-->
 <div class="row">    
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="panel panel-default toggle">
@@ -798,104 +807,96 @@
                                 $i = 0;
                                 foreach ($timelinecount as $c) {
                                     foreach ($timline_event as $event1) {
-                                        $tododate[]=date('Y-m-d', strtotime($event1->event_date));
-                                    }   
-                                    
-                                    foreach ($timline_todolist as $time_line1) {
-                                        $eventdate[]=date('Y-m-d', strtotime($time_line1->todo_datetime));
+                                        $tododate[] = date('Y-m-d', strtotime($event1->event_date));
                                     }
-                                     if(!empty($tododate) || !empty($eventdate))
-                                     {
-                                         if(in_array($c, $tododate) || in_array($c, $eventdate))
-                                         {
-                                             $j = 0;
-                                             ?>
-                                                <div class="tl-row">
-                                            <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                                                <div class="tl-bullet bg-blue"></div>
-                                                <div class="tl-panel"><?php echo $c; ?></div>
-                                                <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                                    <div class="arrow"></div>
-                                                    <?php
-                                                           
-                                                         if(!empty($tododate))
-                                                             {
-                                                         if(in_array($c, $tododate))
-                                                         {
-                                                            ?>
+
+                                    foreach ($timline_todolist as $time_line1) {
+                                        $eventdate[] = date('Y-m-d', strtotime($time_line1->todo_datetime));
+                                    }
+                                    if (!empty($tododate) || !empty($eventdate)) {
+                                        if (in_array($c, $tododate) || in_array($c, $eventdate)) {
+                                            $j = 0;
+                                            ?>
+                                            <div class="tl-row">
+                                                <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                    <div class="tl-bullet bg-blue"></div>
+                                                    <div class="tl-panel"><?php echo $c; ?></div>
+                                                    <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                        <div class="arrow"></div>
+                                                        <?php
+                                                        if (!empty($tododate)) {
+                                                            if (in_array($c, $tododate)) {
+                                                                ?>
                                                                 <div class="popover-content">
-                                                                 <h3 class="tl-title">Event</h3>                                                               
-                                                             <?php
-                                                                foreach ($timline_event as $event) {
-                                                                    if (date('Y-m-d', strtotime($event->event_date)) == $c) {
-                                                                        $j++;
-                                                                        if ($j <= 3) {
-                                                                            ?>
-                                                                            <p class=""><?php echo $event->event_name; ?></p>
-                                                                            <?php
+                                                                    <h3 class="tl-title">Event</h3>                                                               
+                                                                    <?php
+                                                                    foreach ($timline_event as $event) {
+                                                                        if (date('Y-m-d', strtotime($event->event_date)) == $c) {
+                                                                            $j++;
+                                                                            if ($j <= 3) {
+                                                                                ?>
+                                                                                <p class=""><?php echo $event->event_name; ?></p>
+                                                                                <?php
+                                                                            }
                                                                         }
                                                                     }
-                                                                }
-                                                              /*  if($j>3)
-                                                                {
+                                                                    /*  if($j>3)
+                                                                      {
+                                                                      ?>
+                                                                      <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
+                                                                      <?php
+                                                                      } */
                                                                     ?>
-                                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
-                                                                    <?php
-                                                                }*/
-                                                                ?>
-                                                                            
-                                                            </div>
-                                                          <?php                                                 
-                                                         }
-                                }
-                                                        ?>
-                                                    
-                                                            <?php
-                                                            
-                                                             if(!empty($eventdate))
-                                                             {
-                                                                 if(in_array($c, $eventdate))
-                                                                 {
-                                                                     if ($j < 3) {
-                                                                ?>
-                                                                <div class="popover-content">
-                                                                    <h3 class="tl-title">Todolist</h3>
-                                                                    <?php
-                                                                    foreach ($timline_todolist as $time_line) {
-                                                                        if (date('Y-m-d', strtotime($time_line->todo_datetime)) == $c) {
-                                                                             $j++;
-                                                                        if ($j <= 3) {
-                                                                            ?>
-                                                                            <p class=""><?php echo $time_line->todo_title; ?></p>
-                                                                            <?php
-                                                                        }
-                                                                        }
-                                                                    }
-                                                                  /*    if($j>3)
-                                                                        {
-                                                                            ?>
-                                                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
-                                                                            <?php
-                                                                       }*/
-                                                                    ?>   
-                                                                    
+
                                                                 </div>
                                                                 <?php
                                                             }
-                                                                 }
-                                                             }
-                                                            ?> 
-                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
-                                                    <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($c); ?></div>
-                                                        </div>
+                                                        }
+                                                        ?>
+
+                                                        <?php
+                                                        if (!empty($eventdate)) {
+                                                            if (in_array($c, $eventdate)) {
+                                                                if ($j < 3) {
+                                                                    ?>
+                                                                    <div class="popover-content">
+                                                                        <h3 class="tl-title">Todolist</h3>
+                                                                        <?php
+                                                                        foreach ($timline_todolist as $time_line) {
+                                                                            if (date('Y-m-d', strtotime($time_line->todo_datetime)) == $c) {
+                                                                                $j++;
+                                                                                if ($j <= 3) {
+                                                                                    ?>
+                                                                                    <p class=""><?php echo $time_line->todo_title; ?></p>
+                                                                                    <?php
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        /*    if($j>3)
+                                                                          {
+                                                                          ?>
+                                                                          <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
+                                                                          <?php
+                                                                          } */
+                                                                        ?>   
+
+                                                                    </div>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                        }
+                                                        ?> 
+                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c; ?>');" data-toggle="modal"> Read More</a>
+                                                        <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($c); ?></div>
                                                     </div>
                                                 </div>
-                                          <?php                               
-                                                  }
-                                                 }
-                                                $i++;
-                                              }
-                                        ?>
+                                            </div>
+                                            <?php
+                                        }
+                                    }
+                                    $i++;
+                                }
+                                ?>
 
                             </div>
                         </div>          
@@ -905,6 +906,7 @@
         </div>
     </div>
 </div>
+<!-- Timeline End div-->
 
 <!-- / .row -->
 </div>
@@ -1052,7 +1054,7 @@
                 }
             });
         });
-       
+
         $("#closeform").click(function () {
             $("#todo-addform").hide(500);
         });
@@ -1060,3 +1062,54 @@
 
 </script>
 <!--  end to do list -->
+
+<!-- jQuery Scrollbar Js start -->
+<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+    (function ($) {
+
+        $(window).load(function () {
+
+            $("#content-1").mCustomScrollbar({
+                theme: "inset-2-dark",
+                axis: "yx",
+                advanced: {
+                    autoExpandHorizontalScroll: true
+                },
+                /* change mouse-wheel axis on-the-fly */
+                callbacks: {
+                    // onOverflowY:function(){
+                    //  var opt=$(this).data("mCS").opt;
+                    //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+                    // },
+                    onOverflowX: function () {
+                        var opt = $(this).data("mCS").opt;
+                        if (opt.mouseWheel.axis !== "x")
+                            opt.mouseWheel.axis = "x";
+                    },
+                }
+            });
+        });
+
+        $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
+            theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+                autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+                onOverflowY: function () {
+                    var opt = $(this).data("mCS").opt;
+                    if (opt.mouseWheel.axis !== "y")
+                        opt.mouseWheel.axis = "y";
+                },
+                // onOverflowX: function() {
+                //     var opt = $(this).data("mCS").opt;
+                //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                // },
+            }
+        });
+    })(jQuery);
+</script>
+<!-- Scrollbar Js end -->

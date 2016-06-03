@@ -11,7 +11,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default">
             <div class="vd_content-section clearfix">
                 <div class="row">
                     <div class="col-sm-12">                 
@@ -29,9 +29,9 @@
                                                         <img src="<?php echo base_url() . 'uploads/professor/' . $professor['image_path']; ?>" id="manage_profile"  alt="...">
                                                     </div>                             
                                                     <div class="form-img-action text-center mgbt-xs-20">
-
                                                         <input id="upload" class="form-control coverimage2" type="file" name="userfile" accept="image/*"/>
-                                                        <a href="" id="upload_link" class="btn vd_btn  vd_bg-blue"><i class="fa fa-cloud-upload append-icon"></i>Upload</a>
+                                                        <br/>
+                                                        <a href="" id="upload_link" class="btn btn-primary"><i class="fa fa-cloud-upload append-icon"></i>Profile Pic</a>
                                                     </div>	
                                                     <br/>
                                                     <div>
@@ -199,6 +199,7 @@
 
     $().ready(function () {
         $.validator.setDefaults({
+
             submitHandler: function (form) {                
                 form.submit();
             }

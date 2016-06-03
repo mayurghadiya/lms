@@ -68,5 +68,7 @@
 </div>
 <!-- End #content -->
 <script type="text/javascript">
-    $('#inbox_email-list').DataTable();
+    $(document).ready(function(){
+        $('#inbox_email-list').DataTable({});
+    });
 </script>

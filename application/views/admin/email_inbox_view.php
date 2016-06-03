@@ -1,7 +1,7 @@
 <!-- Start .row -->
 <div class=row>                      
 
-    <div class=col-lg-12>
+    <div class="col-lg-12">
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle">
             <!-- Start .panel -->
@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
                         <div class="col-sm-10">
-                            <textarea id="summernote" readonly="" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here" disabled="">
+                            <textarea id="summernote" readonly="" disabled="" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here">
                                 <?php echo $email->message; ?>
                             </textarea>
                         </div>
@@ -54,7 +54,8 @@
                                 <a target="_blank" download href="<?php echo base_url('uploads/emails/' . $file); ?>" style="margin-left: 15px;"><?php echo $file; ?></a><br/>
                             <?php } ?>
                         </div>
-                </div>
+                
+            </div>
             <?php } ?>
 
         </div>
@@ -65,6 +66,4 @@
 <!-- End .row -->
 </div>
 <!-- End contentwrapper -->
-</div>
-<!-- End #content -->
 </div>
