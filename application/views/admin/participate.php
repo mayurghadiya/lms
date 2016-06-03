@@ -5,7 +5,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-<<<<<<< HEAD
+
         <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
@@ -17,9 +17,9 @@
                             </div>
                         </div>-->
             <div class=panel-body>            
-=======
+
         <div class="panel-default toggle">
->>>>>>> 2c104028f729bb64b11a403db27e0a1bdd99a000
+
             <div class="tabs mb20">
                 <ul id="import-tab" class="nav nav-tabs">
                     <li  class="active">

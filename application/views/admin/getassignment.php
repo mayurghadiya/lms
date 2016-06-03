@@ -3,17 +3,17 @@
     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables">
         <thead>
             <tr>
-                <th><div>#</div></th>												
-                <th><div>Assignment Name</div></th>
-                <th><div>Department</div></th>
-                <th><div>Branch</div></th>												
-                <th><div>Batch</div></th>												
-                <th><div>Semester</div></th>	
+                <th>#</div></th>												
+                <th>Assignment Name</th>
+                <th>Department</th>
+                <th>Branch</th>												
+                <th>Batch</th>												
+                <th>Semester</th>	
                 <th>Class</th>
-                <th><div><?php echo ucwords("Description"); ?></div></th>
-                <th><div>File</div></th>
-                <th><div>Date of Submission</div></th>												
-                <th><div>Action</div></th>											
+                <th><?php echo ucwords("Description"); ?></th>
+                <th>File</th>
+                <th>Date of Submission</th>												
+                <th>Action</th>											
             </tr>
         </thead>
         <tbody>                                           

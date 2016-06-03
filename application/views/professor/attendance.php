@@ -14,6 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
+                <div class="row filter-row">
                 <form id="attendance-routine" action="#" method="post" class="form-groups-bordered validate">
                     <div class="col-md-12">
                         <div class="form-group col-sm-3">
@@ -72,7 +73,7 @@
                         </div>
                     </div>
                 </form>
-
+                </div>
                 <div id="student-attendance-list">
                     <div class="col-md-12">
                         <?php if (count($student)) { ?>

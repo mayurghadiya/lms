@@ -194,7 +194,7 @@ class Professor extends MY_Controller {
 
         $data['syllabus'] = $this->db->get('smart_syllabus')->result();
 
-        $this->load->view("admin/getsyllabus", $data);
+        $this->load->view("professor/getsyllabus", $data);
     }
 
     /**
