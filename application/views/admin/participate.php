@@ -26,11 +26,12 @@
                         <a href="#add" data-toggle="tab" aria-expanded="false"> <?php echo ucwords("Add Activity"); ?></a>
                     </li>
                     <li class="">
-                        <a href="#listing" data-toggle="tab" aria-expanded="false"> <?php echo ucwords("Activity List"); ?></a>
-                    </li>
+                        <a href="#list" data-toggle="tab" aria-expanded="true"><?php echo ucwords("Activity List"); ?></a>                            
+                    </li>  
                     <li class="">
-                        <a href="#list" data-toggle="tab" aria-expanded="true"><?php echo ucwords("Volunteer List"); ?></a>                            
-                    </li>    
+                        <a href="#listing" data-toggle="tab" aria-expanded="false"> <?php echo ucwords("Volunteer List"); ?></a>
+                    </li>
+                      
                     <li class="">
                         <a href="#addsurvey" data-toggle="tab" aria-expanded="false">  <?php echo ucwords("Add Question"); ?></a>
                     </li>
@@ -402,6 +403,9 @@
                                         <th>#</th>                                           
                                         <th><?php echo ucwords("Question"); ?></th>       
                                         <th><?php echo ucwords("Description"); ?></th>
+                                        <th><?php echo ucwords("Yes"); ?></th>  
+                                        <th><?php echo ucwords("No"); ?></th>  
+                                        <th><?php echo ucwords("No Opinion"); ?></th>
                                         <th><?php echo ucwords("Status"); ?></th>
                                         <th><?php echo ucwords("Action"); ?></th>
 
@@ -416,7 +420,10 @@
                                         <tr>
                                             <td><?php echo $countq++; ?></td>    
                                             <td><?php echo $rowq->question; ?></td>    
-                                            <td><?php echo $rowq->question_description; ?></td>    
+                                            <td><?php echo $rowq->question_description; ?></td>  
+                                            <td> <?php echo $yes_status = $this->Crud_model->getquestion_status( $rowq->sq_id , 'survey_yes'); ?>     </td>
+                                            <td> <?php echo $survey_no = $this->Crud_model->getquestion_status( $rowq->sq_id , 'survey_no'); ?>     </td>
+                                            <td> <?php echo $survey_no_opinion = $this->Crud_model->getquestion_status($rowq->sq_id , 'survey_no_opinion'); ?>     </td>
                                             <td>
                                                 <?php if ($rowq->question_status == '1') { ?>
                                                     <span class="label label-success">Active</span>
