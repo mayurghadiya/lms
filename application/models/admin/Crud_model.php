@@ -1600,5 +1600,13 @@ class Crud_model extends CI_Model {
     {
         $this->db->update("assignment_submission",$data,array("assignment_submit_id"=>$id));
     }
+    /**
+     * 
+     */
+    
+    function getquestion_status($queid,$field)
+    {
+        return $this->db->get_where("survey_question",array("sq_id"=>$queid))->row()->$field;
+    }
 }
 
