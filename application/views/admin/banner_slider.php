@@ -21,7 +21,7 @@
                     <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th><div>#</div></th>
+                            <th>No</th>
                             <th><div>Title</div></th>  
                             <th><div>Description</div></th>                                                                                  
                             <th><div>Action</div></th>

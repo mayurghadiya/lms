@@ -156,7 +156,7 @@
             $('#course').append('<option value="">Select</option>');
             var degree_id = $(this).val();
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/course_list_from_degree/' + degree_id,
+                url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
                 type: 'get',
                 success: function (content) {
                     var course = jQuery.parseJSON(content);
@@ -181,7 +181,7 @@
             //remove all element from batch
             $('#batch').find('option').remove().end();
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
+                url: '<?php echo base_url(); ?>admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
                 type: 'get',
                 success: function (content) {
                     $('#batch').append('<option value="">Select</option>');
@@ -198,7 +198,7 @@
         function get_semester_from_branch(branch_id) {
             $('#semester').find('option').remove().end();
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/get_semesters_of_branch/' + branch_id,
+                url: '<?php echo base_url(); ?>admin/get_semesters_of_branch/' + branch_id,
                 type: 'get',
                 success: function (content) {
                     $('#semester').append('<option value="">Select</option>');
@@ -216,7 +216,7 @@
 <script>
     $(document).ready(function () {
         $("#start_date").datepicker({
-            format: 'mm/dd/yyyy',
+            format: 'M dd, yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose:true,
@@ -226,7 +226,7 @@
             }
         });
         $("#end_date").datepicker({
-            format: 'mm/dd/yyyy',
+            format: 'M dd, yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose:true,
@@ -236,7 +236,7 @@
             }
         });
         $('#expiry_date').datepicker({
-           format: 'mm/dd/yyyy',
+           format: 'M dd, yyyy',
             changeMonth: true,
             autoclose:true,
             changeYear: true,

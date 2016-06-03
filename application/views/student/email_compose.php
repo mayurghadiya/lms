@@ -3,22 +3,13 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
+        <div class="panel-default toggle">
             <div class=panel-body>
                 <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">To</label>
                         <div class="col-sm-7">
-                            <select id="to" class="form-control" name="to[]" multiple="" required="">
+                            <select id="to" class="form-control select2" name="to[]" multiple="" required="">
                                 <?php foreach ($all_admin as $row) { ?>
                                     <option value="<?php echo $row->admin_id; ?>"><?php echo $row->email . ' (Admin)'; ?></option>
                                 <?php } ?>
@@ -29,7 +20,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Professor</label>
                         <div class="col-sm-7">
-                            <select id="teacher" class="form-control" name="teacheremail[]" multiple="">
+                            <select id="teacher" class="form-control select2" name="teacheremail[]" multiple="">
                                 <?php foreach ($teacher as $row) { ?> 
                                     <option value="<?php echo $row->email; ?>"><?php echo $row->name . ' (' . $row->email . ')'; ?></option>
                                 <?php } ?>
@@ -54,7 +45,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
                         <div class="col-sm-7">
-                            <textarea id="message" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
+                            <textarea id="summernote" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
                         </div>
                     </div>
 

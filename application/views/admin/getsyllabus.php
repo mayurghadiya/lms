@@ -3,7 +3,7 @@
     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="datatable-list">
                             <thead>
                                 <tr>
-                                    <th><div>#</div></th>												
+                                    <th>No</th>												
                                     <th><div><?php echo ucwords("Syllabus Title"); ?></div></th>
                                     <th><div><?php echo ucwords("department"); ?></div></th>
                                     <th><div><?php echo ucwords("Branch"); ?></div></th>												                                                

@@ -30,16 +30,16 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group hide">
                                         <label class="col-sm-3 control-label">Title</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" name="title"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Description</label>
+                                        <label class="col-sm-3 control-label">Remarks</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="description"/>
+                                            <textarea class="form-control" rows="10" name="description"></textarea>
                                         </div>
                                     </div>
 
@@ -47,7 +47,7 @@
                                         <label class="col-sm-3 control-label">Date</label>
                                         <div class="col-sm-9">
                                             <div>
-                                                <input type="text" id="datepicker-normal" name="date" class="form-control"/>
+                                                <input value="<?php echo date('m/d/Y'); ?>" type="text" id="datepicker-normal" name="date" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -173,8 +173,9 @@
             var semester_id = "<?php echo $student_detail->semester_id; ?>";
             var course_id = "<?php echo $student_detail->course_id; ?>";
             var fees_structure_id = $(this).val();
-
-            $.ajax({
+            
+            setTimeout(function(){
+                $.ajax({
                 url: '<?php echo base_url(); ?>student/student_fees_structure_details/' + fees_structure_id,
                 type: 'get',
                 success: function (content) {
@@ -195,13 +196,14 @@
                     $('#due_fees').val(due_amount);
                 }
             })
+            }, 1000);
+            
         })
     })
 </script>
 
 
 <!-- Start validation -->
-<script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>jquery.js"></script>
 <script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>jquery.validate.min.js"></script>
 <script type="text/javascript">
       $.validator.setDefaults({
@@ -212,19 +214,27 @@
         $().ready(function () {
         $("#student_fees").validate({
         rules: {
-             title:{required: true},
+             //title:{required: true},
              date:"required",
              semester:"required",
              fees_structure:"required",
-             amount:{required:true},
+             amount:{
+                 required:true,
+                 number: true,
+                 max: $('#due_fees').val()
+             },
              method:"required",
         },
         messages: {
-            title: "Title is required",
+            //title: "Title is required",
             date: "Date is required",
             semester:"Semester is required",
             fees_structure:"Fees structure is required",
-            amount:"Amount is required",
+            amount: {
+                required: "Amount is required",
+                number: "Only enter number",
+                max: "Enter amount which is less than or due amount"
+            },
             method:"Method is required",
         }
         });

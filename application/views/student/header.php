@@ -21,7 +21,7 @@
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">
             <!-- Css files -->
             
-            <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">            
+            <!-- <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">             -->
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar.css">
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar_theme_responsive.css">
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
@@ -179,26 +179,34 @@
                                 <!-- End .sidenav-widget -->
                                 <div class=mainnav>
                                     <ul>
-                                        <li><a href="<?php echo base_url(); ?>student/dashboard"><i class="fa fa-desktop" aria-hidden="true"></i><span class=txt>Dashboard</span></a>
+                                        <li>
+                                            <a <?php echo active_single_menu('dashboard', $page); ?> href="<?php echo base_url(); ?>student/dashboard"><i class="fa fa-desktop" aria-hidden="true"></i><span class=txt>Dashboard</span></a>
                                         </li>
-                                        <li class="hasSub">
-                                            <a href="#" class="notExpand"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="fa fa-envelope"></i>
+                                        
+                                        <?php 
+                                        $pages = [
+                                            'inbox', 'compose', 'sent'
+                                        ];
+                                        ?>
+                                        
+                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="fa fa-envelope"></i>
                                                 <span class="txt">Email </span></a>
-                                            <ul class="sub">
+                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>student/email_compose">
+                                                    <a id="link-compose" href="<?php echo base_url(); ?>student/email_compose">
                                                         <i class="fa fa-envelope"></i>
                                                         <span class="txt">Compose E-Mail</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>student/email_inbox">
+                                                    <a id="link-inbox" href="<?php echo base_url(); ?>student/email_inbox">
                                                         <i class="fa fa-inbox"></i>
                                                         <span class="txt">Inbox</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>student/email_sent">
+                                                    <a id="link-sent" href="<?php echo base_url(); ?>student/email_sent">
                                                         <i class="s16 icomoon-icon-file-2"></i>
                                                         <span class="txt">Sent</span>
                                                     </a>
@@ -207,75 +215,75 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/class_routine">
+                                            <a <?php echo active_single_menu('class_routine', $page); ?> href="<?php echo base_url(); ?>student/class_routine">
                                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                                 <span class=txt>Class Routine</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/syllabus">
+                                            <a <?php echo active_single_menu('syllabus', $page); ?> href="<?php echo base_url(); ?>student/syllabus">
                                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                                 <span class=txt>Syllabus</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/assignment/"><i class="s16 fa fa-table"></i><span class="txt">Assignments </span>
+                                            <a <?php echo active_single_menu('assignment', $page); ?> href="<?php echo base_url(); ?>student/assignment/"><i class="s16 fa fa-table"></i><span class="txt">Assignments </span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/project/submission/"><i class="s16 icomoon-icon-cube"></i><span class="txt">Projects </span>
+                                            <a <?php echo active_single_menu('project', $page); ?> href="<?php echo base_url(); ?>student/project/submission/"><i class="s16 icomoon-icon-cube"></i><span class="txt">Projects </span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/exam"><i class="s16 fa fa-picture-o"></i>
+                                            <a <?php echo active_single_menu('exam', $page); ?> href="<?php echo base_url(); ?>student/exam"><i class="s16 fa fa-picture-o"></i>
                                                 <span class=txt>Exam</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/exam_marks">
+                                            <a <?php echo active_single_menu('exam_marks', $page); ?> href="<?php echo base_url(); ?>student/exam_marks">
                                                 <i class="s16 fa fa-clock-o"></i>
                                                 <span class=txt>Exam Marks</span>
                                             </a>
                                         </li>                                        
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/student_fees"><i class="s16 fa fa-dollar"></i>
+                                            <a <?php echo active_single_menu('student_fees', $page); ?> href="<?php echo base_url(); ?>student/student_fees"><i class="s16 fa fa-dollar"></i>
                                                 <span class=txt>Pay Online </span>
                                             </a>
                                         </li> 
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/fee_record"><i class="s16 fa fa-newspaper-o"></i><span class=txt>Fee Record </span>
+                                            <a <?php echo active_single_menu('fees_record', $page); ?> href="<?php echo base_url(); ?>student/fee_record"><i class="s16 fa fa-newspaper-o"></i><span class=txt>Fee Record </span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>video_streaming"><i class="s16 fa fa-desktop"></i><span class=txt>Video Streaming </span>
+                                            <a <?php echo active_single_menu('video_streaming', $page); ?> href="<?php echo base_url(); ?>video_streaming"><i class="s16 fa fa-desktop"></i><span class=txt>Video Streaming </span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/holiday">
+                                            <a <?php echo active_single_menu('holiday', $page); ?> href="<?php echo base_url(); ?>student/holiday">
                                                 <i class="s16 fa fa-book"></i>
                                                 <span class=txt>Holiday </span>
                                             </a>
                                         </li>   
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/assessment">
+                                            <a <?php echo active_single_menu('assessment', $page); ?> href="<?php echo base_url(); ?>student/assessment">
                                                 <i class="s16 icomoon-icon-map"></i>
                                                 <span class=txt>Assessment </span>
                                             </a>
                                         </li>   
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/courseware">
+                                            <a <?php echo active_single_menu('courseware', $page); ?> href="<?php echo base_url(); ?>student/courseware">
                                                 <i class="s16 fa fa-file-o"></i>
                                                 <span class=txt>Courseware</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/vocationalcourse">
+                                            <a <?php echo active_single_menu('vocational_course', $page); ?> href="<?php echo base_url(); ?>student/vocationalcourse">
                                                 <i class="s16 fa fa-spinner"></i>
                                                 <span class=txt>Vocational Course</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/gallery"><i class="s16 fa fa-picture-o"></i>
+                                            <a <?php echo active_single_menu('gallery', $page); ?> href="<?php echo base_url(); ?>student/gallery"><i class="s16 fa fa-picture-o"></i>
                                                 <span class=txt>Gallery </span>
                                             </a>
                                         </li>  
@@ -283,7 +291,7 @@
                                         $news_conent = $this->db->get_where('cms_manager', array('c_status' => 1))->result_array();
                                         foreach($news_conent as $row) { ?>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>pages/<?php echo @$row['c_slug']; ?>">
+                                            <a <?php echo active_single_menu($row['c_slug'], $page); ?> href="<?php echo base_url(); ?>pages/<?php echo @$row['c_slug']; ?>">
                                                 <i class="s16 fa fa-universal-access"></i>
                                                 <span class=txt><?php echo @$row['c_title']; ?> </span>
                                             </a>
@@ -366,5 +374,7 @@
                             </div>
                             <!--  /search -->  
                             <?php echo create_breadcrumb(); ?>
+                            
+                            <?php echo set_active_menu($page); ?>
                         </div>
                         <!-- End  / heading-->

@@ -1,13 +1,13 @@
 <div class=row>
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
             <!--            <div class=panel-heading>
                             <h4 class=panel-title>  <?php echo ucwords("assessment"); ?></h4>                
                         </div> -->
             <div class="panel-body"> 
-                  <div class="">
+                  <div class="col-lg-12">
                         <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
                     </div>  
                <?php
@@ -15,15 +15,14 @@
               // print_r($assessment);
 
                ?>
-                <table class="table table-striped" id="data-tables" style="border:1px solid #ccc;">
-                                
+               <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables">
                                 <thead>
                                     <tr>
-                                        <th><?php echo ucwords("Student Name"); ?></th>
-                                        <th><?php echo ucwords("Department "); ?></th>
-                                        <th><?php echo ucwords("Branch "); ?></th>
-                                        <th><?php echo ucwords("Batch "); ?></th>
-                                        <th><?php echo ucwords("Semester "); ?></th>
+                                        <th width="20%"><?php echo ucwords("Student-Name"); ?></th>
+                                        <th width="20%"><?php echo ucwords("Department "); ?></th>
+                                        <th width="20%"><?php echo ucwords("Branch "); ?></th>
+                                        <th width="20%"><?php echo ucwords("Batch "); ?></th>
+                                        <th width="20%"><?php echo ucwords("Semester "); ?></th>
                                     </tr>
                                 </thead>
                                 <?php
@@ -33,15 +32,15 @@
                                 $semester = $this->db->get_where("semester", array("s_id" => $assessment[0]->semester_id))->result();
                                 ?>
                                 <tbody>
-                                <td><?php echo $assessment[0]->std_first_name . ' ' . $assessment[0]->std_last_name; ?></td>
-                                <td><?php
+                                <td width="20%"><?php echo $assessment[0]->std_first_name . ' ' . $assessment[0]->std_last_name; ?></td>
+                                <td width="20%"><?php
                                     if (!empty($degree)) {
                                         echo $degree[0]->d_name;
                                     }
                                     ?></td>
-                                <td><?php echo $course[0]->c_name; ?></td>
-                                <td><?php echo $batch[0]->b_name; ?></td>
-                                <td><?php echo $semester[0]->s_name; ?></td>
+                                <td width="20%"><?php echo $course[0]->c_name; ?></td>
+                                <td width="20%"><?php echo $batch[0]->b_name; ?></td>
+                                <td width="20%"><?php echo $semester[0]->s_name; ?></td>
 
                                 </tbody>
                             </table>               

@@ -2,7 +2,7 @@
 <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables">
     <thead>
         <tr>
-            <th><div>#</div></th>											
+            <th>No</th>											
             <th><div>Title</div></th>											
             <th><div>Course</div></th>
             <th><div>Branch</div></th>

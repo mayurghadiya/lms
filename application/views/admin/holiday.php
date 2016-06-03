@@ -18,7 +18,7 @@
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>No</th>
                             <th>Holiday Name</th>
                             <th>Start Date</th>
                             <th>End Date</th>

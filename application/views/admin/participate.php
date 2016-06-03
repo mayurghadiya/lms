@@ -36,7 +36,7 @@
                             <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="datatable-list">
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>											
+                                        <th>No</th>											
                                         <th><div><?php echo ucwords("Parti. Title"); ?> </div></th>											
                                         <th><div><?php echo ucwords("department"); ?></div></th>											
                                         <th><div><?php echo ucwords("Branch"); ?></div></th>
@@ -236,7 +236,7 @@
                             <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="survey-table">
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>                                           
+                                        <th>No</th>                                           
                                         <th><div><?php echo ucwords("Student Name"); ?></div></th>       
                                         <th><div><?php echo ucwords("department"); ?></div></th>
                                         <th><div><?php echo ucwords("Branch"); ?></div></th>
@@ -385,7 +385,7 @@
                             <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tabless">
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>                                           
+                                        <th>No</th>                                           
                                         <th><div><?php echo ucwords("Question"); ?></div></th>       
                                         <th><div><?php echo ucwords("Description"); ?></div></th>
                                         <th><div><?php echo ucwords("Status"); ?></div></th>
@@ -426,7 +426,7 @@
                             <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables-activity">
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>											
+                                        <th>No</th>											
                                         <th><div><?php echo ucwords("Student Name"); ?></div></th>	
                                         <th><div><?php echo ucwords("Parti. Title"); ?></div></th>
                                         <th><div><?php echo ucwords("Comment"); ?></div></th>
@@ -492,7 +492,7 @@
                             <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%  id="uploaded-table">
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>											
+                                        <th>No</th>											
                                         <th><div><?php echo ucwords("Student Name"); ?></div></th>	                                               
                                         <th><div><?php echo ucwords("department"); ?></div></th>											
                                         <th><div><?php echo ucwords("Branch"); ?></div></th>

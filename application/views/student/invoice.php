@@ -2,13 +2,10 @@
 <div class="row printable">
     <div class=col-md-12>
         <!-- col-md-12 start here -->
-        <div class="panel-default invoice">
+        <div class="panel-default">
             <div class="panel-heading clearfix">
-<!--                <h4 class="panel-title pull-left"><span><?php echo $title; ?></span></h4>-->
-                <div class=print><a href=# class=tip title="Print invoice"><i class="s24 icomoon-icon-print"></i></a></div>
-                <div class=invoice-info>
-                    <span class=number>Invoice <strong class=color-red>#<?php echo 'INV-' . date('dmYhis', strtotime($invoice->paid_created_at)); ?></strong></span> <span class="data color-gray"><?php echo date('M d, Y'); ?></span>
-                    <div class=clearfix></div>
+                <div class="panel-title">
+                    <p style="float: right">#<?php echo 'INV-' . date('dmYhis', strtotime($invoice->paid_created_at)); ?></p>
                 </div>
             </div>
             <div class=panel-body>

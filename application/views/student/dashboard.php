@@ -46,7 +46,7 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <div data-duration="2" data-suffix="%" data-to="99.9" data-from="0" data-count=".num" class="xe-widget xe-counter-block">
+                <div class="xe-widget xe-counter-block">
                     <div class="xe-upper">
                         <div class="xe-icon"> 
                             <i class="fa fa-money"></i> 
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <div data-duration="3" data-to="512" data-from="0" data-count=".num" class="xe-widget xe-counter-block xe-counter-block-purple">
+                <div class="xe-widget xe-counter-block xe-counter-block-purple">
                     <div class="xe-upper">
                         <div class="xe-icon"> <i class="fa fa-camera-retro" aria-hidden="true"></i> </div>
                         <div class="xe-label"> <strong class="num">STAFF & EMAIL DIRECTORY</strong> <span>Email</span> </div>
@@ -77,12 +77,10 @@
                             Email
                         </a> 
                     </div>
-
-
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <div data-easing="false" data-duration="4" data-to="310" data-from="0" data-count=".num" data-suffix="k" class="xe-widget xe-counter-block xe-counter-block-blue">
+                <div class="xe-widget xe-counter-block xe-counter-block-blue">
                     <div class="xe-upper">
                         <div class="xe-icon"> <i class="fa fa-television" aria-hidden="true"></i> </div>
                         <div class="xe-label"> <strong class="num">DIGITAL<br> LIBRARY</strong> <span>Daily Visits</span> </div>
@@ -99,6 +97,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                 <div class="xe-widget xe-counter-block xe-counter-block-orange">
+
                     <div class="xe-upper">
                         <div class="xe-icon"> <i class="fa fa-life-ring" aria-hidden="true"></i> </div>
                         <div class="xe-label"> <strong class="num">VIDEO CONFERENCING</strong> <span>Live Support</span> </div>
@@ -111,8 +110,10 @@
                                 <a target="_blank" href="<?php echo base_url('video_streaming#' . $video->url_link); ?>">
                                     <div class="menu-icon">
                                         <i class=" icon-trophy"></i>
+                                     </div>
+                                    <div class="menu-text">
+                                        <?php echo $video->title; ?>                                        
                                     </div>
-                                    <div class="menu-text"><?php echo $video->title; ?></div>
                                 </a>
                             </li>
                         <?php } ?>
@@ -130,7 +131,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <div data-duration="3" data-to="512" data-from="0" data-count=".num" class="xe-widget xe-counter-block xe-counter-block-black">
+                <div class="xe-widget xe-counter-block xe-counter-block-black">
                     <div class="xe-upper">
                         <div class="xe-icon"> <i class="fa fa-paperclip" aria-hidden="true"></i> </div>
                         <div class="xe-label"> <strong class="num">Assignment</strong> <span>Assignment List</span> </div>
@@ -143,7 +144,7 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <!-- col-md-8 start here -->
+            <!-- col-md-8 calendar start here -->
             <div class="panel panel-default chart">
                 <div class=panel-heading>
                     <h4 class=panel-title><i class="s16 fa fa-calendar"></i> <span>Calendar </span></h4>
@@ -504,7 +505,7 @@
             <!-- / .row -->
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <div data-duration="2" data-to="12425" data-from="0" data-count=".num" class="xe-widget xe-progress-counter xe-progress-counter-pink h400">
+            <div class="xe-widget xe-progress-counter xe-progress-counter-pink h400">
                 <div class="xe-background"> 
                     <i class="fa fa-heart" aria-hidden="true"></i> 
                 </div>
@@ -534,7 +535,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <div data-duration="3" data-suffix="k" data-to="520" data-from="0" data-count=".num" class="xe-widget xe-progress-counter xe-progress-counter-turquoise">
+            <div class="xe-widget xe-progress-counter xe-progress-counter-turquoise">
                 <div class="xe-background"> <i class="fa fa-weixin" aria-hidden="true"></i> </div>
                 <div class="xe-upper">
                     <div class="xe-icon"> <i class="fa fa-weixin" aria-hidden="true"></i> </div>
@@ -550,7 +551,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <div data-duration="2" data-suffix="%" data-to="99.9" data-from="0" data-count=".num" class="xe-widget xe-counter-block xe-counter-block-red">
+            <div class="xe-widget xe-counter-block xe-counter-block-red">
                 <div class="xe-upper">
                     <div class="xe-icon"> <i class="fa fa-first-order" aria-hidden="true"></i> </div>
                     <div class="xe-label"> <strong class="num">PARTICIPATE</strong> <span>Volunteer ,Survey ,Upload</span> </div>
@@ -664,6 +665,8 @@
                 </div>
             </div>
 <!-- To do list End div-->   
+
+<!-- Growth Start div-->
     <div class="col-md-4">
         <!-- col-md-6 start here -->
         <div class="panel panel-default toggle panelClose panelRefresh panelMove" id="supr3">
@@ -734,6 +737,8 @@
         </div>
         <!-- End .panel --><!-- / .panel -->
     </div>
+<!-- Growth end div-->
+
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
         <div class="xe-widget xe-counter-block xe-counter-block-red attendance-box" data-count=".num" data-from="0" data-to="99.9" data-suffix="%" data-duration="2">
             <div class="xe-upper">
@@ -765,8 +770,9 @@
             </div>
         </div>
     </div>
+
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-        <div data-duration="3" data-to="512" data-from="0" data-count=".num" class="xe-widget xe-counter-block xe-counter-block-black">
+        <div class="xe-widget xe-counter-block xe-counter-block-black">
             <div class="xe-upper">
                 <div class="xe-icon"> <i class="fa fa-paperclip" aria-hidden="true"></i> </div>
                 <div class="xe-label"> <strong class="num">PROJECT</strong> <span>Project List</span> </div>
@@ -778,118 +784,57 @@
             </div>
         </div>
     </div>
+
 </div>
+
+<!-- Timeline Start div-->
 <div class="row">    
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="panel panel-default toggle">
-            <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class="panel-title marginzero">
-                    Timeline
-                </h4>
-            </div>
-            <div class=panel-body>
-                <div id="demo">
-                    <section id="examples">         
-                        <!-- content -->
-                        <div id="content-1">
-                            <div class="timeline-box timeline-horizontal" style="width: 2500px;">
-                                <?php
-                                $i = 0;
-                                foreach ($timelinecount as $c) {
-                                        $j = 0;
-                                        ?>
-                                        <div class="tl-row">
-                                            <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                                                <div class="tl-bullet bg-blue"></div>
-                                                <div class="tl-panel"><?php echo $c; ?></div>
-                                                <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                                    <div class="arrow"></div>
-                                                    <?php
-                                                         foreach ($timline_event as $event1) {
-                                                             $tododate[]=date('Y-m-d', strtotime($event1->event_date));
-                                                         }                                                        
-                                                         if(in_array($c, $tododate))
-                                                         {
-                                                             ?>
-                                                                <div class="popover-content">
-                                                                 <h3 class="tl-title">Event</h3>                                                               
-                                                             <?php
-                                                                foreach ($timline_event as $event) {
-                                                                    if (date('Y-m-d', strtotime($event->event_date)) == $c) {
-                                                                        $j++;
-                                                                        if ($j <= 3) {
-                                                                            ?>
-                                                                            <p class=""><?php echo $event->event_name; ?></p>
-                                                                            <?php
-                                                                        }
-                                                                    }
-                                                                }
-                                                              /*  if($j>3)
-                                                                {
-                                                                    ?>
-                                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
-                                                                    <?php
-                                                                }*/
-                                                                ?>
-                                                                            
-                                                            </div>
-                                                          <?php                                                    
-                                                         }
-                                                        ?>
-                                                    
-                                                            <?php
-                                                             foreach ($timline_todolist as $time_line1) {
-                                                                 $eventdate[]=date('Y-m-d', strtotime($time_line1->todo_datetime));
-                                                             }
-                                                                 if(in_array($c, $eventdate))
-                                                                 {
-                                                                       if ($j < 3) {
-                                                                ?>
-                                                                <div class="popover-content">
-                                                                    <h3 class="tl-title">Todolist</h3>
-                                                                    <?php
-                                                                    foreach ($timline_todolist as $time_line) {
-                                                                        if (date('Y-m-d', strtotime($time_line->todo_datetime)) == $c) {
-                                                                             $j++;
-                                                                        if ($j <= 3) {
-                                                                            ?>
-                                                                            <p class=""><?php echo $time_line->todo_title; ?></p>
-                                                                            <?php
-                                                                        }
-                                                                        }
-                                                                    }
-                                                                  /*    if($j>3)
-                                                                        {
-                                                                            ?>
-                                                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
-                                                                            <?php
-                                                                       }*/
-                                                                    ?>   
-                                                                    
-                                                                </div>
-                                                                <?php
-                                                            }
-                                                                 }
-                                                            ?> 
-                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
-                                                    <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($time_line->todo_datetime); ?></div>
+                    <!-- Start .panel -->
+                    <div class=panel-heading>
+                        <h4 class="panel-title marginzero">
+                            Timeline
+                        </h4>
+                    </div>
+                    <div class=panel-body>
+                        <div id="demo">
+                            <section id="examples">         
+                                <!-- content -->
+                                <div id="content-1">
+                                    <div class="timeline-box timeline-horizontal" style="width: 3000px;">
+                                        <?php
+                                        $i = 0;
+                                        foreach ($timeline as $time_line) {
+                                            ?>
+                                            <div class="tl-row">
+                                                <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                    <div class="tl-bullet bg-blue"></div>
+                                                    <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
+                                                    <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                        <div class="arrow"></div>
+                                                        <div class="popover-content">
+                                                            <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
+                                                            <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
+                                                            <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php
-                                                $i++;
+                                            </div>
+                                            <?php
+                                            $i++;
                                         }
                                         ?>
 
-                            </div>
-                        </div>          
-                    </section>
+                                    </div>
+                                </div>          
+                            </section>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
     </div>
 </div>
+<!-- Timeline End div-->
 
 <!-- / .row -->
 </div>
@@ -1045,3 +990,52 @@
 
 </script>
 <!--  end to do list -->
+
+<!-- jQuery Scrollbar Js start -->
+<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+    (function($) {
+
+    $(window).load(function() {
+
+    $("#content-1").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            // onOverflowY:function(){
+            //  var opt=$(this).data("mCS").opt;
+            //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+            // },
+            onOverflowX: function() {
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+            },
+            }
+    });
+    });
+
+    $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            onOverflowY:function(){
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "y") opt.mouseWheel.axis = "y";
+            },
+                    // onOverflowX: function() {
+                    //     var opt = $(this).data("mCS").opt;
+                    //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                    // },
+            }
+    });
+    })(jQuery);
+</script>
+<!-- Scrollbar Js end -->
