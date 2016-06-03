@@ -86,8 +86,8 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>											
-                                            <th>Project</th>
-                                            <th>Student</th>											
+                                            <th>Project Title</th>
+                                            <th>Student Name</th>											
                                             <th>Department</th>	
                                             <th>Branch</th>
                                             <th>Batch</th>											

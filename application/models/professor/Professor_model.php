@@ -1575,4 +1575,21 @@ class Professor_model extends CI_Model {
     {
         $this->db->update("assignment_submission",$data,array("assignment_submit_id"=>$id));
     }
+    
+    
+    /**
+     * vocational course student list
+     * return mixed data
+     */
+    function get_vocational_student()
+    {
+            return $this->db->select('vocational_course_fee.*, student.*, vocational_course.*,course_category.*')
+                        ->from('vocational_course_fee')                        
+                        ->join('student', 'student.std_id = vocational_course_fee.student_id')
+                        ->join('vocational_course', 'vocational_course.vocational_course_id = vocational_course_fee.vocational_course_id')                      
+                        ->join('course_category', 'course_category.category_id = vocational_course.category_id')
+                        ->get()
+                        ->result();
+        
+    }
 }

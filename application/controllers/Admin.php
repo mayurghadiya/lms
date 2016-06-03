@@ -715,6 +715,7 @@ class Admin extends MY_Controller {
                 $data['course_enddate'] = date('Y-m-d', strtotime($this->input->post('enddate')));
                 $data['course_fee'] = $this->input->post('fee');
                 $data['professor_id'] = $this->input->post('professor');
+                $data['category_id'] = $this->input->post('category_id');                
                 $data['status'] = $this->status($this->input->post('course_status'));
                 $data['created_date'] = date('Y-m-d');
 
@@ -728,6 +729,7 @@ class Admin extends MY_Controller {
                 $data['course_enddate'] = date('Y-m-d', strtotime($this->input->post('enddate1')));
                 $data['course_fee'] = $this->input->post('fee');
                 $data['professor_id'] = $this->input->post('professor');
+                $data['category_id'] = $this->input->post('category_id');                
                 $data['status'] = $this->status($this->input->post('course_status'));
                 $data['updated_date'] = date('Y-m-d');
 
@@ -5941,5 +5943,36 @@ class Admin extends MY_Controller {
     function start_stop_streaming($stream_name, $status) {
         $this->Crud_model->start_stop_streaming($stream_name, $status);
     }
+    
+    /**
+     * Vocational course Student List
+     */
+    function vocational_student()
+    {
+       $this->data['student']=  $this->Crud_model->get_vocational_student();
+       $this->data['title'] = 'Vocational Course Students';
+       $this->data['page'] = 'vocational_register_student';       
+       $this->__site_template('admin/vocational_register_student', $this->data);
+    }
+    
+    
+    /**
+     * Get subject list by course and semester
+     * @param type $course_id
+     * @param type $semester_id
+     */
+    function subject_list($course_id = '', $semester_id, $time_table = '') {
+        $this->load->model('admin/Crud_model');
+        $subjects = $this->Crud_model->subject_list($course_id, $semester_id);
+        echo "<option vale=''>Select</option>";
+        foreach ($subjects as $row) {
+            ?>
+            <option value="<?php echo $row->sm_id; ?>"
+                    <?php if ($row->sm_id == $time_table) echo 'selected'; ?>><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?></option>
+            <!--echo "<option value={$row->sm_id}>{$row->subject_name}  (Code: {$row->subject_code})</option>";-->
+            <?php
+        }
+    }
+
 
 }

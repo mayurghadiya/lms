@@ -172,7 +172,7 @@
                                         $pages = [
                                             'department', 'branch', 'batch', 'semester', 'class', 'admission_type', 'student',
                                             'syllabus', 'subject', 'holiday', 'chancellor', 'course_category', 'vocational_course',
-                                            'assessments', 'timeline'
+                                            'assessments', 'timeline','vocational_register_student'
                                         ];
                                         ?>
 
@@ -262,10 +262,16 @@
                                                         <span class="txt">Assessment</span>
                                                     </a>
                                                 </li>
-                                                <li>
+                                                <!--<li>
                                                     <a id="link-timeline" href="<?php echo base_url(); ?>admin/time_line">
                                                         <i class="s16 icomoon-icon-file"></i>
                                                         <span class="txt">Time Line</span>
+                                                    </a>
+                                                </li>-->
+                                                <li>
+                                                    <a id="link-vocational_register_student" href="<?php echo base_url(); ?>admin/vocational_student">
+                                                        <i class="s16 icomoon-icon-file"></i>
+                                                        <span class="txt">Vocational Course Students</span>
                                                     </a>
                                                 </li>
                                             </ul>

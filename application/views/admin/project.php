@@ -238,7 +238,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>												
-                                        <th><?php echo ucwords("Project Name"); ?></th>
+                                        <th><?php echo ucwords("Project Title"); ?></th>
                                         <th><?php echo ucwords("Student Name"); ?></th>                                                											
                                         <th><?php echo ucwords("department"); ?></th>	
                                         <th><?php echo ucwords("Branch"); ?></th>

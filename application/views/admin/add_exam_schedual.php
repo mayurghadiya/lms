@@ -81,13 +81,19 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><?php echo ucwords("Start Time"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-8">
-                            <input type="time" id="start_time" class="form-control timepicker" name="start_time"/>
+                             <div class="input-group bootstrap-timepicker">
+                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                            <input type="text" id="start_time" class="form-control timepicker" name="start_time"/>
+                             </div>
                         </div>	
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><?php echo ucwords("End Time"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-8">
-                            <input type="time" id="end_time" class="form-control timepicker" name="end_time"/>
+                             <div class="input-group bootstrap-timepicker">
+                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                            <input type="text" id="end_time" class="form-control timepicker" name="end_time"/>
+                             </div>
                         </div>	
                     </div>
                     <div class="form-group">
@@ -112,6 +118,16 @@
     <script type="text/javascript">      
 
         $(document).ready(function () {
+              $('#start_time').timepicker({
+            upArrowStyle: 'fa fa-angle-up',
+            downArrowStyle: 'fa fa-angle-down',
+            minuteStep: 30
+    });
+     $('#end_time').timepicker({
+            upArrowStyle: 'fa fa-angle-up',
+            downArrowStyle: 'fa fa-angle-down',
+            minuteStep: 30
+    });
             $("#exam_time_table_form").validate({
                 rules: {
                     degree: "required",

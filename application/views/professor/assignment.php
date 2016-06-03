@@ -81,7 +81,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>												
-                                            <th>Assignment</th>
+                                            <th>Assignment Name</th>
                                             <th>Department</th>
                                             <th>Branch</th>												
                                             <th>Batch</th>												

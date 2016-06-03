@@ -92,7 +92,7 @@
                                 </ul>
                             </li>
                             <li class=dropdown>
-                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url(); ?>assets/img/avatar.jpg alt="" class="image"> 
+                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url().'uploads/professor/'.$this->session->userdata('image_path'); ?> alt="" class="image"> 
                                     <span class=txt><?php echo $this->session->userdata('email'); ?></span> <b class=caret></b>
                                 </a>
                                 <ul class="dropdown-menu right">
@@ -101,7 +101,7 @@
                                             <li>
                                                 <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i>Home</a>
                                             <li>
-                                                <a href=#>
+                                                <a href="<?php echo base_url().'professor/manage_profile' ?>">
                                                     <i class="fa fa-user" aria-hidden="true"></i>Edit profile</a>
                                             </li>
                                             <li>

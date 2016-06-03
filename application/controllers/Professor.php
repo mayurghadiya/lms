@@ -87,7 +87,7 @@ class Professor extends MY_Controller {
                         mkdir($path, 0777);
                     }
                     $config['upload_path'] = 'uploads/syllabus';
-                    $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
+                    $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx|pdf';
 
                     $this->load->library('upload', $config);
                     $this->upload->initialize($config);
@@ -124,7 +124,7 @@ class Professor extends MY_Controller {
                         mkdir($path, 0777);
                     }
                     $config['upload_path'] = 'uploads/syllabus';
-                    $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
+                    $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx|pdf';
 
                     $this->load->library('upload', $config);
                     $this->upload->initialize($config);
@@ -2361,6 +2361,7 @@ class Professor extends MY_Controller {
                     }
 
                     $data['image_path'] = $file_name;
+                    $this->session->set_userdata('image_path',$file_name);
                 }
                 $param2 = $this->session->userdata("login_user_id");
                 $this->Crud_model->save_professor($data, $param2);
@@ -2621,6 +2622,35 @@ class Professor extends MY_Controller {
         $this->data['title'] = $this->data['email']->subject;
         $this->data['page'] = 'email_reply';
         $this->__site_template('professor/email_reply', $this->data);
+    }
+    
+    /**
+     * Vocational course Student List
+     */
+    function vocational_student()
+    {
+       $this->data['student']=  $this->Professor_model->get_vocational_student();
+       $this->data['title'] = 'Vocational Course Students';
+       $this->data['page'] = 'vocational_register_student';       
+       $this->__site_template('admin/vocational_register_student', $this->data);
+    }
+    
+    /**
+     * Get subject list by course and semester
+     * @param type $course_id
+     * @param type $semester_id
+     */
+    function subject_list($course_id = '', $semester_id, $time_table = '') {
+        $this->load->model('admin/Crud_model');
+        $subjects = $this->Crud_model->subject_list($course_id, $semester_id);
+        echo "<option vale=''>Select</option>";
+        foreach ($subjects as $row) {
+            ?>
+            <option value="<?php echo $row->sm_id; ?>"
+                    <?php if ($row->sm_id == $time_table) echo 'selected'; ?>><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?></option>
+            <!--echo "<option value={$row->sm_id}>{$row->subject_name}  (Code: {$row->subject_code})</option>";-->
+            <?php
+        }
     }
 
 }

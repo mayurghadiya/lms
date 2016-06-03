@@ -38,7 +38,7 @@ $semester = $this->db->get('semester')->result();
         <div class="panel-default">
             <!-- Start .panel -->           
             <div class=panel-body>
-                <?php echo form_open(base_url() . 'admin/exam_time_table/update/' . $edit_data->exam_time_table_id, array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'edit-exam-time-table', 'target' => '_top')); ?>
+                <?php echo form_open(base_url() . 'professor/exam_time_table/update/' . $edit_data->exam_time_table_id, array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'edit-exam-time-table', 'target' => '_top')); ?>
                 <div class="form-group">
                     <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
@@ -218,7 +218,7 @@ $semester = $this->db->get('semester')->result();
         var edit_degree = $("#edit_degree").val();
         var batch_id = $("#edit_batch").val();
         $.ajax({
-            url: '<?php echo base_url(); ?>admin/get_exam_list/' + edit_degree + '/' + course_id + '/' + batch_id + '/' + semester_id + '/' + time_table_exam_id,
+            url: '<?php echo base_url(); ?>professor/get_exam_list/' + edit_degree + '/' + course_id + '/' + batch_id + '/' + semester_id + '/' + time_table_exam_id,
             type: 'get',
             success: function (content) {
                 $('#edit_exam').html(content);
@@ -228,7 +228,7 @@ $semester = $this->db->get('semester')->result();
 
     function subject_list(course_id, semester_id) {
         $.ajax({
-            url: '<?php echo base_url(); ?>admin/subject_list/' + course_id + '/' + semester_id + '/' + subject_id,
+            url: '<?php echo base_url(); ?>professor/subject_list/' + course_id + '/' + semester_id + '/' + subject_id,
             type: 'get',
             success: function (content) {
                 $('#edit_subject').html(content);
@@ -270,7 +270,7 @@ $semester = $this->db->get('semester')->result();
             $('#edit_course').append('<option value="">Select</option>');
             var degree_id = $(this).val();
             $.ajax({
-                url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
+                url: '<?php echo base_url(); ?>professor/course_list_from_degree/' + degree_id,
                 type: 'get',
                 success: function (content) {
                     var course = jQuery.parseJSON(content);
@@ -295,7 +295,7 @@ $semester = $this->db->get('semester')->result();
             //remove all element from batch
             $('#edit_batch').find('option').remove().end();
             $.ajax({
-                url: '<?php echo base_url(); ?>admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
+                url: '<?php echo base_url(); ?>professor/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
                 type: 'get',
                 success: function (content) {
                     $('#edit_batch').append('<option value="">Select</option>');
@@ -312,7 +312,7 @@ $semester = $this->db->get('semester')->result();
         function get_semester_from_branch(branch_id) {
             $('#edit_semester').find('option').remove().end();
             $.ajax({
-                url: '<?php echo base_url(); ?>admin/get_semesters_of_branch/' + branch_id,
+                url: '<?php echo base_url(); ?>professor/get_semesters_of_branch/' + branch_id,
                 type: 'get',
                 success: function (content) {
                     $('#edit_semester').append('<option value="">Select</option>');
