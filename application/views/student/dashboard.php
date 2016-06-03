@@ -797,18 +797,27 @@
                                 <?php
                                 $i = 0;
                                 foreach ($timelinecount as $c) {
-                                        $j = 0;
-                                        ?>
-                                        <div class="tl-row">
+                                    foreach ($timline_event as $event1) {
+                                        $tododate[]=date('Y-m-d', strtotime($event1->event_date));
+                                    }   
+                                    
+                                    foreach ($timline_todolist as $time_line1) {
+                                        $eventdate[]=date('Y-m-d', strtotime($time_line1->todo_datetime));
+                                    }
+                                     if(!empty($tododate) || !empty($eventdate))
+                                     {
+                                         if(in_array($c, $tododate) || in_array($c, $eventdate))
+                                         {
+                                             $j = 0;
+                                             ?>
+                                                <div class="tl-row">
                                             <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
                                                 <div class="tl-bullet bg-blue"></div>
                                                 <div class="tl-panel"><?php echo $c; ?></div>
                                                 <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
                                                     <div class="arrow"></div>
                                                     <?php
-                                                         foreach ($timline_event as $event1) {
-                                                             $tododate[]=date('Y-m-d', strtotime($event1->event_date));
-                                                         }     
+                                                           
                                                          if(!empty($tododate))
                                                              {
                                                          if(in_array($c, $tododate))
@@ -843,9 +852,6 @@
                                                     
                                                             <?php
                                                             
-                                                             foreach ($timline_todolist as $time_line1) {
-                                                                 $eventdate[]=date('Y-m-d', strtotime($time_line1->todo_datetime));
-                                                             }
                                                              if(!empty($eventdate))
                                                              {
                                                                  if(in_array($c, $eventdate))
@@ -884,9 +890,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php
+                                          <?php                               
+                                                  }
+                                                 }
                                                 $i++;
-                                        }
+                                              }
                                         ?>
 
                             </div>
