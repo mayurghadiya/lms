@@ -1296,6 +1296,7 @@ label.error {
 
 /*  Professor Dashboard */
 .professor_routine_box, .professor_routine_box html{ overflow: hidden !important; }
+.dashboard.professor_dashboard #content .contentwrapper{ padding-top:60px; }
 
 
 

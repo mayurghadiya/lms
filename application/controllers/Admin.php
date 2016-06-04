@@ -5932,7 +5932,7 @@ class Admin extends MY_Controller {
 //                'about' => $faker->text
 //            ));
 //        }
-        $roll_no = rand();
+        $roll_no = 1573372988;
         for ($i = 1; $i <= 5000; $i++) {
             $male_female = (rand(1, 100) > 50) ? 'male' : 'female';
             $this->db->insert('student', array(
@@ -5958,6 +5958,7 @@ class Admin extends MY_Controller {
                 'real_pass' => '12345',
             ));
         }
+        echo 'done';
     }
 
     /**

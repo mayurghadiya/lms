@@ -4,7 +4,7 @@
     <head>
         <title>Class Routine</title>
         <meta charset="utf-8">
-        <link href="<?php echo base_url(); ?>assets/kendo/css/examples-offline.css" rel="stylesheet">
+        <!-- <link href="<?php echo base_url(); ?>assets/kendo/css/examples-offline.css" rel="stylesheet"> -->
         <link href="<?php echo base_url(); ?>assets/kendo/css/kendo.common.min.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/kendo/css/kendo.rtl.min.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/kendo/css/kendo.default.min.css" rel="stylesheet">
@@ -14,9 +14,9 @@
         <script src="<?php echo base_url(); ?>assets/kendo/js/jszip.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/kendo/js/kendo.all.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/kendo/js/console.js"></script>
-        <script>
-
-        </script>
+<style type="text/css">
+    .professor_routine_box, .professor_routine_box html, .k-ff.k-ff47{ overflow: hidden !important; }
+</style>
 
 
     </head>
