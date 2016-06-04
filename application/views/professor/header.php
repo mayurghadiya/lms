@@ -433,5 +433,6 @@
                                 <li class=active>Blank Page</li>
                             </ul>
                         </div>
+                        <?php echo create_breadcrumb(); ?>
                         <?php echo set_active_menu($page); ?>
                         <!-- End  / heading-->
