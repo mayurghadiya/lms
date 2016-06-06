@@ -15,7 +15,7 @@
                         </div>-->
             <div class=panel-body>
                 <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_forum');" data-toggle="modal"><i class="fa fa-plus"></i> Forum</a>
-                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                <table id="datatable-list-forum" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
                             <th>No</th>
@@ -59,3 +59,8 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+<script type="text/javascript">
+    $(document).ready(function(){
+       $("#datatable-list-forum").dataTable();
+    });
+</script>

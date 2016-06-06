@@ -1044,7 +1044,7 @@
             $("#wait").css("display", "none");
         });
 
-        $(".todo-close").click(function () {
+        $(".close").click(function () {
             var id = $(this).val();
             var dataString = "id=" + id;
             $.ajax({
@@ -1157,7 +1157,7 @@
                 {
                     $("#updateformhtml").html(response);
                     $("#todo-addform").hide();
-                    $('.todo-close').css('pointer-events', 'none');
+                     $('.todo-close_box').css('pointer-events', 'none');
                 }
             });
         });
