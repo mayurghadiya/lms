@@ -324,3 +324,5 @@ $lang['chancellor_update'] =  'Chancellor Updated Successfully';
 $lang['chancellor_delete'] =  'Chancellor Added Successfully';
 
 $lang['update_submitted_assessment'] = "assessment added successfuly";
+$lang['add_forum_comment'] = 'Add Forum Comment';
+$lang['edit_forum_comment'] = 'Update Forum Comment';

@@ -3012,6 +3012,8 @@ class Admin extends MY_Controller {
         $this->data['page'] = 'forum_comment';        
         $this->data['title'] = $this->lang_message('forum_comment_title');
         $this->data['param'] = $param;
+        $this->data['edit_title'] = $this->lang_message('edit_forum_comment');
+        $this->data['add_title'] = $this->lang_message('add_forum_comment');
         $this->__site_template('admin/forum_comment', $this->data);
     }
 

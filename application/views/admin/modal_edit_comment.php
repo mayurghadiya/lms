@@ -21,7 +21,7 @@
 
                             <label class="col-sm-4 control-label"><?php echo ucwords("Comment"); ?> <span style="color:red">*</span></label>
                             <div class="col-sm-8">
-                                <textarea class="form-control" name="comment" id="comment"><?php echo $comment[0]->forum_comments; ?></textarea>
+                                <textarea class="form-control" name="comment" onchange="return isEmpty(this);"  id="comment"><?php echo $comment[0]->forum_comments; ?></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -55,7 +55,9 @@
     </div>
 </div>
 <script type="text/javascript">
-
+function isEmpty(str) {         
+    return str.toString().replace(/^\s+|\s+$/gm,'').length == 0;
+        }
     $(document).ready(function () {
 
         $("#frmadmission_type").validate({
