@@ -911,8 +911,74 @@
                         <div id="content-1">
                             <div class="timeline-box timeline-horizontal" style="width: 2500px;">
                                 <?php
-                                $i = 0;
+                                $i = 1;
+                                $eventdate=array();
+                                $tododate=array();
+                                
+                                foreach ($timline_event as $event1) {
+                                  $eventdate[]=date('Y-m-d', strtotime($event1->event_date));
+                                }   
+
+                                foreach ($timline_todolist as $time_line1) {
+                                  $tododate []=date('Y-m-d', strtotime($time_line1->todo_datetime));
+                                }
                                 foreach ($timelinecount as $c) {
+<<<<<<< HEAD
+                                     if(!empty($tododate) || !empty($eventdate))
+                                     {
+                                         if(in_array($c, $tododate) || in_array($c, $eventdate))
+                                         {
+                                             $i++;
+                                             $j = 0;
+                                             ?>
+                                                <div class="tl-row <?php echo $i;?>">
+                                            <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                <div class="tl-bullet bg-blue"></div>
+                                                <div class="tl-panel"><?php echo $c; ?></div>
+                                                <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                    <div class="arrow"></div>
+                                                    <?php
+                                                           
+                                                         if(!empty($eventdate))
+                                                             {
+                                                         if(in_array($c, $eventdate))
+                                                         {
+                                                            ?>
+                                                                <div class="popover-content">
+                                                                 <h3 class="tl-title">Event</h3>                                                               
+                                                             <?php
+                                                                foreach ($timline_event as $event) {
+                                                                    if (date('Y-m-d', strtotime($event->event_date)) == $c) {
+                                                                        $j++;
+                                                                        if ($j <= 3) {
+                                                                            ?>
+                                                                            <p class=""><?php echo $event->event_name; ?></p>
+                                                                            <?php
+                                                                        }
+                                                                    }
+                                                                }
+                                                              /*  if($j>3)
+                                                                {
+                                                                    ?>
+                                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
+                                                                    <?php
+                                                                }*/
+                                                                ?>
+                                                                            
+                                                            </div>
+                                                          <?php                                                 
+                                                         }
+                                }
+                                                        ?>
+                                                    
+                                                            <?php
+                                                            
+                                                             if(!empty($tododate))
+                                                             {
+                                                                 if(in_array($c, $tododate))
+                                                                 {
+                                                                     if ($j < 3) {
+=======
                                     foreach ($timline_event as $event1) {
                                         $tododate[] = date('Y-m-d', strtotime($event1->event_date));
                                     }
@@ -933,6 +999,7 @@
                                                         <?php
                                                         if (!empty($tododate)) {
                                                             if (in_array($c, $tododate)) {
+>>>>>>> 967bbc080d9fb3a9f8bc6ad3cbbc0be0dad927a4
                                                                 ?>
                                                                 <div class="popover-content">
                                                                     <h3 class="tl-title">Event</h3>                                                               
@@ -997,6 +1064,14 @@
                                                         <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($c); ?></div>
                                                     </div>
                                                 </div>
+<<<<<<< HEAD
+                                          <?php                               
+                                                  }
+                                                  
+                                                 }                                                  
+                                              }
+                                        ?>
+=======
                                             </div>
                                             <?php
                                         }
@@ -1004,6 +1079,7 @@
                                     $i++;
                                 }
                                 ?>
+>>>>>>> 967bbc080d9fb3a9f8bc6ad3cbbc0be0dad927a4
 
                             </div>
                         </div>          
