@@ -36,13 +36,7 @@
                             <div class="col-sm-8">
                                 <select name="subject" id="subject" class="form-control">
                                     <option value="">Select Subject</option>                                    
-                                    <?php
-                                    foreach ($subject as $sub) {
-                                        ?>
-                                        <option value="<?php echo $sub['sm_id'] ?>"><?php echo $sub['subject_name'] ?></option>
-                                        <?php
-                                    }
-                                    ?>
+                                    
                                 </select>
                             </div>
                         </div>
@@ -109,7 +103,14 @@ $("#branch").change(function(){
     },
         success:function(response)
         {
-            $("#subject").html(response);
+            var option;
+            option="<option value=''>Select Subject</option>";
+            for(var i=0;i<response.length; i++)
+            {
+                option +="<option value="+response[i].sm_id+" >"+response[i].subject_name+"</option>";
+            }
+             $('#subject').html('');
+            $("#subject").append(option);
         }
     });  
 });
@@ -118,18 +119,18 @@ $("#branch").change(function(){
 
         $("#frmcourseware").validate({
             rules: {
-                branch:
-                        {
-                            required: true,
-                        },
-                subject:
-                      {
-                          required: true,
-                      },
-                chapter:
-                    {
-                        required: true,
-                    },      
+//                branch:
+//                        {
+//                            required: true,
+//                        },
+//                subject:
+//                      {
+//                          required: true,
+//                      },
+//                chapter:
+//                    {
+//                        required: true,
+//                    },      
                 topic:
                         {
                             required: true,

@@ -1025,7 +1025,6 @@
         </div>
     </div>
 </div>
-<!-- Timeline End div-->
 
 <!-- / .row -->
 </div>
@@ -1173,7 +1172,7 @@
                 }
             });
         });
-
+       
         $("#closeform").click(function () {
             $("#todo-addform").hide(500);
         });
@@ -1181,114 +1180,3 @@
 
 </script>
 <!--  end to do list -->
-
-<!-- jQuery Scrollbar Js start -->
-<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script>
-    (function ($) {
-
-        $(window).load(function () {
-
-            $("#content-1").mCustomScrollbar({
-                theme: "inset-2-dark",
-                axis: "yx",
-                advanced: {
-                    autoExpandHorizontalScroll: true
-                },
-                /* change mouse-wheel axis on-the-fly */
-                callbacks: {
-                    // onOverflowY:function(){
-                    //  var opt=$(this).data("mCS").opt;
-                    //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
-                    // },
-                    onOverflowX: function () {
-                        var opt = $(this).data("mCS").opt;
-                        if (opt.mouseWheel.axis !== "x")
-                            opt.mouseWheel.axis = "x";
-                    },
-                }
-            });
-        });
-
-        $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
-            theme: "inset-2-dark",
-            axis: "yx",
-            advanced: {
-                autoExpandHorizontalScroll: true
-            },
-            /* change mouse-wheel axis on-the-fly */
-            callbacks: {
-                onOverflowY: function () {
-                    var opt = $(this).data("mCS").opt;
-                    if (opt.mouseWheel.axis !== "y")
-                        opt.mouseWheel.axis = "y";
-                },
-                // onOverflowX: function() {
-                //     var opt = $(this).data("mCS").opt;
-                //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
-                // },
-            }
-        });
-    })(jQuery);
-</script>
-<!-- Scrollbar Js end -->
-
-
-
-<!-- Event Calendar Js start -->
-<script>
-    $(document).ready(function(){        
-    
-    show_event_detail_on_load();
-    
-    //show_first_event_details();
-    
-    $('.eventCalendar-arrow').on('click', function(){
-        $('.eventCalendar-monthTitle').on('click',function(){
-            $('.eventCalendar-list li:first-child').each(function(index){
-                console.log($(this).text());
-                show_event_detail_on_load();
-            });
-        });
-        
-        $('.eventCalendar-day').on('click',function(){
-            show_event_detail_on_load();
-        });
-        
-        //show_event_detail_on_load();
-        setTimeout(function(){
-                $('.eventCalendar-list li:first-child').each(function(index){
-                    console.log($(this).text());
-                    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
-                });
-            }, 1000);
-    });
-    
-    $('.eventCalendar-monthTitle').on('click',function(){
-        show_event_detail_on_load();
-    });
-    
-    $('.eventCalendar-day').on('click',function(){
-        show_event_detail_on_load();
-    });
-    
-    function show_first_event_details() {
-        $('.eventCalendar-day').on('click', function(){
-            $('.eventCalendar-eventDesc').css('display', 'block');
-            setTimeout(function(){
-                $('.eventCalendar-hidden').removeClass('eventCalendar-hidden');
-            }, 1000);
-        });
-    }
-        
-    function show_event_detail_on_load() {
-        setTimeout(function(){
-            $('.eventCalendar-list li:first-child').each(function(index){
-                console.log($(this).text());
-                $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
-            });
-        }, 1000);
-        }
-    });
-</script>
-<!-- Event Calendar Js end -->

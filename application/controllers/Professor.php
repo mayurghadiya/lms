@@ -1107,7 +1107,8 @@ class Professor extends MY_Controller {
 
      function getsubject()
      {
-          $this->data['subject'] = $this->Professor_model->getsubject();
+          $this->data['subject'] = $this->Professor_model->getsubject($this->input->post('id'));
+          
           echo json_encode($this->data['subject']);
      }
     

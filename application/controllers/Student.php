@@ -1060,9 +1060,10 @@ class Student extends MY_Controller {
      * @param int $param2
      */
     function courseware($param = '', $param2 = '') {
-        $this->db->select("cw.*,c.* ");
+        $this->db->select('cw.*,c.*,sub.subject_name');
         $this->db->from('courseware cw');
         $this->db->join('course c', 'c.course_id=cw.branch_id');
+        $this->db->join('subject_manager sub','sub.sm_id=cw.subject_id');
         $this->data['courseware'] = $this->db->get('courseware')->result_array();
 
         $this->data['page'] = 'courseware';
