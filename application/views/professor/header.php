@@ -420,13 +420,6 @@
                                 </form>
                             </div>
                             <!--  /search -->  
-                            <!--  /search -->
-                            <ul class=breadcrumb>
-                                <li>You are here:</li>
-                                <li><a href=# class=tip title="back to dashboard"><i class="s16 icomoon-icon-screen-2"></i></a> <span class=divider><i class="s16 icomoon-icon-arrow-right-3"></i></span></li>
-                                <li class=active>Blank Page</li>
-                            </ul>
-                        </div>
                         <?php echo create_breadcrumb(); ?>
                         <?php echo set_active_menu($page); ?>
                         <!-- End  / heading-->

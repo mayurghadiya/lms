@@ -221,7 +221,7 @@
              amount:{
                  required:true,
                  number: true,
-                 max: $('#due_fees').val()
+                 //max: $('#due_fees').val()
              },
              method:"required",
         },
@@ -233,7 +233,7 @@
             amount: {
                 required: "Amount is required",
                 number: "Only enter number",
-                max: "Enter amount which is less than or due amount"
+                //max: "Enter amount which is less than or due amount"
             },
             method:"Method is required",
         }

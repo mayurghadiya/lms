@@ -2584,6 +2584,12 @@ class Admin extends MY_Controller {
      * Make payment via payment gateway
      */
     function make_payment($param1 = '', $param2 = '') {
+        $this->load->model('Student/Student_model');
+        $this->data['department'] = '';
+        $this->data['branch'] = '';
+        $this->data['batch'] = '';
+        $this->data['semester_list'] = '';
+        $this->data['fee_structure'] = '';
         if ($_POST) {
             if ($param1 == 'create') {
                 $this->Crud_model->student_pay_fee_structure_save([
@@ -4320,7 +4326,7 @@ class Admin extends MY_Controller {
      * Semester list from branch
      * @param string $branch_id
      */
-    function semesters_list_from_branch($branch_id) {
+    function semesters_list_from_branch($branch_id = '') {
         $semester = $this->Crud_model->get_semesters_of_branch($branch_id);
 
         echo json_encode($semester);
@@ -6048,6 +6054,13 @@ class Admin extends MY_Controller {
         $fee_structure = $this->Crud_model->fee_structure_filter($degree, $branch, $batch, $semester);
         
         echo json_encode($fee_structure);
+    }
+    
+    function make_payment_student_list($degree='', $course='', $batch='', $semester='', $fee_structure='') {
+        $this->data['student_fees'] = $this->Crud_model->make_payment_student_list($degree, $course, $batch, $semester, $fee_structure);
+        //echo '<pre>';
+        //var_dump($this->data['student_fees']);
+        $this->load->view('admin/make_payment_student_list', $this->data);
     }
 
 }

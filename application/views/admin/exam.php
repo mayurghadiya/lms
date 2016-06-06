@@ -14,7 +14,7 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                 <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/adddue_amount');" data-toggle="modal"><i class="fa fa-plus"></i> Exam</a>
+                 <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addexam');" data-toggle="modal"><i class="fa fa-plus"></i> Exam</a>
                                         <div class="row filter-row">
                             <form id="due_amount-search" action="#" class="form-groups-bordered validate">
                                 <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -70,7 +70,7 @@
 
                         <tbody>
                             <?php
-                            foreach ($due_amounts as $row) {
+                            foreach ($exams as $row) {
                                 $cenlist = array();
                                 ?>
                                 <tr>
@@ -134,7 +134,7 @@
                 var batch = $("#search-batch").val();
                 var semester = $("#search-semester").val();
                 $.ajax({
-                    url: '<?php echo base_url(); ?>admin/get_due_amount_filter/' + degree + '/'
+                    url: '<?php echo base_url(); ?>admin/get_exam_filter/' + degree + '/'
                             + course + '/' + batch + '/' + semester,
                     type: 'get',
                     success: function (content) {
