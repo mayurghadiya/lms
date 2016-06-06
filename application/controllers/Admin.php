@@ -715,6 +715,7 @@ class Admin extends MY_Controller {
                 $data['course_enddate'] = date('Y-m-d', strtotime($this->input->post('enddate')));
                 $data['course_fee'] = $this->input->post('fee');
                 $data['professor_id'] = $this->input->post('professor');
+                $data['category_id'] = $this->input->post('category_id');
                 $data['status'] = $this->status($this->input->post('course_status'));
                 $data['created_date'] = date('Y-m-d');
 
@@ -728,6 +729,7 @@ class Admin extends MY_Controller {
                 $data['course_enddate'] = date('Y-m-d', strtotime($this->input->post('enddate1')));
                 $data['course_fee'] = $this->input->post('fee');
                 $data['professor_id'] = $this->input->post('professor');
+                $data['category_id'] = $this->input->post('category_id');
                 $data['status'] = $this->status($this->input->post('course_status'));
                 $data['updated_date'] = date('Y-m-d');
 
@@ -2021,7 +2023,8 @@ class Admin extends MY_Controller {
                     'designation' => $this->input->post('designation'),
                     'department' => $this->input->post('degree'),
                     'branch' => $this->input->post('branch'),
-                    'about' => $this->input->post('about')
+                    'about' => $this->input->post('about'),
+                    'subjects' => implode(',', $_POST['subjects'])
                 );
 
                 //upload config
@@ -2052,7 +2055,8 @@ class Admin extends MY_Controller {
                     'designation' => $this->input->post('designation'),
                     'department' => $this->input->post('degree'),
                     'branch' => $this->input->post('branch'),
-                    'about' => $this->input->post('about')
+                    'about' => $this->input->post('about'),
+                    'subjects' => implode(',', $_POST['subjects'])
                 );
                 if ($_FILES['userfile']['name'] != '') {
 
@@ -2579,20 +2583,46 @@ class Admin extends MY_Controller {
     /**
      * Make payment via payment gateway
      */
-    function make_payment() {
+    function make_payment($param1 = '', $param2 = '') {
         if ($_POST) {
-            $session['payment_data'] = array(
-                'payment_gateway' => $_POST['payment_gateway'],
-                'fees' => $_POST['fees'],
-                'student_id' => $_POST['student'],
-                'semester' => $_POST['semester'],
-                'course' => $_POST['course'],
-                'description' => $_POST['c_description'],
-                'fees_structure_id' => $_POST['fees_structure']
-            );
-            $this->session->set_userdata($session);
-
-            redirect(base_url('admin/process_payment'));
+            if ($param1 == 'create') {
+                $this->Crud_model->student_pay_fee_structure_save([
+                    'student_id' => $_POST['student'],
+                    'fees_structure_id' => $_POST['fees_structure'],
+                    'paid_amount' => $_POST['fees'],
+                    'course_id' => $_POST['course'],
+                    'sem_id' => $_POST['semester'],
+                    'fee_title' => '',
+                    'remarks' => $_POST['c_description'],
+                    'payment_type' => 'cheque',
+                    'cheque_number' => $_POST['cheque_number'],
+                    'bank_name' => $_POST['bank_name'],
+                    'ac_holder_name' => $_POST['ac_holder_name']
+                ]);
+                $this->session->set_flashdata('flash_message', 'Student payment is successfully done.');
+            } elseif ($param2 == 'udpate') {
+                $this->Crud_model->student_pay_fee_structure_save([
+                    'student_id' => $_POST['student'],
+                    'fees_structure_id' => $_POST['fees_structure'],
+                    'paid_amount' => $_POST['fees'],
+                    'course_id' => $_POST['course'],
+                    'sem_id' => $_POST['semester'],
+                    'fee_title' => '',
+                    'remarks' => $_POST['c_description'],
+                    'payment_type' => 'cheque',
+                    'cheque_number' => $_POST['cheque_number'],
+                    'bank_name' => $_POST['bank_name'],
+                    'ac_holder_name' => $_POST['ac_holder_name']
+                        ], $param2);
+                $this->session->set_flashdata('flash_message', 'Student payment is successfully updated.');
+            }
+            redirect(base_url('admin/make_payment'));
+        }
+        if ($param1 == 'delete') {
+            $this->db->where('student_fees_id', $param2);
+            $this->db->delete('student_fees');
+            $this->session->set_flashdata('flash_message', 'Student payment is successully deleted.');
+            redirect(base_url('admin/make_payment'));
         }
         $this->data['title'] = 'Make Payment';
         $this->data['add_title'] = $this->lang_message('add_payment');
@@ -2979,8 +3009,9 @@ class Admin extends MY_Controller {
         if ($param != "") {
             $this->data['forum_comment'] = $this->forum_model->getcomments($param);
         }
-        $this->data['page'] = 'forum_comment';
+        $this->data['page'] = 'forum_comment';        
         $this->data['title'] = $this->lang_message('forum_comment_title');
+        $this->data['param'] = $param;
         $this->__site_template('admin/forum_comment', $this->data);
     }
 
@@ -4031,9 +4062,9 @@ class Admin extends MY_Controller {
             $data['group_name'] = $this->input->post('group_name');
             $data['user_type'] = $this->input->post('user_type');
             $data['user_role'] = implode(',', $this->input->post('user_role'));
-           
+
             $this->db->insert('group', $data);
-             exit;
+            exit;
             $this->session->set_flashdata('flash_message', 'Group Added Successfully');
 
             redirect(base_url() . 'admin/create_group', 'refresh');
@@ -4074,7 +4105,7 @@ class Admin extends MY_Controller {
         echo $html;
     }
 
-    function list_group($param1 = '', $param2 = '', $param3 = '') {       
+    function list_group($param1 = '', $param2 = '', $param3 = '') {
         if ($param1 == 'do_update') {
 
             $data['user_role'] = implode(',', $this->input->post('user_role'));
@@ -4082,7 +4113,7 @@ class Admin extends MY_Controller {
             $this->db->where('g_id', $this->input->post('group_name'));
             $this->db->update('group', $data);
             $this->session->set_flashdata('flash_message', 'group Updated Successfully');
-            
+
             redirect(base_url() . 'admin/list_group', 'refresh');
         }
         if ($param1 == 'delete') {
@@ -4557,156 +4588,156 @@ class Admin extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
+                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
-                    <?php
-                }
-            }
+            <?php
+        }
+    }
 
-            /**
-             * Exam ajax filter
-             * @param string $degree
-             * @param string $course
-             * @param string $batch
-             * @param string $semester
-             */
-            function get_exam_filter($degree, $course, $batch, $semester) {
-                $this->data['exams'] = $this->Crud_model->get_exam_filter($degree, $course, $batch, $semester);
-                $this->load->view("admin/exam_filter", $this->data);
-            }
+    /**
+     * Exam ajax filter
+     * @param string $degree
+     * @param string $course
+     * @param string $batch
+     * @param string $semester
+     */
+    function get_exam_filter($degree, $course, $batch, $semester) {
+        $this->data['exams'] = $this->Crud_model->get_exam_filter($degree, $course, $batch, $semester);
+        $this->load->view("admin/exam_filter", $this->data);
+    }
 
-            /**
-             * Get exam list by course name and semester
-             * @param type $course_id
-             * @param type $semester_id
-             * 
-             */
-            function get_exam_list($degree_id = '', $course_id = '', $batch_id = '', $semester_id = '', $time_table = '') {
-                $this->load->model('admin/Crud_model');
-                $exam_detail = $this->Crud_model->get_exam_list($degree_id, $course_id, $batch_id, $semester_id);
-                echo "<option value=''>Select</option>";
-                foreach ($exam_detail as $row) {
-                    ?>
+    /**
+     * Get exam list by course name and semester
+     * @param type $course_id
+     * @param type $semester_id
+     * 
+     */
+    function get_exam_list($degree_id = '', $course_id = '', $batch_id = '', $semester_id = '', $time_table = '') {
+        $this->load->model('admin/Crud_model');
+        $exam_detail = $this->Crud_model->get_exam_list($degree_id, $course_id, $batch_id, $semester_id);
+        echo "<option value=''>Select</option>";
+        foreach ($exam_detail as $row) {
+            ?>
             <option value="<?php echo $row->em_id ?>"
-            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
+                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
-                    <?php
-                }
-            }
+            <?php
+        }
+    }
 
-            /**
-             * Check Duplicate Subject
-             * return json
-             * 
-             */
-            function checksubjects() {
-                $eid = $this->input->post('subname');
-                $subcode = $this->input->post('subcode');
-                $course = $this->input->post('course');
-                $semester = $this->input->post('semester');
-                $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode))->result_array();
-                echo json_encode($data);
-            }
+    /**
+     * Check Duplicate Subject
+     * return json
+     * 
+     */
+    function checksubjects() {
+        $eid = $this->input->post('subname');
+        $subcode = $this->input->post('subcode');
+        $course = $this->input->post('course');
+        $semester = $this->input->post('semester');
+        $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode))->result_array();
+        echo json_encode($data);
+    }
 
-            /**
-             * Check Duplicate Subject
-             */
-            function checksubject() {
+    /**
+     * Check Duplicate Subject
+     */
+    function checksubject() {
 
-                $eid = $this->input->post('subname');
-                $subcode = $this->input->post('subcode');
-                $course = $this->input->post('course');
-                $semester = $this->input->post('semester');
-                $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode));
-                if ($data->num_rows() > 0) {
-                    echo "false";
-                } else {
-                    echo "true";
-                }
-            }
+        $eid = $this->input->post('subname');
+        $subcode = $this->input->post('subcode');
+        $course = $this->input->post('course');
+        $semester = $this->input->post('semester');
+        $data = $this->db->get_where('subject_manager', array("sm_course_id" => $course, "sm_sem_id" => $semester, "subject_name" => $eid, "subject_code" => $subcode));
+        if ($data->num_rows() > 0) {
+            echo "false";
+        } else {
+            echo "true";
+        }
+    }
 
-            /**
-             * Get assessment student
-             * @param String $param
-             */
-            function get_assessment_student($param = '') {
-                $batch = $this->input->post("batch");
-                $sem = $this->input->post("semester");
-                $degree = $this->input->post("degree");
-                $course = $this->input->post("course");
+    /**
+     * Get assessment student
+     * @param String $param
+     */
+    function get_assessment_student($param = '') {
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("semester");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
 
-                $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
-                $html = '<option value="">Select Student</option>';
-                foreach ($datastudent as $row):
-                    $html .='<option value="' . $row->std_id . '">' . $row->name . '</option>';
-                endforeach;
-                echo $html;
-            }
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
+        $html = '<option value="">Select Student</option>';
+        foreach ($datastudent as $row):
+            $html .='<option value="' . $row->std_id . '">' . $row->name . '</option>';
+        endforeach;
+        echo $html;
+    }
 
-            /**
-             * get batches
-             * @param type $param
-             */
-            function get_batches($param = '') {
-                $cid = $this->input->post("course");
-                $did = $this->input->post("degree");
-                if ($cid != '') {
-                    $batch = $this->db->query("SELECT * FROM batch WHERE FIND_IN_SET('" . $did . "',degree_id) AND FIND_IN_SET('" . $cid . "',course_id)")->result_array();
-                    $html = '<option value="">Select Batch</option>';
-                    foreach ($batch as $btc):
-                        $html .='<option value="' . $btc['b_id'] . '">' . $btc['b_name'] . '</option>';
+    /**
+     * get batches
+     * @param type $param
+     */
+    function get_batches($param = '') {
+        $cid = $this->input->post("course");
+        $did = $this->input->post("degree");
+        if ($cid != '') {
+            $batch = $this->db->query("SELECT * FROM batch WHERE FIND_IN_SET('" . $did . "',degree_id) AND FIND_IN_SET('" . $cid . "',course_id)")->result_array();
+            $html = '<option value="">Select Batch</option>';
+            foreach ($batch as $btc):
+                $html .='<option value="' . $btc['b_id'] . '">' . $btc['b_name'] . '</option>';
 
-                    endforeach;
-                    echo $html;
-                }
-            }
+            endforeach;
+            echo $html;
+        }
+    }
 
-            /**
-             * getc courses
-             * @param String $param
-             */
-            function get_course($param = '') {
-                $did = $this->input->post("degree");
+    /**
+     * getc courses
+     * @param String $param
+     */
+    function get_course($param = '') {
+        $did = $this->input->post("degree");
 
-                if ($did != '') {
-                    $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
-                    $html = '<option value="">Select Branch</option>';
-                    foreach ($cource as $crs):
-                        $html .='<option value="' . $crs['course_id'] . '">' . $crs['c_name'] . '</option>';
+        if ($did != '') {
+            $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
+            $html = '<option value="">Select Branch</option>';
+            foreach ($cource as $crs):
+                $html .='<option value="' . $crs['course_id'] . '">' . $crs['c_name'] . '</option>';
 
-                    endforeach;
-                    echo $html;
-                }
-            }
+            endforeach;
+            echo $html;
+        }
+    }
 
-            /**
-             * return student list
-             */
-            function assessment_student() {
-                $batch = $this->input->post("batch");
-                $sem = $this->input->post("semester");
-                $degree = $this->input->post("degree");
-                $course = $this->input->post("course");
+    /**
+     * return student list
+     */
+    function assessment_student() {
+        $batch = $this->input->post("batch");
+        $sem = $this->input->post("semester");
+        $degree = $this->input->post("degree");
+        $course = $this->input->post("course");
 
-                $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
-                $html = '<option value="">Select Student</option>';
-                foreach ($datastudent as $row):
-                    $html .='<option value="' . $row->std_id . '">' . $row->name . '</option>';
-                endforeach;
-                echo $html;
-            }
+        $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree))->result();
+        $html = '<option value="">Select Student</option>';
+        foreach ($datastudent as $row):
+            $html .='<option value="' . $row->std_id . '">' . $row->name . '</option>';
+        endforeach;
+        echo $html;
+    }
 
-            /**
-             * Students of the particular course
-             * @param int $course_id
-             */
-            function course_students($course_id = '') {
-                $this->load->model('admin/Crud_model');
-                $students = $this->Crud_model->course_students($course_id);
-                echo "<option value=''>Select</option>";
-                foreach ($students as $row) {
-                    ?>
-            <option value="<?php echo $row->std_id; ?>"><?php echo $row->name; ?></option>
+    /**
+     * Students of the particular course
+     * @param int $course_id
+     */
+    function course_students($course_id = '') {
+        $this->load->model('admin/Crud_model');
+        $students = $this->Crud_model->course_students($course_id);
+        echo "<option value=''>Select</option>";
+        foreach ($students as $row) {
+            ?>
+            <option value="<?php echo $row->std_id; ?>"><?php echo $row->std_first_name . ' ' . $row->std_last_name; ?></option>
             <?php
         }
     }
@@ -4953,7 +4984,7 @@ class Admin extends MY_Controller {
                 $total_paid += $paid->paid_amount;
             }
         }
-        $page_data['due_amount'] = $this->data['invoice']->total_fee - $total_paid;
+        $this->data['due_amount'] = $this->data['invoice']->total_fee - $total_paid;
         $this->data['total_paid'] = $total_paid;
 
         $html = utf8_encode($this->load->view('admin/invoice_print', $this->data, true));
@@ -5499,7 +5530,7 @@ class Admin extends MY_Controller {
             $this->db->update('admin', $data);
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/admin_image/' . $this->session->userdata('admin_id') . '.jpg');
             $this->session->set_flashdata('flash_message', 'Profile is updated successfully.');
-            redirect(base_url() . 'admin/manage_profile/', 'refresh');
+            redirect(base_url('admin/manage_profile'));
         }
         $this->data['page'] = 'manage_profile';
         $this->data['title'] = 'Manage Profile';
@@ -5775,8 +5806,8 @@ class Admin extends MY_Controller {
     function changestatus() {
         if ($_POST) {
             $id = $this->input->post('id');
-            $data['todo_status'] = $this->input->post('status');           
-            $this->Crud_model->change_status($data,$id);
+            $data['todo_status'] = $this->input->post('status');
+            $this->Crud_model->change_status($data, $id);
         }
     }
 
@@ -5906,7 +5937,7 @@ class Admin extends MY_Controller {
 //                'about' => $faker->text
 //            ));
 //        }
-        $roll_no = rand();
+        $roll_no = 1573372988;
         for ($i = 1; $i <= 5000; $i++) {
             $male_female = (rand(1, 100) > 50) ? 'male' : 'female';
             $this->db->insert('student', array(
@@ -5932,6 +5963,7 @@ class Admin extends MY_Controller {
                 'real_pass' => '12345',
             ));
         }
+        echo 'done';
     }
 
     /**
@@ -5942,4 +5974,124 @@ class Admin extends MY_Controller {
         $this->Crud_model->start_stop_streaming($stream_name, $status);
     }
 
+    /**
+     * Vocational course Student List
+     */
+    function vocational_student() {
+        $this->data['student'] = $this->Crud_model->get_vocational_student();
+        $this->data['title'] = 'Vocational Course Students';
+        $this->data['page'] = 'vocational_register_student';
+        $this->__site_template('admin/vocational_register_student', $this->data);
+    }
+
+    /**
+     * Get subject list by course and semester
+     * @param type $course_id
+     * @param type $semester_id
+     */
+    function subject_list($course_id = '', $semester_id, $time_table = '') {
+        $this->load->model('admin/Crud_model');
+        $subjects = $this->Crud_model->subject_list($course_id, $semester_id);
+        echo "<option vale=''>Select</option>";
+        foreach ($subjects as $row) {
+            ?>
+            <option value="<?php echo $row->sm_id; ?>"
+                    <?php if ($row->sm_id == $time_table) echo 'selected'; ?>><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?>
+            </option>
+            <!--echo "<option value={$row->sm_id}>{$row->subject_name}  (Code: {$row->subject_code})</option>";-->
+            <?php
+        }
+    }
+
+    /**
+     * Get all professor list
+     */
+    function get_all_professor() {
+        $professor = $this->Crud_model->get_all_professor();
+
+        echo json_encode($professor);
+    }
+
+    /**
+     * Get all topic name by 
+     */
+    function get_topics()
+    {
+       $res = $this->Crud_model->get_topics_list();
+       $html = '';
+       foreach($res as $topic)
+       {
+           $html .='<option value="'.$topic->forum_topic_id.'">'.$topic->forum_topic_title.'</option>';
+                   
+       }
+       echo $html;
+    }
+
+    /**
+     * Due amount
+     */
+    function due_amount() {
+        $this->load->model('Student/Student_model');
+        $this->data['department'] = '';
+        $this->data['branch'] = '';
+        $this->data['batch'] = '';
+        $this->data['semester'] = '';
+        $this->data['fee_structure'] = '';
+        if ($_POST) {
+            $this->data['department'] = $_POST['degree'];
+            $this->data['branch'] = $_POST['course'];
+            $this->data['batch'] = $_POST['batch'];
+            $this->data['semester'] = $_POST['semester'];
+            $this->data['fee_structure'] = $_POST['fee_structure'];
+            $students = $this->Crud_model->student_list_from_degree_course_batch_semester($this->data['department'], $this->data['branch'], $this->data['batch'], $this->data['semester']);
+            $this->data['students'] = $students;
+            $this->data['fee_structure_info'] = $this->Student_model->fees_structure_details($_POST['fee_structure']);
+        }
+        $this->data['title'] = 'Due Amount';
+        $this->data['page'] = 'due_amount';
+        $this->data['degree'] = $this->Crud_model->get_all_degree();
+        $this->__site_template('admin/due_amount', $this->data);
+    }
+    
+    /**
+     * Fee structure filter
+     * @param string $degree
+     * @param string $branch
+     * @param string $batch
+     * @param string $semester
+     */
+    function student_fee_structure($degree, $branch, $batch, $semester) {
+        $fee_structure = $this->Crud_model->fee_structure_filter($degree, $branch, $batch, $semester);
+        
+        echo json_encode($fee_structure);
+    }
+
+    function commentcrud($param='',$param2= '')
+    {
+        $this->load->model("Site_model");
+        if($param=="create")
+        {
+           $data['forum_topic_id'] = $param2;           
+            $data['forum_comments'] = $this->input->post('comment');
+            $data['forum_comment_status'] = '1';
+            $data['user_role'] = $this->session->userdata('login_type');
+            $data['user_role_id'] = $this->session->userdata('login_user_id');
+            $this->Site_model->create_comment($data);
+            $this->session->set_flashdata('message', ' Your comment has been added successfully.');
+            redirect(base_url()."admin/forumcomment/".$param2);
+        }
+        if($param=="update")
+        {
+           $data['forum_topic_id'] = $param2;
+           $comment_id = $this->input->post("comment_id");
+            $data['forum_comments'] = $this->input->post('comment');
+            $data['forum_comment_status'] = '1';
+            $data['user_role'] = $this->session->userdata('login_type');
+            $data['user_role_id'] = $this->session->userdata('login_user_id');
+            $this->Site_model->update_comment($data,$comment_id);
+            $this->session->set_flashdata('message', ' Your comment has been updated successfully.');
+            redirect(base_url()."admin/forumcomment/".$param2);
+        }
+        
+    }
 }

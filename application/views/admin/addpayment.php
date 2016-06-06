@@ -7,7 +7,8 @@
                             <h4 class=panel-title>Add Payment</h4>
                         </div>-->
             <div class=panel-body>
-                <form id="makepayment" class="form-horizontal form-groups-bordered validate" action="" method="post" role="form">
+                <form id="makepayment" class="form-horizontal form-groups-bordered validate" 
+                      action="<?php echo base_url(); ?>admin/make_payment/create" method="post" role="form">
                     <br/>
                     <div class="padded">
                         <div class="form-group">
@@ -85,24 +86,34 @@
                                 <input type="text" name="fees" id="fees" class="form-control" placeholder="In dollar" required=""/>
                             </div>
                         </div>
+                        <div id="fees_main" class="form-group">
+                            <label class="col-sm-4 control-label">Cheque Number<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" name="cheque_number" id="cheque_number" class="form-control" required=""/>
+                            </div>
+                        </div>
+                        <div id="fees_main" class="form-group">
+                            <label class="col-sm-4 control-label">Bank Name<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" name="bank_name" id="bank_name" class="form-control" required=""/>
+                            </div>
+                        </div>
+                        <div id="fees_main" class="form-group">
+                            <label class="col-sm-4 control-label">A/C Holder Name<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" name="ac_holder_name" id="ac_holder_name" class="form-control" required=""/>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Description</label>
                             <div class="col-sm-8">
                                 <textarea name="c_description" id="c_description" rows="5" class="form-control"></textarea>
                             </div>
-                        </div> 
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Payment Gateway</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="payment_gateway" name="payment_gateway" required="">
-                                    <option value="authorize">Authorize.net Payment Gatway</option>
-                                    <option value="paypal">Paypal</option>
-                                </select>
-                            </div>	
                         </div>
+                        
                         <div class="form-group">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button id="submit-form" type="submit" class="btn btn-info vd_bg-green">Make Payment</button>
+                                <button id="submit-form" type="submit" class="btn btn-info">Add</button>
                             </div>
                         </div>
                     </div>
@@ -126,16 +137,27 @@
             rules: {
                 course: "required",
                 student: "required",
-                fees: "required",
+                fees: {
+                    required: true,
+                    number: true,
+                },
                 semester: "required",
                 fees_structure: "required",
+                cheque_number: "required",
+                bank_name: "required",
+                ac_holder_name: "required"
             },
             messages: {
                 course: "Please select department Name",
                 student: "Please select student",
-                fees: "Please enter fees",
+                fees: {
+                    required: "Please enter fee amount"
+                },
                 semester: "Please select semester",
                 fees_structure: "Please select fees structure",
+                cheque_number: "Please enter cheque number",
+                bank_name: "Please enter bank name",
+                ac_holder_name: "Please enter a/c holder name"
             }
         });
     });

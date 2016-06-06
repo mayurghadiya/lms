@@ -27,8 +27,8 @@
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css"/>
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/main.min.css>
-            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/plugins.css>
+            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
 
             <!-- jQuery -->
             <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
@@ -73,22 +73,13 @@
                             <li class="dropdown">
                                 <a href=# class="dropdown-toggle" data-toggle=dropdown>
                                     <i class="fa fa-globe" aria-hidden="true"></i>
-                                    <span class="notification">3</span>
+                                    <span class="notification"></span>
                                 </a>
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
                                         <ul class=notif>
-                                            <li class=header><strong>Notifications</strong> (3) items</li>
-                                            <li><a href=#><span class=icon>
-                                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                    </span> <span class=event>1 User is registred</span></a>
-                                            </li>
-                                            <li><a href=#><span class=icon><i class="s16 fa fa-commenting"></i></span> <span class=event>Jony add 1 comment</span></a>
-                                            </li>
-                                            <li><a href=#><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>admin Julia added post with a long description</span></a>
-                                            </li>
-                                            <li class=view-all><a href=#>View all notifications <i class="s16 fa fa-angle-double-right"></i></a>
-                                            </li>
+                                            <li class=header><strong>No notification is there</strong></li>
+                                            
                                         </ul>
                                     </li>
                                 </ul>
@@ -172,7 +163,7 @@
                                         $pages = [
                                             'department', 'branch', 'batch', 'semester', 'class', 'admission_type', 'student',
                                             'syllabus', 'subject', 'holiday', 'chancellor', 'course_category', 'vocational_course',
-                                            'assessments', 'timeline'
+                                            'assessments', 'timeline','vocational_register_student'
                                         ];
                                         ?>
 
@@ -223,7 +214,7 @@
                                                 <li>
                                                     <a id="link-subject" href="<?php echo base_url(); ?>admin/subject">
                                                         <i class="s16 icomoon-icon-file"></i>
-                                                        <span class="txt">Subject Association</span>
+                                                        <span class="txt">Subject Management</span>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -262,10 +253,16 @@
                                                         <span class="txt">Assessment</span>
                                                     </a>
                                                 </li>
-                                                <li>
+                                                <!--<li>
                                                     <a id="link-timeline" href="<?php echo base_url(); ?>admin/time_line">
                                                         <i class="s16 icomoon-icon-file"></i>
                                                         <span class="txt">Time Line</span>
+                                                    </a>
+                                                </li>-->
+                                                <li>
+                                                    <a id="link-vocational_register_student" href="<?php echo base_url(); ?>admin/vocational_student">
+                                                        <i class="s16 icomoon-icon-file"></i>
+                                                        <span class="txt">Vocational Course Students</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -545,7 +542,7 @@
                                         
                                         <?php
                                         $pages = [
-                                            'fee_structure', 'make_payment'
+                                            'fee_structure', 'make_payment', 'due_amount'
                                         ];
                                         ?>
                                         
@@ -565,7 +562,12 @@
                                                         <span class="txt">Make Payment</span>
                                                     </a>
                                                 </li> 
-
+                                                <li>
+                                                    <a id="link-due_amount" href="<?php echo base_url(); ?>admin/due_amount">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Due Amount</span>
+                                                    </a>
+                                                </li> 
                                             </ul>
                                         </li>
                                         <li>

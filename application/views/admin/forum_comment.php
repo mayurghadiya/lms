@@ -6,17 +6,17 @@
         <div class=" panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->           
             <div class=panel-body>
-
+                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addcomments/<?php echo $param; ?>');" data-toggle="modal"><i class="fa fa-plus"></i> Forum Comment</a>
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th><div>#</div></th>
+                            <th>No</th>
                             <th>Forum Comments</th>
                             <th>User Roll</th>
                             <th>Comment By</th>
+                            <th>Duration</th>
                             <th>Status</th>
-                            <th>Action</th>
-                            <th></th>
+                            <th>Action</th>                            
                         </tr>
                     </thead>
 
@@ -28,8 +28,18 @@
                             <tr>
                                 <td><?php echo $count++; ?></td>
                                 <td><?php echo $row['forum_comments']; ?></td>                         
+
+
                                 <td><?php echo $row['user_role']; ?></td> 
                                 <td><?php echo roleuserdatatopic($row['user_role'], $row['user_role_id']); ?></td>                                                                             
+                                <td><?php
+                                    $date = date_duration($row['created_date']);
+                                    if ($date == "") {
+                                        echo "Now";
+                                    } else {
+                                        echo $date;
+                                    }
+                                    ?></td>     
                                 <td >
                                     <?php if ($row['forum_comment_status'] == '1') { ?>
                                         <span>Active</span>
@@ -37,16 +47,12 @@
                                         <span>InActive</span>
                                     <?php } ?>
 
-                                </td>
+                                </td>                                
                                 <td class="menu-action">                                                            
-                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/commentdelete/<?php echo $row['forum_comment_id']; ?>/<?php echo $row['forum_topic_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-red vd_red"><i class="fa fa-times"></i> </a>
-
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_comment/<?php echo $row['forum_comment_id']; ?>/<?php echo $row['forum_topic_id']; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+<a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/commentdelete/<?php echo $row['forum_comment_id']; ?>/<?php echo $row['forum_topic_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                 </td>
-                                <td class="menu-action">
-                                    <?php if ($row['forum_comment_status'] == '0') { ?>
-                                        <a href="<?php echo base_url(); ?>admin/confirmcomment/<?php echo $row['forum_comment_id']; ?>/<?php echo $row['forum_topic_id']; ?>" class="btn btn-info vd_bg-green">Approve</a>
-                                    <?php } ?>
-                                </td>
+                                
                             </tr>
                         <?php endforeach; ?>		
                     </tbody>

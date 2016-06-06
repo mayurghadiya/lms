@@ -1,7 +1,7 @@
 <table id="datatable-list2" class="table table-striped table-bordered table-responsive text-center" cellspacing=0 width=100%>
     <thead>
         <tr>
-            <th>#</th>	
+            <th>No</th>	
             <th>Image</th>
             <th>Student Name</th>												
             <th>Email</th>												

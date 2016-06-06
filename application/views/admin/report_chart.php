@@ -217,7 +217,7 @@ $this->load->helper('report_chart');
 
 <!-- Start Report Charts -->
 <div class="panel-default toggle">
-    
+
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
@@ -256,3 +256,4 @@ $this->load->helper('report_chart');
     </div>
 </div>
 <!-- End Report Charts -->
+</div></div>

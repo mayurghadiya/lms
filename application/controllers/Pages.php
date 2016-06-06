@@ -14,6 +14,7 @@ class Pages extends MY_Controller {
             'c_slug'    => $type
         ])->result_array();
         $this->data['title'] = $this->data['news'][0]['c_title'];
+        $this->data['page'] = $this->data['news'][0]['c_slug'];
         $this->__site_template('student/' . $page, $this->data);
     }
 

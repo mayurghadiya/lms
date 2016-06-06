@@ -3,8 +3,8 @@
     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables">
         <thead>
             <tr>
-                <th>#</th>												
-                <th>Assignment Name</th>
+                <th>No</th>												
+                <th>Assignment</th>
                 <th>Department</th>
                 <th>Branch</th>												
                 <th>Batch</th>												
@@ -91,9 +91,9 @@ if ($param == 'submitted') {
         <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tabless">
             <thead>
                 <tr>
-                    <th>#</th>												
-                    <th>Assignment Name</th>
-                    <th>Student Name</th>
+                    <th>No</th>												
+                    <th>Assignment</th>
+                    <th>Student</th>
                     <th>Department</th>
                     <th>Branch</th>												
                     <th>Batch</th>												

@@ -10,11 +10,7 @@ foreach ($edit_data as $row) {
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title><?php echo $title; ?></h4>
-                
-            </div>
+
             <div class=panel-body>
                 <?php foreach ($edit_data as $row): ?>
                     <div class="widget light-widget">
@@ -31,16 +27,11 @@ foreach ($edit_data as $row) {
                                             </div>
                                             <div class="form-img-action text-center mgbt-xs-20">
                                                 <br/><input id="upload" name="userfile" type="file"  accept="image/*"/>
-                                                <a href="" id="upload_link" class="btn vd_btn  vd_bg-blue"><i class="fa fa-cloud-upload append-icon"></i>Upload</a>
                                             </div>
                                             <br/>
                                             <div>
                                                 <table class="table table-striped table-hover">
                                                     <tbody>
-                                                       <!--<tr>
-                                                          <td style="width:60%;">Status</td>
-                                                          <td><span class="label label-success">Active</span></td>
-                                                          </tr>-->
                                                         <tr>
                                                             <td>Register Since</td>
                                                             <td> <?php echo date("F j, Y", strtotime($row['created_date'])); ?></td>

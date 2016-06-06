@@ -307,4 +307,14 @@ class Site_model extends CI_Model {
     {
         $this->db->delete("forum_comment",array("forum_comment_id"=>$id));
     }
+    
+    /**
+     * update comment data
+     * @param mixed $data
+     * @param int $id
+     */
+    function update_comment($data,$id)
+    {
+        $this->db->update("forum_comment",$data,array("forum_comment_id"=>$id));
+    }
 }

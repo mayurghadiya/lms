@@ -67,7 +67,7 @@
                     <thead>
                         <tr>
                             <th>#</th>											
-                            <th>Library</th>											
+                            <th>Library Name</th>											
                             <th>Department</th>											
                             <th>Branch</th>											
                             <th>Batch</th>											

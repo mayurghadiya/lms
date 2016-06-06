@@ -20,7 +20,7 @@
                 <table id="email-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>No</th>
                             <th><?php echo ucwords("Email"); ?></th>
                             <th><?php echo ucwords("Subject"); ?></th>
                             <th><?php echo ucwords("Date"); ?></th>
@@ -65,7 +65,7 @@
                                         <strong><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></strong>
                                     </td>
                                     <td class="menu-action">
-                                        <a href="<?php echo base_url('admin/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">View</span></a>
+                                        <a href="<?php echo base_url('admin/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil-square" aria-hidden="true"></i>View</span></a>
                                         <a href="<?php echo base_url('admin/delete_email/' . $row->email_id) ?>" onclick="return confirm('Are you sure to delete this email?');"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                     </td>
                                 </tr>

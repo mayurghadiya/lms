@@ -169,6 +169,19 @@ class Modal extends MY_Controller {
         $this->db->where("ass.assignment_submit_id",$param2);
         $page_data['assessment'] = $this->db->get()->result();
         }
+        if($page_name=="addcomments")
+        {            
+            $page_data['forum'] = $this->db->get("forum")->result_array();
+            $page_data['param2'] = $param2;
+        }
+        if($page_name=="modal_edit_comment")
+        {            
+            $page_data['forum'] = $this->db->get("forum")->result_array();
+            $this->db->where("forum_comment_id",$param2);
+            $page_data['comment'] = $this->db->get("forum_comment")->result();
+            $page_data['param2'] = $param3;
+            
+        }
         $page_data['action_page_name'] = 'abd';
         $this->load->view($account_type . '/' . $page_name . '.php', $page_data);
        

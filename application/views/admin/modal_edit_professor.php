@@ -1,6 +1,10 @@
 <?php
 $professor = $this->db->get_where('professor', ['professor_id' => $param2])->row();
 $degree_list = $this->db->get('degree')->result();
+$subjects = $this->db->get_where('subject_manager', [
+    'sm_status' => 1
+])->result();
+$assigned_subjects = explode(',', $professor->subjects);
 ?>
 
 <div class=col-lg-12>
@@ -99,6 +103,18 @@ $degree_list = $this->db->get('degree')->result();
                     <div class="col-sm-8">
                         <select id="branch" name="branch" class="form-control" required="">
                             <option value="">Select</option>                                   
+                        </select>
+                    </div>	
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
+                        <select required="" id="subjects" name="subjects[]" class="form-control" multiple="">
+                            <?php
+                            foreach($subjects as $subject) { ?>
+                            <option value="<?php echo $subject->sm_id; ?>"
+                                    <?php if(in_array($subject->sm_id, $assigned_subjects)) echo 'selected'; ?>><?php echo $subject->subject_name; ?></option>
+                            <?php } ?>
                         </select>
                     </div>	
                 </div>

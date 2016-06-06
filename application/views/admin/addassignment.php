@@ -16,7 +16,7 @@
                     <?php echo form_open(base_url() . 'admin/assignment/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmassignment', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                     <div class="padded">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label"><?php echo ucwords("Assignment Name"); ?><span style="color:red">*</span></label>
+                            <label class="col-sm-4 control-label"><?php echo ucwords("Assignment"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="title" id="title" />
                             </div>

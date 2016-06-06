@@ -2,9 +2,10 @@
 <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables">
     <thead>
         <tr>
-            <th>#</th>												
+
+            <th>No</th>												
             <th>Library Name</th>
-            <th>Course</th>
+            <th>Department</th>
             <th>Branch</th>												
             <th>Batch</th>												
             <th>Semester</th>												
@@ -70,8 +71,7 @@
                     }
                     ?>													
                 </td>	
-                <td><a href="<?php echo base_url() . 'uploads/project_file/'.$row->lm_filename; ?>" download="" target="_blank" title="<?php echo $row->lm_filename; ?>"><i class="fa fa-download"></i></a></td>	
-                <td><?php echo date('F d, Y', strtotime($row->lm_dos)); ?></td>	
+                <td><a href="<?php echo base_url() . 'uploads/project_file/'.$row->lm_filename; ?>" download="" target="_blank" title="<?php echo $row->lm_filename; ?>"><i class="fa fa-download"></i></a></td>	             
 
                 <td class="menu-action">
                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_library/<?php echo $row->lm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>

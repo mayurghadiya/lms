@@ -30,16 +30,17 @@ $batch = $this->db->query($query)->result();
 $semester = explode(',', $edit_data->semester_id);
 $this->db->where_in('s_id', $semester);
 $semester = $this->db->get('semester')->result();
+$subjects = $this->db->get_where('subject_manager',[
+    'sm_course_id'  => $course_id,
+    'sm_sem_id' => $semester_id
+])->result();
 ?>
 <div class="row">
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>Update Exam Schedule</h4>
-            </div>
+        <div class="panel-default">
+            <!-- Start .panel -->           
             <div class=panel-body>
                 <?php echo form_open(base_url() . 'admin/exam_time_table/update/' . $edit_data->exam_time_table_id, array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'edit-exam-time-table', 'target' => '_top')); ?>
                 <div class="form-group">
@@ -110,7 +111,11 @@ $semester = $this->db->get('semester')->result();
                     <div class="col-sm-8">
                         <select class="form-control" id="edit_subject" name="subject" required="">
                             <option value="">Select</option>
-
+                            <?php
+                            foreach($subjects as $subject) { ?>
+                            <option value="<?php echo $subject->sm_id; ?>"
+                                    <?php if($edit_data->sm_id == $subject->sm_id) echo 'selected'; ?>><?php echo $subject->subject_name; ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div> 
@@ -124,15 +129,21 @@ $semester = $this->db->get('semester')->result();
                 <div class="form-group">
                     <label class="col-sm-4 control-label"><?php echo ucwords("Start Time"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
-                        <input type="time" id="start_time" class="form-control" name="start_time"
+                         <div class="input-group bootstrap-timepicker">
+                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                        <input type="text" id="start_time" class="form-control" name="start_time"
                                value="<?php echo $edit_data->exam_start_time; ?>" required=""/>
+                         </div>
                     </div>	
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label"><?php echo ucwords("End Time"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
-                        <input type="time" id="end_time" class="form-control" name="end_time"
+                         <div class="input-group bootstrap-timepicker">
+                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                        <input type="text" id="end_time" class="form-control" name="end_time"
                                value="<?php echo $edit_data->exam_end_time ?>" required=""/>
+                         </div>
                     </div>	
                 </div>
                 <div class="form-group">
@@ -157,6 +168,16 @@ $semester = $this->db->get('semester')->result();
     });
 
     $(document).ready(function () {
+         $('#start_time').timepicker({
+            upArrowStyle: 'fa fa-angle-up',
+            downArrowStyle: 'fa fa-angle-down',
+            minuteStep: 30
+    });
+     $('#end_time').timepicker({
+            upArrowStyle: 'fa fa-angle-up',
+            downArrowStyle: 'fa fa-angle-down',
+            minuteStep: 30
+    });
         $("#edit-exam-time-table").validate({
             rules: {
                 degree: "required",
@@ -205,17 +226,21 @@ $semester = $this->db->get('semester')->result();
         var edit_degree = $("#edit_degree").val();
         var batch_id = $("#edit_batch").val();
         $.ajax({
-            url: '<?php echo base_url(); ?>index.php?admin/get_exam_list/' + edit_degree + '/' + course_id + '/' + batch_id + '/' + semester_id + '/' + time_table_exam_id,
+            url: '<?php echo base_url(); ?>admin/get_exam_list/' + edit_degree + '/' + course_id + '/' + batch_id + '/' + semester_id + '/' + time_table_exam_id,
             type: 'get',
             success: function (content) {
                 $('#edit_exam').html(content);
             }
         });
     }
+    
+    function exam_subjects(exam_id) {
+    
+    }
 
     function subject_list(course_id, semester_id) {
         $.ajax({
-            url: '<?php echo base_url(); ?>index.php?admin/subject_list/' + course_id + '/' + semester_id + '/' + subject_id,
+            url: '<?php echo base_url(); ?>admin/subject_list/' + course_id + '/' + semester_id + '/' + subject_id,
             type: 'get',
             success: function (content) {
                 $('#edit_subject').html(content);
@@ -257,7 +282,7 @@ $semester = $this->db->get('semester')->result();
             $('#edit_course').append('<option value="">Select</option>');
             var degree_id = $(this).val();
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/course_list_from_degree/' + degree_id,
+                url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
                 type: 'get',
                 success: function (content) {
                     var course = jQuery.parseJSON(content);
@@ -282,7 +307,7 @@ $semester = $this->db->get('semester')->result();
             //remove all element from batch
             $('#edit_batch').find('option').remove().end();
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
+                url: '<?php echo base_url(); ?>admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
                 type: 'get',
                 success: function (content) {
                     $('#edit_batch').append('<option value="">Select</option>');
@@ -299,7 +324,7 @@ $semester = $this->db->get('semester')->result();
         function get_semester_from_branch(branch_id) {
             $('#edit_semester').find('option').remove().end();
             $.ajax({
-                url: '<?php echo base_url(); ?>index.php?admin/get_semesters_of_branch/' + branch_id,
+                url: '<?php echo base_url(); ?>admin/get_semesters_of_branch/' + branch_id,
                 type: 'get',
                 success: function (content) {
                     $('#edit_semester').append('<option value="">Select</option>');

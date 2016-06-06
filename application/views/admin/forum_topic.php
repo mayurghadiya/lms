@@ -18,12 +18,12 @@
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th><div>#</div></th>
+                            <th>No</th>
                             <th>Forum Topics Title</th>
                             <th>User Roll</th>
                             <th>Start By</th>
                             <th>Status</th>
-                            <th>Comments</th>
+                            <th colspan="2">Comments</th>                            
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -47,6 +47,7 @@
 
                                 </td>
                                 <td><a href="<?php echo base_url() . 'admin/forumcomment/' . $row['forum_topic_id']; ?>" data-original-title="View Comments" data-toggle="tooltip" data-placement="top" class="icon_link"><i class="fa fa-file-o"></i></a></td>
+                                <td><a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addcomments/<?php echo $row['forum_topic_id']; ?>');" data-toggle="modal"><i class="fa fa-plus"></i> Forum Comment</a></td>
                                 <td class="menu-action">
                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_forumtopic/<?php echo $row['forum_topic_id']; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
                                     <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/topicscrud/delete/<?php echo $row['forum_topic_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>

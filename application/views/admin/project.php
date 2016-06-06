@@ -11,7 +11,7 @@
                                 <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
                                 <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
                                 <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
+                          </div>
                         </div>-->
             <div class=panel-body>
                 <div class="tabs mb20">
@@ -85,7 +85,7 @@
                                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                     <thead>
                                         <tr>
-                                            <th>#</th>											
+                                            <th>No</th>											
                                             <th>Project Title</th>
                                             <th>Student</th>											
                                             <th>Department</th>	
@@ -237,8 +237,9 @@
                             <table class="table table-striped table-bordered table-responsive" id="sub-tables">
                                 <thead>
                                     <tr>
-                                        <th>#</th>												
-                                        <th><?php echo ucwords("Project Name"); ?></th>
+
+                                        <th>No</th>												
+                                        <th><?php echo ucwords("Project Title"); ?></th>
                                         <th><?php echo ucwords("Student Name"); ?></th>                                                											
                                         <th><?php echo ucwords("department"); ?></th>	
                                         <th><?php echo ucwords("Branch"); ?></th>

@@ -33,7 +33,7 @@
                                 ?> 
 
                                 <tr>
-                                    <td>#</td>
+                                    <td><?php echo $counter; ?></td>
                                     <td style="width: 20%">
                                         <?php
                                         if (!empty($row->email_to)) {
@@ -50,9 +50,7 @@
                                         }
                                         ?>
                                     </td>
-                                    <td>
-                                        <span class="label vd_bg-green append-icon"><?php echo $row->subject; ?></span> 
-                                    </td>
+                                    <td><?php echo $row->subject; ?></td>
                                     <td style="width:20%;text-align: left">
                                         <strong><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></strong>
                                     </td>

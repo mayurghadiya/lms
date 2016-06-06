@@ -10,7 +10,7 @@
                 <table class="table table-striped table-responsive table-bordered" id="datatable-list">
                     <thead>
                         <tr>
-                            <th>#</th>											
+                            <th>No</th>											
                             <th><?php echo ucwords("Subject Name"); ?></th>											
                             <th><?php echo ucwords("Subject Code"); ?></th>											
                             <th><?php echo ucwords("Branch"); ?></th>											
