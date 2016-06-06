@@ -1469,9 +1469,10 @@ class Professor_model extends CI_Model {
     
     function  getcourseware()
     {
-        $this->db->select('cw.*,c.*');
+        $this->db->select('cw.*,c.*,sub.subject_name');
         $this->db->from('courseware cw');
         $this->db->join('course c','c.course_id=cw.branch_id');
+        $this->db->join('subject_manager sub','sub.sm_id=cw.subject_id');
         return $this->db->get()->result_array();
     }
     public function get_studyresource()
@@ -1602,5 +1603,10 @@ class Professor_model extends CI_Model {
                         ->join('course_category', 'course_category.category_id = vocational_course.category_id')
                         ->get()
                         ->result();
+    }
+    
+    function getsubject($id)
+    {
+        return $this->db->get_where('subject_manager',array('sm_course_id'=>$id))->result_array();
     }
 }

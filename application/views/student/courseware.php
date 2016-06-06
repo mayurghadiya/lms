@@ -18,11 +18,13 @@
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th><div>#</div></th>			
-                            <th><div><?php echo ucwords("topic name"); ?></div></th>
-                            <th><div><?php echo ucwords("branch"); ?></div></th>
-                            <th><div><?php echo ucwords("attachment"); ?></div></th>
-                            <th><div><?php echo ucwords("description"); ?></div></th>
+                            <th>#</th>			
+                            <th><?php echo ucwords("topic"); ?></th>
+                            <th><?php echo ucwords("subject name"); ?></th>
+                            <th><?php echo ucwords("chapter"); ?></th>
+                            <th><?php echo ucwords("branch"); ?></th>
+                            <th><?php echo ucwords("attachment"); ?></th>
+                            <th><?php echo ucwords("description"); ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +35,8 @@
                             <tr>
                                 <td><?php echo $count++; ?></td>
                                 <td><?php echo $row['topic']; ?></td>
+                                <td><?php echo $row['subject_name']; ?></td>                                
+                                <td><?php echo $row['chapter']; ?></td> 
                                 <td><?php echo $row['c_name']; ?></td>
                                 <td id="downloadedfile"><a href="<?= base_url() ?>uploads/courseware/<?php echo $row['attachment']; ?>" download="" title="<?php echo $row['attachment']; ?>"><i class="fa fa-download"></i></a></td>	
                                 <td><?php echo $row['description']; ?></td>

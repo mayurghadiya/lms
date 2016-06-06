@@ -49,6 +49,8 @@ foreach ($edit_data as $row):
                                         <option value="">Select Subject</option>                                    
                                         <?php
                                         foreach ($subject as $sub) {
+                                            if($row['branch_id']== $sub[sm_course_id])
+                                            {
                                             if ($sub['sm_id'] == $row['subject_id']) {
                                                 ?>
                                                 <option selected value="<?php echo $sub['sm_id'] ?>"><?php echo $sub['subject_name'] ?></option>
@@ -57,6 +59,7 @@ foreach ($edit_data as $row):
                                                 ?>
                                                 <option value="<?php echo $sub['sm_id'] ?>"><?php echo $sub['subject_name'] ?></option>
                                                 <?php
+                                            }
                                             }
                                         }
                                         ?>
@@ -130,23 +133,45 @@ endforeach;
         }
     });
 
+$("#branch").change(function(){
+    var id=$(this).val();
+    $.ajax({
+        type:"POST",
+        dataType:'json',
+        url:"<?php echo base_url(); ?>professor/getsubject",
+        data:{
+            'id':id,
+    },
+        success:function(response)
+        {
+            var option;
+            option="<option value=''>Select Subject</option>";
+            for(var i=0;i<response.length; i++)
+            {
+                option +="<option value="+response[i].sm_id+" >"+response[i].subject_name+"</option>";
+            }
+            $('#subject').html('');
+            $("#subject").append(option);
+        }
+    });  
+});
 
     $().ready(function () {
 
         $("#frmcoursewareedit").validate({
             rules: {
-                branch:
-                        {
-                            required: true,
-                        },
-                subject:
-                     {
-                         required: true,
-                     },
-               chapter:
-                   {
-                       required: true,
-                   },       
+//                branch:
+//                        {
+//                            required: true,
+//                        },
+//                subject:
+//                     {
+//                         required: true,
+//                     },
+//               chapter:
+//                   {
+//                       required: true,
+//                   },       
                 topic:
                         {
                             required: true,
