@@ -185,6 +185,10 @@ class Modal extends MY_Controller {
         
             
         }
+        if($page_name=="modal_view_profile")
+        {
+          $page_data['professor']=  $this->db->get_where("professor",array("professor_id"=>$param2))->result();
+        }
         $page_data['action_page_name'] = 'abd';
         $this->load->view($account_type . '/' . $page_name . '.php', $page_data);
        

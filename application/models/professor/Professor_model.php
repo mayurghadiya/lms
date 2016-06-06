@@ -1605,8 +1605,33 @@ class Professor_model extends CI_Model {
                         ->result();
     }
     
+    /**
+     * get subject data
+     * @param int $id
+     * @return mixed array
+     */
     function getsubject($id)
     {
         return $this->db->get_where('subject_manager',array('sm_course_id'=>$id))->result_array();
+    }
+    
+    function get_recent_activity()
+    {
+        $this->db->select('activity,activity_datetime');
+        $this->db->from("last_activity");       
+        $this->db->order_by("activity_id","desc");
+        $this->db->where("activity_user_role",$this->session->userdata('login_type'));
+        $this->db->where("activity_user_role_id",$this->session->userdata('login_user_id'));        
+        $this->db->limit("10");
+        return $this->db->get()->result();
+//        $user_type = $this->session->userdata('login_type');
+//        $id = $this->session->userdata('login_user_id');
+//        return $this->db->query("select * from 
+//        (select * from last_activity where activity_user_role='".$user_type."' AND activity_user_role_id='".$id."'  group by activity ) t 
+//        order by t.activity_id desc")->result();
+        
+        
+        
+        
     }
 }

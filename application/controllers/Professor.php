@@ -30,8 +30,7 @@ class Professor extends MY_Controller {
         $this->data['todolist'] = $this->Professor_model->get_todo();
         $this->data['page'] = 'dashboard';
         $this->data['title'] = 'Professor Dashboard';
-        $this->session->set_userdata('last_activity',"Dashboard Visited");
-        $this->session->set_userdata('activity_status',"1");
+        $this->data['recent_activity'] = $this->Professor_model->get_recent_activity();
         $this->__site_template('professor/dashboard', $this->data);
     }
 
@@ -42,8 +41,7 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'dashboard';
         $this->data['title'] = 'Professor Dashboard';
         $this->data['todolist'] = $this->Professor_model->get_todo();
-        $this->session->set_userdata('last_activity'," Dashboard Visited");
-        $this->session->set_userdata('activity_status',"1");        
+        $this->data['recent_activity'] = $this->Professor_model->get_recent_activity();
         $this->__site_template('professor/dashboard', $this->data);
     }
 

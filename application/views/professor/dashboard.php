@@ -636,8 +636,8 @@
                     <!-- End .todo-widget -->
                 </div>
              </div>
-             <div class="col-lg-6">
-                <div class="panel panel-default toggle">
+              <div class="col-lg-6">
+                <div id="supr1" class="panel panel-default toggle">
                     <!-- Start .panel -->
                     <div class=panel-heading>
                         <h4 class=panel-title>
@@ -645,7 +645,30 @@
                         </h4>
                     </div>
                     <div class=panel-body>
-                       
+                       <table class="table table-reflow">
+                          <thead>
+                            <tr>
+                              <th>No</th>
+                              <th>Date/time </th>
+                              <th>Details</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              <?php
+                              $r = 0;
+                              foreach(@$recent_activity as $activity): ?>
+                            <tr>
+                              <th scope="row"><?php $r++; echo $r;  ?></th>
+                              <td>
+                                  <span class="date"><?php echo date("F d, Y",strtotime($activity->activity_datetime)); ?></span>
+                                  <span class="time"><?php echo date("h:i A",strtotime($activity->activity_datetime)); ?></span>
+                              </td>
+                              <td class="text-left"><?php  echo $activity->activity; ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                            
+                          </tbody>
+                        </table>
                     </div>
                     <!-- End Recent Activities -->
                 </div>

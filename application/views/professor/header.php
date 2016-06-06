@@ -88,6 +88,7 @@
                                     <ul>
                                         <li>
                                             <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i>Home</a>
+                                        </li>
                                         <li>
                                             <a href="<?php echo base_url() . 'professor/manage_profile' ?>">
                                                 <i class="fa fa-user" aria-hidden="true"></i>Edit profile</a>
@@ -95,86 +96,16 @@
                                         <li>
                                             <a href="<?php echo base_url(); ?>site/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
                                         </li>
-<<<<<<< HEAD
-                                        <li>
-                                            <a <?php echo active_single_menu('attendance', $page); ?> href="<?php echo base_url(); ?>professor/attendance">
-                                                <i class="s16 fa fa-university"></i>
-                                                <span class=txt>Attendance </span>
-                                            </a>
-                                        </li>
-                                        
-                                        <?php
-                                        $pages = [
-                                            'exam', 'exam_schedule', 'exam_marks'
-                                        ];
-                                        ?>
-                                        
-                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
-                                                <span class="txt">Examination</span></a>
-                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
-                                                <li>
-                                                    <a id="link-exam" href="<?php echo base_url(); ?>professor/exam">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
-                                                        <span class="txt">Exam</span>
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a id="link-exam_schedule" href="<?php echo base_url(); ?>professor/exam_schedule">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
-                                                        <span class="txt">Exam Schedule</span>
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a id="link-exam_marks" href="<?php echo base_url(); ?>professor/exam_marks">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
-                                                        <span class="txt">Exam Marks</span>
-                                                    </a>
-                                                </li>  
-                                            </ul>
-                                        </li>
-                                        
-                                        <?php
-                                        $pages = [
-                                            'email_compose', 'email_inbox', 'email_sent'
-                                        ];
-                                        ?>
-                                        
-                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
-                                                <span class="txt">Email</span></a>
-                                            <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
-                                                <li>
-                                                    <a id="link-email_compose" href="<?php echo base_url(); ?>professor/email_compose">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
-                                                        <span class="txt">Compose</span>
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a id="link-email_inbox" href="<?php echo base_url(); ?>professor/email_inbox">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
-                                                        <span class="txt">Inbox</span>
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a id="link-email_sent" href="<?php echo base_url(); ?>professor/email_sent">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
-                                                        <span class="txt">Sent</span>
-                                                    </a>
-                                                </li>  
-                                            </ul>
-                                        </li>
+                                    </ul>
+                                    </li>
+                            </ul>
+                        </li>
+                    </ul>
                                 </div>
                             </div>
-                            <!-- End sidenav -->
+                       
 
-                            <!-- End .sidenav-widget -->
-                        </div>
-                        <!-- End .sidebar-scrollarea -->
-                    </div>
-                    <!-- End .sidebar-inner -->
-                </div>
-                <!-- End #sidebar --><!--Sidebar background-->
+                       
 
 
                 <!-- End #right-sidebar --><!--Body content-->
@@ -245,15 +176,7 @@
                                 <li class=active>Blank Page</li>
                             </ul>-->
                               <?php echo create_breadcrumb(); ?>
-=======
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="<?php echo base_url(); ?>site/logout">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i><span class=txt>Logout</span>
-                            </a>
-                        </li>
+
                     </ul>
                 </div>
                 <!-- /.nav-collapse -->
@@ -506,74 +429,3 @@
             </div>
             <!-- End #sidebar --><!--Sidebar background-->
 
-
-            <!-- End #right-sidebar --><!--Body content-->
-            <div id=content class="page-content clearfix">
-                <div class=contentwrapper>
-                    <!--Content wrapper-->
-                    <div class=heading>
-                        <!--  .heading-->
-                        <h3><?php echo $title; ?></h3>
-                        <div class=resBtnSearch><a href=#><span class="s16 icomoon-icon-search-3"></span></a>
-                        </div>
-                        <div class="search_box">
-                            <!-- .search -->
-                            <form action="<?php echo base_url(); ?>student/search" method="post" class="form-horizontal" id="searchform">
-                                <input value="" placeholder="Search here ..." class="top-search from-control" name="search"> 
-                                <input type="submit" class="search-btn">
-                                <div class="category">
-                                    <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        Category                                     
-                                    </a>
-
-                                    <ul class="dropdown-menu" style="margin-left: -46.3833px;">
-                                        <li class="menu">
-                                            <ul>
-                                                <li>
-                                                    <label>
-                                                        <div class="checkbox-custom">
-                                                            <input type="checkbox" name="exam" value="exam" 
-                                                                   <?php if (isset($from['exam'])) echo 'checked'; ?>><label for="chbox0"></label></div>
-                                                        <span>Exam</span>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <div class="checkbox-custom">
-                                                            <input type="checkbox" name="assignment" value="assignment"
-                                                                   <?php if (isset($from['assignment'])) echo 'checked'; ?>><label for="chbox1"></label></div>
-                                                        <span>Assignment</span>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <div class="checkbox-custom">
-                                                            <input type="checkbox" name="participate" value="participate"
-                                                                   <?php if (isset($from['participate'])) echo 'checked'; ?>><label for="chbox2"></label></div>
-                                                        <span>Participate</span>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <div class="checkbox-custom">
-                                                            <input type="checkbox" name="event" value="event"
-                                                                   <?php if (isset($from['event'])) echo 'checked'; ?>><label for="chbox3"></label></div>
-                                                        <span>Events</span>
-                                                    </label>
-                                                </li> 
-                                            </ul>                                           
-                                        </li>
-                                    </ul> 
-                                </div>
-                            </form>
-                        </div>
-                        <!--  /search -->  
-                        <?php echo create_breadcrumb(); ?>
->>>>>>> origin/master
-                        <?php echo set_active_menu($page); ?>
-                        </div>
-<<<<<<< HEAD
-                      
-=======
->>>>>>> origin/master
-                        <!-- End  / heading-->
