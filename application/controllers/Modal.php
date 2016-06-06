@@ -1,3 +1,4 @@
+
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -128,6 +129,7 @@ class Modal extends MY_Controller {
 
         if ($page_name == "addcourseware" || $page_name == "modal_edit_courseware") {
             $page_data['branch'] = $this->db->get('course')->result_array();
+             $page_data['subject'] = $this->db->get('subject_manager')->result_array();
         }
         if ($page_name == "addstudyresource" || $page_name == "modal_edit_studyresource") {
             if ($this->session->userdata('login_type') == "professor") {

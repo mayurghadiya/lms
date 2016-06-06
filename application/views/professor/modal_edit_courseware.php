@@ -41,7 +41,34 @@ foreach ($edit_data as $row):
                                         ?>
                                     </select>
                                 </div>
-                            </div>												
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("subject"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
+                                    <select name="subject" id="subject" class="form-control" >
+                                        <option value="">Select Subject</option>                                    
+                                        <?php
+                                        foreach ($subject as $sub) {
+                                            if ($sub['sm_id'] == $row['subject_id']) {
+                                                ?>
+                                                <option selected value="<?php echo $sub['sm_id'] ?>"><?php echo $sub['subject_name'] ?></option>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <option value="<?php echo $sub['sm_id'] ?>"><?php echo $sub['subject_name'] ?></option>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("chapter name"); ?><span style="color:red">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="chapter" id="chapter" value="<?php echo $row['chapter']?>"/>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label"><?php echo ucwords("topic"); ?><span style="color:red">*</span></label>
                                 <div class="col-sm-8">
@@ -112,6 +139,14 @@ endforeach;
                         {
                             required: true,
                         },
+                subject:
+                     {
+                         required: true,
+                     },
+               chapter:
+                   {
+                       required: true,
+                   },       
                 topic:
                         {
                             required: true,
@@ -122,6 +157,14 @@ endforeach;
                         {
                             required: "Select branch",
                         },
+                subject:
+                        {
+                            required: "Select subject",
+                        },
+                chapter:
+                        {
+                            required: "Enter chapter name",
+                        },         
                 topic:
                         {
                             required: "Enter topic ",

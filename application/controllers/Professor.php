@@ -949,6 +949,8 @@ class Professor extends MY_Controller {
                 $insert['topic'] = $this->input->post('topic');
                 $insert['description'] = $this->input->post('description');
                 $insert['branch_id'] = $this->input->post('branch');
+                $insert['subject_id'] = $this->input->post('subject');
+                $insert['chapter'] = $this->input->post('chapter');
                 $insert['status'] = $this->input->post('status');
                 $insert['professor_id'] = $this->session->userdata('login_user_id');
                 $insert['created_date'] = date('Y-m-d');
@@ -987,6 +989,8 @@ class Professor extends MY_Controller {
                 $insert['topic'] = $this->input->post('topic');
                 $insert['description'] = $this->input->post('description');
                 $insert['branch_id'] = $this->input->post('branch');
+                $insert['subject_id'] = $this->input->post('subject');
+                $insert['chapter'] = $this->input->post('chapter');
                 $insert['status'] = $this->input->post('status');
                 $insert['updated_date'] = date('Y-m-d');
 
@@ -1004,6 +1008,7 @@ class Professor extends MY_Controller {
             redirect(base_url() . 'professor/courseware/', 'refresh');
         }
         $this->data['courseware'] = $this->Professor_model->getcourseware();
+       
         $this->data['page'] = 'courseware';
         $this->data['title'] = 'Courseware Management';
         $this->data['add_title'] = $this->lang_message('add_courseware');
@@ -1012,6 +1017,12 @@ class Professor extends MY_Controller {
         $this->__site_template('professor/courseware', $this->data);
     }
 
+     function getsubject()
+     {
+          $this->data['subject'] = $this->Professor_model->getsubject();
+          echo json_encode($this->data['subject']);
+     }
+    
     /**
      * Graduate
      */

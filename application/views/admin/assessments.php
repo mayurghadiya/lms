@@ -147,17 +147,17 @@
                                 <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="sub-tables">
                                     <thead>
                                         <tr>
-                                            <th><div>#</div></th>												
-                                            <th><div><?php echo ucwords("Assignment Name"); ?></div></th>
-                                            <th><div><?php echo ucwords("Student Name"); ?></div></th>
-                                            <th><div><?php echo ucwords("Department"); ?></div></th>
-                                            <th><div><?php echo ucwords("Branch"); ?></div></th>												
-                                            <th><div><?php echo ucwords("Batch"); ?></div></th>												
-                                            <th><div><?php echo ucwords("Sem"); ?></div></th>	
-                                            <th><div><?php echo ucwords("Submitted date"); ?></div></th>	
-                                            <th><div><?php echo ucwords("Comment"); ?></div></th>
-                                            <th><div><?php echo ucwords("File"); ?></div></th>	
-                                            <th><div><?php echo ucwords("Action"); ?></div></th>	
+                                            <th>#</th>												
+                                            <th><?php echo ucwords("Assignment Name"); ?></th>
+                                            <th><?php echo ucwords("Student Name"); ?></th>
+                                            <th><?php echo ucwords("Department"); ?></th>
+                                            <th><?php echo ucwords("Branch"); ?></th>												
+                                            <th><?php echo ucwords("Batch"); ?></th>												
+                                            <th><?php echo ucwords("Sem"); ?></th>	
+                                            <th><?php echo ucwords("Submitted date"); ?></th>	
+                                            <th><?php echo ucwords("Comment"); ?></th>
+                                            <th><?php echo ucwords("File"); ?></th>	
+                                            <th><?php echo ucwords("Action"); ?></th>	
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -233,6 +233,9 @@
 <!-- End #content -->
 <script type="text/javascript">
     $(document).ready(function () {
+        
+        $("#sub-tables").dataTable();
+        
         $.validator.setDefaults({
             submitHandler: function (form) {
                 form.submit();

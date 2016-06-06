@@ -795,22 +795,26 @@
                         <div id="content-1">
                             <div class="timeline-box timeline-horizontal" style="width: 2500px;">
                                 <?php
-                                $i = 0;
+                                $i = 1;
+                                $eventdate=array();
+                                $tododate=array();
+                                
+                                foreach ($timline_event as $event1) {
+                                  $eventdate[]=date('Y-m-d', strtotime($event1->event_date));
+                                }   
+
+                                foreach ($timline_todolist as $time_line1) {
+                                  $tododate []=date('Y-m-d', strtotime($time_line1->todo_datetime));
+                                }
                                 foreach ($timelinecount as $c) {
-                                    foreach ($timline_event as $event1) {
-                                        $tododate[]=date('Y-m-d', strtotime($event1->event_date));
-                                    }   
-                                    
-                                    foreach ($timline_todolist as $time_line1) {
-                                        $eventdate[]=date('Y-m-d', strtotime($time_line1->todo_datetime));
-                                    }
                                      if(!empty($tododate) || !empty($eventdate))
                                      {
                                          if(in_array($c, $tododate) || in_array($c, $eventdate))
                                          {
+                                             $i++;
                                              $j = 0;
                                              ?>
-                                                <div class="tl-row">
+                                                <div class="tl-row <?php echo $i;?>">
                                             <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
                                                 <div class="tl-bullet bg-blue"></div>
                                                 <div class="tl-panel"><?php echo $c; ?></div>
@@ -818,9 +822,9 @@
                                                     <div class="arrow"></div>
                                                     <?php
                                                            
-                                                         if(!empty($tododate))
+                                                         if(!empty($eventdate))
                                                              {
-                                                         if(in_array($c, $tododate))
+                                                         if(in_array($c, $eventdate))
                                                          {
                                                             ?>
                                                                 <div class="popover-content">
@@ -852,9 +856,9 @@
                                                     
                                                             <?php
                                                             
-                                                             if(!empty($eventdate))
+                                                             if(!empty($tododate))
                                                              {
-                                                                 if(in_array($c, $eventdate))
+                                                                 if(in_array($c, $tododate))
                                                                  {
                                                                      if ($j < 3) {
                                                                 ?>
@@ -892,8 +896,8 @@
                                                 </div>
                                           <?php                               
                                                   }
-                                                 }
-                                                $i++;
+                                                  
+                                                 }                                                  
                                               }
                                         ?>
 

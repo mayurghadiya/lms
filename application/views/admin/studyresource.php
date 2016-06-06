@@ -199,6 +199,7 @@
                             
                         }
                         else{
+                           // $('#branches').children('option:not(:first)').remove();
                             $("#branches").append(response);
                             
                         }
