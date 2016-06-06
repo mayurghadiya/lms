@@ -107,7 +107,7 @@ Delete
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
-
+</div>
 <script>
     $(document).ready(function () {
 

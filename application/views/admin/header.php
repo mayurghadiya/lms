@@ -44,6 +44,7 @@
             <script>
                 var base_url = '<?php echo base_url(); ?>';
             </script>
+          </head>
         <body class="<?php echo $this->router->fetch_method(); ?>">
             <!--[if lt IE 9]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
