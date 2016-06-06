@@ -56,8 +56,12 @@ $edit_data = $this->db->get_where('event_manager', array('event_id' => $param2))
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Event Time"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
-                                <input type="time" id="event_time" class="form-control" name="event_time" 
-                                       value="<?php echo date('H:i', strtotime($row['event_date'])); ?>"/>
+                                <div class="input-group bootstrap-timepicker">
+                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                <input type="text" id="event_time" class="form-control" name="event_time" 
+                                       value="<?php echo date('H:i', strtotime($row['event_date'])); ?>" readonly="" />
+                                </div>
+                                
                             </div>
                         </div>
 
@@ -95,6 +99,11 @@ $edit_data = $this->db->get_where('event_manager', array('event_id' => $param2))
             });
 
             $().ready(function () {
+                $('#event_time').timepicker({
+            upArrowStyle: 'fa fa-angle-up',
+            downArrowStyle: 'fa fa-angle-down',
+            minuteStep: 30
+    });
                 $("#edit-datepicker-date").datepicker({
                     format: ' MM d, yyyy', autoclose:true,
                     changeMonth: true,

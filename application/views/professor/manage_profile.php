@@ -11,8 +11,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
-           
+        <div class="panel-default">
             <div class="vd_content-section clearfix">
                 <div class="row">
                     <div class="col-sm-12">                 
@@ -200,7 +199,8 @@
 
     $().ready(function () {
         $.validator.setDefaults({
-            submitHandler: function (form) {
+
+            submitHandler: function (form) {                
                 form.submit();
             }
         });

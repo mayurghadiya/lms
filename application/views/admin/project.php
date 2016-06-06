@@ -237,17 +237,17 @@
                             <table class="table table-striped table-bordered table-responsive" id="sub-tables">
                                 <thead>
                                     <tr>
-                                        <th>No</th>												
-                                        <th><div><?php echo ucwords("Project Name"); ?></div></th>
-                                        <th><div><?php echo ucwords("Student Name"); ?></div></th>                                                											
-                                        <th><div><?php echo ucwords("department"); ?></div></th>	
-                                        <th><div><?php echo ucwords("Branch"); ?></div></th>
-                                        <th><div><?php echo ucwords("Batch"); ?></div></th>											
-                                        <th><div><?php echo ucwords("Semester"); ?></div></th>
-                                        <th><div><?php echo ucwords("Submitted date"); ?></div></th>
-                                        <th><div><?php echo ucwords("Comment"); ?></div></th>
-                                        <th><div><?php echo ucwords("File"); ?></div></th>												                                            
 
+                                        <th>No</th>												
+                                        <th><?php echo ucwords("Project Title"); ?></th>
+                                        <th><?php echo ucwords("Student Name"); ?></th>                                                											
+                                        <th><?php echo ucwords("department"); ?></th>	
+                                        <th><?php echo ucwords("Branch"); ?></th>
+                                        <th><?php echo ucwords("Batch"); ?></th>											
+                                        <th><?php echo ucwords("Semester"); ?></th>
+                                        <th><?php echo ucwords("Submitted date"); ?></th>
+                                        <th><?php echo ucwords("Comment"); ?></th>
+                                        <th><?php echo ucwords("File"); ?></th>												                                            
                                     </tr>
                                 </thead>
                                 <tbody>

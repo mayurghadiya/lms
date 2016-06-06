@@ -48,7 +48,10 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Event Time"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
-                                <input type="time" id="event_time" class="form-control" name="event_time" value=""/>
+                                <div class="input-group bootstrap-timepicker">
+                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                <input type="text" id="event_time" class="form-control" name="event_time" value="" readonly="" />
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -77,6 +80,11 @@
 <script type="text/javascript">
 
     $().ready(function () {
+         $('#event_time').timepicker({
+            upArrowStyle: 'fa fa-angle-up',
+            downArrowStyle: 'fa fa-angle-down',
+            minuteStep: 30
+    });
         $("#datepicker-date").datepicker({
              format: ' MM d, yyyy',
             changeMonth: true,

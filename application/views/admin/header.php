@@ -163,7 +163,7 @@
                                         $pages = [
                                             'department', 'branch', 'batch', 'semester', 'class', 'admission_type', 'student',
                                             'syllabus', 'subject', 'holiday', 'chancellor', 'course_category', 'vocational_course',
-                                            'assessments', 'timeline'
+                                            'assessments', 'timeline','vocational_register_student'
                                         ];
                                         ?>
 
@@ -214,7 +214,7 @@
                                                 <li>
                                                     <a id="link-subject" href="<?php echo base_url(); ?>admin/subject">
                                                         <i class="s16 icomoon-icon-file"></i>
-                                                        <span class="txt">Subject Association</span>
+                                                        <span class="txt">Subject Management</span>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -253,10 +253,16 @@
                                                         <span class="txt">Assessment</span>
                                                     </a>
                                                 </li>
-                                                <li>
+                                                <!--<li>
                                                     <a id="link-timeline" href="<?php echo base_url(); ?>admin/time_line">
                                                         <i class="s16 icomoon-icon-file"></i>
                                                         <span class="txt">Time Line</span>
+                                                    </a>
+                                                </li>-->
+                                                <li>
+                                                    <a id="link-vocational_register_student" href="<?php echo base_url(); ?>admin/vocational_student">
+                                                        <i class="s16 icomoon-icon-file"></i>
+                                                        <span class="txt">Vocational Course Students</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -536,7 +542,7 @@
                                         
                                         <?php
                                         $pages = [
-                                            'fee_structure', 'make_payment'
+                                            'fee_structure', 'make_payment', 'due_amount'
                                         ];
                                         ?>
                                         
@@ -556,7 +562,12 @@
                                                         <span class="txt">Make Payment</span>
                                                     </a>
                                                 </li> 
-
+                                                <li>
+                                                    <a id="link-due_amount" href="<?php echo base_url(); ?>admin/due_amount">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Due Amount</span>
+                                                    </a>
+                                                </li> 
                                             </ul>
                                         </li>
                                         <li>

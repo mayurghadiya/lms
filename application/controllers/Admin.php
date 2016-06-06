@@ -715,6 +715,7 @@ class Admin extends MY_Controller {
                 $data['course_enddate'] = date('Y-m-d', strtotime($this->input->post('enddate')));
                 $data['course_fee'] = $this->input->post('fee');
                 $data['professor_id'] = $this->input->post('professor');
+                $data['category_id'] = $this->input->post('category_id');
                 $data['status'] = $this->status($this->input->post('course_status'));
                 $data['created_date'] = date('Y-m-d');
 
@@ -728,6 +729,7 @@ class Admin extends MY_Controller {
                 $data['course_enddate'] = date('Y-m-d', strtotime($this->input->post('enddate1')));
                 $data['course_fee'] = $this->input->post('fee');
                 $data['professor_id'] = $this->input->post('professor');
+                $data['category_id'] = $this->input->post('category_id');
                 $data['status'] = $this->status($this->input->post('course_status'));
                 $data['updated_date'] = date('Y-m-d');
 
@@ -2021,7 +2023,8 @@ class Admin extends MY_Controller {
                     'designation' => $this->input->post('designation'),
                     'department' => $this->input->post('degree'),
                     'branch' => $this->input->post('branch'),
-                    'about' => $this->input->post('about')
+                    'about' => $this->input->post('about'),
+                    'subjects' => implode(',', $_POST['subjects'])
                 );
 
                 //upload config
@@ -2052,7 +2055,8 @@ class Admin extends MY_Controller {
                     'designation' => $this->input->post('designation'),
                     'department' => $this->input->post('degree'),
                     'branch' => $this->input->post('branch'),
-                    'about' => $this->input->post('about')
+                    'about' => $this->input->post('about'),
+                    'subjects' => implode(',', $_POST['subjects'])
                 );
                 if ($_FILES['userfile']['name'] != '') {
 
@@ -2609,12 +2613,12 @@ class Admin extends MY_Controller {
                     'cheque_number' => $_POST['cheque_number'],
                     'bank_name' => $_POST['bank_name'],
                     'ac_holder_name' => $_POST['ac_holder_name']
-                ], $param2);
+                        ], $param2);
                 $this->session->set_flashdata('flash_message', 'Student payment is successfully updated.');
             }
             redirect(base_url('admin/make_payment'));
         }
-        if($param1 == 'delete') {
+        if ($param1 == 'delete') {
             $this->db->where('student_fees_id', $param2);
             $this->db->delete('student_fees');
             $this->session->set_flashdata('flash_message', 'Student payment is successully deleted.');
@@ -4057,9 +4061,9 @@ class Admin extends MY_Controller {
             $data['group_name'] = $this->input->post('group_name');
             $data['user_type'] = $this->input->post('user_type');
             $data['user_role'] = implode(',', $this->input->post('user_role'));
-           
+
             $this->db->insert('group', $data);
-             exit;
+            exit;
             $this->session->set_flashdata('flash_message', 'Group Added Successfully');
 
             redirect(base_url() . 'admin/create_group', 'refresh');
@@ -4100,7 +4104,7 @@ class Admin extends MY_Controller {
         echo $html;
     }
 
-    function list_group($param1 = '', $param2 = '', $param3 = '') {       
+    function list_group($param1 = '', $param2 = '', $param3 = '') {
         if ($param1 == 'do_update') {
 
             $data['user_role'] = implode(',', $this->input->post('user_role'));
@@ -4108,7 +4112,7 @@ class Admin extends MY_Controller {
             $this->db->where('g_id', $this->input->post('group_name'));
             $this->db->update('group', $data);
             $this->session->set_flashdata('flash_message', 'group Updated Successfully');
-            
+
             redirect(base_url() . 'admin/list_group', 'refresh');
         }
         if ($param1 == 'delete') {
@@ -4732,7 +4736,7 @@ class Admin extends MY_Controller {
         echo "<option value=''>Select</option>";
         foreach ($students as $row) {
             ?>
-            <option value="<?php echo $row->std_id; ?>"><?php echo $row->name; ?></option>
+            <option value="<?php echo $row->std_id; ?>"><?php echo $row->std_first_name . ' ' . $row->std_last_name; ?></option>
             <?php
         }
     }
@@ -5801,8 +5805,8 @@ class Admin extends MY_Controller {
     function changestatus() {
         if ($_POST) {
             $id = $this->input->post('id');
-            $data['todo_status'] = $this->input->post('status');           
-            $this->Crud_model->change_status($data,$id);
+            $data['todo_status'] = $this->input->post('status');
+            $this->Crud_model->change_status($data, $id);
         }
     }
 
@@ -5968,14 +5972,82 @@ class Admin extends MY_Controller {
     function start_stop_streaming($stream_name, $status) {
         $this->Crud_model->start_stop_streaming($stream_name, $status);
     }
-    
+
+    /**
+     * Vocational course Student List
+     */
+    function vocational_student() {
+        $this->data['student'] = $this->Crud_model->get_vocational_student();
+        $this->data['title'] = 'Vocational Course Students';
+        $this->data['page'] = 'vocational_register_student';
+        $this->__site_template('admin/vocational_register_student', $this->data);
+    }
+
+    /**
+     * Get subject list by course and semester
+     * @param type $course_id
+     * @param type $semester_id
+     */
+    function subject_list($course_id = '', $semester_id, $time_table = '') {
+        $this->load->model('admin/Crud_model');
+        $subjects = $this->Crud_model->subject_list($course_id, $semester_id);
+        echo "<option vale=''>Select</option>";
+        foreach ($subjects as $row) {
+            ?>
+            <option value="<?php echo $row->sm_id; ?>"
+                    <?php if ($row->sm_id == $time_table) echo 'selected'; ?>><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?>
+            </option>
+            <!--echo "<option value={$row->sm_id}>{$row->subject_name}  (Code: {$row->subject_code})</option>";-->
+            <?php
+        }
+    }
+
     /**
      * Get all professor list
      */
     function get_all_professor() {
         $professor = $this->Crud_model->get_all_professor();
-        
+
         echo json_encode($professor);
+    }
+
+    /**
+     * Due amount
+     */
+    function due_amount() {
+        $this->load->model('Student/Student_model');
+        $this->data['department'] = '';
+        $this->data['branch'] = '';
+        $this->data['batch'] = '';
+        $this->data['semester'] = '';
+        $this->data['fee_structure'] = '';
+        if ($_POST) {
+            $this->data['department'] = $_POST['degree'];
+            $this->data['branch'] = $_POST['course'];
+            $this->data['batch'] = $_POST['batch'];
+            $this->data['semester'] = $_POST['semester'];
+            $this->data['fee_structure'] = $_POST['fee_structure'];
+            $students = $this->Crud_model->student_list_from_degree_course_batch_semester($this->data['department'], $this->data['branch'], $this->data['batch'], $this->data['semester']);
+            $this->data['students'] = $students;
+            $this->data['fee_structure_info'] = $this->Student_model->fees_structure_details($_POST['fee_structure']);
+        }
+        $this->data['title'] = 'Due Amount';
+        $this->data['page'] = 'due_amount';
+        $this->data['degree'] = $this->Crud_model->get_all_degree();
+        $this->__site_template('admin/due_amount', $this->data);
+    }
+    
+    /**
+     * Fee structure filter
+     * @param string $degree
+     * @param string $branch
+     * @param string $batch
+     * @param string $semester
+     */
+    function student_fee_structure($degree, $branch, $batch, $semester) {
+        $fee_structure = $this->Crud_model->fee_structure_filter($degree, $branch, $batch, $semester);
+        
+        echo json_encode($fee_structure);
     }
 
 }

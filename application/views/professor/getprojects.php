@@ -110,7 +110,7 @@ if ($param == 'submitted') {
             <thead>
                 <tr>
                     <th><div>#</div></th>												
-                    <th><div>Project Name</div></th>
+                    <th><div>Project Title</div></th>
                     <th><div>Student Name</div></th>                                                											
                     <th><div>Department</div></th>	
                     <th><div>Branch</div></th>

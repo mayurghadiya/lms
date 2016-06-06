@@ -136,12 +136,12 @@
                                                     <?php } ?>
                                                 </ul>
                                             </li>
-                                            <li><a href="<?php echo base_url('alumni'); ?>">ALUMNI</a><span>Alumni</span>
                                             <li><a href="<?php echo base_url('events'); ?>">Events</a><span>University Events</span>
 
                                             </li>
                                             <li><a href="<?php echo base_url('syllabus'); ?>">Syllabus</a><span>Syllabus</span>
                                             </li>
+                                            <li><a href="<?php echo base_url(); ?>site/gallery">Gallery</a><span>Gallery</span></li>
                                             <li><a href="<?php echo base_url('site/forums'); ?>">Forum</a><span>Forum</span>
                                             </li>
 

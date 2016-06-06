@@ -174,7 +174,7 @@
             {
                 "use strict";
                 $("#datepicker-normal").datepicker({
-                    dateFormat: 'dd M yy',
+                    format: 'M d, yyyy',
                     changeMonth: true,
                     changeYear: true,
                     autoclose: true,
