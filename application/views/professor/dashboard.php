@@ -663,7 +663,7 @@
                                   <span class="date"><?php echo date("F d, Y",strtotime($activity->activity_datetime)); ?></span>
                                   <span class="time"><?php echo date("h:i A",strtotime($activity->activity_datetime)); ?></span>
                               </td>
-                              <td class="text-left"><?php  echo $activity->activity; ?></td>
+                              <td class="text-left"><?php  echo ucwords($activity->activity); ?></td>
                             </tr>
                             <?php endforeach; ?>
                             
