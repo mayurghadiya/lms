@@ -491,6 +491,7 @@ class Site extends MY_Controller {
 
     function forums() {
         $this->data['title'] = 'Forum';
+        $this->db->order_by("forum_id","desc");
         $this->db->where("forum_status", "1");
         $this->data['forums'] = $this->db->get("forum")->result();
         $this->__template('forum', $this->data);
@@ -500,8 +501,7 @@ class Site extends MY_Controller {
         $this->data['title'] = 'Forum Topics';
         $this->db->where("forum_topic_status", "1");
         $this->db->where("forum_id", $param);
-
-
+        $this->db->order_by("forum_topic_id","desc");
         $this->data['topics'] = $this->db->get("forum_topics")->result();
         $this->data['param'] = $param;
         $this->db->where("forum_id", $param);
@@ -538,12 +538,25 @@ class Site extends MY_Controller {
             $data['forum_id'] = $this->input->post('forum_id');
             $data['forum_topic_title'] = $this->input->post('subject');
             $data['forum_topic_desc'] = $this->input->post('discussion');
-            $data['forum_topic_status'] = '0';
+            if($this->session->userdata('login_type')=="admin")
+            {
+                $data['forum_topic_status'] = '1';
+            }
+            else{
+                $data['forum_topic_status'] = '0';
+            }
             $data['user_role'] = $this->session->userdata('login_type');
             $data['user_role_id'] = $this->session->userdata('login_user_id');
 
             $this->Site_model->create_topic($data);
-            $this->session->set_flashdata('message', ' Your Topic has been queued for review by site administrators and will be published after approval.');
+            if($this->session->userdata('login_type')=="admin")
+            {
+                $this->session->set_flashdata('message', 'Your Topic Added Successfully');
+            }
+            else{
+                $this->session->set_flashdata('message', ' Your Topic has been queued for review by site administrators and will be published after approval.');
+            }
+            
             redirect(base_url('site/topics/' . $data['forum_id']));
         }
     }

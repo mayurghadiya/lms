@@ -65,6 +65,10 @@ if(!function_exists('date_duration'))
         $date2 =  strtotime($datetime);
         $strtime1 = date("Y-m-d H:i:s");
         $strtime2 = $datetime; 
+        if($date1 == $date2)
+        {
+            return "Now";
+        }
         if($strtime1 > $strtime2)
         {
         $dateDiff    = $date1 - $date2;   

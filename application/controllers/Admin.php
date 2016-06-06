@@ -1766,9 +1766,10 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/courseware/', 'refresh');
         }
 
-        $this->db->select("cw.*,c.* ");
+         $this->db->select('cw.*,c.*,sub.subject_name');
         $this->db->from('courseware cw');
         $this->db->join('course c', 'c.course_id=cw.branch_id');
+        $this->db->join('subject_manager sub','sub.sm_id=cw.subject_id');
         $this->data['courseware'] = $this->db->get('courseware')->result_array();
 
         $this->data['page'] = 'courseware';
@@ -3018,6 +3019,8 @@ class Admin extends MY_Controller {
         $this->data['page'] = 'forum_comment';        
         $this->data['title'] = $this->lang_message('forum_comment_title');
         $this->data['param'] = $param;
+        $this->data['edit_title'] = $this->lang_message('edit_forum_comment');
+        $this->data['add_title'] = $this->lang_message('add_forum_comment');
         $this->__site_template('admin/forum_comment', $this->data);
     }
 

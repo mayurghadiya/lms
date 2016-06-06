@@ -531,28 +531,25 @@
 
     <div>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title>Class Routine</h4>
-                        </div>-->
-            <div>
-              <iframe class="professor_routine_box" frameborder="0" src="<?php echo base_url(); ?>professor/professor_class_routine" width="100%" height="630px"></iframe>
+        <div class="row">
+
+            <div class="col-lg-12">
+                  <iframe class="professor_routine_box" frameborder="0" src="<?php echo base_url(); ?>professor/professor_class_routine" width="100%" height="630px"></iframe>
             </div>
-        </div>
+        
         <!-- End .panel -->
-
-        <div class="panel panel-default toggle">
-            <div class="panel-heading">
-                <h4>Event Calendar</h4>
+            <div class="col-lg-12">
+                <div class="panel panel-default toggle">
+                    <div class="panel-heading">
+                        <h4>Event Calendar</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div id="eventCalendarHumanDate"></div>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body">
-                <div id="eventCalendarHumanDate"></div>
-            </div>
-        </div>
 
-
-       <div class="row">
+      
             <div class="col-lg-6">
                 <div class="panel panel-default toggle">
                     <!-- Start .panel -->
@@ -612,37 +609,49 @@
                             <div id="wait" class="loading_img"><img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading...
                             </div>
                             <ul class="todo-list" id="today">
-<?php foreach ($todolist as $todo) { ?>  
-                                    <li class="todo-task-item <?php
-    if ($todo->todo_status == "0") {
-        echo "task-done";
-    }
-    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
-                                        <div class=checkbox-custom><input type="checkbox" <?php
-    if ($todo->todo_status == "0") {
-        echo "checked=''";
-    }
-    ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
-                                        <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
-                                        <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
-                                        <div class="updateclick_box">
-                                            <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                        </div>
-                                        <div class="todo-close_box">
-                                            <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
-                                        </div>
-                                    </li>
-<?php } ?>
+                                <?php foreach ($todolist as $todo) { ?>  
+                                                                    <li class="todo-task-item <?php
+                                    if ($todo->todo_status == "0") {
+                                        echo "task-done";
+                                    }
+                                    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
+                                                                        <div class=checkbox-custom><input type="checkbox" <?php
+                                    if ($todo->todo_status == "0") {
+                                        echo "checked=''";
+                                    }
+                                    ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
+                                                                        <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
+                                                                        <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
+                                                                        <div class="updateclick_box">
+                                                                            <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                                                        </div>
+                                                                        <div class="todo-close_box">
+                                                                            <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
+                                                                        </div>
+                                                                    </li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
                     <!-- End .todo-widget -->
                 </div>
-            </div>
-        </div>
-    </div>
+             </div>
+             <div class="col-lg-6">
+                <div class="panel panel-default toggle">
+                    <!-- Start .panel -->
+                    <div class=panel-heading>
+                        <h4 class=panel-title>
+                            Recent Activities
+                        </h4>
+                    </div>
+                    <div class=panel-body>
+                       
+                    </div>
+                    <!-- End Recent Activities -->
+                </div>
+             </div>
 
-</div>
+        </div>
 <!-- col-lg-12 end here -->
 </div>
 <!-- End .row -->

@@ -57,7 +57,7 @@
     });
 
 
-    $(".todo-close").click(function () {
+    $(".close").click(function () {
         var id = $(this).val();
         var dataString = "id=" + id;
         $.ajax({
@@ -82,7 +82,7 @@
             {
                 $("#updateformhtml").html(response);
                 $("#todo-addform").hide();
-                $(this).closest('.todo-close').css('pointer-events', 'none');
+                $('.todo-close_box').css('pointer-events', 'none');
             }
         });
     });

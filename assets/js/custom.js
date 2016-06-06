@@ -275,3 +275,6 @@ $(document).ready(function () {
 
 });
 
+function isEmpty(str) {         
+    return str.toString().replace(/^\s+|\s+$/gm,'').length == 0;
+}

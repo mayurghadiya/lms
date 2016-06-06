@@ -9,6 +9,7 @@ class Forum_model extends CI_Model {
 		
         public function getforum()
         {
+            $this->db->order_by("forum_id","desc");
             return $this->db->get('forum')->result_array();
             
         }

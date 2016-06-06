@@ -24,13 +24,28 @@
                                     <?php
                                     foreach ($branch as $b) {
                                         ?>
-                                        <option value="<?php echo $b['course_id'] ?>"><?php echo $b['c_name'] ?></option>>
+                                        <option value="<?php echo $b['course_id'] ?>"><?php echo $b['c_name'] ?></option>
                                         <?php
                                     }
                                     ?>
                                 </select>
                             </div>
-                        </div>												
+                        </div>	
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("subject"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
+                                <select name="subject" id="subject" class="form-control">
+                                    <option value="">Select Subject</option>                                    
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("chapter name"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="chapter" id="chapter"/>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("topic"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
@@ -77,15 +92,45 @@
         }
     });
 
+$("#branch").change(function(){
+    var id=$(this).val();
+    $.ajax({
+        type:"POST",
+        dataType:'json',
+        url:"<?php echo base_url(); ?>professor/getsubject",
+        data:{
+            'id':id,
+    },
+        success:function(response)
+        {
+            var option;
+            option="<option value=''>Select Subject</option>";
+            for(var i=0;i<response.length; i++)
+            {
+                option +="<option value="+response[i].sm_id+" >"+response[i].subject_name+"</option>";
+            }
+             $('#subject').html('');
+            $("#subject").append(option);
+        }
+    });  
+});
 
     $().ready(function () {
 
         $("#frmcourseware").validate({
             rules: {
-                branch:
-                        {
-                            required: true,
-                        },
+//                branch:
+//                        {
+//                            required: true,
+//                        },
+//                subject:
+//                      {
+//                          required: true,
+//                      },
+//                chapter:
+//                    {
+//                        required: true,
+//                    },      
                 topic:
                         {
                             required: true,
@@ -100,6 +145,14 @@
                         {
                             required: "Select branch",
                         },
+                subject:
+                        {
+                            required: "Select subject",
+                        },
+                chapter:
+                        {
+                            required: "Enter chapter name",
+                        },        
                 topic:
                         {
                             required: "Enter topic ",

@@ -1,3 +1,4 @@
+
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -128,6 +129,7 @@ class Modal extends MY_Controller {
 
         if ($page_name == "addcourseware" || $page_name == "modal_edit_courseware") {
             $page_data['branch'] = $this->db->get('course')->result_array();
+             $page_data['subject'] = $this->db->get('subject_manager')->result_array();
         }
         if ($page_name == "addstudyresource" || $page_name == "modal_edit_studyresource") {
             if ($this->session->userdata('login_type') == "professor") {
@@ -171,6 +173,7 @@ class Modal extends MY_Controller {
         {            
             $page_data['forum'] = $this->db->get("forum")->result_array();
             $page_data['param2'] = $param2;
+            $page_data['add_title'] = $this->lang_message('add_forum_comment');
         }
         if($page_name=="modal_edit_comment")
         {            
@@ -178,6 +181,8 @@ class Modal extends MY_Controller {
             $this->db->where("forum_comment_id",$param2);
             $page_data['comment'] = $this->db->get("forum_comment")->result();
             $page_data['param2'] = $param3;
+                $page_data['edit_title'] = $this->lang_message('edit_forum_comment');
+        
             
         }
         $page_data['action_page_name'] = 'abd';

@@ -911,99 +911,111 @@
                         <div id="content-1">
                             <div class="timeline-box timeline-horizontal" style="width: 2500px;">
                                 <?php
-                                $i = 0;
-                                foreach ($timelinecount as $c) {
-                                    foreach ($timline_event as $event1) {
-                                        $tododate[] = date('Y-m-d', strtotime($event1->event_date));
-                                    }
+                                $i = 1;
+                                $eventdate=array();
+                                $tododate=array();
+                                
+                                foreach ($timline_event as $event1) {
+                                  $eventdate[]=date('Y-m-d', strtotime($event1->event_date));
+                                }   
 
-                                    foreach ($timline_todolist as $time_line1) {
-                                        $eventdate[] = date('Y-m-d', strtotime($time_line1->todo_datetime));
-                                    }
-                                    if (!empty($tododate) || !empty($eventdate)) {
-                                        if (in_array($c, $tododate) || in_array($c, $eventdate)) {
-                                            $j = 0;
-                                            ?>
-                                            <div class="tl-row">
-                                                <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                                                    <div class="tl-bullet bg-blue"></div>
-                                                    <div class="tl-panel"><?php echo $c; ?></div>
-                                                    <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                                        <div class="arrow"></div>
-                                                        <?php
-                                                        if (!empty($tododate)) {
-                                                            if (in_array($c, $tododate)) {
-                                                                ?>
+                                foreach ($timline_todolist as $time_line1) {
+                                  $tododate []=date('Y-m-d', strtotime($time_line1->todo_datetime));
+                                }
+                                 foreach ($timelinecount as $c) {
+                                     if(!empty($tododate) || !empty($eventdate))
+                                     {
+                                         if(in_array($c, $tododate) || in_array($c, $eventdate))
+                                         {
+                                             $i++;
+                                             $j = 0;
+                                             ?>
+                                                <div class="tl-row <?php echo $i;?>">
+                                            <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                <div class="tl-bullet bg-blue"></div>
+                                                <div class="tl-panel"><?php echo $c; ?></div>
+                                                <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                    <div class="arrow"></div>
+                                                    <?php
+                                                           
+                                                         if(!empty($eventdate))
+                                                             {
+                                                         if(in_array($c, $eventdate))
+                                                         {
+                                                            ?>
                                                                 <div class="popover-content">
-                                                                    <h3 class="tl-title">Event</h3>                                                               
-                                                                    <?php
-                                                                    foreach ($timline_event as $event) {
-                                                                        if (date('Y-m-d', strtotime($event->event_date)) == $c) {
-                                                                            $j++;
-                                                                            if ($j <= 3) {
-                                                                                ?>
-                                                                                <p class=""><?php echo $event->event_name; ?></p>
-                                                                                <?php
-                                                                            }
+                                                                 <h3 class="tl-title">Event</h3>                                                               
+                                                             <?php
+                                                                foreach ($timline_event as $event) {
+                                                                    if (date('Y-m-d', strtotime($event->event_date)) == $c) {
+                                                                        $j++;
+                                                                        if ($j <= 3) {
+                                                                            ?>
+                                                                            <p class=""><?php echo $event->event_name; ?></p>
+                                                                            <?php
                                                                         }
                                                                     }
-                                                                    /*  if($j>3)
-                                                                      {
-                                                                      ?>
-                                                                      <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
-                                                                      <?php
-                                                                      } */
+                                                                }
+                                                              /*  if($j>3)
+                                                                {
                                                                     ?>
-
+                                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
+                                                                    <?php
+                                                                }*/
+                                                                ?>
+                                                                            
+                                                            </div>
+                                                          <?php                                                 
+                                                         }
+                                }
+                                                        ?>
+                                                    
+                                                            <?php
+                                                            
+                                                             if(!empty($tododate))
+                                                             {
+                                                                 if(in_array($c, $tododate))
+                                                                 {
+                                                                     if ($j < 3) {
+                                                                ?>
+                                                                <div class="popover-content">
+                                                                    <h3 class="tl-title">Todolist</h3>
+                                                                    <?php
+                                                                    foreach ($timline_todolist as $time_line) {
+                                                                        if (date('Y-m-d', strtotime($time_line->todo_datetime)) == $c) {
+                                                                             $j++;
+                                                                        if ($j <= 3) {
+                                                                            ?>
+                                                                            <p class=""><?php echo $time_line->todo_title; ?></p>
+                                                                            <?php
+                                                                        }
+                                                                        }
+                                                                    }
+                                                                  /*    if($j>3)
+                                                                        {
+                                                                            ?>
+                                                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
+                                                                            <?php
+                                                                       }*/
+                                                                    ?>   
+                                                                    
                                                                 </div>
                                                                 <?php
                                                             }
-                                                        }
-                                                        ?>
-
-                                                        <?php
-                                                        if (!empty($eventdate)) {
-                                                            if (in_array($c, $eventdate)) {
-                                                                if ($j < 3) {
-                                                                    ?>
-                                                                    <div class="popover-content">
-                                                                        <h3 class="tl-title">Todolist</h3>
-                                                                        <?php
-                                                                        foreach ($timline_todolist as $time_line) {
-                                                                            if (date('Y-m-d', strtotime($time_line->todo_datetime)) == $c) {
-                                                                                $j++;
-                                                                                if ($j <= 3) {
-                                                                                    ?>
-                                                                                    <p class=""><?php echo $time_line->todo_title; ?></p>
-                                                                                    <?php
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                        /*    if($j>3)
-                                                                          {
-                                                                          ?>
-                                                                          <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
-                                                                          <?php
-                                                                          } */
-                                                                        ?>   
-
-                                                                    </div>
-                                                                    <?php
-                                                                }
-                                                            }
-                                                        }
-                                                        ?> 
-                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c; ?>');" data-toggle="modal"> Read More</a>
-                                                        <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($c); ?></div>
+                                                                 }
+                                                             }
+                                                            ?> 
+                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_eventlist/<?php echo $c;?>');" data-toggle="modal"> Read More</a>
+                                                    <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i><?php echo date_duration($c); ?></div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <?php
-                                        }
-                                    }
-                                    $i++;
-                                }
-                                ?>
+                                          <?php                               
+                                                  }
+                                                  
+                                                 }                                                  
+                                              }
+                                        ?>
 
                             </div>
                         </div>          
@@ -1013,7 +1025,6 @@
         </div>
     </div>
 </div>
-<!-- Timeline End div-->
 
 <!-- / .row -->
 </div>
@@ -1044,7 +1055,7 @@
             $("#wait").css("display", "none");
         });
 
-        $(".todo-close").click(function () {
+        $(".close").click(function () {
             var id = $(this).val();
             var dataString = "id=" + id;
             $.ajax({
@@ -1157,11 +1168,11 @@
                 {
                     $("#updateformhtml").html(response);
                     $("#todo-addform").hide();
-                    $('.todo-close').css('pointer-events', 'none');
+                     $('.todo-close_box').css('pointer-events', 'none');
                 }
             });
         });
-
+       
         $("#closeform").click(function () {
             $("#todo-addform").hide(500);
         });
@@ -1169,114 +1180,3 @@
 
 </script>
 <!--  end to do list -->
-
-<!-- jQuery Scrollbar Js start -->
-<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script>
-    (function ($) {
-
-        $(window).load(function () {
-
-            $("#content-1").mCustomScrollbar({
-                theme: "inset-2-dark",
-                axis: "yx",
-                advanced: {
-                    autoExpandHorizontalScroll: true
-                },
-                /* change mouse-wheel axis on-the-fly */
-                callbacks: {
-                    // onOverflowY:function(){
-                    //  var opt=$(this).data("mCS").opt;
-                    //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
-                    // },
-                    onOverflowX: function () {
-                        var opt = $(this).data("mCS").opt;
-                        if (opt.mouseWheel.axis !== "x")
-                            opt.mouseWheel.axis = "x";
-                    },
-                }
-            });
-        });
-
-        $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
-            theme: "inset-2-dark",
-            axis: "yx",
-            advanced: {
-                autoExpandHorizontalScroll: true
-            },
-            /* change mouse-wheel axis on-the-fly */
-            callbacks: {
-                onOverflowY: function () {
-                    var opt = $(this).data("mCS").opt;
-                    if (opt.mouseWheel.axis !== "y")
-                        opt.mouseWheel.axis = "y";
-                },
-                // onOverflowX: function() {
-                //     var opt = $(this).data("mCS").opt;
-                //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
-                // },
-            }
-        });
-    })(jQuery);
-</script>
-<!-- Scrollbar Js end -->
-
-
-
-<!-- Event Calendar Js start -->
-<script>
-    $(document).ready(function(){        
-    
-    show_event_detail_on_load();
-    
-    //show_first_event_details();
-    
-    $('.eventCalendar-arrow').on('click', function(){
-        $('.eventCalendar-monthTitle').on('click',function(){
-            $('.eventCalendar-list li:first-child').each(function(index){
-                console.log($(this).text());
-                show_event_detail_on_load();
-            });
-        });
-        
-        $('.eventCalendar-day').on('click',function(){
-            show_event_detail_on_load();
-        });
-        
-        //show_event_detail_on_load();
-        setTimeout(function(){
-                $('.eventCalendar-list li:first-child').each(function(index){
-                    console.log($(this).text());
-                    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
-                });
-            }, 1000);
-    });
-    
-    $('.eventCalendar-monthTitle').on('click',function(){
-        show_event_detail_on_load();
-    });
-    
-    $('.eventCalendar-day').on('click',function(){
-        show_event_detail_on_load();
-    });
-    
-    function show_first_event_details() {
-        $('.eventCalendar-day').on('click', function(){
-            $('.eventCalendar-eventDesc').css('display', 'block');
-            setTimeout(function(){
-                $('.eventCalendar-hidden').removeClass('eventCalendar-hidden');
-            }, 1000);
-        });
-    }
-        
-    function show_event_detail_on_load() {
-        setTimeout(function(){
-            $('.eventCalendar-list li:first-child').each(function(index){
-                console.log($(this).text());
-                $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
-            });
-        }, 1000);
-        }
-    });
-</script>
-<!-- Event Calendar Js end -->

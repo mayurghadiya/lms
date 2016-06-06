@@ -20,6 +20,8 @@
                         <tr>
                             <th>#</th>			
                             <th>Topic</th>
+                            <th>Subject Name</th>                            
+                            <th>Chapter</th>                            
                             <th>Branch</th>                            
                             <th>Description</th>
                             <th>Status</th>
@@ -33,6 +35,8 @@
                             <tr>
                                 <td></td>
                                 <td><?php echo $row['topic']; ?></td>
+                                <td><?php echo $row['subject_name']; ?></td>                                
+                                <td><?php echo $row['chapter']; ?></td>                                
                                 <td><?php echo $row['c_name']; ?></td>                                
                                 <td><?php echo $row['description']; ?></td>
                                 <td>

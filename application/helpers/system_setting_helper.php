@@ -39,3 +39,25 @@ if (!function_exists('system_info')) {
     }
 
 }
+
+
+if (!function_exists('user_activity')) {
+    function user_activity()
+    {
+         $CI = & get_instance();
+         $user_id = $CI->session->userdata('login_user_id');
+         $user_role = $CI->session->userdata('login_type');
+         $activity_status = $CI->session->userdata('activity_status');
+
+
+        // Update database
+        $updated = $CI->db
+              ->set('activity',$CI->session->userdata('last_activity'))              
+              ->set('activity_user_role_id',$user_id)              
+              ->set('activity_user_role',$user_role)  
+              ->set('activity_status',$activity_status)
+              ->insert('last_activity');
+        $CI->session->unset_userdata('last_activity');
+        $CI->session->unset_userdata('activity_status');
+    }
+}

@@ -167,8 +167,8 @@ endforeach;
                 }
             },
             messages: {
-                title: "Please enter title",
-                description: "Please enter description",
+                title: "Enter title",
+                description: "Enter description",
                 main_img: {
                     extension: 'Upload valid file!',
                 },

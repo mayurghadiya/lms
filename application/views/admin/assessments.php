@@ -233,6 +233,9 @@
 <!-- End #content -->
 <script type="text/javascript">
     $(document).ready(function () {
+        
+        $("#sub-tables").dataTable();
+        
         $.validator.setDefaults({
             submitHandler: function (form) {
                 form.submit();
