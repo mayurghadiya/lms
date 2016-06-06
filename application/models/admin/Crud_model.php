@@ -1650,5 +1650,13 @@ class Crud_model extends CI_Model {
                         ->result();
         
     }
+    
+    /**
+     * 
+     */
+    function get_topics_list($id)
+    {
+        return $this->db->get_where("forum_topics",array("forum_id"=>$id))->result();
+    }
 }
 

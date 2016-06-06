@@ -151,7 +151,7 @@
 <!-- Put all Functions in functions.js --> 
 <script>eval(mod_pagespeed_NOO3SHeFLW);</script>
 
-
+<?php include 'modal.php'; ?>
 </body>
 
 </html>

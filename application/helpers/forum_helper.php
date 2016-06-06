@@ -24,7 +24,7 @@ if (!function_exists('roleuserdatatopic')) {
         $CI->db->where('std_id', $role_id);
         $res = $CI->db->get('student')->result_array();
         if(@$res[0]['name']!=""){     
-            return @$res[0]['name'];
+            return $res[0]['std_roll']." ".@$res[0]['name'];
             }
         }
         if($role=="professor"){        

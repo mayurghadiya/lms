@@ -250,8 +250,7 @@
                                 <div class="panel-body table-responsive" id="getresponse">
                                     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="survey-table">
                                         <thead>
-                                            <tr>
-                                                <<<<<<< HEAD
+                                            <tr>                                           
                                                 <th>No</th>                                           
                                                 <th><div><?php echo ucwords("Student Name"); ?></div></th>       
                                                 <th><div><?php echo ucwords("department"); ?></div></th>
@@ -261,18 +260,6 @@
                                                 <th><div><?php echo ucwords("Question"); ?></div></th>  
                                                 <th><div><?php echo ucwords("Answer"); ?></div></th>                               
                                                 <th><div><?php echo ucwords("Action"); ?></div></th>
-                                                =======
-                                                <th>#</th>                                           
-                                                <th><?php echo ucwords("Student Name"); ?></th>       
-                                                <th><?php echo ucwords("department"); ?></th>
-                                                <th><?php echo ucwords("Branch"); ?></th>
-                                                <th><?php echo ucwords("Batch"); ?></th>											
-                                                <th><?php echo ucwords("Semester"); ?></th>	
-                                                <th><?php echo ucwords("Question"); ?></th>  
-                                                <th><?php echo ucwords("Answer"); ?></th>                               
-                                                <th><?php echo ucwords("Action"); ?></th>
-                                                >>>>>>> 2362be27e42604028323c8856874560d3280e528
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -412,14 +399,7 @@
                                     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tabless">
                                         <thead>
                                             <tr>
-                                                <<<<<<< HEAD
                                                 <th>No</th>                                           
-                                                <th><div><?php echo ucwords("Question"); ?></div></th>       
-                                                <th><div><?php echo ucwords("Description"); ?></div></th>
-                                                <th><div><?php echo ucwords("Status"); ?></div></th>
-                                                <th><div><?php echo ucwords("Action"); ?></div></th>
-                                                =======
-                                                <th>#</th>                                           
                                                 <th><?php echo ucwords("Question"); ?></th>       
                                                 <th><?php echo ucwords("Description"); ?></th>
                                                 <th><?php echo ucwords("Yes"); ?></th>  
@@ -427,8 +407,6 @@
                                                 <th><?php echo ucwords("No Opinion"); ?></th>
                                                 <th><?php echo ucwords("Status"); ?></th>
                                                 <th><?php echo ucwords("Action"); ?></th>
-                                                >>>>>>> 2362be27e42604028323c8856874560d3280e528
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -466,8 +444,7 @@
                                 <div  id="getsubmit">
                                     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables-activity">
                                         <thead>
-                                            <tr>
-                                                <<<<<<< HEAD
+                                            <tr>                                                
                                                 <th>No</th>											
                                                 <th><div><?php echo ucwords("Student Name"); ?></div></th>	
                                                 <th><div><?php echo ucwords("Parti. Title"); ?></div></th>
@@ -476,18 +453,7 @@
                                                 <th><div><?php echo ucwords("Branch"); ?></div></th>
                                                 <th><div><?php echo ucwords("Batch"); ?></div></th>
                                                 <th><div><?php echo ucwords("Semester"); ?></div></th>											
-                                                <th><div><?php echo ucwords("Parti. Status"); ?></div></th>											
-                                                =======
-                                                <th>#</th>											
-                                                <th><?php echo ucwords("Student Name"); ?></th>	
-                                                <th><?php echo ucwords("Parti. Title"); ?></th>
-                                                <th><?php echo ucwords("Comment"); ?></th>
-                                                <th><?php echo ucwords("department"); ?></th>											
-                                                <th><?php echo ucwords("Branch"); ?></th>
-                                                <th><?php echo ucwords("Batch"); ?></th>
-                                                <th><?php echo ucwords("Semester"); ?></th>											
-                                                <th><?php echo ucwords("Parti. Status"); ?></th>											
-                                                >>>>>>> 2362be27e42604028323c8856874560d3280e528
+                                                <th><div><?php echo ucwords("Parti. Status"); ?></div></th>											                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -544,25 +510,14 @@
                                 <div class="panel-body table-responsive" id="upd_getsubmit">                               
                                     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%  id="uploaded-table">
                                         <thead>
-                                            <tr>
-                                                <<<<<<< HEAD
+                                            <tr>                                                
                                                 <th>No</th>											
                                                 <th><div><?php echo ucwords("Student Name"); ?></div></th>	                                               
                                                 <th><div><?php echo ucwords("department"); ?></div></th>											
                                                 <th><div><?php echo ucwords("Branch"); ?></div></th>
                                                 <th><div><?php echo ucwords("Batch"); ?></div></th>
                                                 <th><div><?php echo ucwords("Semester"); ?></div></th>											
-                                                <th><div><?php echo ucwords("File"); ?></div></th>											                                                
-                                                =======
-                                                <th>#</div></th>											
-                                                <th><?php echo ucwords("Student Name"); ?></th>	                                               
-                                                <th><?php echo ucwords("department"); ?></th>											
-                                                <th><?php echo ucwords("Branch"); ?></th>
-                                                <th><?php echo ucwords("Batch"); ?></th>
-                                                <th><?php echo ucwords("Semester"); ?></th>											
-                                                <th><?php echo ucwords("File"); ?></th>											                                                
-                                                >>>>>>> 2362be27e42604028323c8856874560d3280e528
-
+                                                <th><div><?php echo ucwords("File"); ?></div></th>											                                                                                                
                                             </tr>
                                         </thead>
                                         <tbody>
