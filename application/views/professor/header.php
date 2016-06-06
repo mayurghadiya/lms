@@ -43,7 +43,7 @@
                 var base_url = '<?php echo base_url(); ?>';
             </script>
 
-        <body>
+        <body class="<?php echo $this->router->fetch_method(); ?> professor_dashboard">
             <!--[if lt IE 9]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]--><!-- .#header -->
@@ -259,12 +259,6 @@
                                                 <span class=txt>Class Routine </span>
                                             </a>
                                         </li> 
-                                        <li>
-                                            <a <?php echo active_single_menu('events', $page); ?> href="<?php echo base_url(); ?>professor/events">
-                                                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-                                                <span class=txt>Events </span>
-                                            </a>
-                                        </li>
                                         
                                         <?php
                                         $pages = [

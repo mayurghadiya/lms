@@ -1053,7 +1053,7 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Attendance';
         $this->data['page'] = 'attendance';
         $this->data['title'] = 'Attendance';
-        $this->data['degree'] = $this->Professor_model->get_all_degree();
+        $this->data['degree'] = $this->Professor_model->get_departments();
         $this->data['class'] = $this->Crud_model->class_list();
         $this->__site_template('professor/attendance', $this->data);
     }

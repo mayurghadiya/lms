@@ -214,7 +214,7 @@
                                                 <li>
                                                     <a id="link-subject" href="<?php echo base_url(); ?>admin/subject">
                                                         <i class="s16 icomoon-icon-file"></i>
-                                                        <span class="txt">Subject Association</span>
+                                                        <span class="txt">Subject Management</span>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -542,7 +542,7 @@
                                         
                                         <?php
                                         $pages = [
-                                            'fee_structure', 'make_payment'
+                                            'fee_structure', 'make_payment', 'due_amount'
                                         ];
                                         ?>
                                         
@@ -562,7 +562,12 @@
                                                         <span class="txt">Make Payment</span>
                                                     </a>
                                                 </li> 
-
+                                                <li>
+                                                    <a id="link-due_amount" href="<?php echo base_url(); ?>admin/due_amount">
+                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <span class="txt">Due Amount</span>
+                                                    </a>
+                                                </li> 
                                             </ul>
                                         </li>
                                         <li>

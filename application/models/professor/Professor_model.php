@@ -1517,10 +1517,13 @@ class Professor_model extends CI_Model {
     
     function get_todo()
     {
+        $date = date('Y-m-d');
+        $date = date('Y-m-d', strtotime('-6 days', strtotime($date)));        
         $login_type = $this->session->userdata("login_type");
         $login_id = $this->session->userdata("login_user_id");
         $this->db->where("todo_role",$login_type);
         $this->db->where("todo_role_id",$login_id);
+        $this->db->where('todo_datetime >= ', $date);
         $this->db->order_by("todo_datetime","asc");
         return $this->db->get("todo_list")->result();
         
@@ -1576,6 +1579,15 @@ class Professor_model extends CI_Model {
         $this->db->update("assignment_submission",$data,array("assignment_submit_id"=>$id));
     }
     
+    /**
+     * Get all departments
+     * @return mixed
+     */
+    function get_departments() {
+        return $this->db->get_where('degree', [
+            'd_status'  => 1
+        ])->result();
+    }
     
     /**
      * vocational course student list
@@ -1590,6 +1602,5 @@ class Professor_model extends CI_Model {
                         ->join('course_category', 'course_category.category_id = vocational_course.category_id')
                         ->get()
                         ->result();
-        
     }
 }

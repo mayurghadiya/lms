@@ -40,7 +40,7 @@
                                 <td><?php echo $row->c_name; ?></td>
                                 <td><?php echo $row->b_name; ?></td>
                                 <td><?php echo $row->s_name; ?></td>
-                                <td><?php echo $row->paid_amount; ?></td>
+                                <td>$<?php echo $row->paid_amount; ?></td>
                                 <td><?php echo date('M d, Y', strtotime($row->paid_created_at)); ?></td>
                                 <td class="menu-action">
                                     <a href="<?php echo base_url('admin/invoice/' . $row->fees_structure_id); ?>" target="_blank"><span class="label label-primary mr6 mb6">View</span></a>

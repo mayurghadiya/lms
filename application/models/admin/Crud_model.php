@@ -175,6 +175,7 @@ class Crud_model extends CI_Model {
         return $this->db->select()
                         ->from('student')
                         ->where('course_id', $course_id)
+                        ->order_by('std_first_name', 'ASC')
                         ->get()
                         ->result();
     }
@@ -1216,14 +1217,14 @@ class Crud_model extends CI_Model {
 
         return $insert_id;
     }
-    
+
     /**
      * Charity fund
      * @return mixed
      */
     function charity_fund() {
         $this->db->order_by('charity_fund_id', 'DESC');
-        
+
         return $this->db->get('charity_fund')->result();
     }
 
@@ -1466,7 +1467,7 @@ class Crud_model extends CI_Model {
      * @param string $student
      * @return int
      */
-    function check_attendance_status($department, $branch, $batch, $semester, $class, $class_routine, $date, $student) {        
+    function check_attendance_status($department, $branch, $batch, $semester, $class, $class_routine, $date, $student) {
         return $this->db->select('attendance_id, is_present, student_id')
                         ->from('attendance')
                         ->where(array(
@@ -1480,135 +1481,128 @@ class Crud_model extends CI_Model {
                             'student_id' => $student
                         ))->get()->row();
     }
+
     /**
      * insert to do item
      * @param mixed $data
      */
-    
-    function insert_todo($data)
-    {
-        $this->db->insert("todo_list",$data);
+    function insert_todo($data) {
+        $this->db->insert("todo_list", $data);
     }
+
     /**
      * get all todo according to  user
      * @return mixed
      */
-    
-    function get_todo()
-    {
+    function get_todo() {
+        $date = date('Y-m-d');
+        $date = date('Y-m-d', strtotime('-6 days', strtotime($date)));
         $login_type = $this->session->userdata("login_type");
         $login_id = $this->session->userdata("login_user_id");
-        $this->db->where("todo_role",$login_type);
-        $this->db->where("todo_role_id",$login_id);
-        $this->db->order_by("todo_datetime","asc");
+        $this->db->where("todo_role", $login_type);
+        $this->db->where("todo_role_id", $login_id);
+        $this->db->where('todo_datetime >= ', $date);
+        $this->db->order_by("todo_datetime", "asc");
         return $this->db->get("todo_list")->result();
-        
     }
+
     /**
      * change status of to do list item
      * @param mixed $data
      * @param int $id
      */
-    
-    function change_status($data,$id)
-    {        
-        $this->db->update("todo_list",$data,array("todo_id"=>$id));
+    function change_status($data, $id) {
+        $this->db->update("todo_list", $data, array("todo_id" => $id));
     }
-    
+
     /**
      * delete from list
      * @param int $id
      */
-    
-    function removetodo($id)
-    {
-        $this->db->delete("todo_list",array("todo_id"=>$id));
+    function removetodo($id) {
+        $this->db->delete("todo_list", array("todo_id" => $id));
     }
+
     /**
      * 
      * @param int $id
      * @return mixed
      */
-    function gettododata($id)
-    {
-        return $this->db->get_where("todo_list",array("todo_id"=>$id))->row();
+    function gettododata($id) {
+        return $this->db->get_where("todo_list", array("todo_id" => $id))->row();
     }
+
     /**
      * update to do list
      * @param mixed $data
      * @param int $id
      */
-    function update_todo($data,$id)
-    {
-          $this->db->update("todo_list",$data,array("todo_id"=>$id));
+    function update_todo($data, $id) {
+        $this->db->update("todo_list", $data, array("todo_id" => $id));
     }
+
     /**
      * get all timeline
      * @return mixed
      */
-    function gettimeline()
-    {
+    function gettimeline() {
         return $this->db->get('timeline')->result_array();
     }
-    
+
     /**
      * 
      * @param mixed $data
      */
-    function addtimeline($data){
-        $this->db->insert("timeline",$data);        
+    function addtimeline($data) {
+        $this->db->insert("timeline", $data);
     }
-    
+
     /**
      * update timeline
      * @param mixed $data
      * @param int $id
      */
-    function update_timeline($data,$id)
-    {
-        $this->db->update("timeline",$data,array("timeline_id"=>$id));
-        
+    function update_timeline($data, $id) {
+        $this->db->update("timeline", $data, array("timeline_id" => $id));
     }
-    
+
     /**
      * 
      * @param int $id
      */
-    function delete_timeline($id)
-    {
-        $this->db->delete("timeline",array("timeline_id"=>$id));
+    function delete_timeline($id) {
+        $this->db->delete("timeline", array("timeline_id" => $id));
     }
-    function get_timline()
-    {
-        $this->db->order_by('timeline_year','desc');
-        return $this->db->get_where("timeline",array("timeline_status"=>'1'))->result();
+
+    function get_timline() {
+        $this->db->order_by('timeline_year', 'desc');
+        return $this->db->get_where("timeline", array("timeline_status" => '1'))->result();
     }
-    
+
     /**
      * submitted assignment 
      * @param int $id
      */
-    function get_submitted_assignment($id)
-    {
-        return $this->db->get_where("assignment_submission",array("assignment_submit_id"=>$id))->result();
+    function get_submitted_assignment($id) {
+        return $this->db->get_where("assignment_submission", array("assignment_submit_id" => $id))->result();
     }
+
     /**
      * update submitted assignment
      * @param mixed array $data
      * @param int $id
      */
-    function update_submitted_assessment($data,$id)
-    {
-        $this->db->update("assignment_submission",$data,array("assignment_submit_id"=>$id));
+    function update_submitted_assessment($data, $id) {
+        $this->db->update("assignment_submission", $data, array("assignment_submit_id" => $id));
     }
-    
+
     /**
      * Fee structure save and update
      * @param mixed $data
      * @param int $id
      */
     function student_pay_fee_structure_save($data, $id) {
-        if($id) {
+        if ($id) {
             //update
             $this->db->where('stduent_fees_id', $id);
             $this->db->update('student_fees');
@@ -1617,7 +1611,7 @@ class Crud_model extends CI_Model {
             $this->db->insert('student_fees', $data);
         }
     }
-    
+
     /**
      * Get all professor list
      * @return mixed
@@ -1625,30 +1619,26 @@ class Crud_model extends CI_Model {
     function get_all_professor() {
         return $this->db->get('professor')->result();
     }
-    
+
     /**
      * 
      */
-    
-    function getquestion_status($queid,$field)
-    {
-        return $this->db->get_where("survey_question",array("sq_id"=>$queid))->row()->$field;
+    function getquestion_status($queid, $field) {
+        return $this->db->get_where("survey_question", array("sq_id" => $queid))->row()->$field;
     }
-    
+
     /**
      * vocational course student list
      * return mixed data
      */
-    function get_vocational_student()
-    {
-            return $this->db->select('vocational_course_fee.*, student.*, vocational_course.*,course_category.*')
-                        ->from('vocational_course_fee')                        
+    function get_vocational_student() {
+        return $this->db->select('vocational_course_fee.*, student.*, vocational_course.*,course_category.*')
+                        ->from('vocational_course_fee')
                         ->join('student', 'student.std_id = vocational_course_fee.student_id')
-                        ->join('vocational_course', 'vocational_course.vocational_course_id = vocational_course_fee.vocational_course_id')                      
+                        ->join('vocational_course', 'vocational_course.vocational_course_id = vocational_course_fee.vocational_course_id')
                         ->join('course_category', 'course_category.category_id = vocational_course.category_id')
                         ->get()
                         ->result();
-        
     }
     
     /**
@@ -1658,5 +1648,15 @@ class Crud_model extends CI_Model {
     {
         return $this->db->get_where("forum_topics",array("forum_id"=>$id))->result();
     }
-}
 
+    /**
+     * All subjects list
+     * @return mixed
+     */
+    function get_all_subjects() {
+        return $this->db->get_where('subject_manager', [
+                    'sm_status' => 1
+                ])->result();
+    }
+
+}

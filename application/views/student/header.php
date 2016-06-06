@@ -20,8 +20,8 @@
             <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel=stylesheet type=text/css>
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">
             <!-- Css files -->
-            
-            <!-- <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">             -->
+
+<!-- <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">             -->
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar.css">
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar_theme_responsive.css">
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
@@ -72,47 +72,53 @@
                                         <ul class=notif>
                                             <li class=header><strong>Notifications</strong> (<?php echo $this->session->userdata('notifications')['total_notification']; ?>) items</li>
                                             <?php if (isset($this->session->userdata('notifications')['fees_structure'])) { ?>
-                                            <li><a href="<?php echo base_url('student/student_fees'); ?>"><span class=icon>
-                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                    </span> <span class=event> New fee structure was added.</span></a>
-                                            </li>
+                                                <li><a href="<?php echo base_url('student/student_fees'); ?>"><span class=icon>
+                                                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                        </span> <span class=event> New fee structure was added.</span></a>
+                                                </li>
                                             <?php } ?>
                                             <?php if (isset($this->session->userdata('notifications')['exam_manager']) || isset($this->session->userdata('notifications')['exam_time_table'])) { ?>
-                                            <li><a href="<?php echo base_url('student/exam_listing'); ?>"><span class=icon><i class="s16 fa fa-commenting"></i></span> <span class=event>New Exam or Exam schedule was added.</span></a>
-                                            </li>
+                                                <li><a href="<?php echo base_url('student/exam_listing'); ?>"><span class=icon><i class="s16 fa fa-commenting"></i></span> <span class=event>New Exam or Exam schedule was added.</span></a>
+                                                </li>
                                             <?php } ?>
                                             <?php if (isset($this->session->userdata('notifications')['assignment_manager'])) { ?>
-                                            <li><a href="<?php echo base_url('student/assignment/assignment_list'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Assignment was added.</span></a>
-                                            </li>
+                                                <li><a href="<?php echo base_url('student/assignment/assignment_list'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Assignment was added.</span></a>
+                                                </li>
                                             <?php } ?>
                                             <?php if (isset($this->session->userdata('notifications')['project_manager'])) { ?>
-                                            <li><a href="<?php echo base_url('student/project/submission'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Project was added.</span></a>
-                                            </li>
+                                                <li><a href="<?php echo base_url('student/project/submission'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Project was added.</span></a>
+                                                </li>
                                             <?php } ?>
                                             <?php if (isset($this->session->userdata('notifications')['marks_manager'])) { ?>
-                                            <li><a href="<?php echo base_url('student/exam_marks'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>Exam marks was added.</span></a>
-                                            </li>
+                                                <li><a href="<?php echo base_url('student/exam_marks'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>Exam marks was added.</span></a>
+                                                </li>
                                             <?php } ?>
                                             <?php if (isset($this->session->userdata('notifications')['participate_manager'])) { ?>
-                                            <li><a href="<?php echo base_url('student/volunteer'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Participate was added.</span></a>
-                                            </li>
+                                                <li><a href="<?php echo base_url('student/volunteer'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Participate was added.</span></a>
+                                                </li>
                                             <?php } ?>
                                             <?php if (isset($this->session->userdata('notifications')['study_resources'])) { ?>
-                                            <li><a href="<?php echo base_url('student/studyresources'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Study Resources was added.</span></a>
-                                            </li>
-                                             <?php } ?>
-                                             <?php if (isset($this->session->userdata('notifications')['library_manager'])) { ?>
-                                            <li><a href="<?php echo base_url('student/digitallibrary'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Digital Library was added.</span></a>
-                                            </li>
+                                                <li><a href="<?php echo base_url('student/studyresources'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Study Resources was added.</span></a>
+                                                </li>
                                             <?php } ?>
-                                           <!-- <li class=view-all><a href=#>View all notifications <i class="s16 fa fa-angle-double-right"></i></a>
-                                            </li>-->
+                                            <?php if (isset($this->session->userdata('notifications')['library_manager'])) { ?>
+                                                <li><a href="<?php echo base_url('student/digitallibrary'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Digital Library was added.</span></a>
+                                                </li>
+                                            <?php } ?>
+                                   <!-- <li class=view-all><a href=#>View all notifications <i class="s16 fa fa-angle-double-right"></i></a>
+                                    </li>-->
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
                             <li class=dropdown>
-                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src="<?php if($this->session->userdata('profile_photo')!=""){ echo base_url().'uploads/student_image/'.$this->session->userdata('profile_photo');  }else{ echo base_url().'assets/img/avatar.jpg';  } ?>" alt="" class="image"> 
+                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src="<?php
+                                    if ($this->session->userdata('profile_photo') != "") {
+                                        echo base_url() . 'uploads/student_image/' . $this->session->userdata('profile_photo');
+                                    } else {
+                                        echo base_url() . 'assets/img/avatar.jpg';
+                                    }
+                                    ?>" alt="" class="image"> 
                                     <span class=txt><?php echo $this->session->userdata('email'); ?></span> <b class=caret></b>
                                 </a>
                                 <ul class="dropdown-menu right">
@@ -182,13 +188,13 @@
                                         <li>
                                             <a <?php echo active_single_menu('dashboard', $page); ?> href="<?php echo base_url(); ?>student/dashboard"><i class="fa fa-desktop" aria-hidden="true"></i><span class=txt>Dashboard</span></a>
                                         </li>
-                                        
-                                        <?php 
+
+                                        <?php
                                         $pages = [
                                             'inbox', 'compose', 'sent'
                                         ];
                                         ?>
-                                        
+
                                         <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
                                             <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="fa fa-envelope"></i>
                                                 <span class="txt">Email </span></a>
@@ -289,17 +295,18 @@
                                         </li>  
                                         <?php
                                         $news_conent = $this->db->get_where('cms_manager', array('c_status' => 1))->result_array();
-                                        foreach($news_conent as $row) { ?>
-                                        <li>
-                                            <a <?php echo active_single_menu($row['c_slug'], $page); ?> href="<?php echo base_url(); ?>pages/<?php echo @$row['c_slug']; ?>">
-                                                <i class="s16 fa fa-universal-access"></i>
-                                                <span class=txt><?php echo @$row['c_title']; ?> </span>
-                                            </a>
-                                        </li>
+                                        foreach ($news_conent as $row) {
+                                            ?>
+                                            <li>
+                                                <a <?php echo active_single_menu($row['c_slug'], $page); ?> href="<?php echo base_url(); ?>pages/<?php echo @$row['c_slug']; ?>">
+                                                    <i class="s16 fa fa-universal-access"></i>
+                                                    <span class=txt><?php echo @$row['c_title']; ?> </span>
+                                                </a>
+                                            </li>
                                         <?php } ?>
-                                                                             
-                                        
-                                     </ul> 
+
+
+                                    </ul> 
                                 </div>
                             </div>
                             <!-- End sidenav -->
@@ -338,7 +345,7 @@
                                                         <label>
                                                             <div class="checkbox-custom">
                                                                 <input type="checkbox" name="exam" value="exam" 
-                                                                    <?php if (isset($from['exam'])) echo 'checked'; ?>><label for="chbox0"></label></div>
+                                                                       <?php if (isset($from['exam'])) echo 'checked'; ?>><label for="chbox0"></label></div>
                                                             <span>Exam</span>
                                                         </label>
                                                     </li>
@@ -373,8 +380,8 @@
                                 </form>
                             </div>
                             <!--  /search -->  
-                            <?php echo create_breadcrumb(); ?>
-                            
+                            <?php echo create_breadcrumb(); ?>    
+
                             <?php echo set_active_menu($page); ?>
                         </div>
                         <!-- End  / heading-->

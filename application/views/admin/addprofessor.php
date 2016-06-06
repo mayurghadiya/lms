@@ -1,5 +1,8 @@
 <?php
 $degree_list = $this->db->get('degree')->result();
+$subjects = $this->db->get_where('subject_manager', [
+    'sm_status' => 1
+])->result();
 ?>
 <div class="row">
 
@@ -92,6 +95,17 @@ $degree_list = $this->db->get('degree')->result();
                     </div>	
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
+                        <select required="" id="subjects" name="subjects[]" class="form-control" multiple="">
+                            <?php
+                            foreach($subjects as $subject) { ?>
+                            <option value="<?php echo $subject->sm_id; ?>"><?php echo $subject->subject_name; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>	
+                </div>
+                <div class="form-group">
                     <label class="col-sm-4 control-label"><?php echo ucwords("photo"); ?></label>
                     <div class="col-sm-8">
                         <input id="photo" class="form-control coverimage" type="file" name="userfile" accept="image/*"/>
@@ -116,7 +130,6 @@ $degree_list = $this->db->get('degree')->result();
     </div>
     <!-- col-lg-12 end here -->
 </div>
-
 
 <script type="text/javascript">
     $.validator.setDefaults({

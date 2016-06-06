@@ -570,5 +570,12 @@ class Site extends MY_Controller {
           redirect(base_url('site/viewtopic/' . $topic_id));
         }
     }
+    
+    function gallery() {
+        $this->db->order_by('gallery_id', 'DESC');
+        $this->db->where('gal_status', '1');
+        $this->data['gallery'] = $this->db->get('photo_gallery')->result();
+        $this->__template('gallery', $this->data);
+    }
 
 }
