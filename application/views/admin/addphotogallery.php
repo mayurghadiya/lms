@@ -147,15 +147,15 @@ $semesters = $this->db->get('semester')->result_array();
                 }
             },
             messages: {
-                title: "Please enter title",
-                description: "Please enter description",
+                title: "Enter title",
+                description: "Enter description",
                 main_img: {
-                    required: "Please upload main image",
+                    required: "Upload main image",
                     extension: "Only gif,jpg,png file is allowed!"
                 },
                 status: "Select Status",
                 'galleryimg[]': {
-                    required: "Please upload atleast 1 photo",
+                    required: "Upload atleast 1 photo",
                     extension: "Only gif,jpg,png file is allowed!"
                 }
 
