@@ -187,7 +187,14 @@ class Site extends MY_Controller {
             $this->db->where('admin_id', $row->admin_id);
             $this->db->update('admin', $update);
 
-            redirect(base_url('admin/dashboard'));
+            if($this->session->userdata('referred_from'))
+            {
+                $referred_from = $this->session->userdata('referred_from');
+                redirect($referred_from, 'refresh');
+            }
+            else{
+                redirect(base_url('admin/dashboard'));
+            }
         }
         // Checking login credential for student
         $query = $this->db->get_where('student', $std_credential);
@@ -209,8 +216,14 @@ class Site extends MY_Controller {
             $update = array("online" => '1');
             $this->db->where('std_id', $row->std_id);
             $this->db->update('student', $update);
-
+            if($this->session->userdata('referred_from'))
+            {
+                $referred_from = $this->session->userdata('referred_from');
+                redirect($referred_from, 'refresh');
+            }
+            else{
             redirect(base_url('student/dashboard'));
+            }
         }
 
         //check for sub admin
@@ -224,7 +237,14 @@ class Site extends MY_Controller {
             $this->session->set_userdata('name', 'sub admin 1');
             $this->session->set_userdata('email', $row->email);
             $this->session->set_userdata('login_type', 'subadmin');
+            if($this->session->userdata('referred_from'))
+            {
+                $referred_from = $this->session->userdata('referred_from');
+                redirect($referred_from, 'refresh');
+            }
+            else{
             redirect(base_url('sub_admin/dashboard'));
+            }
         }
 
         $query = $this->db->get_where('professor', $credential);
@@ -238,7 +258,14 @@ class Site extends MY_Controller {
             $this->session->set_userdata('department', $row->department);
             $this->session->set_userdata('login_type', 'professor');
             $this->session->set_userdata('image_path', $row->image_path);
+            if($this->session->userdata('referred_from'))
+            {
+                $referred_from = $this->session->userdata('referred_from');
+                redirect($referred_from, 'refresh');
+            }
+            else{
             redirect(base_url('professor/dashboard'));
+            }
         }
         $this->flash_notification('danger', 'Invalid username or password');
         return 'invalid';
@@ -488,7 +515,7 @@ class Site extends MY_Controller {
         $this->db->where("forum_topic_id", $param);
         $this->data['param'] = $param;
         $this->data['topics'] = $this->db->get("forum_topics")->result();
-
+        $this->db->order_by("forum_comment_id","desc");
         $this->data['comments'] = $this->db->get_where("forum_comment", array("forum_topic_id" => $param, "forum_comment_status" => '1'))->result();
         $this->__template('discussion', $this->data);
     }
@@ -497,11 +524,11 @@ class Site extends MY_Controller {
         if ($param == "create") {
             $data['forum_topic_id'] = $this->input->post('forum_topic_id');
             $data['forum_comments'] = $this->input->post('discussion');
-            $data['forum_comment_status'] = '0';
+            $data['forum_comment_status'] = '1';
             $data['user_role'] = $this->session->userdata('login_type');
             $data['user_role_id'] = $this->session->userdata('login_user_id');
             $this->Site_model->create_comment($data);
-            $this->session->set_flashdata('message', ' Your comment has been queued for review by site administrators and will be published after approval.');
+            $this->session->set_flashdata('message', ' Your comment has been added successfully.');
             redirect(base_url('site/viewtopic/' . $data['forum_topic_id']));
         }
     }

@@ -656,14 +656,14 @@ class Student extends MY_Controller {
             if ($_FILES['userfile']['name'] != '') {
                 $path = FCPATH . 'uploads/student_image/';
                 if (move_uploaded_file($_FILES['userfile']['tmp_name'], $path . $this->session->userdata('student_id') . '.jpg')) {
-                    echo 'uploaded';
+               //     echo 'uploaded';
                 }
                 $this->db->where('std_id', $this->session->userdata('student_id'));
                 $this->db->update('student', array(
                     'profile_photo' => $this->session->userdata('student_id') . '.jpg'
                 ));
                 $this->session->set_userdata('profile_photo', $this->session->userdata('student_id') . '.jpg');
-                $this->session->set_flashdata('message', 'Profile pic is changed');
+                $this->session->set_flashdata('message', 'Profile picture is changed successfully');
                 redirect(base_url('student/profile'));
             }
         }

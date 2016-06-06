@@ -3015,8 +3015,9 @@ class Admin extends MY_Controller {
         if ($param != "") {
             $this->data['forum_comment'] = $this->forum_model->getcomments($param);
         }
-        $this->data['page'] = 'forum_comment';
+        $this->data['page'] = 'forum_comment';        
         $this->data['title'] = $this->lang_message('forum_comment_title');
+        $this->data['param'] = $param;
         $this->__site_template('admin/forum_comment', $this->data);
     }
 
@@ -6018,6 +6019,21 @@ class Admin extends MY_Controller {
     }
 
     /**
+     * Get all topic name by 
+     */
+    function get_topics()
+    {
+       $res = $this->Crud_model->get_topics_list();
+       $html = '';
+       foreach($res as $topic)
+       {
+           $html .='<option value="'.$topic->forum_topic_id.'">'.$topic->forum_topic_title.'</option>';
+                   
+       }
+       echo $html;
+    }
+
+    /**
      * Due amount
      */
     function due_amount() {
@@ -6063,4 +6079,32 @@ class Admin extends MY_Controller {
         $this->load->view('admin/make_payment_student_list', $this->data);
     }
 
+    function commentcrud($param='',$param2= '')
+    {
+        $this->load->model("Site_model");
+        if($param=="create")
+        {
+           $data['forum_topic_id'] = $param2;           
+            $data['forum_comments'] = $this->input->post('comment');
+            $data['forum_comment_status'] = '1';
+            $data['user_role'] = $this->session->userdata('login_type');
+            $data['user_role_id'] = $this->session->userdata('login_user_id');
+            $this->Site_model->create_comment($data);
+            $this->session->set_flashdata('message', ' Your comment has been added successfully.');
+            redirect(base_url()."admin/forumcomment/".$param2);
+        }
+        if($param=="update")
+        {
+           $data['forum_topic_id'] = $param2;
+           $comment_id = $this->input->post("comment_id");
+            $data['forum_comments'] = $this->input->post('comment');
+            $data['forum_comment_status'] = '1';
+            $data['user_role'] = $this->session->userdata('login_type');
+            $data['user_role_id'] = $this->session->userdata('login_user_id');
+            $this->Site_model->update_comment($data,$comment_id);
+            $this->session->set_flashdata('message', ' Your comment has been updated successfully.');
+            redirect(base_url()."admin/forumcomment/".$param2);
+        }
+        
+    }
 }
