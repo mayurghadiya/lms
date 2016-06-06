@@ -27,7 +27,7 @@
                             <option value="">Select</option>
                         </select>
                     </div>
-                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label> <?php echo ucwords("Semester"); ?></label>
                         <select id="search-semester" name="semester" data-filter="6" class="form-control">
                             <option value="">Select</option>
@@ -107,13 +107,15 @@
                     degree: "required",
                     course: "required",
                     batch: "required",
-                    semester: "required"
+                    semester: "required",
+                    fee_structure: "required"
                 },
                 messages: {
                     degree: "Select department",
                     course: "Select branch",
                     batch: "Select batch",
-                    semester: "Select semester"
+                    semester: "Select semester",
+                    fee_structure: "Selest fee structure"
                 }
             });
 

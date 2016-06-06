@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Comment"); ?> <span style="color:red">*</span></label>
                             <div class="col-sm-8">
-                                <textarea class="form-control" name="comment" id="comment"></textarea>
+                                <textarea class="form-control" name="comment" onchange="return isEmpty(this);" id="comment"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -45,6 +45,7 @@
 </div>
 <script type="text/javascript">
 
+        
     $(document).ready(function () {
 
         $("#frmadmission_type").validate({

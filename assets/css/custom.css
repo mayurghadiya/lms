@@ -20,7 +20,7 @@ label.error {
 #modal_ajax .form-horizontal .control-label {
     text-align: center !important;
 }
-.dashboard #content .contentwrapper,
+/*.dashboard #content .contentwrapper,*/
 .index #content .contentwrapper {
     padding-top: 60px;
 }
@@ -1296,9 +1296,10 @@ label.error {
 
 /*  Professor Dashboard */
 .professor_routine_box, .professor_routine_box html{ overflow: hidden !important; }
-.dashboard.professor_dashboard #content .contentwrapper{ padding-top:60px; }
+/*.dashboard.professor_dashboard #content .contentwrapper{ padding-top:60px; }*/
 
-
+/* Gallery style */
+.nanoGalleryBreadcrumb div:hover{color: #000 !important; }
 
 
 /*********************** media *****************************/

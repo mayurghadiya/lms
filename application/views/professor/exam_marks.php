@@ -211,7 +211,7 @@ $degree = $this->Professor_model->get_all_degree();
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
-
+</div>
 
 <script>
     function get_exam_list(degree_id, course_id, batch_id, semester_id, exam_id) {

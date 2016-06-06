@@ -1659,4 +1659,30 @@ class Crud_model extends CI_Model {
                 ])->result();
     }
 
+    /**
+     * Make payment student list
+     * @param int $degree
+     * @param int $course
+     * @param int $batch
+     * @param int $semester
+     * @param int $fee_structure
+     * @return mixed
+     */
+    function make_payment_student_list($degree, $course, $batch, $semester, $fee_structure) {
+        return $this->db->select()
+                        ->from('student_fees')
+                        ->join('student', 'student.std_id = student_fees.student_id')
+                        ->join('degree', 'degree.d_id = student.std_degree')
+                        ->join('course', 'course.course_id = student_fees.course_id')
+                        ->join('batch', 'batch.b_id = student.std_batch')
+                        ->join('semester', 'semester.s_id = student_fees.sem_id')
+                        ->where([
+                            'student_fees.course_id' => $course,
+                            'student_fees.sem_id' => $semester,
+                            'student_fees.fees_structure_id' => $fee_structure,
+                            'student.std_degree' => $degree,
+                            'student.std_batch' => $batch
+                        ])->get()->result();
+    }
+
 }

@@ -670,7 +670,7 @@
 </script>
 <!-- Start .row -->
 <div class=row>
-    <div class="">
+    <div class="col-lg-12 col-md-12 col-xs-12">
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle">
             <!-- Start .panel -->

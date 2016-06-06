@@ -55,7 +55,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
                         <div class="col-sm-9">
-                            <textarea name="message" readonly="" class="width-100 form-control"  rows="15" placeholder="Write your message here"><?php echo $email->message; ?></textarea>
+                            <?php echo $email->message; ?>
                         </div>
                     </div>
 
@@ -83,3 +83,4 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+</div>

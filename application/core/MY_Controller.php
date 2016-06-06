@@ -23,6 +23,13 @@ class MY_Controller extends CI_Controller {
         //load laguage file
         $this->load->language('lms');
         $this->data['title'] = 'Dashboard';
+        if($this->session->userdata('last_activity'))
+        {
+           user_activity();
+        }
+
+        // Log errors if you please
+
     }
 
     /**
