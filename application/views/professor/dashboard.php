@@ -534,10 +534,10 @@
         <div class="row">
 
             <div class="col-lg-12">
-                  <iframe class="professor_routine_box" frameborder="0" src="<?php echo base_url(); ?>professor/professor_class_routine" width="100%" height="630px"></iframe>
+                <iframe class="professor_routine_box" frameborder="0" src="<?php echo base_url(); ?>professor/professor_class_routine" width="100%" height="630px"></iframe>
             </div>
-        
-        <!-- End .panel -->
+
+            <!-- End .panel -->
             <div class="col-lg-12">
                 <div class="panel panel-default toggle">
                     <div class="panel-heading">
@@ -549,7 +549,7 @@
                 </div>
             </div>
 
-      
+
             <div class="col-lg-6">
                 <div class="panel panel-default toggle">
                     <!-- Start .panel -->
@@ -610,33 +610,34 @@
                             </div>
                             <ul class="todo-list" id="today">
                                 <?php foreach ($todolist as $todo) { ?>  
-                                                                    <li class="todo-task-item <?php
+                                    <li class="todo-task-item <?php
                                     if ($todo->todo_status == "0") {
                                         echo "task-done";
                                     }
                                     ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
-                                                                        <div class=checkbox-custom><input type="checkbox" <?php
-                                    if ($todo->todo_status == "0") {
-                                        echo "checked=''";
-                                    }
-                                    ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
-                                                                        <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
-                                                                        <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
-                                                                        <div class="updateclick_box">
-                                                                            <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                                                        </div>
-                                                                        <div class="todo-close_box">
-                                                                            <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
-                                                                        </div>
-                                                                    </li>
+                                        <div class=checkbox-custom><input type="checkbox" <?php
+                                            if ($todo->todo_status == "0") {
+                                                echo "checked=''";
+                                            }
+                                            ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
+                                        <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
+                                        <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
+                                        <div class="updateclick_box">
+                                            <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="todo-close_box">
+                                            <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
+                                        </div>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>
                     </div>
                     <!-- End .todo-widget -->
                 </div>
-             </div>
-             <div class="col-lg-6">
+            </div>
+            <div class="col-lg-6">
+
                 <div id="supr1" class="panel panel-default toggle">
                     <!-- Start .panel -->
                     <div class=panel-heading>
@@ -645,98 +646,42 @@
                         </h4>
                     </div>
                     <div class=panel-body>
-                       <table class="table table-reflow table-striped">
-                          <thead>
-                            <tr>
-                              <th>No</th>
-                              <th>Date/time </th>
-                              <th>Details</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>
-                                  <span class="date">17/7/2016</span>
-                                  <span class="time">07:43 PM</span>
-                              </td>
-                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever industry's standard dummy text ever </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>
-                                  <span class="date">17/7/2016</span>
-                                  <span class="time">07:43 PM</span>
-                              </td>
-                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>
-                                  <span class="date">17/7/2016</span>
-                                  <span class="time">07:43 PM</span>
-                              </td>
-                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
-                            </tr>
-                             <tr>
-                              <th scope="row">4</th>
-                              <td>
-                                  <span class="date">17/7/2016</span>
-                                  <span class="time">07:43 PM</span>
-                              </td>
-                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever industry's standard dummy text ever </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">5</th>
-                              <td>
-                                  <span class="date">17/7/2016</span>
-                                  <span class="time">07:43 PM</span>
-                              </td>
-                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">6</th>
-                              <td>
-                                  <span class="date">17/7/2016</span>
-                                  <span class="time">07:43 PM</span>
-                              </td>
-                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
-                            </tr>
-                          <!--    <tr>
-                              <th scope="row">7</th>
-                              <td>
-                                  <span class="date">17/7/2016</span>
-                                  <span class="time">07:43 PM</span>
-                              </td>
-                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever industry's standard dummy text ever </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">8</th>
-                              <td>
-                                  <span class="date">17/7/2016</span>
-                                  <span class="time">07:43 PM</span>
-                              </td>
-                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">9</th>
-                              <td>
-                                  <span class="date">17/7/2016</span>
-                                  <span class="time">07:43 PM</span>
-                              </td>
-                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
-                            </tr> -->
-                          </tbody>
+                        <table class="table table-reflow table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Date/time </th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>                         
+                                <?php
+                                $r = 0;
+                                foreach (@$recent_activity as $activity):
+                                    ?>
+                                    <tr>
+                                        <th scope="row"><?php
+                                            $r++;
+                                            echo $r;
+                                            ?></th>
+                                        <td>
+                                            <span class="date"><?php echo date("F d, Y", strtotime($activity->activity_datetime)); ?></span>
+                                            <span class="time"><?php echo date("h:i A", strtotime($activity->activity_datetime)); ?></span>
+                                        </td>
+                                        <td class="text-left"><?php echo ucwords($activity->activity); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
                         </table>
                     </div>
                     <!-- End Recent Activities -->
                 </div>
-             </div>
+            </div>
 
         </div>
-<!-- col-lg-12 end here -->
-</div>
-<!-- End .row -->
+        <!-- col-lg-12 end here -->
+    </div>
+    <!-- End .row -->
 </div>
 <!-- End contentwrapper -->
 </div>
@@ -745,239 +690,241 @@
 <!--  Todo list js -->
 <script type="text/javascript">
 
-            $(document).ready(function () {
-    $("#todo-addform").hide();
-    $("#basic-datepicker").datepicker({
-    autoclose: true
-    });
-    //task-done
+    $(document).ready(function () {
+        $("#todo-addform").hide();
+        $("#basic-datepicker").datepicker({
+            autoclose: true
+        });
+        //task-done
 
-    $('#minute-step-timepicker').timepicker({
-    upArrowStyle: 'fa fa-angle-up',
+        $('#minute-step-timepicker').timepicker({
+            upArrowStyle: 'fa fa-angle-up',
             downArrowStyle: 'fa fa-angle-down',
             minuteStep: 30
-    });
-    $(document).ajaxStart(function () {
-    $("#wait").css("display", "block");
-    });
-    $(document).ajaxComplete(function () {
-    $("#wait").css("display", "none");
-    });
-    $(".close").click(function () {    
-    var id = $(this).val();
-    var dataString = "id=" + id;
-    $.ajax({
-    type: "POST",
-            url: "<?php echo base_url(); ?>professor/removetodolist",
-            data: dataString,
-            success: function () {
+        });
+        $(document).ajaxStart(function () {
+            $("#wait").css("display", "block");
+        });
+        $(document).ajaxComplete(function () {
+            $("#wait").css("display", "none");
+        });
+        $(".close").click(function () {
+            var id = $(this).val();
+            var dataString = "id=" + id;
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>professor/removetodolist",
+                data: dataString,
+                success: function () {
 
-            }
+                }
 
-    });
-    });
-    $("#addnewtodo").click(function () {
-    $("#updateformhtml").html('');
-    $("#todo-addform").show(500);
-    $('#addbutton').val('Add New to do');
-    $('#closeform').val('Close');
-    });
-    $("#frmtodo #addbutton").click(function ()
-    {
-    var title = $("#todo_title").val();
-    var todo_date = $("#basic-datepicker").val();
-    var todo_time = $("#minute-step-timepicker").val();
-    if (title != "" && todo_date != "" && todo_time != "")
-    {
-    var dataString = "title=" + encodeURIComponent(title) + "&todo_date=" + todo_date + "&todo_time=" + todo_time;
-    $.ajax({
-    type: "POST",
-            url: "<?php echo base_url(); ?>professor/add_to_do",
-            data: dataString,
-            success: function (response) {
-            $(".todo-list").html(response);
-            $('#frmtodo #todo_title').val('');
-            $('#frmtodo #basic-datepicker').val('');
-            }
-
-    });
-    } else {
-    if (title == "")
-    {
-    $("#todo_title").css('border-color', 'red');
-    } else {
-    $("#todo_title").css('border-color', '#ccc');
-    }
-    if (todo_date == "")
-    {
-    $("#basic-datepicker").css('border-color', 'red');
-    } else {
-    $("#basic-datepicker").css('border-color', '#ccc');
-    }
-    if (todo_time == "")
-    {
-    $("#minute-step-timepicker").css('border-color', 'red');
-    } else {
-    $("#minute-step-timepicker").css('border-color', '#ccc');
-    }
-    }
-
-    });
-    $(".taskstatus").click(function () {
-    if ($(this).is(':checked'))
-    {
-
-    $(this).closest('li.todo-task-item').addClass('task-done');
-    var id = $(this).val(); // todo id
-    var dataString = "id=" + id + "&status=0";
-    $.ajax({
-    type: "POST",
-            url: "<?php echo base_url(); ?>professor/changestatus",
-            data: dataString,
-            success: function () {
-
-            }
-    });
-    } else {
-    $(this).closest('li.todo-task-item').removeClass('task-done');
-    var id = $(this).val(); // todo id
-    var dataString = "id=" + id + "&status=1";
-    $.ajax({
-    type: "POST",
-            url: "<?php echo base_url(); ?>professor/changestatus",
-            data: dataString,
-            success: function () {
-
-            }
-    });
-    }
-
-    });
-    /**
-     * Update ajax request
-     */
-    $(".updateclick").click(function () {
-
-    var id = $(this).val();
-    $.ajax({
-    type: "GET",
-            url: "<?php echo base_url(); ?>professor/todoupdateform/" + id,
-            success: function (response)
+            });
+        });
+        $("#addnewtodo").click(function () {
+            $("#updateformhtml").html('');
+            $("#todo-addform").show(500);
+            $('#addbutton').val('Add New to do');
+            $('#closeform').val('Close');
+        });
+        $("#frmtodo #addbutton").click(function ()
+        {
+            var title = $("#todo_title").val();
+            var todo_date = $("#basic-datepicker").val();
+            var todo_time = $("#minute-step-timepicker").val();
+            if (title != "" && todo_date != "" && todo_time != "")
             {
-            $("#todo-addform").hide();
-            $("#updateformhtml").html(response);
-            $('.todo-close_box').css('pointer-events', 'none');
+                var dataString = "title=" + encodeURIComponent(title) + "&todo_date=" + todo_date + "&todo_time=" + todo_time;
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url(); ?>professor/add_to_do",
+                    data: dataString,
+                    success: function (response) {
+                        $(".todo-list").html(response);
+                        $('#frmtodo #todo_title').val('');
+                        $('#frmtodo #basic-datepicker').val('');
+                    }
+
+                });
+            } else {
+                if (title == "")
+                {
+                    $("#todo_title").css('border-color', 'red');
+                } else {
+                    $("#todo_title").css('border-color', '#ccc');
+                }
+                if (todo_date == "")
+                {
+                    $("#basic-datepicker").css('border-color', 'red');
+                } else {
+                    $("#basic-datepicker").css('border-color', '#ccc');
+                }
+                if (todo_time == "")
+                {
+                    $("#minute-step-timepicker").css('border-color', 'red');
+                } else {
+                    $("#minute-step-timepicker").css('border-color', '#ccc');
+                }
             }
-    });
-    });
-    $("#closeform").click(function () {
-    $("#todo-addform").hide(500);
-    });
+
+        });
+        $(".taskstatus").click(function () {
+            if ($(this).is(':checked'))
+            {
+
+                $(this).closest('li.todo-task-item').addClass('task-done');
+                var id = $(this).val(); // todo id
+                var dataString = "id=" + id + "&status=0";
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url(); ?>professor/changestatus",
+                    data: dataString,
+                    success: function () {
+
+                    }
+                });
+            } else {
+                $(this).closest('li.todo-task-item').removeClass('task-done');
+                var id = $(this).val(); // todo id
+                var dataString = "id=" + id + "&status=1";
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url(); ?>professor/changestatus",
+                    data: dataString,
+                    success: function () {
+
+                    }
+                });
+            }
+
+        });
+        /**
+         * Update ajax request
+         */
+        $(".updateclick").click(function () {
+
+            var id = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "<?php echo base_url(); ?>professor/todoupdateform/" + id,
+                success: function (response)
+                {
+                    $("#todo-addform").hide();
+                    $("#updateformhtml").html(response);
+                    $('.todo-close_box').css('pointer-events', 'none');
+                }
+            });
+        });
+        $("#closeform").click(function () {
+            $("#todo-addform").hide(500);
+        });
     });</script>
 <!-- end to do list js -->
 
 <script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script>
-    (function($) {
+    (function ($) {
 
-    $(window).load(function() {
+        $(window).load(function () {
 
-    $("#content-1").mCustomScrollbar({
-    theme: "inset-2-dark",
-            axis: "yx",
-            advanced: {
-            autoExpandHorizontalScroll: true
-            },
-            /* change mouse-wheel axis on-the-fly */
-            callbacks: {
-            // onOverflowY:function(){
-            //  var opt=$(this).data("mCS").opt;
-            //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
-            // },
-            onOverflowX: function() {
-            var opt = $(this).data("mCS").opt;
-            if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
-            },
-            }
-    });
-    });
-    $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
-    theme: "inset-2-dark",
-            axis: "yx",
-            advanced: {
-            autoExpandHorizontalScroll: true
-            },
-            /* change mouse-wheel axis on-the-fly */
-            callbacks: {
-            onOverflowY:function(){
-            var opt = $(this).data("mCS").opt;
-            if (opt.mouseWheel.axis !== "y") opt.mouseWheel.axis = "y";
-            },
-                    // onOverflowX: function() {
-                    //     var opt = $(this).data("mCS").opt;
-                    //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+            $("#content-1").mCustomScrollbar({
+                theme: "inset-2-dark",
+                axis: "yx",
+                advanced: {
+                    autoExpandHorizontalScroll: true
+                },
+                /* change mouse-wheel axis on-the-fly */
+                callbacks: {
+                    // onOverflowY:function(){
+                    //  var opt=$(this).data("mCS").opt;
+                    //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
                     // },
+                    onOverflowX: function () {
+                        var opt = $(this).data("mCS").opt;
+                        if (opt.mouseWheel.axis !== "x")
+                            opt.mouseWheel.axis = "x";
+                    },
+                }
+            });
+        });
+        $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
+            theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+                autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+                onOverflowY: function () {
+                    var opt = $(this).data("mCS").opt;
+                    if (opt.mouseWheel.axis !== "y")
+                        opt.mouseWheel.axis = "y";
+                },
+                // onOverflowX: function() {
+                //     var opt = $(this).data("mCS").opt;
+                //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                // },
             }
-    });
+        });
 
-        
+
     })(jQuery);
 </script>
 <!-- Scrollbar Js end -->
 
 <!-- Event Calendar Js start -->
 <script>
-    $(document).ready(function(){        
-    
-    show_event_detail_on_load();
-    
-    //show_first_event_details();
-    
-    $('.eventCalendar-arrow').on('click', function(){
-        $('.eventCalendar-monthTitle').on('click',function(){
-            $('.eventCalendar-list li:first-child').each(function(index){
-                console.log($(this).text());
+    $(document).ready(function () {
+
+        show_event_detail_on_load();
+
+        //show_first_event_details();
+
+        $('.eventCalendar-arrow').on('click', function () {
+            $('.eventCalendar-monthTitle').on('click', function () {
+                $('.eventCalendar-list li:first-child').each(function (index) {
+                    console.log($(this).text());
+                    show_event_detail_on_load();
+                });
+            });
+
+            $('.eventCalendar-day').on('click', function () {
                 show_event_detail_on_load();
             });
-        });
-        
-        $('.eventCalendar-day').on('click',function(){
-            show_event_detail_on_load();
-        });
-        
-        //show_event_detail_on_load();
-        setTimeout(function(){
-                $('.eventCalendar-list li:first-child').each(function(index){
+
+            //show_event_detail_on_load();
+            setTimeout(function () {
+                $('.eventCalendar-list li:first-child').each(function (index) {
                     console.log($(this).text());
                     $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
                 });
             }, 1000);
-    });
-    
-    $('.eventCalendar-monthTitle').on('click',function(){
-        show_event_detail_on_load();
-    });
-    
-    $('.eventCalendar-day').on('click',function(){
-        show_event_detail_on_load();
-    });
-    
-    function show_first_event_details() {
-        $('.eventCalendar-day').on('click', function(){
-            $('.eventCalendar-eventDesc').css('display', 'block');
-            setTimeout(function(){
-                $('.eventCalendar-hidden').removeClass('eventCalendar-hidden');
-            }, 1000);
         });
-    }
-        
-    function show_event_detail_on_load() {
-        setTimeout(function(){
-            $('.eventCalendar-list li:first-child').each(function(index){
-                console.log($(this).text());
-                $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+
+        $('.eventCalendar-monthTitle').on('click', function () {
+            show_event_detail_on_load();
+        });
+
+        $('.eventCalendar-day').on('click', function () {
+            show_event_detail_on_load();
+        });
+
+        function show_first_event_details() {
+            $('.eventCalendar-day').on('click', function () {
+                $('.eventCalendar-eventDesc').css('display', 'block');
+                setTimeout(function () {
+                    $('.eventCalendar-hidden').removeClass('eventCalendar-hidden');
+                }, 1000);
             });
-        }, 1000);
+        }
+
+        function show_event_detail_on_load() {
+            setTimeout(function () {
+                $('.eventCalendar-list li:first-child').each(function (index) {
+                    console.log($(this).text());
+                    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+                });
+            }, 1000);
         }
     });
 </script>

@@ -24,10 +24,10 @@
                         <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                             <thead>
                                 <tr>
-                                    <th><div>#</div></th>												
-                                    <th><div><?php echo ucwords("Syllabus Title"); ?></div></th>
-                                    <th><div><?php echo ucwords("Description"); ?></div></th>
-                                    <th><div><?php echo ucwords("File"); ?></div></th>                                            
+                                    <th>#</th>												
+                                    <th><?php echo ucwords("Syllabus Title"); ?></th>
+                                    <th><?php echo ucwords("Description"); ?></th>
+                                    <th><?php echo ucwords("File"); ?></th>                                            
 
                                 </tr>
                             </thead>

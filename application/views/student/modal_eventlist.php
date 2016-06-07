@@ -10,7 +10,26 @@ $datatodo=$this->db->get_where('todo_list',array('date(todo_datetime)'=>$param2,
                  <h4 class=panel-title><?php echo ucwords("event list"); ?></h4>
                 <!-- Start .panel -->
                 <div class="panel-body"> 
-                   <table id="datatable-list_event" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                    <ul>
+                        <?php
+                        if(empty($dataevent))
+                        {
+                            ?>
+                        <li>There is no any event</li>
+                        <?php
+                        }
+                        else
+                        {
+                         foreach ($dataevent as $row){
+                             ?>
+                        <li><?php echo $row['event_name']; ?></li>
+                        <?php
+                         }
+                        }
+                        ?>
+                        
+                    </ul>
+                 <!--  <table id="datatable-list_event" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
                             <th><div>#</div></th>
@@ -37,7 +56,7 @@ $datatodo=$this->db->get_where('todo_list',array('date(todo_datetime)'=>$param2,
                             </tr>
                         <?php endforeach; ?>						
                     </tbody>
-                </table>
+                </table>-->
                 </div>
             </div>
         </div>
@@ -51,7 +70,26 @@ $datatodo=$this->db->get_where('todo_list',array('date(todo_datetime)'=>$param2,
                 <h4 class=panel-title><?php echo ucwords("todo list"); ?></h4>
                 <!-- Start .panel -->
                 <div class="panel-body"> 
-                   <table id="datatable-list_todo" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                    <ul>
+                        <?php
+                         if(empty($datatodo))
+                        {
+                            ?>
+                        <li>There is no any todo list</li>
+                        <?php
+                        }
+                        else
+                        {
+                         foreach ($datatodo as $row){
+                             ?>
+                        <li><?php echo $row['todo_title']; ?></li>
+                        <?php
+                         }
+                        }
+                        ?>
+                        
+                    </ul>
+                  <!-- <table id="datatable-list_todo" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
                             <th><div>#</div></th>
@@ -72,7 +110,7 @@ $datatodo=$this->db->get_where('todo_list',array('date(todo_datetime)'=>$param2,
                             </tr>
                         <?php endforeach; ?>						
                     </tbody>
-                </table>
+                </table>-->
                 </div>
             </div>
         </div>

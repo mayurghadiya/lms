@@ -29,16 +29,16 @@
                                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                     <thead>
                                         <tr>
-                                            <th><div>#</div></th>											
-                                            <th><div>Project Title</div></th>											
-                                            <th><div>Department</div></th>											
-                                            <th><div>Branch</div></th>											
-                                            <th><div>Batch</div></th>											
-                                            <th><div>Semester</div></th>											
-                                            <th><div>Division</div></th>											
-                                            <th><div>Date of submission</div></th>	
-                                            <th><div>File</div></th>	
-                                            <th >Action</th>
+                                            <th>#</th>											
+                                            <th>Project Title</th>											
+                                            <th>Department</th>											
+                                            <th>Branch</th>											
+                                            <th>Batch</th>											
+                                            <th>Semester</th>											
+                                            <th>Division</th>											
+                                            <th>Date of submission</th>	
+                                            <th>File</th>	
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -121,10 +121,10 @@
                                 <table class="table table-striped table-bordered table-responsive" id="submitted-project-list">
                                     <thead>
                                         <tr>
-                                            <th><div>#</div></th>
-                                            <th><div>Project Title</div></th>												
-                                            <th><div>Submitted Date</div></th>												
-                                            <th><div>Document Name</div></th>	                                                                
+                                            <th>#</th>
+                                            <th>Project Title</th>												
+                                            <th>Submitted Date</th>												
+                                            <th>Document Name</th>	                                                                
                                         </tr>
                                     </thead>
                                     <tbody>

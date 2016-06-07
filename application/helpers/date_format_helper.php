@@ -67,7 +67,7 @@ if(!function_exists('date_duration'))
         $strtime2 = $datetime; 
         if($date1 == $date2)
         {
-            return "Now";
+            return "a few seconds ago";
         }
         if($strtime1 > $strtime2)
         {

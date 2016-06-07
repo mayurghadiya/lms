@@ -158,7 +158,6 @@ foreach ($department as $row) {
     <?php echo $row->TotalStudent; ?>,
 <?php } ?>
                     ]
-
             }]
     });
     });</script>
@@ -177,10 +176,7 @@ foreach ($department as $row) {
             },
             xAxis: {
             categories: [
-<?php
-//$course = unique_branch_list();
-foreach ($course as $row) {
-    ?>
+<?php foreach ($course as $row) { ?>
                 '<?php echo $row->c_name; ?>',
 <?php } ?>
             ],
@@ -777,6 +773,39 @@ foreach ($students as $student) {
                     <!-- End .todo-widget -->
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div id="checkAll-active" class="col-lg-10">
+                    <!-- col-lg-10 start here -->
+                    <div class="row gallery sortable-layout">
+                        <!-- Start .row -->
+                        <?php foreach ($recent_professor as $teacher) { ?>  
+                            <div class="col-md-4">
+                                <!-- Start .col-md-3 -->
+                                <div class="panel panel-default plain panelMove">
+                                    <!-- Start .panel -->
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><strong><?php echo $teacher->name; ?></strong> <small><?php echo date_duration($teacher->created_at); ?></small></h4>
+                                        <div class="btn-group" role="group">                     
+                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_view_profile/<?php echo $teacher->professor_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>view</span></a>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+
+                                        <?php if ($teacher->image_path != "") { ?> 
+                                            <img class="img-responsive" src="<?php echo base_url() ?>uploads/professor/<?php echo $teacher->image_path; ?>" alt="image alt">
+                                        <?php } else { ?>
+                                            <img src="<?php echo base_url() ?>uploads/no-image.jpg" height="100px" width="100px"/>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <!-- End .panel --><!-- End .panel --><!-- End .panel -->
+                            </div>
+                        <?php } ?>
+
+                    </div>
+                    <!-- End .row -->
+                </div>
+            </div>
             <!-- To do list End div-->            
 
             <!-- To Time line Start div-->
@@ -798,20 +827,34 @@ foreach ($students as $student) {
             $i = 0;
             foreach ($timeline as $time_line) {
                 ?>
-                                                                     <div class="tl-row">
-                                                                         <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                                                                             <div class="tl-bullet bg-blue"></div>
-                                                                             <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
-                                                                             <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                                                                 <div class="arrow"></div>
-                                                                                 <div class="popover-content">
-                                                                                     <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
-                                                                                     <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
-                                                                                     <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
+                                                                             <div class="tl-row">
+                                                                                 <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                                                     <div class="tl-bullet bg-blue"></div>
+                                                                                     <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
+                                                                                     <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                                                         <div class="arrow"></div>
+                                                                                         <div class="popover-content">
+                                                                                             <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
+                                                                                             <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
+                                                                                             <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
+                                                                                         </div>
+                                                                                     </div>
                                                                                  </div>
+                                                                             </div>
+                                                                 <div class="tl-row">
+                                                                     <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                                         <div class="tl-bullet bg-blue"></div>
+                                                                         <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
+                                                                         <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                                             <div class="arrow"></div>
+                                                                             <div class="popover-content">
+                                                                                 <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
+                                                                                 <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
+                                                                                 <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
                                                                              </div>
                                                                          </div>
                                                                      </div>
+                                                                 </div>
                 <?php
                 $i++;
             }

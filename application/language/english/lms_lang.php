@@ -315,7 +315,7 @@ $lang['semseter_add'] = 'Semester Added Auccessfully';
 $lang['semseter_update'] = 'Semester Updated Successflly';
 $lang['semester_delete'] = 'Semester Deleted Successflly';
 
-$lang['subject_add'] = 'Subject Deleted Successfully';
+$lang['subject_add'] = 'Subject added Successfully';
 $lang['subject_update'] = 'Subject updated Successfully';
 $lang['subject_delete'] = 'Subject Deleted Successfully';
 

@@ -35,7 +35,8 @@ class Admin extends MY_Controller {
         $this->data['title'] = 'Admin Dashboard';
         $this->calendar_json();
         $this->data['todolist'] = $this->Crud_model->get_todo();
-        //$this->data['timeline'] = $this->Crud_model->get_timline();
+        $this->data['timeline'] = $this->Crud_model->get_timline();
+        $this->data['recent_professor'] = $this->Crud_model->get_recent_professor();
         $this->data['title'] = 'Dashboard';
         $this->data['page'] = 'dashboard';
         $this->__site_template('admin/dashboard', $this->data);
