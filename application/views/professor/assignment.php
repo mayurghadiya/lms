@@ -80,8 +80,8 @@
                                 <table id="assignmenttable" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                     <thead>
                                         <tr>
-                                            <th>#</th>												
-                                            <th>Assignment Name</th>
+                                            <th>No</th>												
+                                            <th>Assignment</th>
                                             <th>Department</th>
                                             <th>Branch</th>												
                                             <th>Batch</th>												

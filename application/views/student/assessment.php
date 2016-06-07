@@ -18,7 +18,7 @@
                 <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="datatable-list">
                      <thead>
                         <tr>
-                            <th>#</th>		
+                            <th>No</th>		
                              <th>Assignment</th>                                                
                             <th>Assign. File</th>
                             <th>Submitted File</th>                            

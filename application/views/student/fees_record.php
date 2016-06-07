@@ -17,12 +17,12 @@
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th><div>Title</div></th>
-                            <th><div>Paid</div></th>
-                            <th><div>Status</div></th>
-                            <th><div>Date</div></th>
-                            <th><div>Options</div></th>
+                            <th>No</th>
+                            <th>Title</th>
+                            <th>Paid</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>                   

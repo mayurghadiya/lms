@@ -467,8 +467,8 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <a href=# class="stats-btn mb20 lead-stats attendant_green">
-                    <span data-to="568" data-from="0" class="stats-number dolar">Admissions</span>
+                <a href="<?php echo base_url(); ?>student/assignment" class="stats-btn mb20 lead-stats attendant_green">
+                    <span data-to="568" data-from="0" class="stats-number dolar">Assignment</span>
                     <span class="stats-icon"><i class="fa fa-file attendant-color"></i></span>
                     <h5>Lorem Ipsum ...</h5>
                 </a>
@@ -499,105 +499,132 @@
                 <div class="xe-widget xe-counter-block">
                     <div class="xe-upper">
                         <div class="xe-icon"> 
-                            <i class="fa fa-money"></i> 
+                            <i class="icomoon-icon-books"></i> 
                         </div>
                         <div class="xe-label"> 
-                            <strong class="num">STUDY RESOURCES</strong>                             
+                            <strong class="num">STUDY RESOURCES</strong>   
                         </div>
                     </div>
-                    <div class="xe-lower scroll-bar-box">
-                        <div class="border"></div>
+                            <div class="border"></div>                          
+                    <div class="xe-lower scroll-bar-box">  
+                        <ul class="clearfix links-gaz">                                              
                         <?php
                         foreach ($studyresource as $row):
                             ?>
-                            <a href="uploads/project_file/<?php echo $row['study_filename']; ?>"  title="<?php echo $row['study_desc']; ?>" download="" target="_newtab" ><?php echo $row['study_title']; ?></a>      
+                            <li>
+                                <a href="uploads/project_file/<?php echo $row['study_filename']; ?>"  title="<?php echo $row['study_desc']; ?>" download="" target="_newtab" ><?php echo $row['study_title']; ?></a>
+                            </li>
                         <?php endforeach; ?>                                      
+                        </ul>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                 <div class="xe-widget xe-counter-block xe-counter-block-purple">
                     <div class="xe-upper">
-                        <div class="xe-icon"> <i class="fa fa-camera-retro" aria-hidden="true"></i> </div>
-                        <!-- <div class="xe-label"> <strong class="num">STAFF & EMAIL DIRECTORY</strong> <span>Email</span> </div> -->
-                        <div class="xe-label"> 
-                        <span>All the best</span> 
-                        <strong class="num">EXAMINATIONS</strong> 
+                        <div class="xe-icon"> <i class="icomoon-icon-book" aria-hidden="true"></i> </div>
+                        <div class="xe-label"> <strong class="num">DIGITAL LIBRARY</strong> <span>Daily Visits</span> </div>
                     </div>
-                    </div>
-                    <div class="xe-lower">
-                        <div class="border"></div>
-                        <a href="#">XYZ</a>                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <div class="xe-widget xe-counter-block xe-counter-block-blue">
-                    <div class="xe-upper">
-                        <div class="xe-icon"> <i class="fa fa-television" aria-hidden="true"></i> </div>
-                        <div class="xe-label"> <strong class="num">DIGITAL<br> LIBRARY</strong> <span>Daily Visits</span> </div>
-                    </div>
+                    <div class="border"></div>
                     <div class="xe-lower scroll-bar-box">
-                        <div class="border"></div>
+                        <ul class="clearfix links-gaz">
                         <?php
                         foreach ($library as $lbr):
                             ?>
-                            <a  download=""  href="uploads/project_file/<?php echo $lbr['lm_filename']; ?>" target="_blank" ><?php echo $lbr['lm_title']; ?></a>
+                            <li>
+                                <a  download=""  href="uploads/project_file/<?php echo $lbr['lm_filename']; ?>" target="_blank" ><?php echo $lbr['lm_title']; ?></a>                                
+                            </li>                            
                         <?php endforeach; ?>   
+                        </ul>
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                <div class="xe-widget xe-counter-block  xe-counter-block-blue">
+                    <div class="xe-upper">
+                        <div class="xe-icon"> 
+                            <i class="icomoon-icon-file" aria-hidden="true"></i> 
+                        </div>                        
+                        <div class="xe-label"> 
+                            <span>All the best</span> 
+                            <strong class="num">EXAMINATIONS</strong> 
+                        </div>
+                    </div>
+                     <div class="border"></div>            
+                    <div class="xe-lower scroll-bar-box">
+                        <ul class="clearfix links-gaz">
+                            <li>
+                                    <a href="#">Engineering (In June)</a>                                                        
+                            </li>
+                            <li>
+                                    <a href="#">Central Police Forces</a>                                                        
+                            </li>
+                            <li>
+                                    <a href="#">Competitive exams first</a>                                                        
+                            </li>                                                        
+                            <li>
+                                    <a href="#">Competitive exams second</a>                                                        
+                            </li>                                                        
+                            <li>
+                                    <a href="#">Competitive exams third</a>                                                        
+                            </li>                                                        
+                            <li>
+                                    <a href="#">Competitive exams four</a>                                                        
+                            </li>                                                                                                                                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                 <div class="xe-widget xe-counter-block xe-counter-block-orange">
-
                     <div class="xe-upper">
-                        <div class="xe-icon"> <i class="fa fa-life-ring" aria-hidden="true"></i> </div>
-                        <div class="xe-label"> <strong class="num">VIDEO CONFERENCING</strong> <span>Live Support</span> </div>
+                        <div class="xe-icon"> <i class=" icomoon-icon-file-upload" aria-hidden="true"></i> </div>
+                        <div class="xe-label"> <strong class="num">PARTICIPATE</strong></div>                        
                     </div>
-                    <div class="xe-lower">
-                        <div class="border"></div>
-
-                        <?php foreach ($live_streaming as $video) { ?>
+                    <div class="border"></div>
+                    <div class="xe-lower scroll-bar-box">
+                        <ul class="clearfix links-gaz"> 
                             <li>
-                                <a target="_blank" href="<?php echo base_url('video_streaming#' . $video->url_link); ?>">
-                                    <div class="menu-icon">
-                                        <i class=" icon-trophy"></i>
-                                    </div>
-                                    <div class="menu-text">
-                                        <?php echo $video->title; ?>                                        
-                                    </div>
-                                </a>
+                                <a href="<?php echo base_url(); ?>student/volunteer" target="_blank">Volunteer</a>
                             </li>
-                        <?php } ?>
-                        <?php foreach ($all as $video) { ?>
                             <li>
-                                <a target="_blank" href="<?php echo base_url('video_streaming#' . $video->url_link); ?>">
-                                    <div class="menu-icon">
-                                        <i class=" icon-trophy"></i>
-                                    </div>
-                                    <div class="menu-text"><?php echo $video->title; ?></div>
-                                </a>
+                                    <a href="<?php echo base_url(); ?>student/participate" target="_blank"> <div class="menu-icon"></div> <div class="menu-text">Survey</div> </a>                                
                             </li>
-                        <?php } ?>
+                            <li>
+                                <a href="<?php echo base_url(); ?>student/uploads" target="_blank"> <div class="menu-icon"></div> <div class="menu-text">Upload</div> </a>                                
+                            </li>  
+                            <li>
+                                <a href="#">VIP</a>
+                            </li>              
+                            <li>
+                                <a href="#">Star</a>
+                            </li>            
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+
+<!--             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                 <div class="xe-widget xe-counter-block xe-counter-block-black">
                     <div class="xe-upper">
                         <div class="xe-icon"> <i class="fa fa-paperclip" aria-hidden="true"></i> </div>
-                        <div class="xe-label"> <strong class="num">Assignment</strong> <span>Assignment List</span> </div>
+                        <div class="xe-label"> <strong class="num">Assignment</strong> <span>Assignment List</span> 
+                            <div class="border"></div>
+                        </div>
+
                     </div>
                     <div class="xe-lower">
-                        <div class="border"></div>
+                        
                         <a href="<?php echo base_url(); ?>student/assignment" target="_blank"> <div class="menu-icon"></div> <div class="menu-text">Assignment Listing</a>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> -->
+        
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <!-- col-md-8 calendar start here -->
-        <!-- col-lg-12 start here -->
+            <!-- calendar start here -->        
             <div class="panel panel-default toggle">
                 <!-- Start .panel -->
                 <div class=panel-heading>
@@ -611,77 +638,168 @@
             <!-- End .panel -->
             <!-- / .row -->
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <div class="xe-widget xe-progress-counter xe-progress-counter-pink h400">
-                <div class="xe-background"> 
-                    <i class="fa fa-heart" aria-hidden="true"></i> 
-                </div>
-                <div class="xe-upper">
-                    <div class="xe-icon"> 
-                        <i class="fa fa-heart-o" aria-hidden="true"></i> 
-                    </div>
-                    <div class="xe-label"> 
-                        <span>All the best</span> 
-                        <strong class="num">EXAMINATIONS</strong> 
-                    </div>
-                </div>
-                <div class="xe-progress"> 
-                    <span data-fill-easing="true" data-fill-duration="2" data-fill-property="width" data-fill-unit="%" data-fill-to="56" data-fill-from="0" class="xe-progress-fill" style="width: 56%;"></span> 
-                </div>
-                <div class="xe-lower scroll-bar-box"> 
-                    <?php foreach ($exam_listing as $row) { ?>
 
-                        <a href="<?php echo base_url('student/exam_schedule/' . $row->em_id); ?>" target="_blank">  
-                            <?php echo $row->em_name; ?>
-                        </a> 
-                        <br>
-
-                    <?php } ?>
-
-                </div>
-            </div>
-        </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
             <div class="xe-widget xe-progress-counter xe-progress-counter-turquoise">
-                <div class="xe-background"> <i class="fa fa-weixin" aria-hidden="true"></i> </div>
                 <div class="xe-upper">
-                    <div class="xe-icon"> <i class="fa fa-weixin" aria-hidden="true"></i> </div>
+                    <div class="xe-icon"> <i class="fa fa-legal" aria-hidden="true"></i> </div>
                     <div class="xe-label"> <span>comming soon...</span> <strong class="num">RESULTS</strong> </div>
                 </div>
-                <div class="xe-progress"> <span data-fill-easing="true" data-fill-duration="3" data-fill-property="width" data-fill-unit="%" data-fill-to="82" data-fill-from="0" class="xe-progress-fill" style="width: 82%;"></span> </div>
-                <div class="xe-lower"> 
-                    <a href="<?php echo base_url('student/exam_marks'); ?>" target="_blank"> 
-                        Exam Marks </a><br>
-                    <a href="<?php echo base_url('student/statement_of_marks'); ?>" target="_blank">  
-                        Statement of Marks</a> 
-                </div>
+                    <div class="border"></div>
+                    <div class="xe-lower scroll-bar-box">
+                        <ul class="clearfix links-gaz"> 
+                            <li>
+                                <a href="<?php echo base_url('student/exam_marks'); ?>" target="_blank">Exam Marks</a>
+                                
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url('student/statement_of_marks'); ?>" target="_blank">Statement of Marks</a>                                 
+                            </li>
+                            <li>
+                                <a href="#">Primary exam</a>
+                            </li>
+                             <li>
+                                <a href="#">Secondary exam</a>
+                            </li>
+                            <li>
+                                <a href="#">Final exam</a>
+                            </li>
+                        </ul>                     
+                    </div>
             </div>
         </div>
+
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
             <div class="xe-widget xe-counter-block xe-counter-block-red">
                 <div class="xe-upper">
-                    <div class="xe-icon"> <i class="fa fa-first-order" aria-hidden="true"></i> </div>
-                    <div class="xe-label"> <strong class="num">PARTICIPATE</strong> <span>Volunteer ,Survey ,Upload</span> </div>
+                    <div class="xe-icon"> <i class="icomoon-icon-camera-5" aria-hidden="true"></i> </div>
+                    <div class="xe-label"> <strong class="num">VIDEO CONFERENCING</strong> </div>
                 </div>
-                <div class="xe-lower">
-                    <div class="border"></div>
-                    <ul>
-                        <a href="<?php echo base_url(); ?>student/volunteer" target="_blank">Volunteer                                        
-                        </a><br><br>
-                        <a href="<?php echo base_url(); ?>student/participate" target="_blank"> <div class="menu-icon"></div> <div class="menu-text">Survey</div> </a><br>
-                        <a href="<?php echo base_url(); ?>student/uploads" target="_blank"> <div class="menu-icon"></div> <div class="menu-text">Upload</div> </a>
-                    </ul>
+                 <div class="border"></div>
+                    <div class="xe-lower scroll-bar-box">
+                        <ul class="clearfix links-gaz"> 
+                                <?php foreach ($live_streaming as $video) { ?>
+                                    <li>
+                                        <a target="_blank" href="<?php echo base_url('video_streaming#' . $video->url_link); ?>">
+                                            <div class="menu-icon">
+                                                <i class=" icon-trophy"></i>
+                                            </div>
+                                            <div class="menu-text">
+                                                <?php echo $video->title; ?>                                        
+                                            </div>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                <?php foreach ($all as $video) { ?>
+                                    <li>
+                                        <a target="_blank" href="<?php echo base_url('video_streaming#' . $video->url_link); ?>">
+                                            <div class="menu-icon">
+                                                <i class=" icon-trophy"></i>
+                                            </div>
+                                            <div class="menu-text"><?php echo $video->title; ?></div>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                           
+                            <li>
+                                <a href="#">LIVE SUPPORT</a>
+                            </li>
+                            <li>
+                                <a href="#">Service-based video conferencing</a>
+                            </li>
+                            <li>
+                                <a href="#">Unified communications technology</a>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+          <!-- Admission Volunteer start div-->
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+        <div class="xe-widget xe-counter-block xe-counter-block-red attendance-box" data-count=".num" data-from="0" data-to="99.9" data-suffix="%" data-duration="2">
+            <div class="xe-upper">
+                <div class="xe-icon"> <i aria-hidden="true" class=" icomoon-icon-notebook"></i> </div>
+                <div class="xe-label"> <strong class="num">Admission</strong></div>
+            </div>
+                                                <div class="border"></div>
+                    <div class="xe-lower scroll-bar-box">
+                        <ul class="clearfix links-gaz"> 
+                        <li>
+                            <a href="<?php echo base_url('student/profile'); ?>" target="_blank"> 
+                    <div class="menu-text">Profile</div> 
+                </a>
+                        </li>
+                        <li>
+                             <a href="<?php echo base_url('student/fee_record'); ?>" target="_blank"> 
+                    <div class="menu-text"> Student Payment Record</div> 
+                </a>
+                        </li>
+                        <li>
+                             <a href="<?php echo base_url('student/student_fees'); ?>" target="_blank">                                 
+                    <div class="menu-text">Pay Online 
 
-                </div>
+                    </div> </a> 
+                        </li>
+                       
+                             <?php foreach ($cms_pages as $page) { ?>
+ <li>
+                    <a href="<?php echo base_url('student/cms_page/' . $page->am_id); ?>" target="_blank">
+                        <div><?php echo $page->am_title; ?></div>
+                    </a>
+</li> 
+                <?php } ?>
+                          
+                        <li>
+                            <a href="#">receipt</a>
+                        </li>
+                        <li>
+                            <a href="#">Online Support</a>
+                        </li>
+                    </ul>
             </div>
         </div>
     </div>
+    <!-- Admission Volunteer end div-->
+
+    <!-- Project List start div-->
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+        <div class="xe-widget xe-counter-block xe-counter-block-black">
+            <div class="xe-upper">
+                <div class="xe-icon"> <i class="fa fa-paperclip" aria-hidden="true"></i> </div>
+                <div class="xe-label"> <strong class="num">PROJECT</strong> </div>
+            </div>
+              <div class="border"></div>
+                    <div class="xe-lower scroll-bar-box">
+                        <ul class="clearfix links-gaz"> 
+                            <li>                                
+                                <a href="<?php echo base_url(); ?>student/project/submission" target="_blank"> <div class="menu-icon"></div> <div class="menu-text">Main Project List
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">Mid-semester project </a>
+                            </li>
+                            <li>
+                                <a href="#">first-semester project </a>
+                            </li>
+                            <li>
+                                <a href="#">second-semester project </a>
+                            </li>
+                            <li>
+                                <a href="#">third-semester project </a>
+                            </li>
+                        </ul>    
+                    </div>
+        </div>
+    </div>
+    <!-- Project List end div-->
+    </div>
+  </div>
 </div>
 </div>
 <div class="row">
     <!-- .row start -->
     <!-- To do list Start div-->
-    <div class="col-lg-5">
+    <div class="col-lg-6">
         <div class="panel panel-default toggle">
             <!-- Start .panel -->
             <div class=panel-heading>
@@ -774,13 +892,14 @@
     <!-- To do list End div-->   
 
     <!-- Growth Start div-->
-    <div class="col-md-4">
-        <!-- col-md-6 start here -->
-        <div class="panel panel-default toggle panelClose panelRefresh panelMove" id="supr3">
+    <div class="col-md-6">
+        <!-- col-md-6 start here  -->
+       <div class="panel panel-default toggle">
             <!-- Start .panel -->
             <div class="panel-heading">
                 <h4 class="panel-title"> Growth</h4>
-                <div class="panel-controls panel-controls-right"><a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a><a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a><a class="panel-close" href="#"><i class="fa fa-times s12"></i></a></div>
+
+                
             </div>
             <div class="panel-body">
                 <div class="vital-stats">
@@ -846,51 +965,7 @@
     </div>
     <!-- Growth end div-->
 
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-        <div class="xe-widget xe-counter-block xe-counter-block-red attendance-box" data-count=".num" data-from="0" data-to="99.9" data-suffix="%" data-duration="2">
-            <div class="xe-upper">
-                <div class="xe-icon"> <i aria-hidden="true" class="fa fa-clock-o"></i> </div>
-                <div class="xe-label"> <strong class="num">Admission</strong> <span>Volunteer ,Survey ,Upload</span> </div>
-            </div>
-            <div class="xe-lower">
-                <div class="border"></div>               
-
-                <a href="<?php echo base_url('student/profile'); ?>" target="_blank"> 
-                    <div class="menu-text">Profile</div> 
-                </a> <br>
-                <a href="<?php echo base_url('student/fee_record'); ?>" target="_blank"> 
-                    <div class="menu-text"> Student Payment Record</div> 
-                </a> <br>
-                <a href="<?php echo base_url('student/student_fees'); ?>" target="_blank">                                 
-                    <div class="menu-text">Pay Online 
-
-                    </div> </a> <br>
-
-                <?php foreach ($cms_pages as $page) { ?>
-
-                    <a href="<?php echo base_url('student/cms_page/' . $page->am_id); ?>" target="_blank">
-                        <div><?php echo $page->am_title; ?></div>
-                    </a>
-
-                <?php } ?>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-        <div class="xe-widget xe-counter-block xe-counter-block-black">
-            <div class="xe-upper">
-                <div class="xe-icon"> <i class="fa fa-paperclip" aria-hidden="true"></i> </div>
-                <div class="xe-label"> <strong class="num">PROJECT</strong> <span>Project List</span> </div>
-            </div>
-            <div class="xe-lower">
-                <div class="border"></div>
-                <a href="<?php echo base_url(); ?>student/project/submission" target="_blank"> <div class="menu-icon"></div> <div class="menu-text">Project List
-                </a>
-            </div>
-        </div>
-    </div>
+   
 
 </div>
 
@@ -909,7 +984,7 @@
                     <section id="examples">         
                         <!-- content -->
                         <div id="content-1">
-                            <div class="timeline-box timeline-horizontal" style="width: 2500px;">
+                            <div class="timeline-box timeline-horizontal">
                                 <?php
                                 $i = 1;
                                 $eventdate=array();
@@ -930,7 +1005,7 @@
                                              $i++;
                                              $j = 0;
                                              ?>
-                                                <div class="tl-row <?php echo $i;?>">
+                                        <div class="tl-row <?php echo $i;?>">
                                             <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
                                                 <div class="tl-bullet bg-blue"></div>
                                                 <div class="tl-panel"><?php echo $c; ?></div>
@@ -1016,6 +1091,18 @@
                                                  }                                                  
                                               }
                                         ?>
+                                <script>
+                                var total_timeline_boxes = '<?php echo --$i; ?>';
+                                
+                                $(document).ready(function(){
+                                    setTimeout(function(){
+                                        var box_width = '<?php echo 260 * $i; ?>';
+                                        $('.tl-row').css('width', '260');
+                                        $('.timeline-box.timeline-horizontal').css('width', box_width);
+                                        
+                                    }, 500);
+                                });
+                                </script>
 
                             </div>
                         </div>          
@@ -1180,3 +1267,69 @@
 
 </script>
 <!--  end to do list -->
+<!-- jQuery Scrollbar Js start -->
+<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+    (function($) {
+
+    $(window).load(function() {
+
+    $(".xe-widget.xe-counter-block .xe-lower.scroll-bar-box").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            // onOverflowY:function(){
+            //  var opt=$(this).data("mCS").opt;
+            //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+            // },
+            onOverflowX: function() {
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+            },
+            }
+    });
+    });
+       $("#content-1").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            onOverflowY:function(){
+             var opt=$(this).data("mCS").opt;
+             if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+            },
+            onOverflowX: function() {
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+            },
+            }
+    });
+    
+    $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            onOverflowY:function(){
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "y") opt.mouseWheel.axis = "y";
+            },
+                    // onOverflowX: function() {
+                    //     var opt = $(this).data("mCS").opt;
+                    //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                    // },
+            }
+    });
+    })(jQuery);
+</script>
+<!-- Scrollbar Js end -->

@@ -541,7 +541,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default toggle">
                     <div class="panel-heading">
-                        <h4>Event Calendar</h4>
+                        <h4 class="panel-title">Event Calendar</h4>
                     </div>
                     <div class="panel-body">
                         <div id="eventCalendarHumanDate"></div>
@@ -637,7 +637,7 @@
                 </div>
              </div>
              <div class="col-lg-6">
-                <div class="panel panel-default toggle">
+                <div id="supr1" class="panel panel-default toggle">
                     <!-- Start .panel -->
                     <div class=panel-heading>
                         <h4 class=panel-title>
@@ -645,7 +645,89 @@
                         </h4>
                     </div>
                     <div class=panel-body>
-                       
+                       <table class="table table-reflow table-striped">
+                          <thead>
+                            <tr>
+                              <th>No</th>
+                              <th>Date/time </th>
+                              <th>Details</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>
+                                  <span class="date">17/7/2016</span>
+                                  <span class="time">07:43 PM</span>
+                              </td>
+                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever industry's standard dummy text ever </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>
+                                  <span class="date">17/7/2016</span>
+                                  <span class="time">07:43 PM</span>
+                              </td>
+                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>
+                                  <span class="date">17/7/2016</span>
+                                  <span class="time">07:43 PM</span>
+                              </td>
+                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
+                            </tr>
+                             <tr>
+                              <th scope="row">4</th>
+                              <td>
+                                  <span class="date">17/7/2016</span>
+                                  <span class="time">07:43 PM</span>
+                              </td>
+                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever industry's standard dummy text ever </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">5</th>
+                              <td>
+                                  <span class="date">17/7/2016</span>
+                                  <span class="time">07:43 PM</span>
+                              </td>
+                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">6</th>
+                              <td>
+                                  <span class="date">17/7/2016</span>
+                                  <span class="time">07:43 PM</span>
+                              </td>
+                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
+                            </tr>
+                          <!--    <tr>
+                              <th scope="row">7</th>
+                              <td>
+                                  <span class="date">17/7/2016</span>
+                                  <span class="time">07:43 PM</span>
+                              </td>
+                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever industry's standard dummy text ever </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">8</th>
+                              <td>
+                                  <span class="date">17/7/2016</span>
+                                  <span class="time">07:43 PM</span>
+                              </td>
+                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">9</th>
+                              <td>
+                                  <span class="date">17/7/2016</span>
+                                  <span class="time">07:43 PM</span>
+                              </td>
+                              <td class="text-left">Lorem Ipsum has been the industry's standard dummy text ever</td>
+                            </tr> -->
+                          </tbody>
+                        </table>
                     </div>
                     <!-- End Recent Activities -->
                 </div>
@@ -793,3 +875,110 @@
     });
     });</script>
 <!-- end to do list js -->
+
+<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+    (function($) {
+
+    $(window).load(function() {
+
+    $("#content-1").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            // onOverflowY:function(){
+            //  var opt=$(this).data("mCS").opt;
+            //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+            // },
+            onOverflowX: function() {
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+            },
+            }
+    });
+    });
+    $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            onOverflowY:function(){
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "y") opt.mouseWheel.axis = "y";
+            },
+                    // onOverflowX: function() {
+                    //     var opt = $(this).data("mCS").opt;
+                    //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                    // },
+            }
+    });
+
+        
+    })(jQuery);
+</script>
+<!-- Scrollbar Js end -->
+
+<!-- Event Calendar Js start -->
+<script>
+    $(document).ready(function(){        
+    
+    show_event_detail_on_load();
+    
+    //show_first_event_details();
+    
+    $('.eventCalendar-arrow').on('click', function(){
+        $('.eventCalendar-monthTitle').on('click',function(){
+            $('.eventCalendar-list li:first-child').each(function(index){
+                console.log($(this).text());
+                show_event_detail_on_load();
+            });
+        });
+        
+        $('.eventCalendar-day').on('click',function(){
+            show_event_detail_on_load();
+        });
+        
+        //show_event_detail_on_load();
+        setTimeout(function(){
+                $('.eventCalendar-list li:first-child').each(function(index){
+                    console.log($(this).text());
+                    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+                });
+            }, 1000);
+    });
+    
+    $('.eventCalendar-monthTitle').on('click',function(){
+        show_event_detail_on_load();
+    });
+    
+    $('.eventCalendar-day').on('click',function(){
+        show_event_detail_on_load();
+    });
+    
+    function show_first_event_details() {
+        $('.eventCalendar-day').on('click', function(){
+            $('.eventCalendar-eventDesc').css('display', 'block');
+            setTimeout(function(){
+                $('.eventCalendar-hidden').removeClass('eventCalendar-hidden');
+            }, 1000);
+        });
+    }
+        
+    function show_event_detail_on_load() {
+        setTimeout(function(){
+            $('.eventCalendar-list li:first-child').each(function(index){
+                console.log($(this).text());
+                $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+            });
+        }, 1000);
+        }
+    });
+</script>
+<!-- Event Calendar Js end -->

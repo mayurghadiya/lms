@@ -1,7 +1,7 @@
 <table class="table table-striped table-bordered table-responsive" id="exam-data-tables">
     <thead>
         <tr>
-            <th>#</th>
+            <th>No</th>
             <th>Exam Name</th>
             <th>Department</th>
             <th>Branch</th>

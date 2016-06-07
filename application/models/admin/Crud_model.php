@@ -309,6 +309,7 @@ class Crud_model extends CI_Model {
     function get_all_course() {
         return $this->db->select()
                         ->from('course')
+                        ->order_by('c_name', 'ASC')
                         ->get()
                         ->result();
     }
@@ -320,6 +321,7 @@ class Crud_model extends CI_Model {
     function get_all_semester() {
         return $this->db->select()
                         ->from('semester')
+                        ->order_by('s_name', 'ASC')
                         ->get()
                         ->result();
     }
@@ -420,6 +422,7 @@ class Crud_model extends CI_Model {
     function get_all_degree() {
         return $this->db->select()
                         ->from('degree')
+                        ->order_by('d_name', 'ASC')
                         ->get()
                         ->result();
     }
@@ -428,6 +431,7 @@ class Crud_model extends CI_Model {
     function get_all_bacth() {
         return $this->db->select()
                         ->from('batch')
+                        ->order_by('b_name', 'ASC')
                         ->get()
                         ->result();
     }
@@ -436,6 +440,7 @@ class Crud_model extends CI_Model {
     function get_all_admission_type() {
         return $this->db->select()
                         ->from('admission_type')
+                        ->order_by('at_name', 'ASC')
                         ->get()
                         ->result();
     }
@@ -796,6 +801,7 @@ class Crud_model extends CI_Model {
      * @return array
      */
     function course_list_from_degree($degree_id) {
+        $this->db->order_by('c_name', 'ASC');
         return $this->db->get_where('course', array(
                     'degree_id' => $degree_id
                 ))->result();

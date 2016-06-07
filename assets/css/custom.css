@@ -611,7 +611,7 @@ label.error {
 .xe-widget.xe-counter-block .xe-upper,
 .xe-widget.xe-progress-counter .xe-upper {
   background: #fff;
-  padding: 28px;
+  padding: 12px 18px;
   line-height: 1;
   display: table;
   width: 100%;
@@ -659,8 +659,8 @@ label.error {
 .xe-widget.xe-counter-block .xe-upper .xe-label .num,
 .xe-widget.xe-progress-counter .xe-upper .xe-label .num {
   display: block;
-  font-size: 28px;
-  font-weight: normal;
+  font-size: 24px;
+  font-weight: 500;
   color: #3e3f3f;
 }
 .xe-widget.xe-counter .xe-label span,
@@ -779,6 +779,7 @@ label.error {
   border-spacing: 0;
   border: 0;
   background: #68b828;
+  height: 100px;
 }
 .xe-widget.xe-counter-block .xe-upper .xe-icon,
 .xe-widget.xe-counter-block .xe-upper .xe-label,
@@ -805,10 +806,12 @@ label.error {
 }
 .xe-widget.xe-counter-block .xe-lower,
 .xe-widget.xe-progress-counter .xe-lower {
-  padding: 15px 30px;
+  padding: 0px;
 }
 .xe-widget.xe-counter-block .xe-lower .border,
-.xe-widget.xe-progress-counter .xe-lower .border {
+.xe-widget.xe-progress-counter .xe-lower .border,
+.xe-widget.xe-counter-block .border,
+.xe-widget.xe-progress-counter .border {
   height: 1px;
   background: rgba(255, 255, 255, 0.5);
   margin-bottom: 10px;
@@ -1293,13 +1296,26 @@ label.error {
 }
 
 #edit_profile img{max-width: 100%;}
-
+ul.links-gaz{padding-left: 30px; list-style: none;}
+.links-gaz li{border-top: 1px dotted #f8f8f8; padding: 5px;}
+.xe-counter-block-black .links-gaz li{border-top: 1px dotted yellow;}
+.links-gaz li:first-child{ border:none; }
+.xe-counter-block-black .links-gaz li a:hover{ color: yellow; }
+.links-gaz li a{ text-transform: capitalize; text-decoration: none; color: #fff; font-size: 14px; font-weight: normal; line-height: 20px; display: block;  }
+.links-gaz li a:hover, .links-gaz li a:focus, .links-gaz li a:active{color: #000;}
 /*  Professor Dashboard */
 .professor_routine_box, .professor_routine_box html{ overflow: hidden !important; }
 /*.dashboard.professor_dashboard #content .contentwrapper{ padding-top:60px; }*/
 
 /* Gallery style */
 .nanoGalleryBreadcrumb div:hover{color: #000 !important; }
+
+#datatable-list.table > tbody > tr > td, #datatable-list.table > tbody > tr > th, #datatable-list.table > tfoot > tr > td, #datatable-list.table > tfoot > tr > th, #datatable-list.table > thead > tr > td, #datatable-list.table > thead > tr > th {
+  line-height: normal;
+  vertical-align: middle;
+}
+.margin25top{margin-top: 25px;}
+.eventCalendar-eventDesc p {line-height: 24px; margin: 0 0 5px; vertical-align: middle;}
 
 
 /*********************** media *****************************/

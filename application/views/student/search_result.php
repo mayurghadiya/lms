@@ -19,7 +19,7 @@
                                     <td colspan="11"><strong>Student Details</strong></td>
                                 </tr>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Username</th>
                                     <th>Name</th>
                                     <th>Roll No</th>
@@ -63,7 +63,7 @@
                                     <td colspan="9"><strong>Exam Details</strong></td>
                                 </tr>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Exam Name</th>
                                     <th>Degree</th>
                                     <th>Course Name</th>
@@ -103,7 +103,7 @@
                                     <td colspan="4"><strong>Course Details</strong></td>
                                 </tr>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Course Name</th>
                                     <th>Course Alias</th>
                                     <th>Description</th>                                        
@@ -161,7 +161,7 @@
                                     <td colspan="9"><strong>Assignment Details</strong></td>
                                 </tr>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>Degree</th>
@@ -237,7 +237,7 @@
                                     <th colspan="6">Event Details</th>
                                 </tr>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Event Name</th>
                                     <th>Description</th>
                                     <th>Location</th>

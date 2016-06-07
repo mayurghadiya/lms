@@ -17,7 +17,7 @@
                 <table id="event-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th>#</th>												
+                            <th>No</th>												
                             <th>Event Name</th>												
                             <th width="15%">Location</th>	
                             <th width="20%">Description</th>

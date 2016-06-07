@@ -1,8 +1,12 @@
-
+<?php
+$this->load->helper('report_chart');
+$course = unique_branch_list();
+$department = student_ratio_department_wise();
+?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/event_calendar/moment.js"></script> 
 <!-- charts js and library -->
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/exporting.js"></script>
 <!-- pie chart (male vs female) -->
 <script>
     $(function () {
@@ -62,110 +66,102 @@
             },
             xAxis: {
             categories: [
-            <?php foreach ($new_student_joining as $row) { ?>
-                            '<?php echo $row->Year; ?>',
-            <?php } ?>
-                        ],
-                                crosshair: true
-                        },
-                        yAxis: {
-                        min: 0,
-                                title: {
-                                text: 'Students Enrolled'
-                                }
-                        },
-                        tooltip: {
-                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                                '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                                footerFormat: '</table>',
-                                shared: true,
-                                useHTML: true
-                        },
-                        plotOptions: {
-                        column: {
-                        pointPadding: 0.2,
-                                borderWidth: 0
-                        }
-                        },
-                        series: [{
-                        name: 'Students',
-                                data: [
-            <?php foreach ($new_student_joining as $row) { ?>
-                <?php echo $row->Total; ?>,
-            <?php } ?>
-                                ]
+<?php foreach ($new_student_joining as $row) { ?>
+                '<?php echo $row->Year; ?>',
+<?php } ?>
+            ],
+                    crosshair: true
+            },
+            yAxis: {
+            min: 0,
+                    title: {
+                    text: 'Students Enrolled'
+                    }
+            },
+            tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+            },
+            plotOptions: {
+            column: {
+            pointPadding: 0.2,
+                    borderWidth: 0
+            }
+            },
+            series: [{
+            name: 'Students',
+                    data: [
+<?php foreach ($new_student_joining as $row) { ?>
+    <?php echo $row->Total; ?>,
+<?php } ?>
+                    ]
 
-                        }]
-                });
-                });
-</script>
+            }]
+    });
+    });</script>
 <!-- bar chart course wise male and female -->
 <script>
     $(function () {
-                <?php
-                $course = $this->db->get('course')->result();
-                $this->load->helper('report_chart');
-                ?>
-                    $('#course-male-female').highcharts({
-                    chart: {
-                    type: 'column'
-                    },
-                            title: {
-                            text: 'Male to Female Course count Ratio'
-                            },
-                            subtitle: {
-                            text: ''
-                            },
-                            xAxis: {
-                            categories: [
-                <?php foreach ($course as $row) { ?>
-                                '<?php echo $row->c_name; ?>',
-                <?php } ?>
-                            ],
-                                    crosshair: true
-                            },
-                            yAxis: {
-                            min: 0,
-                                    title: {
-                                    text: 'Students'
-                                    }
-                            },
-                            tooltip: {
-                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                                    footerFormat: '</table>',
-                                    shared: true,
-                                    useHTML: true
-                            },
-                            plotOptions: {
-                            column: {
-                            pointPadding: 0.2,
-                                    borderWidth: 0
-                            }
-                            },
-                            series: [
-                            {
-                            name: 'Male',
-                                    data: [
-                <?php foreach ($course as $row) { ?>
-                    <?php echo course_male_student_count($row->course_id); ?>,
-                <?php } ?>
-                                    ]
+    $('#course-male-female').highcharts({
+    chart: {
+    type: 'column'
+    },
+            title: {
+            text: 'Department student count ratio'
+            },
+            subtitle: {
+            text: ''
+            },
+            xAxis: {
+            categories: [
+<?php
+//$course = unique_branch_list();
+foreach ($department as $row) {
+    ?>
+                '<?php echo $row->d_name; ?>',
+<?php } ?>
+            ],
+                    crosshair: true
+            },
+            yAxis: {
+            min: 0,
+                    title: {
+                    text: 'Students'
+                    }
+            },
+            tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+            },
+            plotOptions: {
+            column: {
+            pointPadding: 0.2,
+                    borderWidth: 0
+            }
+            },
+            series: [
+            {
+            name: 'Student',
+                    data: [
+<?php
+//$male = male_ratio_course_wise();
+foreach ($department as $row) {
+    ?>
+    <?php echo $row->TotalStudent; ?>,
+<?php } ?>
+                    ]
 
-                            },
-                            {
-                            name: 'Female',
-                                    data: [
-                <?php foreach ($course as $row) { ?>
-                    <?php echo course_female_student_count($row->course_id); ?>,
-                <?php } ?>
-                                    ]
-                            }]
-                    });
-                    });
-</script>
+            }]
+    });
+    });</script>
 <!-- bar chart course wise students -->
 <script>
     $(function () {
@@ -181,44 +177,49 @@
             },
             xAxis: {
             categories: [
-            <?php foreach ($course as $row) { ?>
-                            '<?php echo $row->c_name; ?>',
-            <?php } ?>
-                        ],
-                                crosshair: true
-                        },
-                        yAxis: {
-                        min: 0,
-                                title: {
-                                text: 'Students'
-                                }
-                        },
-                        tooltip: {
-                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                                '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                                footerFormat: '</table>',
-                                shared: true,
-                                useHTML: true
-                        },
-                        plotOptions: {
-                        column: {
-                        pointPadding: 0.2,
-                                borderWidth: 0
-                        }
-                        },
-                        series: [{
-                        name: 'Students',
-                                data: [
-            <?php foreach ($course as $row) { ?>
-                <?php echo course_wise_student($row->course_id); ?>,
-            <?php } ?>
-                                ]
+<?php
+//$course = unique_branch_list();
+foreach ($course as $row) {
+    ?>
+                '<?php echo $row->c_name; ?>',
+<?php } ?>
+            ],
+                    crosshair: true
+            },
+            yAxis: {
+            min: 0,
+                    title: {
+                    text: 'Students'
+                    }
+            },
+            tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+            },
+            plotOptions: {
+            column: {
+            pointPadding: 0.2,
+                    borderWidth: 0
+            }
+            },
+            series: [{
+            name: 'Students',
+                    data: [
+<?php
+$students = total_count_of_student_branch_wise();
+foreach ($students as $student) {
+    ?>
+    <?php echo $student->TotalStudent; ?>,
+<?php } ?>
+                    ]
 
-                        }]
-                });
-                });
-</script>
+            }]
+    });
+    });</script>
 <script type="text/javascript" >
     ;
     (function ($) {
@@ -666,12 +667,11 @@
     eventsjson: '<?php echo base_url(); ?>event.humanDate.json.php',
             jsonDateFormat: 'human'  // 'YYYY-MM-DD HH:MM:SS'
     });
-    });
-</script>
+    });</script>
 <!-- Start .row -->
 <div class=row>
     <div class="col-lg-12 col-md-12 col-xs-12">
-        <!-- col-lg-12 start here -->
+        <!-- col-lg-12 start here Event Calendar -->
         <div class="panel panel-default toggle">
             <!-- Start .panel -->
             <div class=panel-heading>
@@ -685,8 +685,9 @@
 
         <!-- start todo & time line -->
         <div class="row">
-<!-- To do list Start div-->
+            <!-- To do list Start div-->
             <div class="col-lg-5">
+                <!--  To Do List -->
                 <div class="panel panel-default toggle">
                     <!-- Start .panel -->
                     <div class=panel-heading>
@@ -776,54 +777,54 @@
                     <!-- End .todo-widget -->
                 </div>
             </div>
-<!-- To do list End div-->            
+            <!-- To do list End div-->            
 
-<!-- To Time line Start div-->
-           <!-- <div class="col-lg-7">
-                <div class="panel panel-default toggle">
-                    
-                    <div class=panel-heading>
-                        <h4 class="panel-title marginzero">
-                            Timeline
-                        </h4>
-                    </div>
-                    <div class=panel-body>
-                        <div id="demo">
-                            <section id="examples">         
-                    
-                                <div id="content-1">
-                                    <div class="timeline-box timeline-horizontal" style="width: 3000px;">
-                                        <?php
-                                        $i = 0;
-                                        foreach ($timeline as $time_line) {
-                                            ?>
-                                            <div class="tl-row">
-                                                <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                                                    <div class="tl-bullet bg-blue"></div>
-                                                    <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
-                                                    <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                                        <div class="arrow"></div>
-                                                        <div class="popover-content">
-                                                            <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
-                                                            <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
-                                                            <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php
-                                            $i++;
-                                        }
-                                        ?>
-
-                                    </div>
-                                </div>          
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-<!-- To Time line End div-->
+            <!-- To Time line Start div-->
+            <!-- <div class="col-lg-7">
+                 <div class="panel panel-default toggle">
+                     
+                     <div class=panel-heading>
+                         <h4 class="panel-title marginzero">
+                             Timeline
+                         </h4>
+                     </div>
+                     <div class=panel-body>
+                         <div id="demo">
+                             <section id="examples">         
+                     
+                                 <div id="content-1">
+                                     <div class="timeline-box timeline-horizontal" style="width: 3000px;">
+            <?php
+            $i = 0;
+            foreach ($timeline as $time_line) {
+                ?>
+                                                                     <div class="tl-row">
+                                                                         <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                                             <div class="tl-bullet bg-blue"></div>
+                                                                             <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
+                                                                             <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                                                 <div class="arrow"></div>
+                                                                                 <div class="popover-content">
+                                                                                     <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
+                                                                                     <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
+                                                                                     <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
+                                                                                 </div>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                <?php
+                $i++;
+            }
+            ?>
+ 
+                                     </div>
+                                 </div>          
+                             </section>
+                         </div>
+                     </div>
+                 </div>
+             </div>-->
+            <!-- To Time line End div-->
 
         </div>
         <!-- end todo & time line -->
@@ -833,7 +834,7 @@
             <div class="panel-heading">
                 <h4 class="panel-title marginzero">Report Charts</h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body margin25top">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="panel panel-default">
@@ -911,7 +912,7 @@
 <!-- To do list Start JS-->
 <script type="text/javascript">
 
-    $(document).ready(function () {
+            $(document).ready(function () {
     $("#todo-addform").hide();
     $("#basic-datepicker").datepicker({
     autoclose: true
@@ -1039,8 +1040,7 @@
     $("#closeform").click(function () {
     $("#todo-addform").hide(500);
     });
-    });
-</script>
+    });</script>
 <!-- To do list Js End-->
 
 <!-- jQuery Scrollbar Js start -->
@@ -1087,64 +1087,57 @@
                     // },
             }
     });
-    })(jQuery);
-</script>
+    })(jQuery);</script>
 <!-- Scrollbar Js end -->
 
 <!-- Event Calendar Js start -->
 <script>
-    $(document).ready(function(){        
-    
+    $(document).ready(function(){
+
     show_event_detail_on_load();
-    
     //show_first_event_details();
-    
+
     $('.eventCalendar-arrow').on('click', function(){
-        $('.eventCalendar-monthTitle').on('click',function(){
-            $('.eventCalendar-list li:first-child').each(function(index){
-                console.log($(this).text());
-                show_event_detail_on_load();
-            });
-        });
-        
-        $('.eventCalendar-day').on('click',function(){
-            show_event_detail_on_load();
-        });
-        
-        //show_event_detail_on_load();
-        setTimeout(function(){
-                $('.eventCalendar-list li:first-child').each(function(index){
-                    console.log($(this).text());
-                    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
-                });
-            }, 1000);
+    $('.eventCalendar-monthTitle').on('click', function(){
+    $('.eventCalendar-list li:first-child').each(function(index){
+    console.log($(this).text());
+    show_event_detail_on_load();
     });
-    
-    $('.eventCalendar-monthTitle').on('click',function(){
-        show_event_detail_on_load();
     });
-    
-    $('.eventCalendar-day').on('click',function(){
-        show_event_detail_on_load();
+    $('.eventCalendar-day').on('click', function(){
+    show_event_detail_on_load();
     });
-    
+    //show_event_detail_on_load();
+    setTimeout(function(){
+    $('.eventCalendar-list li:first-child').each(function(index){
+    console.log($(this).text());
+    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+    });
+    }, 1000);
+    });
+    $('.eventCalendar-monthTitle').on('click', function(){
+    show_event_detail_on_load();
+    });
+    $('.eventCalendar-day').on('click', function(){
+    show_event_detail_on_load();
+    });
     function show_first_event_details() {
-        $('.eventCalendar-day').on('click', function(){
-            $('.eventCalendar-eventDesc').css('display', 'block');
-            setTimeout(function(){
-                $('.eventCalendar-hidden').removeClass('eventCalendar-hidden');
-            }, 1000);
-        });
+    $('.eventCalendar-day').on('click', function(){
+    $('.eventCalendar-eventDesc').css('display', 'block');
+    setTimeout(function(){
+    $('.eventCalendar-hidden').removeClass('eventCalendar-hidden');
+    }, 1000);
+    });
     }
-        
+
     function show_event_detail_on_load() {
-        setTimeout(function(){
-            $('.eventCalendar-list li:first-child').each(function(index){
-                console.log($(this).text());
-                $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
-            });
-        }, 1000);
-        }
+    setTimeout(function(){
+    $('.eventCalendar-list li:first-child').each(function(index){
+    console.log($(this).text());
+    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+    });
+    }, 1000);
+    }
     });
 </script>
 <!-- Event Calendar Js end -->

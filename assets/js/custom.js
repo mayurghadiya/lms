@@ -272,6 +272,9 @@ $(document).ready(function () {
     $(".search_box .category").click(function (e) {
         $(this).toggleClass("open");
     });  
+    $(".pace.pace-active").click(function (e) {        
+        $(this).hide();
+    });
 
 });
 
