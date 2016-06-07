@@ -419,6 +419,7 @@
                                     </div>
                                 </form>
                             </div>
+
                             <!--  /search -->  
                             <!--  /search -->
 <!--                            <ul class=breadcrumb>
@@ -430,4 +431,5 @@
                         <?php echo create_breadcrumb(); ?>
                         <?php echo set_active_menu($page); ?>
                             </div>
+
                         <!-- End  / heading-->

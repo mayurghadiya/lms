@@ -33,10 +33,10 @@ $semester = $this->db->get_where("semester", array("s_id" => $student[0]->semest
                             <th>Student Name</th> <td><?php echo $student[0]->std_first_name . ' ' . $student[0]->std_last_name; ?></td>						
                         </tr>
                         <tr>		
-                            <th>Degree </th><td><?php echo $degree[0]->d_name; ?></td>
+                            <th>Department </th><td><?php echo $degree[0]->d_name; ?></td>
                         </tr>
                         <tr>
-                            <th>Course </th>  <td><?php echo $course[0]->c_name; ?></td>
+                            <th>Branch </th>  <td><?php echo $course[0]->c_name; ?></td>
                         </tr>
                         <tr>
                             <th>Batch </th> <td><?php echo $batch[0]->b_name; ?></td>

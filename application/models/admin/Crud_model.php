@@ -1684,5 +1684,17 @@ class Crud_model extends CI_Model {
                             'student.std_batch' => $batch
                         ])->get()->result();
     }
+    
+    /**
+     * 
+     */
+    function get_recent_professor()
+    {
+        $this->db->select("*");
+        $this->db->from("professor");
+        $this->db->order_by("created_at","DESC");        
+        $this->db->limit(8);
+        return $this->db->get()->result(); 
+    }
 
 }

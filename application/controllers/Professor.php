@@ -30,8 +30,7 @@ class Professor extends MY_Controller {
         $this->data['todolist'] = $this->Professor_model->get_todo();
         $this->data['page'] = 'dashboard';
         $this->data['title'] = 'Professor Dashboard';
-        $this->session->set_userdata('last_activity',"Dashboard Visited");
-        $this->session->set_userdata('activity_status',"1");
+        $this->data['recent_activity'] = $this->Professor_model->get_recent_activity();
         $this->__site_template('professor/dashboard', $this->data);
     }
 
@@ -42,8 +41,7 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'dashboard';
         $this->data['title'] = 'Professor Dashboard';
         $this->data['todolist'] = $this->Professor_model->get_todo();
-        $this->session->set_userdata('last_activity'," Dashboard Visited");
-        $this->session->set_userdata('activity_status',"1");        
+        $this->data['recent_activity'] = $this->Professor_model->get_recent_activity();
         $this->__site_template('professor/dashboard', $this->data);
     }
 
@@ -122,7 +120,7 @@ class Professor extends MY_Controller {
 
 
                 $this->Professor_model->add_syllabus($insert);
-                $this->session->set_userdata('last_activity',"Syllabus Created".$insert['syllabus_title']);
+                $this->session->set_userdata('last_activity',"Syllabus Created ".$insert['syllabus_title']);
                 $this->session->set_userdata('activity_status',"1");
                 $this->session->set_flashdata('flash_message', "Syllabus Added Successfully");
                 redirect(base_url() . 'professor/syllabus/', 'refresh');
@@ -164,7 +162,7 @@ class Professor extends MY_Controller {
 
                 $this->Professor_model->update_syllabus($insert, $param2);
                 $this->session->set_flashdata('flash_message', "Syllabus Updated Successfully");
-                $this->session->set_userdata('last_activity',"Syllabus Updated".$insert['syllabus_title']);
+                $this->session->set_userdata('last_activity',"Syllabus Updated ".$insert['syllabus_title']);
                 $this->session->set_userdata('activity_status',"1");
                 redirect(base_url() . 'professor/syllabus/', 'refresh');
             }
@@ -187,9 +185,7 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Syllabus Management';
         $this->data['add_title'] = $this->lang_message('add_syllabus');
         $this->data['edit_title'] = $this->lang_message('edit_syllabus');
-        $this->data['page'] = 'syllabus';
-         $this->session->set_userdata('last_activity',"Visited Syllabus Module");
-         $this->session->set_userdata('activity_status',"1");
+        $this->data['page'] = 'syllabus';         
         $this->__site_template('professor/syllabus', $this->data);
     }
 
@@ -224,7 +220,7 @@ class Professor extends MY_Controller {
         $this->data['holiday'] = $this->Professor_model->getholiday();
         $this->data['page'] = 'holiday';
         $this->data['title'] = 'Holiday Management';
-        $this->session->set_userdata('last_activity',"Visited Holiday Module");
+        $this->session->set_userdata('last_activity',"Holiday Module visited");
          $this->session->set_userdata('activity_status',"1");
         $this->__site_template('professor/holiday', $this->data);
     }
@@ -295,9 +291,7 @@ class Professor extends MY_Controller {
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
         $this->data['batch'] = $this->Professor_model->get_all_bacth();
-        $this->session->set_flashdata('flash_message', $this->lang_message('update_submitted_assessment'));
-            $this->session->set_userdata('last_activity',"Assessment Visited.");
-             $this->session->set_userdata('activity_status',"1");
+       // $this->session->set_flashdata('flash_message', $this->lang_message('update_submitted_assessment'));            
         $this->__site_template('professor/assessments', $this->data);
     }
 
@@ -469,9 +463,7 @@ class Professor extends MY_Controller {
          */
         $this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignments';
-        $this->data['title'] = 'Assignment Management';
-        $this->session->set_userdata('last_activity',"Assignment Module Visited.");
-        $this->session->set_userdata('activity_status',"1");
+        $this->data['title'] = 'Assignment Management';        
         $this->__site_template('professor/assignment', $this->data);
     }
 
@@ -633,9 +625,7 @@ class Professor extends MY_Controller {
         $this->data['batch'] = $this->Professor_model->get_all_bacth();
         $this->data['page'] = 'study_resources';
         $this->data['title'] = 'Study Resource Management';
-        $this->data['edit_title'] = $this->lang_message('edit_studyresource');
-        $this->session->set_userdata('last_activity',"Study Resource Module Visited.");
-        $this->session->set_userdata('activity_status',"1");
+        $this->data['edit_title'] = $this->lang_message('edit_studyresource');     
         $this->__site_template('professor/studyresource', $this->data);
     }
 
@@ -790,8 +780,7 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Project Management';
         $this->data['add_title'] = $this->lang_message('add_project');
         $this->data['edit_title'] = $this->lang_message('edit_project');
-        $this->session->set_userdata('last_activity',"Project Module visited");
-        $this->session->set_userdata('activity_status',"1");
+        
         $this->__site_template('professor/project', $this->data);
     }
 
@@ -959,8 +948,7 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'digital_library';
         $this->data['title'] = 'Digital Library';
         $this->data['edit_title'] = $this->lang_message('edit_digital_library');
-        $this->session->set_userdata('last_activity',"Library Module Visited.");
-        $this->session->set_userdata('activity_status',"1");
+        
         $this->__site_template('professor/library', $this->data);
     }
 
@@ -1099,9 +1087,7 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'courseware';
         $this->data['title'] = 'Courseware Management';
         $this->data['add_title'] = $this->lang_message('add_courseware');
-        $this->data['edit_title'] = $this->lang_message('edit_courseware');
-        $this->session->set_userdata('last_activity',"Courseware module visited.");
-        $this->session->set_userdata('activity_status',"1");
+        $this->data['edit_title'] = $this->lang_message('edit_courseware');        
         $this->__site_template('professor/courseware', $this->data);
     }
 
@@ -1121,6 +1107,8 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'graduates';
         $this->data['degree'] = $this->Crud_model->get_all_degree();
         $this->data['graduates'] = $this->Crud_model->get_all_graduates();
+         $this->session->set_userdata('last_activity',"graduate module visited.");
+        $this->session->set_userdata('activity_status',"1");
         $this->__site_template('professor/graduate', $this->data);
     }
 
@@ -1154,9 +1142,7 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'attendance';
         $this->data['title'] = 'Attendance';
         $this->data['degree'] = $this->Professor_model->get_departments();
-        $this->data['class'] = $this->Crud_model->class_list();
-        $this->session->set_userdata('last_activity',"Attendance module Visited");
-        $this->session->set_userdata('activity_status',"1");
+        $this->data['class'] = $this->Crud_model->class_list();       
         $this->__site_template('professor/attendance', $this->data);
     }
 
@@ -1291,9 +1277,7 @@ class Professor extends MY_Controller {
         $this->data['degree'] = $this->Professor_model->get_all_degree();
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
-        $this->data['centerlist'] = $this->db->get('center_user')->result();
-        $this->session->set_userdata('last_activity',"Exam module visited");
-        $this->session->set_userdata('activity_status',"1");
+        $this->data['centerlist'] = $this->db->get('center_user')->result();       
         $this->__site_template('professor/exam', $this->data);
     }
 
@@ -1376,8 +1360,6 @@ class Professor extends MY_Controller {
         $this->data['add_title'] = $this->lang_message('add_exam_schedule');
         $this->data['edit_title'] = $this->lang_message('edit_exam_schedule');
         $this->data['page'] = 'exam_schedule';
-        $this->session->set_userdata('last_activity',"Exam time table Module visited");
-        $this->session->set_userdata('activity_status',"1");
         $this->__site_template('professor/exam_time_table', $this->data);
     }
 
@@ -1508,9 +1490,7 @@ class Professor extends MY_Controller {
         $this->data['semester'] = $this->Professor_model->get_all_semester();
         $this->data['time_table'] = $this->Professor_model->time_table();
         $this->data['title'] = 'Exam Marks';
-        $this->data['page'] = 'exam_marks';
-        $this->session->set_userdata('last_activity',"Marks module visited");
-        $this->session->set_userdata('activity_status',"1");
+        $this->data['page'] = 'exam_marks';        
         $this->__site_template('professor/exam_marks', $this->data);
     }
 
@@ -1816,6 +1796,8 @@ class Professor extends MY_Controller {
             //var_dump($admin_list);
             //exit;
             $this->setemail($admin_list, $_POST['subject'], $_POST['message'], $email_cc_list, $attachments);
+            $this->session->set_userdata('last_activity',"Email sent.");
+        $this->session->set_userdata('activity_status',"1");
         }
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['degree'] = $this->Professor_model->get_all_degree();
@@ -2736,13 +2718,14 @@ class Professor extends MY_Controller {
             $_POST['file_name'] = $filename;
 
             professor_email_reply($_POST);
-
+            $this->session->set_userdata('last_activity'," Email replied.");
+             $this->session->set_userdata('activity_status',"1");
             redirect(base_url('professor/email_inbox'));
         }
 
         $this->data['email'] = admin_inbox_email_view($id);
         $this->data['title'] = $this->data['email']->subject;
-        $this->data['page'] = 'email_reply';
+        $this->data['page'] = 'email_reply';         
         $this->__site_template('professor/email_reply', $this->data);
     }
 
