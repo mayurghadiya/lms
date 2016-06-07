@@ -17,7 +17,7 @@
                 <table id="email-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>No</th>
                             <th><?php echo ucwords("Email"); ?></th>
                             <th><?php echo ucwords("Subject"); ?></th>
                             <th><?php echo ucwords("Date"); ?></th>

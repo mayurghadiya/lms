@@ -101,7 +101,7 @@
                                     <div class="panel-body">                                        
                                         <table class="table table-striped table-bordered table-responsive" id="attendance-data-table-2">
                                             <thead>
-                                            <th>#</th>
+                                            <th>No</th>
                                             <th>Roll No</th>
                                             <th>Student Name</th>
                                             <th>Action</th>

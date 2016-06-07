@@ -660,10 +660,10 @@ if (!function_exists('import_exam_marks')) {
         $CI->load->database();
         $insert_id = 0;
         //check for roll
-        
+
         $student = $CI->db->get_where('student', array(
                     'std_id' => $where['marks']['mm_std_id']
-                ))->row(); 
+                ))->row();
         if (count($student)) {
             //check for exam
             $exam = $CI->db->get_where('exam_manager', array(
@@ -681,12 +681,12 @@ if (!function_exists('import_exam_marks')) {
                 if (count($marks)) {
                     //update
                     foreach ($where['subject'] as $row) {
-                        
+
 
                         $subject = $CI->db->get_where('subject_manager', array(
                                     'subject_name' => $row
                                 ))->row();
-                        
+
                         //check for marks greater then total marks
                         if (($exam->total_marks < (int) $data["{$subject->subject_name}"]) && is_numeric($data["{$subject->subject_name}"])) {
                             continue;

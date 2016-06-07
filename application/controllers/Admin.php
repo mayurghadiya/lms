@@ -68,7 +68,7 @@ class Admin extends MY_Controller {
                 $data['created_date'] = date('Y-m-d');
                 $this->db->insert('degree', $data);
                 $this->session->set_flashdata('flash_message', $this->lang_message('save_department'));
-
+                $this->logger->logAction('Department created: ', $_POST);
                 redirect(base_url('admin/department'));
             }
             if ($param1 == 'do_update') {
@@ -84,6 +84,7 @@ class Admin extends MY_Controller {
             $this->db->where('d_id', $param2);
             $this->db->delete('degree');
             $this->session->set_flashdata('flash_message', $this->lang_message('delete_department'));
+            $this->logger->logAction('Department deleted: ', array());
             redirect(base_url('admin/department'));
         }
         $this->data['title'] = $this->lang_message('department_title');
@@ -2816,7 +2817,7 @@ class Admin extends MY_Controller {
         $degree = $this->input->post("degree");
         $course = $this->input->post("course");
         $class = $this->input->post("divclass");
-
+        
         $data['datastudent'] = $this->db->get_where("student", array(
                     "std_batch" => $batch,
                     'std_status' => 1,

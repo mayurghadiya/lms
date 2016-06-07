@@ -1,8 +1,12 @@
-
+<?php
+$this->load->helper('report_chart');
+$course = unique_branch_list();
+$department = student_ratio_department_wise();
+?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/event_calendar/moment.js"></script> 
 <!-- charts js and library -->
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/exporting.js"></script>
 <!-- pie chart (male vs female) -->
 <script>
     $(function () {
@@ -102,24 +106,23 @@
 <!-- bar chart course wise male and female -->
 <script>
     $(function () {
-<?php
-$course = $this->db->get('course')->result();
-$this->load->helper('report_chart');
-?>
     $('#course-male-female').highcharts({
     chart: {
     type: 'column'
     },
             title: {
-            text: 'Male to Female Course count Ratio'
+            text: 'Department student count ratio'
             },
             subtitle: {
             text: ''
             },
             xAxis: {
             categories: [
-<?php foreach ($course as $row) { ?>
-                '<?php echo $row->c_name; ?>',
+<?php
+//$course = unique_branch_list();
+foreach ($department as $row) {
+    ?>
+                '<?php echo $row->d_name; ?>',
 <?php } ?>
             ],
                     crosshair: true
@@ -146,19 +149,13 @@ $this->load->helper('report_chart');
             },
             series: [
             {
-            name: 'Male',
+            name: 'Student',
                     data: [
-<?php foreach ($course as $row) { ?>
-    <?php echo course_male_student_count($row->course_id); ?>,
-<?php } ?>
-                    ]
-
-            },
-            {
-            name: 'Female',
-                    data: [
-<?php foreach ($course as $row) { ?>
-    <?php echo course_female_student_count($row->course_id); ?>,
+<?php
+//$male = male_ratio_course_wise();
+foreach ($department as $row) {
+    ?>
+    <?php echo $row->TotalStudent; ?>,
 <?php } ?>
                     ]
             }]
@@ -208,8 +205,11 @@ $this->load->helper('report_chart');
             series: [{
             name: 'Students',
                     data: [
-<?php foreach ($course as $row) { ?>
-    <?php echo course_wise_student($row->course_id); ?>,
+<?php
+$students = total_count_of_student_branch_wise();
+foreach ($students as $student) {
+    ?>
+    <?php echo $student->TotalStudent; ?>,
 <?php } ?>
                     ]
 
@@ -667,7 +667,7 @@ $this->load->helper('report_chart');
 <!-- Start .row -->
 <div class=row>
     <div class="col-lg-12 col-md-12 col-xs-12">
-        <!-- col-lg-12 start here -->
+        <!-- col-lg-12 start here Event Calendar -->
         <div class="panel panel-default toggle">
             <!-- Start .panel -->
             <div class=panel-heading>
@@ -683,6 +683,7 @@ $this->load->helper('report_chart');
         <div class="row">
             <!-- To do list Start div-->
             <div class="col-lg-5">
+                <!--  To Do List -->
                 <div class="panel panel-default toggle">
                     <!-- Start .panel -->
                     <div class=panel-heading>
@@ -772,8 +773,6 @@ $this->load->helper('report_chart');
                     <!-- End .todo-widget -->
                 </div>
             </div>
-
-
             <div class="col-lg-6">
                 <div id="checkAll-active" class="col-lg-10">
                     <!-- col-lg-10 start here -->
@@ -807,8 +806,6 @@ $this->load->helper('report_chart');
                     <!-- End .row -->
                 </div>
             </div>
-
-
             <!-- To do list End div-->            
 
             <!-- To Time line Start div-->
@@ -830,20 +827,34 @@ $this->load->helper('report_chart');
             $i = 0;
             foreach ($timeline as $time_line) {
                 ?>
-                                                         <div class="tl-row">
-                                                             <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                                                                 <div class="tl-bullet bg-blue"></div>
-                                                                 <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
-                                                                 <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                                                     <div class="arrow"></div>
-                                                                     <div class="popover-content">
-                                                                         <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
-                                                                         <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
-                                                                         <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
+                                                                             <div class="tl-row">
+                                                                                 <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                                                     <div class="tl-bullet bg-blue"></div>
+                                                                                     <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
+                                                                                     <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                                                         <div class="arrow"></div>
+                                                                                         <div class="popover-content">
+                                                                                             <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
+                                                                                             <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
+                                                                                             <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
+                                                                                         </div>
+                                                                                     </div>
+                                                                                 </div>
+                                                                             </div>
+                                                                 <div class="tl-row">
+                                                                     <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                                         <div class="tl-bullet bg-blue"></div>
+                                                                         <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
+                                                                         <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                                             <div class="arrow"></div>
+                                                                             <div class="popover-content">
+                                                                                 <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
+                                                                                 <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
+                                                                                 <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
+                                                                             </div>
+                                                                         </div>
                                                                      </div>
                                                                  </div>
-                                                             </div>
-                                                         </div>
                 <?php
                 $i++;
             }
@@ -866,7 +877,7 @@ $this->load->helper('report_chart');
             <div class="panel-heading">
                 <h4 class="panel-title marginzero">Report Charts</h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body margin25top">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="panel panel-default">

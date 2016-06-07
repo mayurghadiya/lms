@@ -12,7 +12,7 @@ if (!function_exists('new_student_registration')) {
         $CI = & get_instance();
         $CI->load->database();
 
-        $result = $CI->db->select('COUNT(*) AS Total, YEAR(created_date) AS Year')
+        $result = $CI->db->select('COUNT(std_id) AS Total, YEAR(created_date) AS Year')
                 ->from('student')
                 ->group_by('Year')
                 ->get()
@@ -32,7 +32,7 @@ if (!function_exists('male_vs_female_course_wise')) {
         $CI = & get_instance();
         $CI->load->database();
 
-        $result['male'] = $CI->db->select('COUNT(*) AS TotalMale, c_name, YEAR(student.created_date) as Year')
+        $result['male'] = $CI->db->select('COUNT(std_id) AS TotalMale, c_name, YEAR(student.created_date) as Year')
                 ->from('course')
                 ->join('student', 'student.course_id = course.course_id')
                 ->where('std_gender', 'Male')
@@ -40,7 +40,7 @@ if (!function_exists('male_vs_female_course_wise')) {
                 ->get()
                 ->result();
 
-        $result['female'] = $CI->db->select('COUNT(*) AS TotalMale, c_name, YEAR(student.created_date) as Year')
+        $result['female'] = $CI->db->select('COUNT(std_id) AS TotalMale, c_name, YEAR(student.created_date) as Year')
                 ->from('course')
                 ->join('student', 'student.course_id = course.course_id')
                 ->where('std_gender', 'Female')
@@ -64,7 +64,7 @@ if (!function_exists('course_male_student_count')) {
         $CI = & get_instance();
         $CI->load->database();
 
-        $result = $CI->db->select('COUNT(*) AS TotalMale')
+        $result = $CI->db->select('COUNT(std_id) AS TotalMale')
                 ->from('student')
                 ->join('course', 'course.course_id = student.course_id')
                 ->where('student.std_gender', 'Male')
@@ -87,7 +87,7 @@ if (!function_exists('course_female_student_count')) {
         $CI = & get_instance();
         $CI->load->database();
 
-        $result = $CI->db->select('COUNT(*) AS TotalMale')
+        $result = $CI->db->select('COUNT(std_id) AS TotalMale')
                 ->from('student')
                 ->join('course', 'course.course_id = student.course_id')
                 ->where('student.std_gender', 'Female')
@@ -110,7 +110,7 @@ if (!function_exists('course_wise_student')) {
         $CI = & get_instance();
         $CI->load->database();
 
-        $result = $CI->db->select('COUNT(*) AS Total')
+        $result = $CI->db->select('COUNT(std_id) AS Total')
                 ->from('student')
                 ->join('course', 'course.course_id = student.course_id')
                 ->where('course.course_id', $course_id)
@@ -131,19 +131,69 @@ if (!function_exists('male_female_students')) {
         $CI = & get_instance();
         $CI->load->database();
 
-        $result['total_male_student'] = $CI->db->select()
+        $result['total_male_student'] = $CI->db->select('std_id')
                 ->from('student')
                 ->where('std_gender', 'Male')
                 ->get()
                 ->num_rows();
 
-        $result['total_female_student'] = $CI->db->select()
+        $result['total_female_student'] = $CI->db->select('std_id')
                 ->from('student')
                 ->where('std_gender', 'Female')
                 ->get()
                 ->num_rows();
 
         return $result;
+    }
+
+}
+
+if (!function_exists('total_count_of_student_branch_wise')) {
+
+    /**
+     * Total count of student branch wise
+     * @return mixed
+     */
+    function total_count_of_student_branch_wise() {
+        $CI = & get_instance();
+        return $CI->db->select('COUNT(std_id) AS TotalStudent')
+                        ->from('student')
+                        ->join('course', 'course.course_id = student.course_id', 'right')
+                        ->group_by('course.course_id')
+                        ->get()->result();
+    }
+
+}
+
+if (!function_exists('unique_branch_list')) {
+
+    /**
+     * Unique branch list
+     * @return mixed
+     */
+    function unique_branch_list() {
+        $CI = & get_instance();
+        return $CI->db->select('course.c_name')
+                        ->from('course')
+                        ->get()->result();
+    }
+
+}
+
+if (!function_exists('student_ratio_department_wise')) {
+    
+    /**
+     * Student count ratio department wise
+     * @return mixed
+     */
+    function student_ratio_department_wise() {
+        $CI = & get_instance();
+        return $CI->db->select('COUNT(std_id) AS TotalStudent, d_name')
+                        ->from('student')
+                        ->join('degree', 'degree.d_id = student.std_degree', 'right')
+                        //->where('std_gender', 'Male')
+                        ->group_by('degree.d_id')
+                        ->get()->result();
     }
 
 }
