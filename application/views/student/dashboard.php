@@ -930,7 +930,7 @@
                                              $i++;
                                              $j = 0;
                                              ?>
-                                                <div class="tl-row <?php echo $i;?>">
+                                                <div class="tl-row">
                                             <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
                                                 <div class="tl-bullet bg-blue"></div>
                                                 <div class="tl-panel"><?php echo $c; ?></div>

@@ -18,11 +18,11 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th><div>Title</div></th>
-                            <th><div>Paid</div></th>
-                            <th><div>Status</div></th>
-                            <th><div>Date</div></th>
-                            <th><div>Options</div></th>
+                            <th>Title</th>
+                            <th>Paid</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>                   

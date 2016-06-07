@@ -2,14 +2,14 @@
                                     <table class="table table-striped" id="data-tablesupd">
                                         <thead>
                                             <tr>
-                                                <th><div>#</div></th>											
-                                                <th><div>Student Name</div></th>	                                               
-                                                <th><div>Department</div></th>											
-                                                <th><div>Branch</div></th>
-                                                <th><div>Batch</div></th>
+                                                <th>#</th>											
+                                                <th>Student Name</th>	                                               
+                                                <th>Department</th>											
+                                                <th>Branch</th>
+                                                <th>Batch</th>
 
-                                                <th><div>Semester</div></th>											
-                                                <th><div>Download</div></th>											                                                
+                                                <th>Semester</th>											
+                                                <th>Download</th>											                                                
 
                                             </tr>
                                         </thead>

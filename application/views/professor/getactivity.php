@@ -2,16 +2,16 @@
                                     <table class="table table-striped table-bordered table-responsive" id="data-tables">
                                         <thead>
                                             <tr>
-                                                <th><div>#</div></th>											
-                                                <th><div>Student Name</div></th>	
-                                                <th><div>Participate Title</div></th>
-                                                <th><div>Comment</div></th>
-                                                <th><div>Course</div></th>											
-                                                <th><div>Branch</div></th>
-                                                <th><div>Batch</div></th>
+                                                <th>#</th>											
+                                                <th>Student Name</th>	
+                                                <th>Participate Title</th>
+                                                <th>Comment</th>
+                                                <th>Course</th>											
+                                                <th>Branch</th>
+                                                <th>Batch</th>
 
-                                                <th><div>Semester</div></th>											
-                                                <th><div>Participate Status</div></th>											
+                                                <th>Semester</th>											
+                                                <th>Participate Status</th>											
                                             </tr>
                                         </thead>
                                         <tbody>
