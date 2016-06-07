@@ -29,6 +29,12 @@
             $('#myModalLabel2').html('Update Participate');
         } else if(url.indexOf('edit_question') >= 0) {
             $('#myModalLabel2').html('Update Question');
+        } else if(url.indexOf("addcomments") >= 0) {
+               $('#myModalLabel2').html('Add Comment');
+        } else if(url.indexOf("modal_view_profile") >= 0) {
+               $('#myModalLabel2').html('Professor Details');
+        } else if(url.indexOf("modal_survey_detal") >= 0) {
+               $('#myModalLabel2').html('Survey Detail');
         }
         // SHOWING AJAX PRELOADER IMAGE
         jQuery('#modal_ajax .modal-body').html('<div style="text-align:center;margin-top:200px;"><img src="<?php echo base_url(); ?>assets/img/preloader.gif" /></div>');

@@ -307,7 +307,7 @@
                 var semester = $("#ssemesters").val();
                 var divclass = $("#sfilterclass").val();
                 $.ajax({
-                    url: '<?php echo base_url(); ?>admin/getassignment/submitted',
+                    url: '<?php echo base_url(); ?>admin/getassignment/assessments',
                     type: 'post',
                     data: {'degree': degree, "course": course, "batch": batch, "semester": semester, 'divclass': divclass},
                     success: function (content) {

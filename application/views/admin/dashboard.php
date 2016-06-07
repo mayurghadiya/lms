@@ -709,7 +709,7 @@ $this->load->helper('report_chart');
                                                 <div class=form-group>
                                                     <label class="control-label col-lg-4">Task Date</label>
                                                     <div class="col-sm-8">
-                                                        <input id="basic-datepicker" type="text" name="tado_date" class="form-control" readonly="">
+                                                        <input id="basic-datepicker" type="text" name="tado_date" class="form-control" value="" readonly="">
                                                     </div>
                                                 </div>
                                                 <div class=form-group>
@@ -717,14 +717,14 @@ $this->load->helper('report_chart');
                                                     <div class="col-sm-8">
                                                         <div class="input-group bootstrap-timepicker">
                                                             <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                                            <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8" readonly="">
+                                                            <input id="minute-step-timepicker" name="todo_time" value="" type="text" class="form-control col-lg-8" readonly="">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class=form-group>
                                                     <div class="col-sm-offset-4 col-sm-8">
                                                         <input type="button" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
-                                                        <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform">
+                                                     <!--  <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform">-->
                                                     </div>
                                                 </div>
                                             </form>
@@ -830,20 +830,20 @@ $this->load->helper('report_chart');
             $i = 0;
             foreach ($timeline as $time_line) {
                 ?>
-                                                         <div class="tl-row">
-                                                             <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                                                                 <div class="tl-bullet bg-blue"></div>
-                                                                 <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
-                                                                 <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                                                     <div class="arrow"></div>
-                                                                     <div class="popover-content">
-                                                                         <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
-                                                                         <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
-                                                                         <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
-                                                                     </div>
-                                                                 </div>
-                                                             </div>
-                                                         </div>
+                                                                                             <div class="tl-row">
+                                                                                                 <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                                                                     <div class="tl-bullet bg-blue"></div>
+                                                                                                     <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
+                                                                                                     <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                                                                         <div class="arrow"></div>
+                                                                                                         <div class="popover-content">
+                                                                                                             <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
+                                                                                                             <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
+                                                                                                             <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
+                                                                                                         </div>
+                                                                                                     </div>
+                                                                                                 </div>
+                                                                                             </div>
                 <?php
                 $i++;
             }
@@ -942,137 +942,7 @@ $this->load->helper('report_chart');
 </div> -->
 
 <!-- To do list Start JS-->
-<script type="text/javascript">
-
-            $(document).ready(function () {
-    $("#todo-addform").hide();
-    $("#basic-datepicker").datepicker({
-    autoclose: true
-    });
-    //task-done
-
-    $('#minute-step-timepicker').timepicker({
-    upArrowStyle: 'fa fa-angle-up',
-            downArrowStyle: 'fa fa-angle-down',
-            minuteStep: 30
-    });
-    $(document).ajaxStart(function () {
-    $("#wait").css("display", "block");
-    });
-    $(document).ajaxComplete(function () {
-    $("#wait").css("display", "none");
-    });
-    $(".close").click(function () {
-    var id = $(this).val();
-    var dataString = "id=" + id;
-    $.ajax({
-    type: "POST",
-            url: "<?php echo base_url(); ?>admin/removetodolist",
-            data: dataString,
-            success: function () {
-
-            }
-
-    });
-    });
-    $("#addnewtodo").click(function () {
-    $("#updateformhtml").html('');
-    $("#todo-addform").show(500);
-    $('#addbutton').val('Add New to do');
-    $('#closeform').val('Close');
-    });
-    $("#frmtodo #addbutton").click(function ()
-    {
-    var title = $("#todo_title").val();
-    var todo_date = $("#basic-datepicker").val();
-    var todo_time = $("#minute-step-timepicker").val();
-    if (title != "" && todo_date != "" && todo_time != "")
-    {
-    var dataString = "title=" + encodeURIComponent(title) + "&todo_date=" + todo_date + "&todo_time=" + todo_time;
-    $.ajax({
-    type: "POST",
-            url: "<?php echo base_url(); ?>admin/add_to_do",
-            data: dataString,
-            success: function (response) {
-            $(".todo-list").html(response);
-            $('#frmtodo #todo_title').val('');
-            $('#frmtodo #basic-datepicker').val('');
-            }
-
-    });
-    } else {
-    if (title == "")
-    {
-    $("#todo_title").css('border-color', 'red');
-    } else {
-    $("#todo_title").css('border-color', '#ccc');
-    }
-    if (todo_date == "")
-    {
-    $("#basic-datepicker").css('border-color', 'red');
-    } else {
-    $("#basic-datepicker").css('border-color', '#ccc');
-    }
-    if (todo_time == "")
-    {
-    $("#minute-step-timepicker").css('border-color', 'red');
-    } else {
-    $("#minute-step-timepicker").css('border-color', '#ccc');
-    }
-    }
-
-    });
-    $(".taskstatus").click(function () {
-    if ($(this).is(':checked'))
-    {
-
-    $(this).closest('li.todo-task-item').addClass('task-done');
-    var id = $(this).val(); // todo id
-    var dataString = "id=" + id + "&status=0";
-    $.ajax({
-    type: "POST",
-            url: "<?php echo base_url(); ?>admin/changestatus",
-            data: dataString,
-            success: function () {
-
-            }
-    });
-    } else {
-    $(this).closest('li.todo-task-item').removeClass('task-done');
-    var id = $(this).val(); // todo id
-    var dataString = "id=" + id + "&status=1";
-    $.ajax({
-    type: "POST",
-            url: "<?php echo base_url(); ?>admin/changestatus",
-            data: dataString,
-            success: function () {
-
-            }
-    });
-    }
-
-    });
-    /**
-     * Update ajax request
-     */
-    $(".updateclick").click(function () {
-
-    var id = $(this).val();
-    $.ajax({
-    type: "GET",
-            url: "<?php echo base_url(); ?>admin/todoupdateform/" + id,
-            success: function (response)
-            {
-            $("#todo-addform").hide();
-            $("#updateformhtml").html(response);
-            $('.todo-close_box').css('pointer-events', 'none');
-            }
-    });
-    });
-    $("#closeform").click(function () {
-    $("#todo-addform").hide(500);
-    });
-    });</script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/todo-admin.js"></script>
 <!-- To do list Js End-->
 
 <!-- jQuery Scrollbar Js start -->

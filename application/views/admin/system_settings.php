@@ -309,5 +309,45 @@
     $(document).ready(function () {
         var countryCode = '<?php echo $this->db->get_where('system_setting', array('type' => 'country_code'))->row()->description; ?>';
         $('#countryCode').val(countryCode);
+        jQuery.validator.addMethod("phone", function (value, element) {
+            return this.optional(element) || /^[0-9-+]+$/.test(value);
+        }, 'Please enter a valid contact no.');
+        jQuery.validator.addMethod("system_email", function (value, element) {
+            return this.optional(element) || /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(value);
+        }, 'Please enter a valid email address.');
+
+        $("#systemform").validate({
+            rules: {
+                system_name: "required",
+                countryCode: "required",
+                phone:
+                        {
+                            required: true,
+                            maxlength: 11,
+                            phone: true,
+                            minlength: 10,
+                        },
+                system_email: { required: true,
+                            system_email: true,},
+                currency: "required",
+            },
+            messages: {
+                system_name: "Enter system name",
+                countryCode: "Select country code",
+                phone:{
+                     required: "Enter phone no",
+                            maxlength: "Enter maximum 10 digit number",
+                            phone: "Enter valid phone number",
+                            minlength: "Enter minimum 10 digit number",
+                },               
+                system_email: {
+                    required: "Enter email id",
+                    system_email: "Enter valid email id",},
+                
+                currency: "Enter currency",
+            }
+        });
+        
+        
     })
 </script>

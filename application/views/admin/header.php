@@ -249,6 +249,12 @@
                                                     </a>
                                                 </li>
                                                 <li>
+                                                    <a id="link-vocational_register_student" href="<?php echo base_url(); ?>admin/vocational_student">
+                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <span class="txt">Vocational Students</span>
+                                                    </a>
+                                                </li>
+                                                <li>
                                                     <a id="link-assessments" href="<?php echo base_url(); ?>admin/assessments">
                                                         <i class="s16 icomoon-icon-file"></i>
                                                         <span class="txt">Assessment</span>
@@ -259,13 +265,7 @@
                                                         <i class="s16 icomoon-icon-file"></i>
                                                         <span class="txt">Time Line</span>
                                                     </a>
-                                                </li>-->
-                                                <li>
-                                                    <a id="link-vocational_register_student" href="<?php echo base_url(); ?>admin/vocational_student">
-                                                        <i class="s16 icomoon-icon-file"></i>
-                                                        <span class="txt">Vocational Course Students</span>
-                                                    </a>
-                                                </li>
+                                                </li>-->                                               
                                             </ul>
                                         </li>
                                         <li>
@@ -339,7 +339,7 @@
 
                                         <?php
                                         $pages = [
-                                            'forum', 'forum_topic'
+                                            'forum', 'forum_topic','forum_comment'
                                         ];
                                         ?>
 

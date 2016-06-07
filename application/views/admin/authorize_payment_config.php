@@ -96,27 +96,28 @@
 </div>
 </div>
 <script type="text/javascript">
+     $(document).ready(function () {
     $.validator.setDefaults({
         submitHandler: function (form) {
             form.submit();
         }
     });
 
-    $().ready(function () {
+   
         $("#authorizenetconfig").validate({
             rules: {
                 login_id: "required",
                 transaction_key: "required",
                 success_url: "required",
                 failure_url: "required",
-                cancel_url: "required"
+                cancel_url: "required",
             },
             messages: {
                 login_id: "Please enter login id",
                 transaction_key: "Please enter transaction key",
                 success_url: "Please enter success url",
                 failure_url: "Please enter failure url",
-                cancel_url: "Please enter cancel url"
+                cancel_url: "Please enter cancel url",
             }
         });
     });

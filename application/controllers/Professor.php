@@ -69,7 +69,7 @@ class Professor extends MY_Controller {
         $this->data['subject'] = $this->db->query("SELECT * FROM subject_manager WHERE FIND_IN_SET('" . $dept . "',professor_id)")->result();
         $login_id = $this->session->userdata('login_user_id');
         $degree = $this->db->get_where("professor", array("professor_id" => $login_id))->result();
-        $this->db->where("degree_id", $degree[0]->department);
+        //$this->db->where("degree_id", $degree[0]->department);
         $this->data['course'] = $this->db->get('course')->result();
         $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['page'] = 'subject';
@@ -2065,6 +2065,38 @@ class Professor extends MY_Controller {
             $this->load->view("professor/getassignment", $data);
         }
         if ($param == "submitted") {
+
+            $degree = $this->input->post('degree');
+            $course = $this->input->post('course');
+            $batch = $this->input->post('batch');
+            $semester = $this->input->post("semester");
+            // $class = $this->input->post("divclass");
+            $data['course'] = $this->db->get('course')->result();
+            $data['semester'] = $this->db->get('semester')->result();
+            $data['batch'] = $this->db->get('batch')->result();
+            $data['degree'] = $this->db->get('degree')->result();
+            $data['class'] = $this->db->get('class')->result();
+            //   $this->db->where("course_id",$course);
+            //   $this->db->where("assign_batch",$batch);
+            //  $this->db->where("assign_degree",$degree);
+            //   $this->db->where("assign_sem",$semester);
+            //$data['assignment'] = $this->db->get('assignment_manager')->result();
+
+            $this->db->select("ass.*,am.*,s.*,s.class_id");
+            $this->db->from('assignment_submission ass');
+            $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+            $this->db->join("student s", "s.std_id=ass.student_id");
+            $this->db->where("am.course_id", $course);
+            $this->db->where("am.assign_batch", $batch);
+            $this->db->where("am.assign_degree", $degree);
+            $this->db->where("am.assign_sem", $semester);
+            //$this->db->where("am.class_id", $class);
+            $data['submitedassignment'] = $this->db->get()->result();
+
+            $data['param'] = $param;
+            $this->load->view("professor/getassignment", $data);
+        }
+        if ($param == "assessments") {
 
             $degree = $this->input->post('degree');
             $course = $this->input->post('course');

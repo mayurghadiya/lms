@@ -195,6 +195,12 @@
                                                         <span class="txt">Assessments</span>
                                                     </a>
                                                 </li>
+                                                <li>
+                                                    <a id="link-vocational_course" href="<?php echo base_url(); ?>professor/vocational_student">
+                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <span class="txt">Vocational Students</span>
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </li>
                                         

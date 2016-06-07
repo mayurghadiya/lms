@@ -37,6 +37,9 @@
             <link rel=icon href=<?php echo base_url(); ?>assets/img/ico/favicon.ico type=image/png>
             <meta name=msapplication-TileColor content="#3399cc">
             <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
+            <script>
+                var base_url = '<?php echo base_url(); ?>';
+            </script>
         <body class="<?php echo $this->router->fetch_method(); ?> student_dashboard">
             <!--[if lt IE 9]>
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

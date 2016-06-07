@@ -74,7 +74,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo ucwords("Teacher Email"); ?></label>
                         <div class="col-sm-5">
-                            <select id="teacheremail" class="form-control select2" name="teacheremail[]" multiple="">
+                            <select id="teacheremail" class="form-control select3" name="teacheremail[]" multiple="">
                                 <option value="all">All</option>
                                 <?php foreach ($teacher as $row) { ?> 
                                     <option value="<?php echo $row->email; ?>"><?php echo $row->name . ' (' . $row->email . ')'; ?></option>

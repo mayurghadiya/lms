@@ -9,10 +9,7 @@ $this->load->helper("date_format");
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="panel-primary" data-collapsed="0">
-            <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Survey Detail"); ?></h4>                
-            </div>
+        <div class="panel-primary" data-collapsed="0">            
 
             <div class="panel-body">
                 <div class="tab-pane box" id="add" style="padding: 5px">
