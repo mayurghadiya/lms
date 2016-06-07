@@ -23,10 +23,10 @@
                             <lable class="error" id="error_lable_exist" style="color:#f85d2c"></lable>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label"><?php echo ucwords("Course"); ?><span style="color:red">*</span></label>
+                            <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <select name="degree" id="degree" class="form-control">
-                                    <option value="">Select Course</option>
+                                    <option value="">Select department</option>
                                     <?php
                                     foreach ($degree as $dgr) {
                                         ?>
@@ -170,9 +170,9 @@
                         },
             },
             messages: {
-                degree: "Select Course",
-                course: "Select Branch",
-                semester: "Select Semester",
+                degree: "Select department",
+                course: "Select branch",
+                semester: "Select semester",
                 syllabusfile: {
                     required: "Upload file",
                     extension: 'Upload PDF file only',

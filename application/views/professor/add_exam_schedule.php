@@ -12,6 +12,9 @@ $degree = $this->Professor_model->get_all_degree();
                             <h4 class=panel-title>Add Exam Schedule</h4>                
                         </div>-->
             <div class=panel-body>
+            <div class="">
+                  <span style="color:red">* <?php echo "is ".ucwords("mandatory field");?></span> 
+              </div>   
                 <?php echo form_open(base_url() . 'professor/exam_time_table/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'exam_time_table_form', 'target' => '_top')); ?>
                 <br/>
                 <div class="padded">
@@ -112,8 +115,12 @@ $degree = $this->Professor_model->get_all_degree();
         </div>
         <!-- col-lg-12 end here -->
     </div>
-
+<script type="text/javascript">
+        $('#exam_date').datepicker({format:'MM d, yyyy',autoclose:true});
+       
+    </script>
     <script>
+        
         $(document).ready(function () {
               $('#start_time').timepicker({
             upArrowStyle: 'fa fa-angle-up',
@@ -125,6 +132,38 @@ $degree = $this->Professor_model->get_all_degree();
             downArrowStyle: 'fa fa-angle-down',
             minuteStep: 30
     });
+    
+    $( "#exam_date" ).focusin(function() {
+         $(this).prop('readonly', true);
+      });
+      $( "#exam_date" ).focusout(function() {
+         $(this).prop('readonly', false);
+      });
+    $("#exam_time_table_form").validate({
+                rules: {
+                    degree: "required",
+                    course: "required",
+                    batch: "required",
+                    semester: "required",
+                    exam: "required",
+                    subject: "required",
+                    exam_date: "required",
+                    start_time: "required",
+                    end_time: "required"
+                },
+                messages: {
+                    degree: "Please select department",
+                    course: "Please select branch",
+                    batch: "Please select batch",
+                    semester: "Please select semester",
+                    exam: "Please select exam",
+                    subject: "Please select subject",
+                    exam_date: "Please enter date",
+                    start_time: "Please enter start time",
+                    end_time: "Please enter end time"
+                }
+            });
+    
             //course by degree
             $('#degree').on('change', function () {
                 var course_id = $('#course').val();

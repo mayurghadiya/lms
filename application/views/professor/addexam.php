@@ -9,6 +9,9 @@
                             <h4 class=panel-title>Add Exam</h4>
                         </div>-->
             <div class=panel-body>
+                  <div class="">
+                                    <span style="color:red">* <?php echo "is ".ucwords("mandatory field");?></span> 
+                                </div>   
                 <?php echo form_open(base_url() . 'professor/exam/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'examform', 'target' => '_top')); ?>
                 <div class="padded">
                     <?php
@@ -127,7 +130,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><?php echo ucwords("Start Date"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-8">
-                            <input readonly="" type="text" name="date" id="date" class="form-control datepicker-normal"
+                            <input type="text" name="date" id="date" class="form-control datepicker-normal"
                                    value="<?php echo set_value('date'); ?>"/>
                         </div>
                     </div>
@@ -141,7 +144,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><?php echo ucwords("End Date"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-8">
-                            <input readonly="" type="text" name="end_date_time" id="end_date_time" class="form-control"
+                            <input type="text" name="end_date_time" id="end_date_time" class="form-control"
                                    value="<?php echo set_value('end_date_time'); ?>"/>
                         </div>
                     </div>
@@ -169,6 +172,20 @@
             form.submit();
         }
     });
+    
+      $( "#date" ).focusin(function() {
+         $(this).prop('readonly', true);
+      });
+      $( "#date" ).focusout(function() {
+         $(this).prop('readonly', false);
+      });
+      $( "#end_date_time" ).focusin(function() {
+         $(this).prop('readonly', true);
+      });
+      $( "#end_date_time" ).focusout(function() {
+         $(this).prop('readonly', false);
+      });
+
     $(document).ready(function () {
         $("#examform").validate({
             rules: {
