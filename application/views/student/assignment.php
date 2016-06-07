@@ -28,12 +28,12 @@
                             <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>
-                                        <th><div>Assignment Name</div></th>											
-                                        <th><div>Date of submission</div></th>
-                                        <th><div>Description</div></th>
-                                        <th><div>File</div></th>                                                    
-                                        <th><div>Action</div></th>
+                                        <th>#</th>
+                                        <th>Assignment Name</th>											
+                                        <th>Date of submission</th>
+                                        <th>Description</th>
+                                        <th>File</th>                                                    
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,11 +69,11 @@
                             <table id="submitted-assignment-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                 <thead>
                                     <tr>
-                                        <th><div>#</div></th>
-                                        <th><div>Assignment Name</div></th>												
-                                        <th><div>Submitted Date</div></th>												
-                                        <th><div>Document Name</div></th>	
-                                        <th><div>File</div></th>                                                               
+                                        <th>#</th>
+                                        <th>Assignment Name</th>												
+                                        <th>Submitted Date</th>												
+                                        <th>Document Name</th>	
+                                        <th>File</th>                                                               
                                     </tr>
                                 </thead>
                                 <tbody>

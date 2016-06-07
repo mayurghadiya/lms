@@ -7,9 +7,9 @@ foreach ($edit_data as $row):
             <!-- col-lg-12 start here -->
             <div class="panel-default toggle panelMove panelClose panelRefresh">
                 <!-- Start .panel -->
-                <div class=panel-heading>
+<!--                <div class=panel-heading>
                     <h4 class=panel-title> <?php echo ucwords("Update Assignment"); ?></h4>
-                </div>                
+                </div>                -->
                 <div class="panel-body">
                     <div class="tab-pane box" id="add" style="padding: 5px">
                         <div class="box-content">  

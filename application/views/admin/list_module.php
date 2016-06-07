@@ -18,7 +18,7 @@
                         <div class="">
                             <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
                         </div> 
-                        <?php echo form_open(base_url() . 'admin/list_module/do_update', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'list_module')); ?>
+                        <?php echo form_open(base_url() . 'admin/list_module/do_update', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'id' => 'list_module1')); ?>
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Group Name"); ?> <span style="color:red">*</span></label>
                             <div class="col-sm-5 controls">
@@ -83,7 +83,7 @@
 <script type="text/javascript">
    
    $(document).ready(function() {
-    $("#list_module").validate({
+    $("#list_module1").validate({
             rules: {
                     group_name: "required",				
                     'module_name[]': "required",

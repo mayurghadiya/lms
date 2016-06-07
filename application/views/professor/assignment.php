@@ -80,8 +80,8 @@
                                 <table id="assignmenttable" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                     <thead>
                                         <tr>
-                                            <th>#</th>												
-                                            <th>Assignment Name</th>
+                                            <th>No</th>												
+                                            <th>Assignment</th>
                                             <th>Department</th>
                                             <th>Branch</th>												
                                             <th>Batch</th>												
@@ -223,16 +223,16 @@ Delete
                                 <table class="table table-striped table-bordered table-responsive" id="sub-tables">
                                     <thead>
                                         <tr>
-                                            <th><div>#</div></th>												
-                                            <th><div><?php echo ucwords("Assignment Name"); ?></div></th>
-                                            <th><div><?php echo ucwords("Student Name"); ?></div></th>
-                                            <th><div><?php echo ucwords("Course"); ?></div></th>
-                                            <th><div><?php echo ucwords("Branch"); ?></div></th>												
-                                            <th><div><?php echo ucwords("Batch"); ?></div></th>												
-                                            <th><div><?php echo ucwords("Sem"); ?></div></th>	
-                                            <th><div><?php echo ucwords("Submitted date"); ?></div></th>	
-                                            <th><div><?php echo ucwords("Comment"); ?></div></th>
-                                            <th><div><?php echo ucwords("File"); ?></div></th>												                                            
+                                            <th>#</th>												
+                                            <th><?php echo ucwords("Assignment Name"); ?></th>
+                                            <th><?php echo ucwords("Student Name"); ?></th>
+                                            <th><?php echo ucwords("Course"); ?></th>
+                                            <th><?php echo ucwords("Branch"); ?></th>												
+                                            <th><?php echo ucwords("Batch"); ?></th>												
+                                            <th><?php echo ucwords("Sem"); ?></th>	
+                                            <th><?php echo ucwords("Submitted date"); ?></th>	
+                                            <th><?php echo ucwords("Comment"); ?></th>
+                                            <th><?php echo ucwords("File"); ?></th>												                                            
                                         </tr>
                                     </thead>
                                     <tbody>

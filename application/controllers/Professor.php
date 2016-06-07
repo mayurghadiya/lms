@@ -56,8 +56,8 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'student';
         $this->data['title'] = 'Student Management';
         $this->data['detail_title'] = $this->lang_message('student_detail');
-        $this->session->set_userdata('last_activity',"Student Module Visited");
-        $this->session->set_userdata('activity_status',"1");
+        $this->session->set_userdata('last_activity', "Student Module Visited");
+        $this->session->set_userdata('activity_status', "1");
         $this->__site_template('professor/student', $this->data);
     }
 
@@ -66,16 +66,20 @@ class Professor extends MY_Controller {
      */
     function subject() {
         $dept = $this->session->userdata('department');
-        $this->data['subject'] = $this->db->query("SELECT * FROM subject_manager WHERE FIND_IN_SET('" . $dept . "',professor_id)")->result();
+        $this->data['subject'] = $this->db->query("SELECT * FROM subject_manager WHERE FIND_IN_SET('" . $this->session->userdata('login_user_id') . "',professor_id)")->result();
+      
         $login_id = $this->session->userdata('login_user_id');
         $degree = $this->db->get_where("professor", array("professor_id" => $login_id))->result();
         //$this->db->where("degree_id", $degree[0]->department);
         $this->data['course'] = $this->db->get('course')->result();
+          
         $this->data['semester'] = $this->db->get('semester')->result();
+      
+       
         $this->data['page'] = 'subject';
         $this->data['title'] = 'Subject Management';
-        $this->session->set_userdata('last_activity',"Subject Module Visited.");
-        $this->session->set_userdata('activity_status',"1");
+        $this->session->set_userdata('last_activity', "Subject Module Visited.");
+        $this->session->set_userdata('activity_status', "1");
         $this->__site_template('professor/subject', $this->data);
     }
 
@@ -101,8 +105,8 @@ class Professor extends MY_Controller {
 
                     if (!$this->upload->do_upload('syllabusfile')) {
                         $this->session->set_flashdata('flash_message', "Invalid File!");
-                        $this->session->set_userdata('last_activity',"Syllabus Create Operation Failed Invalid File!");
-                        $this->session->set_userdata('activity_status',"0");
+                        $this->session->set_userdata('last_activity', "Syllabus Create Operation Failed Invalid File!");
+                        $this->session->set_userdata('activity_status', "0");
                         redirect(base_url() . 'professor/syllabus/', 'refresh');
                     } else {
                         $file = $this->upload->data();
@@ -142,8 +146,8 @@ class Professor extends MY_Controller {
 
                     if (!$this->upload->do_upload('syllabusfile')) {
                         $this->session->set_flashdata('flash_message', "Invalid File!");
-                         $this->session->set_userdata('last_activity',"Syllabus update operation failed Invalid File!");
-                        $this->session->set_userdata('activity_status',"0");
+                        $this->session->set_userdata('last_activity', "Syllabus update operation failed Invalid File!");
+                        $this->session->set_userdata('activity_status', "0");
                         redirect(base_url() . 'professor/syllabus/', 'refresh');
                     } else {
                         $file = $this->upload->data();
@@ -171,16 +175,16 @@ class Professor extends MY_Controller {
         if ($param == 'delete') {
             $this->Professor_model->delete_syllabus($param2);
             $this->session->set_flashdata('flash_message', "Syllabus Deleted Successfully");
-            $this->session->set_userdata('last_activity',"Syllabus Deleted");
-                $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Syllabus Deleted");
+            $this->session->set_userdata('activity_status', "1");
             redirect(base_url() . 'professor/syllabus/', 'refresh');
         }
         $dept = $this->session->userdata('department');
         $this->data['syllabus'] = $this->Professor_model->get_syllabus();
         $this->data['course'] = $this->db->get('course')->result();
         $this->data['semester'] = $this->db->get('semester')->result();
-        $this->data['degree'] = $this->db->get('degree')->result();
-        $this->data['sdegree'] = $this->Professor_model->get_all_degree();
+        //$this->data['degree'] = $this->db->get('degree')->result();
+        $this->data['degree'] = $this->Professor_model->get_all_degree();
 
         $this->data['title'] = 'Syllabus Management';
         $this->data['add_title'] = $this->lang_message('add_syllabus');
@@ -220,8 +224,6 @@ class Professor extends MY_Controller {
         $this->data['holiday'] = $this->Professor_model->getholiday();
         $this->data['page'] = 'holiday';
         $this->data['title'] = 'Holiday Management';
-        $this->session->set_userdata('last_activity',"Holiday Module visited");
-         $this->session->set_userdata('activity_status',"1");
         $this->__site_template('professor/holiday', $this->data);
     }
 
@@ -271,8 +273,8 @@ class Professor extends MY_Controller {
             $data['assessment_status'] = '1';
             $this->Professor_model->update_submitted_assessment($data, $id);
             $this->session->set_flashdata('flash_message', $this->lang_message('update_submitted_assessment'));
-            $this->session->set_userdata('last_activity',"Assessment Added.");
-             $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Assessment Added.");
+            $this->session->set_userdata('activity_status', "1");
             redirect(base_url('professor/assessments'));
         }
         if ($param == 'delete') {
@@ -291,7 +293,7 @@ class Professor extends MY_Controller {
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
         $this->data['batch'] = $this->Professor_model->get_all_bacth();
-       // $this->session->set_flashdata('flash_message', $this->lang_message('update_submitted_assessment'));            
+       $this->session->set_flashdata('flash_message', $this->lang_message('update_submitted_assessment'));   
         $this->__site_template('professor/assessments', $this->data);
     }
 
@@ -302,9 +304,9 @@ class Professor extends MY_Controller {
         $this->load->model('admin/Crud_model');
         $this->data['page'] = 'events';
         $this->data['title'] = 'Events';
-        $this->data['events'] = $this->Crud_model->event_manager();
-         $this->session->set_userdata('last_activity',"Event Module Visited.");
-         $this->session->set_userdata('activity_status',"1");
+        $this->data['events'] = $this->Professor_model->event_manager();
+        $this->session->set_userdata('last_activity', "Event Module Visited.");
+        $this->session->set_userdata('activity_status', "1");
         $this->__site_template('professor/events', $this->data);
     }
 
@@ -326,8 +328,8 @@ class Professor extends MY_Controller {
 
                     if (!$this->upload->do_upload('assignmentfile')) {
                         $this->session->set_flashdata('flash_message', "Invalid File!");
-                        $this->session->set_userdata('last_activity',"Assignment Create Operation Failed Invalid File!.");
-                        $this->session->set_userdata('activity_status',"0");
+                        $this->session->set_userdata('last_activity', "Assignment Create Operation Failed Invalid File!.");
+                        $this->session->set_userdata('activity_status', "0");
                         redirect(base_url() . 'professor/assignment/', 'refresh');
                     } else {
                         $file = $this->upload->data();
@@ -390,8 +392,8 @@ class Professor extends MY_Controller {
                     $notify['data_id'] = $last_id;
                     $this->db->insert("notification", $notify);
                 }
-                $this->session->set_userdata('last_activity',"Assignment added ".$this->input->post('title'));
-                $this->session->set_userdata('activity_status',"1");
+                $this->session->set_userdata('last_activity', "Assignment added " . $this->input->post('title'));
+                $this->session->set_userdata('activity_status', "1");
                 $this->session->set_flashdata('flash_message', 'Assignment Added Successfully');
                 redirect(base_url() . 'professor/assignment/', 'refresh');
             }
@@ -431,8 +433,8 @@ class Professor extends MY_Controller {
                 $data['assign_status'] = 1;
 
                 $this->Professor_model->updateassignment($data, $param2);
-                $this->session->set_userdata('last_activity',"Assignment updated ".$this->input->post('title'));
-                $this->session->set_userdata('activity_status',"1");
+                $this->session->set_userdata('last_activity', "Assignment updated " . $this->input->post('title'));
+                $this->session->set_userdata('activity_status', "1");
                 $this->session->set_flashdata('flash_message', 'Assignment Updated Successfully');
                 redirect(base_url() . 'professor/assignment/', 'refresh');
             }
@@ -442,8 +444,8 @@ class Professor extends MY_Controller {
             $this->Professor_model->deleteassignment($param2);
             delete_notification('assignment_manager', $param2);
             $this->session->set_flashdata('flash_message', 'Assignment Deleted Successfully');
-             $this->session->set_userdata('last_activity',"Assignment Deleted.");
-                $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Assignment Deleted.");
+            $this->session->set_userdata('activity_status', "1");
             redirect(base_url() . 'professor/assignment/', 'refresh');
         }
 
@@ -463,7 +465,11 @@ class Professor extends MY_Controller {
          */
         $this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignments';
-        $this->data['title'] = 'Assignment Management';        
+        $this->data['title'] = 'Assignment Management';    
+
+        $this->data['add_title'] = $this->lang_message('add_assignment');
+        $this->data['edit_title'] = $this->lang_message('edit_assignment');
+
         $this->__site_template('professor/assignment', $this->data);
     }
 
@@ -485,8 +491,8 @@ class Professor extends MY_Controller {
 
                     if (!$this->upload->do_upload('resourcefile')) {
                         $this->session->set_flashdata('flash_message', "Invalid File!");
-                        $this->session->set_userdata('last_activity',"Study Resource Create Oparion Failed Invalid File!");
-                        $this->session->set_userdata('activity_status',"0");
+                        $this->session->set_userdata('last_activity', "Study Resource Create Oparion Failed Invalid File!");
+                        $this->session->set_userdata('activity_status', "0");
                         redirect(base_url() . 'professor/studyresource/', 'refresh');
                     } else {
                         $file = $this->upload->data();
@@ -564,8 +570,8 @@ class Professor extends MY_Controller {
                     $notify['data_id'] = $last_id;
                     $this->db->insert("notification", $notify);
                 }
-                $this->session->set_userdata('last_activity',"Study Resource Added.".$this->input->post('title'));
-                $this->session->set_userdata('activity_status',"1");
+                $this->session->set_userdata('last_activity', "Study Resource Added." . $this->input->post('title'));
+                $this->session->set_userdata('activity_status', "1");
                 $this->session->set_flashdata('flash_message', 'Studyresource Added Successfully');
                 redirect(base_url() . 'professor/studyresource/', 'refresh');
             }
@@ -579,8 +585,8 @@ class Professor extends MY_Controller {
 
                     if (!$this->upload->do_upload('resourcefile')) {
                         $this->session->set_flashdata('flash_message', "Invalid File!");
-                         $this->session->set_userdata('last_activity',"Study Resource Update Operation failed Invalid File!");
-                         $this->session->set_userdata('activity_status',"0");
+                        $this->session->set_userdata('last_activity', "Study Resource Update Operation failed Invalid File!");
+                        $this->session->set_userdata('activity_status', "0");
                         redirect(base_url() . 'professor/studyresource/', 'refresh');
                     } else {
                         $file = $this->upload->data();
@@ -600,8 +606,8 @@ class Professor extends MY_Controller {
 
                 $this->db->where('study_id', $param2);
                 $this->db->update('study_resources', $data);
-                $this->session->set_userdata('last_activity',"Study Resource Updated.".$this->input->post('title'));
-                $this->session->set_userdata('activity_status',"1");
+                $this->session->set_userdata('last_activity', "Study Resource Updated." . $this->input->post('title'));
+                $this->session->set_userdata('activity_status', "1");
                 $this->session->set_flashdata('flash_message', 'Studyresource Updated Successfully');
 
                 redirect(base_url() . 'professor/studyresource/', 'refresh');
@@ -613,8 +619,8 @@ class Professor extends MY_Controller {
             $this->db->delete('study_resources');
             delete_notification('study_resources', $param2);
             $this->session->set_flashdata('flash_message', 'Studyresource Deleted Successfully');
-            $this->session->set_userdata('last_activity',"Study Resource Deleted.");
-        $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Study Resource Deleted.");
+            $this->session->set_userdata('activity_status', "1");
             redirect(base_url() . 'professor/studyresource/', 'refresh');
         }
 
@@ -625,6 +631,7 @@ class Professor extends MY_Controller {
         $this->data['batch'] = $this->Professor_model->get_all_bacth();
         $this->data['page'] = 'study_resources';
         $this->data['title'] = 'Study Resource Management';
+        $this->data['add_title'] = $this->lang_message('add_studyresource');
         $this->data['edit_title'] = $this->lang_message('edit_studyresource');     
         $this->__site_template('professor/studyresource', $this->data);
     }
@@ -639,8 +646,8 @@ class Professor extends MY_Controller {
             if ($param1 == 'create') {
                 $checkstd = $this->input->post('student');
                 if (empty($checkstd)) {
-                    $this->session->set_userdata('last_activity',"Project Create Oparion Failed Student not found!");
-                        $this->session->set_userdata('activity_status',"0");
+                    $this->session->set_userdata('last_activity', "Project Create Oparion Failed Student not found!");
+                    $this->session->set_userdata('activity_status', "0");
                     $this->session->set_flashdata('flash_message', "Student not found, data not added!");
                     redirect(base_url() . 'professor/project/', 'refresh');
                 }
@@ -655,8 +662,8 @@ class Professor extends MY_Controller {
 
                     if (!$this->upload->do_upload('projectfile')) {
                         $this->session->set_flashdata('flash_message', "Invalid File!");
-                        $this->session->set_userdata('last_activity',"Project Create Oparion Failed Invalid File!");
-                        $this->session->set_userdata('activity_status',"0");
+                        $this->session->set_userdata('last_activity', "Project Create Oparion Failed Invalid File!");
+                        $this->session->set_userdata('activity_status', "0");
                         redirect(base_url() . 'professor/project/', 'refresh');
                     } else {
                         $file = $this->upload->data();
@@ -698,16 +705,16 @@ class Professor extends MY_Controller {
                     $notify['data_id'] = $last_id;
                     $this->db->insert("notification", $notify);
                 }
-                    $this->session->set_userdata('last_activity',"Project Added ".$this->input->post('title'));
-                    $this->session->set_userdata('activity_status',"1");
+                $this->session->set_userdata('last_activity', "Project Added " . $this->input->post('title'));
+                $this->session->set_userdata('activity_status', "1");
                 $this->session->set_flashdata('flash_message', 'Project Added Successfully');
                 redirect(base_url() . 'professor/project/', 'refresh');
             }
             if ($param1 == 'do_update') {
                 $checkstd = $this->input->post('student');
                 if (empty($checkstd)) {
-                    $this->session->set_userdata('last_activity',"Project Update Operation Failed Student not found,".$this->input->post('title'));
-                    $this->session->set_userdata('activity_status',"0");
+                    $this->session->set_userdata('last_activity', "Project Update Operation Failed Student not found," . $this->input->post('title'));
+                    $this->session->set_userdata('activity_status', "0");
                     $this->session->set_flashdata('flash_message', "Student not found, data not added!");
                     redirect(base_url() . 'professor/project/', 'refresh');
                 }
@@ -722,8 +729,8 @@ class Professor extends MY_Controller {
 
                     if (!$this->upload->do_upload('projectfile')) {
                         $this->session->set_flashdata('flash_message', "Invalid File!");
-                        $this->session->set_userdata('last_activity',"Project Update Operation Failed Invalid File!,".$this->input->post('title'));
-                    $this->session->set_userdata('activity_status',"0");
+                        $this->session->set_userdata('last_activity', "Project Update Operation Failed Invalid File!," . $this->input->post('title'));
+                        $this->session->set_userdata('activity_status', "0");
                         redirect(base_url() . 'professor/project/', 'refresh');
                     } else {
                         $file = $this->upload->data();
@@ -752,8 +759,8 @@ class Professor extends MY_Controller {
                 $this->db->where('pm_id', $param2);
                 $this->db->update('project_manager', $data);
                 $this->session->set_flashdata('flash_message', 'Project Updated Successfully');
-                $this->session->set_userdata('last_activity',"Project Updated".$this->input->post('title'));
-                $this->session->set_userdata('activity_status',"1");
+                $this->session->set_userdata('last_activity', "Project Updated" . $this->input->post('title'));
+                $this->session->set_userdata('activity_status', "1");
                 redirect(base_url() . 'professor/project/', 'refresh');
             }
         }
@@ -762,8 +769,8 @@ class Professor extends MY_Controller {
             $this->db->where('pm_id', $param2);
             $this->db->delete('project_manager');
             delete_notification('project_manager', $param2);
-            $this->session->set_userdata('last_activity',"Project Deleted");
-            $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Project Deleted");
+            $this->session->set_userdata('activity_status', "1");
             $this->session->set_flashdata('flash_message', 'Project Deleted Successfully');
             redirect(base_url() . 'professor/project/', 'refresh');
         }
@@ -780,7 +787,6 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Project Management';
         $this->data['add_title'] = $this->lang_message('add_project');
         $this->data['edit_title'] = $this->lang_message('edit_project');
-        
         $this->__site_template('professor/project', $this->data);
     }
 
@@ -795,8 +801,8 @@ class Professor extends MY_Controller {
 
                 if (!$this->upload->do_upload('libraryfile')) {
                     $this->session->set_flashdata('flash_message', "Invalid File!");
-                    $this->session->set_userdata('last_activity',"Library create operation Failed Invalid File!");
-                    $this->session->set_userdata('activity_status',"0");
+                    $this->session->set_userdata('last_activity', "Library create operation Failed Invalid File!");
+                    $this->session->set_userdata('activity_status', "0");
                     redirect(base_url() . 'professor/library/', 'refresh');
                 } else {
                     $file = $this->upload->data();
@@ -883,8 +889,8 @@ class Professor extends MY_Controller {
                 $notify['data_id'] = $last_id;
                 $this->db->insert("notification", $notify);
             }
-            $this->session->set_userdata('last_activity',"Library added ".$this->input->post('title'));
-            $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Library added " . $this->input->post('title'));
+            $this->session->set_userdata('activity_status', "1");
             $this->session->set_flashdata('flash_message', 'Library Added Successfully');
             redirect(base_url() . 'professor/library/', 'refresh');
         }
@@ -901,8 +907,8 @@ class Professor extends MY_Controller {
 
                 if (!$this->upload->do_upload('libraryfile')) {
                     $this->session->set_flashdata('flash_message', "Invalid File!");
-                    $this->session->set_userdata('last_activity',"Library update operation Invalid File! ".$this->input->post('title'));
-                    $this->session->set_userdata('activity_status',"1");
+                    $this->session->set_userdata('last_activity', "Library update operation Invalid File! " . $this->input->post('title'));
+                    $this->session->set_userdata('activity_status', "1");
                     redirect(base_url() . 'professor/library/', 'refresh');
                 } else {
                     $file = $this->upload->data();
@@ -924,8 +930,8 @@ class Professor extends MY_Controller {
 
             $this->db->where('lm_id', $param2);
             $this->db->update('library_manager', $data);
-             $this->session->set_userdata('last_activity',"Library Updated ".$this->input->post('title'));
-            $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Library Updated " . $this->input->post('title'));
+            $this->session->set_userdata('activity_status', "1");
             $this->session->set_flashdata('flash_message', 'Library Updated Successfully');
 
             redirect(base_url() . 'professor/library/', 'refresh');
@@ -934,8 +940,8 @@ class Professor extends MY_Controller {
             $this->db->where('lm_id', $param2);
             $this->db->delete('library_manager');
             delete_notification('library_manager', $param2);
-            $this->session->set_userdata('last_activity',"Library Deleted");
-            $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Library Deleted");
+            $this->session->set_userdata('activity_status', "1");
             $this->session->set_flashdata('flash_message', 'Library Deleted Successfully');
             redirect(base_url() . 'professor/library/', 'refresh');
         }
@@ -947,8 +953,8 @@ class Professor extends MY_Controller {
         $this->data['student'] = $this->db->get('student')->result();
         $this->data['page'] = 'digital_library';
         $this->data['title'] = 'Digital Library';
+        $this->data['add_title'] = $this->lang_message('add_digital_library');
         $this->data['edit_title'] = $this->lang_message('edit_digital_library');
-        
         $this->__site_template('professor/library', $this->data);
     }
 
@@ -976,8 +982,8 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Participate Management';
         $this->data['volunteer'] = $this->db->get('participate_student')->result_array();
         $this->data['uploads'] = $this->db->get('student_upload')->result_array();
-        $this->session->set_userdata('last_activity',"Participate Module Visited.");
-        $this->session->set_userdata('activity_status',"1");
+        $this->session->set_userdata('last_activity', "Participate Module Visited.");
+        $this->session->set_userdata('activity_status', "1");
         $this->__site_template('professor/participate', $this->data);
     }
 
@@ -1002,8 +1008,8 @@ class Professor extends MY_Controller {
                     //$this->upload->set_allowed_types('*');	
 
                     if (!$this->upload->do_upload('attachment')) {
-                        $this->session->set_userdata('last_activity',"Courseware create operation failed Invalid File!.");
-                        $this->session->set_userdata('activity_status',"0");
+                        $this->session->set_userdata('last_activity', "Courseware create operation failed Invalid File!.");
+                        $this->session->set_userdata('activity_status', "0");
                         $this->session->set_flashdata('flash_message', $this->upload->display_errors());
                         redirect(base_url() . 'professor/courseware/', 'refresh');
                     } else {
@@ -1024,8 +1030,8 @@ class Professor extends MY_Controller {
                 $insert['created_date'] = date('Y-m-d');
 
                 $this->Professor_model->add_courseware($insert);
-                $this->session->set_userdata('last_activity',"Courseware Chapter added ".$this->input->post('chapter'));
-                $this->session->set_userdata('activity_status',"1");
+                $this->session->set_userdata('last_activity', "Courseware Chapter added " . $this->input->post('chapter'));
+                $this->session->set_userdata('activity_status', "1");
                 $this->session->set_flashdata('flash_message', "Courseware added successfully");
                 redirect(base_url() . 'professor/courseware/', 'refresh');
             }
@@ -1048,8 +1054,8 @@ class Professor extends MY_Controller {
                     //$this->upload->set_allowed_types('*');	
 
                     if (!$this->upload->do_upload('attachment')) {
-                        $this->session->set_userdata('last_activity',"Courseware Chapter update operation failed Invalid File!");
-                        $this->session->set_userdata('activity_status',"0");
+                        $this->session->set_userdata('last_activity', "Courseware Chapter update operation failed Invalid File!");
+                        $this->session->set_userdata('activity_status', "0");
                         $this->session->set_flashdata('flash_message', $this->upload->display_errors());
                         redirect(base_url() . 'professor/courseware/', 'refresh');
                     } else {
@@ -1066,8 +1072,8 @@ class Professor extends MY_Controller {
                 $insert['updated_date'] = date('Y-m-d');
 
                 $this->Professor_model->courseware_update($insert, $param2);
-                $this->session->set_userdata('last_activity',"Courseware Chapter updated ".$this->input->post('chapter'));
-                $this->session->set_userdata('activity_status',"1");
+                $this->session->set_userdata('last_activity', "Courseware Chapter updated " . $this->input->post('chapter'));
+                $this->session->set_userdata('activity_status', "1");
                 $this->session->set_flashdata('flash_message', "Courseware Updated Successfully");
                 redirect(base_url() . 'professor/courseware/', 'refresh');
             }
@@ -1077,27 +1083,26 @@ class Professor extends MY_Controller {
             $data = $this->db->get_where('courseware', array('courseware_id' => $param2))->result_array();
             unlink("uploads/courseware/" . $data[0]['attachment']);
             $this->Professor_model->delete_courseware($param2);
-            $this->session->set_userdata('last_activity',"Courseware deleted ");
-            $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Courseware deleted ");
+            $this->session->set_userdata('activity_status', "1");
             $this->session->set_flashdata('flash_message', "Courseware deleted successfully");
             redirect(base_url() . 'professor/courseware/', 'refresh');
         }
         $this->data['courseware'] = $this->Professor_model->getcourseware();
-       
+
         $this->data['page'] = 'courseware';
         $this->data['title'] = 'Courseware Management';
         $this->data['add_title'] = $this->lang_message('add_courseware');
-        $this->data['edit_title'] = $this->lang_message('edit_courseware');        
+        $this->data['edit_title'] = $this->lang_message('edit_courseware');
         $this->__site_template('professor/courseware', $this->data);
     }
 
-     function getsubject()
-     {
-          $this->data['subject'] = $this->Professor_model->getsubject($this->input->post('id'));
-          
-          echo json_encode($this->data['subject']);
-     }
-    
+    function getsubject() {
+        $this->data['subject'] = $this->Professor_model->getsubject($this->input->post('id'));
+
+        echo json_encode($this->data['subject']);
+    }
+
     /**
      * Graduate
      */
@@ -1105,10 +1110,8 @@ class Professor extends MY_Controller {
         $this->load->model('admin/Crud_model');
         $this->data['title'] = 'Recent Graduates';
         $this->data['page'] = 'graduates';
-        $this->data['degree'] = $this->Crud_model->get_all_degree();
+        //$this->data['degree'] = $this->Crud_model->get_all_degree();
         $this->data['graduates'] = $this->Crud_model->get_all_graduates();
-         $this->session->set_userdata('last_activity',"graduate module visited.");
-        $this->session->set_userdata('activity_status',"1");
         $this->__site_template('professor/graduate', $this->data);
     }
 
@@ -1135,7 +1138,7 @@ class Professor extends MY_Controller {
             $this->data['professor'] = $this->session->userdata('login_user_id');
             $this->data['date'] = $_POST['date'];
             $this->data['class_routine'] = $_POST['class_routine'];
-            $student = $this->Crud_model->student_list_by_department_course_batch_semester_class($this->data['department'], $this->data['branch'], $this->data['batch'], $this->data['semester'], $this->data['class_name']);            
+            $student = $this->Crud_model->student_list_by_department_course_batch_semester_class($this->data['department'], $this->data['branch'], $this->data['batch'], $this->data['semester'], $this->data['class_name']);
             $this->data['student'] = $student;
         }
         $this->data['title'] = 'Attendance';
@@ -1157,8 +1160,8 @@ class Professor extends MY_Controller {
             $this->db->where('em_id', $param2);
             $this->db->delete('exam_manager');
             delete_notification('exam_manager', $param2);
-            $this->session->set_userdata('last_activity',"Exam deleted");
-            $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Exam deleted");
+            $this->session->set_userdata('activity_status', "1");
             $this->session->set_flashdata('flash_message', 'Exam is successfully deleted.');
             redirect(base_url('professor/exam'));
         }
@@ -1170,8 +1173,8 @@ class Professor extends MY_Controller {
                         $_POST['degree'], $_POST['course'], $_POST['batch'], $_POST['semester'], $_POST['exam_name']);
 
                 if (count($is_record_present)) {
-                    $this->session->set_userdata('last_activity',"Exam create operation failed Data is already present ".$_POST['exam_name']);
-                    $this->session->set_userdata('activity_status',"0");
+                    $this->session->set_userdata('last_activity', "Exam create operation failed Data is already present " . $_POST['exam_name']);
+                    $this->session->set_userdata('activity_status', "0");
                     $this->session->set_flashdata('flash_message', 'Data is already present.');
                     redirect(base_url('professor/exam'));
                 } else {
@@ -1196,8 +1199,8 @@ class Professor extends MY_Controller {
                         $this->Professor_model->insert_exam($data);
                         $insert_id = $this->db->insert_id();
                         //$this->exam_email_notification($_POST);
-                        $this->session->set_userdata('last_activity',"Exam added ".$this->input->post('exam_name'));
-                        $this->session->set_userdata('activity_status',"1");
+                        $this->session->set_userdata('last_activity', "Exam added " . $this->input->post('exam_name'));
+                        $this->session->set_userdata('activity_status', "1");
                         $this->session->set_flashdata('flash_message', 'Exam is successfully added.');
 
                         //create seat no
@@ -1256,8 +1259,8 @@ class Professor extends MY_Controller {
                     );
 
                     $this->Professor_model->update_exam($param2, $data);
-                        $this->session->set_userdata('last_activity',"Exam updated ".$this->input->post('exam_name'));
-                        $this->session->set_userdata('activity_status',"1");
+                    $this->session->set_userdata('last_activity', "Exam updated " . $this->input->post('exam_name'));
+                    $this->session->set_userdata('activity_status', "1");
                     $this->session->set_flashdata('flash_message', 'Exam is successfully updated.');
                     redirect(base_url('professor/exam'));
                 } else {
@@ -1273,11 +1276,11 @@ class Professor extends MY_Controller {
         $this->data['add_title'] = 'Add Exam';
         $this->data['edit_title'] = 'Update Exam';
         $this->data['exams'] = $this->Professor_model->exam_details();
-        $this->data['exam_type'] = $this->Professor_model->get_all_exam_type();
+        //$this->data['exam_type'] = $this->Professor_model->get_all_exam_type();
         $this->data['degree'] = $this->Professor_model->get_all_degree();
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
-        $this->data['centerlist'] = $this->db->get('center_user')->result();       
+        $this->data['centerlist'] = $this->db->get('center_user')->result();   
         $this->__site_template('professor/exam', $this->data);
     }
 
@@ -1293,8 +1296,8 @@ class Professor extends MY_Controller {
             $this->db->where('exam_time_table_id', $param2);
             $this->db->delete('exam_time_table');
             delete_notification('exam_time_table', $param2);
-        $this->session->set_userdata('last_activity',"Exam time table deleted");
-        $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Exam time table deleted");
+            $this->session->set_userdata('activity_status', "1");
             $this->session->set_flashdata('flash_message', 'Exam time table deleted successfully');
             redirect(base_url('professor/exam_time_table'));
         }
@@ -1305,9 +1308,11 @@ class Professor extends MY_Controller {
                         $_POST['exam'], $_POST['subject']);
 
                 if (count($is_record_present)) {
-                    $this->session->set_userdata('last_activity',"Exam time table Data is already present");
-                    $this->session->set_userdata('activity_status',"1");
+                    $this->session->set_userdata('last_activity', "Exam time table Data is already present");
+                    $this->session->set_userdata('activity_status', "1");
                     $this->session->set_flashdata('flash_message', 'Data is already present.');
+                     redirect(base_url('professor/exam_schedule'));
+                    
                 } else {
                     // do form validation
                     if ($this->form_validation->run('time_table_insert_update') != FALSE) {
@@ -1325,8 +1330,8 @@ class Professor extends MY_Controller {
                         ));
                         $insert_id = $this->db->insert_id();
                         create_notification('exam_time_table', $_POST['degree'], $_POST['course'], $_POST['batch'], $_POST['semester'], $insert_id);
-                        $this->session->set_userdata('last_activity',"Exam time table added");
-                        $this->session->set_userdata('activity_status',"1");
+                        $this->session->set_userdata('last_activity', "Exam time table added");
+                        $this->session->set_userdata('activity_status', "1");
                         $this->session->set_flashdata('flash_message', 'Time table is added successfully.');
                         redirect(base_url('professor/exam_schedule'));
                     }
@@ -1345,16 +1350,18 @@ class Professor extends MY_Controller {
                         'exam_start_time' => $this->input->post('start_time', TRUE),
                         'exam_end_time' => $this->input->post('end_time', TRUE),
                             ), $param2);
-                    $this->session->set_userdata('last_activity',"Exam time table updated");
-                    $this->session->set_userdata('activity_status',"1");
+                    $this->session->set_userdata('last_activity', "Exam time table updated");
+                    $this->session->set_userdata('activity_status', "1");
                     $this->session->set_flashdata('flash_message', 'Time table updated successfully');
                     redirect(base_url('professor/exam_schedule'));
                 }
             }
         }
         $this->data['degree'] = $this->Professor_model->get_all_degree();
+   
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
+        
         $this->data['time_table'] = $this->Professor_model->time_table();
         $this->data['title'] = 'Exam Schedule';
         $this->data['add_title'] = $this->lang_message('add_exam_schedule');
@@ -1448,13 +1455,13 @@ class Professor extends MY_Controller {
                 }
             }
             if ($student_id != '') {
-                $this->session->set_userdata('last_activity',"Marks updated");
-                $this->session->set_userdata('activity_status',"1");
+                $this->session->set_userdata('last_activity', "Marks updated");
+                $this->session->set_userdata('activity_status', "1");
                 $this->session->set_flashdata('flash_message', 'Marks is successfully updated.');
                 redirect(base_url('professor/marks/' . $degree_id . '/' . $course_id . '/' . $batch_id . '/' . $semester_id . '/' . $exam_id . '/' . $student_id));
             }
-            $this->session->set_userdata('last_activity',"Marks updated");
-            $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', "Marks updated");
+            $this->session->set_userdata('activity_status', "1");
             $this->session->set_flashdata('flash_message', 'Marks is successfully updated.');
             redirect(base_url('professor/marks/' . $degree_id . '/' . $course_id . '/' . $batch_id . '/' . $semester_id . '/' . $exam_id));
         }
@@ -1486,11 +1493,11 @@ class Professor extends MY_Controller {
             $this->data['student_list'] = $this->Professor_model->student_list_by_course_semester($degree_id, $course_id, $batch_id, $semester_id);
         }
         $this->data['degree'] = $this->Professor_model->get_all_degree();
-        $this->data['course'] = $this->Professor_model->get_all_course();
-        $this->data['semester'] = $this->Professor_model->get_all_semester();
+        //$this->data['course'] = $this->Professor_model->get_all_course();
+        //$this->data['semester'] = $this->Professor_model->get_all_semester();
         $this->data['time_table'] = $this->Professor_model->time_table();
         $this->data['title'] = 'Exam Marks';
-        $this->data['page'] = 'exam_marks';        
+        $this->data['page'] = 'exam_marks';       
         $this->__site_template('professor/exam_marks', $this->data);
     }
 
@@ -1668,15 +1675,14 @@ class Professor extends MY_Controller {
         $this->data['exams'] = $this->Professor_model->get_exam_filter($degree, $course, $batch, $semester);
         $this->load->view("professor/exam_filter", $this->data);
     }
-
+     
     /**
      * Get exam list by course name and semester
      * @param type $course_id
      * @param type $semester_id
      * 
      */
-    function get_exam_list($degree_id = '', $course_id = '', $batch_id = '', $semester_id = '', $time_table = '') 
-            {
+    function get_exam_list($degree_id = '', $course_id = '', $batch_id = '', $semester_id = '', $time_table = '') {
         $this->load->model('admin/Crud_model');
         $exam_detail = $this->Crud_model->get_exam_list($degree_id, $course_id, $batch_id, $semester_id);
         echo "<option value=''>Select</option>";
@@ -2365,8 +2371,6 @@ class Professor extends MY_Controller {
         $data['batch'] = $this->db->get('batch')->result();
         $data['degree'] = $this->db->get('degree')->result();
         if ($degree == "All") {
-
-
             $data['library'] = $this->db->get('library_manager')->result();
         } else {
             if ($course == "All") {
@@ -2393,9 +2397,6 @@ class Professor extends MY_Controller {
                 }
             }
         }
-
-
-
         $this->load->view("professor/getlibrary", $data);
     }
 
@@ -2522,8 +2523,8 @@ class Professor extends MY_Controller {
         //$this->load->view('professor/class_routine', array('title' => 'Class routine'));
         $this->data['title'] = 'Class Routine';
         $this->data['page'] = 'class_routine';
-        $this->session->set_userdata('last_activity',"Class Routine module visited.");
-        $this->session->set_userdata('activity_status',"1");
+        $this->session->set_userdata('last_activity', "Class Routine module visited.");
+        $this->session->set_userdata('activity_status', "1");
         $this->__site_template('professor/class_routine', $this->data);
     }
 
@@ -2801,6 +2802,20 @@ class Professor extends MY_Controller {
         $this->data['title'] = $this->data['email']->subject;
         $this->data['page'] = 'Inbox Email';
         $this->__site_template('professor/email_inbox_view', $this->data);
+    }
+    
+    /**
+     * Exam schedule ajax filter
+     * @param string $degree
+     * @param string $course
+     * @param string $batch
+     * @param string $semester
+     * @param string $exam
+     */
+    function get_exam_schedule_filter($degree, $course, $batch, $semester, $exam) {
+        $this->load->model('admin/Crud_model');
+        $data['time_table'] = $this->Crud_model->exam_schedule_filter($degree, $course, $batch, $semester, $exam);
+        $this->load->view("professor/exam_schedule_filter", $data);
     }
 
 }

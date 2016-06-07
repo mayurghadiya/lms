@@ -472,7 +472,7 @@ pre {
   line-height: 20px;
 }
 
-#supr2 .panel-title, #supr3 .panel-title, #supr4 .panel-title, #supr5 .panel-title{color: #000; font-size: 15px; line-height: 40px; margin-bottom: 0; margin-top: 0; padding: 0 10px;}
+#supr2 .panel-title, #supr3 .panel-title, #supr4 .panel-title, #supr5 .panel-title{color: #000; font-size: 15px; line-height: 40px; margin-bottom: 0; margin-top: 0 !important; padding: 0 10px;}
 #supr2 .panel-title, #supr3 .panel-title{margin-top: 10px;}
 .time_det{ float: right; font-size: 12px !important; font-weight: 700; line-height: 20px !important;}
 .time_det > span {float: right;font-size: 12px;line-height: 22px; padding-left: 5px; text-align: right;}
@@ -482,6 +482,7 @@ pre {
 .eventCalendar-currentTitle .eventCalendar-monthTitle:hover{text-decoration: underline; cursor: pointer;}
 .displaynone{display: none !important;}
 .mar4top {margin-top: -4px;}
+
 
 
 

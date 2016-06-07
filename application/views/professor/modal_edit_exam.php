@@ -82,7 +82,7 @@ $centerlist = $this->db->get('center_user')->result();
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("Course"); ?><span style="color:red">*</span></label>
+                    <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
                         <select class="form-control" required="" name="degree" id="edit_degree">
                             <option>Select</option>

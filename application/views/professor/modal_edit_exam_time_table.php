@@ -19,7 +19,14 @@ $exam_list = $this->db->get_where('exam_manager', array('course_id' => $course_i
             'degree_id' => $degree_id,
             'batch_id' => $batch_id))->result();
 $exam_type = $this->db->get('exam_type')->result();
-$degree = $this->db->get('degree')->result();
+//$degree = $this->db->get('degree')->result();
+
+ $id = $this->session->userdata('login_user_id');
+$this->db->select('d.*');
+$this->db->join("degree as d", "p.department=d.d_id");
+$degree= $this->db->get_where("professor as p", array("p.professor_id" => $id))->result();
+
+
 $course = $this->db->get_where('course', array(
             'degree_id' => $edit_data->degree_id
         ))->result();
@@ -38,10 +45,14 @@ $semester = $this->db->get('semester')->result();
         <div class="panel-default">
             <!-- Start .panel -->           
             <div class=panel-body>
+                <div class="">
+                  <span style="color:red">* <?php echo "is ".ucwords("mandatory field");?></span> 
+              </div> 
                 <?php echo form_open(base_url() . 'professor/exam_time_table/update/' . $edit_data->exam_time_table_id, array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'edit-exam-time-table', 'target' => '_top')); ?>
                 <div class="form-group">
                     <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
+                       
                         <select name="degree" id="edit_degree" class="form-control" required="">
                             <option value="">Select</option>
                             <?php foreach ($degree as $d) { ?>

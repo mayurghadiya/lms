@@ -25,10 +25,10 @@ foreach ($edit_data as $row):
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label"><?php echo ucwords("Course"); ?><span style="color:red">*</span></label>
+                                <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
                                 <div class="col-sm-8">
                                     <select name="degree" id="degree2" class="form-control">
-                                        <option value="">Select Course</option>
+                                        <option value="">Select department</option>
                                         <?php
                                         foreach ($degree as $dgr) {
                                             ?>
@@ -182,7 +182,7 @@ endforeach;
                 },
             },
             messages: {
-                degree: "Select Course",
+                degree: "Select department",
                 course: "Select Branch",
                 semester: "Select Semester",
                 submissiondate: "Select date of submission",

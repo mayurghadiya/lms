@@ -15,46 +15,46 @@
                         </div>-->
             <div class=panel-body>
                 <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsyllabus/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Syllabus</a>
-                 <div class="row filter-row">
-                <form action="#" method="post" id="searchform">
-                    <div class="form-group col-sm-3 validating">
-                        <label>Department</label>
-                        <select id="courses" name="degree" class="form-control">
-                            <option value="">Select</option>
-                            <?php foreach ($sdegree as $row) { ?>
-                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group col-sm-3 validating">
-                        <label>Branch</label>
-                        <select id="branches" name="course" class="form-control">
-                            <option value="">Select</option>
+                <div class="row filter-row">
+                    <form action="#" method="post" id="searchform">
+                        <div class="form-group col-sm-3 validating">
+                            <label>Department</label>
+                            <select id="courses" name="degree" class="form-control">
+                                <option value="">Select</option>
+                                <?php foreach ($sdegree as $row) { ?>
+                                    <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-3 validating">
+                            <label>Branch</label>
+                            <select id="branches" name="course" class="form-control">
+                                <option value="">Select</option>
 
-                        </select>
-                    </div>                   
-                    <div class="form-group col-sm-3 validating">
-                        <label> Semester</label>
-                        <select id="semesters" name="semester" class="form-control">
-                            <option value="">Select</option>
-                            <?php foreach ($semester as $row) { ?>
-                                <option value="<?php echo $row->s_id; ?>"
-                                        ><?php echo $row->s_name; ?></option>
-                                    <?php } ?>
-                        </select>
-                    </div>
+                            </select>
+                        </div>                   
+                        <div class="form-group col-sm-3 validating">
+                            <label> Semester</label>
+                            <select id="semesters" name="semester" class="form-control">
+                                <option value="">Select</option>
+                                <?php foreach ($semester as $row) { ?>
+                                    <option value="<?php echo $row->s_id; ?>"
+                                            ><?php echo $row->s_name; ?></option>
+                                        <?php } ?>
+                            </select>
+                        </div>
 
-                    <div class="form-group col-sm-1">
-                        <label>&nbsp;</label><br/>
-                        <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>
-                    </div>
-                </form>
-                 </div>
+                        <div class="form-group col-sm-1">
+                            <label>&nbsp;</label><br/>
+                            <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>
+                        </div>
+                    </form>
+                </div>
                 <div id="getresponse">
                     <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                         <thead>
                             <tr>
-                                <th>#</th>												
+                                <th>No</th>												
                                 <th>Title</th>
                                 <th>Department</th>
                                 <th>Branch</th>												                                                
@@ -74,11 +74,8 @@
                                     <td><?php
                                         foreach ($degree as $dgr):
                                             if ($dgr->d_id == $row->syllabus_degree):
-
                                                 echo $dgr->d_name;
                                             endif;
-
-
                                         endforeach;
                                         ?></td>
                                     <td>
@@ -104,13 +101,13 @@
                                     <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/syllabus/' . $row->syllabus_filename; ?>" download="" title="<?php echo $row->syllabus_title; ?>"><i class="fa fa-download"></i></a></td>	                                                  
                                     <td class="menu-action">
                                         <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_syllabus/<?php echo $row->syllabus_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
-<i class="fa fa-pencil" aria-hidden="true"></i>
-Edit
-</span></a>
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                Edit
+                                            </span></a>
                                         <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/syllabus/delete/<?php echo $row->syllabus_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">
-<i class="fa fa-trash-o" aria-hidden="true"></i>
-Delete
-</span></a>
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                Delete
+                                            </span></a>
                                     </td>	
                                 </tr>
                             <?php endforeach; ?>																										

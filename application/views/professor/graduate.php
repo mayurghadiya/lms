@@ -17,7 +17,7 @@
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>No</th>
                             <th>Image</th>
                             <th>Student Name</th>
                             <th>Department</th>

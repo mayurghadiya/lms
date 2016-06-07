@@ -19,7 +19,7 @@
                     <div class="col-md-12">
                         <div class="form-group col-sm-3">
                             <label><?php echo ucwords("department"); ?></label>
-                            <select class="form-control" id="department" name="department" required="">
+                            <select class="form-control" id="department" name="department" >
                                 <option value="">Select</option>
                                 <?php foreach ($degree as $row) { ?>
                                     <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
@@ -28,19 +28,19 @@
                         </div>
                         <div class="form-group col-sm-3">
                             <label><?php echo ucwords("Branch"); ?></label>
-                            <select id="branch" name="branch" class="form-control" required="">
+                            <select id="branch" name="branch" class="form-control" >
                                 <option value="">Select</option>
                             </select>
                         </div>
                         <div class="form-group col-sm-3">
                             <label><?php echo ucwords("Batch"); ?></label>
-                            <select id="batch" name="batch" class="form-control" required="">
+                            <select id="batch" name="batch" class="form-control" >
                                 <option value="">Select</option>
                             </select>
                         </div>    
                         <div class="form-group col-sm-3">
                             <label> <?php echo ucwords("Semester"); ?></label>
-                            <select id="semester" name="semester" data-filter="6" class="form-control" required="">
+                            <select id="semester" name="semester" data-filter="6" class="form-control" >
                                 <option value="">Select</option>
 
                             </select>
@@ -50,7 +50,7 @@
                     <div class="col-md-12">
                         <div class="form-group col-sm-3">
                             <label> <?php echo ucwords("class"); ?></label>
-                            <select id="class" name="class" class="form-control" required="">
+                            <select id="class" name="class" class="form-control" >
                                 <option value="">Select</option>
                                 <?php foreach ($class as $row) { ?>
                                     <option value="<?php echo $row->class_id; ?>"><?php echo $row->class_name; ?></option>
@@ -59,11 +59,11 @@
                         </div>
                         <div class="form-group col-sm-3">
                             <label> <?php echo ucwords("date"); ?></label>
-                            <input id="date" required="" type="text" class="form-control datepicker-normal" name="date" placeholder="Select"/>
+                            <input id="date" type="text" class="form-control datepicker-normal" name="date" placeholder="Select"/>
                         </div>
                         <div class="form-group col-sm-5">
                             <label> <?php echo ucwords("class routine"); ?></label>
-                            <select id="class_routine" name="class_routine" class="form-control" required="">
+                            <select id="class_routine" name="class_routine" class="form-control" >
                                 <option value="">Select</option>
                             </select>
                         </div>
@@ -101,7 +101,7 @@
                                     <div class="panel-body">                                        
                                         <table class="table table-striped table-bordered table-responsive" id="attendance-data-table-2">
                                             <thead>
-                                            <th>#</th>
+                                            <th>No</th>
                                             <th>Roll No</th>
                                             <th>Student Name</th>
                                             <th>Action</th>
@@ -199,14 +199,29 @@
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-6'i><'col-sm-6'p>>",
         });
+        
+        
         $("#attendance-routine").validate({
             rules: {
-                //'department': "required",
+                'department': "required",
+                'branch': "required",
+                'batch': "required",
+                'semester': "required",
+                'class': "required",
+                'date': "required",
+                'class_routine': "required",
             },
             messages: {
-                //'department': "Select department"
+                'department': "Select department",
+                'branch': "Select branch",
+                'batch': "Select batch",
+                'semester': "Select semester",
+                'class': "Select class",
+                'date': "Select date",
+                'class_routine': "Select class routine"
             }
         });
+        
         $(".datepicker-normal").datepicker({
             format: ' MM d, yyyy', autoclose:true,
             changeMonth: true,

@@ -1115,7 +1115,7 @@ class Professor_model extends CI_Model {
      * @return array
      */
     function event_manager() {
-        return $this->db->select()
+        return $this->db->select('event_name, event_location, event_desc, event_date')
                         ->from('event_manager')
                         ->order_by('event_date', 'DESC')
                         ->get()
