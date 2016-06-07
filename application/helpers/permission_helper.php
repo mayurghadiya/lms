@@ -43,8 +43,14 @@ if (!function_exists('user_permission')) {
         $CI->db->where($run);
         $CI->db->where('user_type',$CI->session->userdata('login_type'));
         $user_role_query=$CI->db->get('group')->result_array();
-        
-        $module_role_query = $CI->db->get_where('assign_module' , array('group_id' => $user_role_query[0]['g_id']))->row();
+        if(empty($user_role_query))
+        {
+            $url=base_url().$CI->session->userdata('login_type').'/dashboard';
+           echo "<script>alert('You have not permission to access this page.'); window.location.href ='".$url."'</script>"; 
+        }
+        else
+        {
+            $module_role_query = $CI->db->get_where('assign_module' , array('group_id' => $user_role_query[0]['g_id']))->row();
          $assign_module_id=explode(',',$module_role_query->module_id);
         foreach($assign_module_id as $assign_module_id_row)
         {
@@ -66,6 +72,8 @@ if (!function_exists('user_permission')) {
         }
 //        echo $CI->uri->segment(2);
 //       exit;
+        }
+        
 
         }
         
