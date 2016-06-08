@@ -44,6 +44,22 @@
             <script>
                 var base_url = '<?php echo base_url(); ?>';
             </script>
+            <style>                
+    .notification2 {
+    background: #ed7a53 none repeat scroll 0 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 0 7px;
+    position: relative;
+    right: 10px;
+    text-shadow: none;
+    top: 11px;
+    }
+            </style>
           </head>
         <body class="<?php echo $this->router->fetch_method(); ?>">
             <!--[if lt IE 9]>

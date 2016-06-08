@@ -28,7 +28,7 @@
                                 <select name="degree" id="degree" class="form-control" >
                                     <option value="">Select department</option>
                                     <?php
-                                    $datadegree = $this->db->get_where('degree', array('d_status' => 1))->result();
+                                    $datadegree = $this->db->get_where('degree', array('d_status' => 1,'d_id'=>$this->session->userdata('department')))->result();
                                     foreach ($datadegree as $rowdegree) {
                                         ?>
                                         <option value="<?= $rowdegree->d_id ?>"><?= $rowdegree->d_name ?></option>

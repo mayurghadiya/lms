@@ -47,6 +47,12 @@ if (!function_exists('roleuserdatatopic')) {
 
 if (!function_exists('roleuserdatacomment')) {
 
+    /**
+     * 
+     * @param String $role
+     * @param int $role_id
+     * @return mixed
+     */
     function roleuserdatacomment($role,$role_id) {
         $CI = & get_instance();
         $CI->load->database();
@@ -72,6 +78,12 @@ if (!function_exists('roleuserdatacomment')) {
 
 if (!function_exists('roleimgpath')) {
 
+    /**
+     * user image path
+     * @param String $role
+     * @param int $role_id
+     * @return mixed String
+     */
     function roleimgpath($role,$role_id) {
         $CI = & get_instance();
         $CI->load->database();
@@ -122,3 +134,15 @@ if (!function_exists('roleimgpath')) {
 
 }
 
+if (!function_exists('countcommenttopic')) {
+    /**
+     * Topic total comments
+     * @param int $topic_id
+     */
+    function countcommenttopic($topic_id)
+    {
+        $CI = &get_instance();
+        return $CI->db->get_where("forum_comment",array("forum_topic_id"=>$topic_id))->num_rows();
+    }
+    
+}
