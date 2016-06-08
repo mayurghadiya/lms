@@ -1089,7 +1089,7 @@ class Professor extends MY_Controller {
             redirect(base_url() . 'professor/courseware/', 'refresh');
         }
         $this->data['courseware'] = $this->Professor_model->getcourseware();
-
+        
         $this->data['page'] = 'courseware';
         $this->data['title'] = 'Courseware Management';
         $this->data['add_title'] = $this->lang_message('add_courseware');

@@ -119,18 +119,18 @@ $("#branch").change(function(){
 
         $("#frmcourseware").validate({
             rules: {
-//                branch:
-//                        {
-//                            required: true,
-//                        },
-//                subject:
-//                      {
-//                          required: true,
-//                      },
-//                chapter:
-//                    {
-//                        required: true,
-//                    },      
+                branch:
+                        {
+                            required: true,
+                        },
+                subject:
+                      {
+                          required: true,
+                      },
+                chapter:
+                    {
+                        required: true,
+                    },      
                 topic:
                         {
                             required: true,
