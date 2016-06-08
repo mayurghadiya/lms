@@ -826,6 +826,10 @@ class Student extends MY_Controller {
                     WHERE NOT EXISTS (SELECT vocational_course_id FROM vocational_course_fee
                     WHERE vocational_course_fee.vocational_course_id = vocational_course.vocational_course_id and vocational_course_fee.student_id= ' . $this->session->userdata('student_id') . ')')->result_array();
 
+            $this->data['register'] = $this->db->query('SELECT * FROM vocational_course 
+                    WHERE EXISTS (SELECT vocational_course_id FROM vocational_course_fee
+                    WHERE vocational_course_fee.vocational_course_id = vocational_course.vocational_course_id and vocational_course_fee.student_id= ' . $this->session->userdata('student_id') . ')')->result_array();
+            
             //$page_data['vocationalcourse'] = $this->db->get_where('vocational_course',array('status'=>1))->result_array();
 
             $this->data['page'] = 'vocational_course';

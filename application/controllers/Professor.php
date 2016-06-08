@@ -2766,7 +2766,8 @@ class Professor extends MY_Controller {
      * Vocational course Student List
      */
     function vocational_student() {
-        $this->data['student'] = $this->Professor_model->get_vocational_student();
+        $professor_id = $this->session->userdata('login_user_id');
+        $this->data['student'] = $this->Professor_model->get_vocational_student($professor_id);
         $this->data['title'] = 'Vocational Course Students';
         $this->data['page'] = 'vocational_register_student';
         $this->__site_template('admin/vocational_register_student', $this->data);
@@ -2816,6 +2817,20 @@ class Professor extends MY_Controller {
         $this->load->model('admin/Crud_model');
         $data['time_table'] = $this->Crud_model->exam_schedule_filter($degree, $course, $batch, $semester, $exam);
         $this->load->view("professor/exam_schedule_filter", $data);
+    }
+    
+    
+    /**
+     * Vocation courses
+     * @param type $param1
+     * @param type $param2
+     */
+    function vocationalcourse($param1 = '', $param2 = '') {        
+        $this->data['title'] = $this->lang_message('vocational_course');    
+        $professor_id = $this->session->userdata('login_user_id');
+        $this->data['vocationalcourse'] = $this->Professor_model->get_vocational_course($professor_id);
+        $this->data['page'] = 'vocational_course';
+        $this->__site_template('professor/vocational_course', $this->data);
     }
 
 }

@@ -33,6 +33,9 @@
         } else if (url.indexOf('edit_question') >= 0) {
             $('#myModalLabel2').html('Update Question');
         }
+        else if (url.indexOf('modal_submit_assignment') >= 0) {
+            $('#myModalLabel2').html('Submit Assignment');
+        }
         // SHOWING AJAX PRELOADER IMAGE
         jQuery('#modal_ajax .modal-body').html('<div style="text-align:center;margin-top:200px;"><img src="<?php echo base_url(); ?>assets/img/preloader.gif" /></div>');
 

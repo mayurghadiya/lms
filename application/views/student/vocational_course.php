@@ -15,6 +15,18 @@
                         </div>-->
 
             <div class="panel-body table-responsive">
+                <div class="tabs mb20">
+                    <ul id="import-tab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#list" data-toggle="tab" aria-expanded="true">Vocational Course</a>
+                        </li>
+                        <li class="">
+                            <a href="#register" data-toggle="tab" aria-expanded="false">Registered Course</a>
+                        </li>
+                    </ul>
+                    
+                     <div id="import-tab-content" class="tab-content">
+                         <div class="tab-pane fade active in" id="list">
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
@@ -63,6 +75,55 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                             </div>
+                         <div class="tab-pane fade out" id="register">
+                             <table id="datatable-list-course" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th><?php echo ucwords("course name"); ?></th>
+                            <th><?php echo ucwords("category"); ?></th>
+                            <th><?php echo ucwords("course start date"); ?></th>
+                            <th><?php echo ucwords("course end date"); ?></th>
+                            <th><?php echo ucwords("course fee"); ?></th>
+                            <th><?php echo ucwords("professor name"); ?></th>                         
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $counts = 1;
+                        foreach ($register as $rows):
+                            ?><tr>
+                                <td><?php echo $counts++; ?></td>
+                                <td><?php echo $rows['course_name']; ?></td>   
+                                <td><?php
+                                    $categories = $this->db->get('course_category')->result();
+                                    foreach ($categories as $category) {
+
+                                        if ($category->category_id == $row['category_id']) {
+                                            echo $category->category_name;
+                                        }
+                                    }
+                                    ?></td>    
+                                <td><?php echo date('F d, Y', strtotime($rows['course_startdate'])); ?></td>    
+                                <td><?php echo date('F d, Y', strtotime($rows['course_enddate'])); ?></td>    
+                                <td><?php echo $row['course_fee']; ?></td>   
+                                <td><?php
+                                    $professor = $this->db->get('professor')->result_array();
+                                    foreach ($professor as $pro) {
+                                        if ($pro['professor_id'] == $rows['professor_id']) {
+                                            echo $pro['name'];
+                                        }
+                                    }
+                                    ?></td>   
+                               
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                         </div>
+                     </div>
+                </div>
             </div>
         </div>
 
@@ -73,7 +134,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#data-tables1').dataTable();
+        $('#datatable-list-course').dataTable();
     })
 
 </script>

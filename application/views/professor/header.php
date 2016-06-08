@@ -41,7 +41,7 @@
             <meta name=msapplication-TileColor content="#3399cc">
             <script>
                 var base_url = '<?php echo base_url(); ?>';
-            </script>
+            </script>            
 
         <body class="<?php echo $this->router->fetch_method(); ?> professor_dashboard">
             <!--[if lt IE 9]>
@@ -159,7 +159,7 @@
                                         
                                         <?php
                                         $pages = [
-                                            'student', 'subject','syllabus', 'holiday', 'assessments'
+                                            'student', 'subject','syllabus', 'holiday', 'assessments','vocational_register_student','vocational_course'
                                         ];
                                         ?>
 
@@ -196,7 +196,13 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a id="link-vocational_course" href="<?php echo base_url(); ?>professor/vocational_student">
+                                                    <a id="link-vocational_course" href="<?php echo base_url(); ?>professor/vocationalcourse">
+                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <span class="txt">Vocational Course</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a id="link-vocational_register_student" href="<?php echo base_url(); ?>professor/vocational_student">
                                                         <i class="s16 icomoon-icon-attachment"></i>
                                                         <span class="txt">Vocational Students</span>
                                                     </a>
@@ -263,6 +269,12 @@
                                             <a <?php echo active_single_menu('class_routine', $page); ?> href="<?php echo base_url(); ?>professor/class_routine">
                                                 <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                                                 <span class=txt>Class Routine </span>
+                                            </a>
+                                        </li> 
+                                        <li>
+                                            <a  href="<?php echo base_url(); ?>site/forums">
+                                                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                                <span class=txt>Forum & Discussion</span>
                                             </a>
                                         </li> 
                                         

@@ -97,6 +97,21 @@
             month = flags.wrap.attr('data-current-month');
     getEvents(flags, eventsOpts, eventsOpts.eventsLimit, year, month, false, "month");
     });
+    flags.wrap.on('dblclick', '.eventCalendar-day a', function (e) {
+    //flags.wrap.find('.eventCalendar-day a').live('click',function(e){
+    e.preventDefault();
+    var year = flags.wrap.attr('data-current-year'),
+            month = flags.wrap.attr('data-current-month'),
+            day = $(this).parent().attr('rel');
+    getEvents(flags, eventsOpts, false, year, month, day, "day");
+    });
+    flags.wrap.on('dblclick', '.eventCalendar-monthTitle', function (e) {
+    //flags.wrap.find('.eventCalendar-monthTitle').live('click',function(e){
+    e.preventDefault();
+    var year = flags.wrap.attr('data-current-year'),
+            month = flags.wrap.attr('data-current-month');
+    getEvents(flags, eventsOpts, eventsOpts.eventsLimit, year, month, false, "month");
+    });
     });
     // show event description
     flags.wrap.find('.eventCalendar-list').on('click', '.eventCalendar-eventTitle', function (e) {
@@ -629,6 +644,8 @@
                 <!-- Start .panel -->
                 <div class=panel-heading>
                     <h4 class=panel-title>Event Calendar</h4>
+                    <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="icomoon-icon-minus"></i></a>
+                </div>
                 </div>
                 <div class=panel-body>
                     <div id="eventCalendarHumanDate"></div>
@@ -806,6 +823,8 @@
                 <h4 class=panel-title>
                     To Do
                 </h4>
+                <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="icomoon-icon-minus"></i></a>
+                </div>
             </div>
             <div class=panel-body>
                 <div class=todo-widget>
@@ -841,7 +860,7 @@
                                         <div class=form-group>
                                             <div class="col-sm-offset-4 col-sm-8">
                                                 <input type="button" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
-                                                <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform">
+                                               <!-- <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform">-->
                                             </div>
                                         </div>
                                     </form>
@@ -898,7 +917,8 @@
             <!-- Start .panel -->
             <div class="panel-heading">
                 <h4 class="panel-title"> Growth</h4>
-
+                <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="icomoon-icon-minus"></i></a>
+                </div>
                 
             </div>
             <div class="panel-body">
@@ -978,6 +998,8 @@
                 <h4 class="panel-title marginzero">
                     Timeline
                 </h4>
+                <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="icomoon-icon-minus"></i></a>
+                </div>
             </div>
             <div class=panel-body>
                 <div id="demo">
