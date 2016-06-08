@@ -35,7 +35,7 @@ foreach ($edit_data as $row):
                                 <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?> <span style="color:red">*</span></label>
                                 <div class="col-sm-8">
                                     <select id="degree1" name="degree1[]" class="form-control" multiple>
-                                        <option value="">Select Course</option>                                        
+                                                                         
                                         <?php
                                         $d = explode(',', $row['degree_id']);
                                         foreach ($degree as $srow) {
@@ -146,12 +146,12 @@ endforeach;
             b_name: "required",
             'degree1[]':
                     {
-                        valueNotEquals: "default",
+                        //valueNotEquals: "default",
                         required: true,
                     },
             'course1[]':
                     {
-                        valueNotEquals: "default",
+                       // valueNotEquals: "default",
                         required: true,
                     },
             batch_status: "required",
@@ -160,12 +160,12 @@ endforeach;
             b_name: "Please enter batch Name",
             'degree1[]':
                     {
-                        valueNotEquals: "Select department",
+                        //valueNotEquals: "Select department",
                         required: "Select department",
                     },
             'course1[]':
                     {
-                        valueNotEquals: "Select branch",
+                        //valueNotEquals: "Select branch",
                         required: "Select branch",
                     },
             batch_status: "Select status",

@@ -52,7 +52,7 @@ foreach ($edit_data as $row):
                                 <label class="col-sm-4 control-label"><?php echo ucwords("semester"); ?><span style="color:red">*</span></label>
                                 <div class="col-sm-8">
                                     <select id="semester" name="semester[]" class="form-control" multiple>
-                                        <option value="">--- Select Semester ---</option>
+                                        
                                         <?php
                                         $semexplode = explode(',', $row['semester_id']);
                                         $semesters = $this->db->get('semester')->result_array();

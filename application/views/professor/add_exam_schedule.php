@@ -82,7 +82,7 @@ $degree = $this->Professor_model->get_all_degree();
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><?php echo ucwords("Date"); ?><span style="color:red">*</span></label>
                         <div class="col-sm-8">
-                            <input readonly="" type="text" id="exam_date" class="form-control datepicker-normal" name="exam_date"/>
+                            <input type="text" id="exam_date" class="form-control datepicker-normal" name="exam_date"/>
                         </div>	
                     </div>
                     <div class="form-group">
