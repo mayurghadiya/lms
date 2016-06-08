@@ -556,10 +556,10 @@
                     <div class="xe-lower scroll-bar-box">
                         <ul class="clearfix links-gaz">
                             <li>
-                                    <a href="#">Engineering (In June)</a>                                                        
+                                    <a href="#">Engineering (In June)</a>                  
                             </li>
                             <li>
-                                    <a href="#">Central Police Forces</a>                                                        
+                                    <a href="#">Central Police Forces</a>                    
                             </li>
                             <li>
                                     <a href="#">Competitive exams first</a>                                                        

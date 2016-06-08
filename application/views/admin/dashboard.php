@@ -66,43 +66,44 @@ $department = student_ratio_department_wise();
             },
             xAxis: {
             categories: [
-<?php foreach ($new_student_joining as $row) { ?>
-                '<?php echo $row->Year; ?>',
-<?php } ?>
-            ],
-                    crosshair: true
-            },
-            yAxis: {
-            min: 0,
-                    title: {
-                    text: 'Students Enrolled'
-                    }
-            },
-            tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-            },
-            plotOptions: {
-            column: {
-            pointPadding: 0.2,
-                    borderWidth: 0
-            }
-            },
-            series: [{
-            name: 'Students',
-                    data: [
-<?php foreach ($new_student_joining as $row) { ?>
-    <?php echo $row->Total; ?>,
-<?php } ?>
-                    ]
+                <?php foreach ($new_student_joining as $row) { ?>
+                                '<?php echo $row->Year; ?>',
+                <?php } ?>
+                            ],
+                                    crosshair: true
+                            },
+                            yAxis: {
+                            min: 0,
+                                    title: {
+                                    text: 'Students Enrolled'
+                                    }
+                            },
+                            tooltip: {
+                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                            },
+                            plotOptions: {
+                            column: {
+                            pointPadding: 0.2,
+                                    borderWidth: 0
+                            }
+                            },
+                            series: [{
+                            name: 'Students',
+                                    data: [
+                <?php foreach ($new_student_joining as $row) { ?>
+                    <?php echo $row->Total; ?>,
+                <?php } ?>
+                                    ]
 
-            }]
-    });
-    });</script>
+                            }]
+                    });
+                    });
+</script>
 <!-- bar chart course wise male and female -->
 <script>
     $(function () {
@@ -118,49 +119,50 @@ $department = student_ratio_department_wise();
             },
             xAxis: {
             categories: [
-<?php
-//$course = unique_branch_list();
-foreach ($department as $row) {
-    ?>
-                '<?php echo $row->d_name; ?>',
-<?php } ?>
-            ],
-                    crosshair: true
-            },
-            yAxis: {
-            min: 0,
-                    title: {
-                    text: 'Students'
-                    }
-            },
-            tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-            },
-            plotOptions: {
-            column: {
-            pointPadding: 0.2,
-                    borderWidth: 0
-            }
-            },
-            series: [
-            {
-            name: 'Student',
-                    data: [
-<?php
-//$male = male_ratio_course_wise();
-foreach ($department as $row) {
-    ?>
-    <?php echo $row->TotalStudent; ?>,
-<?php } ?>
-                    ]
-            }]
-    });
-    });</script>
+                    <?php
+                    //$course = unique_branch_list();
+                    foreach ($department as $row) {
+                        ?>
+                                    '<?php echo $row->d_name; ?>',
+                    <?php } ?>
+                                ],
+                                        crosshair: true
+                                },
+                                yAxis: {
+                                min: 0,
+                                        title: {
+                                        text: 'Students'
+                                        }
+                                },
+                                tooltip: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                        footerFormat: '</table>',
+                                        shared: true,
+                                        useHTML: true
+                                },
+                                plotOptions: {
+                                column: {
+                                pointPadding: 0.2,
+                                        borderWidth: 0
+                                }
+                                },
+                                series: [
+                                {
+                                name: 'Student',
+                                        data: [
+                    <?php
+                    //$male = male_ratio_course_wise();
+                    foreach ($department as $row) {
+                        ?>
+                        <?php echo $row->TotalStudent; ?>,
+                    <?php } ?>
+                                        ]
+                                }]
+                        });
+                        });
+</script>
 <!-- bar chart course wise students -->
 <script>
     $(function () {
@@ -176,46 +178,47 @@ foreach ($department as $row) {
             },
             xAxis: {
             categories: [
-<?php foreach ($course as $row) { ?>
-                '<?php echo $row->c_name; ?>',
-<?php } ?>
-            ],
-                    crosshair: true
-            },
-            yAxis: {
-            min: 0,
-                    title: {
-                    text: 'Students'
-                    }
-            },
-            tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-            },
-            plotOptions: {
-            column: {
-            pointPadding: 0.2,
-                    borderWidth: 0
-            }
-            },
-            series: [{
-            name: 'Students',
-                    data: [
-<?php
-$students = total_count_of_student_branch_wise();
-foreach ($students as $student) {
-    ?>
-    <?php echo $student->TotalStudent; ?>,
-<?php } ?>
-                    ]
+                <?php foreach ($course as $row) { ?>
+                                '<?php echo $row->c_name; ?>',
+                <?php } ?>
+                            ],
+                                    crosshair: true
+                            },
+                            yAxis: {
+                            min: 0,
+                                    title: {
+                                    text: 'Students'
+                                    }
+                            },
+                            tooltip: {
+                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                            },
+                            plotOptions: {
+                            column: {
+                            pointPadding: 0.2,
+                                    borderWidth: 0
+                            }
+                            },
+                            series: [{
+                            name: 'Students',
+                                    data: [
+                <?php
+                $students = total_count_of_student_branch_wise();
+                foreach ($students as $student) {
+                    ?>
+                    <?php echo $student->TotalStudent; ?>,
+                <?php } ?>
+                                    ]
 
-            }]
-    });
-    });</script>
+                            }]
+                    });
+                    });
+</script>
 <script type="text/javascript" >
     ;
     (function ($) {
@@ -678,246 +681,188 @@ foreach ($students as $student) {
             </div>
         </div>
         <!-- End .panel -->
-
+    </div>
         <!-- start todo & time line -->
-        <div class="row">
             <!-- To do list Start div-->
-            <div class="col-lg-5">
-                <!--  To Do List -->
-                <div class="panel panel-default toggle">
-                    <!-- Start .panel -->
-                    <div class=panel-heading>
-                        <h4 class=panel-title>
-                            To Do List
-                        </h4>
-                    </div>
-                    <div class=panel-body>
-                        <div class=todo-widget>
-                            <!-- .todo-widget -->
-                            <div class=todo-header>
-                                <div id="updateformhtml"></div>
-                                <div class="todo-addform" id="todo-addform">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <h4 class=todo-period>Add New ToDo</h4>
-                                            <form id="frmtodo" class="form-horizontal form-groups-bordered validate">
-                                                <div class=form-group>
-                                                    <label class="control-label col-lg-4">Task Title</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" id="todo_title" class="form-control" name="todo_title" >
-                                                    </div>
-                                                </div>
-                                                <div class=form-group>
-                                                    <label class="control-label col-lg-4">Task Date</label>
-                                                    <div class="col-sm-8">
-                                                        <input id="basic-datepicker" type="text" name="tado_date" class="form-control" readonly="">
-                                                    </div>
-                                                </div>
-                                                <div class=form-group>
-                                                    <label class="control-label col-lg-4">Task Time</label>
-                                                    <div class="col-sm-8">
-                                                        <div class="input-group bootstrap-timepicker">
-                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                                            <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8" readonly="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class=form-group>
-                                                    <div class="col-sm-offset-4 col-sm-8">
-                                                        <input type="button" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
-                                                        <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform">
-                                                    </div>
-                                                </div>
-                                            </form>
+    <div class="col-lg-5 col-md-5 col-xs-5">
+        <!--  To Do List -->
+        <div class="panel panel-default toggle">
+            <!-- Start .panel -->
+            <div class=panel-heading>
+                <h4 class=panel-title>
+                    To Do List
+                </h4>
+            </div>
+            <div class=panel-body>
+                <div class=todo-widget>
+                    <!-- .todo-widget -->
+                    <div class=todo-header>
+                        <div id="updateformhtml"></div>
+                        <div class="todo-addform" id="todo-addform">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class=todo-period>Add New ToDo</h4>
+                                    <form id="frmtodo" class="form-horizontal form-groups-bordered validate">
+                                        <div class=form-group>
+                                            <label class="control-label col-lg-4">Task Title</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="todo_title" class="form-control" name="todo_title" >
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class=todo-search>
-                                    <form>
-                                        <input class=form-control name=search placeholder="Search for todo ...">
+                                        <div class=form-group>
+                                            <label class="control-label col-lg-4">Task Date</label>
+                                            <div class="col-sm-8">
+                                                <input id="basic-datepicker" type="text" name="tado_date" class="form-control" readonly="">
+                                            </div>
+                                        </div>
+                                        <div class=form-group>
+                                            <label class="control-label col-lg-4">Task Time</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group bootstrap-timepicker">
+                                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                                    <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8" readonly="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=form-group>
+                                            <div class="col-sm-offset-4 col-sm-8">
+                                                <input type="button" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
+                                                <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform">
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
-                                <div class=todo-add>
-                                    <a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a>
-                                </div>
                             </div>
-                            <h4 class=todo-period>To Do List</h4>
-                            <div id="wait" class="loading_img">
-                                <img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading...
-                            </div>
-                            <ul class="todo-list" id="today">
-                                <?php foreach ($todolist as $todo) { ?>  
-                                    <li class="todo-task-item <?php
+                        </div>
+                        <div class=todo-search>
+                            <form>
+                                <input class=form-control name=search placeholder="Search for todo ...">
+                            </form>
+                        </div>
+                        <div class=todo-add>
+                            <a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a>
+                        </div>
+                    </div>
+                    <h4 class=todo-period>To Do List</h4>
+                    <div id="wait" class="loading_img">
+                        <img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading...
+                    </div>
+                    <ul class="todo-list" id="today">
+                        <?php foreach ($todolist as $todo) { ?>  
+                            <li class="todo-task-item <?php
+                            if ($todo->todo_status == "0") {
+                                echo "task-done";
+                            }
+                            ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
+                                <div class=checkbox-custom><input type="checkbox" <?php
                                     if ($todo->todo_status == "0") {
-                                        echo "task-done";
+                                        echo "checked=''";
                                     }
-                                    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
-                                        <div class=checkbox-custom><input type="checkbox" <?php
-                                            if ($todo->todo_status == "0") {
-                                                echo "checked=''";
-                                            }
-                                            ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
-                                        <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
-                                        <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
-                                        <div class="updateclick_box">
-                                            <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                        </div>
-                                        <div class="todo-close_box">
-                                            <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
-                                        </div>
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- End .todo-widget -->
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div id="checkAll-active" class="col-lg-10">
-                    <!-- col-lg-10 start here -->
-                    <div class="row gallery sortable-layout">
-                        <!-- Start .row -->
-                        <?php foreach ($recent_professor as $teacher) { ?>  
-                            <div class="col-md-4">
-                                <!-- Start .col-md-3 -->
-                                <div class="panel panel-default plain panelMove">
-                                    <!-- Start .panel -->
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title"><strong><?php echo $teacher->name; ?></strong> <small><?php echo date_duration($teacher->created_at); ?></small></h4>
-                                        <div class="btn-group" role="group">                     
-                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_view_profile/<?php echo $teacher->professor_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>view</span></a>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-
-                                        <?php if ($teacher->image_path != "") { ?> 
-                                            <img class="img-responsive" src="<?php echo base_url() ?>uploads/professor/<?php echo $teacher->image_path; ?>" alt="image alt">
-                                        <?php } else { ?>
-                                            <img src="<?php echo base_url() ?>uploads/no-image.jpg" height="100px" width="100px"/>
-                                        <?php } ?>
-                                    </div>
+                                    ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
+                                <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
+                                <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
+                                <div class="updateclick_box">
+                                    <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                 </div>
-                                <!-- End .panel --><!-- End .panel --><!-- End .panel -->
-                            </div>
+                                <div class="todo-close_box">
+                                    <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
+                                </div>
+                            </li>
                         <?php } ?>
-
-                    </div>
-                    <!-- End .row -->
+                    </ul>
                 </div>
             </div>
-            <!-- To do list End div-->            
-
-            <!-- To Time line Start div-->
-            <!-- <div class="col-lg-7">
-                 <div class="panel panel-default toggle">
-                     
-                     <div class=panel-heading>
-                         <h4 class="panel-title marginzero">
-                             Timeline
-                         </h4>
-                     </div>
-                     <div class=panel-body>
-                         <div id="demo">
-                             <section id="examples">         
-                     
-                                 <div id="content-1">
-                                     <div class="timeline-box timeline-horizontal" style="width: 3000px;">
-            <?php
-            $i = 0;
-            foreach ($timeline as $time_line) {
-                ?>
-                                                                             <div class="tl-row">
-                                                                                 <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                                                                                     <div class="tl-bullet bg-blue"></div>
-                                                                                     <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
-                                                                                     <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                                                                         <div class="arrow"></div>
-                                                                                         <div class="popover-content">
-                                                                                             <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
-                                                                                             <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
-                                                                                             <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
-                                                                                         </div>
-                                                                                     </div>
-                                                                                 </div>
-                                                                             </div>
-                                                                 <div class="tl-row">
-                                                                     <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
-                                                                         <div class="tl-bullet bg-blue"></div>
-                                                                         <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
-                                                                         <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
-                                                                             <div class="arrow"></div>
-                                                                             <div class="popover-content">
-                                                                                 <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
-                                                                                 <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
-                                                                                 <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
-                                                                             </div>
-                                                                         </div>
-                                                                     </div>
-                                                                 </div>
-                <?php
-                $i++;
-            }
-            ?>
- 
-                                     </div>
-                                 </div>          
-                             </section>
-                         </div>
-                     </div>
-                 </div>
-             </div>-->
-            <!-- To Time line End div-->
-
+            <!-- End .todo-widget -->
         </div>
-        <!-- end todo & time line -->
-
-        <!-- Start Report Charts -->
-        <div class="panel panel-default toggle">
-            <div class="panel-heading">
-                <h4 class="panel-title marginzero">Report Charts</h4>
-            </div>
-            <div class="panel-body margin25top">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Male to Female Course count Ratio</div>
-                            </div>
-                            <div class="panel-body" id="container" style="width: 450px; height: 450px;"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Students enrolled</div>
-                            </div>
-                            <div class="panel-body" id="stduent-enrolled" style="height: 450px; width: 450px;"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Male to Female Course count Ratio</div>
-                            </div>
-                            <div class="panel-body" id="course-male-female" style="height: 500px;"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">Students Enrolled (Coursewise)</div>
-                            </div>
-                            <div class="panel-body" id="course-wise-student" style="height: 500px;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Report Charts -->
-
-
     </div>
+    <div class="col-lg-7 col-md-7 col-xs-7">
+        <div class="panel panel-default toggle">
+                        <!-- Start .panel -->
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                Recently Added Faculty
+                            </h4>
+                        </div>
+                        
+                        <div class="panel-body text-center">
+                            <div id="checkAll-active">                    
+                                <div class="row gallery sortable-layout scroll_bar_faculty">
+                                    <?php foreach ($recent_professor as $teacher) { ?>  
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <div class="img_box_faculty">
+                                                    <?php if ($teacher->image_path != "") { ?> 
+                                                        <img class="img-responsive" src="<?php echo base_url() ?>uploads/professor/<?php echo $teacher->image_path; ?>" alt="image alt">
+                                                    <?php } else { ?>
+                                                        <img class="img-responsive" title="No Image Faculty" width="100px" src="<?php echo base_url() ?>uploads/no-image.jpg" />
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="details_faculty">
+                                                    <h4 class="title">
+                                                        <b><?php echo $teacher->name; ?></b> 
+                                                        <small><?php echo date_duration($teacher->created_at); ?></small>
+                                                    </h4>
+                                                    <div class="btn-group" role="group">                     
+                                                        <a href="#" class="btn btn-default btn-xs" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_view_profile/<?php echo $teacher->professor_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top">More Details</a>
+                                                    </div>
+                                                </div>                                                
+                                        </div>                            
+                                    <?php } ?>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <!-- Start Report Charts -->
+            <div class="panel panel-default toggle">
+                <div class="panel-heading">
+                    <h4 class="panel-title marginzero">Report Charts</h4>
+                </div>
+                <div class="panel-body margin25top">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Male to Female Course count Ratio</div>
+                                </div>
+                                <div class="panel-body" id="container" style="width: 450px; height: 450px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Students enrolled</div>
+                                </div>
+                                <div class="panel-body" id="stduent-enrolled" style="height: 450px; width: 450px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Male to Female Course count Ratio</div>
+                                </div>
+                                <div class="panel-body" id="course-male-female" style="height: 500px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Students Enrolled (Coursewise)</div>
+                                </div>
+                                <div class="panel-body" id="course-wise-student" style="height: 500px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Report Charts -->
+        </div>
+    </div>
+
+    
     <!-- col-lg-12 end here -->
 </div>
 <!-- End .row -->
@@ -946,16 +891,10 @@ foreach ($students as $student) {
 </script>
 <!-- Event Calendar End JS-->
 
-
-<!-- <div class="row">
-    <div class="col-md-6">
-    </div>
-</div> -->
-
 <!-- To do list Start JS-->
 <script type="text/javascript">
 
-            $(document).ready(function () {
+    $(document).ready(function () {
     $("#todo-addform").hide();
     $("#basic-datepicker").datepicker({
     autoclose: true
@@ -1092,8 +1031,79 @@ foreach ($students as $student) {
     (function($) {
 
     $(window).load(function() {
-
-    $("#content-1").mCustomScrollbar({
+    $(".eventCalendar-list-content").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            onOverflowY:function(){
+             var opt=$(this).data("mCS").opt;
+             if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+            },
+            // onOverflowX: function() {
+            // var opt = $(this).data("mCS").opt;
+            // if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+            // },
+            }
+    });        
+    $(".scroll_bar_faculty").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            onOverflowY:function(){
+             var opt=$(this).data("mCS").opt;
+             if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+            },
+            // onOverflowX: function() {
+            // var opt = $(this).data("mCS").opt;
+            // if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+            // },
+            }
+    });
+    $("#course-male-female").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            // onOverflowY:function(){
+            //  var opt=$(this).data("mCS").opt;
+            //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+            // },
+            onOverflowX: function() {
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+            },
+            }
+    }); 
+        $("#course-wise-student").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            // onOverflowY:function(){
+            //  var opt=$(this).data("mCS").opt;
+            //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+            // },
+            onOverflowX: function() {
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+            },
+            }
+    });
+        $("#stduent-enrolled").mCustomScrollbar({
     theme: "inset-2-dark",
             axis: "yx",
             advanced: {
@@ -1132,6 +1142,7 @@ foreach ($students as $student) {
     });
     })(jQuery);</script>
 <!-- Scrollbar Js end -->
+
 
 <!-- Event Calendar Js start -->
 <script>
@@ -1184,3 +1195,65 @@ foreach ($students as $student) {
     });
 </script>
 <!-- Event Calendar Js end -->
+
+
+            <!-- To Time line Start div-->
+            <!-- <div class="col-lg-7">
+                 <div class="panel panel-default toggle">
+                     
+                     <div class=panel-heading>
+                         <h4 class="panel-title marginzero">
+                             Timeline
+                         </h4>
+                     </div>
+                     <div class=panel-body>
+                         <div id="demo">
+                             <section id="examples">         
+                     
+                                 <div id="content-1">
+                                     <div class="timeline-box timeline-horizontal" style="width: 3000px;">
+            <?php
+            $i = 0;
+            foreach ($timeline as $time_line) {
+                ?>
+                                                                             <div class="tl-row">
+                                                                                 <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                                                     <div class="tl-bullet bg-blue"></div>
+                                                                                     <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
+                                                                                     <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                                                         <div class="arrow"></div>
+                                                                                         <div class="popover-content">
+                                                                                             <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
+                                                                                             <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
+                                                                                             <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
+                                                                                         </div>
+                                                                                     </div>
+                                                                                 </div>
+                                                                             </div>
+                                                                 <div class="tl-row">
+                                                                     <div class="tl-item <?php if ($i % 2) { ?> float-right <?php } ?>">
+                                                                         <div class="tl-bullet bg-blue"></div>
+                                                                         <div class="tl-panel"><?php echo $time_line->timeline_year; ?></div>
+                                                                         <div class="popover <?php if ($i % 2) { ?> bottom <?php } else { ?> top <?php } ?>">
+                                                                             <div class="arrow"></div>
+                                                                             <div class="popover-content">
+                                                                                 <h3 class="tl-title"><?php echo $time_line->timeline_title; ?></h3>
+                                                                                 <p class="tl-content"><?php echo $time_line->timeline_desc; ?></p>
+                                                                                 <div class="tl-time"><i aria-hidden="true" class="fa fa-clock-o"></i> <?php echo date_duration($time_line->timeline_created_date); ?></div>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                <?php
+                $i++;
+            }
+            ?>
+ 
+                                     </div>
+                                 </div>          
+                             </section>
+                         </div>
+                     </div>
+                 </div>
+             </div>-->
+            <!-- To Time line End div-->

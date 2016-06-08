@@ -1,38 +1,47 @@
-
 <!DOCTYPE html>
-<!--[if lt IE 8]>
-<html class="no-js lt-ie8">
-   <![endif]--><!--[if gt IE 8]><!-->
 <html class=no-js>
-    <!--<![endif]-->
-    <html class=no-js>
-        <head>
-            <meta charset=utf-8>
-            <title><?php echo $title; ?> | <?php echo system_name(); ?></title>
-            <!-- Mobile specific metas -->
-            <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-            <!-- Force IE9 to render in normal mode --><!--[if IE]>
-            <meta http-equiv="x-ua-compatible" content="IE=9" />
-            <![endif]-->
-            <meta name=author content="">
-            <meta name=description content="">
-            <meta name=keywords content="">
-            <meta name=application-name content="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?php echo $title; ?> | <?php echo system_name(); ?></title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
             <!-- Import google fonts - Heading first/ text second -->
             <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel=stylesheet type=text/css>
             <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel=stylesheet type=text/css>
             <!-- Css files -->
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar.css">
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar_theme_responsive.css">
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css"/>
-            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/main.min.css>
-            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/plugins.css>
-            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
-
-            <!-- jQuery -->
-            <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
-
+            <?php
+            //calendar css
+            $css = [
+                ['event_calendar/eventCalendar.css'],
+                ['event_calendar/eventCalendar_theme_responsive.css']
+            ];
+            $this->carabiner->group('calendar_css', [
+                'css'   => $css
+            ]);
+            $this->carabiner->display('calendar_css');
+            
+            //header css
+            $css = [
+                ['jquery.mCustomScrollbar.min.css'],
+                ['main.min.css'],
+                ['plugins.css'],
+                ['custom.css']
+            ];
+            $this->carabiner->group('header_css', [
+                'css'   => $css
+            ]);
+            $this->carabiner->display('header_css');
+            
+            //scollbar
+            $this->carabiner->css('jquery.mCustomScrollbar.min.css');
+            $this->carabiner->display('css');
+            
+            //Js
+            $this->carabiner->js('jquery-2.1.1.min.js');
+            $this->carabiner->display('js');
+            ?>
+            
             <!-- Fav and touch icons -->
             <link rel=apple-touch-icon-precomposed sizes=144x144 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-144-precomposed.png>
             <link rel=apple-touch-icon-precomposed sizes=114x114 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-114-precomposed.png>
@@ -44,6 +53,14 @@
             <script>
                 var base_url = '<?php echo base_url(); ?>';
             </script>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+            
           </head>
         <body class="<?php echo $this->router->fetch_method(); ?>">
             <!--[if lt IE 9]>

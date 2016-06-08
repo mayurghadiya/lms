@@ -22,8 +22,8 @@
             <!-- Css files -->
 
 <!-- <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">             -->
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar.css">
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar_theme_responsive.css">
+            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/event_calendar/eventCalendar.css">
+            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/event_calendar/eventCalendar_theme_responsive.css">
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css"/>
             <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/plugins.css>

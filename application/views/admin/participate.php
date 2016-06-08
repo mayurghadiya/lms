@@ -1,6 +1,3 @@
-<!-- Start .row -->      <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
-
 <div class=row>                      
 
     <div class=col-lg-12>
@@ -153,8 +150,8 @@
                                                     <option value="">Select department</option>
                                                     <option value="All">All</option>
                                                     <?php
-                                                    $datadegree = $this->db->get_where('degree', array('d_status' => 1))->result();
-                                                    foreach ($datadegree as $rowdegree) {
+                                                    //$datadegree = $this->db->get_where('degree', array('d_status' => 1))->result();
+                                                    foreach ($degree as $rowdegree) {
                                                         ?>
                                                         <option value="<?= $rowdegree->d_id ?>"><?= $rowdegree->d_name ?></option>
                                                         <?php
@@ -205,8 +202,8 @@
                                                     <option value="">Select Semester</option>
                                                     <option value="All">All</option>
                                                     <?php
-                                                    $datasem = $this->db->get_where('semester', array('s_status' => 1))->result();
-                                                    foreach ($datasem as $rowsem) {
+                                                    //$datasem = $this->db->get_where('semester', array('s_status' => 1))->result();
+                                                    foreach ($semester as $rowsem) {
                                                         ?>
                                                         <option value="<?= $rowsem->s_id ?>"><?= $rowsem->s_name ?></option>
                                                         <?php
@@ -529,13 +526,16 @@
                                             foreach ($uploads as $rowsupl):
                                                 $std_id = $rowsupl['std_id'];
                                                 //   $pp_id =  $rowsupl['pp_id'];
-                                                // if()
+                                                // if()                                                
                                                 $this->db->join('degree', 'degree.d_id=student.std_degree');
                                                 $this->db->join('semester', 'semester.s_id=student.semester_id');
                                                 $this->db->join('batch', 'batch.b_id=student.std_batch');
                                                 $this->db->join('course', 'course.course_id=student.course_id');
-
-                                                $user1 = $this->db->get_where('student', array('std_id' => $std_id))->result_array();
+                                                $this->db->select('student.std_id, student.name, degree.d_name, course.c_name, batch.b_name, semester.s_name');
+                                                $this->db->from('student');
+                                                $this->db->where('std_id', $std_id);
+                                                $user1 = $this->db->get()->result_array();
+                                                //$user1 = $this->db->get_where('student', array('std_id' => $std_id))->result_array();
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $countsu++; ?></td>	

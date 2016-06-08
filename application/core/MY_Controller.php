@@ -27,6 +27,8 @@ class MY_Controller extends CI_Controller {
         {
            user_activity();
         }
+        if($this->input->ip_address() == '127.0.0.1')
+            $this->output->enable_profiler(true);        
     }
 
     /**

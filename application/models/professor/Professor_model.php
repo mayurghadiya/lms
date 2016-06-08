@@ -48,21 +48,21 @@ class Professor_model extends CI_Model {
     function update_syllabus($data, $id) {
         $this->db->update("smart_syllabus", $data, array("syllabus_id" => $id));
     }
-    function courseware_update($data, $id)
-    {
-          $this->db->update("courseware", $data, array("courseware_id" => $id));
+
+    function courseware_update($data, $id) {
+        $this->db->update("courseware", $data, array("courseware_id" => $id));
     }
+
     function delete_syllabus($id) {
         $this->db->where("syllabus_id", $id);
         $this->db->delete("smart_syllabus");
     }
-    
-    function delete_courseware($id)
-    {
+
+    function delete_courseware($id) {
         $this->db->where("courseware_id", $id);
         $this->db->delete("courseware");
     }
-    
+
     function getsyllabus($id) {
         $this->db->where("syllabus_id", $id);
         return $this->db->get('smart_syllabus')->result();
@@ -71,6 +71,7 @@ class Professor_model extends CI_Model {
     function get_syllabus() {
         $dept = $this->session->userdata('department');
         $branch = $this->session->userdata('branch');
+        $this->db->select('syllabus_id, syllabus_title, syllabus_degree, syllabus_course, syllabus_sem, syllabus_desc, syllabus_filename');
         $this->db->where("syllabus_degree", $dept);
         //$this->db->where("syllabus_course", $branch);
         return $this->db->get('smart_syllabus')->result();
@@ -320,7 +321,7 @@ class Professor_model extends CI_Model {
      */
     function get_all_course() {
 
-        return $this->db->select('')
+        return $this->db->select('course_id, c_name')
                         ->from('course')
                         ->get()
                         ->result();
@@ -331,7 +332,7 @@ class Professor_model extends CI_Model {
      * @return array
      */
     function get_all_semester() {
-        return $this->db->select()
+        return $this->db->select('s_id, s_name')
                         ->from('semester')
                         ->get()
                         ->result();
@@ -368,10 +369,16 @@ class Professor_model extends CI_Model {
     function exam_details() {
         $this->db->select('department');
 
-        $department = $this->db->get_where("professor", array("professor_id" => $this->session->userdata('login_user_id')))->result();
+        $department = $this->db->select('department')
+                        ->from('professor')
+                        ->where([
+                            'professor_id' => $this->session->userdata('login_user_id')
+                        ])
+                        ->get()->result();
 
-
-        return $this->db->select('exam_manager.*, exam_type.*, course.*, semester.*, batch.*, degree.*')
+        return $this->db->select('exam_manager.em_id, exam_manager.em_name, exam_manager.em_date, exam_type.exam_type_id, exam_type.exam_type_name,'
+                                . ' course.course_id, course.c_name, semester.s_id, semester.s_name, '
+                                . 'batch.b_id, batch.b_name, degree.d_id, degree.d_name')
                         ->from('exam_manager')
                         ->join('exam_type', 'exam_type.exam_type_id = exam_manager.em_type')
                         ->join('course', 'course.course_id = exam_manager.course_id')
@@ -438,7 +445,7 @@ class Professor_model extends CI_Model {
     ///// Degree /////
     function get_all_degree() {
         $id = $this->session->userdata('login_user_id');
-        $this->db->select('d.*');
+        $this->db->select('d.d_id, d_name');
         $this->db->join("degree as d", "p.department=d.d_id");
         return $this->db->get_where("professor as p", array("p.professor_id" => $id))->result();
     }
@@ -500,7 +507,10 @@ class Professor_model extends CI_Model {
      * @return array
      */
     function time_table() {
-        return $this->db->select()
+        return $this->db->select('degree.d_id, degree.d_name, course.course_id, course.c_name,'
+                . 'batch.b_id, batch.b_name, subject_manager.sm_id, subject_manager.subject_name,'
+                . 'semester.s_id, semester.s_name, exam_manager.em_name, exam_time_table.exam_date,'
+                . 'exam_time_table.exam_time_table_id, exam_time_table.exam_start_time, exam_time_table.exam_end_time')
                         ->from('exam_time_table')
                         ->join('exam_manager', 'exam_manager.em_id = exam_time_table.exam_id')
                         ->join('subject_manager', 'subject_manager.sm_id = exam_time_table.subject_id')
@@ -1394,6 +1404,13 @@ class Professor_model extends CI_Model {
     }
 
     public function get_prof_student($dept, $branch) {
+        return $this->db->select('std_id, std_first_name, std_last_name, email, std_mobile, std_gender, profile_photo')
+                        ->from('student')
+                        ->where([
+                            'std_degree' => $dept,
+                            'course_id' => $branch
+                        ])
+                        ->get()->result();
         return $this->db->get_where("student", array('std_degree' => $dept, "course_id" => $branch))->result();
     }
 
@@ -1402,6 +1419,7 @@ class Professor_model extends CI_Model {
     }
 
     public function getholiday() {
+        $this->db->select('holiday_id, holiday_name, holiday_startdate, holiday_enddate, holiday_year');
         $this->db->order_by('holiday_startdate', 'DESC');
         return $this->db->get('holiday')->result_array();
     }
@@ -1410,15 +1428,13 @@ class Professor_model extends CI_Model {
         $this->db->insert('assignment_manager', $data);
     }
 
-    
-    function add_courseware($data)
-    {
-        $this->db->insert('courseware',$data);
+    function add_courseware($data) {
+        $this->db->insert('courseware', $data);
     }
-    public function updateassignment($data,$param2)
-    {
-          $this->db->where('assign_id', $param2);
-            $this->db->update('assignment_manager', $data);
+
+    public function updateassignment($data, $param2) {
+        $this->db->where('assign_id', $param2);
+        $this->db->update('assignment_manager', $data);
     }
 
     public function deleteassignment($param2) {
@@ -1437,7 +1453,7 @@ class Professor_model extends CI_Model {
     public function submitttedassignment() {
         $dept = $this->session->userdata('department');
         $branch = $this->session->userdata('branch');
-        $this->db->select("ass.*,am.*,s.* ");
+        $this->db->select("ass.*,am.*,s.std_id, s.name");
         $this->db->from('assignment_submission ass');
         $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
         $this->db->join("student s", "s.std_id=ass.student_id");
@@ -1453,175 +1469,163 @@ class Professor_model extends CI_Model {
      */
     function class_routine_attendance($where) {
         return $this->db->select()
-                ->from('class_routine')
-                ->join('subject_manager', 'subject_manager.sm_id = class_routine.SubjectID')
-                ->where(array(
-                    'class_routine.DepartmentID'    => $where['department_id'],
-                    'DATE_FORMAT(class_routine.Start, "%Y-%m-%d") <= '    => date('Y-m-d', strtotime($where['class_date'])),
-                    'class_routine.BranchID'    => $where['branch_id'],
-                    'class_routine.BatchID' => $where['batch_id'],
-                    'class_routine.SemesterID'  => $where['semester_id'],
-                    'class_routine.ClassID' => $where['class_id'],
-                    'class_routine.ProfessorID' => $where['professor_id']
-                ))->order_by('class_routine.ClassRoutineId', 'ASC')->get()->result();
-                
+                        ->from('class_routine')
+                        ->join('subject_manager', 'subject_manager.sm_id = class_routine.SubjectID')
+                        ->where(array(
+                            'class_routine.DepartmentID' => $where['department_id'],
+                            'DATE_FORMAT(class_routine.Start, "%Y-%m-%d") <= ' => date('Y-m-d', strtotime($where['class_date'])),
+                            'class_routine.BranchID' => $where['branch_id'],
+                            'class_routine.BatchID' => $where['batch_id'],
+                            'class_routine.SemesterID' => $where['semester_id'],
+                            'class_routine.ClassID' => $where['class_id'],
+                            'class_routine.ProfessorID' => $where['professor_id']
+                        ))->order_by('class_routine.ClassRoutineId', 'ASC')->get()->result();
     }
-    
-    function  getcourseware()
-    {
-        $this->db->select('cw.*,c.*,sub.subject_name');
+
+    function getcourseware() {
+        $this->db->select('cw.courseware_id, cw.topic, cw.status, cw.chapter, cw.description, '
+                . 'cw.attachment, c.course_id, c.c_name, sub.subject_name');
         $this->db->from('courseware cw');
-        $this->db->join('course c','c.course_id=cw.branch_id');
-        $this->db->join('subject_manager sub','sub.sm_id=cw.subject_id');
+        $this->db->join('course c', 'c.course_id=cw.branch_id');
+        $this->db->join('subject_manager sub', 'sub.sm_id=cw.subject_id');
         return $this->db->get()->result_array();
     }
-    public function get_studyresource()
-    {
+
+    public function get_studyresource() {
         $dept = $this->session->userdata("department");
-        $this->db->where("study_degree",$dept);
-        $this->db->or_where('study_degree',"All");
-        return  $this->db->get('study_resources')->result();
-     
+        $this->db->select('study_id, study_title, study_degree, study_course, study_batch, study_sem, study_filename');
+        $this->db->where("study_degree", $dept);
+        $this->db->or_where('study_degree', "All");
+        return $this->db->get('study_resources')->result();
     }
-    
-    public function get_libraries()
-    {
+
+    public function get_libraries() {
         $dept = $this->session->userdata("department");
-        $this->db->where("lm_degree",$dept);
-        $this->db->or_where('lm_degree',"All");
-        return  $this->db->get('library_manager')->result();
+        $this->db->select('lm_id, lm_title, lm_degree, lm_course, lm_batch, lm_semester, lm_filename');
+        $this->db->where("lm_degree", $dept);
+        $this->db->or_where('lm_degree', "All");
+        return $this->db->get('library_manager')->result();
     }
-    public function get_projects()
-    {
-         $dept = $this->session->userdata("department");
-        $this->db->where("pm_degree",$dept);
+
+    public function get_projects() {
+        $dept = $this->session->userdata("department");
+        $this->db->where("pm_degree", $dept);
         return $this->db->get('project_manager')->result();
     }
-    
-    public function submittedproject()
-    {
+
+    public function submittedproject() {
         $dept = $this->session->userdata("department");
         $branch = $this->session->userdata("branch");
-        $this->db->select("ps.*,pm.*,s.* ");
+        $this->db->select("ps.*,pm.*,s.std_id, s.name, s.std_first_name, s.std_last_name");
         $this->db->from('project_document_submission ps');
         $this->db->join("project_manager pm", "pm.pm_id=ps.project_id");
         $this->db->join("student s", "s.std_id=ps.student_id");
-        $this->db->where("s.std_degree",$dept);
-        $this->db->where("s.course_id",$branch);
+        $this->db->where("s.std_degree", $dept);
+        $this->db->where("s.course_id", $branch);
         return $this->db->get();
     }
-    
-    function insert_todo($data)
-    {
-        $this->db->insert("todo_list",$data);
+
+    function insert_todo($data) {
+        $this->db->insert("todo_list", $data);
     }
-    
-    function get_todo()
-    {
+
+    function get_todo() {
         $date = date('Y-m-d');
-        $date = date('Y-m-d', strtotime('-6 days', strtotime($date)));        
+        $date = date('Y-m-d', strtotime('-6 days', strtotime($date)));
         $login_type = $this->session->userdata("login_type");
         $login_id = $this->session->userdata("login_user_id");
-        $this->db->where("todo_role",$login_type);
-        $this->db->where("todo_role_id",$login_id);
+        $this->db->select('todo_id, todo_title, todo_datetime, created_date, todo_status');
+        $this->db->where("todo_role", $login_type);
+        $this->db->where("todo_role_id", $login_id);
         $this->db->where('todo_datetime >= ', $date);
-        $this->db->order_by("todo_datetime","asc");
+        $this->db->order_by("todo_datetime", "asc");
         return $this->db->get("todo_list")->result();
-        
     }
-    
-    function change_status($data,$id)
-    {        
-        $this->db->update("todo_list",$data,array("todo_id"=>$id));
+
+    function change_status($data, $id) {
+        $this->db->update("todo_list", $data, array("todo_id" => $id));
     }
-    
-    function removetodo($id)
-    {
-        $this->db->delete("todo_list",array("todo_id"=>$id));
+
+    function removetodo($id) {
+        $this->db->delete("todo_list", array("todo_id" => $id));
     }
-    function gettododata($id)
-    {
-        return $this->db->get_where("todo_list",array("todo_id"=>$id))->row();
+
+    function gettododata($id) {
+        return $this->db->get_where("todo_list", array("todo_id" => $id))->row();
     }
-    
-    function update_todo($data,$id)
-    {
-          $this->db->update("todo_list",$data,array("todo_id"=>$id));
+
+    function update_todo($data, $id) {
+        $this->db->update("todo_list", $data, array("todo_id" => $id));
     }
-    
+
     /**
      * 
      */
-    function get_submitted_assessment()
-    {
+    function get_submitted_assessment() {
         $dept = $this->session->userdata('department');
         $branch = $this->session->userdata('branch');
-        $this->db->select("ass.*,am.*,s.* ");
+        $this->db->select("ass.*,am.*,s.std_id, s.name, s.std_degree, s.std_batch, s.semester_id");
         $this->db->from('assignment_submission ass');
         $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
         $this->db->join("student s", "s.std_id=ass.student_id");
         $this->db->where("s.std_degree", $dept);
         $this->db->where("s.course_id", $branch);
-        $this->db->where("ass.assessment_status",'1');
-        
+        $this->db->where("ass.assessment_status", '1');
+
         return $this->db->get();
     }
+
     /**
      * submitted assignment 
      * @param int $id
      */
-    function get_submitted_assignment($id)
-    {
-        return $this->db->get_where("assignment_submission",array("assignment_submit_id"=>$id))->result();
+    function get_submitted_assignment($id) {
+        return $this->db->get_where("assignment_submission", array("assignment_submit_id" => $id))->result();
     }
-    
-    function update_submitted_assessment($data,$id)
-    {
-        $this->db->update("assignment_submission",$data,array("assignment_submit_id"=>$id));
+
+    function update_submitted_assessment($data, $id) {
+        $this->db->update("assignment_submission", $data, array("assignment_submit_id" => $id));
     }
-    
+
     /**
      * Get all departments
      * @return mixed
      */
     function get_departments() {
         return $this->db->get_where('degree', [
-            'd_status'  => 1
-        ])->result();
+                    'd_status' => 1
+                ])->result();
     }
-    
+
     /**
      * vocational course student list
      * return mixed data
      */
-    function get_vocational_student()
-    {
-            return $this->db->select('vocational_course_fee.*, student.*, vocational_course.*,course_category.*')
-                        ->from('vocational_course_fee')                        
+    function get_vocational_student() {
+        return $this->db->select('vocational_course_fee.*, student.*, vocational_course.*,course_category.*')
+                        ->from('vocational_course_fee')
                         ->join('student', 'student.std_id = vocational_course_fee.student_id')
-                        ->join('vocational_course', 'vocational_course.vocational_course_id = vocational_course_fee.vocational_course_id')                      
+                        ->join('vocational_course', 'vocational_course.vocational_course_id = vocational_course_fee.vocational_course_id')
                         ->join('course_category', 'course_category.category_id = vocational_course.category_id')
                         ->get()
                         ->result();
     }
-    
+
     /**
      * get subject data
      * @param int $id
      * @return mixed array
      */
-    function getsubject($id)
-    {
-        return $this->db->get_where('subject_manager',array('sm_course_id'=>$id))->result_array();
+    function getsubject($id) {
+        return $this->db->get_where('subject_manager', array('sm_course_id' => $id))->result_array();
     }
-    
-    function get_recent_activity()
-    {
+
+    function get_recent_activity() {
         $this->db->select('activity,activity_datetime');
-        $this->db->from("last_activity");       
-        $this->db->order_by("activity_id","desc");
-        $this->db->where("activity_user_role",$this->session->userdata('login_type'));
-        $this->db->where("activity_user_role_id",$this->session->userdata('login_user_id'));        
+        $this->db->from("last_activity");
+        $this->db->order_by("activity_id", "desc");
+        $this->db->where("activity_user_role", $this->session->userdata('login_type'));
+        $this->db->where("activity_user_role_id", $this->session->userdata('login_user_id'));
         $this->db->limit("10");
         return $this->db->get()->result();
 //        $user_type = $this->session->userdata('login_type');
@@ -1629,9 +1633,6 @@ class Professor_model extends CI_Model {
 //        return $this->db->query("select * from 
 //        (select * from last_activity where activity_user_role='".$user_type."' AND activity_user_role_id='".$id."'  group by activity ) t 
 //        order by t.activity_id desc")->result();
-        
-        
-        
-        
     }
+
 }
