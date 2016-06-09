@@ -35,7 +35,8 @@
                                 <td><?php echo date('F d, Y', strtotime($exam->em_start_time)); ?></td>
                                 <td><?php echo date('F d, Y', strtotime($exam->em_end_time)); ?></td>
                                 <td>
-                                    <a href="<?php echo base_url('student/exam_schedule/' . $exam->em_id); ?>"><span class="label label-primary mr6 mb6">Schedule</span></a>
+                                    <a href="<?php echo base_url('student/exam_schedule/' . $exam->em_id); ?>"><span class="label label-primary mr6 mb6">
+                                            <i class="fa fa-pencil"></i>Schedule</span></a>
                                 </td>
                             </tr>
                         <?php } ?>

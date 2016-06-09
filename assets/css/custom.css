@@ -31,7 +31,8 @@ label.error {
     background: #fff !important;
 }
 .dashboard .panel,
-.index .panel {
+.index .panel,
+.report_chart .panel {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
     transition: all 1s ease 0s;
 }
@@ -189,7 +190,7 @@ label.error {
     display: none;
     width: 69px;
     height: 89px;
-    border: 1px solid black;
+    border: none;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -253,11 +254,14 @@ label.error {
     display: none;
     min-width: 250px;
     margin: 0;
-    padding: 0
+    padding: 0px;
 }
 .popover .popover-content {
-    padding: 15px
+    padding: 10;
 }
+
+
+
 .display-block.popover {
     box-shadow: 0 0 0 transparent
 }
@@ -411,10 +415,18 @@ label.error {
     text-align: right
 }
 .timeline-box .tl-row .tl-item .tl-title {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 700;
-    margin: 0 0 10px
+    margin: 0 0 5px
 }
+.timeline-box .popover {padding: 8px 10px 6px; z-index: 2;}
+.timeline-box .popover .popover-content {
+  border-bottom: 1px dotted #ccc;
+  margin-bottom: 5px;
+  padding: 0 0 2px;
+}
+.timeline-box .popover .popover-content p{font-size: 12px; padding: 0 0 5px 0; line-height: normal; margin:0;}
+
 .timeline-box .tl-row .tl-item .tl-label {
     display: inline-block;
     margin-bottom: 10px;
@@ -433,8 +445,12 @@ label.error {
     font-style: italic;
     opacity: .4;
     -moz-opacity: .4;
-    filter: alpha(opacity: 40)
+    filter: alpha(opacity: 40);
+    display: inline-block;
+  width: 50%;
+  float: left;
 }
+a.readmore_link{width: 50%; display: inline-block; text-align: right; float: left;} 
 .timeline-box .tl-row .tl-item .tl-bullet,
 .timeline-box .tl-row .tl-item .tl-icon {
     position: absolute;
@@ -559,10 +575,11 @@ label.error {
     padding: 0px;
     margin: 0;
 }
-.panel-body .todo-widget .todo-list {
-    height: 350px;
-    overflow-y: auto;
+.panel-body .todo-widget .todo-list{
+  height: 180px;
+  padding: 0 0 10px;
 }
+ .panel-body .vital-stats .growth-list{height: 254px;  padding: 10px 0;}
 .tooltip {
     z-index: 9999999;
 }
@@ -611,7 +628,7 @@ label.error {
 .xe-widget.xe-counter-block .xe-upper,
 .xe-widget.xe-progress-counter .xe-upper {
   background: #fff;
-  padding: 12px 18px;
+  padding: 10px;
   line-height: 1;
   display: table;
   width: 100%;
@@ -814,7 +831,7 @@ label.error {
 .xe-widget.xe-progress-counter .border {
   height: 1px;
   background: rgba(255, 255, 255, 0.5);
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .xe-widget.xe-counter-block .xe-lower span,
 .xe-widget.xe-counter-block .xe-lower strong,
@@ -1295,8 +1312,8 @@ label.error {
   color: #4b4b4b;
 }
 
-#edit_profile img{max-width: 100%;}
-ul.links-gaz{padding-left: 30px; list-style: none;}
+#edit_profile img, .form-img img{max-width: 100% !important;}
+ul.links-gaz{padding-left: 25px; list-style: none;}
 .links-gaz li{border-top: 1px dotted #f8f8f8; padding: 5px;}
 .xe-counter-block-black .links-gaz li{border-top: 1px dotted yellow;}
 .links-gaz li:first-child{ border:none; }
@@ -1316,12 +1333,39 @@ ul.links-gaz{padding-left: 30px; list-style: none;}
 }
 .margin25top{margin-top: 25px;}
 .eventCalendar-eventDesc p {line-height: 24px; margin: 0 0 5px; vertical-align: middle;}
+/*  recently added faculty style */
+.img_box_faculty{display: inline-block; width: 100px; height: 100px; margin-top: 20px;}
+.img_box_faculty .img-responsive, .img_box_faculty > img{-webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; padding: 5px; border: 3px solid #2b669a;}
+.details_faculty{height: 80px; overflow-y: auto;}
+.details_faculty .title b, .details_faculty .title small{display: inline-block; width: 100%}
+.details_faculty .title b{font-size: 13px; text-transform: capitalize; line-height: 20px;}
+.details_faculty h4.title{ margin:5px 0; color: #3f3f3f;  }
+.details_faculty .title small{color: #7a7a7a; font-size: 13px;font-weight: 300; line-height: 20px; font-style: italic;}
+.scroll_bar_faculty{height: 430px;/* overflow-y: auto;*/ overflow-x: hidden !important;}
 
+#course-male-female, #course-wise-student { /*overflow-x: scroll; overflow-y: hidden;*/ /*width: 1150px !important;*/}
+.highcharts-title, .highcharts-title tspan, .highcharts-yaxis-title{font-family: "Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 15px; font-weight: 500; line-height: 20px;}
+.highcharts-axis-labels.highcharts-xaxis-labels tspan, .highcharts-axis-labels.highcharts-xaxis-labels title { font-size: 13px; }
+#checkAll-active .scroll_bar_faculty #mCSB_2_scrollbar_horizontal {display: none !important;}
+#checkAll-active .scroll_bar_faculty #mCSB_2_container.mCSB_container, #stduent-enrolled{width: 100% !important}
+.eventCalendar-slider, .eventCalendar-details{width:48% !important;}
+.eventCalendar-slider .eventCalendar-monthWrap.eventCalendar-currentMonth{ width:50% !important; }
+.xe-widget.xe-counter, .xe-widget.xe-counter-block .xe-upper, .xe-widget.xe-progress-counter .xe-upper{padding: 10px 0;}
+.xe-icon { padding: 5px 0 0 !important;}
+.xe-widget.xe-counter .xe-icon + .xe-label, .xe-widget.xe-counter-block .xe-upper .xe-icon + .xe-label, .xe-widget.xe-progress-counter .xe-upper .xe-icon + .xe-label { padding: 0;}
 
 /*********************** media *****************************/
 
-@media screen and (max-width:1279px) { }
-@media only screen and (min-width: 1024px) and (max-width: 1279px) {}
+@media screen and (max-width:1279px) {
+.xe-widget.xe-counter, .xe-widget.xe-counter-block .xe-upper, .xe-widget.xe-progress-counter .xe-upper{padding: 10px 0;}
+.xe-icon { padding: 5px 0 0 !important;}
+.xe-widget.xe-counter .xe-icon + .xe-label, .xe-widget.xe-counter-block .xe-upper .xe-icon + .xe-label, .xe-widget.xe-progress-counter .xe-upper .xe-icon + .xe-label { padding: 0;}
+
+}
+@media only screen and (min-width: 1024px) and (max-width: 1279px) { 
+#course-male-female, #course-wise-student{width: 990px !important;}
+
+}
 @media only screen and (min-width: 1024px) {
     #content-1 {
         height: 430px !important;
@@ -1330,8 +1374,22 @@ ul.links-gaz{padding-left: 30px; list-style: none;}
         margin: 0;
         padding: 0;
     }
+
+
+
 }
-@media screen and (max-width: 1024px) { }
+@media screen and (max-width: 1024px) {
+ .todo-task-item .checkbox-custom {width: 7%;}
+    .todo-task-item .todo-task-text {width: 40%;}
+    .todo-task-item .todo-category {width: 30%;}
+    .todo-task-item .updateclick_box {width: 10%;}
+    .todo-task-item .todo-close_box {width: 10%;}
+    #course-male-female, #course-wise-student { width: 100% !important;}
+    .lead-stats .stats-number{font-size: 20px;}
+    .lead-stats .stats-icon{right: 5px;}
+    #content .contentwrapper .heading .breadcrumb1{margin:0;}
+
+ }
 @media screen and (max-width: 1023px) {
 
 .eventCalendar-subtitle{ font-size: 20px !important; }
@@ -1343,6 +1401,28 @@ ul.links-gaz{padding-left: 30px; list-style: none;}
 .eventCalendar-slider, .eventCalendar-details {width: 100% !important;}
 .eventCalendar-details {float: none !important;}
 #content-1, #highcharts-4, #highcharts-4 svg, #highcharts-6, #highcharts-6 svg{width: 100% !important;}
+
+.todo-widget .todo-list .todo-task-item .todo-task-text {font-weight: 500;}
+.todo-task-item .checkbox-custom {width: 9%;}
+.todo-task-item .todo-task-text {width: 35%;}
+.todo-task-item .todo-category {width: 35%;}
+.todo-task-item .updateclick_box { width: 9%; }
+.todo-task-item .todo-close_box {width: 9%;}
+
+.eventCalendar-slider .eventCalendar-monthWrap.eventCalendar-currentMonth,
+.eventCalendar-slider, .eventCalendar-details
+{width: 100% !important;}
+.eventCalendar-list-content .mCSB_container_wrapper > .mCSB_container {
+  padding-right: 20px;
+}
+
+.xe-widget.xe-counter .xe-label .num, .xe-widget.xe-counter-block .xe-upper .xe-label .num, .xe-widget.xe-progress-counter .xe-upper .xe-label .num {
+  font-size: 18px !important;
+}
+.xe-widget.xe-counter, .xe-widget.xe-counter-block .xe-upper, .xe-widget.xe-progress-counter .xe-upper {
+  padding: 10px 2px;
+}
+
 
 }
 @media screen and (max-width:767px) { 
@@ -1361,5 +1441,5 @@ ul.links-gaz{padding-left: 30px; list-style: none;}
 }
 @media screen and (min-width : 320px) and (max-width : 568px) { }
 @media screen and (min-width : 480px) and (max-width : 599px) { }
-@media screen and (min-width : 320px) and (max-width : 479px) { }
+@media screen and (min-width : 320px) and (max-width : 480px) { }
 

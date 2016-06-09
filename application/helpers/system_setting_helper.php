@@ -9,8 +9,10 @@ if (!function_exists('system_name')) {
         $CI = & get_instance();
         $CI->load->database();
 
+        $CI->db->select('settings_id, type, description');
+        $CI->db->from('system_setting');
         $CI->db->where('type', 'system_name');
-        $res = $CI->db->get('system_setting')->result();
+        $res = $CI->db->get()->result();
         if (!empty($res)) {
             return $res[0]->description;
         }

@@ -51,11 +51,11 @@
                                         ?>
                                     </td>
                                     <td><?php echo $row->subject; ?></td>
-                                    <td style="width:20%;text-align: left">
-                                        <strong><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></strong>
+                                    <td style="width:20%;text-align: left"><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?>
                                     </td>
                                     <td>
-                                        <a href="<?php echo base_url('student/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">View</span></a>                                        
+                                        <a href="<?php echo base_url('student/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">
+                                                <i class="fa fa-pencil"></i>View</span></a>                                        
                                     </td>
                                 </tr>
 

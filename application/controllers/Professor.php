@@ -56,8 +56,6 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'student';
         $this->data['title'] = 'Student Management';
         $this->data['detail_title'] = $this->lang_message('student_detail');
-        $this->session->set_userdata('last_activity', "Student Module Visited");
-        $this->session->set_userdata('activity_status', "1");
         $this->__site_template('professor/student', $this->data);
     }
 
@@ -69,17 +67,15 @@ class Professor extends MY_Controller {
         $this->data['subject'] = $this->db->query("SELECT * FROM subject_manager WHERE FIND_IN_SET('" . $this->session->userdata('login_user_id') . "',professor_id)")->result();
       
         $login_id = $this->session->userdata('login_user_id');
+        //$this->db->get_where("professor", array("professor_id" => $login_id))->result();
+        $degree = $this->db->select('professor_id, department')->from('professor')->where('professor_id', $login_id)->get()->result();
+        $this->db->where("degree_id", $degree[0]->department);
         $degree = $this->db->get_where("professor", array("professor_id" => $login_id))->result();
         //$this->db->where("degree_id", $degree[0]->department);
         $this->data['course'] = $this->db->get('course')->result();
-          
-        $this->data['semester'] = $this->db->get('semester')->result();
-      
-       
+        $this->data['semester'] = $this->db->get('semester')->result();   
         $this->data['page'] = 'subject';
         $this->data['title'] = 'Subject Management';
-        $this->session->set_userdata('last_activity', "Subject Module Visited.");
-        $this->session->set_userdata('activity_status', "1");
         $this->__site_template('professor/subject', $this->data);
     }
 
@@ -292,8 +288,7 @@ class Professor extends MY_Controller {
         $this->data['degree'] = $this->Professor_model->get_all_degree();
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
-        $this->data['batch'] = $this->Professor_model->get_all_bacth();
-       $this->session->set_flashdata('flash_message', $this->lang_message('update_submitted_assessment'));   
+        $this->data['batch'] = $this->Professor_model->get_all_bacth();  
         $this->__site_template('professor/assessments', $this->data);
     }
 
@@ -463,13 +458,11 @@ class Professor extends MY_Controller {
           $this->data['batch'] = $this->db->get('batch')->result();
           $this->data['degree'] = $this->db->get('degree')->result();
          */
-        $this->data['class'] = $this->db->get('class')->result();
+        //$this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignments';
         $this->data['title'] = 'Assignment Management';    
-
         $this->data['add_title'] = $this->lang_message('add_assignment');
         $this->data['edit_title'] = $this->lang_message('edit_assignment');
-
         $this->__site_template('professor/assignment', $this->data);
     }
 
@@ -781,8 +774,9 @@ class Professor extends MY_Controller {
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
         $this->data['batch'] = $this->Professor_model->get_all_bacth();
-        $this->data['class'] = $this->db->get('class')->result();
-        $this->data['student'] = $this->db->get('student')->result();
+        //$this->data['class'] = $this->db->get('class')->result();
+        //$this->db->get('student')->result();
+        $this->data['student'] = $this->db->select('std_id, std_first_name, std_last_name')->from('student')->get()->result();
         $this->data['page'] = 'project';
         $this->data['title'] = 'Project Management';
         $this->data['add_title'] = $this->lang_message('add_project');
@@ -950,7 +944,7 @@ class Professor extends MY_Controller {
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
         $this->data['batch'] = $this->Professor_model->get_all_bacth();
-        $this->data['student'] = $this->db->get('student')->result();
+        //$this->data['student'] = $this->db->get('student')->result();
         $this->data['page'] = 'digital_library';
         $this->data['title'] = 'Digital Library';
         $this->data['add_title'] = $this->lang_message('add_digital_library');
@@ -964,26 +958,28 @@ class Professor extends MY_Controller {
      * @param string $param2
      */
     function participate($param1 = '', $param2 = '') {
-        $this->db->select("ls.*,s.*");
-        $this->db->from('survey_list ls');
-        $this->db->join("student s", "s.std_id=ls.student_id");
+        //$this->db->select("ls.*,s.*");
+        //$this->db->from('survey_list ls');
+        //$this->db->join("student s", "s.std_id=ls.student_id");
 
-        $this->data['survey'] = $this->db->get()->result();
-        $this->data['questions'] = $this->db->get('survey_question')->result();
-
-        $this->data['participate'] = $this->db->get('participate_manager')->result();
-        $this->data['degree'] = $this->db->get('degree')->result();
-        $this->data['batch'] = $this->db->get('batch')->result();
-        $this->data['semester'] = $this->db->get('semester')->result();
-        $this->data['student'] = $this->db->get('student')->result();
-        $this->data['course'] = $this->db->get('course')->result();
+        //$this->data['survey'] = $this->db->get()->result();
+        //$this->data['questions'] = $this->db->get('survey_question')->result();
+        //$this->db->get('participate_manager')->result();
+        $this->data['participate'] = $this->db->select('pp_title, pp_degree, pp_course, pp_batch, pp_semester, pp_dos')->from('participate_manager')->get()->result();
+        //$this->db->get('degree')->result();
+        $this->data['degree'] = $this->db->select('d_id, d_name')->from('degree')->get()->result();
+        //$this->db->get('batch')->result();
+        $this->data['batch'] = $this->db->select('b_id, b_name')->from('batch')->get()->result();
+        //$this->db->get('semester')->result();
+        $this->data['semester'] = $this->db->select('s_id, s_name')->from('semester')->get()->result();
+        //$this->data['student'] = $this->db->get('student')->result();
+        //$this->db->get('course')->result();
+        $this->data['course'] = $this->db->select('course_id, c_name')->from('course')->get()->result();
 
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Participate Management';
-        $this->data['volunteer'] = $this->db->get('participate_student')->result_array();
-        $this->data['uploads'] = $this->db->get('student_upload')->result_array();
-        $this->session->set_userdata('last_activity', "Participate Module Visited.");
-        $this->session->set_userdata('activity_status', "1");
+        //$this->data['volunteer'] = $this->db->get('participate_student')->result_array();
+        //$this->data['uploads'] = $this->db->get('student_upload')->result_array();
         $this->__site_template('professor/participate', $this->data);
     }
 
@@ -1280,7 +1276,7 @@ class Professor extends MY_Controller {
         $this->data['degree'] = $this->Professor_model->get_all_degree();
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
-        $this->data['centerlist'] = $this->db->get('center_user')->result();   
+        //$this->data['centerlist'] = $this->db->get('center_user')->result();   
         $this->__site_template('professor/exam', $this->data);
     }
 
@@ -1807,9 +1803,10 @@ class Professor extends MY_Controller {
         }
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['degree'] = $this->Professor_model->get_all_degree();
-        $this->data['semester'] = $this->Crud_model->get_all_semester();
-        $this->data['students'] = $this->Crud_model->get_all_students();
-        $this->data['teacher'] = $this->Crud_model->get_all_teacher();
+        $this->data['semester'] = $this->Crud_model->get_all_semester();        
+        //$this->data['students'] = $this->Crud_model->get_all_students();
+        //$this->db->select('professor_id, email, name')->from('professor')->get()->result();
+        //$this->data['teacher'] = $this->Crud_model->get_all_teacher();
         $this->data['all_admin'] = $this->Crud_model->get_all_admin();
         //set the template and view
         $this->data['title'] = 'Compose Email';
@@ -2523,8 +2520,6 @@ class Professor extends MY_Controller {
         //$this->load->view('professor/class_routine', array('title' => 'Class routine'));
         $this->data['title'] = 'Class Routine';
         $this->data['page'] = 'class_routine';
-        $this->session->set_userdata('last_activity', "Class Routine module visited.");
-        $this->session->set_userdata('activity_status', "1");
         $this->__site_template('professor/class_routine', $this->data);
     }
 

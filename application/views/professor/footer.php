@@ -7,7 +7,7 @@
 <!-- / #wrapper --><!-- Back to top -->
 <div id=back-to-top><a href=#>Back to Top</a></div>
 <!-- Javascripts -->
-<script src="<?php echo base_url(); ?>assets/plugins/core/pace/pace.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/plugins/pace.js"></script>
 <!-- Important javascript libs(put in all pages) -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/libs/jquery-ui-1.10.4.min.js"></script>

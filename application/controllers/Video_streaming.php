@@ -6,10 +6,6 @@ class Video_streaming extends MY_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
-       
-    }
-
-    function index() {
         $this->load->model('admin/Crud_model');
         if ($this->session->userdata('login_type') == 'admin') {
             $this->data['course'] = $this->Crud_model->get_all_course();
@@ -19,9 +15,14 @@ class Video_streaming extends MY_Controller {
             $this->data['page'] = 'video_streaming';
         } elseif ($this->session->userdata('login_type') == 'subadmin') {
             $this->data['course'] = $this->Crud_model->get_all_course();
-            $this->data['semester'] = $this->Crud_model->get_all_semester(); 
+            $this->data['semester'] = $this->Crud_model->get_all_semester();
             $this->data['page'] = 'video_streaming';
+        } else {
+            redirect(base_url('site/user_login'));
         }
+    }
+
+    function index() {        
         $this->data['title'] = 'Video Streaming';
         //$this->data['page'] = 'video_streaming';
         $this->data['degree'] = $this->Crud_model->get_all_degree();
@@ -50,8 +51,8 @@ class Video_streaming extends MY_Controller {
             'url_link' => $url,
             'is_active' => $is_active
         ));
-        
-        if($_POST['degree'] == 'all') {
+
+        if ($_POST['degree'] == 'all') {
             //send to all
             $students = $this->db->get('student')->result();
             $message = "Live straming broadcast was created for all students at " . date('F d, Y');
@@ -85,7 +86,7 @@ class Video_streaming extends MY_Controller {
         }
         $this->load->helper('notification');
         $subject = 'Live Video Streaming and Conference';
-        
+
         //video_streaming_email_notification($students, $subject, $message);
     }
 

@@ -27,59 +27,59 @@
                         <div class="tab-pane fade active in" id="list">
                             <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addproject/');" data-original-title="" data-toggle="tooltip" data-placement="top"><i class="fa fa-plus"></i> Project</a>
                             <div class="row filter-row">
-                            <form action="#" method="post" id="searchform">
-                                <div class="form-group col-sm-3 validating">
-                                    <label>Department</label>
-                                    <select id="courses" name="degree" class="form-control">
-                                        <option value="">Select</option>
-                                        <?php foreach ($degree as $row) { ?>
-                                            <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2 validating">
-                                    <label>Branch</label>
-                                    <select id="branches" name="course" class="form-control">
-                                        <option value="">Select</option>
+                                <form action="#" method="post" id="searchform">
+                                    <div class="form-group col-sm-3 validating">
+                                        <label>Department</label>
+                                        <select id="courses" name="degree" class="form-control">
+                                            <option value="">Select</option>
+                                            <?php foreach ($degree as $row) { ?>
+                                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2 validating">
+                                        <label>Branch</label>
+                                        <select id="branches" name="course" class="form-control">
+                                            <option value="">Select</option>
 
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2 validating">
-                                    <label>Batch</label>
-                                    <select id="batches" name="batch" class="form-control">
-                                        <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2 validating">
+                                        <label>Batch</label>
+                                        <select id="batches" name="batch" class="form-control">
+                                            <option value="">Select</option>
 
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2 validating">
-                                    <label> Semester</label>
-                                    <select id="semesters" name="semester" class="form-control">
-                                        <option value="">Select</option>
-                                        <?php foreach ($semester as $row) { ?>
-                                            <option value="<?php echo $row->s_id; ?>"
-                                                    ><?php echo $row->s_name; ?></option>
-                                                <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
-                                    <select class="form-control filter-rows" name="filterclass" id="filterclass" >
-                                        <option value="">Select</option>
-                                        <?php
-                                        $class = $this->db->get('class')->result_array();
-                                        foreach ($class as $c) {
-                                            ?>
-                                            <option value="<?php echo $c['class_id'] ?>"><?php echo $c['class_name'] ?></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2 validating">
+                                        <label> Semester</label>
+                                        <select id="semesters" name="semester" class="form-control">
+                                            <option value="">Select</option>
+                                            <?php foreach ($semester as $row) { ?>
+                                                <option value="<?php echo $row->s_id; ?>"
+                                                        ><?php echo $row->s_name; ?></option>
+                                                    <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2">
+                                        <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
+                                        <select class="form-control filter-rows" name="filterclass" id="filterclass" >
+                                            <option value="">Select</option>
                                             <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-1">
-                                    <label>&nbsp;</label><br/>
-                                    <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>
-                                </div>
-                            </form>
+                                            $class = $this->db->get('class')->result_array();
+                                            foreach ($class as $c) {
+                                                ?>
+                                                <option value="<?php echo $c['class_id'] ?>"><?php echo $c['class_name'] ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-1">
+                                        <label>&nbsp;</label><br/>
+                                        <button type="submit" id="btnsubmit" class="submit btn btn-info vd_bg-green">Go</button>
+                                    </div>
+                                </form>
                             </div>
                             <div id="getresponse">
                                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
@@ -161,17 +161,17 @@
                                                     }
                                                     ?>
                                                 </td>
-                                                <td id="downloadedfile"> <a href="<?php echo base_url().'uploads/project_file/'.$row->pm_filename; ?>" download=""><i class="fa fa-download"></i></a></td>
+                                                <td id="downloadedfile"> <a href="<?php echo base_url() . 'uploads/project_file/' . $row->pm_filename; ?>" download=""><i class="fa fa-download"></i></a></td>
                                                 <td><?php echo date('M d, Y', strtotime($row->pm_dos)); ?></td>	
                                                 <td class="menu-action">
                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
-<i class="fa fa-pencil" aria-hidden="true"></i>
-Edit
-</span></a>
+                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                            Edit
+                                                        </span></a>
                                                     <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/project/delete/<?php echo $row->pm_id; ?>');" title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6">
-<i class="fa fa-trash-o" aria-hidden="true"></i>
-Delete
-</span></a>	
+                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                            Delete
+                                                        </span></a>	
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>						
@@ -221,7 +221,7 @@ Delete
                                     <select class="form-control filter-rows" name="filterclass" id="sfilterclass" >
                                         <option value="">Select</option>
                                         <?php
-                                        $class = $this->db->get('class')->result_array();
+                                        //$class = $this->db->get('class')->result_array();
                                         foreach ($class as $c) {
                                             ?>
                                             <option value="<?php echo $c['class_id'] ?>"><?php echo $c['class_name'] ?></option>
@@ -317,7 +317,7 @@ Delete
     </div>
     <!-- col-lg-12 end here -->
 </div>
-
+</div>
 
 
 <script type="text/javascript">

@@ -20,15 +20,24 @@
             <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel=stylesheet type=text/css>
             <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">
             <!-- Css files -->
+            <?php
+            //header css
+            $css = [
+                ['jquery.mCustomScrollbar.min.css'],
+                ['main.min.css'],
+                ['plugins.css'],
+                ['custom.css'],
+                ['bootstrap-datetimepicker.min.css']
+            ];
+            $this->carabiner->group('header_css', [
+                'css' => $css
+            ]);
+            $this->carabiner->display('header_css');
 
-<!-- <link rel=stylesheet href="<?php echo base_url(); ?>assets/css/xenon-components.css">             -->
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar.css">
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/event_calendar/eventCalendar_theme_responsive.css">
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.mCustomScrollbar.min.css">
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css"/>
-            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/plugins.css>
-            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/main.min.css>
-            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
+            //Js
+            $this->carabiner->js('jquery-2.1.1.min.js');
+            $this->carabiner->display('js');
+            ?>
             <!-- Fav and touch icons -->
             <link rel=apple-touch-icon-precomposed sizes=144x144 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-144-precomposed.png>
             <link rel=apple-touch-icon-precomposed sizes=114x114 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-114-precomposed.png>
@@ -40,6 +49,7 @@
             <script>
                 var base_url = '<?php echo base_url(); ?>';
             </script>
+        </head>
         <body class="<?php echo $this->router->fetch_method(); ?> student_dashboard">
             <!--[if lt IE 9]>
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -108,8 +118,8 @@
                                                 <li><a href="<?php echo base_url('student/digitallibrary'); ?>"><span class=icon><i class="s16 fa fa-newspaper-o"></i></span> <span class=event>New Digital Library was added.</span></a>
                                                 </li>
                                             <?php } ?>
-                                   <!-- <li class=view-all><a href=#>View all notifications <i class="s16 fa fa-angle-double-right"></i></a>
-                                    </li>-->
+                               <!-- <li class=view-all><a href=#>View all notifications <i class="s16 fa fa-angle-double-right"></i></a>
+                                </li>-->
                                         </ul>
                                     </li>
                                 </ul>

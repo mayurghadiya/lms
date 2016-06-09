@@ -12,10 +12,10 @@ class Student extends MY_Controller {
         $notification = show_notification($this->session->userdata('student_id'));
         $this->session->set_userdata('notifications', $notification);
 
-        /*if (!$this->input->is_ajax_request()) {
-            $this->load->helper('permission');
-            user_permission();
-        }*/
+        /* if (!$this->input->is_ajax_request()) {
+          $this->load->helper('permission');
+          user_permission();
+          } */
     }
 
     function index() {
@@ -26,20 +26,23 @@ class Student extends MY_Controller {
      * Student dashborad action
      */
     function dashboard() {
-        $student_detail = $this->db->get_where('student', array(
-                    'std_id' => $this->session->userdata('login_user_id')
-                ))->row();
+        $student_detail = $this->db->select('std_id, semester_id, std_degree, course_id, class_id, std_batch')
+                ->from('student')
+                ->where('std_id', $this->session->userdata('login_user_id'))
+                ->get()
+                ->row();
         $this->data['title'] = 'Student Dashboard';
         $this->data['cms_pages'] = $this->db->get_where('cms_pages', array(
                     'am_course' => $student_detail->course_id,
                     'am_semester' => $student_detail->semester_id,
                     'am_batch' => $student_detail->std_batch
                 ))->result();
-        $this->data['studyresource'] = $this->db->get_where('study_resources')->result_array();
+        //$this->db->get_where('study_resources')->result_array();
+        $this->data['studyresource'] = $this->db->select('study_filename, study_desc, study_title')->from('study_resources')->get()->result_array();
         $this->data['library'] = $this->db->get_where('library_manager')->result_array();
-        $this->data['exam_listing'] = $this->student_exam_listing_widget();
-        $this->data['cms_pages'] = $this->student_cms_page_list_widget();
-        $streaming = $this->streaming_list_widget();
+        $this->data['exam_listing'] = $this->student_exam_listing_widget($student_detail);
+        $this->data['cms_pages'] = $this->student_cms_page_list_widget($student_detail);
+        $streaming = $this->streaming_list_widget($student_detail);
         $this->data['all'] = $streaming['all'];
         $this->data['live_streaming'] = $streaming['live_streaming'];
         $this->data['todolist'] = $this->Student_model->get_todo();
@@ -47,21 +50,12 @@ class Student extends MY_Controller {
         $this->data['timline_todolist'] = $this->Student_model->get_timline_todolist();
         $this->data['timline_event'] = $this->Student_model->get_timline_event();
         $this->data['timelinecount'] = $this->Student_model->get_timeline_date_count();
-//          echo "<pre>";
-//        print_r($this->data['timelinecount']);
-//        echo "<pre>";
-//        print_r($this->data['timline_todolist']);
-//        print_r($this->data['timline_event']);
-//        exit;
         $this->data['page'] = 'dashboard';
         $this->__site_template('student/dashboard', $this->data);
     }
 
-    function streaming_list_widget() {
+    function streaming_list_widget($student_details) {
         $date = date('Y-m-d');
-        $student_details = $this->db->get_where('student', array(
-                    'std_id' => $this->session->userdata('student_id')
-                ))->row();
         //var_dump($student_details);
         $where = array(
             'course' => $student_details->course_id,
@@ -87,10 +81,7 @@ class Student extends MY_Controller {
         return $data;
     }
 
-    function student_cms_page_list_widget() {
-        $student_detail = $this->db->get_where('student', array(
-                    'std_id' => $this->session->userdata('login_user_id')
-                ))->row();
+    function student_cms_page_list_widget($student_detail) {
         //echo $student_detail->std_batc
         $cms_pages = $this->db->get_where('cms_pages', array(
                     'am_course' => $student_detail->course_id,
@@ -100,10 +91,7 @@ class Student extends MY_Controller {
         return $cms_pages;
     }
 
-    function student_exam_listing_widget() {
-        $student_details = $this->db->get_where('student', array(
-                    'std_id' => $this->session->userdata('login_user_id')
-                ))->row();
+    function student_exam_listing_widget($student_details) {
         $page_data['exam_listing'] = $this->db->select()
                 ->from('exam_manager')
                 ->join('exam_type', 'exam_type.exam_type_id = exam_manager.em_type')
@@ -269,15 +257,8 @@ class Student extends MY_Controller {
      */
     function participate($param1 = '', $param2 = '') {
         if ($param1 == "create") {
+            
             $survey = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
-//            $getcount = $this->db->query("SELECT s1.survey_status,s1.survey_question_id,count(s1.survey_result_id) as zero_status FROM survey_result s1 WHERE s1.survey_status='0' GROUP BY s1.survey_question_id")->result();
-//            $getcount2 = $this->db->query("SELECT s2.survey_status,s2.survey_question_id,count(s2.survey_result_id) as first_status FROM survey_result s2 WHERE s2.survey_status='1' GROUP BY s2.survey_question_id")->result();
-//            $getcount3 = $this->db->query("SELECT s3.survey_status,s3.survey_question_id,count(s3.survey_result_id) as second_status FROM survey_result s3 WHERE s3.survey_status='2' GROUP BY s3.survey_question_id")->result();
-//            echo "<pre>";
-//            print_r($getcount);
-//            print_r($getcount2);
-//            print_r($getcount3);
-//            die;
             $count = 1;
             foreach ($survey as $res) {
                 // echo $count;
@@ -287,53 +268,50 @@ class Student extends MY_Controller {
                 $status = implode(",", $field);
                 $count++;
             }
-            
-            
-            $insert_data = array_combine(explode(",",$que), explode(",",$status));
-            foreach($insert_data as $key => $val)
-            {
-                
+
+
+            $insert_data = array_combine(explode(",", $que), explode(",", $status));
+            foreach ($insert_data as $key => $val) {
+
                 $inst_data['survey_question_id'] = $key;
                 $inst_data['survey_status'] = $val;
                 $inst_data['survey_student_id'] = $this->session->userdata('std_id');
-                $this->db->insert("survey_result",$inst_data);
-                $no_status = $this->db->query("SELECT survey_question_id,survey_status,COUNT(survey_result_id) as no_status FROM survey_result WHERE survey_status='0' AND survey_question_id='".$key."'")->result();
-                
+                $this->db->insert("survey_result", $inst_data);
+                $no_status = $this->db->query("SELECT survey_question_id,survey_status,COUNT(survey_result_id) as no_status FROM survey_result WHERE survey_status='0' AND survey_question_id='" . $key . "'")->result();
+
                 $no_status_value = $no_status[0]->no_status;
-                
-                $yes_status = $this->db->query("SELECT survey_question_id,survey_status,COUNT(survey_result_id) as yes_status FROM survey_result WHERE survey_status='1' AND survey_question_id='".$key."'")->result();
-                
+
+                $yes_status = $this->db->query("SELECT survey_question_id,survey_status,COUNT(survey_result_id) as yes_status FROM survey_result WHERE survey_status='1' AND survey_question_id='" . $key . "'")->result();
+
                 $yes_status_value = $yes_status[0]->yes_status;
-                
-                $no_opinion = $this->db->query("SELECT survey_question_id,survey_status,COUNT(survey_result_id) as noopinion_status  FROM survey_result WHERE survey_status='2' AND survey_question_id='".$key."'")->result();
-                
+
+                $no_opinion = $this->db->query("SELECT survey_question_id,survey_status,COUNT(survey_result_id) as noopinion_status  FROM survey_result WHERE survey_status='2' AND survey_question_id='" . $key . "'")->result();
+
                 $no_opinion_value = $no_opinion[0]->noopinion_status;
-                $update_data['survey_yes']=$yes_status_value;
-                $update_data['survey_no']=$no_status_value;
-                $update_data['survey_no_opinion']=$no_opinion_value;
-                $this->db->where("sq_id",$key);
-                $this->db->update("survey_question",$update_data);
-                
-                
-                
-                
+                $update_data['survey_yes'] = $yes_status_value;
+                $update_data['survey_no'] = $no_status_value;
+                $update_data['survey_no_opinion'] = $no_opinion_value;
+                $this->db->where("sq_id", $key);
+                $this->db->update("survey_question", $update_data);
             }
-         
-            
+
+
             $data['sq_id'] = $que;
             $data['survey_status'] = $status;
 
             $data['student_id'] = $this->session->userdata('std_id');
-            
-                    $this->db->insert('survey_list', $data);
+
+            $this->db->insert('survey_list', $data);
             $this->session->set_flashdata('flash_message', 'Survey added successfully');
             redirect(base_url() . 'student/participate', 'refresh');
         }
         $std = $this->session->userdata('std_id');
         //$getcount =  $this->db->query("SELECT survey_status,survey_question_id, COUNT(*) FROM survey_result GROUP BY survey_question_id")->result();
         
-        
-        $this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
+        $this->data['survey'] = $this->db->query('SELECT * FROM survey_question 
+                    WHERE NOT EXISTS (SELECT sq_id FROM survey
+                    WHERE survey.sq_id = survey_question.sq_id and survey.student_id= ' . $this->session->userdata('student_id') . ') ORDER BY survey_question.sq_id DESC')->result();        
+       //$this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Survey Application Form';
         $this->data['param'] = $param1;
@@ -364,6 +342,7 @@ class Student extends MY_Controller {
             $this->session->set_flashdata('flash_message', 'File is successfully uploaded.');
             redirect(base_url() . 'student/uploads/', 'refresh');
         }
+        $this->data['upload_data'] = $this->Student_model->getstudent_upload();
         $this->data['page'] = 'upload_data';
         $this->data['title'] = 'Upload';
         $this->__site_template('student/upload_data', $this->data);
@@ -402,7 +381,7 @@ class Student extends MY_Controller {
     function email_reply($id) {
         $this->load->model('admin/Crud_model');
         $this->load->helper('system_email');
-         $this->load->library('upload');
+        $this->load->library('upload');
         if ($_POST) {
             $filename = '';
             if ($_FILES) {
@@ -443,7 +422,7 @@ class Student extends MY_Controller {
         $this->load->model('admin/Crud_model');
         $this->load->model('Student/Student_model');
         $this->load->helper('system_email');
-         $this->load->library('upload');
+        $this->load->library('upload');
         if ($_POST) {
             if ($_POST) {
                 $filename = '';
@@ -458,7 +437,7 @@ class Student extends MY_Controller {
                         $_FILES['userfile']['error'] = $files['userfile']['error'][$i];
                         $_FILES['userfile']['size'] = $files['userfile']['size'][$i];
                         $this->upload->initialize($this->set_upload_options());
-                         
+
                         $this->upload->do_upload();
                         $uploaded = $this->upload->data();
                         $filename .= $uploaded['file_name'] . ',';
@@ -522,7 +501,7 @@ class Student extends MY_Controller {
         $this->data['page'] = 'inbox';
         $this->__site_template('student/email_view', $this->data);
     }
-    
+
     /**
      * Project
      * @param string $param1
@@ -656,7 +635,7 @@ class Student extends MY_Controller {
             if ($_FILES['userfile']['name'] != '') {
                 $path = FCPATH . 'uploads/student_image/';
                 if (move_uploaded_file($_FILES['userfile']['tmp_name'], $path . $this->session->userdata('student_id') . '.jpg')) {
-               //     echo 'uploaded';
+                    //     echo 'uploaded';
                 }
                 $this->db->where('std_id', $this->session->userdata('student_id'));
                 $this->db->update('student', array(
@@ -1067,7 +1046,7 @@ class Student extends MY_Controller {
         $this->db->select('cw.*,c.*,sub.subject_name');
         $this->db->from('courseware cw');
         $this->db->join('course c', 'c.course_id=cw.branch_id');
-        $this->db->join('subject_manager sub','sub.sm_id=cw.subject_id');
+        $this->db->join('subject_manager sub', 'sub.sm_id=cw.subject_id');
         $this->data['courseware'] = $this->db->get('courseware')->result_array();
 
         $this->data['page'] = 'courseware';
@@ -1220,6 +1199,7 @@ class Student extends MY_Controller {
                     'std_id' => $this->session->userdata('login_user_id')
                 ))->row();
         $this->data['student_detail'] = $student_details;
+        $this->data['department'] = $this->db->select()->from('degree')->where('d_id', $student_details->std_degree)->get()->row();
         $this->data['batch_detail'] = $this->Student_model->student_batch_course_detail($student_details->std_id);
         $this->data['student_marks'] = $this->Student_model->student_marks($student_details->std_id, $exam_id);
         $this->data['exam_listing'] = $this->Student_model->
@@ -1377,7 +1357,7 @@ class Student extends MY_Controller {
     function holiday() {
         $this->data['page'] = 'holiday';
         $this->data['title'] = 'Holiday List';
-        $this->data['holiday'] = $this->db->get('holiday')->result_array();
+        $this->data['holiday'] = $this->db->order_by('holiday_startdate', 'DESC')->get('holiday')->result_array();
         $this->__site_template('student/holiday', $this->data);
     }
 
@@ -1458,13 +1438,11 @@ class Student extends MY_Controller {
         }
     }
 
-    function changestatus()
-    {
-        if($_POST)
-        {
-           $id = $this->input->post('id');
+    function changestatus() {
+        if ($_POST) {
+            $id = $this->input->post('id');
             $data['todo_status'] = $this->input->post('status');
-            $this->Student_model->change_status($data,$id);
+            $this->Student_model->change_status($data, $id);
         }
     }
 
@@ -1520,7 +1498,7 @@ class Student extends MY_Controller {
         $this->data['page'] = 'search_result';
         $this->__site_template('student/search_result', $this->data);
     }
-    
+
     /**
      * Set upload options
      * @return mixed
@@ -1535,7 +1513,7 @@ class Student extends MY_Controller {
 
         return $config;
     }
-    
+
     /**
      * Set mail config
      */
@@ -1559,7 +1537,7 @@ class Student extends MY_Controller {
             $this->sendEmail($email, $subject, $message, $cc, $attachment);
         }
     }
-    
+
     /**
      * Send email
      * @param string $email
@@ -1583,6 +1561,66 @@ class Student extends MY_Controller {
             echo 'Email send.';
         } else {
             show_error($this->email->print_debugger());
+        }
+    }
+    
+    /**
+     * Statements of marks
+     */
+    function statement_of_marks() {
+        $this->data['student_details'] = $this->db->get_where('student', array(
+                    'std_id' => $this->session->userdata('login_user_id')
+                ))->row();
+        $this->data['exam_listing'] = $this->Student_model->
+                student_exam_list($this->data['student_details']->course_id, $this->data['student_details']->semester_id);
+        $this->data['page'] = 'statement_of_marks';
+        $this->data['title'] = 'Statement of Marks';
+        $this->__site_template('student/statement_of_marks', $this->data);
+    }
+    
+    /**
+     * Download exam marsheet report
+     * @param string $exam_id
+     */
+    public function download_statement_marks($exam_id = '') {
+        $page_data['exam_details'] = $this->Student_model->exam_detail($exam_id);
+        $student_details = $this->db->get_where('student', array('std_id' => $this->session->userdata('login_user_id')))->row();
+        $page_data['student_detail'] = $student_details;
+        $page_data['batch_detail'] = $this->Student_model->student_batch_course_detail($student_details->std_id);
+        $page_data['student_marks'] = $this->Student_model->student_marks($student_details->std_id, $exam_id);
+        $page_data['exam_listing'] = $this->Student_model->student_exam_list($student_details->course_id, $student_details->semester_id);
+        //$page_data = array();
+        $html = utf8_encode($this->load->view('student/marks_statement', $page_data, true));
+        //this the the PDF filename that user will get to download
+        $pdfFilePath = "student marksheet.pdf";
+        //load mPDF library
+        $this->load->library('m_pdf');
+        //load the view and saved it into $html variable
+        //generate the PDF from the given html
+        $this->m_pdf->pdf->WriteHTML($html);
+        //download it.
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+    }
+    
+    /*
+     * Add Rating to survey question
+     */
+    function addrating()
+    {
+        $id  = $this->input->post('id');  
+        $rating = $this->input->post('rating'); 
+        $std_id = $this->session->userdata('login_user_id');
+        $data['sq_id'] = $id;
+        $data['student_id'] = $std_id;
+        $data['std_rating'] = $rating;
+        $count = $this->Student_model->getrepeat($data);
+        if($count > 0)
+        {
+            $udata['std_rating'] = $rating;
+            $this->Student_model->updatesurveyrating($udata,$id,$std_id);
+        }
+        else{        
+        $this->Student_model->addsurveyrating($data);
         }
     }
 

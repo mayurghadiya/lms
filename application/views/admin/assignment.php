@@ -190,7 +190,7 @@
                                         <select class="form-control filter-rows" name="divclass" id="sfilterclass" >
                                             <option value="">Select</option>
                                             <?php
-                                            $class = $this->db->get('class')->result_array();
+                                            //$class = $this->db->get('class')->result_array();
                                             foreach ($class as $c) {
                                                 ?>
                                                 <option value="<?php echo $c['class_id'] ?>"><?php echo $c['class_name'] ?></option>

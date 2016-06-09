@@ -528,6 +528,7 @@ if (!function_exists('professor_inbox')) {
     function professor_inbox() {
         $CI = & get_instance();
         $professor_details = professor_sender_detail();
+        $CI->db->select('email_from, subject, created_at, email_id, read');
         $CI->db->order_by('created_at', 'DESC');
         $run2 = "FIND_IN_SET('".$professor_details['login_user_id']."', student_to_professor)";
         $run = "FIND_IN_SET('".$professor_details['login_user_id']."', admin_to_professor)";

@@ -13,7 +13,7 @@ $(document).ready(function () {
     $('#minute-step-timepicker').timepicker({
         upArrowStyle: 'fa fa-angle-up',
         downArrowStyle: 'fa fa-angle-down',
-        minuteStep: 30
+        minuteStep: 1
     });
     $(document).ajaxStart(function () {
         $("#wait").css("display", "block");
@@ -37,7 +37,7 @@ $(document).ready(function () {
 
     });
 
-jQuery('#addnewtodo').live('click', function (event) {
+jQuery('#addnewtodo').on('click', function (event) {
         $("#updateformhtml").html('');
         $("#todo-addform").toggle('show');
         $("i", this).toggleClass("icomoon-icon-plus icomoon-icon-minus");
@@ -53,49 +53,37 @@ jQuery('#addnewtodo').live('click', function (event) {
 //        $("#todo-addform").show(500);
 //
 //    });
-    $("#frmtodo #addbutton").click(function ()
-    {
-        var title = $("#todo_title").val();
-        var todo_date = $("#basic-datepicker").val();
-        var todo_time = $("#minute-step-timepicker").val();
-        if (title != "" && todo_date != "" && todo_time != "")
-        {
-            var dataString = "title=" + encodeURIComponent(title) + "&todo_date=" + todo_date + "&todo_time=" + todo_time;
-            $.ajax({
-                type: "POST",
-                url: base_url+"student/add_to_do",
-                data: dataString,
-                success: function (response) {
-                    $(".todo-list").html(response);
-                    $('#frmtodo #todo_title').val('');
-                    $('#frmtodo #basic-datepicker').val('');
+    $("#frmtodo").validate({
+            rules: {
+                todo_title: "required",
+                tado_date: "required",
+                todo_time:"required",                
+            },
+            messages: {
+                todo_title: "Enter title",
+                tado_date: "Select date",
+                todo_time:"Select time",
+            },
+            
+            submitHandler: function() {              
+                var title = $("#todo_title").val();
+                var todo_date = $("#basic-datepicker").val();   
+                var todo_time = $("#minute-step-timepicker").val();
+                if(todo_date=="")
+                {
+                     $("#basic-datepicker").css({'border-color':'red'});
+                     return false;
                 }
-
-            });
-        } else {
-            if (title == "")
-            {
-                $("#todo_title").css('border-color', 'red');
-            } else {
-                $("#todo_title").css('border-color', '#ccc');
-            }
-            if (todo_date == "")
-            {
-                $("#basic-datepicker").css('border-color', 'red');
-
-            } else {
-                $("#basic-datepicker").css('border-color', '#ccc');
-            }
-            if (todo_time == "")
-            {
-                $("#minute-step-timepicker").css('border-color', 'red');
-
-            } else {
-                $("#minute-step-timepicker").css('border-color', '#ccc');
-            }
-        }
-
-    });
+                        var dataString = "title=" + encodeURIComponent(title) + "&todo_date=" + todo_date + "&todo_time=" + todo_time;
+                        $.post(base_url+"student/add_to_do", dataString
+                         ,                        
+                        function(data){                            
+                          $(".todo-list").html(data);
+                          $('#frmtodo #todo_title').val('');
+                          $('#frmtodo #basic-datepicker').val('');
+                        });
+                    }
+        });
     $(".taskstatus").click(function () {
         if ($(this).is(':checked'))
         {

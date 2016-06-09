@@ -16,30 +16,41 @@
     .panel.panel-default.toggle.panelMove.panelClose.panelRefresh {overflow: hidden;}
 </style>
 <!-- Javascripts -->
-
-<script src=<?php echo base_url(); ?>assets/plugins/core/pace/pace.min.js></script>
-
+<?php
+$js = [
+    ['plugins/pace.js']
+];
+$this->carabiner->group('pace', [
+    'js' => $js
+]);
+$this->carabiner->display('pace');
+?>
 <!-- Important javascript libs(put in all pages) -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery-migrate-1.2.1.min.js"></script>
 <!--[if lt IE 9]>
     <script type="text/javascript" src="js/libs/excanvas.min.js"></script>
     <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script type="text/javascript" src="js/libs/respond.min.js"></script>
     <![endif]-->
 
-<script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-datepicker/bootstrap-datepicker.js"></script>
-
-<script src="<?php echo base_url(); ?>assets/plugins/forms/bootstrap-timepicker/bootstrap-timepicker.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/forms/select2/select2.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/forms/dual-list-box/jquery.bootstrap-duallistbox.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/forms/summernote/summernote.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/pages/forms-validation.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/pages/tables-data.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
-
-<script src="<?php echo base_url(); ?>assets/js/jquery.toaster.js"></script>
-<script src="<?php echo base_url();?>assets/js/multiselect.min.js"></script>
+<?php
+$js = [
+    ['plugins/bootstrap-datepicker.js'],
+    ['plugins/bootstrap-timepicker.js'],
+    ['plugins/jquery.bootstrap-duallistbox.js'],
+    ['plugins/summernote.js'],
+    ['plugins/forms-validation.js'],
+    ['plugins/tables-data.js'],
+    ['custom.js'],
+    ['plugins/select2.js'],
+    ['jquery.toaster.js'],
+    ['multiselect.js']
+];
+$this->carabiner->group('footer_js', [
+    'js' => $js
+]);
+$this->carabiner->display('footer_js');
+?>
 <script>
 <?php
 $message = $this->session->flashdata('flash_message');
@@ -60,8 +71,6 @@ if ($message != '') {
         $('#body').addClass('dashboard');
     }
 </script>
-
 <?php include 'modal.php'; ?>
-</head>
 </body>
 </html>
