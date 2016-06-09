@@ -23,6 +23,7 @@
                             <th>End Date</th>
                             <th>Fee</th>                         
                             <th>Status</th>                         
+                            <th>Action</th>                         
                         </tr>
                     </thead>
 
@@ -41,7 +42,8 @@
                                     <?php } else { ?>	
                                         <span>InActive</span>
                                     <?php } ?>
-                                </td>                                
+                                </td> 
+                                <td> <a href="#" onclick="showAjaxModal('<?php echo base_url();?>professor/vocational_student/<?php echo $row['vocational_course_id'];?>');" data-original-title="registered student" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">View</span></a></td>
                             </tr>
                         <?php endforeach; ?>																				
                     </tbody>

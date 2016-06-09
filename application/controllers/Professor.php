@@ -2765,12 +2765,12 @@ class Professor extends MY_Controller {
     /**
      * Vocational course Student List
      */
-    function vocational_student() {
+    function vocational_student($param1='',$param2= '') {
         $professor_id = $this->session->userdata('login_user_id');
-        $this->data['student'] = $this->Professor_model->get_vocational_student($professor_id);
+        $this->data['student'] = $this->Professor_model->get_vocational_student($param1);
         $this->data['title'] = 'Vocational Course Students';
         $this->data['page'] = 'vocational_register_student';
-        $this->__site_template('admin/vocational_register_student', $this->data);
+        $this->load->view('admin/vocational_register_student', $this->data);
     }
 
     /**
