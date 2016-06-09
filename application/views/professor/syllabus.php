@@ -21,7 +21,7 @@
                             <label>Department</label>
                             <select id="courses" name="degree" class="form-control">
                                 <option value="">Select</option>
-                                <?php foreach ($sdegree as $row) { ?>
+                                <?php foreach ($degree as $row) { ?>
                                     <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
                                 <?php } ?>
                             </select>

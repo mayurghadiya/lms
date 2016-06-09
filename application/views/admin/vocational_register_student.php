@@ -14,7 +14,7 @@
                 </div>
             </div>-->
             <div class=panel-body>                
-                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                <table id="datatable-list1" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
                             <th>No</th>
@@ -26,10 +26,11 @@
 
                     <tbody>
                         <?php
+                        $count = 1;
                         foreach ($student as $row):
                             ?>
                             <tr>
-                                <td></td>                                                                
+                                <td><?php echo $count++; ?></td>                                                                
                                 <td><?php echo $row->name; ?></td>
                                 <td><?php echo $row->course_name; ?></td>                                                                
                                 <td><?php echo $row->category_name; ?></td>                
@@ -48,3 +49,8 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+<script>
+$(document).ready(function () {
+        $('#datatable-list1').DataTable();
+    });
+</script>

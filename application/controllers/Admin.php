@@ -6025,11 +6025,11 @@ class Admin extends MY_Controller {
     /**
      * Vocational course Student List
      */
-    function vocational_student() {
-        $this->data['student'] = $this->Crud_model->get_vocational_student();
-        $this->data['title'] = 'Vocational Course Students';
+    function vocational_student($param1='',$param2= '') {        
+        $this->data['student'] = $this->Crud_model->get_vocational_student($param1);       
+        $this->data['title'] = 'Registered Student List';
         $this->data['page'] = 'vocational_register_student';
-        $this->__site_template('admin/vocational_register_student', $this->data);
+        $this->load->view('admin/vocational_register_student', $this->data);
     }
 
     /**
