@@ -14,7 +14,7 @@
                         </div>-->
             <div class="panel-body">
                 <form class="form-horizontal form-groups-bordered validate" 
-                      action="<?php echo base_url('student/pay_online_vocational_course'); ?>" id="student_fees" method="post">
+                      action="<?php echo base_url('student/pay_online_vocational_course'); ?>" id="frmvoc_fee" method="post">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="panel panel-default panel-shadow" data-collapsed="0">
@@ -32,15 +32,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Title</label>
+                                        <label class="col-sm-3 control-label">Note</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="title"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Description</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="description"/>
+                                            <textarea class="form-control" name="description"></textarea>
                                         </div>
                                     </div>
 
@@ -84,7 +78,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">Amount</label>
                                         <div class="col-sm-9">
-                                            <input type="text" required="" pattern="(0\.((0[1-9]{1})|([1-9]{1}([0-9]{1})?)))|(([1-9]+[0-9]*)(\.([0-9]{1,2}))?)" id="amount" class="form-control" name="amount"/>
+                                            <input type="text"  pattern="(0\.((0[1-9]{1})|([1-9]{1}([0-9]{1})?)))|(([1-9]+[0-9]*)(\.([0-9]{1,2}))?)" id="amount" class="form-control" name="amount"/>
                                         </div>
                                     </div>
 
@@ -140,29 +134,25 @@
         </script>
 
         <!-- Start validation -->
-        <script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.js"></script>
-        <script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.validate.min.js"></script>
-        <script type="text/javascript">
-            $.validator.setDefaults({
-                submitHandler: function (form) {
-                    form.submit();
-                }
-            });
+       <script type="text/javascript">
+            
             $().ready(function () {
-                $("#student_fees").validate({
+                $("#frmvoc_fee").validate({
                     rules: {
-                        title: {required: true},
                         date: "required",
-                        course: "required",
-                        amount: {required: true},
+                        amount: {
+                            required: true,
+                             equalTo: "#total_fees"
+                        },
                         method: "required",
                     },
                     messages: {
-                        title: "Title is required",
-                        date: "Date is required",
-                        course: "Course is required",
-                        amount: "Amount is required",
-                        method: "Method is required",
+                        date: "Select date",
+                        amount:{
+                              required:"Enter amount",
+                              equalTo:"Enter amount equal to total fee",
+                            },
+                        method: "Select payment method",
                     }
                 });
             });
