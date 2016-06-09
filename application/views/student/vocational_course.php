@@ -130,8 +130,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="<?php echo base_url(); ?>jquery.validate.min.js"></script>
-
 <script>
     $(document).ready(function () {
         $('#datatable-list-course').dataTable();
