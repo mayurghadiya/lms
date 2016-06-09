@@ -1350,6 +1350,9 @@ ul.links-gaz{padding-left: 25px; list-style: none;}
 #checkAll-active .scroll_bar_faculty #mCSB_2_container.mCSB_container, #stduent-enrolled{width: 100% !important}
 .eventCalendar-slider, .eventCalendar-details{width:48% !important;}
 .eventCalendar-slider .eventCalendar-monthWrap.eventCalendar-currentMonth{ width:50% !important; }
+.xe-widget.xe-counter, .xe-widget.xe-counter-block .xe-upper, .xe-widget.xe-progress-counter .xe-upper{padding: 10px 0;}
+.xe-icon { padding: 5px 0 0 !important;}
+.xe-widget.xe-counter .xe-icon + .xe-label, .xe-widget.xe-counter-block .xe-upper .xe-icon + .xe-label, .xe-widget.xe-progress-counter .xe-upper .xe-icon + .xe-label { padding: 0;}
 
 /*********************** media *****************************/
 

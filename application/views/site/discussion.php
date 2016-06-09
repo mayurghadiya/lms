@@ -83,7 +83,7 @@ h3.topic_title {
                                                                 <div class="cs-contact-form">
                                                                    <div class="form-holder">
                                                                     <div class="row">
-                                                                        <form action="<?php echo base_url(); ?>site/comment/create" method="post">
+                                                                        <form action="<?php echo base_url(); ?>site/comment/create" method="post" id="commentform">
                                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                                 <div class="row">
                                                                                     <input type="hidden" name="forum_topic_id" value="<?php echo $param; ?>" />
@@ -92,7 +92,7 @@ h3.topic_title {
                                                                             <div class="cs-form-holder">
                                                                               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                                     <div class="input-holder"> <i class="icon-pencil-square-o"></i>
-                                                                                        <textarea name="discussion" required="" placeholder="Join the discussion"></textarea>
+                                                                                        <textarea name="discussion"  placeholder="Join the discussion"></textarea>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -136,3 +136,18 @@ h3.topic_title {
     </div>
 </div>
 <!-- Main End --> 
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#commentform").validate({
+            rules: {
+                
+                discussion: "required",
+            },
+            messages: {                
+                discussion: "Enter Comment",
+            }
+        });
+    });
+</script>

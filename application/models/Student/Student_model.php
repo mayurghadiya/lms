@@ -813,4 +813,41 @@ class Student_model extends CI_Model {
 //            return $event;
 //        }
     }
+    
+    /**
+     * 
+     * @param mixed array $data
+     */
+    function addsurveyrating($data)
+    {
+        $this->db->insert("survey",$data);
+    }
+    
+    /**
+     * check duplicate
+     * @param mixed array $data
+     * @return type mixed array
+     */
+    function getrepeat($data)
+    {
+        return $this->db->get_where("survey",array("sq_id"=>$data['sq_id'],"student_id"=>$data['student_id']))->num_rows();
+    }
+    
+    /**
+     * update survey question rating
+     * @param mixed array $udata
+     * @param int $id
+     * @param int $std_id
+     */
+    function updatesurveyrating($udata,$id,$std_id)
+    {
+        
+        $this->db->update("survey",$udata,array("sq_id"=>$id,"student_id"=>$std_id));
+    }
+    
+    function getstudent_upload()
+    {
+        $std_id = $this->session->userdata('login_user_id');
+        return $this->db->get_where('student_upload',array('std_id'=>$std_id))->result();
+    }
 }

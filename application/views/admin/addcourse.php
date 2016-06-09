@@ -50,7 +50,7 @@ $semesters = $this->db->get('semester')->result_array();
                             <label class="col-sm-4 control-label"><?php echo ucwords("semester"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <select id="semester" name="semester[]" class="form-control" multiple>
-                                    <option value="">--- Select Semester ---</option>
+                                  
                                     <?php foreach ($semesters as $srow) { ?>
                                         <option value="<?php echo $srow['s_id']; ?>"><?php echo $srow['s_name']; ?>
                                         </option>

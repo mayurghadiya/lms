@@ -49,7 +49,7 @@
                                             <td><?php echo wordwrap($row->assign_desc, 30, "<br>\n"); ?></td>
                                             <td> <a href="uploads/project_file/<?php echo $row->assign_filename; ?>" download="" title="<?php echo $row->assign_filename; ?>"><i class="fa fa-download"></i></a></td>
                                             <td> 
-                                                <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_submit_assignment/<?php echo $row->assign_id; ?>');" data-original-title="submit assignment" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Details</span></a>
+                                                <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_submit_assignment/<?php echo $row->assign_id; ?>');" data-original-title="submit assignment" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="icomoon-icon-plus mr0"></i> Add</span></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>							

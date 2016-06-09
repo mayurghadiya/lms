@@ -611,7 +611,7 @@ $this->carabiner->display('event_calendar');
                                     <form><input class=form-control name=search placeholder="Search for todo ..."></form>
                                 </div>
                                 <div class=todo-add><a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a></div>
-
+                           
                             </div>
                             <h4 class=todo-period>To Do List</h4>
                             <div id="wait" class="loading_img"><img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading...

@@ -23,6 +23,7 @@
             <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel=stylesheet type=text/css>
             <!-- Css files -->
             <?php
+            $this->carabiner->css('jquery.mCustomScrollbar.min.css');
             $this->carabiner->css('plugins.css');
             $this->carabiner->css('main.min.css');
             $this->carabiner->css('custom.css');
@@ -45,7 +46,8 @@
             <meta name=msapplication-TileColor content="#3399cc">
             <script>
                 var base_url = '<?php echo base_url(); ?>';
-            </script>
+            </script>      
+        </head>
 
         <body class="<?php echo $this->router->fetch_method(); ?> professor_dashboard">
             <!--[if lt IE 9]>
@@ -163,7 +165,7 @@
 
                                         <?php
                                         $pages = [
-                                            'student', 'subject', 'syllabus', 'holiday', 'assessments'
+                                            'student', 'subject', 'syllabus', 'holiday', 'assessments', 'vocational_register_student', 'vocational_course'
                                         ];
                                         ?>
 
@@ -197,6 +199,18 @@
                                                     <a id="link-assessments" href="<?php echo base_url(); ?>professor/assessments">
                                                         <i class="s16 icomoon-icon-unlocked"></i>
                                                         <span class="txt">Assessments</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a id="link-vocational_course" href="<?php echo base_url(); ?>professor/vocationalcourse">
+                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <span class="txt">Vocational Course</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a id="link-vocational_register_student" href="<?php echo base_url(); ?>professor/vocational_student">
+                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <span class="txt">Vocational Students</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -263,7 +277,12 @@
                                                 <span class=txt>Class Routine </span>
                                             </a>
                                         </li> 
-
+                                        <li>
+                                            <a  href="<?php echo base_url(); ?>site/forums">
+                                                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                                <span class=txt>Forum & Discussion</span>
+                                            </a>
+                                        </li> 
                                         <?php
                                         $pages = [
                                             'graduates'
@@ -423,16 +442,8 @@
                                     </div>
                                 </form>
                             </div>
-
-                            <!--  /search -->  
-                            <!--  /search -->
-                            <!--                            <ul class=breadcrumb>
-                                                            <li>You are here:</li>
-                                                            <li><a href=# class=tip title="back to dashboard"><i class="s16 icomoon-icon-screen-2"></i></a> <span class=divider><i class="s16 icomoon-icon-arrow-right-3"></i></span></li>
-                                                            <li class=active>Blank Page</li>
-                                                        </ul>
-                            -->
                             <?php echo create_breadcrumb(); ?>
+
                             <?php echo set_active_menu($page); ?>
                         </div>
 

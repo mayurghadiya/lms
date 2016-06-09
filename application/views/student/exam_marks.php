@@ -6,18 +6,9 @@
 <!-- Start .row -->
 <div class=row>                      
 
-    <div class=col-lg-12>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
             <div class=panel-body>
                 <div class="row">
                     <div class="col-md-8">
@@ -34,15 +25,15 @@
                             </div>
                         </div>
                     </div>
-                </div><!--/row-->                
+                </div><br>
 
                 <?php if ($this->uri->segment(3) != '') { ?>
                     <?php if (count($student_marks)) { ?>
-                        <div class="box box-primary">
-                            <br/>
-                            <table class="ex1">
+                        <div class="box box-primary">                            
+                            
+                            <table class="table table-condensed ex1"> 
                                 <tr>
-                                    <td><strong>Student Name: </strong></td>
+                                    <td class="col-lg-2 col-md-2 col-sm-4 col-xs-4"><strong>Student Name: </strong></td>
                                     <td><?php echo $student_detail->std_first_name . ' ' . $student_detail->std_last_name; ?></td>
                                 </tr>
                                 <tr>
@@ -66,7 +57,7 @@
                                     <td><?php echo $exam_details->em_name; ?></td>
                                 </tr>
                             </table>
-                            <br/>
+                          
                             <div class="box-body">
                                 <div class="box box-warning box-solid">
                                     <div class="box-body">
@@ -145,34 +136,49 @@
                                                     </tbody>
                                                 </table>
                                             </div><!--/box-body-->
-                                            <div class="box-footer">
-                                                <div class="row">
-                                                    <div class="col-sm-3">
-                                                        <strong>Total Marks : </strong><?php echo $total_marks; ?>	
+                                            <div class="box-footer"><br>
+                                                <fieldset>
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="form-group">
+                                                      <label for="disabledTextInput">Total Marks :</label>
+                                                      <?php echo $total_marks; ?>
+                                                    </div>                                                    
                                                     </div>
-                                                    <div class="col-sm-3">
-                                                        <strong>Total Obtained Marks : </strong><?php echo $obtained_marks; ?>	
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="form-group">
+                                                      <label for="disabledTextInput">Total Obtained Marks :</label>
+                                                      <?php echo $obtained_marks; ?>
                                                     </div>
-                                                    <div class="col-sm-3">
-                                                        <strong>Total Percentages Marks : </strong><?php echo number_format((($obtained_marks * 100) / $total_marks), 2, '.', ''); ?>%</div>
-                                                    <div class="col-sm-3">
-                                                        <strong>Results : </strong>
-                                                        <?php if (!$is_failed) { ?>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="form-group">
+                                                      <label for="disabledTextInput">Total Percentages Marks :</label>
+                                                      <?php echo number_format((($obtained_marks * 100) / $total_marks), 2, '.', ''); ?>%
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="form-group">
+                                                      <label for="disabledTextInput">Results :</label>
+                                                      <?php if (!$is_failed) { ?>
                                                             <span class="label label-success">Pass</span>    
                                                         <?php } else { ?>
                                                             <span class="label label-danger">Failed</span>
                                                         <?php }
                                                         ?>
-
                                                     </div>
-                                                </div>
-                                            </div><!--/box-footer-->
-                                        </div><!--/box-->
+                                                    </div>
+                                                </fieldset>  
+                                            </div>
+                                        </div><!--/box-footer-->
+                                    </div><!--/box-->
 
-                                    </div><!--/box-body-->
-                                </div><!--/box-->
-                            </div><!--/box-body-->
-                        </div><!--/box-->
+                                </div><!--/box-body-->
+                            </div><!--/box-->
+                        </div><!--/box-body-->
+            </div><!--/box-->
                     <?php } else { ?> 
                         <br/>
                         <div class="well well-sm">
@@ -185,11 +191,9 @@
                 <?php } ?>
 
 
-            </div>
         </div>
-        <!-- End .panel -->
     </div>
-    <!-- col-lg-12 end here -->
+        <!-- End .panel -->
 </div>
 <!-- End .row -->
 </div>

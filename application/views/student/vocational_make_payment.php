@@ -84,30 +84,34 @@
 <!-- row --> 
 </div>
 
-<script src="<?php echo base_url(); ?>assets/js/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.validate.min.js"></script>
 <script type="text/javascript">
-    $.validator.setDefaults({
-        submitHandler: function (form) {
-            form.submit();
-        }
-    });
+   
 
     $().ready(function () {
         $("#process_payment").validate({
             rules: {
                 card_number: "required",
                 card_holder_name: "required",
-                cvv: "required",
+                cvv: {
+                    required:true,
+                    number:true,
+                   maxlength: 3,
+                    minlength: 3
+                },                        
                 month: "required",
                 year: "required"
             },
             messages: {
-                card_number: "Please enter card number",
-                card_holder_name: "Please enter card holder name",
-                cvv: "Please enter cvv",
-                month: "Please select month",
-                year: "Please select year"
+                card_number: "Enter card number",
+                card_holder_name: "Enter card holder name",
+                cvv: {
+                    required:"Enter cvv",
+                    number:"Enter only number",
+                    maxlength:"Enter 3 digit code",
+                    minlength:"Enter 3 digit code"
+                },                     
+                month: "Select month",
+                year: "Select year"
             }
         });
     });

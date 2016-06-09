@@ -50,12 +50,6 @@ class Student extends MY_Controller {
         $this->data['timline_todolist'] = $this->Student_model->get_timline_todolist();
         $this->data['timline_event'] = $this->Student_model->get_timline_event();
         $this->data['timelinecount'] = $this->Student_model->get_timeline_date_count();
-//          echo "<pre>";
-//        print_r($this->data['timelinecount']);
-//        echo "<pre>";
-//        print_r($this->data['timline_todolist']);
-//        print_r($this->data['timline_event']);
-//        exit;
         $this->data['page'] = 'dashboard';
         $this->__site_template('student/dashboard', $this->data);
     }
@@ -263,15 +257,8 @@ class Student extends MY_Controller {
      */
     function participate($param1 = '', $param2 = '') {
         if ($param1 == "create") {
+            
             $survey = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
-//            $getcount = $this->db->query("SELECT s1.survey_status,s1.survey_question_id,count(s1.survey_result_id) as zero_status FROM survey_result s1 WHERE s1.survey_status='0' GROUP BY s1.survey_question_id")->result();
-//            $getcount2 = $this->db->query("SELECT s2.survey_status,s2.survey_question_id,count(s2.survey_result_id) as first_status FROM survey_result s2 WHERE s2.survey_status='1' GROUP BY s2.survey_question_id")->result();
-//            $getcount3 = $this->db->query("SELECT s3.survey_status,s3.survey_question_id,count(s3.survey_result_id) as second_status FROM survey_result s3 WHERE s3.survey_status='2' GROUP BY s3.survey_question_id")->result();
-//            echo "<pre>";
-//            print_r($getcount);
-//            print_r($getcount2);
-//            print_r($getcount3);
-//            die;
             $count = 1;
             foreach ($survey as $res) {
                 // echo $count;
@@ -320,9 +307,11 @@ class Student extends MY_Controller {
         }
         $std = $this->session->userdata('std_id');
         //$getcount =  $this->db->query("SELECT survey_status,survey_question_id, COUNT(*) FROM survey_result GROUP BY survey_question_id")->result();
-
-
-        $this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
+        
+        $this->data['survey'] = $this->db->query('SELECT * FROM survey_question 
+                    WHERE NOT EXISTS (SELECT sq_id FROM survey
+                    WHERE survey.sq_id = survey_question.sq_id and survey.student_id= ' . $this->session->userdata('student_id') . ') ORDER BY survey_question.sq_id DESC')->result();        
+       //$this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Survey Application Form';
         $this->data['param'] = $param1;
@@ -353,6 +342,7 @@ class Student extends MY_Controller {
             $this->session->set_flashdata('flash_message', 'File is successfully uploaded.');
             redirect(base_url() . 'student/uploads/', 'refresh');
         }
+        $this->data['upload_data'] = $this->Student_model->getstudent_upload();
         $this->data['page'] = 'upload_data';
         $this->data['title'] = 'Upload';
         $this->__site_template('student/upload_data', $this->data);
@@ -815,6 +805,10 @@ class Student extends MY_Controller {
                     WHERE NOT EXISTS (SELECT vocational_course_id FROM vocational_course_fee
                     WHERE vocational_course_fee.vocational_course_id = vocational_course.vocational_course_id and vocational_course_fee.student_id= ' . $this->session->userdata('student_id') . ')')->result_array();
 
+            $this->data['register'] = $this->db->query('SELECT * FROM vocational_course 
+                    WHERE EXISTS (SELECT vocational_course_id FROM vocational_course_fee
+                    WHERE vocational_course_fee.vocational_course_id = vocational_course.vocational_course_id and vocational_course_fee.student_id= ' . $this->session->userdata('student_id') . ')')->result_array();
+            
             //$page_data['vocationalcourse'] = $this->db->get_where('vocational_course',array('status'=>1))->result_array();
 
             $this->data['page'] = 'vocational_course';
@@ -1606,6 +1600,28 @@ class Student extends MY_Controller {
         $this->m_pdf->pdf->WriteHTML($html);
         //download it.
         $this->m_pdf->pdf->Output($pdfFilePath, "D");
+    }
+    
+    /*
+     * Add Rating to survey question
+     */
+    function addrating()
+    {
+        $id  = $this->input->post('id');  
+        $rating = $this->input->post('rating'); 
+        $std_id = $this->session->userdata('login_user_id');
+        $data['sq_id'] = $id;
+        $data['student_id'] = $std_id;
+        $data['std_rating'] = $rating;
+        $count = $this->Student_model->getrepeat($data);
+        if($count > 0)
+        {
+            $udata['std_rating'] = $rating;
+            $this->Student_model->updatesurveyrating($udata,$id,$std_id);
+        }
+        else{        
+        $this->Student_model->addsurveyrating($data);
+        }
     }
 
 }

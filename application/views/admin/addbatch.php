@@ -29,10 +29,10 @@ $semesters = $this->db->get('semester')->result_array();
                             </div>
                         </div>	
                         <div class="form-group">
-                            <label class="col-sm-4 control-label"><?php echo ucwords("course"); ?><span style="color:red">*</span></label>
+                            <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <select id="degree" name="degree[]" class="form-control" multiple>
-                                    <option value="default">Select Course</option>
+                                   
                                     <?php foreach ($degree as $srow) { ?>
                                         <option value="<?php echo $srow['d_id']; ?>"><?php echo $srow['d_name']; ?>
                                         </option>
@@ -143,12 +143,12 @@ $semesters = $this->db->get('semester')->result_array();
                 b_name: "required",
                 'degree[]':
                         {
-                            valueNotEquals: "default",
+                            //valueNotEquals: "default",
                             required: true,
                         },
                 'course[]':
                         {
-                            valueNotEquals: "default",
+                            //valueNotEquals: "default",
                             required: true,
                         },
                 batch_status: "required",
@@ -157,12 +157,12 @@ $semesters = $this->db->get('semester')->result_array();
                 b_name: "Enter batch name",
                 'degree[]':
                         {
-                            valueNotEquals: "Select course",
+                           // valueNotEquals: "Select course",
                             required: "Select course",
                         },
                 'course[]':
                         {
-                            valueNotEquals: "Select branch",
+                            //valueNotEquals: "Select branch",
                             required: "Select branch",
                         },
                 batch_status: "Select status",

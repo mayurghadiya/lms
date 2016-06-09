@@ -465,7 +465,7 @@ $this->carabiner->display('calendar_css');
 </script>
 <div class="row">
     <!-- .row -->
-    <div class="col-md-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                 <a href=# class="stats-btn mb20 lead-stats color_green">
@@ -501,7 +501,7 @@ $this->carabiner->display('calendar_css');
 <!-- / .row -->
 <div class="row">
     <!-- .row -->
-    <div class="col-md-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
                 <div class="xe-widget xe-counter-block">

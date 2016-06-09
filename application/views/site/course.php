@@ -62,7 +62,7 @@
                                                 foreach($courses as $course) { ?>
                                                 <li>
                                                     <div>
-                                                        <a href="<?php echo base_url('index.php?course/' . $course->d_id); ?>"><?php echo $course->d_name; ?></a>
+                                                        <a href="<?php echo base_url('course/' . $course->d_id); ?>"><?php echo $course->d_name; ?></a>
                                                     </div>
                                                 </li>
                                                 <?php } ?>                                                
@@ -80,7 +80,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" data-tag="paid">
                                 <div class="cs-courses courses-grid">
                                     <div class="cs-media">
-                                        <figure><a href="<?php echo base_url('index.php?branch/' . $branch->course_id); ?>"><img src="<?php echo base_url(); ?>site_assets/extra-images/course-grid-img1.jpg" alt=""/></a></figure>
+                                        <figure><a href="<?php echo base_url('branch/' . $branch->course_id); ?>"><img src="<?php echo base_url(); ?>site_assets/extra-images/course-grid-img1.jpg" alt=""/></a></figure>
                                     </div>
                                     <div class="cs-text">
                                         <div class="cs-rating">
@@ -89,7 +89,7 @@
                                             </div>
                                         </div>
                                         <div class="cs-post-title">
-                                            <h5><a href="<?php echo base_url('index.php?branch/' . $branch->course_id); ?>"><?php echo $branch->c_name; ?></a></h5>
+                                            <h5><a href="<?php echo base_url('branch/' . $branch->course_id); ?>"><?php echo $branch->c_name; ?></a></h5>
                                         </div>                                        
                                     </div>
                                 </div>

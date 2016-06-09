@@ -246,7 +246,7 @@
                             {
                                 if (getstudent == "false")
                                 {
-                                    $("#error_std").html("Student not found");
+                                    $("#error_std").html("Select student");
                                     return false;
                                 }
                             }

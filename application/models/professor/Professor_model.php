@@ -1601,12 +1601,14 @@ class Professor_model extends CI_Model {
      * vocational course student list
      * return mixed data
      */
-    function get_vocational_student() {
-        return $this->db->select('vocational_course_fee.*, student.*, vocational_course.*,course_category.*')
+    function get_vocational_student($professor_id)
+    {
+            return $this->db->select('vocational_course_fee.*, student.*, vocational_course.*,course_category.*')
                         ->from('vocational_course_fee')
                         ->join('student', 'student.std_id = vocational_course_fee.student_id')
                         ->join('vocational_course', 'vocational_course.vocational_course_id = vocational_course_fee.vocational_course_id')
                         ->join('course_category', 'course_category.category_id = vocational_course.category_id')
+                        ->where('vocational_course.professor_id',$professor_id)
                         ->get()
                         ->result();
     }
@@ -1628,11 +1630,11 @@ class Professor_model extends CI_Model {
         $this->db->where("activity_user_role_id", $this->session->userdata('login_user_id'));
         $this->db->limit("10");
         return $this->db->get()->result();
-//        $user_type = $this->session->userdata('login_type');
-//        $id = $this->session->userdata('login_user_id');
-//        return $this->db->query("select * from 
-//        (select * from last_activity where activity_user_role='".$user_type."' AND activity_user_role_id='".$id."'  group by activity ) t 
-//        order by t.activity_id desc")->result();
     }
-
+    
+    function get_vocational_course($professor_id)
+    {
+        $this->db->where("professor_id",$professor_id);
+        return $this->db->get('vocational_course')->result_array();
+    }
 }

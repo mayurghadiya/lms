@@ -238,6 +238,7 @@ class Crud_model extends CI_Model {
     function my_sent_mail($email) {
         return $this->db->select()
                         ->from('email')
+                        ->order_by('email_id','DESC')
                         ->where('email_from', $email)
                         ->where('is_draft', 0)
                         ->get()
@@ -1241,7 +1242,7 @@ class Crud_model extends CI_Model {
      * @param string $id
      */
     function get_graduate_student($id) {
-        $this->db->get_where('graduates', array("graduates_id" => $id))->result();
+      return  $this->db->get_where('graduates', array("graduates_id" => $id))->result();
     }
 
     /**
@@ -1644,9 +1645,11 @@ class Crud_model extends CI_Model {
      * vocational course student list
      * return mixed data
      */
-    function get_vocational_student() {
+    function get_vocational_student($id) {
+            
         return $this->db->select('vocational_course_fee.*, student.*, vocational_course.*,course_category.*')
                         ->from('vocational_course_fee')
+                        ->where('vocational_course_fee.vocational_course_id',$id)
                         ->join('student', 'student.std_id = vocational_course_fee.student_id')
                         ->join('vocational_course', 'vocational_course.vocational_course_id = vocational_course_fee.vocational_course_id')
                         ->join('course_category', 'course_category.category_id = vocational_course.category_id')
@@ -1708,6 +1711,12 @@ class Crud_model extends CI_Model {
         $this->db->order_by("created_at","DESC");        
         $this->db->limit(8);
         return $this->db->get()->result(); 
+    }
+    
+    function get_ratings($id)
+    {
+        $this->db->select('AVG(std_rating) as avg_r');
+        return $this->db->get_where("survey",array("sq_id"=>$id))->row();
     }
 
 }

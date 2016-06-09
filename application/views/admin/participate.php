@@ -1,3 +1,11 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+
+<style>
+    .table-striped .highlight, .table-striped .selected {color:#F4B30A;text-shadow: 0 0 1px #F48F0A;}
+    .table-striped ul{margin:0;padding:0;}
+   .table-striped li{cursor:pointer;list-style-type: none;display: inline-block;color: #F0F0F0;text-shadow: 0 0 1px #666666;font-size:20px;}
+</style>
+
 <div class=row>                      
 
     <div class=col-lg-12>
@@ -48,14 +56,14 @@
                                     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="datatable-list">
                                         <thead>
                                             <tr>
-                                                <th>No</th>											
-                                                <th><div><?php echo ucwords("Parti. Title"); ?> </div></th>											
-                                                <th><div><?php echo ucwords("department"); ?></div></th>											
-                                                <th><div><?php echo ucwords("Branch"); ?></div></th>
-                                                <th><div><?php echo ucwords("Batch"); ?></div></th>											
-                                                <th><div><?php echo ucwords("Semester"); ?></div></th>											                                              
-                                                <th><div><?php echo ucwords("Date of submission"); ?></div></th>									
-                                                <th><div><?php echo ucwords("Action"); ?></div></th>	
+                                                <th width="12.5%">No</th>											
+                                                <th width="12.5%"><?php echo ucwords("Parti. Title"); ?> </th>											
+                                                <th width="12.5%"><?php echo ucwords("department"); ?></th>											
+                                                <th width="12.5%"><?php echo ucwords("Branch"); ?></th>
+                                                <th width="12.5%"><?php echo ucwords("Batch"); ?></th>											
+                                                <th width="12.5%"><?php echo ucwords("Semester"); ?></th>											                                              
+                                                <th width="12.5%"><?php echo ucwords("Date of submission"); ?></th>									
+                                                <th width="12.5%"><?php echo ucwords("Action"); ?></th>	
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -64,9 +72,9 @@
                                             foreach ($participate as $row):
                                                 ?>
                                                 <tr>
-                                                    <td><?php echo $count++; ?></td>	
-                                                    <td><?php echo $row->pp_title; ?></td>	
-                                                    <td>
+                                                    <td width="12.5%"><?php echo $count++; ?></td>	
+                                                    <td width="12.5%"><?php echo $row->pp_title; ?></td>	
+                                                    <td width="12.5%">
                                                         <?php
                                                         if ($row->pp_degree == "All") {
                                                             echo "All";
@@ -80,7 +88,7 @@
                                                         }
                                                         ?>
                                                     </td>	
-                                                    <td>
+                                                    <td width="12.5%">
                                                         <?php
                                                         if ($row->pp_course == "All") {
                                                             echo "All";
@@ -94,7 +102,7 @@
                                                         }
                                                         ?>
                                                     </td>
-                                                    <td>
+                                                    <td width="12.5%">
                                                         <?php
                                                         if ($row->pp_batch == "All") {
                                                             echo "All";
@@ -108,7 +116,7 @@
                                                         }
                                                         ?>
                                                     </td>	
-                                                    <td>
+                                                    <td width="12.5%">
                                                         <?php
                                                         if ($row->pp_semester == "All") {
                                                             echo "All";
@@ -120,8 +128,8 @@
                                                             }
                                                         }
                                                         ?>                                            
-                                                    <td><?php echo date_formats($row->pp_dos); ?></td>	
-                                                    <td class="menu-action">
+                                                    <td width="12.5%"><?php echo date_formats($row->pp_dos); ?></td>	
+                                                    <td width="12.5%" class="menu-action">
                                                         <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_participate/<?php echo $row->pp_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
 
                                                         <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/participate/delete/<?php echo $row->pp_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>	
@@ -249,14 +257,12 @@
                                         <thead>
                                             <tr>                                           
                                                 <th>No</th>                                           
-                                                <th><div><?php echo ucwords("Student Name"); ?></div></th>       
-                                                <th><div><?php echo ucwords("department"); ?></div></th>
-                                                <th><div><?php echo ucwords("Branch"); ?></div></th>
-                                                <th><div><?php echo ucwords("Batch"); ?></div></th>											
-                                                <th><div><?php echo ucwords("Semester"); ?></div></th>	
-                                                <th><div><?php echo ucwords("Question"); ?></div></th>  
-                                                <th><div><?php echo ucwords("Answer"); ?></div></th>                               
-                                                <th><div><?php echo ucwords("Action"); ?></div></th>
+                                                <th><?php echo ucwords("Student Name"); ?></th>       
+                                                <th><?php echo ucwords("department"); ?></th>
+                                                <th><?php echo ucwords("Branch"); ?></th>
+                                                <th><?php echo ucwords("Batch"); ?></th>											
+                                                <th><?php echo ucwords("Semester"); ?></th>	
+                                                <th><?php echo ucwords("Action"); ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -310,34 +316,8 @@
                                                         ?>
 
                                                     </td>
-
-                                                    <td>
-                                                        <?php $question = explode(",", $row->sq_id); ?><?php
-                                                        //echo $row->survey_status;
-                                                        $queid = $question[0];
-                                                        //echo 'dss'.$queid;
-                                                        $question1 = $this->Crud_model->getquestion('survey_question', $queid);
-                                                        echo $question1;
-                                                        ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php $status = explode(",", $row->survey_status); ?><?php
-                                                        $s1 = $status[0];
-                                                        if ($s1 == "1") {
-                                                            echo "Yes";
-                                                        } elseif ($s1 == "0") {
-                                                            echo "No";
-                                                        } elseif ($s1 == "2") {
-                                                            echo "No Opinion";
-                                                        }
-
-                                                        //echo $row->survey_status;
-                                                        //$queid = $question[0];
-                                                        //echo 'dss'.$queid;
-                                                        ?></td>
-
                                                     <td class="menu-action">
-                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_survey_detal/<?php echo $row->survey_id; ?>');" data-original-title="View Detail" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"><i class="fa fa-file-o"></i></a>
+                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_survey_detal/<?php echo $row->student_id; ?>');" data-original-title="View Detail" data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bd-yellow vd_yellow"><i class="fa fa-file-o"></i></a>
                                                     </td>  
                                                 </tr>
                                             <?php endforeach; ?>                        
@@ -398,10 +378,8 @@
                                             <tr>
                                                 <th>No</th>                                           
                                                 <th><?php echo ucwords("Question"); ?></th>       
-                                                <th><?php echo ucwords("Description"); ?></th>
-                                                <th><?php echo ucwords("Yes"); ?></th>  
-                                                <th><?php echo ucwords("No"); ?></th>  
-                                                <th><?php echo ucwords("No Opinion"); ?></th>
+                                                <th><?php echo ucwords("Description"); ?></th>       
+                                                <th><?php echo ucwords("Rating"); ?></th>       
                                                 <th><?php echo ucwords("Status"); ?></th>
                                                 <th><?php echo ucwords("Action"); ?></th>
                                             </tr>
@@ -416,9 +394,22 @@
                                                     <td><?php echo $countq++; ?></td>    
                                                     <td><?php echo $rowq->question; ?></td>    
                                                     <td><?php echo $rowq->question_description; ?></td>  
-                                                    <td> <?php echo $yes_status = $this->Crud_model->getquestion_status($rowq->sq_id, 'survey_yes'); ?>     </td>
-                                                    <td> <?php echo $survey_no = $this->Crud_model->getquestion_status($rowq->sq_id, 'survey_no'); ?>     </td>
-                                                    <td> <?php echo $survey_no_opinion = $this->Crud_model->getquestion_status($rowq->sq_id, 'survey_no_opinion'); ?>     </td>
+                                                    <td width="20%"><?php
+                                                   $ret =  $this->Crud_model->get_ratings($rowq->sq_id);
+                                                   // echo $ret->avg_r; ?>
+                                                    <ul><?php  
+                                                    $rating = round($ret->avg_r);
+                                                    $selected=" ";
+                                                                    for ($i = 1; $i <= 5; $i++) {
+                                                                        if(!empty($rating) && $i<=$rating) {
+                                                                               $selected = "selected";
+                                                                       }   ?>
+                                                        <li class='<?php echo $selected; ?>' >&#9733;</li>
+                                                        <?php
+                                                        $selected = '';
+                                                        } ?>
+                                                    <ul>
+                                                    </td>                                                    
                                                     <td>
                                                         <?php if ($rowq->question_status == '1') { ?>
                                                             <span class="label label-success">Active</span>
@@ -443,14 +434,14 @@
                                         <thead>
                                             <tr>                                                
                                                 <th>No</th>											
-                                                <th><div><?php echo ucwords("Student Name"); ?></div></th>	
-                                                <th><div><?php echo ucwords("Parti. Title"); ?></div></th>
-                                                <th><div><?php echo ucwords("Comment"); ?></div></th>
-                                                <th><div><?php echo ucwords("department"); ?></div></th>											
-                                                <th><div><?php echo ucwords("Branch"); ?></div></th>
-                                                <th><div><?php echo ucwords("Batch"); ?></div></th>
-                                                <th><div><?php echo ucwords("Semester"); ?></div></th>											
-                                                <th><div><?php echo ucwords("Parti. Status"); ?></div></th>											                                                
+                                                <th><?php echo ucwords("Student Name"); ?></th>	
+                                                <th><?php echo ucwords("Parti. Title"); ?></th>
+                                                <th><?php echo ucwords("Comment"); ?></th>
+                                                <th><?php echo ucwords("department"); ?></th>											
+                                                <th><?php echo ucwords("Branch"); ?></th>
+                                                <th><?php echo ucwords("Batch"); ?></th>
+                                                <th><?php echo ucwords("Semester"); ?></th>											
+                                                <th><?php echo ucwords("Parti. Status"); ?></th>											                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -509,12 +500,12 @@
                                         <thead>
                                             <tr>                                                
                                                 <th>No</th>											
-                                                <th><div><?php echo ucwords("Student Name"); ?></div></th>	                                               
-                                                <th><div><?php echo ucwords("department"); ?></div></th>											
-                                                <th><div><?php echo ucwords("Branch"); ?></div></th>
-                                                <th><div><?php echo ucwords("Batch"); ?></div></th>
-                                                <th><div><?php echo ucwords("Semester"); ?></div></th>											
-                                                <th><div><?php echo ucwords("File"); ?></div></th>											                                                                                                
+                                                <th><?php echo ucwords("Student Name"); ?></th>	                                               
+                                                <th><?php echo ucwords("department"); ?></th>											
+                                                <th><?php echo ucwords("Branch"); ?></th>
+                                                <th><?php echo ucwords("Batch"); ?></th>
+                                                <th><?php echo ucwords("Semester"); ?></th>											
+                                                <th><?php echo ucwords("File"); ?></th>											                                                                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -932,15 +923,7 @@
 
 
     }
-
-
-
-
-
-
-
-
-
+    
     $().ready(function () {
         $.validator.setDefaults({
             submitHandler: function (form) {

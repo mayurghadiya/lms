@@ -85,7 +85,7 @@ a.links:hover, a.links:focus, a.links:active { background-image: linear-gradient
 .login-page .panel .panel-body, .user_login .panel .panel-body {background-color: #fff; border:1px solid #c4c4c4 !important; }
 .login-page .panel-body {padding: 15px;}
 table tr td i.fa{font-size:14px; color: #fff;}
-table tr td i.fa-picture-o, table tr td a i.fa-file-o, table tr td a i.fa-download, table tr td a i.fa-file-o{font-size:14px; color: #39c !important; text-align: center;}
+table tr td i.fa-picture-o, table tr td a i.fa-file-o, table tr td a i.fa-download, table tr td a i.fa-file-o{font-size:14px; color: #39c; text-align: center;}
 table tr td a:hover i{ transform:scale(2); transition-delay:0s; }
 a:hover i.fa, a:hover i{ transform:scale(1.09); transition-delay:0s; }
 .links .fa{font-size: 14px;}

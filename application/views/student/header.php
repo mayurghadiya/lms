@@ -45,6 +45,10 @@
             <link rel=apple-touch-icon-precomposed href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-57-precomposed.png>
             <link rel=icon href=<?php echo base_url(); ?>assets/img/ico/favicon.ico type=image/png>
             <meta name=msapplication-TileColor content="#3399cc">
+            <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
+            <script>
+                var base_url = '<?php echo base_url(); ?>';
+            </script>
         </head>
         <body class="<?php echo $this->router->fetch_method(); ?> student_dashboard">
             <!--[if lt IE 9]>

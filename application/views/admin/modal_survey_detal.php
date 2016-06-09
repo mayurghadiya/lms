@@ -1,25 +1,26 @@
 <?php
-$this->db->select('s.*,sl.*,sl.created_date as cdate');
+$this->db->select('s.*,sl.*,sq.*');
 $this->db->join('student s', 's.std_id=sl.student_id');
-$edit_data = $this->db->get_where('survey_list sl', array('survey_id' => $param2))->result();
-$question = explode(",", $edit_data[0]->sq_id);
-$status = explode(",", $edit_data[0]->survey_status);
-$data = array_combine($question, $status);
+$this->db->join('survey_question sq', 'sq.sq_id=sl.sq_id');
+$edit_data = $this->db->get_where('survey sl', array('sl.student_id' => $param2))->result();
 $this->load->helper("date_format");
 ?>
+<style>
+    .table-striped .highlight, .table-striped .selected {color:#F4B30A;text-shadow: 0 0 1px #F48F0A;}
+    .table-striped ul{margin:0;padding:0;}
+   .table-striped li{cursor:pointer;list-style-type: none;display: inline-block;color: #F0F0F0;text-shadow: 0 0 1px #666666;font-size:20px;}
+</style>
+
 <div class="row">
     <div class="col-md-12">
-        <div class="panel-primary" data-collapsed="0">
-            <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Survey Detail"); ?></h4>                
-            </div>
+        <div class="panel-primary" data-collapsed="0">            
 
             <div class="panel-body">
                 <div class="tab-pane box" id="add" style="padding: 5px">
                     <div class="box-content">  
                         <div class="panel-body table-responsive">
                             <table class="table table-striped" id="data-tables">
-                                <h5>Date : <?php echo datetime_formats($edit_data[0]->cdate); ?></h5>
+                             
                                 <thead>
                                     <tr>
                                         <th><?php echo ucwords("Student Name"); ?></th>
@@ -56,28 +57,27 @@ $this->load->helper("date_format");
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                    foreach ($data as $key => $val):
-                                        $valques = $this->db->get_where('survey_question', array("sq_id" => $key))->num_rows();
-                                        if ($valques > 0) {
-                                            ?>
-                                            <?php $question1 = $this->Crud_model->getquestion('survey_question', $key);
-                                            ?>
-                                            <tr>		
-                                                <td><?php echo $question1; ?></td>						
-                                                <td><?php
-                                                    $s1 = $val;
-                                                    if ($s1 == "1") {
-                                                        echo "Yes";
-                                                    } elseif ($s1 == "0") {
-                                                        echo "No";
-                                                    } elseif ($s1 == "2") {
-                                                        echo "No Opinion";
-                                                    }
-                                                    ?></td>                     			
-                                            </tr>	
-                                        <?php } ?>
-                                    <?php endforeach; ?>
+                                    <?php foreach($edit_data as $row){ ?>
+                                    <tr>
+                                        <td><?php  echo $row->question; ?></td>
+                                        <td>                                        
+                              <ul>
+                              <?php
+                               $selected=" ";
+                                 for ($i = 1; $i <= 5; $i++) {
+                                     if(!empty($row->std_rating) && $i<=$row->std_rating) {
+                                            $selected = "selected";
+                                    }
+                                    
+                                     ?>
+                              <li class='<?php echo $selected; ?>' >&#9733;</li>
+                              <?php
+                              $selected = '';
+                              } ?>
+                              <ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

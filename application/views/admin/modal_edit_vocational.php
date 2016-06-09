@@ -69,19 +69,9 @@ foreach ($edit_data as $row):
                                     <select id="professor" name="professor" class="form-control">
                                         <option value="">Select professor</option>
                                         <?php
-                                        foreach ($professor as $srow) {
-                                            if ($srow['professor_id'] == $row['professor_id']) {
-                                                ?>
-                                                <option selected value="<?php echo $srow['professor_id']; ?>"><?php echo $srow['name']; ?>
-                                                </option>
-                                                <?php
-                                            } else {
-                                                ?>
-                                                <option selected value="<?php echo $srow['professor_id']; ?>"><?php echo $srow['name']; ?>
-                                                </option>
-                                                <?php
-                                            }
-                                        }
+                                        foreach ($professor as $srow) { ?>
+                                        <option value="<?php echo $srow['professor_id']; ?>" <?php if($srow['professor_id']==$row['professor_id']){ echo "selected=selected"; } ?> ><?php echo $srow['name']; ?></option>
+                                        <?php }
                                         ?>
                                     </select>
                                 </div>	

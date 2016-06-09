@@ -16,9 +16,9 @@ class MY_Controller extends CI_Controller {
         $this->output->set_header("HTTP/1.0 200 OK");
         $this->output->set_header("HTTP/1.1 200 OK");
         $this->output->set_header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-        $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
-        $this->output->set_header("Cache-Control: post-check=0, pre-check=0");
-        $this->output->set_header("Pragma: no-cache");
+        $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+        $this->output->set_header("Cache-Control: post-check=0, pre-check=0", false);
+        $this->output->set_header("Pragma: no-cache");        
 
         //load laguage file
         $this->load->language('lms');
@@ -27,8 +27,7 @@ class MY_Controller extends CI_Controller {
         {
            user_activity();
         }
-        if($this->input->ip_address() == '127.0.0.1')
-            $this->output->enable_profiler(true);        
+        
     }
 
     /**

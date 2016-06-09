@@ -510,7 +510,7 @@ class Admin extends MY_Controller {
                 $insert['syllabus_sem'] = $this->input->post('semester');
                 $insert['syllabus_desc'] = $this->input->post('description');
 
-                $this->crud_model->add_syllabus($insert);
+                $this->Crud_model->add_syllabus($insert);
                 $this->session->set_flashdata('flash_message', $this->lang_message('save_syllabus'));
                 redirect(base_url() . 'admin/syllabus/', 'refresh');
             }
@@ -1096,6 +1096,37 @@ class Admin extends MY_Controller {
             $data['submitedassignment'] = $this->db->get()->result();
 
             $data['param'] = $param;
+        }
+        
+        if ($param == "assessments") {
+            $degree = $this->input->post('degree');
+            $course = $this->input->post('course');
+            $batch = $this->input->post('batch');
+            $semester = $this->input->post("semester");
+            // $class = $this->input->post("divclass");
+            $data['course'] = $this->db->get('course')->result();
+            $data['semester'] = $this->db->get('semester')->result();
+            $data['batch'] = $this->db->get('batch')->result();
+            $data['degree'] = $this->db->get('degree')->result();
+            $data['class'] = $this->db->get('class')->result();
+            //   $this->db->where("course_id",$course);
+            //   $this->db->where("assign_batch",$batch);
+            //  $this->db->where("assign_degree",$degree);
+            //   $this->db->where("assign_sem",$semester);
+            //$data['assignment'] = $this->db->get('assignment_manager')->result();
+
+            $this->db->select("ass.*,am.*,s.*,s.class_id");
+            $this->db->from('assignment_submission ass');
+            $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+            $this->db->join("student s", "s.std_id=ass.student_id");
+            $this->db->where("am.course_id", $course);
+            $this->db->where("am.assign_batch", $batch);
+            $this->db->where("am.assign_degree", $degree);
+            $this->db->where("am.assign_sem", $semester);
+            //$this->db->where("am.class_id", $class);
+            $data['submitedassignment'] = $this->db->get()->result();
+
+            $data['param'] = $param;          
         }
         $this->load->view("admin/getassignment", $data);
     }
@@ -1738,7 +1769,6 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('flash_message', 'Participate Deleted Successfully');
             redirect(base_url() . 'admin/participate/', 'refresh');
         }
-
         $this->db->select("ls.survey_id, ls.sq_id, ls.student_id, ls.survey_status ,s.std_id, s.name, s.std_degree, s.course_id, s.std_batch, s.semester_id");
         $this->db->from('survey_list ls');
         $this->db->join("student s", "s.std_id=ls.student_id");
@@ -1757,7 +1787,23 @@ class Admin extends MY_Controller {
         $this->data['student'] = $this->db->select('std_id, name')->from('student')->get()->result();
         //$this->db->get('course')->result();
         $this->data['course'] = $this->db->select('course_id, c_name, degree_id')->from('course')->get()->result();
+//        $this->db->select("ls.*,s.*");
+//        $this->db->from('survey_list ls');
+//        $this->db->join("student s", "s.std_id=ls.student_id");
+//        $this->data['survey'] = $this->db->get()->result();       
+        $this->db->select("ls.*,s.*");
+        $this->db->from('survey ls');
+        $this->db->join("student s", "s.std_id=ls.student_id");
+        $this->db->group_by('ls.student_id');        
+        $this->data['survey']= $this->db->get()->result();       
+        /*$this->data['questions'] = $this->db->get('survey_question')->result();
 
+        $this->data['participate'] = $this->db->get('participate_manager')->result();
+        $this->data['degree'] = $this->db->get('degree')->result();
+        $this->data['batch'] = $this->db->get('batch')->result();
+        $this->data['semester'] = $this->db->get('semester')->result();
+        $this->data['student'] = $this->db->get('student')->result();
+        $this->data['course'] = $this->db->get('course')->result();*/
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Participate Management';
         $this->data['edit_participate'] = $this->lang_message('edit_participate');
@@ -1880,8 +1926,8 @@ class Admin extends MY_Controller {
                 $this->session->set_flashdata('flash_message', $this->lang_message('save_graduate'));
             } elseif ($param1 == 'update') {
                 $graduate_std = $this->Crud_model->get_graduate_student($param2);
-                if (is_uploaded_file($_FILES['main_img']['tmp_name'])) {
-
+                
+                    if ($_FILES['main_img']['name'] != "") {
                     $path = FCPATH . 'uploads/student_image/';
                     if (!is_dir($path)) {
                         mkdir($path, 0777);
@@ -1889,7 +1935,7 @@ class Admin extends MY_Controller {
                     $ext = explode(".", $_FILES['main_img']['name']);
                     $ext_file = strtolower(end($ext));
                     $image1 = date('dmYhis') . 'main.' . $ext_file;
-                    $config['upload_path'] = 'uploads/student_image';
+                    $config['upload_path'] = 'uploads/student_image/';
                     $config['allowed_types'] = 'gif|jpg|png|jpeg';
                     $config['file_name'] = $image1;
                     $this->load->library('upload', $config);
@@ -1914,6 +1960,7 @@ class Admin extends MY_Controller {
                     }
                 } else {
                     $main_img = $graduate_std[0]->student_img;
+                    $thumb_img = $graduate_std[0]->std_thumb_img;
                 }
                 $this->Crud_model->save_graduates(array(
                     'student_id' => $_POST['student'],
@@ -4501,7 +4548,7 @@ class Admin extends MY_Controller {
         $did = implode(',', $this->input->post("degree"));
         $courceid = explode(',', $this->input->post("courseid"));
         $cource = $this->db->query("select * from course where degree_id in($did)")->result_array();
-        $html = '<option value="default">Select Branch</option>';
+        $html = '';
         foreach ($cource as $c) {
             if (in_array($c['course_id'], $courceid)) {
                 $html .='<option value="' . $c['course_id'] . '" selected>' . $c['c_name'] . '</option>';
@@ -6008,11 +6055,11 @@ class Admin extends MY_Controller {
     /**
      * Vocational course Student List
      */
-    function vocational_student() {
-        $this->data['student'] = $this->Crud_model->get_vocational_student();
-        $this->data['title'] = 'Vocational Course Students';
+    function vocational_student($param1='',$param2= '') {        
+        $this->data['student'] = $this->Crud_model->get_vocational_student($param1);       
+        $this->data['title'] = 'Registered Student List';
         $this->data['page'] = 'vocational_register_student';
-        $this->__site_template('admin/vocational_register_student', $this->data);
+        $this->load->view('admin/vocational_register_student', $this->data);
     }
 
     /**

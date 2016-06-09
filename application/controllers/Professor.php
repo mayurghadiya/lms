@@ -64,13 +64,16 @@ class Professor extends MY_Controller {
      */
     function subject() {
         $dept = $this->session->userdata('department');
-        $this->data['subject'] = $this->db->query("SELECT * FROM subject_manager WHERE FIND_IN_SET('" . $dept . "',professor_id)")->result();
+        $this->data['subject'] = $this->db->query("SELECT * FROM subject_manager WHERE FIND_IN_SET('" . $this->session->userdata('login_user_id') . "',professor_id)")->result();
+      
         $login_id = $this->session->userdata('login_user_id');
         //$this->db->get_where("professor", array("professor_id" => $login_id))->result();
         $degree = $this->db->select('professor_id, department')->from('professor')->where('professor_id', $login_id)->get()->result();
         $this->db->where("degree_id", $degree[0]->department);
+        $degree = $this->db->get_where("professor", array("professor_id" => $login_id))->result();
+        //$this->db->where("degree_id", $degree[0]->department);
         $this->data['course'] = $this->db->get('course')->result();
-        $this->data['semester'] = $this->db->get('semester')->result();
+        $this->data['semester'] = $this->db->get('semester')->result();   
         $this->data['page'] = 'subject';
         $this->data['title'] = 'Subject Management';
         $this->__site_template('professor/subject', $this->data);
@@ -458,7 +461,8 @@ class Professor extends MY_Controller {
         //$this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignments';
         $this->data['title'] = 'Assignment Management';    
-        $this->data['edit_title'] = 'Update Assignment';
+        $this->data['add_title'] = $this->lang_message('add_assignment');
+        $this->data['edit_title'] = $this->lang_message('edit_assignment');
         $this->__site_template('professor/assignment', $this->data);
     }
 
@@ -620,6 +624,7 @@ class Professor extends MY_Controller {
         $this->data['batch'] = $this->Professor_model->get_all_bacth();
         $this->data['page'] = 'study_resources';
         $this->data['title'] = 'Study Resource Management';
+        $this->data['add_title'] = $this->lang_message('add_studyresource');
         $this->data['edit_title'] = $this->lang_message('edit_studyresource');     
         $this->__site_template('professor/studyresource', $this->data);
     }
@@ -942,6 +947,7 @@ class Professor extends MY_Controller {
         //$this->data['student'] = $this->db->get('student')->result();
         $this->data['page'] = 'digital_library';
         $this->data['title'] = 'Digital Library';
+        $this->data['add_title'] = $this->lang_message('add_digital_library');
         $this->data['edit_title'] = $this->lang_message('edit_digital_library');
         $this->__site_template('professor/library', $this->data);
     }
@@ -1079,7 +1085,7 @@ class Professor extends MY_Controller {
             redirect(base_url() . 'professor/courseware/', 'refresh');
         }
         $this->data['courseware'] = $this->Professor_model->getcourseware();
-
+        
         $this->data['page'] = 'courseware';
         $this->data['title'] = 'Courseware Management';
         $this->data['add_title'] = $this->lang_message('add_courseware');
@@ -1301,6 +1307,8 @@ class Professor extends MY_Controller {
                     $this->session->set_userdata('last_activity', "Exam time table Data is already present");
                     $this->session->set_userdata('activity_status', "1");
                     $this->session->set_flashdata('flash_message', 'Data is already present.');
+                     redirect(base_url('professor/exam_schedule'));
+                    
                 } else {
                     // do form validation
                     if ($this->form_validation->run('time_table_insert_update') != FALSE) {
@@ -1346,8 +1354,10 @@ class Professor extends MY_Controller {
             }
         }
         $this->data['degree'] = $this->Professor_model->get_all_degree();
-        //$this->data['course'] = $this->Professor_model->get_all_course();
-        //$this->data['semester'] = $this->Professor_model->get_all_semester();
+   
+        $this->data['course'] = $this->Professor_model->get_all_course();
+        $this->data['semester'] = $this->Professor_model->get_all_semester();
+        
         $this->data['time_table'] = $this->Professor_model->time_table();
         $this->data['title'] = 'Exam Schedule';
         $this->data['add_title'] = $this->lang_message('add_exam_schedule');
@@ -1661,7 +1671,7 @@ class Professor extends MY_Controller {
         $this->data['exams'] = $this->Professor_model->get_exam_filter($degree, $course, $batch, $semester);
         $this->load->view("professor/exam_filter", $this->data);
     }
-
+     
     /**
      * Get exam list by course name and semester
      * @param type $course_id
@@ -2089,6 +2099,38 @@ class Professor extends MY_Controller {
             $data['param'] = $param;
             $this->load->view("professor/getassignment", $data);
         }
+        if ($param == "assessments") {
+
+            $degree = $this->input->post('degree');
+            $course = $this->input->post('course');
+            $batch = $this->input->post('batch');
+            $semester = $this->input->post("semester");
+            // $class = $this->input->post("divclass");
+            $data['course'] = $this->db->get('course')->result();
+            $data['semester'] = $this->db->get('semester')->result();
+            $data['batch'] = $this->db->get('batch')->result();
+            $data['degree'] = $this->db->get('degree')->result();
+            $data['class'] = $this->db->get('class')->result();
+            //   $this->db->where("course_id",$course);
+            //   $this->db->where("assign_batch",$batch);
+            //  $this->db->where("assign_degree",$degree);
+            //   $this->db->where("assign_sem",$semester);
+            //$data['assignment'] = $this->db->get('assignment_manager')->result();
+
+            $this->db->select("ass.*,am.*,s.*,s.class_id");
+            $this->db->from('assignment_submission ass');
+            $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+            $this->db->join("student s", "s.std_id=ass.student_id");
+            $this->db->where("am.course_id", $course);
+            $this->db->where("am.assign_batch", $batch);
+            $this->db->where("am.assign_degree", $degree);
+            $this->db->where("am.assign_sem", $semester);
+            //$this->db->where("am.class_id", $class);
+            $data['submitedassignment'] = $this->db->get()->result();
+
+            $data['param'] = $param;
+            $this->load->view("professor/getassignment", $data);
+        }
     }
 
     /**
@@ -2326,8 +2368,6 @@ class Professor extends MY_Controller {
         $data['batch'] = $this->db->get('batch')->result();
         $data['degree'] = $this->db->get('degree')->result();
         if ($degree == "All") {
-
-
             $data['library'] = $this->db->get('library_manager')->result();
         } else {
             if ($course == "All") {
@@ -2354,9 +2394,6 @@ class Professor extends MY_Controller {
                 }
             }
         }
-
-
-
         $this->load->view("professor/getlibrary", $data);
     }
 
@@ -2724,7 +2761,8 @@ class Professor extends MY_Controller {
      * Vocational course Student List
      */
     function vocational_student() {
-        $this->data['student'] = $this->Professor_model->get_vocational_student();
+        $professor_id = $this->session->userdata('login_user_id');
+        $this->data['student'] = $this->Professor_model->get_vocational_student($professor_id);
         $this->data['title'] = 'Vocational Course Students';
         $this->data['page'] = 'vocational_register_student';
         $this->__site_template('admin/vocational_register_student', $this->data);
@@ -2774,6 +2812,20 @@ class Professor extends MY_Controller {
         $this->load->model('admin/Crud_model');
         $data['time_table'] = $this->Crud_model->exam_schedule_filter($degree, $course, $batch, $semester, $exam);
         $this->load->view("professor/exam_schedule_filter", $data);
+    }
+    
+    
+    /**
+     * Vocation courses
+     * @param type $param1
+     * @param type $param2
+     */
+    function vocationalcourse($param1 = '', $param2 = '') {        
+        $this->data['title'] = $this->lang_message('vocational_course');    
+        $professor_id = $this->session->userdata('login_user_id');
+        $this->data['vocationalcourse'] = $this->Professor_model->get_vocational_course($professor_id);
+        $this->data['page'] = 'vocational_course';
+        $this->__site_template('professor/vocational_course', $this->data);
     }
 
 }

@@ -271,7 +271,12 @@ $(document).ready(function () {
     });
     $(".search_box .category").click(function (e) {
         $(this).toggleClass("open");
-    });  
+    }); 
+
+    $(".bootstrap-timepicker-hour").prop("readonly", true);
+    $(".bootstrap-timepicker-minute").prop("readonly", true);
+    $(".bootstrap-timepicker-meridian").prop("readonly", true);
+
     $(".pace.pace-active").click(function (e) {        
         $(this).hide();
     });
