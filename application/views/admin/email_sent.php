@@ -61,8 +61,7 @@
                                     <td>
                                         <?php echo $row->subject; ?>
                                     </td>
-                                    <td style="width:20%;text-align: left">
-                                        <strong><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></strong>
+                                    <td><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?>
                                     </td>
                                     <td class="menu-action">
                                         <a href="<?php echo base_url('admin/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil-square" aria-hidden="true"></i>View</span></a>

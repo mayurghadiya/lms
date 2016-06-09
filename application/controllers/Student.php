@@ -1205,6 +1205,7 @@ class Student extends MY_Controller {
                     'std_id' => $this->session->userdata('login_user_id')
                 ))->row();
         $this->data['student_detail'] = $student_details;
+        $this->data['department'] = $this->db->select()->from('degree')->where('d_id', $student_details->std_degree)->get()->row();
         $this->data['batch_detail'] = $this->Student_model->student_batch_course_detail($student_details->std_id);
         $this->data['student_marks'] = $this->Student_model->student_marks($student_details->std_id, $exam_id);
         $this->data['exam_listing'] = $this->Student_model->
@@ -1362,7 +1363,7 @@ class Student extends MY_Controller {
     function holiday() {
         $this->data['page'] = 'holiday';
         $this->data['title'] = 'Holiday List';
-        $this->data['holiday'] = $this->db->get('holiday')->result_array();
+        $this->data['holiday'] = $this->db->order_by('holiday_startdate', 'DESC')->get('holiday')->result_array();
         $this->__site_template('student/holiday', $this->data);
     }
 
@@ -1567,6 +1568,44 @@ class Student extends MY_Controller {
         } else {
             show_error($this->email->print_debugger());
         }
+    }
+    
+    /**
+     * Statements of marks
+     */
+    function statement_of_marks() {
+        $this->data['student_details'] = $this->db->get_where('student', array(
+                    'std_id' => $this->session->userdata('login_user_id')
+                ))->row();
+        $this->data['exam_listing'] = $this->Student_model->
+                student_exam_list($this->data['student_details']->course_id, $this->data['student_details']->semester_id);
+        $this->data['page'] = 'statement_of_marks';
+        $this->data['title'] = 'Statement of Marks';
+        $this->__site_template('student/statement_of_marks', $this->data);
+    }
+    
+    /**
+     * Download exam marsheet report
+     * @param string $exam_id
+     */
+    public function download_statement_marks($exam_id = '') {
+        $page_data['exam_details'] = $this->Student_model->exam_detail($exam_id);
+        $student_details = $this->db->get_where('student', array('std_id' => $this->session->userdata('login_user_id')))->row();
+        $page_data['student_detail'] = $student_details;
+        $page_data['batch_detail'] = $this->Student_model->student_batch_course_detail($student_details->std_id);
+        $page_data['student_marks'] = $this->Student_model->student_marks($student_details->std_id, $exam_id);
+        $page_data['exam_listing'] = $this->Student_model->student_exam_list($student_details->course_id, $student_details->semester_id);
+        //$page_data = array();
+        $html = utf8_encode($this->load->view('student/marks_statement', $page_data, true));
+        //this the the PDF filename that user will get to download
+        $pdfFilePath = "student marksheet.pdf";
+        //load mPDF library
+        $this->load->library('m_pdf');
+        //load the view and saved it into $html variable
+        //generate the PDF from the given html
+        $this->m_pdf->pdf->WriteHTML($html);
+        //download it.
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
     }
 
 }

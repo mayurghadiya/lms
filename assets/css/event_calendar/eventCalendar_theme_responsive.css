@@ -44,10 +44,10 @@
 
 /*	custom css by h*/
 
-.eventCalendar-slider, .eventCalendar-details{width:48% !important;}
+
 .eventCalendar-slider{float:left;}
 .eventCalendar-details{float:right;}
-.eventCalendar-slider .eventCalendar-monthWrap.eventCalendar-currentMonth{ width:50% !important; }
+
 .arrow-nav-block { max-width:50%;}
 
 /*	custom css by h*/
@@ -462,8 +462,8 @@ pre {
   position: absolute;
 }
 .eventCalendar-list-content {
-  height: 280px;
-  overflow-y: scroll;
+  height: 250px;
+  padding-bottom: 10px;
 }
 .eventCalendar-slider{height: 280px !important}
 .eventCalendar-noEvents > p {

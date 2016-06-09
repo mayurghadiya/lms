@@ -1,8 +1,3 @@
-<style>
-    td{
-        text-align: left;
-    }
-</style>
 <!-- Start .row -->
 <div class=row>                      
 
@@ -135,256 +130,251 @@
                         <?php }
                         ?>
                     </section>
-                    <script type="text/javascript" src="<?= $this->config->item('js_path') ?>jquery.js"></script>
                     <script>
-                                                // Muaz Khan     - https://github.com/muaz-khan
-                                                // MIT License   - https://www.webrtc-experiment.com/licence/
-                                                // Documentation - https://github.com/muaz-khan/RTCMultiConnection
+                        var connection = new RTCMultiConnection();
+                        connection.session = {
+                            audio: true,
+                            video: true,
+                            oneway: true
+                        };
 
-                                                var connection = new RTCMultiConnection();
-                                                connection.session = {
-                                                    audio: true,
-                                                    video: true,
-                                                    oneway: true
-                                                };
+                        connection.onstream = function (e) {
 
-                                                connection.onstream = function (e) {
+                            e.mediaElement.width = 600;
+                            videosContainer.insertBefore(e.mediaElement, videosContainer.firstChild);
+                            //videosContainer.insertBefore(title, videosContainer.firstChild);
+                            rotateVideo(e.mediaElement);
+                            scaleVideos();
+                        };
 
-                                                    e.mediaElement.width = 600;
-                                                    videosContainer.insertBefore(e.mediaElement, videosContainer.firstChild);
-                                                    //videosContainer.insertBefore(title, videosContainer.firstChild);
-                                                    rotateVideo(e.mediaElement);
-                                                    scaleVideos();
-                                                };
+                        function rotateVideo(mediaElement) {
+                            mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
+                            setTimeout(function () {
+                                mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
+                            }, 1000);
+                        }
 
-                                                function rotateVideo(mediaElement) {
-                                                    mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-                                                    setTimeout(function () {
-                                                        mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-                                                    }, 1000);
-                                                }
+                        connection.onstreamended = function (e) {
+                            e.mediaElement.style.opacity = 0;
+                            rotateVideo(e.mediaElement);
+                            setTimeout(function () {
+                                if (e.mediaElement.parentNode) {
+                                    e.mediaElement.parentNode.removeChild(e.mediaElement);
+                                }
+                                scaleVideos();
+                            }, 1000);
+                        };
 
-                                                connection.onstreamended = function (e) {
-                                                    e.mediaElement.style.opacity = 0;
-                                                    rotateVideo(e.mediaElement);
-                                                    setTimeout(function () {
-                                                        if (e.mediaElement.parentNode) {
-                                                            e.mediaElement.parentNode.removeChild(e.mediaElement);
-                                                        }
-                                                        scaleVideos();
-                                                    }, 1000);
-                                                };
+                        var sessions = {};
+                        connection.onNewSession = function (session) {
+                            if (sessions[session.sessionid])
+                                return;
+                            sessions[session.sessionid] = session;
 
-                                                var sessions = {};
-                                                connection.onNewSession = function (session) {
-                                                    if (sessions[session.sessionid])
-                                                        return;
-                                                    sessions[session.sessionid] = session;
+                            var tr = document.createElement('tr');
+                            tr.innerHTML = '<td align="left"><strong>' + session.sessionid + '</strong> is sharing his webcam in one-way direction!</td>' +
+                                    '<td><button class="join btn btn-primary" style="margin-right: 20px;">View</button></td>' +
+                                    '<td><button class="btn btn-success startstop" session_id=' + session.sessionid + ' style="margin-left: -100px">Start</button></td>';
+                            roomsList.insertBefore(tr, roomsList.firstChild);
 
-                                                    var tr = document.createElement('tr');
-                                                    tr.innerHTML = '<td align="left"><strong>' + session.sessionid + '</strong> is sharing his webcam in one-way direction!</td>' +
-                                                            '<td><button class="join btn btn-primary" style="margin-right: 20px;">View</button></td>' +
-                                                            '<td><button class="btn btn-success startstop" session_id=' + session.sessionid + ' style="margin-left: -100px">Start</button></td>';
-                                                    roomsList.insertBefore(tr, roomsList.firstChild);
+                            var joinRoomButton = tr.querySelector('.join');
+                            var startStopButton = tr.querySelector('.startstop');
+                            startStopButton.setAttribute('id', session.sessionid + 'btn');
+                            joinRoomButton.setAttribute('data-sessionid', session.sessionid);
+                            joinRoomButton.onclick = function () {
+                                this.disabled = true;
+                                $('#' + session.sessionid + 'btn').html('Stop');
 
-                                                    var joinRoomButton = tr.querySelector('.join');
-                                                    var startStopButton = tr.querySelector('.startstop');
-                                                    startStopButton.setAttribute('id', session.sessionid + 'btn');
-                                                    joinRoomButton.setAttribute('data-sessionid', session.sessionid);
-                                                    joinRoomButton.onclick = function () {
-                                                        this.disabled = true;
-                                                        $('#' + session.sessionid + 'btn').html('Stop');
+                                var sessionid = this.getAttribute('data-sessionid');
+                                //$('<p>Hello</p>').insertBefore('video');
+                                $('<label class="stream_title" style="margin-left: 110px;">' + sessionid + '</label>').insertBefore('#videos-container');
+                                session = sessions[sessionid];
 
-                                                        var sessionid = this.getAttribute('data-sessionid');
-                                                        //$('<p>Hello</p>').insertBefore('video');
-                                                        $('<label class="stream_title" style="margin-left: 110px;">' + sessionid + '</label>').insertBefore('#videos-container');
-                                                        session = sessions[sessionid];
+                                if (!session)
+                                    throw 'No such session exists.';
 
-                                                        if (!session)
-                                                            throw 'No such session exists.';
+                                connection.join(session);
+                                //console.log('My Object: '+session);
+                            };
 
-                                                        connection.join(session);
-                                                        //console.log('My Object: '+session);
-                                                    };
+                            $('.startstop').on('click', function () {
+                                var session_clicked = $(this).attr('session_id');
+                                var streaming_status = $(this).html();
+                                $.ajax({
+                                    url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
+                                    type: 'get',
+                                    success: function () {
+                                        alert('Streaming is successfully ' + streaming_status);
+                                    }
+                                })
+                            })
 
-                                                    $('.startstop').on('click', function () {
-                                                        var session_clicked = $(this).attr('session_id');
-                                                        var streaming_status = $(this).html();
-                                                        $.ajax({
-                                                            url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
-                                                            type: 'get',
-                                                            success: function () {
-                                                                alert('Streaming is successfully ' + streaming_status);
-                                                            }
-                                                        })
-                                                    })
+                            //multicast start stop
+                            $('.multicaststartstop').on('click', function () {
+                                var session_clicked = $(this).attr('session_id');
+                                var streaming_status = $(this).html();
+                                if (streaming_status == 'Start') {
+                                    $.ajax({
+                                        url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
+                                        type: 'get',
+                                        success: function () {
 
-                                                    //multicast start stop
-                                                    $('.multicaststartstop').on('click', function () {
-                                                        var session_clicked = $(this).attr('session_id');
-                                                        var streaming_status = $(this).html();
-                                                        if (streaming_status == 'Start') {
-                                                            $.ajax({
-                                                                url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
-                                                                type: 'get',
-                                                                success: function () {
+                                        }
+                                    });
+                                    $(this).html('Stop');
+                                    alert('Streaming is started');
+                                } else {
+                                    $.ajax({
+                                        url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
+                                        type: 'get',
+                                        success: function () {
 
-                                                                }
-                                                            });
-                                                            $(this).html('Stop');
-                                                            alert('Streaming is started');
-                                                        } else {
-                                                            $.ajax({
-                                                                url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + session_clicked + '/' + streaming_status,
-                                                                type: 'get',
-                                                                success: function () {
+                                        }
+                                    });
+                                    $(this).html('Start');
+                                    alert('Streaming is stopped');
+                                }
 
-                                                                }
-                                                            });
-                                                            $(this).html('Start');
-                                                            alert('Streaming is stopped');
-                                                        }
+                            })
 
-                                                    })
+                            $('.multicaststartstop_tab').on('click', function () {
+                                var current_multicast_session = $(this).attr('session_id');
+                                var current_milticast_status = $(this).html();
+                                if (current_milticast_status == 'Start') {
+                                    $.ajax({
+                                        url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + current_multicast_session + '/' + current_milticast_status,
+                                        type: 'get',
+                                        success: function () {
 
-                                                    $('.multicaststartstop_tab').on('click', function () {
-                                                        var current_multicast_session = $(this).attr('session_id');
-                                                        var current_milticast_status = $(this).html();
-                                                        if (current_milticast_status == 'Start') {
-                                                            $.ajax({
-                                                                url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + current_multicast_session + '/' + current_milticast_status,
-                                                                type: 'get',
-                                                                success: function () {
+                                        }
+                                    });
+                                    $(this).html('Stop');
+                                    alert('Streaming is started');
+                                } else {
+                                    $.ajax({
+                                        url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + current_multicast_session + '/' + current_milticast_status,
+                                        type: 'get',
+                                        success: function () {
 
-                                                                }
-                                                            });
-                                                            $(this).html('Stop');
-                                                            alert('Streaming is started');
-                                                        } else {
-                                                            $.ajax({
-                                                                url: '<?php echo base_url(); ?>admin/start_stop_streaming/' + current_multicast_session + '/' + current_milticast_status,
-                                                                type: 'get',
-                                                                success: function () {
+                                        }
+                                    });
+                                    $(this).html('Start');
+                                    alert('Streaming is stopped');
+                                }
+                            })
 
-                                                                }
-                                                            });
-                                                            $(this).html('Start');
-                                                            alert('Streaming is stopped');
-                                                        }
-                                                    })
+                            // start and stop
 
-                                                    // start and stop
+                            var start_stop_status = 'stop';
+                            startStopButton.setAttribute('data-sessionid', session.sessionid);
 
-                                                    var start_stop_status = 'stop';
-                                                    startStopButton.setAttribute('data-sessionid', session.sessionid);
+                            startStopButton.onclick = function () {
+                                $('#streamname').val(session.sessionid);
+                                startStopButton.setAttribute('status', start_stop_status);
+                                var current_status = $(this).attr('status');
+                                var video_session_id = $(this).attr('data-sessionid');
 
-                                                    startStopButton.onclick = function () {
-                                                        $('#streamname').val(session.sessionid);
-                                                        startStopButton.setAttribute('status', start_stop_status);
-                                                        var current_status = $(this).attr('status');
-                                                        var video_session_id = $(this).attr('data-sessionid');
+                                if (current_status == 'stop') {
+                                    start_stop_status = 'start';
+                                    $(this).html('Stop');
+                                    // update streaming to 1
 
-                                                        if (current_status == 'stop') {
-                                                            start_stop_status = 'start';
-                                                            $(this).html('Stop');
-                                                            // update streaming to 1
+                                } else if (current_status == 'start') {
+                                    start_stop_status = 'stop';
 
-                                                        } else if (current_status == 'start') {
-                                                            start_stop_status = 'stop';
+                                    $.ajax({
+                                        url: '<?php echo base_url(); ?>video_streaming/in_active_streaming/' + video_session_id,
+                                        type: 'post',
+                                        success: function () {
+                                            //alert('Video stream is stopped.');
+                                        }
+                                    })
+                                    $(this).html('Start');
+                                    // update streaming to 0
+                                    //$('#myModal').modal('hide');
+                                }
+                                //this.disabled = true;
 
-                                                            $.ajax({
-                                                                url: '<?php echo base_url(); ?>video_streaming/in_active_streaming/' + video_session_id,
-                                                                type: 'post',
-                                                                success: function () {
-                                                                    //alert('Video stream is stopped.');
-                                                                }
-                                                            })
-                                                            $(this).html('Start');
-                                                            // update streaming to 0
-                                                            //$('#myModal').modal('hide');
-                                                        }
-                                                        //this.disabled = true;
+                                /*var sessionid = this.getAttribute('data-sessionid');
+                                 session = sessions[sessionid];
+                                 
+                                 if (!session)
+                                 throw 'No such session exists.';
+                                 
+                                 connection.join(session);*/
+                            };
+                        };
 
-                                                        /*var sessionid = this.getAttribute('data-sessionid');
-                                                         session = sessions[sessionid];
-                                                                             
-                                                         if (!session)
-                                                         throw 'No such session exists.';
-                                                                             
-                                                         connection.join(session);*/
-                                                    };
-                                                };
+                        var videosContainer = document.getElementById('videos-container') || document.body;
+                        var roomsList = document.getElementById('rooms-list');
 
-                                                var videosContainer = document.getElementById('videos-container') || document.body;
-                                                var roomsList = document.getElementById('rooms-list');
+                        document.getElementById('setup-new-broadcast').onclick = function () {
+                            //broadcast
+                            var current_url = window.location.href;
+                            var result = current_url.split("#");
 
-                                                document.getElementById('setup-new-broadcast').onclick = function () {
-                                                    //broadcast
-                                                    var current_url = window.location.href;
-                                                    var result = current_url.split("#");
-
-                                                    if (result.length == 2) {
-                                                        //multicast
-                                                        if (!multicast_validation()) {
-                                                            return false;
-                                                        }
-                                                    } else {
-                                                        if (!validate_streaming()) {
-                                                            return false;
-                                                        }
-                                                    }
+                            if (result.length == 2) {
+                                //multicast
+                                if (!multicast_validation()) {
+                                    return false;
+                                }
+                            } else {
+                                if (!validate_streaming()) {
+                                    return false;
+                                }
+                            }
 
 
-                                                    this.disabled = true;
+                            this.disabled = true;
 
-                                                    connection.open(document.getElementById('broadcast-name').value || 'Anonymous');
-                                                };
+                            connection.open(document.getElementById('broadcast-name').value || 'Anonymous');
+                        };
 
-                                                // setup signaling to search existing sessions
-                                                connection.connect();
+                        // setup signaling to search existing sessions
+                        connection.connect();
 
-                                                (function () {
-                                                    var uniqueToken = document.getElementById('unique-token');
-                                                    if (uniqueToken)
-                                                        if (location.hash.length > 2)
-                                                            uniqueToken.parentNode.parentNode.parentNode.innerHTML = '';
-                                                        else
-                                                            uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace(/\./g, '-');
-                                                })();
+                        (function () {
+                            var uniqueToken = document.getElementById('unique-token');
+                            if (uniqueToken)
+                                if (location.hash.length > 2)
+                                    uniqueToken.parentNode.parentNode.parentNode.innerHTML = '';
+                                else
+                                    uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace(/\./g, '-');
+                        })();
 
-                                                function scaleVideos() {
-                                                    var videos = document.querySelectorAll('video'),
-                                                            length = videos.length,
-                                                            video;
+                        function scaleVideos() {
+                            var videos = document.querySelectorAll('video'),
+                                    length = videos.length,
+                                    video;
 
-                                                    var minus = 130;
-                                                    var windowHeight = 700;
-                                                    var windowWidth = 600;
-                                                    var windowAspectRatio = windowWidth / windowHeight;
-                                                    var videoAspectRatio = 4 / 3;
-                                                    var blockAspectRatio;
-                                                    var tempVideoWidth = 0;
-                                                    var maxVideoWidth = 0;
+                            var minus = 130;
+                            var windowHeight = 700;
+                            var windowWidth = 600;
+                            var windowAspectRatio = windowWidth / windowHeight;
+                            var videoAspectRatio = 4 / 3;
+                            var blockAspectRatio;
+                            var tempVideoWidth = 0;
+                            var maxVideoWidth = 0;
 
-                                                    for (var i = length; i > 0; i--) {
-                                                        blockAspectRatio = i * videoAspectRatio / Math.ceil(length / i);
-                                                        if (blockAspectRatio <= windowAspectRatio) {
-                                                            tempVideoWidth = videoAspectRatio * windowHeight / Math.ceil(length / i);
-                                                        } else {
-                                                            tempVideoWidth = windowWidth / i;
-                                                        }
-                                                        if (tempVideoWidth > maxVideoWidth)
-                                                            maxVideoWidth = tempVideoWidth;
-                                                    }
-                                                    for (var i = 0; i < length; i++) {
-                                                        video = videos[i];
-                                                        if (video)
-                                                            video.width = maxVideoWidth - minus;
-                                                    }
-                                                }
+                            for (var i = length; i > 0; i--) {
+                                blockAspectRatio = i * videoAspectRatio / Math.ceil(length / i);
+                                if (blockAspectRatio <= windowAspectRatio) {
+                                    tempVideoWidth = videoAspectRatio * windowHeight / Math.ceil(length / i);
+                                } else {
+                                    tempVideoWidth = windowWidth / i;
+                                }
+                                if (tempVideoWidth > maxVideoWidth)
+                                    maxVideoWidth = tempVideoWidth;
+                            }
+                            for (var i = 0; i < length; i++) {
+                                video = videos[i];
+                                if (video)
+                                    video.width = maxVideoWidth - minus;
+                            }
+                        }
 
 
-                                                window.onresize = scaleVideos;
+                        window.onresize = scaleVideos;
                     </script>
 
                 </article>
@@ -405,334 +395,347 @@
 
 </div>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Live Streaming Setup</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group" id="private-broadcast-course">
-                            <label class="col-sm-3 control-label">Stream Name</label>
-                            <div class="col-sm-5">
-                                <input type="text" class="form-control" id="streamname" name="streamname" readonly=""/>
-                            </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Live Streaming Setup</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" id="private-broadcast-course">
+                        <label class="col-sm-3 control-label">Stream Name</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="streamname" name="streamname" readonly=""/>
                         </div>
-
-                        <div class="form-group" id="private-broadcast-course">
-                            <label class="col-sm-3 control-label">Course</label>
-                            <div class="col-sm-5">
-                                <select id="course" class="form-control" name="private-broadcast-course">
-                                    <option value="all">All Course</option>
-                                    <?php foreach ($course as $row) { ?>
-                                        <option value="<?php echo $row->course_id; ?>"><?php echo $row->c_name; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group" id="private-broadcast-semester">
-                            <label class="col-sm-3 control-label">Semester</label>
-                            <div class="col-sm-5">
-                                <select id="semester" class="form-control" name="private-broadcast-course">
-                                    <option value="all">All Semester</option>
-                                    <?php foreach ($semester as $row) { ?>
-                                        <option value="<?php echo $row->s_id; ?>"><?php echo $row->s_name; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Status</label>
-                            <div class="col-sm-5">
-                                <select id="stream_status" name="stream_status" class="form-control">
-                                    <option value="1">Start</option>
-                                    <option value="0">Stop</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-5">
-                                <button id="start_new_broadcast" class="btn btn-success">Setup New Broadcast</button>
-                            </div>
-                        </div>                        
                     </div>
+
+                    <div class="form-group" id="private-broadcast-course">
+                        <label class="col-sm-3 control-label">Course</label>
+                        <div class="col-sm-5">
+                            <select id="course" class="form-control" name="private-broadcast-course">
+                                <option value="all">All Course</option>
+                                <?php foreach ($course as $row) { ?>
+                                    <option value="<?php echo $row->course_id; ?>"><?php echo $row->c_name; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="private-broadcast-semester">
+                        <label class="col-sm-3 control-label">Semester</label>
+                        <div class="col-sm-5">
+                            <select id="semester" class="form-control" name="private-broadcast-course">
+                                <option value="all">All Semester</option>
+                                <?php foreach ($semester as $row) { ?>
+                                    <option value="<?php echo $row->s_id; ?>"><?php echo $row->s_name; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Status</label>
+                        <div class="col-sm-5">
+                            <select id="stream_status" name="stream_status" class="form-control">
+                                <option value="1">Start</option>
+                                <option value="0">Stop</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-5">
+                            <button id="start_new_broadcast" class="btn btn-success">Setup New Broadcast</button>
+                        </div>
+                    </div>                        
                 </div>
-                <div class="modal-footer">
-                    <button id="close_model" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="close_model" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
 
+<script>
+    // start multicast
+    $(document).ready(function () {
+        $('.multicast-live-streaming').on('click', function () {
+            var multicast_id = $(this).attr('href');
+            var url = $(location).attr('href');
+            window.open(url + multicast_id);
+        });
 
-    <script>
-        // start multicast
-        $(document).ready(function () {
-            $('.multicast-live-streaming').on('click',function(){
-                var multicast_id = $(this).attr('href');
-                var url = $(location).attr('href');               
-                window.open(url + multicast_id);
-            });
-            
-            $('.startmulticast').on('click', function () {
-                var session_id = $(this).attr('session_id');
-                $('#streamname').val(session_id);
-            });
+        $('.startmulticast').on('click', function () {
+            var session_id = $(this).attr('session_id');
+            $('#streamname').val(session_id);
+        });
+    })
+</script>
+
+<script>
+    // assign broadcast
+    $(document).ready(function () {
+        // modal on load
+        $('#myModal').on('load', function () {
+            var stream_name = $('#streamname').val();
+            var stream_status = $('#' + stream_name + 'btn').html();
+            if (stream_status == 'Start') {
+                $('#myModal').modal('hide');
+                $('#close_model').click();
+            }
         })
-    </script>
-    <script>
-        // assign broadcast
-        $(document).ready(function () {
-            // modal on load
-            $('#myModal').on('load', function () {
-                var stream_name = $('#streamname').val();
-                var stream_status = $('#' + stream_name + 'btn').html();
-                if (stream_status == 'Start') {
-                    $('#myModal').modal('hide');
-                    $('#close_model').click();
+        $('#start_new_broadcast').on('click', function () {
+            $('#myModal').modal('hide');
+            var stream_name = $('#streamname').val();
+            //var stream_status = $('#stream_status').val();
+            //alert(stream_name);
+            // form data
+            var formdata = {
+                title: $('#streamname').val(),
+                course: $('#course').val(),
+                semester: $('#semester').val(),
+                is_active: $('#stream_status').val()
+            };
+            $.ajax({
+                url: '<?php echo base_url(); ?>video_streaming/assign_live_stream',
+                type: 'post',
+                data: formdata,
+                success: function () {
+                    alert('Live stream is successfully updated.');
+                    //
                 }
             })
-            $('#start_new_broadcast').on('click', function () {
-                $('#myModal').modal('hide');
-                var stream_name = $('#streamname').val();
-                //var stream_status = $('#stream_status').val();
-                //alert(stream_name);
-                // form data
-                var formdata = {
-                    title: $('#streamname').val(),
+            //var stream_status = $('#stream_status').val();               
+
+        })
+
+        $('#close_model').on('click', function () {
+            var stream_name = $('#streamname').val();
+            $('#' + stream_name + 'btn').html('Start');
+        })
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        var current_url = window.location.href;
+        var result = current_url.split("#");
+
+        if (result.length != 2) {
+            // show course                
+            $('#private-broadcast-course').css('display', 'none');
+            $('#private-broadcast-semester').css('display', 'none');
+            $('#private-broadcast-degree').css('display', 'none');
+            $('#private-broadcast-batch').css('display', 'none');
+
+        } else {
+            $('.multicast').css('display', 'none');
+        }
+        $('#setup-new-broadcast').on('click', function () {
+
+            if (result.length == 2) {
+                if (!multicast_validation())
+                    return false;
+                // private
+                // insert via ajax
+                var form_data = {
+                    title: $('#broadcast-name').val(),
+                    degree: $('#degree').val(),
                     course: $('#course').val(),
+                    batch: $('#batch').val(),
                     semester: $('#semester').val(),
-                    is_active: $('#stream_status').val()
+                    url_link: result[1]
                 };
                 $.ajax({
-                    url: '<?php echo base_url(); ?>video_streaming/assign_live_stream',
+                    url: '<?php echo base_url(); ?>video_streaming/create_private_broadcast',
                     type: 'post',
-                    data: formdata,
+                    data: form_data,
                     success: function () {
-                        alert('Live stream is successfully updated.');
-                        //
+                        console.log(form_data);
+                        alert('live streaming is created');
                     }
                 })
-                //var stream_status = $('#stream_status').val();               
-
-            })
-
-            $('#close_model').on('click', function () {
-                var stream_name = $('#streamname').val();
-                $('#' + stream_name + 'btn').html('Start');
-            })
-        });
-    </script>
-
-
-
-    <script>
-        $(document).ready(function () {
-            var current_url = window.location.href;
-            var result = current_url.split("#");
-
-            if (result.length != 2) {
-                // show course                
-                $('#private-broadcast-course').css('display', 'none');
-                $('#private-broadcast-semester').css('display', 'none');
-                $('#private-broadcast-degree').css('display', 'none');
-                $('#private-broadcast-batch').css('display', 'none');
-
             } else {
-                $('.multicast').css('display', 'none');
+                if (!validate_streaming())
+                    return false;
+                // broadcast
+                var form_data = {
+                    title: $('#broadcast-name').val(),
+                    degree: 'all',
+                    course: 'all',
+                    batch: 'all',
+                    semester: 'all',
+                    url_link: result[1]
+                };
+                console.log(form_data);
+                $.ajax({
+                    url: '<?php echo base_url(); ?>video_streaming/create_private_broadcast',
+                    type: 'post',
+                    data: form_data,
+                    success: function () {
+                        alert('live streaming is created');
+                    }
+                })
             }
-            $('#setup-new-broadcast').on('click', function () {
+        })
 
-                if (result.length == 2) {
-                    if (!multicast_validation())
-                        return false;
-                    // private
-                    // insert via ajax
-                    var form_data = {
-                        title: $('#broadcast-name').val(),
-                        degree: $('#degree').val(),
-                        course: $('#course').val(),
-                        batch: $('#batch').val(),
-                        semester: $('#semester').val(),
-                        url_link: result[1]
-                    };
-                    $.ajax({
-                        url: '<?php echo base_url(); ?>video_streaming/create_private_broadcast',
-                        type: 'post',
-                        data: form_data,
-                        success: function () {
-                            console.log(form_data);
-                            alert('live streaming is created');
-                        }
-                    })
-                } else {
-                    if (!validate_streaming())
-                        return false;
-                    // broadcast
-                    var form_data = {
-                        title: $('#broadcast-name').val(),
-                        degree: 'all',
-                        course: 'all',
-                        batch: 'all',
-                        semester: 'all',
-                        url_link: result[1]
-                    };
-                    console.log(form_data);
-                    $.ajax({
-                        url: '<?php echo base_url(); ?>video_streaming/create_private_broadcast',
-                        type: 'post',
-                        data: form_data,
-                        success: function () {
-                            alert('live streaming is created');
-                        }
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        //course by degree
+        $('#degree').on('change', function () {
+            var course_id = $('#course').val();
+            var degree_id = $(this).val();
+
+            //remove all present element
+            $('#course').find('option').remove().end();
+            $('#course').append('<option value="">Select</option>');
+            var degree_id = $(this).val();
+            $.ajax({
+                url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
+                type: 'get',
+                success: function (content) {
+                    var course = jQuery.parseJSON(content);
+                    $.each(course, function (key, value) {
+                        $('#course').append('<option value=' + value.course_id + '>' + value.c_name + '</option>');
                     })
                 }
             })
+            batch_from_degree_and_course(degree_id, course_id);
+        });
 
+        //batch from course and degree
+        $('#course').on('change', function () {
+            var degree_id = $('#degree').val();
+            var course_id = $(this).val();
+            batch_from_degree_and_course(degree_id, course_id);
+            get_semester_from_branch(course_id);
         })
-    </script>
 
-    <script>
-        $(document).ready(function () {
-            //course by degree
-            $('#degree').on('change', function () {
-                var course_id = $('#course').val();
-                var degree_id = $(this).val();
-
-                //remove all present element
-                $('#course').find('option').remove().end();
-                $('#course').append('<option value="">Select</option>');
-                var degree_id = $(this).val();
-                $.ajax({
-                    url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + degree_id,
-                    type: 'get',
-                    success: function (content) {
-                        var course = jQuery.parseJSON(content);
-                        $.each(course, function (key, value) {
-                            $('#course').append('<option value=' + value.course_id + '>' + value.c_name + '</option>');
-                        })
-                    }
-                })
-                batch_from_degree_and_course(degree_id, course_id);
-            });
-
-            //batch from course and degree
-            $('#course').on('change', function () {
-                var degree_id = $('#degree').val();
-                var course_id = $(this).val();
-                batch_from_degree_and_course(degree_id, course_id);
-                get_semester_from_branch(course_id);
+        //find batch from degree and course
+        function batch_from_degree_and_course(degree_id, course_id) {
+            //remove all element from batch
+            $('#batch').find('option').remove().end();
+            $.ajax({
+                url: '<?php echo base_url(); ?>admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
+                type: 'get',
+                success: function (content) {
+                    $('#batch').append('<option value="">Select</option>');
+                    var batch = jQuery.parseJSON(content);
+                    console.log(batch);
+                    $.each(batch, function (key, value) {
+                        $('#batch').append('<option value=' + value.b_id + '>' + value.b_name + '</option>');
+                    })
+                }
             })
-
-            //find batch from degree and course
-            function batch_from_degree_and_course(degree_id, course_id) {
-                //remove all element from batch
-                $('#batch').find('option').remove().end();
-                $.ajax({
-                    url: '<?php echo base_url(); ?>admin/batch_list_from_degree_and_course/' + degree_id + '/' + course_id,
-                    type: 'get',
-                    success: function (content) {
-                        $('#batch').append('<option value="">Select</option>');
-                        var batch = jQuery.parseJSON(content);
-                        console.log(batch);
-                        $.each(batch, function (key, value) {
-                            $('#batch').append('<option value=' + value.b_id + '>' + value.b_name + '</option>');
-                        })
-                    }
-                })
-            }
-
-            //get semester from brach
-            function get_semester_from_branch(branch_id) {
-                $('#semester').find('option').remove().end();
-                $.ajax({
-                    url: '<?php echo base_url(); ?>admin/get_semesters_of_branch/' + branch_id,
-                    type: 'get',
-                    success: function (content) {
-                        $('#semester').append('<option value="">Select</option>');
-                        var semester = jQuery.parseJSON(content);
-                        $.each(semester, function (key, value) {
-                            $('#semester').append('<option value=' + value.s_id + '>' + value.s_name + '</option>');
-                        })
-                    }
-                })
-            }
-
-        })
-    </script>
-
-    <script>
-        function validate_streaming() {
-            var name = $('#broadcast-name').val();
-            if (name == '') {
-                $('#name_error').css('display', 'inline');
-                $('#name_error').text('Please enter broadcast name');
-                return false;
-            } else {
-                $('#name_error').css('display', 'none');
-                $('#name_error').text('');
-                return true;
-            }
         }
 
-        function multicast_validation() {
-            var name = $('#broadcast-name').val();
-            var degree = $('#degree').val();
-            var course = $('#course').val();
-            var batch = $('#batch').val();
-            var sem = $('#semester').val();
-
-            if (degree == '') {
-                $('#degree_error').css('display', 'inline');
-                $('#degree_error').text('Please select course');
-                return false;
-            } else {
-                $('#degree_error').css('display', 'none');
-                $('#degree_error').text('');
-                //return true;
-            }
-
-            if (course == '') {
-                $('#course_error').css('display', 'inline');
-                $('#course_error').text('Please select branch');
-                return false;
-            } else {
-                $('#course_error').css('display', 'none');
-                $('#course_error').text('');
-                //return true;
-            }
-
-            if (batch == '') {
-                $('#batch_error').css('display', 'inline');
-                $('#batch_error').text('Please select batch');
-                return false;
-            } else {
-                $('#batch_error').css('display', 'none');
-                $('#batch_error').text('');
-                //return true;
-            }
-
-            if (sem == '') {
-                $('#sem_error').css('display', 'inline');
-                $('#sem_error').text('Please select semester');
-                return false;
-            } else {
-                $('#sem_error').css('display', 'none');
-                $('#sem_error').text('');
-                //return true;
-            }
-
-            if (name == '') {
-                $('#name_error').css('display', 'inline');
-                $('#name_error').text('Please enter broadcast name');
-                return false;
-            } else {
-                $('#name_error').css('display', 'none');
-                $('#name_error').text('');
-                return true;
-            }
+        //get semester from brach
+        function get_semester_from_branch(branch_id) {
+            $('#semester').find('option').remove().end();
+            $.ajax({
+                url: '<?php echo base_url(); ?>admin/get_semesters_of_branch/' + branch_id,
+                type: 'get',
+                success: function (content) {
+                    $('#semester').append('<option value="">Select</option>');
+                    var semester = jQuery.parseJSON(content);
+                    $.each(semester, function (key, value) {
+                        $('#semester').append('<option value=' + value.s_id + '>' + value.s_name + '</option>');
+                    })
+                }
+            })
         }
-    </script>
+
+    })
+</script>
+
+<script>
+    function validate_streaming() {
+        var name = $('#broadcast-name').val();
+        if (name == '') {
+            $('#name_error').css('display', 'inline');
+            $('#name_error').text('Please enter broadcast name');
+            return false;
+        } else {
+            $('#name_error').css('display', 'none');
+            $('#name_error').text('');
+            return true;
+        }
+    }
+
+    function multicast_validation() {
+        var name = $('#broadcast-name').val();
+        var degree = $('#degree').val();
+        var course = $('#course').val();
+        var batch = $('#batch').val();
+        var sem = $('#semester').val();
+
+        if (degree == '') {
+            $('#degree_error').css('display', 'inline');
+            $('#degree_error').text('Please select course');
+            return false;
+        } else {
+            $('#degree_error').css('display', 'none');
+            $('#degree_error').text('');
+            //return true;
+        }
+
+        if (course == '') {
+            $('#course_error').css('display', 'inline');
+            $('#course_error').text('Please select branch');
+            return false;
+        } else {
+            $('#course_error').css('display', 'none');
+            $('#course_error').text('');
+            //return true;
+        }
+
+        if (batch == '') {
+            $('#batch_error').css('display', 'inline');
+            $('#batch_error').text('Please select batch');
+            return false;
+        } else {
+            $('#batch_error').css('display', 'none');
+            $('#batch_error').text('');
+            //return true;
+        }
+
+        if (sem == '') {
+            $('#sem_error').css('display', 'inline');
+            $('#sem_error').text('Please select semester');
+            return false;
+        } else {
+            $('#sem_error').css('display', 'none');
+            $('#sem_error').text('');
+            //return true;
+        }
+
+        if (name == '') {
+            $('#name_error').css('display', 'inline');
+            $('#name_error').text('Please enter broadcast name');
+            return false;
+        } else {
+            $('#name_error').css('display', 'none');
+            $('#name_error').text('');
+            return true;
+        }
+    }
+</script>
+
+<script>
+    window.onbeforeunload = function (e) {
+        e = e || window.event;
+
+        // For IE and Firefox prior to version 4
+        if (e) {
+            e.returnValue = 'Are you sure to unload or close the video streaming?';
+            console.log(e);
+        }
+
+        // For Safari
+        return 'Are you sure to unload or close the video streaming?';
+    };
+</script>

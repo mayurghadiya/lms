@@ -346,6 +346,7 @@ class Site extends MY_Controller {
                 $message .= $url;
                 $this->email->message($message);
                 $this->email->send();
+                $this->flash_notification('success', 'Please check email to reset your password.');
                 redirect(base_url('site/user_login'));
             } else {
                 // email is not registered in the system

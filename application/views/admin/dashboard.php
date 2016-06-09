@@ -10,7 +10,7 @@ $department = student_ratio_department_wise();
 <!-- pie chart (male vs female) -->
 <script>
     $(function () {
-    $('#container').highcharts({
+    $('#course_count_ratio').highcharts({
     chart: {
     plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -786,7 +786,7 @@ $department = student_ratio_department_wise();
                         
                         <div class="panel-body text-center">
                             <div id="checkAll-active">                    
-                                <div class="row gallery sortable-layout scroll_bar_faculty">
+                                <div class="gallery sortable-layout scroll_bar_faculty">
                                     <?php foreach ($recent_professor as $teacher) { ?>  
                                         <div class="col-lg-4 col-md-4 col-xs-12">
                                                 <div class="img_box_faculty">
@@ -828,7 +828,7 @@ $department = student_ratio_department_wise();
                                 <div class="panel-heading">
                                     <div class="panel-title">Male to Female Course count Ratio</div>
                                 </div>
-                                <div class="panel-body" id="container" style="width: 450px; height: 450px;"></div>
+                                <div class="panel-body" id="course_count_ratio" style="height: 450px;"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -836,7 +836,7 @@ $department = student_ratio_department_wise();
                                 <div class="panel-heading">
                                     <div class="panel-title">Students enrolled</div>
                                 </div>
-                                <div class="panel-body" id="stduent-enrolled" style="height: 450px; width: 450px;"></div>
+                                <div class="panel-body" id="stduent-enrolled" style="height: 450px;"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -1031,7 +1031,7 @@ $department = student_ratio_department_wise();
     (function($) {
 
     $(window).load(function() {
-    $(".eventCalendar-list-content").mCustomScrollbar({
+    $(".scroll_bar_faculty").mCustomScrollbar({
     theme: "inset-2-dark",
             axis: "yx",
             advanced: {
@@ -1049,7 +1049,7 @@ $department = student_ratio_department_wise();
             // },
             }
     });        
-    $(".scroll_bar_faculty").mCustomScrollbar({
+    $(".eventCalendar-list-content").mCustomScrollbar({
     theme: "inset-2-dark",
             axis: "yx",
             advanced: {
@@ -1102,7 +1102,25 @@ $department = student_ratio_department_wise();
             if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
             },
             }
-    });
+    }); 
+        $("#course_count_ratio").mCustomScrollbar({
+    theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+            autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+            // onOverflowY:function(){
+            //  var opt=$(this).data("mCS").opt;
+            //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+            // },
+            onOverflowX: function() {
+            var opt = $(this).data("mCS").opt;
+            if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+            },
+            }
+    });        
         $("#stduent-enrolled").mCustomScrollbar({
     theme: "inset-2-dark",
             axis: "yx",
