@@ -1036,7 +1036,7 @@ class Admin extends MY_Controller {
         $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['batch'] = $this->db->get('batch')->result();
         $this->data['degree'] = $this->db->get('degree')->result();
-        $this->data['class'] = $this->db->get('class')->result();
+        //$this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignment';
         $this->data['title'] = $this->lang_message('assignment_title');
         $this->data['add_title'] = $this->lang_message('add_assignment');
@@ -1478,7 +1478,7 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/project/', 'refresh');
         }
         $this->data['project'] = $this->db->get('project_manager')->result();
-        $this->db->select("ps.*,pm.*,s.* ");
+        $this->db->select("ps.*,pm.*,s.std_id, s.std_first_name, s.std_last_name, s.email");
         $this->db->from('project_document_submission ps');
         $this->db->join("project_manager pm", "pm.pm_id=ps.project_id");
         $this->db->join("student s", "s.std_id=ps.student_id");
@@ -1487,8 +1487,9 @@ class Admin extends MY_Controller {
         $this->data['batch'] = $this->db->get('batch')->result();
         $this->data['course'] = $this->db->get('course')->result();
         $this->data['semester'] = $this->db->get('semester')->result();
-        $this->data['class'] = $this->db->get('class')->result();
-        $this->data['student'] = $this->db->get('student')->result();
+        //$this->data['class'] = $this->db->get('class')->result();
+        //$this->db->get('student')->result();
+        $this->data['student'] = $this->db->select('std_id, std_first_name, std_last_name')->from('student')->get()->result();
         $this->data['page'] = 'project';
         $this->data['title'] = $this->lang_message('project_title');
         $this->data['add_title'] = $this->lang_message('add_project');
@@ -1643,12 +1644,17 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('flash_message', $this->lang_message('delete_library'));
             redirect(base_url() . 'admin/library/', 'refresh');
         }
-        $this->data['library'] = $this->db->get('library_manager')->result();
-        $this->data['degree'] = $this->db->get('degree')->result();
-        $this->data['course'] = $this->db->get('course')->result();
-        $this->data['batch'] = $this->db->get('batch')->result();
-        $this->data['semester'] = $this->db->get('semester')->result();
-        $this->data['student'] = $this->db->get('student')->result();
+        //$this->db->get('library_manager')->result();
+        $this->data['library'] = $this->db->select('lm_id, lm_title, lm_degree, lm_batch, lm_course, lm_url, lm_semester, lm_filename')->from('library_manager')->get()->result();
+        //$this->db->get('degree')->result();
+        $this->data['degree'] = $this->db->select('d_id, d_name, d_status')->from('degree')->get()->result();
+        //$this->db->get('course')->result();
+        $this->data['course'] = $this->db->select('course_id, c_name, course_alias_id, degree_id, semester_id')->from('course')->get()->result();
+        //$this->db->get('batch')->result();
+        $this->data['batch'] = $this->db->select('b_id, b_name, degree_id, course_id')->from('batch')->get()->result();
+        //$this->db->get('semester')->result();
+        $this->data['semester'] = $this->db->select('s_id, s_name')->from('semester')->get()->result();
+        //$this->data['student'] = $this->db->get('student')->result();
         $this->data['page'] = 'library';
         $this->data['title'] = $this->lang_message('library_title');
         $this->data['add_title'] = $this->lang_message('add_digital_library');
@@ -1763,7 +1769,24 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('flash_message', 'Participate Deleted Successfully');
             redirect(base_url() . 'admin/participate/', 'refresh');
         }
-
+        $this->db->select("ls.survey_id, ls.sq_id, ls.student_id, ls.survey_status ,s.std_id, s.name, s.std_degree, s.course_id, s.std_batch, s.semester_id");
+        $this->db->from('survey_list ls');
+        $this->db->join("student s", "s.std_id=ls.student_id");
+        $this->data['survey'] = $this->db->get()->result();
+        //$this->db->get('survey_question')->result();
+        $this->data['questions'] = $this->db->select('sq_id, question, question_description, question_status')->from('survey_question')->get()->result();
+        //$this->db->get('participate_manager')->result();
+        $this->data['participate'] = $this->db->select('pp_id, pp_title, pp_degree, pp_course, pp_batch, pp_semester, pp_dos')->from('participate_manager')->get()->result();
+        //$this->db->get('degree')->result();
+        $this->data['degree'] = $this->db->select('d_id, d_name')->from('degree')->order_by('d_name', 'ASC')->get()->result();
+        //$this->db->get('batch')->result();
+        $this->data['batch'] = $this->db->select('b_id, b_name')->from('batch')->get()->result();
+        //$this->db->get('semester')->result();
+        $this->data['semester'] = $this->db->select('s_id, s_name')->from('semester')->get()->result();
+        //$this->db->get('student')->result();
+        $this->data['student'] = $this->db->select('std_id, name')->from('student')->get()->result();
+        //$this->db->get('course')->result();
+        $this->data['course'] = $this->db->select('course_id, c_name, degree_id')->from('course')->get()->result();
 //        $this->db->select("ls.*,s.*");
 //        $this->db->from('survey_list ls');
 //        $this->db->join("student s", "s.std_id=ls.student_id");
@@ -1773,21 +1796,22 @@ class Admin extends MY_Controller {
         $this->db->join("student s", "s.std_id=ls.student_id");
         $this->db->group_by('ls.student_id');        
         $this->data['survey']= $this->db->get()->result();       
-        $this->data['questions'] = $this->db->get('survey_question')->result();
+        /*$this->data['questions'] = $this->db->get('survey_question')->result();
 
         $this->data['participate'] = $this->db->get('participate_manager')->result();
         $this->data['degree'] = $this->db->get('degree')->result();
         $this->data['batch'] = $this->db->get('batch')->result();
         $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['student'] = $this->db->get('student')->result();
-        $this->data['course'] = $this->db->get('course')->result();
-
+        $this->data['course'] = $this->db->get('course')->result();*/
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Participate Management';
         $this->data['edit_participate'] = $this->lang_message('edit_participate');
         $this->data['add_title'] = 'Add Participate';
-        $this->data['volunteer'] = $this->db->get('participate_student')->result_array();
-        $this->data['uploads'] = $this->db->get('student_upload')->result_array();
+        //$this->db->get('participate_student')->result_array();
+        $this->data['volunteer'] = $this->db->select('student_id, pp_id, participate_student_id, comment')->from('participate_student')->get()->result_array();
+        //$this->db->get('student_upload')->result_array();
+        $this->data['uploads'] = $this->db->select('std_id, upload_file_name')->from('student_upload')->get()->result_array();
         $this->__site_template('admin/participate', $this->data);
     }
 
@@ -1804,7 +1828,7 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/courseware/', 'refresh');
         }
 
-         $this->db->select('cw.*,c.*,sub.subject_name');
+        $this->db->select('cw.courseware_id, cw.topic, cw.chapter, cw.description, cw.attachment, cw.status ,c.course_id, c.c_name,sub.subject_name');
         $this->db->from('courseware cw');
         $this->db->join('course c', 'c.course_id=cw.branch_id');
         $this->db->join('subject_manager sub','sub.sm_id=cw.subject_id');
@@ -4176,8 +4200,8 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/list_group', 'refresh');
         }
         $this->data['user_role'] = $param1;
-        $this->data['group_list'] = $this->db->get_where('group')->result_array();
-        $this->data['groups'] = $this->db->get_where('group', array('user_role' => $param1))->result_array();
+        //$this->data['group_list'] = $this->db->get_where('group')->result_array();
+        //$this->data['groups'] = $this->db->get_where('group', array('user_role' => $param1))->result_array();
         $this->data['page'] = 'list_group';
         $this->data['title'] = 'List Group';
         $this->__site_template('admin/list_group', $this->data);
@@ -4287,7 +4311,9 @@ class Admin extends MY_Controller {
         $group = array();
         if ($get_group_list[0]['user_type'] == 'student') {
             $user_type[] = '<option value="student">Student</option>';
-            $sections = $this->db->get('student')->result_array();
+            //$this->db->select('std_id, name')->from('student')->get()->result_array();
+            //$this->db->get('student')->result_array();
+            $sections = $this->db->select('std_id, name')->from('student')->get()->result_array();
             foreach ($sections as $row) {
                 if (!in_array($row['std_id'], $user_role)) {
                     $full_user_list[] = '<option value="' . $row['std_id'] . '">' . $row['name'] . '</option>';
@@ -5323,7 +5349,9 @@ class Admin extends MY_Controller {
             $data['batch'] = $this->db->get('batch')->result();
             $data['degree'] = $this->db->get('degree')->result();
             $data['class'] = $this->db->get('class')->result();
-            $data['student'] = $this->db->get('student')->result();
+            //$this->db->select('std_id, name, email, std_first_name, std_last_name')->from('student')->get()->result();
+            //$this->db->get('student')->result();
+            $data['student'] = $this->db->select('std_id, name, email, std_first_name, std_last_name')->from('student')->get()->result();
             $this->db->where("pm_course", $course);
             $this->db->where("pm_batch", $batch);
             $this->db->where("pm_degree", $degree);
@@ -5344,9 +5372,11 @@ class Admin extends MY_Controller {
             $data['semester'] = $this->db->get('semester')->result();
             $data['batch'] = $this->db->get('batch')->result();
             $data['degree'] = $this->db->get('degree')->result();
-            $data['student'] = $this->db->get('student')->result();
+            //$this->db->select('std_id, email, name, std_first_name, std_last_name')->from('student')->get()->result();
+            //$this->db->get('student')->result();
+            $data['student'] = $this->db->select('std_id, email, name, std_first_name, std_last_name')->from('student')->get()->result();
             $data['class'] = $this->db->get('class')->result();
-            $this->db->select("ps.*,pm.*,s.* ");
+            $this->db->select("ps.*,pm.*,s.std_id, s.name, s.std_first_name, s.std_last_name, s.email");
             $this->db->from('project_document_submission ps');
             $this->db->join("project_manager pm", "pm.pm_id=ps.project_id");
             $this->db->join("student s", "s.std_id=ps.student_id");

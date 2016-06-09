@@ -1,4 +1,14 @@
+<style type="text/css">
+h3.topic_title {
+  font-size: 26px !important;
+  font-weight: 300 !important;
+}
+.img_box_forum, .content_discu{float: left; display: inline-block;}
+.img_box_forum{width: 12%; text-align: center; margin-top: 10px;}
+.img_box_forum img{border: 3px solid #ccc; padding: 5px; text-align: center; display: inline-block;}
+.content_discu{width: 88%}
 
+</style>
 <!-- Sub Header Start -->
 <div class="page-section" style="background:#ebebeb; padding:50px 0 35px;">
     <div class="container">
@@ -18,41 +28,44 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                            <div class="cs-event-detail-heading" style="display: none;">
-                                <h6 class="cs-color"><i class="icon-uniF119"></i>Description</h6>
-                            </div>
-                        </div>
-                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">                                                               
+                    <div class="row">                        
                             <?php foreach (@$topics as $topic): ?>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">                                                               
                                 <div class="cs-event-detail-description">
                                     <div class="cs-post-title">
-                                        <h3 class="cs-color"><i class="icon-uniF119"></i><a href="<?php echo base_url() . 'site/viewtopic/' . $topic->forum_topic_id; ?>"><?php echo $topic->forum_topic_title; ?></a></h3>
-                                        <p><?php echo $topic->forum_topic_desc; ?></p>
+                                        <h3 class="cs-color topic_title"><?php echo $topic->forum_topic_title; ?></h3>
+                                        <label>Description :</label> <p style="text-indent:100px;"><?php echo $topic->forum_topic_desc; ?></p>
                                     </div>
                                 </div>
+
                                 <?php foreach (@$comments as $comment): ?>
                                     <div class="cs-event-detail-description">
                                         <div class="cs-post-title">                                        
                                             <?php $path = roleimgpath($comment->user_role, $comment->user_role_id); ?>
-                                            <p>  
-                                                <img src="<?php echo base_url() . $path; ?>" height="50" width="50" />
-                                                <?php
-                                                echo "  " . $comment->forum_comments;
-                                                echo "<br>";
-                                                echo roleuserdatatopic($comment->user_role, $comment->user_role_id) . ' ' . date_duration($comment->created_date);
-                                                ?>
-                                                <?php if ($this->session->userdata('login_type') == $comment->user_role && $this->session->userdata('login_user_id') == $comment->user_role_id) { ?>
-                                                <a style="color:red" href="#" onclick="confirm_modal('<?php echo base_url(); ?>site/delete_comment/<?php echo $comment->forum_comment_id; ?>/<?php echo $param; ?>');">Delete</a>
-                                                <?php } ?>
-                                            </p>
+                                                <div class="img_box_forum">                       
+                                                    <img class="img-responsive mCS_img_loaded" src="<?php echo base_url() . $path; ?>" height="50" width="50" />
+                                                </div>  
+                                                <div class="content_discu">
+                                                    <p>
+                                                    <?php
+                                                    echo "  " . $comment->forum_comments;
+                                                    echo "<br>";
+                                                    echo roleuserdatatopic($comment->user_role, $comment->user_role_id) . ' ' . date_duration($comment->created_date);
+                                                    ?>
+                                                    <?php if ($this->session->userdata('login_type') == $comment->user_role && $this->session->userdata('login_user_id') == $comment->user_role_id) { ?>
+                                                    <a style="color:red" href="#" onclick="confirm_modal('<?php echo base_url(); ?>site/delete_comment/<?php echo $comment->forum_comment_id; ?>/<?php echo $param; ?>');">Delete</a>
+                                                    <?php } ?>
+                                                        
+                                                    </p>
+                                                </div>
+                                            
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
 
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="cs-listing-filters">
+                        </div>
+                                
+                                    <div class="cs-listing-filters col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                         <?php
                                         $message = $this->session->flashdata('message');
                                         if ($message != '') {
@@ -65,26 +78,19 @@
                                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                             <div class="panel panel-default">                                
                                                 <div id="collapseOne" class="panel-collapse collapse in fade" role="tabpanel" aria-labelledby="headingOne">
-                                                    <div class="panel-body">
-                                                        <div class="cs-contact-form">
-                                                            <div class="cs-section-title">                                       
-
-                                                            </div>
+                                                                                
                                                             <?php if ($this->session->userdata('login_user_id')) { ?>
-                                                                <div class="form-holder">
+                                                                <div class="cs-contact-form">
+                                                                   <div class="form-holder">
                                                                     <div class="row">
                                                                         <form action="<?php echo base_url(); ?>site/comment/create" method="post" id="commentform">
                                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                                 <div class="row">
                                                                                     <input type="hidden" name="forum_topic_id" value="<?php echo $param; ?>" />
-
                                                                                 </div>
                                                                             </div>
                                                                             <div class="cs-form-holder">
-                                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                                        
-                                                                                </div>
-
-                                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                                     <div class="input-holder"> <i class="icon-pencil-square-o"></i>
                                                                                         <textarea name="discussion"  placeholder="Join the discussion"></textarea>
                                                                                     </div>
@@ -99,28 +105,28 @@
                                                                             </div>
                                                                         </form>
                                                                     </div>
+                                                                    </div>
                                                                 </div>
                                                             <?php } else { ?>
+
                                                                 Please login to join the discussion forums. 
 
-                                                                <ul><?php
+                                                                <ul class="clearfix">
+                                                                  <?php
                                                                     $this->session->set_userdata('referred_from', current_url());
                                                                     ?>
                                                                     <li><a style="color:#3488bf;" href="<?php echo base_url(); ?>site/user_login"><i class="icon-login"></i>Login</a></li>
                                                                 </ul>
-
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
+                                                                  <?php } ?>
+                                                      
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                
                             <?php endforeach; ?>
 
 
-                        </div>
                     </div>
                 </div>
 

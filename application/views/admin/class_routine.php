@@ -321,9 +321,6 @@
                             $('.k-window-title').html('Class Routine');
                         });
                     </script>
-                    <?php
-                    $department = $this->db->get('degree')->result();
-                    ?>
                     <script id="customEditorTemplate" type="text/x-kendo-template">
 
                         <div class="k-edit-label"><label for="title">Title</label></div>

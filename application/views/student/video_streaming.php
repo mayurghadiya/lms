@@ -132,8 +132,8 @@
                             sessions[session.sessionid] = session;
 
                             var tr = document.createElement('tr');
-                            tr.innerHTML = '<td><strong>' + session.sessionid + '</strong> is sharing his webcam in one-way direction!</td>' +
-                                    '<td><button class="join">View His Webcam</button></td>';
+                            tr.innerHTML = '<td style="text-align: left"><strong>' + session.sessionid + '</strong> is sharing live stream in one-way direction!</td>' +
+                                    '<td><button class="join btn btn-primary">View</button></td>';
                             roomsList.insertBefore(tr, roomsList.firstChild);
 
                             var joinRoomButton = tr.querySelector('.join');

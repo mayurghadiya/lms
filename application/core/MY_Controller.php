@@ -27,6 +27,7 @@ class MY_Controller extends CI_Controller {
         {
            user_activity();
         }
+        
     }
 
     /**

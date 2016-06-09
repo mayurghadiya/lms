@@ -22,14 +22,19 @@
             <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel=stylesheet type=text/css>
             <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel=stylesheet type=text/css>
             <!-- Css files -->
-            
-            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/plugins.css>
-            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/main.min.css>
-            <link rel=stylesheet href=<?php echo base_url(); ?>assets/css/custom.css>
-            
+            <?php
+            $this->carabiner->css('jquery.mCustomScrollbar.min.css');
+            $this->carabiner->css('plugins.css');
+            $this->carabiner->css('main.min.css');
+            $this->carabiner->css('custom.css');
+            $this->carabiner->display('css');
+            ?>
 
             <!-- jQuery -->
-            <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
+            <?php
+            $this->carabiner->js('jquery-2.1.1.min.js');
+            $this->carabiner->display('js');
+            ?>
 
             <!-- Fav and touch icons -->
             <link rel=apple-touch-icon-precomposed sizes=144x144 href=<?php echo base_url(); ?>assets/img/ico/apple-touch-icon-144-precomposed.png>
@@ -41,7 +46,8 @@
             <meta name=msapplication-TileColor content="#3399cc">
             <script>
                 var base_url = '<?php echo base_url(); ?>';
-            </script>            
+            </script>      
+        </head>
 
         <body class="<?php echo $this->router->fetch_method(); ?> professor_dashboard">
             <!--[if lt IE 9]>
@@ -77,13 +83,13 @@
                                     <li class=menu>
                                         <ul class=notif>
                                             <li class=header><strong>Notifications</strong></li>
-                                            
+
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
                             <li class=dropdown>
-                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url().'uploads/professor/'.$this->session->userdata('image_path'); ?> alt="" class="image"> 
+                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url() . 'uploads/professor/' . $this->session->userdata('image_path'); ?> alt="" class="image"> 
                                     <span class=txt><?php echo $this->session->userdata('email'); ?></span> <b class=caret></b>
                                 </a>
                                 <ul class="dropdown-menu right">
@@ -92,7 +98,7 @@
                                             <li>
                                                 <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i>Home</a>
                                             <li>
-                                                <a href="<?php echo base_url().'professor/manage_profile' ?>">
+                                                <a href="<?php echo base_url() . 'professor/manage_profile' ?>">
                                                     <i class="fa fa-user" aria-hidden="true"></i>Edit profile</a>
                                             </li>
                                             <li>
@@ -156,10 +162,10 @@
                                                 <span class=txt>Dashboard</span>
                                             </a>
                                         </li>          
-                                        
+
                                         <?php
                                         $pages = [
-                                            'student', 'subject','syllabus', 'holiday', 'assessments','vocational_register_student','vocational_course'
+                                            'student', 'subject', 'syllabus', 'holiday', 'assessments', 'vocational_register_student', 'vocational_course'
                                         ];
                                         ?>
 
@@ -201,22 +207,17 @@
                                                         <span class="txt">Vocational Course</span>
                                                     </a>
                                                 </li>
-                                                <li>
-                                                    <a id="link-vocational_register_student" href="<?php echo base_url(); ?>professor/vocational_student">
-                                                        <i class="s16 icomoon-icon-attachment"></i>
-                                                        <span class="txt">Vocational Students</span>
-                                                    </a>
-                                                </li>
+                                                
                                             </ul>
                                         </li>
-                                        
+
                                         <?php
                                         $pages = [
                                             'events', 'assignments', 'study_resources', 'project', 'digital_library',
                                             'participate', 'courseware'
                                         ];
                                         ?>
-                                        
+
                                         <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
                                             <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
                                                 <span class="txt">Assets Management</span></a>
@@ -277,13 +278,12 @@
                                                 <span class=txt>Forum & Discussion</span>
                                             </a>
                                         </li> 
-                                        
                                         <?php
                                         $pages = [
                                             'graduates'
                                         ];
                                         ?>
-                                        
+
                                         <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
                                             <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">University</span></a>
@@ -302,13 +302,13 @@
                                                 <span class=txt>Attendance </span>
                                             </a>
                                         </li>
-                                        
+
                                         <?php
                                         $pages = [
                                             'exam', 'exam_schedule', 'exam_marks'
                                         ];
                                         ?>
-                                        
+
                                         <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
                                             <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">Examination</span></a>
@@ -333,13 +333,13 @@
                                                 </li>  
                                             </ul>
                                         </li>
-                                        
+
                                         <?php
                                         $pages = [
                                             'email_compose', 'email_inbox', 'email_sent'
                                         ];
                                         ?>
-                                        
+
                                         <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
                                             <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">Email</span></a>
@@ -403,7 +403,7 @@
                                                         <label>
                                                             <div class="checkbox-custom">
                                                                 <input type="checkbox" name="exam" value="exam" 
-                                                                    <?php if (isset($from['exam'])) echo 'checked'; ?>><label for="chbox0"></label></div>
+                                                                       <?php if (isset($from['exam'])) echo 'checked'; ?>><label for="chbox0"></label></div>
                                                             <span>Exam</span>
                                                         </label>
                                                     </li>
@@ -437,17 +437,9 @@
                                     </div>
                                 </form>
                             </div>
+                            <?php echo create_breadcrumb(); ?>
 
-                            <!--  /search -->  
-                            <!--  /search -->
-<!--                            <ul class=breadcrumb>
-                                <li>You are here:</li>
-                                <li><a href=# class=tip title="back to dashboard"><i class="s16 icomoon-icon-screen-2"></i></a> <span class=divider><i class="s16 icomoon-icon-arrow-right-3"></i></span></li>
-                                <li class=active>Blank Page</li>
-                            </ul>
-                        -->
-                        <?php echo create_breadcrumb(); ?>
-                        <?php echo set_active_menu($page); ?>
-                            </div>
+                            <?php echo set_active_menu($page); ?>
+                        </div>
 
                         <!-- End  / heading-->

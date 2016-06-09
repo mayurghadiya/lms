@@ -25,9 +25,9 @@
                                     <div class="col-xs-12">
                                         <div class="form-img text-center mgbt-xs-15"> 
                                             <?php if ($profile->profile_photo != "") { ?>    
-                                                <img alt="example image" src="<?php echo $profile_pic; ?>"> </div>
+                                            <img alt="" src="<?php echo $profile_pic; ?>" id="manage_profile"> </div>
                                         <?php } else { ?>
-                                            <img alt="example image" src="<?php echo base_url('uploads/user.jpg'); ?>"> </div>
+                                        <img alt="example image" src="<?php echo base_url('uploads/user.jpg'); ?>" id="manage_profile"> </div>
                                     <?php } ?>
                                     <br/>
                                     <div>

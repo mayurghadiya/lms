@@ -20,8 +20,8 @@ class Photo_gallery extends CI_Model {
         
         public function getphotogallery()
         {
-            
-            return  $this->db->get('photo_gallery')->result();
+            return $this->db->select('gallery_id, gallery_title, gallery_desc')->from('photo_gallery')->get()->result();
+            //return  $this->db->get('photo_gallery')->result();
         }
         
         public function updatemedia($data,$id)
@@ -37,7 +37,9 @@ class Photo_gallery extends CI_Model {
         }
         public function get_banner()
         {
-            return $this->db->get("banner_slider")->result();
+            return $this->db->select('banner_id, banner_title, banner_desc')
+                    ->from('banner_slider')->get()->result();
+            //return $this->db->get("banner_slider")->result();
         }
         /**
         * get single banner
@@ -66,6 +68,7 @@ class Photo_gallery extends CI_Model {
         */
         function general_setting()
         {
+            $this->db->select('slider_id, pause_time, anim_speed, pause_on_hover, caption_opacity');
             $this->db->order_by("slider_id",'DESC');
             $this->db->limit(1);
             return $this->db->get("slide_setting")->result();

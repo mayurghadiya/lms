@@ -21,7 +21,8 @@
                             <th>Image</th>												
                             <th>Student Name</th>													
                             <th>Email</th>												
-                            <th>Mobile</th>												
+                            <th>Mobile</th>	
+                            <th>Gender</th>
                             <th>Action</th>	
                         </tr>
                     </thead>
@@ -40,7 +41,8 @@
                                 </td>	
                                 <td><?php echo $row->std_first_name . " " . $row->std_last_name; ?></td>					
                                 <td><?php echo $row->email; ?></td>											
-                                <td><?php echo $row->std_mobile; ?></td>											
+                                <td><?php echo $row->std_mobile; ?></td>	
+                                <td><?php echo $row->std_gender; ?></td>
                                 <td class="menu-action">
                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_student_detail/<?php echo $row->std_id; ?>');" data-original-title="view" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6">View</span></a>
                                 </td> 

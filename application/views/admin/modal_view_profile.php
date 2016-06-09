@@ -10,10 +10,7 @@ $course = $this->db->get_where("course", array("course_id" => $professor[0]->bra
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>Professor Details</h4>
-            </div>
+            <!-- Start .panel -->            
             <div class=panel-body>
                 <table class="table table-striped table-bordered table-responsive" id="data-tables">
 

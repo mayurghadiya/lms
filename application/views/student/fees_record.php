@@ -38,8 +38,10 @@
                                 <td>Paid</td>
                                 <td><?php echo date('F d, Y h:m A', strtotime($row->paid_created_at)); ?></td>
                                 <td>
-                                    <a href="<?php echo base_url('student/invoice/' . $row->student_fees_id); ?>"><span class="label label-primary mr6 mb6">View</span></a>
-                                    <a href="<?php echo base_url('student/invoice_print/' . $row->student_fees_id); ?>"><span class="label label-success mr6 mb6">Download</span></a>                                    
+                                    <a href="<?php echo base_url('student/invoice/' . $row->student_fees_id); ?>"><span class="label label-primary mr6 mb6">
+                                            <i class="fa fa-pencil"></i>View</span></a>
+                                    <a href="<?php echo base_url('student/invoice_print/' . $row->student_fees_id); ?>"><span class="label label-danger mr6 mb6">
+                                            <i class="fa fa-download"></i>Download</span></a>                                    
                                 </td>
                             </tr>
                         <?php } ?>

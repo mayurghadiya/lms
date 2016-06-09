@@ -236,6 +236,9 @@
                     $('#total_fees').val(amount.total_fees);
                     $('#total_fees_amount').val(amount.total_paid);
                     $('#due_amount').val(amount.due_amount);
+                    var remaining_amount = amount.total_paid - amount.due_amount;
+                    $('#fees').attr('min', '0');
+                    $('#fees').attr('max', amount.due_amount);
 
                     if (amount.total_fees == amount.total_paid) {
                         $('#fees_main').css('display', 'none');

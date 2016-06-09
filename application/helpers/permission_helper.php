@@ -34,37 +34,28 @@ if (!function_exists('user_permission')) {
     function user_permission() {
 
         $CI = & get_instance();
-//        echo $CI->uri->segment(2);
-//        exit;
+
         if ($CI->uri->segment(2) != "") {
 
             $run = "FIND_IN_SET('" . $CI->session->userdata('login_user_id') . "', user_role)";
             $CI->db->where($run);
             $CI->db->where('user_type', $CI->session->userdata('login_type'));
             $user_role_query = $CI->db->get('group')->result_array();
+            if (empty($user_role_query)) {
+                $url = base_url() . $CI->session->userdata('login_type') . '/dashboard';
+                echo "<script>alert('You have not permission to access this page.'); window.location.href ='" . $url . "'</script>";
+            } else {
+                $module_role_query = $CI->db->get_where('assign_module', array('group_id' => $user_role_query[0]['g_id']))->row();
+                $assign_module_id = explode(',', $module_role_query->module_id);
+                $modules = $CI->db->select('module_name_file')->from('modules')->where_in($assign_module_id)->get()->result();
+                $final_module_assignment = array();
+                foreach ($modules as $row) {
+                    array_push($final_module_assignment, $row->module_name_file);
+                }
 
-            if ($CI->uri->segment(2) != "") {
-
-                $run = "FIND_IN_SET('" . $CI->session->userdata('login_user_id') . "', user_role)";
-                $CI->db->where($run);
-                $CI->db->where('user_type', $CI->session->userdata('login_type'));
-                $user_role_query = $CI->db->get('group')->result_array();
-                if (empty($user_role_query)) {
+                if (!in_array($CI->uri->segment(2), $final_module_assignment)) {
                     $url = base_url() . $CI->session->userdata('login_type') . '/dashboard';
                     echo "<script>alert('You have not permission to access this page.'); window.location.href ='" . $url . "'</script>";
-                } else {
-                    $module_role_query = $CI->db->get_where('assign_module', array('group_id' => $user_role_query[0]['g_id']))->row();
-                    $assign_module_id = explode(',', $module_role_query->module_id);
-                    $modules = $CI->db->select('module_name_file')->from('modules')->where_in($assign_module_id)->get()->result();
-                    $final_module_assignment = array();
-                    foreach ($modules as $row) {
-                        array_push($final_module_assignment, $row->module_name_file);
-                    }
-
-                    if (!in_array($CI->uri->segment(2), $final_module_assignment)) {
-                        $url = base_url() . $CI->session->userdata('login_type') . '/dashboard';
-                        echo "<script>alert('You have not permission to access this page.'); window.location.href ='" . $url . "'</script>";
-                    }
                 }
             }
         }

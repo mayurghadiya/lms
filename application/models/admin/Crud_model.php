@@ -15,9 +15,10 @@ class Crud_model extends CI_Model {
 
      * ** */
 
-    function getquestion($table, $question = '', $field = 'question') {
-
-        return $this->db->get_where($table, array('sq_id' => $question))->row()->$field;
+    function getquestion($table, $question = '', $field = 'question') {       
+        return $this->db->select($field)->from($table)
+                ->where('sq_id', $question)->get()->row()->$field;
+        //return $this->db->get_where($table, array('sq_id' => $question))->row()->$field;
     }
 
     /*  End code */
@@ -1114,6 +1115,7 @@ class Crud_model extends CI_Model {
      * @return array
      */
     function subscriber() {
+        $this->db->select('id, email');
         $this->db->order_by('created_at', 'DESC');
         return $this->db->get('subscriber')->result();
     }
@@ -1631,7 +1633,12 @@ class Crud_model extends CI_Model {
      * 
      */
     function getquestion_status($queid, $field) {
-        return $this->db->get_where("survey_question", array("sq_id" => $queid))->row()->$field;
+        return $this->db->select($field)
+                ->from('survey_question')
+                ->where('sq_id', $queid)
+                ->get()
+                ->row()->$field;
+        //return $this->db->get_where("survey_question", array("sq_id" => $queid))->row()->$field;
     }
 
     /**
