@@ -55,8 +55,7 @@
                     <!-- Start .panel -->
 
                     <div class=panel-body>
-                        <form class="form-horizontal mt0" action="" 
-                              id="login-form role=form" method="post">
+                        <form class="form-horizontal mt0" action="" id="login-form" role="form" method="post">
 
                             <div class="form-group">
                                 <div class="col-md-12">

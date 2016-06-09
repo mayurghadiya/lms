@@ -237,6 +237,7 @@ class Crud_model extends CI_Model {
     function my_sent_mail($email) {
         return $this->db->select()
                         ->from('email')
+                        ->order_by('email_id','DESC')
                         ->where('email_from', $email)
                         ->where('is_draft', 0)
                         ->get()
@@ -1701,6 +1702,12 @@ class Crud_model extends CI_Model {
         $this->db->order_by("created_at","DESC");        
         $this->db->limit(8);
         return $this->db->get()->result(); 
+    }
+    
+    function get_ratings($id)
+    {
+        $this->db->select('AVG(std_rating) as avg_r');
+        return $this->db->get_where("survey",array("sq_id"=>$id))->row();
     }
 
 }

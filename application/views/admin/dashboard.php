@@ -725,13 +725,13 @@ foreach ($students as $student) {
                                                 <div class=form-group>
                                                     <label class="control-label col-lg-4">Task Title</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" id="todo_title" class="form-control" name="todo_title" >
+                                                        <input type="text" id="todo_title" class="form-control" value="" name="todo_title" >
                                                     </div>
                                                 </div>
                                                 <div class=form-group>
                                                     <label class="control-label col-lg-4">Task Date</label>
                                                     <div class="col-sm-8">
-                                                        <input id="basic-datepicker" type="text" name="tado_date" class="form-control" value="" readonly="">
+                                                        <input id="basic-datepicker" type="text" name="tado_date" class="form-control" value="" >
                                                     </div>
                                                 </div>
                                                 <div class=form-group>
@@ -739,13 +739,14 @@ foreach ($students as $student) {
                                                     <div class="col-sm-8">
                                                         <div class="input-group bootstrap-timepicker">
                                                             <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                                            <input id="minute-step-timepicker" name="todo_time" value="" type="text" class="form-control col-lg-8" readonly="">
+                                                            <input id="minute-step-timepicker" name="todo_time" value="" type="text" class="form-control col-lg-8" >
                                                         </div>
+                                                        <label id="minute-step-timepicker-error" style="display:none;" class="error" for="minute-step-timepicker">Select time</label>
                                                     </div>
                                                 </div>
                                                 <div class=form-group>
                                                     <div class="col-sm-offset-4 col-sm-8">
-                                                        <input type="button" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
+                                                        <input type="submit" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
                                                      <!--  <input type="button" class="btn btn-primary" name="submit" value="Close" id="closeform">-->
                                                     </div>
                                                 </div>
@@ -992,6 +993,7 @@ foreach ($students as $student) {
 </div> -->
 
 <!-- To do list Start JS-->
+<script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/todo-admin.js"></script>
 <!-- To do list Js End-->
 

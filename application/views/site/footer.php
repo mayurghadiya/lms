@@ -138,7 +138,11 @@
     .cs-menu-slide, .icon-search2{
         display: none;
     }
+    .error{
+        color: #ed7a53;
+    }
 </style>
+<script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery.validate.min.js"></script>
 
 <script>eval(mod_pagespeed_n5auxpLi_K);</script> <!-- Slick Nav js --> 
 <script src="<?php echo base_url(); ?>site_assets/scripts/chosen.select.js.pagespeed.jm.lPyT1rX_zq.js"></script> <!-- Chosen js --> 

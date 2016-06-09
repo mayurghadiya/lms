@@ -1764,10 +1764,15 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/participate/', 'refresh');
         }
 
+//        $this->db->select("ls.*,s.*");
+//        $this->db->from('survey_list ls');
+//        $this->db->join("student s", "s.std_id=ls.student_id");
+//        $this->data['survey'] = $this->db->get()->result();       
         $this->db->select("ls.*,s.*");
-        $this->db->from('survey_list ls');
+        $this->db->from('survey ls');
         $this->db->join("student s", "s.std_id=ls.student_id");
-        $this->data['survey'] = $this->db->get()->result();
+        $this->db->group_by('ls.student_id');        
+        $this->data['survey']= $this->db->get()->result();       
         $this->data['questions'] = $this->db->get('survey_question')->result();
 
         $this->data['participate'] = $this->db->get('participate_manager')->result();

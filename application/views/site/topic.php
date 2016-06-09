@@ -67,7 +67,7 @@
                                                     <div class="form-holder">
                                                         <div class="row">
                                                             <?php if ($this->session->userdata('login_user_id')) { ?>
-                                                                <form action="<?php echo base_url(); ?>site/crudtopic" method="post">
+                                                            <form action="<?php echo base_url(); ?>site/crudtopic" method="post" id="topicform">
                                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                         <div class="row">
                                                                             <input type="hidden" name="forum_id" value="<?php echo $param; ?>" />
@@ -77,7 +77,7 @@
                                                                                 </div>
                                                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                                     <div class="input-holder"> <i class="icon-user"></i>
-                                                                                        <input name="subject" required="" type="text" placeholder="Subject">
+                                                                                        <input name="subject"  type="text" placeholder="Subject">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -90,7 +90,7 @@
 
                                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                             <div class="input-holder"> <i class="icon-pencil-square-o"></i>
-                                                                                <textarea name="discussion" required="" placeholder="Start the discussion here"></textarea>
+                                                                                <textarea name="discussion" placeholder="Start the discussion here"></textarea>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -131,7 +131,7 @@
                                 <?php foreach (@$topics as $topic): ?>
                                     <div class="cs-event-detail-description" style="background:#3488bf; padding: 2px 2px 0px 10px;">
                                         <div class="cs-post-title">
-                                            <h3 class="cs-color"><a style="color:#fff !important;" href="<?php echo base_url() . 'site/viewtopic/' . $topic->forum_topic_id; ?>"><?php echo $topic->forum_topic_title; ?></a></h3>
+                                            <h3 class="cs-color"><a style="color:#fff !important;" href="<?php echo base_url() . 'site/viewtopic/' . $topic->forum_topic_id; ?>"><?php echo $topic->forum_topic_title; ?></a><span class="error"><?php echo countcommenttopic($topic->forum_topic_id); ?></span></h3>
                                             <p style="color:#fff !important;"> <?php echo "Created By " . roleuserdatatopic($topic->user_role, $topic->user_role_id); ?> <span><?php echo date_duration($topic->created_date); ?></span> </p>
                                         </div>
                                     </div>
@@ -147,3 +147,19 @@
         </div>
     </div>
     <!-- Main End --> 
+    
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#topicform").validate({
+            rules: {
+                subject: "required",
+                discussion: "required",
+            },
+            messages: {
+                subject:"Enter subject name",
+                discussion: "Enter topic discussion description",
+            }
+        });
+    });
+</script>

@@ -15,7 +15,7 @@
                         <div class=form-group>
                             <label class="control-label col-lg-4">Task Date</label>
                              <div class="col-sm-8">
-                                 <input id="basic-datepickeredit" type="text" name="tado_date" class="form-control"  value="<?php echo date("m/d/Y",  strtotime($todolist->todo_datetime)); ?>" readonly="" >
+                                 <input id="basic-datepickeredit" type="text" name="tado_date" class="form-control"  value="<?php echo date("m/d/Y",  strtotime($todolist->todo_datetime)); ?>" >
                             </div>                           
                         </div>
 
@@ -24,14 +24,15 @@
                             <div class="col-sm-8">
                                 <div class="input-group bootstrap-timepicker">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                    <input id="minute-step-timepickeredit" name="todo_time" type="text" class="form-control" value="<?php echo date("h:i A",  strtotime($todolist->todo_datetime)); ?>" readonly="" >
+                                    <input id="minute-step-timepickeredit" name="todo_time" type="text" class="form-control" value="<?php echo date("h:i A",  strtotime($todolist->todo_datetime)); ?>"  >
                                 </div>
+                                 <label id="minute-step-timepickeredit-error" style="display:none;" class="error" for="minute-step-timepickeredit">Select time</label>
                             </div>
                         </div>
 
                         <div class=form-group>
                             <div class="col-sm-offset-4 col-sm-8">
-                                <input type="button" class="btn btn-primary" name="submit" value="Update Task" id="updatebutton" >                                
+                                <input type="submit" class="btn btn-primary" name="submit" value="Update Task" id="updatebutton" >                                
                                 <input type="button" class="btn btn-primary" name="submit" value="Close" id="updatecloseform">
                             </div>
                         </div>
@@ -60,61 +61,43 @@
           $('#minute-step-timepickeredit').timepicker({
             upArrowStyle: 'fa fa-angle-up',
             downArrowStyle: 'fa fa-angle-down',
-            minuteStep: 30,
+            minuteStep: 1,
             autoclose:true,
         });
          $("#updatecloseform").click(function () {
-    $("#todo-updateform").hide(500);
-    });
-        
-         $("#frmtodoedit #updatebutton").click(function ()
-        {
-            var title = $("#todo_titleedit").val();
-            var todo_date = $("#basic-datepickeredit").val();
-            var todo_time = $("#minute-step-timepickeredit").val();
-            if (title != "" && todo_date!="" && todo_time!="")
-            { 
-                var todo_id = $("#todo_id").val();
-                var dataString = "title=" + encodeURIComponent(title) +"&todo_date="+todo_date+"&todo_time="+todo_time+"&todo_id="+todo_id;
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url(); ?>admin/updatetodolist",
-                    data: dataString,
-                    success: function (response) {
-                        $(".todo-list").html(response);                        
-                        $("#updateformhtml").html('');
-                    }
-                    
-                });
-            }
-            else{
-            if (title == "")
-            {
-                $("#todo_titleedit").css('border-color', 'red');
-            }
-            else{
-                $("#todo_titleedit").css('border-color', '#ccc');
-            }
-            if (todo_date == "")
-            {
-                $("#basic-datepickeredit").css('border-color', 'red');
-               
-            }
-            else{
-                 $("#basic-datepickeredit").css('border-color', '#ccc');
-            }
-            if (todo_time == "")
-            {
-                $("#minute-step-timepickeredit").css('border-color', 'red');
-                
-            }
-            else{
-                $("#minute-step-timepickeredit").css('border-color', '#ccc');
-            }
-            }
-
+            $("#todo-updateform").hide(500);
         });
-           
+        
+         $("#frmtodoedit").validate({
+            rules: {
+                todo_title: "required",
+                tado_date: "required",
+                todo_time:"required",                
+            },
+            messages: {
+                todo_title: "Enter title",
+                tado_date: "Select date",
+                todo_time:"Select time",
+            },            
+            submitHandler: function() {              
+               var title = $("#todo_titleedit").val();
+                var todo_date = $("#basic-datepickeredit").val();
+                var todo_time = $("#minute-step-timepickeredit").val();
+                if(todo_date=="")
+                {
+                     $("#basic-datepicker").css({'border-color':'red'});
+                     return false;
+                }
+                var todo_id = $("#todo_id").val();
+                var dataString = "title=" + encodeURIComponent(title) +"&todo_date="+todo_date+"&todo_time="+todo_time+"&todo_id="+todo_id;                
+                        $.post("<?php echo base_url(); ?>admin/updatetodolist", dataString
+                         ,                        
+                        function(data){                         
+                          $(".todo-list").html(data);                        
+                        $("#updateformhtml").html('');
+                        });
+                    }
+        });
         });
    
 </script>

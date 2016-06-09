@@ -269,6 +269,7 @@ class Student extends MY_Controller {
      */
     function participate($param1 = '', $param2 = '') {
         if ($param1 == "create") {
+            
             $survey = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
 //            $getcount = $this->db->query("SELECT s1.survey_status,s1.survey_question_id,count(s1.survey_result_id) as zero_status FROM survey_result s1 WHERE s1.survey_status='0' GROUP BY s1.survey_question_id")->result();
 //            $getcount2 = $this->db->query("SELECT s2.survey_status,s2.survey_question_id,count(s2.survey_result_id) as first_status FROM survey_result s2 WHERE s2.survey_status='1' GROUP BY s2.survey_question_id")->result();
@@ -332,8 +333,10 @@ class Student extends MY_Controller {
         $std = $this->session->userdata('std_id');
         //$getcount =  $this->db->query("SELECT survey_status,survey_question_id, COUNT(*) FROM survey_result GROUP BY survey_question_id")->result();
         
-        
-        $this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
+        $this->data['survey'] = $this->db->query('SELECT * FROM survey_question 
+                    WHERE NOT EXISTS (SELECT sq_id FROM survey
+                    WHERE survey.sq_id = survey_question.sq_id and survey.student_id= ' . $this->session->userdata('student_id') . ') ORDER BY survey_question.sq_id DESC')->result();        
+       //$this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Survey Application Form';
         $this->data['param'] = $param1;
@@ -364,6 +367,7 @@ class Student extends MY_Controller {
             $this->session->set_flashdata('flash_message', 'File is successfully uploaded.');
             redirect(base_url() . 'student/uploads/', 'refresh');
         }
+        $this->data['upload_data'] = $this->Student_model->getstudent_upload();
         $this->data['page'] = 'upload_data';
         $this->data['title'] = 'Upload';
         $this->__site_template('student/upload_data', $this->data);
@@ -1585,5 +1589,28 @@ class Student extends MY_Controller {
             show_error($this->email->print_debugger());
         }
     }
+    
+    /**
+     * Add Rating to survey question
+     */
+    function addrating()
+    {
+        $id  = $this->input->post('id');  
+        $rating = $this->input->post('rating'); 
+        $std_id = $this->session->userdata('login_user_id');
+        $data['sq_id'] = $id;
+        $data['student_id'] = $std_id;
+        $data['std_rating'] = $rating;
+        $count = $this->Student_model->getrepeat($data);
+        if($count > 0)
+        {
+            $udata['std_rating'] = $rating;
+            $this->Student_model->updatesurveyrating($udata,$id,$std_id);
+        }
+        else{        
+        $this->Student_model->addsurveyrating($data);
+        }
+    }
+    
 
 }

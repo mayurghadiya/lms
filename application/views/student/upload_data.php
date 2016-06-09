@@ -30,6 +30,43 @@
                     </div>
                 </div>
                 <?php echo form_close(); ?>
+                
+                <div class="tab-content">
+                <!----TABLE LISTING STARTS-->
+                <div class="tab-pane box active" id="list">		
+
+
+                    <div class="panel-body table-responsive" id="getresponse">                                                                     
+                        <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                            <thead>
+                                <tr>
+                                    <th>#</th>												
+                                    <th><?php echo ucwords("File"); ?></th>                                            
+                                    <th><?php echo ucwords("Uploaded Time"); ?></th>                                            
+
+                                </tr>
+                            </thead>
+                            <tbody>                                           
+                                <?php
+                                $count = 1;
+                                foreach (@$upload_data as $row):
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $count++; ?></td>	
+                                        <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $row->upload_file_name; ?>" download="" title=""><i class="fa fa-download"></i></a></td>	                                                  
+                                        <td><?php echo date_duration($row->created_date); ?></td>
+
+                                    </tr>
+<?php endforeach; ?>						
+                            </tbody>
+                        </table>
+                    </div>    
+                </div>
+
+
+                <!----TABLE LISTING ENDS--->
+
+            </div>
             </div>
             <!-- End .panel -->
         </div>
