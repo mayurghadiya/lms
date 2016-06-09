@@ -63,7 +63,6 @@ if ($message != '') {
 <?php } ?>
 </script> 
 <?php include 'modal.php'; ?>
-</head>
 </body>
 </html>
 

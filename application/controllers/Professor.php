@@ -69,7 +69,7 @@ class Professor extends MY_Controller {
         $login_id = $this->session->userdata('login_user_id');
         //$this->db->get_where("professor", array("professor_id" => $login_id))->result();
         $degree = $this->db->select('professor_id, department')->from('professor')->where('professor_id', $login_id)->get()->result();
-        $this->db->where("degree_id", $degree[0]->department);
+        $this->db->where("department", $degree[0]->department);
         $degree = $this->db->get_where("professor", array("professor_id" => $login_id))->result();
         //$this->db->where("degree_id", $degree[0]->department);
         $this->data['course'] = $this->db->get('course')->result();

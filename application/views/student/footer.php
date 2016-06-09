@@ -35,6 +35,7 @@ $this->carabiner->display('pace');
 
 <?php
 $js = [
+    ['jquery-migrate-1.2.1.min.js'],
     ['plugins/bootstrap-datepicker.js'],
     ['plugins/bootstrap-timepicker.js'],
     ['plugins/jquery.bootstrap-duallistbox.js'],

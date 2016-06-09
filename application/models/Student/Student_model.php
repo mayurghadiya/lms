@@ -848,6 +848,7 @@ class Student_model extends CI_Model {
     function getstudent_upload()
     {
         $std_id = $this->session->userdata('login_user_id');
+        $this->db->order_by('created_date', 'DESC');
         return $this->db->get_where('student_upload',array('std_id'=>$std_id))->result();
     }
 }

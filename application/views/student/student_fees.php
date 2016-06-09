@@ -206,7 +206,7 @@
             setTimeout(function () {
                 $('#amount').attr('min', '0');
                 $('#amount').attr('max', Math.abs(due_fee));
-            }, 1700);
+            }, 2000);
 
         })
     })

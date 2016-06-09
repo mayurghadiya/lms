@@ -1353,6 +1353,8 @@ ul.links-gaz{padding-left: 25px; list-style: none;}
 .xe-widget.xe-counter, .xe-widget.xe-counter-block .xe-upper, .xe-widget.xe-progress-counter .xe-upper{padding: 10px 0;}
 .xe-icon { padding: 5px 0 0 !important;}
 .xe-widget.xe-counter .xe-icon + .xe-label, .xe-widget.xe-counter-block .xe-upper .xe-icon + .xe-label, .xe-widget.xe-progress-counter .xe-upper .xe-icon + .xe-label { padding: 0;}
+table td, .table tr td, table tr td{text-align: justify; }
+table td br{display: none;}
 
 /*********************** media *****************************/
 

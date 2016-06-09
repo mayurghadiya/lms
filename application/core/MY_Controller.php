@@ -18,16 +18,14 @@ class MY_Controller extends CI_Controller {
         $this->output->set_header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
         $this->output->set_header("Cache-Control: post-check=0, pre-check=0", false);
-        $this->output->set_header("Pragma: no-cache");        
-
+        $this->output->set_header("Pragma: no-cache");
+        header('Access-Control-Allow-Origin: *');
         //load laguage file
         $this->load->language('lms');
         $this->data['title'] = 'Dashboard';
-        if($this->session->userdata('last_activity'))
-        {
-           user_activity();
+        if ($this->session->userdata('last_activity')) {
+            user_activity();
         }
-        
     }
 
     /**
