@@ -292,8 +292,7 @@ class Professor extends MY_Controller {
         $this->data['degree'] = $this->Professor_model->get_all_degree();
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
-        $this->data['batch'] = $this->Professor_model->get_all_bacth();
-       $this->session->set_flashdata('flash_message', $this->lang_message('update_submitted_assessment'));   
+        $this->data['batch'] = $this->Professor_model->get_all_bacth();       
         $this->__site_template('professor/assessments', $this->data);
     }
 

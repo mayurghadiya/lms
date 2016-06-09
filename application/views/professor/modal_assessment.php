@@ -2,54 +2,45 @@
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title>  <?php echo ucwords("assessment"); ?></h4>                
-                        </div> -->
             <div class="panel-body"> 
-                  <div class="">
-                        <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
-                    </div>  
-               <?php
-            //  echo "<pre>";
-              // print_r($assessment);
-
-               ?>
+                <div class="">
+                    <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
+                </div>  
                 <table class="table table-striped" id="data-tables" style="border:1px solid #ccc;">
-                                
-                                <thead>
-                                    <tr>
-                                        <th><?php echo ucwords("Student Name"); ?></th>
-                                        <th><?php echo ucwords("Department "); ?></th>
-                                        <th><?php echo ucwords("Branch "); ?></th>
-                                        <th><?php echo ucwords("Batch "); ?></th>
-                                        <th><?php echo ucwords("Semester "); ?></th>
-                                    </tr>
-                                </thead>
-                                <?php
-                                $degree = $this->db->get_where("degree", array("d_id" => $assessment[0]->std_degree))->result();
-                                $course = $this->db->get_where("course", array("course_id" => $assessment[0]->course_id))->result();
-                                $batch = $this->db->get_where("batch", array("b_id" => $assessment[0]->std_batch))->result();
-                                $semester = $this->db->get_where("semester", array("s_id" => $assessment[0]->semester_id))->result();
-                                ?>
-                                <tbody>
-                                <td><?php echo $assessment[0]->std_first_name . ' ' . $assessment[0]->std_last_name; ?></td>
-                                <td><?php
-                                    if (!empty($degree)) {
-                                        echo $degree[0]->d_name;
-                                    }
-                                    ?></td>
-                                <td><?php echo $course[0]->c_name; ?></td>
-                                <td><?php echo $batch[0]->b_name; ?></td>
-                                <td><?php echo $semester[0]->s_name; ?></td>
 
-                                </tbody>
-                            </table>               
-         
+                    <thead>
+                        <tr>
+                            <th><?php echo ucwords("Student Name"); ?></th>
+                            <th><?php echo ucwords("Department "); ?></th>
+                            <th><?php echo ucwords("Branch "); ?></th>
+                            <th><?php echo ucwords("Batch "); ?></th>
+                            <th><?php echo ucwords("Semester "); ?></th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $degree = $this->db->get_where("degree", array("d_id" => $assessment[0]->std_degree))->result();
+                    $course = $this->db->get_where("course", array("course_id" => $assessment[0]->course_id))->result();
+                    $batch = $this->db->get_where("batch", array("b_id" => $assessment[0]->std_batch))->result();
+                    $semester = $this->db->get_where("semester", array("s_id" => $assessment[0]->semester_id))->result();
+                    ?>
+                    <tbody>
+                    <td><?php echo $assessment[0]->std_first_name . ' ' . $assessment[0]->std_last_name; ?></td>
+                    <td><?php
+                        if (!empty($degree)) {
+                            echo $degree[0]->d_name;
+                        }
+                        ?></td>
+                    <td><?php echo $course[0]->c_name; ?></td>
+                    <td><?php echo $batch[0]->b_name; ?></td>
+                    <td><?php echo $semester[0]->s_name; ?></td>
+
+                    </tbody>
+                </table>               
+
                 <div class="box-content">                    
 
-                                             
-                    <?php echo form_open(base_url() . 'professor/assessments/submitted/'.$assessment[0]->assignment_submit_id, array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmassignment', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+
+                    <?php echo form_open(base_url() . 'professor/assessments/submitted/' . $assessment[0]->assignment_submit_id, array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmassignment', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                     <div class="padded">    
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><b><?php echo ucwords("Assignment Title"); ?></b> </label>
@@ -66,7 +57,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><b><?php echo ucwords("submitted File"); ?></b> </label>
                             <div class="col-sm-8">
-                                <a href="<?php echo base_url().'uploads/project_file/'.$assessment[0]->document_file; ?>" download=""><?php echo $assessment[0]->document_file; ?></a>
+                                <a href="<?php echo base_url() . 'uploads/project_file/' . $assessment[0]->document_file; ?>" download=""><?php echo $assessment[0]->document_file; ?></a>
                             </div>
                         </div>
                         <div class="form-group">
@@ -79,18 +70,22 @@
                             <label class="col-sm-4 control-label"><b><?php echo ucwords("Grade"); ?></b> </label>
                             <div class="col-sm-8">
                                 <select class="form-control" name="grade">
-                                     <option value="">Select Grade</option>
-                                    <option value="A" <?php if($assessment[0]->grade=="A"){ echo "selected=selected"; } ?>>A</option>
-                                    <option value="B"  <?php if($assessment[0]->grade=="B"){ echo "selected=selected"; } ?>>B</option>
-                                    <option value="C"  <?php if($assessment[0]->grade=="C"){ echo "selected=selected"; } ?>>C</option>
-                                    <option value="D"  <?php if($assessment[0]->grade=="D"){ echo "selected=selected"; } ?>>D</option>
+                                    <option value="">Select Grade</option>
+                                    <option value="A" <?php if ($assessment[0]->grade == "A") {
+                                    echo "selected=selected"; } ?>>A</option>
+                                    <option value="B"<?php if ($assessment[0]->grade == "B") { 
+                                        echo "selected=selected"; }  ?>>B</option>
+                                    <option value="C"  <?php if ($assessment[0]->grade == "C") {
+                                        echo "selected=selected"; } ?>>C</option>
+                                    <option value="D"  <?php if ($assessment[0]->grade == "D") {
+                                        echo "selected=selected"; } ?>>D</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button type="submit" id="btnadd" class="btn btn-info vd_bg-green"><?php echo ucwords("Give "); ?></button>
+                                <button type="submit" id="btnadd" class="btn btn-info vd_bg-green"><?php echo ucwords("Submit"); ?></button>
                             </div>
                         </div>
 
@@ -116,10 +111,6 @@
             }
         });
     });
-
-
-
-
     $("#course").change(function () {
         var course = $(this).val();
         var degree = $("#degree").val();
@@ -173,11 +164,11 @@
     $().ready(function () {
 
         $("#frmassignment").validate({
-            rules: {              
-                feedback: "required",                
+            rules: {
+                feedback: "required",
             },
-            messages: {                
-                feedback: "Enter feedback",                
+            messages: {
+                feedback: "Enter feedback",
             }
         });
 
