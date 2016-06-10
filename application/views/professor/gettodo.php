@@ -13,6 +13,7 @@
 <?php } ?>
 
             <script type="text/javascript">
+                $(".todo-list").css({'overflow':'auto'});
                 $(".taskstatus").click(function(){
                 if($(this).is(':checked'))
                 {

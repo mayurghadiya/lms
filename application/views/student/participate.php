@@ -85,21 +85,28 @@
                      <tr id="question-<?php echo $rows->sq_id; ?>">                    
                         <th><label><?php echo $rows->question; ?> <span style="color:red">*</span></label>
                         <th>
+                            <?php $res = $this->Student_model->getrating($rows->sq_id);
+                            ?>  
                            <div id="tutorial-<?php echo $rows->sq_id; ?>">
                               <input type="hidden" name="rating" id="rating" value="<?php echo '0'; ?>" />
                               <input type="hidden" name="question_id<?php echo $rows->sq_id; ?>" id="rating-<?php echo $rows->sq_id; ?>" value="">
-                              <ul onMouseOut="resetRating(<?php echo $rows->sq_id; ?>);">
+                            
+                              <ul <?php if(!isset($res->std_rating)){ ?> onMouseOut="resetRating(<?php echo $rows->sq_id; ?>);" <?php } ?>>
                               <?php
                                  for ($i = 1; $i <= 5; $i++) {
-                                     $selected = "";
+                                     if(isset($res->std_rating) && $i <= $res->std_rating)
+                                    {
+                                     $selected = "selected";
+                                    }
+                                    else{
+                                        $selected = "";
+                                    }
                                      ?>
-                              <li class='<?php echo $selected; ?>' onmouseover="highlightStar(this,<?php echo $rows->sq_id; ?>);" onmouseout="removeHighlight(<?php echo $rows->sq_id; ?>);" onClick="addRating(this,<?php echo $rows->sq_id; ?>);">&#9733;</li>
+                              <li class='<?php echo $selected; ?>' <?php if(!isset($res->std_rating)){ ?> onmouseover="highlightStar(this,<?php echo $rows->sq_id; ?>);" onmouseout="removeHighlight(<?php echo $rows->sq_id; ?>);" onClick="addRating(this,<?php echo $rows->sq_id; ?>);" <?php } ?>>&#9733;</li>
                               <?php } ?>
-                              <ul>
+                              </ul>
                            </div>
                         </th>
-                        </th>
-                     
                      </tr>
                      <?php endforeach; ?>
                   </tbody>

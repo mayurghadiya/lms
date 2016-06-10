@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Subject</label>
                         <div class="col-sm-7">
-                            <textarea id="subject" class="form-control" name="subject" required=""></textarea>
+                            <textarea id="subject" class="form-control" name="subject" required="" readonly=""><?php echo $email->subject; ?></textarea>
                         </div>
                     </div>
 

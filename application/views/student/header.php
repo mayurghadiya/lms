@@ -76,7 +76,7 @@
                             <li class="dropdown">
                                 <a href=# class="dropdown-toggle" data-toggle=dropdown>
                                     <i class="fa fa-globe" aria-hidden="true"></i>
-                                    <span class="notification"><?php echo $this->session->userdata('notifications')['total_notification']; ?></span>
+                                 <?php  if($this->session->userdata('notifications')['total_notification'] > 0){ ?>   <span class="notification"><?php echo $this->session->userdata('notifications')['total_notification']; ?></span><?php } ?>
                                 </a>
                                 <ul class="dropdown-menu right">
                                     <li class=menu>
@@ -280,13 +280,7 @@
                                                 <i class="s16 fa fa-book"></i>
                                                 <span class=txt>Holiday </span>
                                             </a>
-                                        </li>   
-                                        <li>
-                                            <a <?php echo active_single_menu('assessment', $page); ?> href="<?php echo base_url(); ?>student/assessment">
-                                                <i class="s16 icomoon-icon-map"></i>
-                                                <span class=txt>Assessment </span>
-                                            </a>
-                                        </li>   
+                                        </li>                                           
                                         <li>
                                             <a <?php echo active_single_menu('courseware', $page); ?> href="<?php echo base_url(); ?>student/courseware">
                                                 <i class="s16 fa fa-file-o"></i>

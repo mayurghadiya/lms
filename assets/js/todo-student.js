@@ -1,5 +1,6 @@
 
 $(document).ready(function () {
+    $(".todo-list").css({'overflow':'auto'});
      $("#minute-step-timepicker").val("");
     $("#todo-addform").hide();
     $("#basic-datepicker").datepicker({
