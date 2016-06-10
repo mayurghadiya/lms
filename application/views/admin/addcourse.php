@@ -1,5 +1,5 @@
 <?php
-$degree = $this->db->get('degree')->result_array();
+$degree = $this->db->order_by('d_name', 'ASC')->get('degree')->result_array();
 $courses = $this->db->get('course')->result_array();
 $semesters = $this->db->get('semester')->result_array();
 ?>
@@ -10,10 +10,10 @@ $semesters = $this->db->get('semester')->result_array();
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
-<!--             Start .panel 
-            <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Add Branch"); ?></h4>                
-            </div>-->
+            <!--             Start .panel 
+                        <div class=panel-heading>
+                            <h4 class=panel-title>  <?php echo ucwords("Add Branch"); ?></h4>                
+                        </div>-->
             <div class="panel-body"> 
 
                 <div class="box-content"> 
@@ -50,7 +50,7 @@ $semesters = $this->db->get('semester')->result_array();
                             <label class="col-sm-4 control-label"><?php echo ucwords("semester"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <select id="semester" name="semester[]" class="form-control" multiple>
-                                  
+
                                     <?php foreach ($semesters as $srow) { ?>
                                         <option value="<?php echo $srow['s_id']; ?>"><?php echo $srow['s_name']; ?>
                                         </option>
@@ -126,5 +126,6 @@ $semesters = $this->db->get('semester')->result_array();
                 course_alias_id: "Enter branch id",
             },
         });
+
     });
 </script>

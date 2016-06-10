@@ -185,7 +185,7 @@ $subjects = $this->db->get_where('subject_manager', [
     $(document).ready(function () {
 
         $(".datepicker-normal").datepicker({
-             format: 'mm/dd/yyyy',
+             format: 'dd M, yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose:true,

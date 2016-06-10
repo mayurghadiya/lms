@@ -332,6 +332,33 @@
                         </table>
                         <?php
                     }
+                    if(isset($search_result['professor']) && count($search_result['professor'])) { ?>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th colspan="5">
+                                    Professor Details
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>No</td>
+                                <td>Professor Name</td>
+                                <td>Mobile</td>
+                                <td>Email</td>
+                                <td>Department</td>
+                            </tr>
+                            <?php
+                            $counter = 0;
+                            foreach($search_result['professor'] as $professor) { ?>
+                            <tr>
+                                <td><?php echo ++$counter; ?></td>
+                                <td><?php echo $professor->name; ?></td>
+                                <td><?php echo $professor->mobile; ?></td>
+                                <td><?php echo $professor->email; ?></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <?php } ?>
+                        </table>
+                    <?php }
                 }
                 if (!array_filter($search_result)) {
                     ?>

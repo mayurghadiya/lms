@@ -766,7 +766,14 @@
                                                                <?php if (isset($from['participate'])) echo 'checked'; ?>>
                                                         <span>Participate</span>
                                                     </label>
-                                                </li>                                                     
+                                                </li> 
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" value="professor" name="professor"
+                                                               <?php if (isset($from['professor'])) echo 'checked'; ?>>
+                                                        <span>Professor</span>
+                                                    </label>
+                                                </li>
                                             </ul>                                           
                                         </li>
                                     </ul> 

@@ -114,7 +114,7 @@ $semesters = $this->db->get('semester')->result_array();
                                 <select name="degree" class="form-control" id="degree">
                                     <option value="">Select department</option>
                                     <?php
-                                    $degree = $this->db->get_where('degree', array('d_status' => 1))->result();
+                                    $degree = $this->db->order_by('d_name', 'ASC')->get_where('degree', array('d_status' => 1))->result();
                                     foreach ($degree as $dgr) {
                                         ?>
                                         <option value="<?= $dgr->d_id ?>"><?= $dgr->d_name ?></option>

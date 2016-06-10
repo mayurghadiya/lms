@@ -1,5 +1,4 @@
 <?php
-$degree = $this->db->get('degree')->result_array();
 $courses = $this->db->get('course')->result_array();
 $semesters = $this->db->get('semester')->result_array();
 ?>
@@ -29,9 +28,9 @@ $semesters = $this->db->get('semester')->result_array();
                             <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <select name="degree" class="form-control" id="degree">
-                                    <option value="">Select department</option>
+                                    <option value="">Select Department</option>
                                     <?php
-                                    $degree = $this->db->get_where('degree', array('d_status' => 1))->result();
+                                    $degree = $this->db->order_by('d_name', 'ASC')->get_where('degree', array('d_status' => 1))->result();
                                     foreach ($degree as $dgr) {
                                         ?>
                                         <option value="<?= $dgr->d_id ?>"><?= $dgr->d_name ?></option>

@@ -119,7 +119,7 @@ if (!function_exists('reserved_keyword_search')) {
         switch ($keyword) {
             case 'exam':
             case 'exams':
-                redirect(base_url('index.php?student/exam_listing'));
+                redirect(base_url('student/exam_listing'));
                 break;
             case 'profile':
             case 'password':
@@ -127,49 +127,49 @@ if (!function_exists('reserved_keyword_search')) {
             case 'mobile':
             case 'about me':
             case 'about':
-                redirect(base_url('index.php?student/profile'));
+                redirect(base_url('student/profile'));
                 break;
             case 'result':
             case 'mark':
             case 'marks':
-                redirect(base_url('index.php?student/exam_marks'));
+                redirect(base_url('student/exam_marks'));
                 break;
             case 'assignment':
             case 'assignments':
             case 'student assignment':
             case 'student assignments':
-                redirect(base_url('index.php?student/assignment'));
+                redirect(base_url('student/assignment'));
                 break;
             case 'project':
             case 'projects':
             case 'synopsis':
             case 'project synopsis':
-                redirect(base_url('index.php?student/project/submission'));
+                redirect(base_url('student/project/submission'));
                 break;
             case 'participate':
             case 'participates':
-                redirect(base_url('index.php?student/participate'));
+                redirect(base_url('student/participate'));
                 break;
 
             case 'exam schedule':
             case 'time table':
             case 'schedule':
-                redirect(base_url('index.php?student/exam_listing'));
+                redirect(base_url('student/exam_listing'));
                 break;            
             case 'remedial marks':
             case 'remedial mark':
             case 'remedial exam marks':
-                redirect(base_url('index.php?student/exam_marks'));
+                redirect(base_url('student/exam_marks'));
                 break;            
             case 'payment':
             case 'make payment':
             case 'student payment':
-                redirect(base_url('index.php?student/student_fees'));
+                redirect(base_url('student/student_fees'));
                 break;
             case 'email':
             case 'inbox':
             case 'mail':
-                redirect(base_url('index.php?student/email_inbox'));
+                redirect(base_url('student/email_inbox'));
                 break;            
             case 'chat':
                 redirect('http://www.searchnative.in/hosting/smartlearn/chat/index.php/site_admin/user/login');
