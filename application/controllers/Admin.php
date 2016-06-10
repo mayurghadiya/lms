@@ -1832,7 +1832,7 @@ class Admin extends MY_Controller {
         $this->db->from('courseware cw');
         $this->db->join('course c', 'c.course_id=cw.branch_id');
         $this->db->join('subject_manager sub','sub.sm_id=cw.subject_id');
-        $this->data['courseware'] = $this->db->get('courseware')->result_array();
+        $this->data['courseware'] = $this->db->get()->result_array();
 
         $this->data['page'] = 'courseware';
         $this->data['title'] = $this->lang_message('courseware_title');
@@ -4648,7 +4648,15 @@ class Admin extends MY_Controller {
         $this->data['add_title'] = $this->lang_message('add_subject');
         $this->__site_template('admin/subject', $this->data);
     }
-
+    
+    function getsubject()
+    {
+        $this->load->model('admin/Crud_model');
+        $this->data['subject']=$this->Crud_model->getsubject($this->input->post('course'));
+         $this->data['course'] = $this->db->get('course')->result();
+        $this->data['semester'] = $this->db->get('semester')->result();
+       $this->load->view('admin/getsubject',$this->data);
+    }
     /**
      * All exam lists
      * @param string $course_id

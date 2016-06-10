@@ -1718,5 +1718,10 @@ class Crud_model extends CI_Model {
         $this->db->select('AVG(std_rating) as avg_r');
         return $this->db->get_where("survey",array("sq_id"=>$id))->row();
     }
+    function getsubject($id)
+    {
+        $this->db->where('sm_course_id',$id);
+        return $this->db->get('subject_manager')->result();
+    }
 
 }
