@@ -288,7 +288,7 @@ class Professor extends MY_Controller {
         $this->data['degree'] = $this->Professor_model->get_all_degree();
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
-        $this->data['batch'] = $this->Professor_model->get_all_bacth(); 
+        $this->data['batch'] = $this->Professor_model->get_all_bacth();  
         $this->__site_template('professor/assessments', $this->data);
     }
 
@@ -2760,12 +2760,12 @@ class Professor extends MY_Controller {
     /**
      * Vocational course Student List
      */
-    function vocational_student($param1='',$param2= '') {
+    function vocational_student() {
         $professor_id = $this->session->userdata('login_user_id');
-        $this->data['student'] = $this->Professor_model->get_vocational_student($param1);
+        $this->data['student'] = $this->Professor_model->get_vocational_student($professor_id);
         $this->data['title'] = 'Vocational Course Students';
         $this->data['page'] = 'vocational_register_student';
-        $this->load->view('admin/vocational_register_student', $this->data);
+        $this->__site_template('admin/vocational_register_student', $this->data);
     }
 
     /**

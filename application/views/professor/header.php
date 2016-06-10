@@ -207,7 +207,12 @@
                                                         <span class="txt">Vocational Course</span>
                                                     </a>
                                                 </li>
-                                                
+                                                <li>
+                                                    <a id="link-vocational_register_student" href="<?php echo base_url(); ?>professor/vocational_student">
+                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <span class="txt">Vocational Students</span>
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </li>
 

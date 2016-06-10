@@ -87,7 +87,7 @@
                                             <td><?php echo date("F d, Y", strtotime($srow->submited_date)); ?></td>	
                                             <td><?php echo $srow->document_file; ?></td>
                                             <td > 
-                                                <a href="<?php echo base_url() ?>uploads/project_file/<?php echo $srow->document_file; ?>" download="" data-original-title="download" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Download</span></a>
+                                                <a href="<?php echo base_url() ?>uploads/project_file/<?php echo $srow->assign_filename; ?>" download="" data-original-title="download" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Download</span></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>						

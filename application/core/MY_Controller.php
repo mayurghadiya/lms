@@ -36,9 +36,11 @@ class MY_Controller extends CI_Controller {
      * @param mixed $data
      */
     function __site_template($view, $data) {
+        
         $files = $this->login_user_type();
         $this->load->view($files['header_file'], $this->data);
         $this->load->view($view);
+       
         $this->load->view($files['footer_file'], $this->data);
         //footer
     }
