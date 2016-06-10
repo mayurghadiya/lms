@@ -22,6 +22,9 @@
                         <li class="">
                             <a href="#submitted-assignment" data-toggle="tab" aria-expanded="false">Submitted Assignment</a>
                         </li>
+                         <li class="">
+                            <a href="#assessment" data-toggle="tab" aria-expanded="false">Assessment</a>
+                        </li>
                     </ul>
                     <div id="import-tab-content" class="tab-content">
                         <div class="tab-pane fade active in" id="assignment-list">
@@ -31,8 +34,9 @@
                                         <th>#</th>
                                         <th>Assignment Name</th>											
                                         <th>Date of submission</th>
-                                        <th>Description</th>
-                                        <th>File</th>                                                    
+                                        <th>File</th>      
+                                        <th>Instruction</th>
+                                                                                      
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -46,8 +50,9 @@
                                             <td><?php echo $row->assign_title; ?></td>	                                                    	                                                   
                                             <td><?php echo date("F d, Y", strtotime($row->assign_dos)); ?></td>		
 
-                                            <td><?php echo wordwrap($row->assign_desc, 30, "<br>\n"); ?></td>
-                                            <td> <a href="uploads/project_file/<?php echo $row->assign_filename; ?>" download="" title="<?php echo $row->assign_filename; ?>"><i class="fa fa-download"></i></a></td>
+                                           
+                                            <td> <a href="<?php echo base_url(); ?>uploads/project_file/<?php echo $row->assign_filename; ?>" download="" title="<?php echo $row->assign_filename; ?>"><i class="fa fa-download"></i></a></td>
+                                             <td><?php echo wordwrap($row->assignment_instruction, 30, "<br>\n"); ?></td>
                                             <td> 
                                                 <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_submit_assignment/<?php echo $row->assign_id; ?>');" data-original-title="submit assignment" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="icomoon-icon-plus mr0"></i> Add</span></a>
                                             </td>
@@ -94,6 +99,36 @@
                                 </tbody>
                             </table>
                         </div>
+                        
+                        <div class="tab-pane fade out" id="assessment">
+                            <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="datatable-list2">
+                     <thead>
+                        <tr>
+                            <th>No</th>		
+                             <th>Assignment Name</th>                                                                          
+                            <th>Submitted File</th>                                                       
+                            <th>Feedback</th>                                                
+                            <th>Grade</th>	
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php                       
+                        $count = 1;
+                        foreach ($assessment->result_array() as $row):
+                            
+                            ?>
+                            <tr>
+                                <td><?php echo $count++; ?></td>	
+                                 <td><?php echo $row['assign_title']; ?></td>                                                               
+                                <td id="downloadedfile"><a href="<?php echo base_url().'uploads/project_file/'.$row['document_file']; ?>" download=""><i class="fa fa-download"></i></a></td>	                                                              
+                                <td><?php echo wordwrap($row['feedback'], 30, "<br>\n"); ?></td>                                                   
+                                <td><?php echo $row['grade']; ?></td>                                                   
+                            </tr>
+                        <?php endforeach; ?>																									
+                    </tbody>
+                </table>
+                        </div>
 
                     </div>
 
@@ -113,5 +148,7 @@
 <script>
 $(document).ready(function(){
     $('#submitted-assignment-datatable-list').DataTable();
+         $('#data-tables1').dataTable();
+         $("#datatable-list2").dataTable();
 });
 </script>

@@ -1033,7 +1033,7 @@ foreach ($students as $student) {
             }
     });
     });
-    $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
+    $(".panel-body .todo-widget .todo-list1").mCustomScrollbar({
     theme: "inset-2-dark",
             axis: "yx",
             advanced: {

@@ -323,9 +323,7 @@ class Student extends MY_Controller {
         $std = $this->session->userdata('std_id');
         //$getcount =  $this->db->query("SELECT survey_status,survey_question_id, COUNT(*) FROM survey_result GROUP BY survey_question_id")->result();
         
-        $this->data['survey'] = $this->db->query('SELECT * FROM survey_question 
-                    WHERE NOT EXISTS (SELECT sq_id FROM survey
-                    WHERE survey.sq_id = survey_question.sq_id and survey.student_id= ' . $this->session->userdata('student_id') . ') ORDER BY survey_question.sq_id DESC')->result();        
+        $this->data['survey'] = $this->db->query('SELECT * FROM survey_question ORDER BY sq_id DESC')->result();        
        //$this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Survey Application Form';
@@ -710,6 +708,7 @@ class Student extends MY_Controller {
         $this->data['title'] = 'Assignment List';
         clear_notification('assignment_manager', $this->session->userdata('student_id'));
         unset($this->session->userdata('notifications')['assignment_manager']);
+         $this->data['assessment'] = $this->Student_model->student_assessment();
         $this->__site_template('student/assignment', $this->data);
     }
 
@@ -1411,7 +1410,7 @@ class Student extends MY_Controller {
 
         clear_notification('library_manager', $this->session->userdata('student_id'));
         unset($this->session->userdata('notifications')['library_manager']);
-        redirect(base_url() . 'index.php?student/dashboard/', 'refresh');
+        redirect(base_url() . 'student/dashboard/', 'refresh');
     }
 
     /**
@@ -1420,7 +1419,7 @@ class Student extends MY_Controller {
     function studyresources() {
         clear_notification('study_resources', $this->session->userdata('student_id'));
         unset($this->session->userdata('notifications')['study_resources']);
-        redirect(base_url() . 'index.php?student/dashboard/', 'refresh');
+        redirect(base_url() . 'student/dashboard/', 'refresh');
     }
 
     /**

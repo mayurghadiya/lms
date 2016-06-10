@@ -10,9 +10,9 @@
                    <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                </div>
             </li>
-<?php } ?>
-
-            <script type="text/javascript">
+<?php } ?>            
+            <script type="text/javascript">   
+                $(".todo-list").css({'overflow':'auto'});
                 $(".taskstatus").click(function(){
                 if($(this).is(':checked'))
                 {

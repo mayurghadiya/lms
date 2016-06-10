@@ -851,4 +851,16 @@ class Student_model extends CI_Model {
         $this->db->order_by('created_date', 'DESC');
         return $this->db->get_where('student_upload',array('std_id'=>$std_id))->result();
     }
+     
+    /**
+     * 
+     * @param int $id
+     * @param string $field
+     */
+    function getrating($id , $field = 'std_rating')
+    {
+        $this->db->where('sq_id',$id);
+        return   $this->db->get("survey")->row();
+        
+    }
 }

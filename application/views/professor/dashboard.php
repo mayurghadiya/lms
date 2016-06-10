@@ -123,6 +123,23 @@ $this->carabiner->display('event_calendar');
 
                 getEvents(flags, eventsOpts, eventsOpts.eventsLimit, year, month, false, "month");
             });
+             flags.wrap.on('dblclick', '.eventCalendar-day a', function (e) {
+                //flags.wrap.find('.eventCalendar-day a').live('click',function(e){
+                e.preventDefault();
+                var year = flags.wrap.attr('data-current-year'),
+                        month = flags.wrap.attr('data-current-month'),
+                        day = $(this).parent().attr('rel');
+
+                getEvents(flags, eventsOpts, false, year, month, day, "day");
+            });
+            flags.wrap.on('dblclick', '.eventCalendar-monthTitle', function (e) {
+                //flags.wrap.find('.eventCalendar-monthTitle').live('click',function(e){
+                e.preventDefault();
+                var year = flags.wrap.attr('data-current-year'),
+                        month = flags.wrap.attr('data-current-month');
+
+                getEvents(flags, eventsOpts, eventsOpts.eventsLimit, year, month, false, "month");
+            });
         });
 
         // show event description
@@ -751,7 +768,7 @@ $this->carabiner->display('event_calendar');
                 }
             });
         });
-        $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
+        $(".panel-body .todo-widget .todo-list1").mCustomScrollbar({
             theme: "inset-2-dark",
             axis: "yx",
             advanced: {
