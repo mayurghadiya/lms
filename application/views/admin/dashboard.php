@@ -735,6 +735,7 @@ foreach ($students as $student) {
                                                         <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                                         <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8">
                                                     </div>
+                                                    <label id="minute-step-timepicker-error" style="display:none;" class="error" for="minute-step-timepicker">Select time</label>
                                                 </div>
                                             </div>
                                             <div class=form-group>

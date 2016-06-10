@@ -1042,6 +1042,8 @@ $this->carabiner->display('calendar_css');
 <!-- To do list js -->
 <script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>assets/js/todo-student.js"></script>
+<!--  end to do list -->
+<!-- jQuery Scrollbar Js start -->
 <script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script>
 
