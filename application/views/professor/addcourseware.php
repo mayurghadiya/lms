@@ -91,7 +91,14 @@
             form.submit();
         }
     });
-
+    $("#subject").change(function(){
+        
+        $("#chapter").val('');
+        $("#topic").val('');
+    });
+    $("#chapter").change(function(){
+        $("#topic").val('');
+    });
 $("#branch").change(function(){
     var id=$(this).val();
     $.ajax({
@@ -134,6 +141,24 @@ $("#branch").change(function(){
                 topic:
                         {
                             required: true,
+                            remote: {
+                                url: "<?php echo base_url(); ?>professor/getcourseware",
+                                type: "post",
+                                data: {
+                                    branch: function () {
+                                        return $("#branch").val();
+                                    },
+                                    subject: function () {
+                                        return $("#subject").val();
+                                    },
+                                    chapter: function () {
+                                        return $("#chapter").val();
+                                    },
+                                    topic: function () {
+                                        return $("#topic").val();
+                                    }
+                                }
+                            }
                         },
                 attachment:
                         {
@@ -156,6 +181,7 @@ $("#branch").change(function(){
                 topic:
                         {
                             required: "Enter topic ",
+                            remote:"Topic already exists",
                         },
                 attachment:
                         {
