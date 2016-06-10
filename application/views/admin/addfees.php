@@ -216,7 +216,7 @@
 <script>
     $(document).ready(function () {
         $("#start_date").datepicker({
-            format: 'M dd, yyyy',
+            format: 'MM d, yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose:true,
@@ -226,7 +226,7 @@
             }
         });
         $("#end_date").datepicker({
-            format: 'M dd, yyyy',
+            format: 'MM d, yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose:true,
@@ -236,7 +236,7 @@
             }
         });
         $('#expiry_date').datepicker({
-           format: 'M dd, yyyy',
+           format: 'MM d, yyyy',
             changeMonth: true,
             autoclose:true,
             changeYear: true,

@@ -2,8 +2,6 @@
 <!--[if lt IE 8]><html class="no-js lt-ie8"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class=no-js>
-    <!--<![endif]-->
-    <html class=no-js>
         <head>
             <meta charset=utf-8>
             <title><?php echo $title; ?> | <?php echo system_name(); ?></title>

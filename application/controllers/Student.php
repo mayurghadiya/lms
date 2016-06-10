@@ -256,7 +256,22 @@ class Student extends MY_Controller {
      * @param string $param2
      */
     function participate($param1 = '', $param2 = '') {
-        if ($param1 == "create") {
+        if ($param1 == "create") {           
+            $std_id = $this->session->userdata("login_user_id");
+            foreach($_POST as $key=>$val):
+              
+            if (strpos($key, 'question_id') !== false) {
+                 $id = explode("question_id",$key);
+                 if($val!='')
+                 {
+                    $sq_id = $id[1]; 
+                    $this->addrating($sq_id , $val , $std_id);
+                 }
+            }   
+           
+                
+            endforeach;           
+            
             
             $survey = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
             $count = 1;
@@ -1605,11 +1620,11 @@ class Student extends MY_Controller {
     /*
      * Add Rating to survey question
      */
-    function addrating()
+    function addrating($id , $rating , $std_id)
     {
-        $id  = $this->input->post('id');  
-        $rating = $this->input->post('rating'); 
-        $std_id = $this->session->userdata('login_user_id');
+       // $id  = $this->input->post('id');  
+       // $rating = $this->input->post('rating'); 
+       // $std_id = $this->session->userdata('login_user_id');
         $data['sq_id'] = $id;
         $data['student_id'] = $std_id;
         $data['std_rating'] = $rating;
@@ -1620,7 +1635,7 @@ class Student extends MY_Controller {
             $this->Student_model->updatesurveyrating($udata,$id,$std_id);
         }
         else{        
-        $this->Student_model->addsurveyrating($data);
+            $this->Student_model->addsurveyrating($data);
         }
     }
 

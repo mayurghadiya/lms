@@ -77,7 +77,7 @@
                                     <td><?php echo $row->b_name; ?></td>
                                     <td><?php echo $row->s_name; ?></td>
                                     <td>$<?php echo $row->paid_amount; ?></td>
-                                    <td><?php echo date('M d, Y', strtotime($row->paid_created_at)); ?></td>
+                                    <td><?php echo date('F d, Y', strtotime($row->paid_created_at)); ?></td>
                                     <td class="menu-action">
                                         <a href="<?php echo base_url('admin/invoice/' . $row->student_fees_id); ?>" target="_blank"><span class="label label-primary mr6 mb6">View</span></a>
                                         <a target="_blank" href="<?php echo base_url('admin/invoice_print/' . $row->student_fees_id); ?>"><span class="label label-danger mr6 mb6">Download</span></a>

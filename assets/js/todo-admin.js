@@ -2,7 +2,8 @@ $(document).ready(function () {
     $("#minute-step-timepicker").val("");
     $("#todo-addform").hide();
     $("#basic-datepicker").datepicker({
-        autoclose: true
+        autoclose: true,
+        format:'MM d, yyyy'
     });
     //task-done
 

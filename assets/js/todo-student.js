@@ -3,7 +3,7 @@ $(document).ready(function () {
      $("#minute-step-timepicker").val("");
     $("#todo-addform").hide();
     $("#basic-datepicker").datepicker({
-        dateFormat: ' MM dd, yy',
+        format: ' MM dd, yyyy',
         minDate: '0 days',
         autoclose: true,
     });

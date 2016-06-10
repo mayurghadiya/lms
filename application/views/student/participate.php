@@ -33,15 +33,16 @@
    		return false;	
    	}
    });
-          var rate = $('#tutorial-'+id+' #rating').val();       
-   $.ajax({
-   url: "<?php echo base_url(); ?>student/addrating",
-   data:'id='+id+'&rating='+rate,
-   type: "POST",
-          success:function(){
-             // $("#question-"+id).hide();
-          }
-   });
+    var rate = $('#tutorial-'+id+' #rating').val();       
+    var rated = $("#rating-"+id).val(rate);
+//   $.ajax({
+//   url: "<?php echo base_url(); ?>student/addrating",
+//   data:'id='+id+'&rating='+rate,
+//   type: "POST",
+//          success:function(){
+//             // $("#question-"+id).hide();
+//          }
+//   });
    }
    
    function resetRating(id) {
@@ -86,6 +87,7 @@
                         <th>
                            <div id="tutorial-<?php echo $rows->sq_id; ?>">
                               <input type="hidden" name="rating" id="rating" value="<?php echo '0'; ?>" />
+                              <input type="hidden" name="question_id<?php echo $rows->sq_id; ?>" id="rating-<?php echo $rows->sq_id; ?>" value="">
                               <ul onMouseOut="resetRating(<?php echo $rows->sq_id; ?>);">
                               <?php
                                  for ($i = 1; $i <= 5; $i++) {
@@ -101,7 +103,12 @@
                      </tr>
                      <?php endforeach; ?>
                   </tbody>
-               </table>               
+               </table>      
+                <?php if(count($survey) > 0 ){ ?>
+              <div class="col-sm-offset-10 col-sm-5">
+                                <button type="submit" class="btn btn-info vd_bg-green">Submit</button>
+                            </div>
+                <?php } ?>
             </form>
          </div>
       </div>

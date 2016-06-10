@@ -15,7 +15,7 @@
                         <div class=form-group>
                             <label class="control-label col-lg-4">Task Date</label>
                              <div class="col-sm-8">
-                                 <input id="basic-datepickeredit" type="text" name="tado_date" class="form-control"  value="<?php echo date("m/d/Y",  strtotime($todolist->todo_datetime)); ?>" >
+                                 <input id="basic-datepickeredit" type="text" name="tado_date" class="form-control"  value="<?php echo date("F d, Y",  strtotime($todolist->todo_datetime)); ?>" >
                             </div>                           
                         </div>
 
@@ -53,7 +53,7 @@
         $("#wait").css("display", "none");
     });
         $("#basic-datepickeredit").datepicker({
-            dateFormat: ' MM dd, yy',
+            format:'MM d, yyyy',
             minDate: '0 days',
             autoclose:true,
         });

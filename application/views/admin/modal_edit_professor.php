@@ -69,7 +69,7 @@ $assigned_subjects = explode(',', $professor->subjects);
                     <label class="col-sm-4 control-label"><?php echo ucwords("date of birth"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
                         <input id="date-of-birth" class="form-control datepicker-normal" type="text" name="dob" required=""
-                               value="<?php echo date('m/d/Y', strtotime($professor->dob)); ?>"/>
+                               value="<?php echo date('F d, Y', strtotime($professor->dob)); ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
@@ -144,7 +144,7 @@ $assigned_subjects = explode(',', $professor->subjects);
     <!-- col-lg-12 end here -->
     <script type="text/javascript">
         $(".datepicker-normal").datepicker({
-             format: 'mm/dd/yyyy',
+             format:'MM d, yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose:true,

@@ -705,6 +705,8 @@ foreach ($students as $student) {
                     <h4 class=panel-title>
                         To Do List
                     </h4>
+                    <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="icomoon-icon-minus"></i></a>
+                    </div>
                 </div>
                 <div class=panel-body>
                     <div class=todo-widget>
@@ -735,6 +737,7 @@ foreach ($students as $student) {
                                                         <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                                         <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8">
                                                     </div>
+                                                    <label id="minute-step-timepicker-error" style="display:none;" class="error" for="minute-step-timepicker">Select time</label>
                                                 </div>
                                             </div>
                                             <div class=form-group>
@@ -794,6 +797,8 @@ foreach ($students as $student) {
                     <h4 class="panel-title">
                         Recently Added Faculty
                     </h4>
+                    <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="icomoon-icon-minus"></i></a>
+                </div>
                 </div>
 
                 <div class="panel-body text-center">
@@ -835,6 +840,8 @@ foreach ($students as $student) {
         <div class="panel panel-default toggle">
             <div class="panel-heading">
                 <h4 class="panel-title marginzero">Report Charts</h4>
+                <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="icomoon-icon-minus"></i></a>
+                </div>
             </div>
             <div class="panel-body margin25top">
                 <div class="row">

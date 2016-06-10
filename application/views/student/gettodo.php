@@ -21,6 +21,29 @@
 <?php } ?>
 
 <script type="text/javascript">
+    
+
+        
+         $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
+            theme: "inset-2-dark",
+            axis: "yx",
+            advanced: {
+                autoExpandHorizontalScroll: true
+            },
+            /* change mouse-wheel axis on-the-fly */
+            callbacks: {
+                onOverflowY: function () {
+                    var opt = $(this).data("mCS").opt;
+                    if (opt.mouseWheel.axis !== "y")
+                        opt.mouseWheel.axis = "y";
+                },
+                 onOverflowX: function() {
+                     var opt = $(this).data("mCS").opt;
+                     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                 },
+            }
+        });
+        
     $(".taskstatus").click(function () {
         if ($(this).is(':checked'))
         {
@@ -86,4 +109,5 @@
             }
         });
     });
+    
 </script>

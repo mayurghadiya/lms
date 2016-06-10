@@ -52,7 +52,7 @@
                                     </td>
                                     <td><?php echo $row->subject; ?></td>
                                     <td style="width:20%;text-align: left">
-                                        <strong><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></strong>
+                                        <strong><?php echo date('F d, Y h:i A', strtotime($row->created_at)); ?></strong>
                                     </td>
                                     <td class="menu-action">
                                         <a href="<?php echo base_url('professor/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">
