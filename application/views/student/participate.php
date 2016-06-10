@@ -70,6 +70,7 @@
             </div>
             </div>-->
          <div class=panel-body>
+              <?php if(count($survey) > 0 ){ ?>
             <form id="frmsurvey" name="frmsurvey" class=" demo-table form-horizontal form-groups-bordered validate" accept-charset="UTF-8" enctype="multipart/form-data" method="post" novalidate="" action="<?php echo base_url(); ?>student/participate/create">
                <table class="table table-striped" id="" >
                   <!--   <caption id="title1">As a student here: Please rate each of the following during your attendance, using a 1-5 scale where (1) means "Very dissatisfied" and (5) is "Very satisfied":</caption>-->
@@ -117,6 +118,9 @@
                             </div>
                 <?php } ?>
             </form>
+              <?php }else{
+                  echo '<h4> Your survey feedback has been submitted </h4>';
+              } ?>
          </div>
       </div>
       <!-- End .panel -->

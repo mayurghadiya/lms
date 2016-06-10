@@ -323,7 +323,11 @@ class Student extends MY_Controller {
         $std = $this->session->userdata('std_id');
         //$getcount =  $this->db->query("SELECT survey_status,survey_question_id, COUNT(*) FROM survey_result GROUP BY survey_question_id")->result();
         
-        $this->data['survey'] = $this->db->query('SELECT * FROM survey_question ORDER BY sq_id DESC')->result();        
+        //$this->data['survey'] = $this->db->query('SELECT * FROM survey_question ORDER BY sq_id DESC')->result();        
+        $this->data['survey'] = $this->db->query('SELECT * FROM survey_question 
+                    WHERE NOT EXISTS (SELECT sq_id FROM survey
+                    WHERE survey.sq_id = survey_question.sq_id and survey.student_id= ' . $this->session->userdata('student_id') . ') AND survey_question.question_status="1" ORDER BY survey_question.sq_id DESC')->result(); 
+        
        //$this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Survey Application Form';
