@@ -31,7 +31,7 @@ $(document).ready(function () {
 
         });
     });
-    jQuery('#addnewtodo').live('click', function (event) {
+    jQuery('#addnewtodo').on('click', function (event) {
         $("#updateformhtml").html('');
         $("#todo-addform").toggle('show');
         $("i", this).toggleClass("icomoon-icon-plus icomoon-icon-minus");

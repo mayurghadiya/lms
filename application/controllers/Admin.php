@@ -561,7 +561,7 @@ class Admin extends MY_Controller {
         $this->data['syllabus'] = $this->Crud_model->get_syllabus();
         $this->data['course'] = $this->db->get('course')->result();
         $this->data['semester'] = $this->db->get('semester')->result();
-        $this->data['degree'] = $this->db->get('degree')->result();
+        $this->data['degree'] = $this->db->order_by('d_name', 'ASC')->get('degree')->result();
         $this->data['title'] = $this->lang_message('syllabus_title');
         $page_data['title'] = 'Syllabus Management';
         $this->data['add_title'] = $this->lang_message('add_syllabus');
@@ -751,7 +751,7 @@ class Admin extends MY_Controller {
         $this->data['title'] = $this->lang_message('vocational_course');
         $this->data['edit_title'] = $this->lang_message('edit_vocationalcourse');
         $this->data['add_title'] = $this->lang_message('add_vocationalcourse');
-        $this->data['vocationalcourse'] = $this->db->get('vocational_course')->result_array();
+        $this->data['vocationalcourse'] = $this->db->order_by('course_startdate', 'DESC')->get('vocational_course')->result_array();
         $this->data['page'] = 'vocational_course';
         $this->__site_template('admin/vocational_course', $this->data);
     }
@@ -4460,7 +4460,7 @@ class Admin extends MY_Controller {
             }
         }
         if ($this->email->send()) {
-            echo 'Email send.';
+            echo 'Email sent. ';
         } else {
             show_error($this->email->print_debugger());
         }

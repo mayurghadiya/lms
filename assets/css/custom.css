@@ -1341,7 +1341,7 @@ ul.links-gaz{padding-left: 25px; list-style: none;}
 .details_faculty .title b{font-size: 13px; text-transform: capitalize; line-height: 20px;}
 .details_faculty h4.title{ margin:5px 0; color: #3f3f3f;  }
 .details_faculty .title small{color: #7a7a7a; font-size: 13px;font-weight: 300; line-height: 20px; font-style: italic;}
-.scroll_bar_faculty{height: 430px;/* overflow-y: auto;*/ overflow-x: hidden !important;}
+.scroll_bar_faculty, .scroll_bar_professor{height: 430px;/* overflow-y: auto;*/ overflow-x: hidden !important;}
 
 #course-male-female, #course-wise-student { /*overflow-x: scroll; overflow-y: hidden;*/ /*width: 1150px !important;*/}
 .highcharts-title, .highcharts-title tspan, .highcharts-yaxis-title{font-family: "Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 15px; font-weight: 500; line-height: 20px;}
@@ -1353,6 +1353,9 @@ ul.links-gaz{padding-left: 25px; list-style: none;}
 .xe-widget.xe-counter, .xe-widget.xe-counter-block .xe-upper, .xe-widget.xe-progress-counter .xe-upper{padding: 10px 0;}
 .xe-icon { padding: 5px 0 0 !important;}
 .xe-widget.xe-counter .xe-icon + .xe-label, .xe-widget.xe-counter-block .xe-upper .xe-icon + .xe-label, .xe-widget.xe-progress-counter .xe-upper .xe-icon + .xe-label { padding: 0;}
+table td, .table tr td, table tr td{text-align: justify; }
+table td br{display: none;}
+table tbody .menu-action{ text-align: center !important; }
 
 /*********************** media *****************************/
 

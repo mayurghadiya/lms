@@ -279,12 +279,7 @@
                                                     <span class="txt">Vocational Course</span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a id="link-vocational_register_student" href="<?php echo base_url(); ?>admin/vocational_student">
-                                                    <i class="s16 icomoon-icon-attachment"></i>
-                                                    <span class="txt">Vocational Students</span>
-                                                </a>
-                                            </li>
+                                           
                                             <li>
                                                 <a id="link-assessments" href="<?php echo base_url(); ?>admin/assessments">
                                                     <i class="s16 icomoon-icon-file"></i>
@@ -766,7 +761,14 @@
                                                                <?php if (isset($from['participate'])) echo 'checked'; ?>>
                                                         <span>Participate</span>
                                                     </label>
-                                                </li>                                                     
+                                                </li> 
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" value="professor" name="professor"
+                                                               <?php if (isset($from['professor'])) echo 'checked'; ?>>
+                                                        <span>Professor</span>
+                                                    </label>
+                                                </li>
                                             </ul>                                           
                                         </li>
                                     </ul> 

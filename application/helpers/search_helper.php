@@ -52,6 +52,8 @@ if (!function_exists('global_search')) {
                     $result['event'] = event_search($search_query);
                 if (isset($from['center']))
                     $result['center'] = exam_center_search($search_query);
+                if(isset($from['professor']))
+                    $result['professor'] = professor_search($search_query);
                 break;
             default :
                 //global search
@@ -64,6 +66,7 @@ if (!function_exists('global_search')) {
                 $result['participate'] = participate_search($search_query);
                 $result['degree'] = degree_search($search_query);
                 $result['event'] = event_search($search_query);
+                $result['professor'] = professor_search($search_query);
         }
 
         return $result;
@@ -81,7 +84,7 @@ if (!function_exists('reserved_keyword_search')) {
         switch ($keyword) {
             case 'exam':
             case 'exams':
-                redirect(base_url('index.php?admin/exam'));
+                redirect(base_url('admin/exam'));
                 break;
             case 'profile':
             case 'password':
@@ -89,118 +92,118 @@ if (!function_exists('reserved_keyword_search')) {
             case 'mobile':
             case 'about me':
             case 'about':
-                redirect(base_url('index.php?admin/manage_profile'));
+                redirect(base_url('admin/manage_profile'));
                 break;
             case 'result':
             case 'mark':
             case 'marks':
-                redirect(base_url('index.php?admin/marks'));
+                redirect(base_url('admin/marks'));
                 break;
             case 'student':
             case 'students':
-                redirect(base_url('index.php?admin/student'));
+                redirect(base_url('admin/student'));
                 break;
             case 'course':
             case 'courses':
             case 'degree':
-                redirect(base_url('index.php?admin/degree'));
+                redirect(base_url('admin/degree'));
                 break;
             case 'branch':
-                redirect(base_url('index.php?admin/courses'));
+                redirect(base_url('admin/courses'));
                 break;
             case 'batch':
-                redirect(base_url('index.php?admin/batch'));
+                redirect(base_url('admin/batch'));
                 break;
             case 'semester':
-                redirect(base_url('index.php?admin/semester'));
+                redirect(base_url('admin/semester'));
                 break;
 
             case 'admission':
             case 'admission type':
-                redirect(base_url('index.php?admin/admission_type'));
+                redirect(base_url('admin/admission_type'));
                 break;
 
             case 'subject':
             case 'subjects':
-                redirect(base_url('index.php?admin/subject'));
+                redirect(base_url('admin/subject'));
                 break;
 
             case 'event':
             case 'events':
             case 'event management':
-                redirect(base_url('index.php?admin/events'));
+                redirect(base_url('admin/events'));
                 break;
 
             case 'assignment':
             case 'assignments':
             case 'student assignment':
             case 'student assignments':
-                redirect(base_url('index.php?admin/assignment'));
+                redirect(base_url('admin/assignment'));
                 break;
 
             case 'study resource':
             case 'study':
             case 'resource':
             case 'study resources':
-                redirect(base_url('index.php?admin/studyresource'));
+                redirect(base_url('admin/studyresource'));
                 break;
 
             case 'project':
             case 'projects':
             case 'synopsis':
             case 'project synopsis':
-                redirect(base_url('index.php?admin/project'));
+                redirect(base_url('admin/project'));
                 break;
 
             case 'library':
             case 'digital library':
             case 'digital':
-                redirect(base_url('index.php?admin/library'));
+                redirect(base_url('admin/library'));
                 break;
 
             case 'participate':
             case 'participates':
-                redirect(base_url('index.php?admin/participate'));
+                redirect(base_url('admin/participate'));
                 break;
 
             case 'exam schedule':
             case 'time table':
             case 'schedule':
-                redirect(base_url('index.php?admin/exam_time_table'));
+                redirect(base_url('admin/exam_time_table'));
                 break;
 
             case 'grade':
             case 'exam grade':
-                redirect(base_url('index.php?admin/grade'));
+                redirect(base_url('admin/grade'));
                 break;
 
             case 'remedial exam':
             case 'remedial':
             case 'exam remedial':
-                redirect(base_url('index.php?admin/remedial_exam'));
+                redirect(base_url('admin/remedial_exam'));
                 break;
 
             case 'remedial exam time table':
             case 'remedial exam schedule':
-                redirect(base_url('index.php?admin/remedial_exam_schedule'));
+                redirect(base_url('admin/remedial_exam_schedule'));
                 break;
             
             case 'remedial marks':
             case 'remedial mark':
             case 'remedial exam marks':
-                redirect(base_url('index.php?admin/remedial_exam_marks'));
+                redirect(base_url('admin/remedial_exam_marks'));
                 break;
             
             case 'payment':
             case 'make payment':
             case 'student payment':
-                redirect(base_url('index.php?admin/make_payment'));
+                redirect(base_url('admin/make_payment'));
                 break;
             
             case 'fee':
             case 'fee structure':
             case 'student fee':
-                redirect(base_url('index.php?admin/fees_structure'));
+                redirect(base_url('admin/fees_structure'));
                 break;
             
             case 'chart':
@@ -208,7 +211,7 @@ if (!function_exists('reserved_keyword_search')) {
             case 'charts':
             case 'reports':
             case 'report charts':
-                redirect(base_url('index.php?admin/report_chart/student'));
+                redirect(base_url('admin/report_chart/student'));
                 break;
             
             case 'streaming':
@@ -216,13 +219,13 @@ if (!function_exists('reserved_keyword_search')) {
             case 'video streaming':
             case 'broadcast':
             case 'multicast':
-                redirect(base_url('index.php?video_streaming'));
+                redirect(base_url('video_streaming'));
                 break;
             
             case 'email':
             case 'inbox':
             case 'mail':
-                redirect(base_url('index.php?admin/email_inbox'));
+                redirect(base_url('admin/email_inbox'));
                 break;
             
             case 'chat':
@@ -231,12 +234,12 @@ if (!function_exists('reserved_keyword_search')) {
             
             case 'setting':
             case 'settings':
-                redirect(base_url('index.php?admin/system_settings'));
+                redirect(base_url('admin/system_settings'));
                 break;
             
             case 'group':
             case 'groups':
-                redirect(base_url('index.php?admin/list_group'));
+                redirect(base_url('admin/list_group'));
                 break;
         }
     }
@@ -477,4 +480,27 @@ if (!function_exists('exam_center_search')) {
         return $result->result();
     }
 
+}
+
+if(!function_exists('professor_search')){
+    
+    /**
+     * Search professor 
+     * @param string $search_query
+     * @return mixed
+     */
+    function professor_search($search_query) {
+        $CI = & get_instance();
+        $CI->load->database();
+        
+        $professor = $CI->db->list_fields('professor');
+        $CI->db->select();
+        $CI->db->from('professor');
+        
+        foreach($professor as $field) {
+            $CI->db->or_like("professor.{$field}", $search_query);
+        }
+        $result = $CI->db->get();
+        return $result->result();
+    }
 }

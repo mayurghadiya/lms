@@ -1601,15 +1601,15 @@ class Professor_model extends CI_Model {
      * vocational course student list
      * return mixed data
      */
-    function get_vocational_student($professor_id)
+    function get_vocational_student($id)
     {
             return $this->db->select('vocational_course_fee.*, student.*, vocational_course.*,course_category.*')
                         ->from('vocational_course_fee')
+                        ->where('vocational_course_fee.vocational_course_id',$id)
                         ->join('student', 'student.std_id = vocational_course_fee.student_id')
                         ->join('vocational_course', 'vocational_course.vocational_course_id = vocational_course_fee.vocational_course_id')
                         ->join('course_category', 'course_category.category_id = vocational_course.category_id')
-                        ->where('vocational_course.professor_id',$professor_id)
-                        ->get()
+                       ->get()
                         ->result();
     }
 

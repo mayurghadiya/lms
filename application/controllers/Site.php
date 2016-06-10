@@ -128,11 +128,34 @@ class Site extends MY_Controller {
         $email = $_POST['email'];
         $is_subscriber = $this->Site_model->check_subscriber($email);
         if ($is_subscriber) {
-            echo 'Email adderess is already registered.';
+            echo 'Email address is already registered.';
         } else {
             $this->Site_model->save_subscriber(array(
                 'email' => $_POST['email']
             ));
+
+            //send an email
+            $config = Array(
+                'protocol' => 'smtp',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => 'mayur.ghadiya@searchnative.in',
+                'smtp_pass' => 'the mayurz97375',
+                'mailtype' => 'html',
+                'charset' => 'iso-8859-1'
+            );
+            $this->load->library('email', $config);
+            $this->email->set_newline("\r\n");
+
+            $this->email->from('mayur.ghadiya@searchnative.in', 'Mayur Ghadiya (Searchnative India Pvt. Ltd)');
+            $this->email->to($_POST['email']);
+            $this->email->subject('Thank you for subscribing');
+            $this->email->message('Thank you for subsrcibing Learning Management System.<br/>You\'ll get the latest updates from us.');
+            if ($this->email->send()) {
+                echo 'Email send.';
+            } else {
+                show_error($this->email->print_debugger());
+            }
             echo 'Thank you for subscribing';
         }
     }
@@ -187,12 +210,10 @@ class Site extends MY_Controller {
             $this->db->where('admin_id', $row->admin_id);
             $this->db->update('admin', $update);
 
-            if($this->session->userdata('referred_from'))
-            {
+            if ($this->session->userdata('referred_from')) {
                 $referred_from = $this->session->userdata('referred_from');
                 redirect($referred_from, 'refresh');
-            }
-            else{
+            } else {
                 redirect(base_url('admin/dashboard'));
             }
         }
@@ -216,13 +237,11 @@ class Site extends MY_Controller {
             $update = array("online" => '1');
             $this->db->where('std_id', $row->std_id);
             $this->db->update('student', $update);
-            if($this->session->userdata('referred_from'))
-            {
+            if ($this->session->userdata('referred_from')) {
                 $referred_from = $this->session->userdata('referred_from');
                 redirect($referred_from, 'refresh');
-            }
-            else{
-            redirect(base_url('student/dashboard'));
+            } else {
+                redirect(base_url('student/dashboard'));
             }
         }
 
@@ -237,13 +256,11 @@ class Site extends MY_Controller {
             $this->session->set_userdata('name', 'sub admin 1');
             $this->session->set_userdata('email', $row->email);
             $this->session->set_userdata('login_type', 'subadmin');
-            if($this->session->userdata('referred_from'))
-            {
+            if ($this->session->userdata('referred_from')) {
                 $referred_from = $this->session->userdata('referred_from');
                 redirect($referred_from, 'refresh');
-            }
-            else{
-            redirect(base_url('sub_admin/dashboard'));
+            } else {
+                redirect(base_url('sub_admin/dashboard'));
             }
         }
 
@@ -258,13 +275,11 @@ class Site extends MY_Controller {
             $this->session->set_userdata('department', $row->department);
             $this->session->set_userdata('login_type', 'professor');
             $this->session->set_userdata('image_path', $row->image_path);
-            if($this->session->userdata('referred_from'))
-            {
+            if ($this->session->userdata('referred_from')) {
                 $referred_from = $this->session->userdata('referred_from');
                 redirect($referred_from, 'refresh');
-            }
-            else{
-            redirect(base_url('professor/dashboard'));
+            } else {
+                redirect(base_url('professor/dashboard'));
             }
         }
         $this->flash_notification('danger', 'Invalid username or password');
@@ -320,7 +335,7 @@ class Site extends MY_Controller {
                     $user_id = $record->admin_id;
                 elseif ($record->user_type == 'professor')
                     $user_id = $record->professor_id;
-                
+
                 $random_string = $this->random_string_generate();
 
                 $this->update_forgot_password_key($record->user_type, $user_id, $random_string);
@@ -406,19 +421,19 @@ class Site extends MY_Controller {
      */
     function reset_password($user_id = '', $user_type = '', $key = '') {
         if ($_POST) {
-            if($this->compare_reset_password($_POST['password'], $_POST['confirm_password'])) {
+            if ($this->compare_reset_password($_POST['password'], $_POST['confirm_password'])) {
                 // update password
                 $user_type = $this->check_user_type_hash($user_type);
-                
+
                 $data = array(
-                    'password'  => hash('md5', $_POST['password'])
+                    'password' => hash('md5', $_POST['password'])
                 );
-                
+
                 $user_data = $this->Site_model->update_password($user_type, $user_id, $data);
-                
+
                 //reset forgot password key
                 $this->Site_model->reset_forgot_password_key($user_data['type'], $user_data['type_id'], $user_data['user_id']);
-                
+
                 $this->flash_notification('success', 'Password was successully reseted.');
                 redirect(base_url('site/user_login'));
             } else {
@@ -440,7 +455,7 @@ class Site extends MY_Controller {
             show_404();
         }
     }
-    
+
     /**
      * Compare reset password
      * @param string $password
@@ -448,10 +463,10 @@ class Site extends MY_Controller {
      * @return boolean
      */
     function compare_reset_password($password, $confirm_password) {
-        if(trim($password) == trim($confirm_password)) {
+        if (trim($password) == trim($confirm_password)) {
             return TRUE;
         }
-        
+
         return FALSE;
     }
 
@@ -492,7 +507,7 @@ class Site extends MY_Controller {
 
     function forums() {
         $this->data['title'] = 'Forum';
-        $this->db->order_by("forum_id","desc");
+        $this->db->order_by("forum_id", "desc");
         $this->db->where("forum_status", "1");
         $this->data['forums'] = $this->db->get("forum")->result();
         $this->__template('forum', $this->data);
@@ -502,7 +517,7 @@ class Site extends MY_Controller {
         $this->data['title'] = 'Forum Topics';
         $this->db->where("forum_topic_status", "1");
         $this->db->where("forum_id", $param);
-        $this->db->order_by("forum_topic_id","desc");
+        $this->db->order_by("forum_topic_id", "desc");
         $this->data['topics'] = $this->db->get("forum_topics")->result();
         $this->data['param'] = $param;
         $this->db->where("forum_id", $param);
@@ -516,7 +531,7 @@ class Site extends MY_Controller {
         $this->db->where("forum_topic_id", $param);
         $this->data['param'] = $param;
         $this->data['topics'] = $this->db->get("forum_topics")->result();
-        $this->db->order_by("forum_comment_id","desc");
+        $this->db->order_by("forum_comment_id", "desc");
         $this->data['comments'] = $this->db->get_where("forum_comment", array("forum_topic_id" => $param, "forum_comment_status" => '1'))->result();
         $this->__template('discussion', $this->data);
     }
@@ -539,52 +554,45 @@ class Site extends MY_Controller {
             $data['forum_id'] = $this->input->post('forum_id');
             $data['forum_topic_title'] = $this->input->post('subject');
             $data['forum_topic_desc'] = $this->input->post('discussion');
-            if($this->session->userdata('login_type')=="admin")
-            {
+            if ($this->session->userdata('login_type') == "admin") {
                 $data['forum_topic_status'] = '1';
-            }
-            else{
+            } else {
                 $data['forum_topic_status'] = '0';
             }
             $data['user_role'] = $this->session->userdata('login_type');
             $data['user_role_id'] = $this->session->userdata('login_user_id');
 
             $this->Site_model->create_topic($data);
-            if($this->session->userdata('login_type')=="admin")
-            {
+            if ($this->session->userdata('login_type') == "admin") {
                 $this->session->set_flashdata('message', 'Your Topic Added Successfully');
-            }
-            else{
+            } else {
                 $this->session->set_flashdata('message', ' Your Topic has been queued for review by site administrators and will be published after approval.');
             }
-            
+
             redirect(base_url('site/topics/' . $data['forum_id']));
         }
     }
-    
+
     /**
      * Delete comment
      * @param int $id 
      * @param int $topic id   
      */
-    function delete_comment($id='',$topic_id='')
-    {
+    function delete_comment($id = '', $topic_id = '') {
         $user_role = $this->session->userdata("login_type");
         $user_id = $this->session->userdata("login_user_id");
         $comment_id = $id;
-        $res = $this->Site_model->get_user_comment_delete_permission($user_role,$user_id,$comment_id);
-        if(!empty($res))
-        {
-          $this->Site_model->delete_comment($id);
-          $this->session->set_flashdata('message', 'Comment Deleted Successfully');
-          redirect(base_url('site/viewtopic/' . $topic_id));
-        }
-        else{
-          $this->session->set_flashdata('message', 'You have not permission to delete this comment.');
-          redirect(base_url('site/viewtopic/' . $topic_id));
+        $res = $this->Site_model->get_user_comment_delete_permission($user_role, $user_id, $comment_id);
+        if (!empty($res)) {
+            $this->Site_model->delete_comment($id);
+            $this->session->set_flashdata('message', 'Comment Deleted Successfully');
+            redirect(base_url('site/viewtopic/' . $topic_id));
+        } else {
+            $this->session->set_flashdata('message', 'You have not permission to delete this comment.');
+            redirect(base_url('site/viewtopic/' . $topic_id));
         }
     }
-    
+
     function gallery() {
         $this->db->order_by('gallery_id', 'DESC');
         $this->db->where('gal_status', '1');

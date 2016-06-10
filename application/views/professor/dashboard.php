@@ -64,7 +64,7 @@ $this->carabiner->display('event_calendar');
         onlyOneDescription: true,
         openEventInNewWindow: false,
         eventsScrollable: false,
-        dateFormat: "D/MM/YYYY",
+        dateFormat: "MM d, yyyy",
         jsonDateFormat: 'timestamp', // you can use also "human" 'YYYY-MM-DD HH:MM:SS'
         //moveSpeed: 500,	// speed of month move when you clic on a new date
         //moveOpacity: 0, // month and events fadeOut to this opacity

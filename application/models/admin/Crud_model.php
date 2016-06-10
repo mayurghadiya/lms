@@ -1115,7 +1115,7 @@ class Crud_model extends CI_Model {
      * @return array
      */
     function subscriber() {
-        $this->db->select('id, email');
+        $this->db->select('id, email, created_at');
         $this->db->order_by('created_at', 'DESC');
         return $this->db->get('subscriber')->result();
     }

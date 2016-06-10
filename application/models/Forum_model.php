@@ -31,7 +31,7 @@ class Forum_model extends CI_Model {
         
         public function getforum_topic()
         {
-            $this->db->order_by("forum_topic_id","DESC");
+            $this->db->order_by("created_date","DESC");
             return $this->db->get('forum_topics')->result_array();
         }
         

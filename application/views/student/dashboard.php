@@ -468,31 +468,31 @@ $this->carabiner->display('calendar_css');
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                <a href=# class="stats-btn mb20 lead-stats color_green">
-                    <span data-to="568" data-from="0" class="stats-number dolar">Course</span>
+                <a href="<?php echo base_url(); ?>student/class_routine" class="stats-btn mb20 lead-stats color_green">
+                    <span data-to="568" data-from="0" class="stats-number dolar">Class Routine</span>
                     <span class="stats-icon"><i class="fa fa-book color-green"></i></span>
-                    <h5>Lorem Ipsum ...</h5>
+                    <h5>Daily class routine</h5>
                 </a>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                <a href=# class="stats-btn mb20 lead-stats news_icon">
-                    <span data-to="568" data-from="0" class="stats-number dolar">News</span>
+                <a href="<?php echo base_url(); ?>student/exam" class="stats-btn mb20 lead-stats news_icon">
+                    <span data-to="568" data-from="0" class="stats-number dolar">Exam</span>
                     <span class="stats-icon"><i class="fa fa-newspaper-o news-icon"></i></span>
-                    <h5>Lorem Ipsum ...</h5>
+                    <h5>Exam and it's schedule</h5>
                 </a>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                 <a href="<?php echo base_url(); ?>student/assignment" class="stats-btn mb20 lead-stats attendant_green">
                     <span data-to="568" data-from="0" class="stats-number dolar">Assignment</span>
                     <span class="stats-icon"><i class="fa fa-file attendant-color"></i></span>
-                    <h5>Lorem Ipsum ...</h5>
+                    <h5>Daily assignments</h5>
                 </a>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                <a href=# class="stats-btn mb20 lead-stats admissions_color">
-                    <span data-to="568" data-from="0" class="stats-number dolar">Holiday</span>
+                <a href="<?php echo base_url(); ?>student/fee_record" class="stats-btn mb20 lead-stats admissions_color">
+                    <span data-to="568" data-from="0" class="stats-number dolar">Fee Records</span>
                     <span class="stats-icon"><i class="fa fa-universal-access admissions-color"></i></span>
-                    <h5>Lorem Ipsum ...</h5>
+                    <h5>Recent fee records</h5>
                 </a>
             </div>
         </div>

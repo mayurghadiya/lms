@@ -29,7 +29,7 @@ foreach ($edit_data as $row):
                                                 <select name="degree" class="form-control"  id="degree2">
                                                     <option value="">Select department</option>
                                                     <?php
-                                                    $degree = $this->db->get_where('degree', array('d_status' => 1))->result();
+                                                    $degree = $this->db->order_by('d_name', 'ASC')->get_where('degree', array('d_status' => 1))->result();
                                                     foreach ($degree as $dgr) {
                                                         ?>
                                                     <option value="<?= $dgr->d_id ?>" <?php if($row['syllabus_degree']==$dgr->d_id){  echo "selected=selected"; } ?>><?= $dgr->d_name ?></option>

@@ -4,16 +4,6 @@
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
-
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
             <div class=panel-body>
                   <div class="tabs mb20">
                     <ul id="import-tab" class="nav nav-tabs">
@@ -25,146 +15,146 @@
                         </li>
                     </ul>
                     <div id="import-tab-content" class="tab-content">
+                      <div class="tab-pane fade active in" id="list">                  
+                        <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                            <thead>
+                                <tr>
+                                    <th>No</th>		
+                                     <th>Assignment</th>
+                                    <th>Student</th>                           
+                                    <th>Assign. File</th>
+                                    <th>Submitted File</th>
+                                    <th>Department</th>
+                                    <th>Branch</th>												
+                                    <th>Batch</th>												
+                                    <th>Semester</th>
+                                    <th>Instruction</th>
+                                    <th>Feedback</th>                                                
+                                    <th>Grade</th>	
+                                </tr>
+                            </thead>
 
-                        <div class="tab-pane fade active in" id="list">                  
-                         <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
-                    <thead>
-                        <tr>
-                            <th>No</th>		
-                             <th>Assignment</th>
-                            <th>Student</th>                           
-                            <th>Assign. File</th>
-                            <th>Submitted File</th>
-                            <th>Department</th>
-                            <th>Branch</th>												
-                            <th>Batch</th>												
-                            <th>Semester</th>
-                            <th>Instruction</th>
-                            <th>Feedback</th>                                                
-                            <th>Grade</th>	
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php                       
-                        $count = 1;
-                        foreach ($assessment->result_array() as $row):
-                            
-                            ?>
-                            <tr>
-                                <td><?php echo $count++; ?></td>	
-                                 <td><?php echo $row['assign_title']; ?></td>   
-                                <td><?php echo $row['name']; ?></td>                               
-                                <td id="downloadedfile"><a href="<?php echo $row['assign_url']; ?>" download="" title="<?php echo $row['assign_title']; ?>"><i class="fa fa-download"></i></a></td>	
-                                <td id="downloadedfile"><a href="<?php echo base_url().'uploads/project_file/'.$row['document_file']; ?>" download=""><i class="fa fa-download"></i></a></td>	
-                                <td><?php
-                                    foreach ($degree as $dgr):
-                                        if ($dgr->d_id == $row['std_degree']):
-
-                                            echo $dgr->d_name;
-                                        endif;
-
-
-                                    endforeach;
-                                    ?></td>
-                                <td>
-                                    <?php
-                                    foreach ($course as $crs) {
-                                        if ($crs->course_id == $row['course_id']) {
-                                            echo $crs->c_name;
-                                        }
-                                    }
+                            <tbody>
+                                <?php                       
+                                $count = 1;
+                                foreach ($assessment->result_array() as $row):
+                                    
                                     ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    foreach ($batch as $bch) {
-                                        if ($bch->b_id == $row['std_batch']) {
-                                            echo $bch->b_name;
-                                        }
-                                    }
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    foreach ($semester as $sem) {
-                                        if ($sem->s_id == $row['semester_id']) {
-                                            echo $sem->s_name;
-                                        }
-                                    }
-                                    ?>													
-                                </td>
-                                <td><?php echo $row['assignment_instruction']; ?></td>	
-                                <td><?php echo wordwrap($row['feedback'], 30, "<br>\n"); ?></td>                                                   
-                                <td><?php echo $row['grade']; ?></td>                                                   
-                            </tr>
-                        <?php endforeach; ?>																									
-                    </tbody>
-                </table>
-                        </div>
+                                    <tr>
+                                        <td><?php echo $count++; ?></td>	
+                                         <td><?php echo $row['assign_title']; ?></td>   
+                                        <td><?php echo $row['name']; ?></td>                               
+                                        <td id="downloadedfile"><a href="<?php echo $row['assign_url']; ?>" download="" title="<?php echo $row['assign_title']; ?>"><i class="fa fa-download"></i></a></td>	
+                                        <td id="downloadedfile"><a href="<?php echo base_url().'uploads/project_file/'.$row['document_file']; ?>" download=""><i class="fa fa-download"></i></a></td>	
+                                        <td><?php
+                                            foreach ($degree as $dgr):
+                                                if ($dgr->d_id == $row['std_degree']):
+
+                                                    echo $dgr->d_name;
+                                                endif;
+
+
+                                            endforeach;
+                                            ?></td>
+                                        <td>
+                                            <?php
+                                            foreach ($course as $crs) {
+                                                if ($crs->course_id == $row['course_id']) {
+                                                    echo $crs->c_name;
+                                                }
+                                            }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            foreach ($batch as $bch) {
+                                                if ($bch->b_id == $row['std_batch']) {
+                                                    echo $bch->b_name;
+                                                }
+                                            }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            foreach ($semester as $sem) {
+                                                if ($sem->s_id == $row['semester_id']) {
+                                                    echo $sem->s_name;
+                                                }
+                                            }
+                                            ?>													
+                                        </td>
+                                        <td><?php echo $row['assignment_instruction']; ?></td>	
+                                        <td><?php echo wordwrap($row['feedback'], 30, "<br>\n"); ?></td>                                                   
+                                        <td><?php echo $row['grade']; ?></td>                                                   
+                                    </tr>
+                                <?php endforeach; ?>																									
+                            </tbody>
+                        </table>
+                       </div>
+
                         <div class="tab-pane fade" id="submittedlist">
                             <div class="row filter-row">
-                            <form id="assignment-search-submitted" action="#" class="form-groups-bordered validate">
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("department"); ?></label>
-                                    <select class="form-control" id="scourses" name="degree_search">
-                                        <option value="">Select</option>
-                                        <?php foreach ($degree as $row) { ?>
-                                            <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Branch"); ?></label>
-                                    <select id="sbranches" name="course_search" data-filter="4" class="form-control">
-                                        <option value="">Select</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label><?php echo ucwords("Batch"); ?></label>
-                                    <select id="sbatches" name="batch_search" data-filter="5" class="form-control">
-                                        <option value="">Select</option>
-                                    </select>
-                                </div>                                
-                                <div class="form-group col-sm-2">
-                                    <label> <?php echo ucwords("Semester"); ?></label>
-                                    <select id="ssemesters" name="semester_search" data-filter="6" class="form-control">
-                                        <option value="">Select</option>
+                                <form id="assignment-search-submitted" action="#" class="form-groups-bordered validate">
+                                    <div class="form-group col-sm-2">
+                                        <label><?php echo ucwords("department"); ?></label>
+                                        <select class="form-control" id="scourses" name="degree_search">
+                                            <option value="">Select</option>
+                                            <?php foreach ($degree as $row) { ?>
+                                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2">
+                                        <label><?php echo ucwords("Branch"); ?></label>
+                                        <select id="sbranches" name="course_search" data-filter="4" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2">
+                                        <label><?php echo ucwords("Batch"); ?></label>
+                                        <select id="sbatches" name="batch_search" data-filter="5" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>                                
+                                    <div class="form-group col-sm-2">
+                                        <label> <?php echo ucwords("Semester"); ?></label>
+                                        <select id="ssemesters" name="semester_search" data-filter="6" class="form-control">
+                                            <option value="">Select</option>
 
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2" style="display: none;">
-                                    <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
-                                    <select class="form-control filter-rows" name="divclass" id="sfilterclass" >
-                                        <option value="">Select</option>
-                                        <?php
-                                        $class = $this->db->get('class')->result_array();
-                                        foreach ($class as $c) {
-                                            ?>
-                                            <option value="<?php echo $c['class_id'] ?>"><?php echo $c['class_name'] ?></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2" style="display: none;">
+                                        <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
+                                        <select class="form-control filter-rows" name="divclass" id="sfilterclass" >
+                                            <option value="">Select</option>
                                             <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div> 
-                                <div class="form-group col-sm-2">
-                                    <label>&nbsp;</label><br/>
-                                    <input id="submitted" type="button" value="Go" class="btn btn-info"/>
-                                </div>
-                            </form>
-                            </div>
+                                            $class = $this->db->get('class')->result_array();
+                                            foreach ($class as $c) {
+                                                ?>
+                                                <option value="<?php echo $c['class_id'] ?>"><?php echo $c['class_name'] ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div> 
+                                    <div class="form-group col-sm-2">
+                                        <label>&nbsp;</label><br/>
+                                        <input id="submitted" type="button" value="Go" class="btn btn-info"/>
+                                    </div>
+                                </form>
+                            </div>                            
                             <div class="panel-body table-responsive" id="getsubmit">
                                 <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="sub-tables">
                                     <thead>
                                         <tr>
                                             <th>#</th>												
-                                            <th><?php echo ucwords("Assignment Name"); ?></th>
-                                            <th><?php echo ucwords("Student Name"); ?></th>
+                                            <th><?php echo ucwords("Assignment"); ?></th>
+                                            <th><?php echo ucwords("Student"); ?></th>
                                             <th><?php echo ucwords("Department"); ?></th>
                                             <th><?php echo ucwords("Branch"); ?></th>												
                                             <th><?php echo ucwords("Batch"); ?></th>												
                                             <th><?php echo ucwords("Sem"); ?></th>	
-                                            <th><?php echo ucwords("Submitted date"); ?></th>	
+                                            <th><?php echo ucwords("Submitted-date"); ?></th>	
                                             <th><?php echo ucwords("Comment"); ?></th>
                                             <th><?php echo ucwords("File"); ?></th>	
                                             <th><?php echo ucwords("Action"); ?></th>	
@@ -224,21 +214,25 @@
                                                  
                                                 </td>	
                                             </tr>
-<?php endforeach; ?>						
+                                        <?php endforeach; ?>						
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+                  </div>
             </div>
-        </div>
         <!-- End .panel -->
-    </div>
+        </div>
     <!-- col-lg-12 end here -->
-</div>
+    </div>
+<!-- col-lg-12 end here -->
+</div>    
 <!-- End .row -->
 </div>
 <!-- End contentwrapper -->
+</div>
+<!-- End #content -->
 
 <!-- End #content -->
 <script type="text/javascript">

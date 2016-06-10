@@ -78,3 +78,9 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+
+<style>
+    .table td, .table th {
+    text-align: justify;
+}
+</style>

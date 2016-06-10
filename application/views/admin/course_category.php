@@ -25,10 +25,9 @@
                                 <td><?php echo $row['category_name']; ?></td>                                               
 
                                 <td>
-                                    <?php if ($row['category_status'] == '1') { ?>
-                                        <span class="label label-success">Active</span>
+                                    <?php if ($row['category_status'] == '1') { ?>Active
                                     <?php } else { ?>	
-                                        <span class="label label-default">InActive</span>
+                                    InActive
                                     <?php } ?>
                                 </td>
                                 <td class="menu-action">

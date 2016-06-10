@@ -59,13 +59,16 @@ if(!function_exists('date_duration'))
 {
     function date_duration($datetime)
     {
+        $uploaded = date("Y-m-d H:i",strtotime($datetime));
         $datetime = date("Y-m-d H:i:s",strtotime($datetime));
        
         $date1 =  strtotime(date("Y-m-d H:i:s"));
         $date2 =  strtotime($datetime);
         $strtime1 = date("Y-m-d H:i:s");
         $strtime2 = $datetime; 
-        if($date1 == $date2)
+        $current = strtotime(date("Y-m-d H:i"));
+        $uploaded = strtotime($uploaded);
+        if($current == $uploaded)
         {
             return "a few seconds ago";
         }

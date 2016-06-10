@@ -65,15 +65,15 @@ class Professor extends MY_Controller {
     function subject() {
         $dept = $this->session->userdata('department');
         $this->data['subject'] = $this->db->query("SELECT * FROM subject_manager WHERE FIND_IN_SET('" . $this->session->userdata('login_user_id') . "',professor_id)")->result();
-      
+
         $login_id = $this->session->userdata('login_user_id');
         //$this->db->get_where("professor", array("professor_id" => $login_id))->result();
         $degree = $this->db->select('professor_id, department')->from('professor')->where('professor_id', $login_id)->get()->result();
-        $this->db->where("degree_id", $degree[0]->department);
+        $this->db->where("department", $degree[0]->department);
         $degree = $this->db->get_where("professor", array("professor_id" => $login_id))->result();
         //$this->db->where("degree_id", $degree[0]->department);
         $this->data['course'] = $this->db->get('course')->result();
-        $this->data['semester'] = $this->db->get('semester')->result();   
+        $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['page'] = 'subject';
         $this->data['title'] = 'Subject Management';
         $this->__site_template('professor/subject', $this->data);
@@ -120,8 +120,8 @@ class Professor extends MY_Controller {
 
 
                 $this->Professor_model->add_syllabus($insert);
-                $this->session->set_userdata('last_activity',"Syllabus Created ".$insert['syllabus_title']);
-                $this->session->set_userdata('activity_status',"1");
+                $this->session->set_userdata('last_activity', "Syllabus Created " . $insert['syllabus_title']);
+                $this->session->set_userdata('activity_status', "1");
                 $this->session->set_flashdata('flash_message', "Syllabus Added Successfully");
                 redirect(base_url() . 'professor/syllabus/', 'refresh');
             }
@@ -162,8 +162,8 @@ class Professor extends MY_Controller {
 
                 $this->Professor_model->update_syllabus($insert, $param2);
                 $this->session->set_flashdata('flash_message', "Syllabus Updated Successfully");
-                $this->session->set_userdata('last_activity',"Syllabus Updated ".$insert['syllabus_title']);
-                $this->session->set_userdata('activity_status',"1");
+                $this->session->set_userdata('last_activity', "Syllabus Updated " . $insert['syllabus_title']);
+                $this->session->set_userdata('activity_status', "1");
                 redirect(base_url() . 'professor/syllabus/', 'refresh');
             }
         }
@@ -185,7 +185,7 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Syllabus Management';
         $this->data['add_title'] = $this->lang_message('add_syllabus');
         $this->data['edit_title'] = $this->lang_message('edit_syllabus');
-        $this->data['page'] = 'syllabus';         
+        $this->data['page'] = 'syllabus';
         $this->__site_template('professor/syllabus', $this->data);
     }
 
@@ -288,7 +288,7 @@ class Professor extends MY_Controller {
         $this->data['degree'] = $this->Professor_model->get_all_degree();
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
-        $this->data['batch'] = $this->Professor_model->get_all_bacth();  
+        $this->data['batch'] = $this->Professor_model->get_all_bacth();
         $this->__site_template('professor/assessments', $this->data);
     }
 
@@ -460,7 +460,7 @@ class Professor extends MY_Controller {
          */
         //$this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignments';
-        $this->data['title'] = 'Assignment Management';    
+        $this->data['title'] = 'Assignment Management';
         $this->data['add_title'] = $this->lang_message('add_assignment');
         $this->data['edit_title'] = $this->lang_message('edit_assignment');
         $this->__site_template('professor/assignment', $this->data);
@@ -625,7 +625,7 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'study_resources';
         $this->data['title'] = 'Study Resource Management';
         $this->data['add_title'] = $this->lang_message('add_studyresource');
-        $this->data['edit_title'] = $this->lang_message('edit_studyresource');     
+        $this->data['edit_title'] = $this->lang_message('edit_studyresource');
         $this->__site_template('professor/studyresource', $this->data);
     }
 
@@ -961,7 +961,6 @@ class Professor extends MY_Controller {
         //$this->db->select("ls.*,s.*");
         //$this->db->from('survey_list ls');
         //$this->db->join("student s", "s.std_id=ls.student_id");
-
         //$this->data['survey'] = $this->db->get()->result();
         //$this->data['questions'] = $this->db->get('survey_question')->result();
         //$this->db->get('participate_manager')->result();
@@ -1085,7 +1084,7 @@ class Professor extends MY_Controller {
             redirect(base_url() . 'professor/courseware/', 'refresh');
         }
         $this->data['courseware'] = $this->Professor_model->getcourseware();
-        
+
         $this->data['page'] = 'courseware';
         $this->data['title'] = 'Courseware Management';
         $this->data['add_title'] = $this->lang_message('add_courseware');
@@ -1141,7 +1140,7 @@ class Professor extends MY_Controller {
         $this->data['page'] = 'attendance';
         $this->data['title'] = 'Attendance';
         $this->data['degree'] = $this->Professor_model->get_departments();
-        $this->data['class'] = $this->Crud_model->class_list();       
+        $this->data['class'] = $this->Crud_model->class_list();
         $this->__site_template('professor/attendance', $this->data);
     }
 
@@ -1307,8 +1306,7 @@ class Professor extends MY_Controller {
                     $this->session->set_userdata('last_activity', "Exam time table Data is already present");
                     $this->session->set_userdata('activity_status', "1");
                     $this->session->set_flashdata('flash_message', 'Data is already present.');
-                     redirect(base_url('professor/exam_schedule'));
-                    
+                    redirect(base_url('professor/exam_schedule'));
                 } else {
                     // do form validation
                     if ($this->form_validation->run('time_table_insert_update') != FALSE) {
@@ -1354,10 +1352,10 @@ class Professor extends MY_Controller {
             }
         }
         $this->data['degree'] = $this->Professor_model->get_all_degree();
-   
+
         $this->data['course'] = $this->Professor_model->get_all_course();
         $this->data['semester'] = $this->Professor_model->get_all_semester();
-        
+
         $this->data['time_table'] = $this->Professor_model->time_table();
         $this->data['title'] = 'Exam Schedule';
         $this->data['add_title'] = $this->lang_message('add_exam_schedule');
@@ -1493,7 +1491,7 @@ class Professor extends MY_Controller {
         //$this->data['semester'] = $this->Professor_model->get_all_semester();
         $this->data['time_table'] = $this->Professor_model->time_table();
         $this->data['title'] = 'Exam Marks';
-        $this->data['page'] = 'exam_marks';       
+        $this->data['page'] = 'exam_marks';
         $this->__site_template('professor/exam_marks', $this->data);
     }
 
@@ -1671,7 +1669,7 @@ class Professor extends MY_Controller {
         $this->data['exams'] = $this->Professor_model->get_exam_filter($degree, $course, $batch, $semester);
         $this->load->view("professor/exam_filter", $this->data);
     }
-     
+
     /**
      * Get exam list by course name and semester
      * @param type $course_id
@@ -1685,211 +1683,213 @@ class Professor extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
+            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
-            <?php
-        }
-    }
-
-    /**
-     * Subject list from course and semester
-     * @param int $course
-     * @param int $semester
-     */
-    function subject_list_from_course_and_semester($course, $semester) {
-        $this->load->model('admin/Crud_model');
-        $subjects = $this->Crud_model->subject_list_from_course_and_semester($course, $semester);
-
-        echo json_encode($subjects);
-    }
-
-    /**
-     * Semester list from branch
-     * @param string $branch_id
-     */
-    function semesters_list_from_branch($branch_id) {
-        $this->load->model('admin/Crud_model');
-        $semester = $this->Crud_model->get_semesters_of_branch($branch_id);
-
-        echo json_encode($semester);
-    }
-
-    /**
-     * Email inbox
-     */
-    function email_inbox() {
-        $this->load->helper('system_email');
-        $this->data['inbox'] = professor_inbox();
-        $this->data['title'] = 'Inbox';
-        $this->data['page'] = 'inbox';
-        $this->__site_template('professor/email_inbox', $this->data);
-    }
-
-    /**
-     * Email compose
-     * 
-     * @return response
-     */
-    function email_compose() {
-        ini_set('max_execution_time', 500);
-        //load the Crud model
-        $this->load->model('professor/Professor_model');
-        $this->load->model('admin/Crud_model');
-        $this->load->helper('system_email');
-        $this->load->library('upload');
-        if ($_POST) {
-            $filename = '';
-            $attachments = array();
-            if ($_FILES['userfile']['name'][0] != '') {
-                $files = $_FILES;
-                $cpt = count($_FILES['userfile']['name']);
-                for ($i = 0; $i < $cpt; $i++) {
-                    $_FILES['userfile']['name'] = $files['userfile']['name'][$i];
-                    $_FILES['userfile']['type'] = $files['userfile']['type'][$i];
-                    $_FILES['userfile']['tmp_name'] = $files['userfile']['tmp_name'][$i];
-                    $_FILES['userfile']['error'] = $files['userfile']['error'][$i];
-                    $_FILES['userfile']['size'] = $files['userfile']['size'][$i];
-
-                    $this->upload->initialize($this->set_upload_options());
-                    $this->upload->do_upload();
-                    $uploaded = $this->upload->data();
-                    $filename .= $uploaded['file_name'] . ',';
-                    array_push($attachments, $uploaded['full_path']);
+                    <?php
                 }
             }
-            $filename = rtrim($filename, ',');
-            $_POST['file_name'] = $filename;
-            $admin_list = array();
-            if (count($_POST['to'])) {
-                $admin_list = $_POST['to'];
-                $admin_to = '';
-                foreach ($admin_list as $row) {
+
+            /**
+             * Subject list from course and semester
+             * @param int $course
+             * @param int $semester
+             */
+            function subject_list_from_course_and_semester($course, $semester) {
+                $this->load->model('admin/Crud_model');
+                $subjects = $this->Crud_model->subject_list_from_course_and_semester($course, $semester);
+
+                echo json_encode($subjects);
+            }
+
+            /**
+             * Semester list from branch
+             * @param string $branch_id
+             */
+            function semesters_list_from_branch($branch_id) {
+                $this->load->model('admin/Crud_model');
+                $semester = $this->Crud_model->get_semesters_of_branch($branch_id);
+
+                echo json_encode($semester);
+            }
+
+            /**
+             * Email inbox
+             */
+            function email_inbox() {
+                $this->load->helper('system_email');
+                $this->data['inbox'] = professor_inbox();
+                $this->data['title'] = 'Inbox';
+                $this->data['page'] = 'inbox';
+                $this->__site_template('professor/email_inbox', $this->data);
+            }
+
+            /**
+             * Email compose
+             * 
+             * @return response
+             */
+            function email_compose() {
+                ini_set('max_execution_time', 500);
+                //load the Crud model
+                $this->load->model('professor/Professor_model');
+                $this->load->model('admin/Crud_model');
+                $this->load->helper('system_email');
+                $this->load->library('upload');
+                if ($_POST) {
+                    $filename = '';
+                    $attachments = array();
+                    if ($_FILES['userfile']['name'][0] != '') {
+                        $files = $_FILES;
+                        $cpt = count($_FILES['userfile']['name']);
+                        for ($i = 0; $i < $cpt; $i++) {
+                            $_FILES['userfile']['name'] = $files['userfile']['name'][$i];
+                            $_FILES['userfile']['type'] = $files['userfile']['type'][$i];
+                            $_FILES['userfile']['tmp_name'] = $files['userfile']['tmp_name'][$i];
+                            $_FILES['userfile']['error'] = $files['userfile']['error'][$i];
+                            $_FILES['userfile']['size'] = $files['userfile']['size'][$i];
+
+                            $this->upload->initialize($this->set_upload_options());
+                            $this->upload->do_upload();
+                            $uploaded = $this->upload->data();
+                            $filename .= $uploaded['file_name'] . ',';
+                            array_push($attachments, $uploaded['full_path']);
+                        }
+                    }
+                    $filename = rtrim($filename, ',');
+                    $_POST['file_name'] = $filename;
+                    $admin_list = array();
+                    if (count($_POST['to'])) {
+                        $admin_list = $_POST['to'];
+                        $admin_to = '';
+                        foreach ($admin_list as $row) {
 
 
-                    $admin_to .= $row . ',';
+                            $admin_to .= $row . ',';
+                        }
+                    }
+                    //  $admin_to;
+                    $admin_to = rtrim($admin_to, ',');
+
+                    if ($_POST['course'] == 'all') {
+                        // send to all students 
+                        send_to_all_course_professor($_POST, $admin_to);
+                    } else if ($_POST['semester'] == 'all') {
+                        //send to all semester of the course
+                        send_to_course_all_semester_professor($_POST, $_POST['course'], $admin_to);
+                    } else if ($_POST['student'][0] == 'all' || $_POST['student']) {
+
+
+                        //send to all students of the course and semeter
+                        send_to_all_student_course_semester_professor($_POST, $_POST['course'], $_POST['semester'], $admin_to);
+                    } else {
+                        //send particular student                
+                        send_to_single_student_professor($_POST, $admin_to);
+                    }
+
+                    $cc_list = explode(',', $_POST['cc']);
+                    $email_cc_list = array();
+                    foreach ($cc_list as $row) {
+                        array_push($email_cc_list, $row);
+                    }
+
+                    //send email
+                    //var_dump($admin_list);
+                    //exit;
+                    $this->setemail($admin_list, $_POST['subject'], $_POST['message'], $email_cc_list, $attachments);
+                    $this->session->set_userdata('last_activity', "Email sent.");
+                    $this->session->set_userdata('activity_status', "1");
+                    $this->session->set_flashdata('flash_message', 'Email was sent successfully.');
+                    redirect(base_url('professor/email_inbox'));
+                }
+                $this->data['course'] = $this->Professor_model->get_all_course();
+                $this->data['degree'] = $this->Professor_model->get_all_degree();
+                $this->data['semester'] = $this->Crud_model->get_all_semester();
+                //$this->data['students'] = $this->Crud_model->get_all_students();
+                //$this->db->select('professor_id, email, name')->from('professor')->get()->result();
+                //$this->data['teacher'] = $this->Crud_model->get_all_teacher();
+                $this->data['all_admin'] = $this->Crud_model->get_all_admin();
+                //set the template and view
+                $this->data['title'] = 'Compose Email';
+                $this->data['content'] = 'email_compose';
+                $this->data['page'] = 'compose';
+                $this->__site_template('professor/email_compose', $this->data);
+            }
+
+            function set_upload_options() {
+                //upload an image options
+                $config = array(
+                    'upload_path' => './uploads/emails/',
+                    'allowed_types' => 'gif|jpg|png|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf',
+                    'max_size' => '10000'
+                );
+                return $config;
+            }
+
+            /**
+             * Set mail config
+             */
+            function setemail($emails, $subject = '', $message = '', $cc, $attachment) {
+                $config = Array(
+                    'protocol' => 'smtp',
+                    'smtp_host' => 'ssl://smtp.googlemail.com',
+                    'smtp_port' => 465,
+                    'smtp_user' => 'mayur.ghadiya@searchnative.in',
+                    'smtp_pass' => 'the mayurz97375',
+                    'mailtype' => 'html',
+                    'charset' => 'iso-8859-1'
+                );
+                $this->load->library('email', $config);
+                $this->email->set_newline("\r\n");
+                //$this->load->library('email');
+                //$this->email->initialize($config);
+                $subject = $subject;
+                $message = $message;
+                foreach ($emails as $email) {
+                    $this->email->clear(TRUE);
+                    $this->sendEmail($email, $subject, $message, $cc, $attachment);
                 }
             }
-            //  $admin_to;
-            $admin_to = rtrim($admin_to, ',');
 
-            if ($_POST['course'] == 'all') {
-                // send to all students 
-                send_to_all_course_professor($_POST, $admin_to);
-            } else if ($_POST['semester'] == 'all') {
-                //send to all semester of the course
-                send_to_course_all_semester_professor($_POST, $_POST['course'], $admin_to);
-            } else if ($_POST['student'][0] == 'all' || $_POST['student']) {
-
-
-                //send to all students of the course and semeter
-                send_to_all_student_course_semester_professor($_POST, $_POST['course'], $_POST['semester'], $admin_to);
-            } else {
-                //send particular student                
-                send_to_single_student_professor($_POST, $admin_to);
+            /**
+             * Send email
+             * @param string $email
+             * @param string $subject
+             * @param string $message
+             * @param string $cc
+             * @param string $attachments
+             */
+            public function sendEmail($email, $subject, $message, $cc, $attachments) {
+                //$this->email->set_newline("\r\n");
+                $this->email->from('mayur.ghadiya@searchnative.in', 'Search Native India');
+                $this->email->to('admin@example.com');
+                foreach ($cc as $row) {
+                    $this->email->cc($row);
+                }
+                $this->email->subject($subject);
+                $this->email->message($message);
+                //$files = array('D:\unit testing.docx', 'D:\vtiger trial version features.docx');        
+                if (count($attachments)) {
+                    foreach ($attachments as $row) {
+                        $this->email->attach($row);
+                    }
+                }
+                if ($this->email->send()) {
+                    echo 'Email send.';
+                } else {
+                    show_error($this->email->print_debugger());
+                }
             }
 
-            $cc_list = explode(',', $_POST['cc']);
-            $email_cc_list = array();
-            foreach ($cc_list as $row) {
-                array_push($email_cc_list, $row);
-            }
-
-            //send email
-            //var_dump($admin_list);
-            //exit;
-            $this->setemail($admin_list, $_POST['subject'], $_POST['message'], $email_cc_list, $attachments);
-            $this->session->set_userdata('last_activity',"Email sent.");
-        $this->session->set_userdata('activity_status',"1");
-        }
-        $this->data['course'] = $this->Professor_model->get_all_course();
-        $this->data['degree'] = $this->Professor_model->get_all_degree();
-        $this->data['semester'] = $this->Crud_model->get_all_semester();        
-        //$this->data['students'] = $this->Crud_model->get_all_students();
-        //$this->db->select('professor_id, email, name')->from('professor')->get()->result();
-        //$this->data['teacher'] = $this->Crud_model->get_all_teacher();
-        $this->data['all_admin'] = $this->Crud_model->get_all_admin();
-        //set the template and view
-        $this->data['title'] = 'Compose Email';
-        $this->data['content'] = 'email_compose';
-        $this->data['page'] = 'compose';
-        $this->__site_template('professor/email_compose', $this->data);
-    }
-
-    function set_upload_options() {
-        //upload an image options
-        $config = array(
-            'upload_path' => './uploads/emails/',
-            'allowed_types' => 'gif|jpg|png|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf',
-            'max_size' => '10000'
-        );
-        return $config;
-    }
-
-    /**
-     * Set mail config
-     */
-    function setemail($emails, $subject = '', $message = '', $cc, $attachment) {
-        $config = Array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'mayur.ghadiya@searchnative.in',
-            'smtp_pass' => 'the mayurz97375',
-            'mailtype' => 'html',
-            'charset' => 'iso-8859-1'
-        );
-        $this->load->library('email', $config);
-        $this->email->set_newline("\r\n");
-        //$this->load->library('email');
-        //$this->email->initialize($config);
-        $subject = $subject;
-        $message = $message;
-        foreach ($emails as $email) {
-            $this->email->clear(TRUE);
-            $this->sendEmail($email, $subject, $message, $cc, $attachment);
-        }
-    }
-
-    /**
-     * Send email
-     * @param string $email
-     * @param string $subject
-     * @param string $message
-     * @param string $cc
-     * @param string $attachments
-     */
-    public function sendEmail($email, $subject, $message, $cc, $attachments) {
-        //$this->email->set_newline("\r\n");
-        $this->email->from('mayur.ghadiya@searchnative.in', 'Search Native India');
-        $this->email->to($email);
-        foreach ($cc as $row) {
-            $this->email->cc($row);
-        }
-        $this->email->subject($subject);
-        $this->email->message($message);
-        //$files = array('D:\unit testing.docx', 'D:\vtiger trial version features.docx');        
-        if (count($attachments)) {
-            foreach ($attachments as $row) {
-                $this->email->attach($row);
-            }
-        }
-        if ($this->email->send()) {
-            echo 'Email send.';
-        } else {
-            show_error($this->email->print_debugger());
-        }
-    }
-
-    /**
-     * Get all student by course and semester
-     * @param string $course_id
-     * @param string $semester_id
-     */
-    function course_semester_student($course_id = '', $semester_id = '') {
-        $this->load->model('admin/Crud_model');
-        $students = $this->Crud_model->course_semester_student($course_id, $semester_id);
-        foreach ($students as $row) {
-            ?>
+            /**
+             * Get all student by course and semester
+             * @param string $course_id
+             * @param string $semester_id
+             */
+            function course_semester_student($course_id = '', $semester_id = '') {
+                $this->load->model('admin/Crud_model');
+                $students = $this->Crud_model->course_semester_student($course_id, $semester_id);
+                foreach ($students as $row) {
+                    ?>
             <option value="<?php echo $row->std_id; ?>"><?php echo $row->std_first_name . ' ' . $row->std_last_name; ?></option>
             <?php
         }
@@ -2746,26 +2746,26 @@ class Professor extends MY_Controller {
             $_POST['file_name'] = $filename;
 
             professor_email_reply($_POST);
-            $this->session->set_userdata('last_activity'," Email replied.");
-             $this->session->set_userdata('activity_status',"1");
+            $this->session->set_userdata('last_activity', " Email replied.");
+            $this->session->set_userdata('activity_status', "1");
             redirect(base_url('professor/email_inbox'));
         }
 
         $this->data['email'] = admin_inbox_email_view($id);
         $this->data['title'] = $this->data['email']->subject;
-        $this->data['page'] = 'email_reply';         
+        $this->data['page'] = 'email_reply';
         $this->__site_template('professor/email_reply', $this->data);
     }
 
     /**
      * Vocational course Student List
      */
-    function vocational_student() {
+    function vocational_student($param1='',$param2= '') {
         $professor_id = $this->session->userdata('login_user_id');
-        $this->data['student'] = $this->Professor_model->get_vocational_student($professor_id);
+        $this->data['student'] = $this->Professor_model->get_vocational_student($param1);
         $this->data['title'] = 'Vocational Course Students';
         $this->data['page'] = 'vocational_register_student';
-        $this->__site_template('admin/vocational_register_student', $this->data);
+        $this->load->view('professor/vocational_register_student', $this->data);
     }
 
     /**
@@ -2780,52 +2780,52 @@ class Professor extends MY_Controller {
         foreach ($subjects as $row) {
             ?>
             <option value="<?php echo $row->sm_id; ?>"
-                    <?php if ($row->sm_id == $time_table) echo 'selected'; ?>><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?></option>
+            <?php if ($row->sm_id == $time_table) echo 'selected'; ?>><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?></option>
             <!--echo "<option value={$row->sm_id}>{$row->subject_name}  (Code: {$row->subject_code})</option>";-->
-            <?php
+                    <?php
+                }
+            }
+
+            /**
+             * Professor inbox email view
+             * @param int $id
+             */
+            function inbox_email($id) {
+                $this->load->model('admin/Crud_model');
+                $this->load->helper('system_email');
+
+                $this->data['email'] = admin_inbox_email_view($id);
+                $this->data['title'] = $this->data['email']->subject;
+                $this->data['page'] = 'Inbox Email';
+                $this->__site_template('professor/email_inbox_view', $this->data);
+            }
+
+            /**
+             * Exam schedule ajax filter
+             * @param string $degree
+             * @param string $course
+             * @param string $batch
+             * @param string $semester
+             * @param string $exam
+             */
+            function get_exam_schedule_filter($degree, $course, $batch, $semester, $exam) {
+                $this->load->model('admin/Crud_model');
+                $data['time_table'] = $this->Crud_model->exam_schedule_filter($degree, $course, $batch, $semester, $exam);
+                $this->load->view("professor/exam_schedule_filter", $data);
+            }
+
+            /**
+             * Vocation courses
+             * @param type $param1
+             * @param type $param2
+             */
+            function vocationalcourse($param1 = '', $param2 = '') {
+                $this->data['title'] = $this->lang_message('vocational_course');
+                $professor_id = $this->session->userdata('login_user_id');
+                $this->data['vocationalcourse'] = $this->Professor_model->get_vocational_course($professor_id);
+                $this->data['page'] = 'vocational_course';
+                $this->__site_template('professor/vocational_course', $this->data);
+            }
+
         }
-    }
-
-    /**
-     * Professor inbox email view
-     * @param int $id
-     */
-    function inbox_email($id) {
-        $this->load->model('admin/Crud_model');
-        $this->load->helper('system_email');
-
-        $this->data['email'] = admin_inbox_email_view($id);
-        $this->data['title'] = $this->data['email']->subject;
-        $this->data['page'] = 'Inbox Email';
-        $this->__site_template('professor/email_inbox_view', $this->data);
-    }
-    
-    /**
-     * Exam schedule ajax filter
-     * @param string $degree
-     * @param string $course
-     * @param string $batch
-     * @param string $semester
-     * @param string $exam
-     */
-    function get_exam_schedule_filter($degree, $course, $batch, $semester, $exam) {
-        $this->load->model('admin/Crud_model');
-        $data['time_table'] = $this->Crud_model->exam_schedule_filter($degree, $course, $batch, $semester, $exam);
-        $this->load->view("professor/exam_schedule_filter", $data);
-    }
-    
-    
-    /**
-     * Vocation courses
-     * @param type $param1
-     * @param type $param2
-     */
-    function vocationalcourse($param1 = '', $param2 = '') {        
-        $this->data['title'] = $this->lang_message('vocational_course');    
-        $professor_id = $this->session->userdata('login_user_id');
-        $this->data['vocationalcourse'] = $this->Professor_model->get_vocational_course($professor_id);
-        $this->data['page'] = 'vocational_course';
-        $this->__site_template('professor/vocational_course', $this->data);
-    }
-
-}
+        
