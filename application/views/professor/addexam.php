@@ -233,7 +233,7 @@
             autoclose:true,
             changeMonth: true,
             changeYear: true,
-            minDate: new Date(),
+            startDate: new Date(),
             onClose: function (selectedDate) {
                 $("#end_date_time").datepicker("option", "minDate", selectedDate);
             }
@@ -242,7 +242,7 @@
             format: ' MM d, yyyy', autoclose:true,
             changeMonth: true,
             changeYear: true,
-            minDate: new Date(),
+            startDate: new Date(),
             onClose: function (selectedDate) {
                 //$(".datepicker-normal").datepicker("option", "maxDate", new Date());
             }

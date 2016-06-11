@@ -223,10 +223,12 @@
         });
         
         $(".datepicker-normal").datepicker({
-            format: ' MM d, yyyy', autoclose:true,
+            format: ' MM d, yyyy',
+            startDate: new Date(),
+            autoclose:true,
             changeMonth: true,
-            changeYear: true,
-            maxDate: 0
+            changeYear: true
+            
         });
         $('#exam-data-table').dataTable({
             "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +

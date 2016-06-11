@@ -225,7 +225,7 @@ $centerlist = $this->db->get('center_user')->result();
     $(function () {
 
         $(".datepicker-normal-edit").datepicker({
-            format: ' MM d, yyyy', autoclose:true,
+            format: ' MM d, yyyy', startDate: new Date(), autoclose:true,
             changeMonth: true,
             changeYear: true,
             onClose: function (selectedDate) {
@@ -234,10 +234,9 @@ $centerlist = $this->db->get('center_user')->result();
 
         });
         $("#edit_end_date_time").datepicker({
-            format: ' MM d, yyyy', autoclose:true,
+            format: ' MM d, yyyy', startDate: new Date(), autoclose:true,
             changeMonth: true,
-            changeYear: true,
-            minDate: new Date(),
+            changeYear: true,            
             onClose: function (selectedDate) {
                 //$(".datepicker-normal-edit").datepicker("option", "maxDate", selectedDate);
             }

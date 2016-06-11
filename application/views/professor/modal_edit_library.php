@@ -268,7 +268,7 @@ foreach ($edit_data as $row):
     });
     $("#dateofsubmission1").datepicker({
         format: ' MM d, yyyy',
-        maxDate: 0,
+        startDate: new Date(),
         autoclose:true
     });
     jQuery.validator.addMethod("character", function (value, element) {

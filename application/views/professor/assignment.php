@@ -498,7 +498,7 @@ Delete
     $().ready(function () {
         $("#inlinedate").datepicker({
             format: ' MM d, yyyy',
-            minDate: 0,
+            startDate: new Date(),
             autoclose:true
             
         });
