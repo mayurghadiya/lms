@@ -283,13 +283,13 @@ $semesters = $this->db->get('semester')->result_array();
         }
     });
 
-     $(".basic-datepicker").datepicker({ format: ' MM d, yyyy',autoclose:true});         
+     $(".basic-datepicker").datepicker({ format: 'MM d, yyyy',autoclose:true});         
     $(document).ready(function () {
         $(".datepicker-normal").datepicker({
-            dateFormat: 'dd M yy',
+           format: 'MM d, yyyy',
+           autoclose:true,
             changeMonth: true,
-            changeYear: true,
-            mixDate: new Date()
+            changeYear: true,            
 
         });
 

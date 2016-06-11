@@ -64,22 +64,22 @@ endforeach;
   <script>
          $(document).ready(function () {
          $("#holiday_startdate1").datepicker({
-                format: ' MM d, yyyy',
+                format: 'MM d, yyyy', startDate : new Date(),
                 changeMonth: true,
                 changeYear: true,
                 autoclose:true,
                 onClose: function (selectedDate) {
-                    $("#holiday_enddate1").datepicker("option", "minDate", selectedDate);
+                    $("#holiday_enddate1").datepicker("option", "startDate", selectedDate);
                 }
             });
             
             $("#holiday_enddate1").datepicker({
-                format: ' MM d, yyyy', autoclose:true,
+                format: ' MM d, yyyy', startDate : new Date(), autoclose:true,
                 changeMonth: true,
                 changeYear: true,
                 autoclose:true,
                 onClose: function (selectedDate) {
-                    $("#holiday_startdate1").datepicker("option", "maxDate", selectedDate);
+                    $("#holiday_startdate1").datepicker("option", "endDate", selectedDate);
                 }
             });
             

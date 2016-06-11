@@ -30,12 +30,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>											
-                                            <th>Project Title</th>											
-                                            <th>Department</th>											
-                                            <th>Branch</th>											
-                                            <th>Batch</th>											
-                                            <th>Semester</th>											
-                                            <th>Division</th>											
+                                            <th>Project Title</th>										
                                             <th>Date of submission</th>	
                                             <th>File</th>	
                                             <th>Action</th>
@@ -48,53 +43,7 @@
                                             ?>
                                             <tr>
                                                 <td></td>	
-                                                <td><?php echo $row->pm_title; ?></td>	
-                                                <td>
-                                                    <?php
-                                                    foreach ($degree as $deg) {
-                                                        if ($deg->d_id == $row->pm_degree) {
-                                                            echo $deg->d_name;
-                                                        }
-                                                    }
-                                                    ?>
-                                                </td>	
-                                                <td>
-                                                    <?php
-                                                    foreach ($course as $crs) {
-                                                        if ($crs->course_id == $row->pm_course) {
-                                                            echo $crs->c_name;
-                                                        }
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php
-                                                    foreach ($batch as $bch) {
-                                                        if ($bch->b_id == $row->pm_batch) {
-                                                            echo $bch->b_name;
-                                                        }
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php
-                                                    foreach ($semester as $sem) {
-                                                        if ($sem->s_id == $row->pm_semester) {
-                                                            echo $sem->s_name;
-                                                        }
-                                                    }
-                                                    ?>
-
-                                                </td>	
-                                                <td>
-                                                    <?php
-                                                    foreach ($class as $c) {
-                                                        if ($c->class_id == $row->class_id) {
-                                                            echo $c->class_name;
-                                                        }
-                                                    }
-                                                    ?>
-                                                </td>
+                                                <td><?php echo $row->pm_title; ?></td>	                                               
                                                 <td><?php echo date('F d, Y', strtotime($row->pm_dos)); ?></td>	
                                                 <td>
                                                     <a href="<?php echo $row->pm_url; ?>" download=""><i class="fa fa-download"></i></a>

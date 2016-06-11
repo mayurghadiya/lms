@@ -113,7 +113,7 @@ endforeach;
 <script>
     $(document).ready(function () {
         $("#startdate1").datepicker({
-             format: ' MM d, yyyy',
+             format: ' MM d, yyyy', startDate : new Date(),
             changeMonth: true,
             changeYear: true,
             autoclose:true,
@@ -123,7 +123,7 @@ endforeach;
         });
 
         $("#enddate1").datepicker({
-             format: ' MM d, yyyy',
+             format: ' MM d, yyyy', startDate : new Date(),
             changeMonth: true,
             changeYear: true,
             autoclose:true,

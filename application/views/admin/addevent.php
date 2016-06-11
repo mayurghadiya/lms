@@ -96,7 +96,7 @@
             }
         });
         $("#datepicker-end-date").datepicker({
-            format: ' MM d, yyyy', autoclose:true,
+            format: ' MM d, yyyy', 
             changeMonth: true,
             changeYear: true,
             autoclose:true,

@@ -54,7 +54,7 @@
     });
         $("#basic-datepickeredit").datepicker({
             format: ' MM d, yyyy',
-            minDate: '0 days',
+            startDate: new Date(),
             autoclose:true,
         });
         

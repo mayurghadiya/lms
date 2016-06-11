@@ -268,7 +268,7 @@
     });
     $().ready(function () {
         $("#dateofsubmission").datepicker({
-             format: ' MM d, yyyy',
+             format: ' MM d, yyyy', startDate : new Date(),
             minDate: 0,
             autoclose: true,
         });

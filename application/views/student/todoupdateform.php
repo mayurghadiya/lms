@@ -56,7 +56,7 @@
         });
         $("#basic-datepickeredit").datepicker({
             format: ' MM dd, yyyy',
-            minDate: '0 days',
+           startDate: new Date(),
             autoclose: true,
         });
         $("#updatecloseform").click(function () {

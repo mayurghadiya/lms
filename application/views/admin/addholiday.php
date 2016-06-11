@@ -68,20 +68,21 @@ $semesters = $this->db->get('semester')->result_array();
             format: ' MM dd, yyyy',
             changeMonth: true,
             changeYear: true,
-            autoclose: true,
-            minDate: 0,
-            onClose: function (selectedDate) {
-                $("#holiday_enddate").datepicker("option", "minDate", selectedDate);
+            startDate: new Date(),
+            autoclose: true,            
+            onBlur: function (selectedDate) {
+                alert(selectedDate);
+                $("#holiday_enddate").datepicker("option", "startDate", selectedDate);
             }
         });
 
         $("#holiday_enddate").datepicker({
-            format: ' MM dd, yyyy',
+            format: ' MM dd, yyyy',           
             changeMonth: true,
             changeYear: true,
             autoclose: true,
             onClose: function (selectedDate) {
-                $("#holiday_startdate").datepicker("option", "maxDate", selectedDate);
+                $("#holiday_startdate").datepicker("option", "endDate", selectedDate);
             }
         });
 

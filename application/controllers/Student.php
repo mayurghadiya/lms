@@ -588,12 +588,7 @@ class Student extends MY_Controller {
             $course = $std[0]['course_id'];
             $class = $std[0]['class_id'];
             $this->data['project'] = $this->db->query("SELECT * FROM project_manager WHERE pm_degree='$degree' AND pm_batch = '$batch' AND pm_semester = '$sem' AND pm_course = '$course' AND class_id='$class' AND FIND_IN_SET('$std_id',pm_student_id)")->result();
-            // $page_data['project'] = $this->db->get_where('project_manager', array("pm_student_id" => $this->session->userdata('std_id')))->result();
-            $this->data['degree'] = $this->db->get('degree')->result();
-            $this->data['batch'] = $this->db->get('batch')->result();
-            $this->data['course'] = $this->db->get('course')->result();
-            $this->data['semester'] = $this->db->get('semester')->result();
-            $this->data['class'] = $this->db->get('class')->result();
+            // $page_data['project'] = $this->db->get_where('project_manager', array("pm_student_id" => $this->session->userdata('std_id')))->result();           
             $this->data['student'] = $this->db->get('student')->result();
             $this->data['page'] = 'project';
             $this->data['title'] = 'Project List';
@@ -1373,9 +1368,10 @@ class Student extends MY_Controller {
      * holiday List
      */
     function holiday() {
+        $year = date('Y');
         $this->data['page'] = 'holiday';
         $this->data['title'] = 'Holiday List';
-        $this->data['holiday'] = $this->db->order_by('holiday_startdate', 'DESC')->get('holiday')->result_array();
+        $this->data['holiday'] = $this->db->order_by('holiday_startdate', 'DESC')->where('holiday_year >=',$year)->get('holiday')->result_array();
         $this->__site_template('student/holiday', $this->data);
     }
 

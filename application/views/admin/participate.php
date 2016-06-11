@@ -947,7 +947,8 @@
 
         $("#dateofsubmission").datepicker({
             format: 'MM d, yyyy',
-            minDate: 0,
+            
+            startDate: new Date(),
             autoclose: true,
         });
         jQuery.validator.addMethod("character", function (value, element) {

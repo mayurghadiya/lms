@@ -4,7 +4,9 @@ $(document).ready(function () {
     $("#todo-addform").hide();
     $("#basic-datepicker").datepicker({
         autoclose: true,
-        format:'MM d, yyyy'
+         startDate: new Date(),
+
+        format:'MM d, yyyy',
     });
     //task-done
 
@@ -19,15 +21,22 @@ $(document).ready(function () {
     $(document).ajaxComplete(function () {
         $("#wait").css("display", "none");
     });
-    $(".close").click(function () {
+    $(".todo-close1").click(function () {
+        
+        var r = confirm("Are sure want to delete?");
+        if (r == true) {
+
+        } else {
+            return false
+        }        
         var id = $(this).val();
         var dataString = "id=" + id;
         $.ajax({
             type: "POST",
             url: base_url + "admin/removetodolist",
             data: dataString,
-            success: function () {
-
+            success: function () {            
+                $("#todo-task-item-id"+id).hide();
             }
 
         });

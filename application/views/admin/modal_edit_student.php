@@ -99,7 +99,7 @@ foreach ($edit_data as $row):
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label"><?php echo ucwords("Birth Date"); ?><span style="color:red">*</span></label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="birthdate1" id="basic-datepicker" value="<?php echo $row['std_birthdate'] ?>" />
+                                        <input type="text" class="form-control" name="birthdate1" id="basic-datepicker" value="<?php echo date("F d, Y",strtotime($row['std_birthdate'])); ?>" />
                                     </div>
                                 </div>	
                                 <div class="form-group">
@@ -373,8 +373,8 @@ endforeach;
         $("#birthdate1").datepicker({
         });
         $("#basic-datepicker").datepicker({
-            maxDate: 0,
-            format: "M d, yyyy",
+            startDate: new Date(),
+            format: "MM d, yyyy",
             autoclose: true});
 
         jQuery.validator.addMethod("mobile_no", function (value, element) {

@@ -21,7 +21,7 @@
                             <th>Holiday Name</th>
                             <th>Start Date</th>
                             <th>End Date</th>
-                            <th>Year</th>
+                         
                         </tr>
                     </thead>
 
@@ -33,7 +33,7 @@
                                 <td><?php echo $row['holiday_name']; ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($row['holiday_startdate'])); ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($row['holiday_enddate'])); ?></td>    
-                                <td><?php echo $row['holiday_year']; ?></td>  
+                             
                             </tr>
                         <?php endforeach; ?>															
                     </tbody>
