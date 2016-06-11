@@ -1152,3 +1152,57 @@ $this->carabiner->display('calendar_css');
     })(jQuery);
 </script>
 <!-- Scrollbar Js end -->
+
+
+<!-- Event Calendar Js start -->
+<script>
+    $(document).ready(function(){
+
+    show_event_detail_on_load();
+    //show_first_event_details();
+
+    $('.eventCalendar-arrow').on('click', function(){
+    $('.eventCalendar-monthTitle').on('click', function(){
+    $('.eventCalendar-list li:first-child').each(function(index){
+    console.log($(this).text());
+    show_event_detail_on_load();
+    });
+    });
+    $('.eventCalendar-day').on('click', function(){
+    show_event_detail_on_load();
+    });
+    //show_event_detail_on_load();
+    setTimeout(function(){
+    $('.eventCalendar-list li:first-child').each(function(index){
+    console.log($(this).text());
+    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+    });
+    }, 1000);
+    });
+    $('.eventCalendar-monthTitle').on('click', function(){
+    show_event_detail_on_load();
+    });
+    $('.eventCalendar-day').on('click', function(){
+    show_event_detail_on_load();
+    });
+    function show_first_event_details() {
+    $('.eventCalendar-day').on('click', function(){
+    $('.eventCalendar-eventDesc').css('display', 'block');
+    setTimeout(function(){
+    $('.eventCalendar-hidden').removeClass('eventCalendar-hidden');
+    }, 1000);
+    });
+    }
+
+    function show_event_detail_on_load() {
+    setTimeout(function(){
+    $('.eventCalendar-list li:first-child').each(function(index){
+    console.log($(this).text());
+    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+    });
+    }, 1000);
+    }
+    });
+</script>
+<!-- Event Calendar Js end -->
+

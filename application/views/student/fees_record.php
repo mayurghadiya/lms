@@ -18,9 +18,9 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Invoice No</th>
                             <th>Title</th>
                             <th>Paid</th>
-                            <th>Status</th>
                             <th>Date</th>
                             <th>Options</th>
                         </tr>
@@ -31,11 +31,11 @@
                             ?>
                             <tr>
                                 <td></td>
+                                <td><?php echo 'INV' . date('dmYhis', strtotime($row->paid_created_at)); ?></td>
                                 <td><?php echo $row->title; ?></td>
                                 <td>
-                                    $<?php echo $row->paid_amount; ?>
+                                    <?php echo system_info('currency') . $row->paid_amount; ?>
                                 </td>
-                                <td>Paid</td>
                                 <td><?php echo date('F d, Y h:m A', strtotime($row->paid_created_at)); ?></td>
                                 <td>
                                     <a href="<?php echo base_url('student/invoice/' . $row->student_fees_id); ?>"><span class="label label-primary mr6 mb6">

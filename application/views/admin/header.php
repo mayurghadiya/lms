@@ -263,19 +263,19 @@
                                             </li>
                                             <li>
                                                 <a id="link-chancellor" href="<?php echo base_url(); ?>admin/chancellor">
-                                                    <i class="s16 icomoon-icon-attachment"></i>
+                                                    <i class="s16 fa fa-user"></i>
                                                     <span class="txt">Chancellor</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a id="link-course_category" href="<?php echo base_url(); ?>admin/category">
-                                                    <i class="s16 icomoon-icon-attachment"></i>
+                                                    <i class="s16 fa fa-globe"></i>
                                                     <span class="txt"> Course Category</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a id="link-vocational_course" href="<?php echo base_url(); ?>admin/vocationalcourse">
-                                                    <i class="s16 icomoon-icon-attachment"></i>
+                                                    <i class="s16 fa fa-life-ring"></i>
                                                     <span class="txt">Vocational Course</span>
                                                 </a>
                                             </li>
@@ -294,13 +294,7 @@
                                             </li>-->                                               
                                         </ul>
                                     </li>
-                                    <li>
-                                        <a <?php echo active_single_menu('class_routine', $page); ?> href="<?php echo base_url() . 'admin/class_routine' ?>">
-                                            <i class="s16 fa fa-book"></i>
-                                            <span class=txt>Class Routine </span>
-                                        </a>
-                                    </li>
-
+                                    
                                     <?php
                                     $pages = [
                                         'event', 'assignment', 'studyresource', 'project', 'library', 'courseware', 'subscriber',
@@ -362,6 +356,18 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        <a <?php echo active_single_menu('class_routine', $page); ?> href="<?php echo base_url() . 'admin/class_routine' ?>">
+                                            <i class="s16 fa fa-book"></i>
+                                            <span class=txt>Class Routine </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a <?php echo active_single_menu('video_streaming', $page); ?> href="<?php echo base_url(); ?>video_streaming">
+                                            <i class="s16 icomoon-icon-image-2"></i>
+                                            <span class=txt>Video Streaming </span>
+                                        </a>
+                                    </li>                                    
 
                                     <?php
                                     $pages = [
@@ -400,13 +406,13 @@
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
                                                 <a id="link-photo_gallery" href="<?php echo base_url(); ?>admin/photogallery">
-                                                    <i class="s16 icomoon-icon-file-2"></i>
+                                                    <i class="s16 fa fa-picture-o"></i>
                                                     <span class="txt">Media Gallery</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a id="link-banner_slider" href="<?php echo base_url(); ?>admin/bannerslider">
-                                                    <i class="s16 icomoon-icon-file-2"></i>
+                                                    <i class="s16 fa fa-desktop"></i>
                                                     <span class="txt">Banner Slider</span>
                                                 </a>
                                             </li>
@@ -424,19 +430,19 @@
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
                                                 <a id="link-compose" href="<?php echo base_url(); ?>admin/email_compose">
-                                                    <i class="s16 icomoon-icon-file-2"></i>
+                                                    <i class="s16 fa fa-envelope"></i>
                                                     <span class="txt">Compose E-Mail</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a id="link-inbox" href="<?php echo base_url(); ?>admin/email_inbox">
-                                                    <i class="s16 icomoon-icon-file-2"></i>
+                                                    <i class="s16 fa fa-inbox"></i>
                                                     <span class="txt">Inbox</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a id="link-sent" href="<?php echo base_url(); ?>admin/email_sent">
-                                                    <i class="s16 icomoon-icon-file-2"></i>
+                                                    <i class="s16 fa fa-send"></i>
                                                     <span class="txt">Sent</span>
                                                 </a>
                                             </li>
@@ -456,13 +462,13 @@
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
                                                 <a id="link-import" href="<?php echo base_url(); ?>admin/import">
-                                                    <i class="s16 icomoon-icon-file-2"></i>
+                                                    <i class="s16 fa fa-upload"></i>
                                                     <span class="txt">Import</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a id="link-export" href="<?php echo base_url(); ?>admin/export">
-                                                    <i class="s16 icomoon-icon-file-2"></i>
+                                                    <i class="s16 fa fa-download"></i>
                                                     <span class="txt">Export</span>
                                                 </a>
                                             </li>
@@ -481,13 +487,13 @@
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
                                                 <a id="link-system_setting" href="<?php echo base_url(); ?>admin/system_settings">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-gears"></i>
                                                     <span class="txt">System Settings</span>
                                                 </a>
                                             </li> 
                                             <li>
                                                 <a id="link-authorize_config" href="<?php echo base_url(); ?>admin/authorize_payment_config">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-globe"></i>
                                                     <span class="txt">Authorize.net Config</span>
                                                 </a>
                                             </li>                                                 
@@ -506,13 +512,13 @@
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
                                                 <a id="link-graduate" href="<?php echo base_url(); ?>admin/graduate">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-user"></i>
                                                     <span class="txt">Toppers Graduate</span>
                                                 </a>
                                             </li> 
                                             <li>
                                                 <a id="link-charity" href="<?php echo base_url(); ?>admin/charity_fund">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-money"></i>
                                                     <span class="txt">Charity Fund</span>
                                                 </a>
                                             </li>                                                 
@@ -520,7 +526,7 @@
                                     </li>
                                     <li>
                                         <a <?php echo active_single_menu('professor', $page); ?> href="<?php echo base_url(); ?>admin/professor">
-                                            <i class="s16 fa fa-university"></i>
+                                            <i class="s16 fa fa-user"></i>
                                             <span class=txt>Professor </span>
                                         </a>
                                     </li>
@@ -627,13 +633,7 @@
                                                 </a>
                                             </li>                                                 
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <a <?php echo active_single_menu('video_streaming', $page); ?> href="<?php echo base_url(); ?>video_streaming">
-                                            <i class="s16 icomoon-icon-image-2"></i>
-                                            <span class=txt>Video Streaming </span>
-                                        </a>
-                                    </li>
+                                    </li>                                    
 
                                     <?php
                                     $pages = [

@@ -15,7 +15,7 @@
                         </div>-->
             <div class=panel-body>
                 <a href="#" class="links"   onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addbatch');" data-toggle="modal"><i class="fa fa-plus"></i> Batch</a>
-                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                <table id="datatable-list" class="table table-striped table-bordered table-responsive batch-details" cellspacing=0 width=100%>
                     <thead>
                         <tr>
                             <th>No</th>
@@ -38,7 +38,7 @@
                                     $explodedegree = explode(',', $row['degree_id']);
                                     foreach ($degree as $deg) {
                                         if (in_array($deg['d_id'], $explodedegree)) {
-                                            echo $deg['d_name'] . "<br> ";
+                                            echo "<span>" . $deg['d_name'] . "</span>";
                                         }
                                     }
                                     ?></td>
@@ -47,7 +47,7 @@
                                     $explodecourse = explode(',', $row['course_id']);
                                     foreach ($course as $crs) {
                                         if (in_array($crs->course_id, $explodecourse)) {
-                                            echo $crs->c_name . "<br>";
+                                            echo "<span>" . $crs->c_name . "</span>";
                                         }
                                     }
                                     ?>

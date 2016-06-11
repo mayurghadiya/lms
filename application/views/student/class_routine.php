@@ -73,6 +73,7 @@
                                         start: new Date(e.event.start)
                                     });
                                 },
+                                allDaySlot: false,
                                 timezone: "Etc/UTC",
                                 dataSource: {
                                     batch: true,

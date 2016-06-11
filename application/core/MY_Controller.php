@@ -26,6 +26,7 @@ class MY_Controller extends CI_Controller {
         if ($this->session->userdata('last_activity')) {
             user_activity();
         }
+        ini_set('max_execution_time', 500);
     }
 
     /**

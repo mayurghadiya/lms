@@ -1,134 +1,127 @@
 <?php
 $degree_list = $this->db->get('degree')->result();
 $subjects = $this->db->get_where('subject_manager', [
-    'sm_status' => 1
-])->result();
+            'sm_status' => 1
+        ])->result();
 ?>
 <div class="row">
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title>Add Professor</h4>
-                        </div>-->
-            <div class=panel-body>
-                <?php echo form_open(base_url() . 'admin/professor/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'professor-form', 'enctype' => 'multipart/form-data', 'target' => '_top')); ?>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("professor name"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <input id="professor-name" class="form-control" type="text" name="professor_name" />
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("email"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <input id="email" class="form-control" type="email" name="email" />
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("password"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <input id="password" class="form-control" type="password" name="password" />
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("mobile"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <input id="mobile" class="form-control" type="text" name="mobile" />
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("address"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <textarea id="address" class="form-control" name="address" ></textarea>
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("city"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <input id="city" class="form-control" type="text" name="city" />
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("zip code"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <input id="zip-code" class="form-control" type="text" name="zip_code" />
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("date of birth"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <input id="date-of-birth" class="form-control datepicker-normal" type="text" name="dob" />
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("occupation"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <input id="occupation" class="form-control" type="text" name="occupation" />
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("designation"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <input id="designation" class="form-control" type="text" name="designation" />
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <select id="degree" name="degree" class="form-control" >
-                            <option value="">Select</option>
-                            <?php foreach ($degree_list as $degree) { ?>
-                                <option value="<?php echo $degree->d_id; ?>"><?php echo $degree->d_name; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>	
-                </div>                        
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("branch"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <select id="branch" name="branch" class="form-control" >
-                            <option value="">Select</option>                                   
-                        </select>
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
-                    <div class="col-sm-8">
-                        <select required="" id="subjects" name="subjects[]" class="form-control" multiple="">
-                            <?php
-                            foreach($subjects as $subject) { ?>
-                            <option value="<?php echo $subject->sm_id; ?>"><?php echo $subject->subject_name; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("photo"); ?></label>
-                    <div class="col-sm-8">
-                        <input id="photo" class="form-control coverimage" type="file" name="userfile" accept="image/*"/>
-                    </div>	
-                    <div id="image_container"></div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label"><?php echo ucwords("about"); ?></label>
-                    <div class="col-sm-8">
-                        <textarea id="about" class="form-control" name="about"></textarea>
-                    </div>	
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-8">
-                        <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("add"); ?></button>
-                    </div>
-                </div>
-                <?php echo form_close(); ?>
+        <div class="panel-default toggle panelMove panelClose panelRefresh"></div>
+        <div class=panel-body>
+            <?php echo form_open(base_url() . 'admin/professor/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'professor-form', 'enctype' => 'multipart/form-data', 'target' => '_top')); ?>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("professor name"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <input id="professor-name" class="form-control" type="text" name="professor_name" />
+                </div>	
             </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("email"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <input id="email" class="form-control" type="email" name="email" />
+                </div>	
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("password"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <input id="password" class="form-control" type="password" name="password" />
+                </div>	
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("mobile"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <input id="mobile" class="form-control" type="text" name="mobile" />
+                </div>	
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("address"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <textarea id="address" class="form-control" name="address" ></textarea>
+                </div>	
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("city"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <input id="city" class="form-control" type="text" name="city" />
+                </div>	
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("zip code"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <input id="zip-code" class="form-control" type="text" name="zip_code" />
+                </div>	
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("date of birth"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <input id="date-of-birth" class="form-control datepicker-normal" type="text" name="dob" />
+                </div>	
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("occupation"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <input id="occupation" class="form-control" type="text" name="occupation" />
+                </div>	
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("designation"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <input id="designation" class="form-control" type="text" name="designation" />
+                </div>	
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <select id="degree" name="degree" class="form-control" >
+                        <option value="">Select</option>
+                        <?php foreach ($degree_list as $degree) { ?>
+                            <option value="<?php echo $degree->d_id; ?>"><?php echo $degree->d_name; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>	
+            </div>                        
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("branch"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <select id="branch" name="branch" class="form-control" >
+                        <option value="">Select</option>                                   
+                    </select>
+                </div>	
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                    <select required="" id="subjects" name="subjects[]" class="form-control" multiple="">
+                        
+                    </select>
+                </div>	
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("photo"); ?></label>
+                <div class="col-sm-8">
+                    <input id="photo" class="form-control coverimage" type="file" name="userfile" accept="image/*"/>
+                </div>	
+                <div id="image_container"></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label"><?php echo ucwords("about"); ?></label>
+                <div class="col-sm-8">
+                    <textarea id="about" class="form-control" name="about"></textarea>
+                </div>	
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("add"); ?></button>
+                </div>
+            </div>
+            <?php echo form_close(); ?>
         </div>
-        <!-- End .panel -->
     </div>
-    <!-- col-lg-12 end here -->
+    <!-- End .panel -->
+</div>
+<!-- col-lg-12 end here -->
 </div>
 
 <script type="text/javascript">
@@ -185,11 +178,11 @@ $subjects = $this->db->get_where('subject_manager', [
     $(document).ready(function () {
 
         $(".datepicker-normal").datepicker({
-             format: 'dd M, yyyy',
+            format: 'MM dd, yyyy',
             changeMonth: true,
             changeYear: true,
-            autoclose:true,
-            mixDate: new Date()
+            autoclose: true,
+            endDate: new Date()
         });
 
         //get branch from courses
@@ -204,6 +197,21 @@ $subjects = $this->db->get_where('subject_manager', [
                     var branch = jQuery.parseJSON(content);
                     $.each(branch, function (key, value) {
                         $('#branch').append('<option value=' + value.course_id + '>' + value.c_name + '</option>');
+                    });
+                }
+            });
+        });
+        
+        $('#branch').on('change',function(){
+            $('#subjects').find('option').remove().end();
+            var branch_id = $(this).val();
+            $.ajax({
+                url: '<?php echo base_url(); ?>admin/subject_list_from_branch/' + branch_id,
+                type: 'get',
+                success: function(content){
+                    var branch = jQuery.parseJSON(content);
+                    $.each(branch, function(key, value){
+                        $('#subjects').append('<option value='+value.sm_id+'>'+value.subject_name+'</option>');
                     });
                 }
             });

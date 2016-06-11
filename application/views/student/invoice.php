@@ -30,7 +30,7 @@
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Student Name:</strong> <?php echo $invoice->std_first_name . ' ' . $invoice->std_last_name; ?></li>
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Email: </strong><?php echo $invoice->email; ?><br></li>
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Mobile: </strong><?php echo $invoice->std_mobile; ?></li>
-                        <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Due Amount: </strong>$<?php echo $due_amount; ?></li>
+                        <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Outstanding Amount: </strong>$<?php echo $due_amount; ?></li>
                     </ul>
                 </div>
                 <div class=clearfix></div>
@@ -39,9 +39,8 @@
                         <tr>
                             <th class="text-center" style="width:20px;">SR</th>
                             <th>TITLE</th>
-                            <th>TOTAL PRICE</th>
-                            <th>PREVIOUS TOTAL PAID</th>
-                            <th class="text-right" style="width:120px;">CURRENT PAY</th>
+                            <th>MODE OF PAYMENT</th>
+                            <th class="text-right" style="width:120px;">AMOUNT</th>
                             <th class="text-right" style="width:120px;">TOTAL</th>
                         </tr>
                     </thead>
@@ -49,10 +48,16 @@
                         <tr>
                             <td class="text-center">1</td>
                             <td><?php echo $invoice->title; ?></td>
-                            <td>$<?php echo $invoice->total_fee; ?></td>
-                            <td class="text-left">$<?php echo $total_paid - $invoice->paid_amount; ?></td>
-                            <td class="text-left">$<?php echo $invoice->paid_amount; ?></td>
-                            <td class="text-right">$<?php echo $invoice->paid_amount; ?></td>
+                            <td>
+                                <?php
+                                if($invoice->payment_type == 'cheque')
+                                    echo 'Cheque';
+                                else
+                                    echo 'Online Banking';
+                                ?>
+                            </td>
+                            <td class="text-left"><?php echo system_info('currency') . $invoice->paid_amount; ?></td>
+                            <td class="text-right"><?php echo system_info('currency') . $invoice->paid_amount; ?></td>
                         </tr>
                     </tbody>
                 </table>

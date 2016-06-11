@@ -104,13 +104,19 @@
                                 <input type="text" name="ac_holder_name" id="ac_holder_name" class="form-control" required=""/>
                             </div>
                         </div>
+                        <div id="fees_main" class="form-group">
+                            <label class="col-sm-4 control-label">Date<span style="color:red">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" name="date" id="date" class="form-control datepicker" required=""/>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Description</label>
                             <div class="col-sm-8">
                                 <textarea name="c_description" id="c_description" rows="5" class="form-control"></textarea>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="col-sm-offset-4 col-sm-8">
                                 <button id="submit-form" type="submit" class="btn btn-info">Add</button>
@@ -133,6 +139,12 @@
     });
 
     $(document).ready(function () {
+        $('.datepicker').datepicker({
+            format: ' MM d, yyyy',
+            startDate: new Date(),
+            todayHighlight: true,
+            autoclose: true
+        });
         $("#makepayment").validate({
             rules: {
                 course: "required",

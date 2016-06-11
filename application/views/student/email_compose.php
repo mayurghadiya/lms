@@ -29,7 +29,7 @@
                     </div>       
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Cc</label>
+                        <label class="col-sm-2 control-label">External Email ID</label>
                         <div class="col-sm-7">
                             <input type="text" id="cc" name="cc" class="form-control"/>
                         </div>

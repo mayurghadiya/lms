@@ -19,46 +19,42 @@
                 <form class="form-horizontal" role="form" action="" method="post">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">From</label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" name="from" id="from" readonly=""
-                                   value="<?php echo $email->email_from; ?>"/>
+                        <div class="col-sm-10">
+                            <div class="email_data"><?php echo $email->email_from; ?></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Subject</label>
-                        <div class="col-sm-7">
-                            <textarea id="subject" class="form-control" readonly="" name="subject"><?php echo $email->subject ?></textarea>
+                        <div class="col-sm-10">
+                            <div class="email_data"><?php echo $email->subject; ?></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Cc</label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" name="cc" id="cc" readonly=""
-                                   value="<?php echo $email->cc; ?>"/>
+                        <div class="col-sm-10">
+                            <div class="email_data"><?php echo $email->cc; ?></div>
                         </div>
                     </div>
 
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
-                        <div class="col-sm-7">
-                            <textarea id="summernote" readonly="" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here">
-                                <?php echo $email->message; ?>
-                            </textarea>
+                        <div class="col-sm-10">
+                            <div class="email_data"><?php echo $email->message; ?></div>
                         </div>
                     </div>
 
                     <?php if ($email->file_name != '') { ?> 
-                        <div class="form-group">
+                    <div class="form-group">
                             <label class="col-sm-2 control-label">Attachments</label>
 
                             <?php
                             $file_names = explode(',', $email->file_name);
                             foreach ($file_names as $file) {
                                 ?>
-                                <a target="_blank" download href="<?php echo base_url('uploads/emails/' . $file); ?>" style="margin-left: 15px;"><?php echo $file; ?></a><br/>
+                                <a target="_blank" download href="<?php echo base_url('uploads/emails/' . $file); ?>" style="margin-left: 15px; margin-top:"><?php echo $file; ?></a><br/>
                             <?php } ?>
                         </div>
                 </div>
@@ -73,7 +69,9 @@
 </div>
 <!-- End .row -->
 </div>
-<!-- End contentwrapper -->
-</div>
-<!-- End #content -->
-</div>
+
+<style>
+    .email_data {
+        margin-top: 7px;
+    }
+</style>

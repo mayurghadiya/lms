@@ -6,7 +6,6 @@ $department = student_ratio_department_wise();
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/event_calendar/moment.js"></script> 
 <!-- charts js and library -->
 <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/exporting.js"></script>
 <!-- pie chart (male vs female) -->
 <script>
     $(function () {
@@ -680,15 +679,14 @@ foreach ($students as $student) {
     });
     });</script>
 <!-- Start .row -->
-<div class=row>
+<div class="row">
     <div class="col-lg-12 col-md-12 col-xs-12">
         <!-- col-lg-12 start here Event Calendar -->
         <div class="panel panel-default toggle">
             <!-- Start .panel -->
             <div class=panel-heading>
                 <h4 class=panel-title>Event Calendar</h4>
-                <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="icomoon-icon-minus"></i></a>
-                </div>
+
             </div>
             <div class=panel-body>
                 <div id="eventCalendarHumanDate"></div>
@@ -697,129 +695,131 @@ foreach ($students as $student) {
         <!-- End .panel -->
         <!-- start todo & time line -->
         <!-- To do list Start div-->
-        <div class="col-lg-5 col-md-5 col-xs-5">
-            <!--  To Do List -->
-            <div class="panel panel-default toggle">
-                <!-- Start .panel -->
-                <div class=panel-heading>
-                    <h4 class=panel-title>
-                        To Do List
-                    </h4>
-                </div>
-                <div class=panel-body>
-                    <div class=todo-widget>
-                        <!-- .todo-widget -->
-                        <div class=todo-header>
-                            <div id="updateformhtml"></div>
-                            <div class="todo-addform" id="todo-addform">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h4 class=todo-period>Add New ToDo</h4>
-                                        <form id="frmtodo" class="form-horizontal form-groups-bordered validate">
-                                            <div class=form-group>
-                                                <label class="control-label col-lg-4">Task Title</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" id="todo_title" class="form-control" name="todo_title" >
-                                                </div>
-                                            </div>
-                                            <div class=form-group>
-                                                <label class="control-label col-lg-4">Task Date</label>
-                                                <div class="col-sm-8">
-                                                    <input id="basic-datepicker" type="text" name="tado_date" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class=form-group>
-                                                <label class="control-label col-lg-4">Task Time</label>
-                                                <div class="col-sm-8">
-                                                    <div class="input-group bootstrap-timepicker">
-                                                        <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                                        <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-xs-5">
+                <!--  To Do List -->
+                <div class="panel panel-default toggle">
+                    <!-- Start .panel -->
+                    <div class=panel-heading>
+                        <h4 class=panel-title>
+                            To Do List
+                        </h4>
+                    </div>
+                    <div class=panel-body>
+                        <div class=todo-widget>
+                            <!-- .todo-widget -->
+                            <div class=todo-header>
+                                <div id="updateformhtml"></div>
+                                <div class="todo-addform" id="todo-addform">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h4 class=todo-period>Add New ToDo</h4>
+                                            <form id="frmtodo" class="form-horizontal form-groups-bordered validate">
+                                                <div class=form-group>
+                                                    <label class="control-label col-lg-4">Task Title</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" id="todo_title" class="form-control" name="todo_title" >
                                                     </div>
-                                                    <label id="minute-step-timepicker-error" style="display:none;" class="error" for="minute-step-timepicker">Select time</label>
                                                 </div>
-                                            </div>
-                                            <div class=form-group>
-                                                <div class="col-sm-offset-4 col-sm-8">
-                                                    <input type="submit" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
+                                                <div class=form-group>
+                                                    <label class="control-label col-lg-4">Task Date</label>
+                                                    <div class="col-sm-8">
+                                                        <input id="basic-datepicker" type="text" name="tado_date" class="form-control">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                                <div class=form-group>
+                                                    <label class="control-label col-lg-4">Task Time</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group bootstrap-timepicker">
+                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                                            <input id="minute-step-timepicker" name="todo_time" type="text" class="form-control col-lg-8">
+                                                        </div>
+                                                        <label id="minute-step-timepicker-error" style="display:none;" class="error" for="minute-step-timepicker">Select time</label>
+                                                    </div>
+                                                </div>
+                                                <div class=form-group>
+                                                    <div class="col-sm-offset-4 col-sm-8">
+                                                        <input type="submit" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class=todo-search>
+                                    <form>
+                                        <input class=form-control name=search placeholder="Search for todo ...">
+                                    </form>
+                                </div>
+                                <div class=todo-add>
+                                    <a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a>
+                                </div>
                             </div>
-                            <div class=todo-search>
-                                <form>
-                                    <input class=form-control name=search placeholder="Search for todo ...">
-                                </form>
+                            <h4 class=todo-period>To Do List</h4>
+                            <div id="wait" class="loading_img">
+                                <img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading...
                             </div>
-                            <div class=todo-add>
-                                <a href=# class="btn btn-primary tip" id="addnewtodo" title="Add new todo"><i class="icomoon-icon-plus mr0"></i></a>
-                            </div>
-                        </div>
-                        <h4 class=todo-period>To Do List</h4>
-                        <div id="wait" class="loading_img">
-                            <img src='<?php echo base_url() . 'assets/img/preloader.gif' ?>' width="64" height="64" /><br>Loading...
-                        </div>
-                        <ul class="todo-list" id="today">
-                            <?php foreach ($todolist as $todo) { ?>  
-                                <li class="todo-task-item <?php
-                                if ($todo->todo_status == "0") {
-                                    echo "task-done";
-                                }
-                                ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
-                                    <div class=checkbox-custom><input type="checkbox" <?php
-                                        if ($todo->todo_status == "0") {
-                                            echo "checked=''";
-                                        }
-                                        ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
-                                    <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
-                                    <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
-                                    <div class="updateclick_box">
-                                        <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    </div>
-                                    <div class="todo-close_box">
-                                        <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
-                                    </div>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </div>
-                </div>
-                <!-- End .todo-widget -->
-            </div>
-        </div>
-        <div class="col-lg-7 col-md-7 col-xs-7">
-            <div class="panel panel-default toggle">
-                <!-- Start .panel -->
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        Recently Added Faculty
-                    </h4>
-                </div>
-
-                <div class="panel-body text-center">
-                    <div id="checkAll-active">                    
-                        <div class="gallery sortable-layout scroll_bar_faculty">
-                            <?php foreach ($recent_professor as $teacher) { ?>  
-                                <div class="col-lg-4 col-md-4 col-xs-12">
-                                    <div class="img_box_faculty">
-                                        <?php if ($teacher->image_path != "") { ?> 
-                                            <img class="img-responsive" src="<?php echo base_url() ?>uploads/professor/<?php echo $teacher->image_path; ?>" alt="image alt">
-                                        <?php } else { ?>
-                                            <img class="img-responsive" title="No Image Faculty" width="100px" src="<?php echo base_url() ?>uploads/no-image.jpg" />
-                                        <?php } ?>
-                                    </div>
-                                    <div class="details_faculty">
-                                        <h4 class="title">
-                                            <b><?php echo $teacher->name; ?></b> 
-                                            <small><?php echo date_duration($teacher->created_at); ?></small>
-                                        </h4>
-                                        <div class="btn-group" role="group">                     
-                                            <a href="#" class="btn btn-default btn-xs" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_view_profile/<?php echo $teacher->professor_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top">More Details</a>
+                            <ul class="todo-list" id="today">
+                                <?php foreach ($todolist as $todo) { ?>  
+                                    <li class="todo-task-item <?php
+                                    if ($todo->todo_status == "0") {
+                                        echo "task-done";
+                                    }
+                                    ?>" id="todo-task-item-id<?php echo $todo->todo_id; ?>">
+                                        <div class=checkbox-custom><input type="checkbox" <?php
+                                            if ($todo->todo_status == "0") {
+                                                echo "checked=''";
+                                            }
+                                            ?> value="<?php echo $todo->todo_id ?>" id="checkbox<?php echo $todo->todo_id ?>" class="taskstatus"><label for=checkbox1></label></div>
+                                        <div class=todo-task-text><?php echo $todo->todo_title; ?></div>
+                                        <div class="todo-category"> <i aria-hidden="true" class="mar4top fa fa-calendar"></i> <?php echo date_duration($todo->todo_datetime); ?></div>
+                                        <div class="updateclick_box">
+                                            <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                         </div>
-                                    </div>                                                
-                                </div>                            
-                            <?php } ?>
+                                        <div class="todo-close_box">
+                                            <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
+                                        </div>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End .todo-widget -->
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-xs-7">
+                <div class="panel panel-default toggle">
+                    <!-- Start .panel -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            Recently Added Professor 
+                        </h4>
+                    </div>
+
+                    <div class="panel-body text-center">
+                        <div id="checkAll-active">                    
+                            <div class="gallery sortable-layout scroll_bar_faculty">
+                                <?php foreach ($recent_professor as $teacher) { ?>  
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <div class="img_box_faculty">
+                                            <?php if ($teacher->image_path != "") { ?> 
+                                                <img class="img-responsive" src="<?php echo base_url() ?>uploads/professor/<?php echo $teacher->image_path; ?>" alt="image alt">
+                                            <?php } else { ?>
+                                                <img class="img-responsive" title="No Image Faculty" width="100px" src="<?php echo base_url() ?>uploads/no-image.jpg" />
+                                            <?php } ?>
+                                        </div>
+                                        <div class="details_faculty">
+                                            <h4 class="title">
+                                                <b><?php echo $teacher->name; ?></b> 
+                                                <small><?php echo date_duration($teacher->created_at); ?></small>
+                                            </h4>
+                                            <div class="btn-group" role="group">                     
+                                                <a href="#" class="btn btn-default btn-xs" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_view_profile/<?php echo $teacher->professor_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top">More Details</a>
+                                            </div>
+                                        </div>                                                
+                                    </div>                            
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -839,7 +839,7 @@ foreach ($students as $student) {
             </div>
             <div class="panel-body margin25top">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 hide">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="panel-title">Male to Female Course count Ratio</div>
@@ -847,7 +847,7 @@ foreach ($students as $student) {
                             <div class="panel-body" id="course_count_ratio" style="height: 450px;"></div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="panel-title">Students enrolled</div>
@@ -858,9 +858,9 @@ foreach ($students as $student) {
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <div class="panel-title">Male to Female Course count Ratio</div>
+                                <div class="panel-title">Department student count Ratio</div>
                             </div>
-                            <div class="panel-body" id="course-male-female" style="height: 500px;"></div>
+                            <div class="panel-body" id="course-male-female" style="height: 500px !important; min-height: 700px !important;  display:block;"></div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -868,7 +868,7 @@ foreach ($students as $student) {
                             <div class="panel-heading">
                                 <div class="panel-title">Students Enrolled (Coursewise)</div>
                             </div>
-                            <div class="panel-body" id="course-wise-student" style="height: 500px;"></div>
+                            <div class="panel-body" id="course-wise-student" style="height: 550px !important; min-height: 500px !important; display:block;"></div>
                         </div>
                     </div>
                 </div>

@@ -49,18 +49,18 @@
                             <label class="col-sm-4 control-label"><?php echo ucwords("Event Time"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <div class="input-group bootstrap-timepicker">
-                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                <input type="text" id="event_time" class="form-control" name="event_time" value="" readonly="" />
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                    <input type="text" id="event_time" class="form-control" name="event_time" value="" readonly="" />
                                 </div>
                             </div>
-                        </div>
+                        </div>                       
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Group"); ?></label>
                             <div class="col-sm-8">
                                 <select class="form-control" name="group">
                                     <option value="">Select</option>
                                     <?php foreach ($group as $row) { ?>
-                                        <option value="<?php echo $row->g_id; ?>"><?php echo $row->group_name; ?></option>
+                                    <option value="<?php echo $row->g_id; ?>"><?php echo ucfirst($row->group_name); ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -79,32 +79,39 @@
 </div>
 <script type="text/javascript">
 
-    $().ready(function () {
-         $('#event_time').timepicker({
+    $(document).ready(function () {
+        var date = '';
+        var start_date = '';
+        $('#event_time').timepicker({
             upArrowStyle: 'fa fa-angle-up',
             downArrowStyle: 'fa fa-angle-down',
             minuteStep: 30
-    });
-        $("#datepicker-date").datepicker({
-             format: ' MM d, yyyy',
-            changeMonth: true,
-            changeYear: true,
-            autoclose:true,
-            minDate: new Date(),
-            onClose: function (selectedDate) {
-                $("#datepicker-end-date").datepicker("option", "minDate", selectedDate);
-            }
         });
-        $("#datepicker-end-date").datepicker({
-            format: ' MM d, yyyy', autoclose:true,
-            changeMonth: true,
-            changeYear: true,
-            autoclose:true,
-            minDate: new Date(),
-            onClose: function (selectedDate) {
-                //$(".datepicker-normal").datepicker("option", "maxDate", new Date());
-            }
-        })
+
+        $("#datepicker-date").datepicker({
+            format: ' MM d, yyyy',
+            startDate: new Date(),
+            todayHighlight: true,
+            autoclose: true
+        });
+
+        $('#datepicker-date').on('change', function () {
+            date = new Date($(this).val());
+            start_date = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+            console.log(start_date);
+            
+            setTimeout(function () {
+                $("#datepicker-end-date").datepicker({
+                    format: ' MM d, yyyy',
+                    autoclose: true,
+                    todayHighlight: true,
+                    startDate: start_date
+                });
+            }, 700);
+        });
+
+
+
         $("#eventform").validate({
             rules: {
                 event_name: "required",

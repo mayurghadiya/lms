@@ -15,6 +15,7 @@
                         </div>-->
             <div class=panel-body>
                 <iframe frameborder="0" src="<?php echo base_url(); ?>professor/professor_class_routine" width="100%" height="500px"></iframe>
+
             </div>
         </div>
         <!-- End .panel -->

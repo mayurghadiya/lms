@@ -2667,7 +2667,8 @@ class Admin extends MY_Controller {
                     'payment_type' => 'cheque',
                     'cheque_number' => $_POST['cheque_number'],
                     'bank_name' => $_POST['bank_name'],
-                    'ac_holder_name' => $_POST['ac_holder_name']
+                    'ac_holder_name' => $_POST['ac_holder_name'],
+                    'paid_created_at' => date('Y-m-d H:i:s', strtotime($_POST['date'] . date('H:i:s')))
                 ]);
                 $this->session->set_flashdata('flash_message', 'Student payment is successfully done.');
             } elseif ($param2 == 'udpate') {
@@ -6178,5 +6179,15 @@ class Admin extends MY_Controller {
             redirect(base_url()."admin/forumcomment/".$param2);
         }
         
+    }
+    
+    /**
+     * Subject from branch
+     * @param string $branch
+     */
+    function subject_list_from_branch($branch) {
+        $branch = $this->Crud_model->subject_list_from_branch($branch);
+        
+        echo json_encode($branch);
     }
 }

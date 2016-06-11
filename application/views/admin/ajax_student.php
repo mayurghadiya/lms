@@ -3,9 +3,11 @@
         <tr>
             <th>No</th>	
             <th>Image</th>
+            <th>Roll No</th>
             <th>Student Name</th>												
             <th>Email</th>												
-            <th>Mobile</th>												
+            <th>Mobile</th>	
+            <th>Address</th>
             <th>Action</th>	
         </tr>
     </thead>
@@ -28,10 +30,12 @@
                         }
                     }
                     ?>
-                </td>										
+                </td>		
+                <td><?php echo $row->std_roll; ?></td>
                 <td><?php echo $row->std_first_name . " " . $row->std_last_name; ?></td>					
                 <td><?php echo $row->email; ?></td>											
-                <td><?php echo $row->std_mobile; ?></td>											
+                <td><?php echo $row->std_mobile; ?></td>
+                <td><?php echo $row->address; ?></td>
                 <td class="menu-action">	
 
                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_student/<?php echo $row->std_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>

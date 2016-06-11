@@ -48,77 +48,114 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-9">                        
+                                        <div class="col-sm-9" style="margin-left: -80px;">                        
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">&nbsp;</label>
+                                                <div class="col-sm-8 controls">
+                                                    <?php
+                                                    $message = $this->session->flashdata('message');
+                                                    if ($message != '') {
+                                                        ?>
+                                                        <div class="col-md-9 alert alert-success">
+                                                            <button class="close" data-dismiss="alert">&times;</button>
+                                                            <p><?php echo $message; ?></p>
+                                                        </div>    
+                                                    <?php } ?>
 
-                                            <div class="box-content"> 
-                                                <div class="">
-                                                    <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?></span> 
-                                                </div>                                    
-
+                                                    <?php if (isset($error) && $error != '') { ?>
+                                                        <div class="col-md-9 alert alert-danger">
+                                                            <button class="close" data-dismiss="alert">&times;</button>
+                                                            <p><?php echo $error; ?></p>
+                                                        </div> 
+                                                    <?php } ?>
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-9">       
+                                            <div class="box-content">                                                 
                                                 <div class="padded">
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 control-label"><?php echo ucwords("professor name"); ?><span style="color:red">*</span></label>
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("professor name"); ?></label>
                                                         <div class="col-sm-5">
                                                             <input id="professor-name" readonly="" class="form-control" type="text" name="professor_name" required=""
                                                                    value="<?php echo $professor['name']; ?>"/>
                                                         </div>	
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 control-label"><?php echo ucwords("email"); ?><span style="color:red">*</span></label>
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("email"); ?></label>
                                                         <div class="col-sm-5">
                                                             <input id="email" class="form-control" readonly=""  type="email" name="email" required=""
                                                                    value="<?php echo $professor['email']; ?>"/>
                                                         </div>	
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("password"); ?></label>
+                                                        <div class="col-sm-5">
+                                                            <input class="form-control" type="password" name="password" value="" placeholder="password">
+                                                        </div>	
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("new password"); ?></label>
+                                                        <div class="col-sm-5">
+                                                            <input class="form-control" type="password" name="new_password" value="" placeholder="password">
+                                                        </div>	
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("confirm password"); ?></label>
+                                                        <div class="col-sm-5">
+                                                            <input class="form-control" type="password" name="confirm_password" value="" placeholder="password">
+                                                        </div>	
+                                                    </div>
 
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 control-label"><?php echo ucwords("mobile"); ?><span style="color:red">*</span></label>
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("mobile"); ?></label>
                                                         <div class="col-sm-5">
                                                             <input id="mobile" class="form-control" type="text" name="mobile" 
                                                                    value="<?php echo $professor['mobile']; ?>"/>
                                                         </div>	
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 control-label"><?php echo ucwords("address"); ?><span style="color:red">*</span></label>
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("address"); ?></label>
                                                         <div class="col-sm-5">
                                                             <textarea id="address" class="form-control" name="address" ><?php echo $professor['address']; ?></textarea>
                                                         </div>	
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 control-label"><?php echo ucwords("city"); ?><span style="color:red">*</span></label>
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("city"); ?></label>
                                                         <div class="col-sm-5">
                                                             <input id="city" class="form-control" type="text" name="city" 
                                                                    value="<?php echo $professor['city']; ?>"/>
                                                         </div>	
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 control-label"><?php echo ucwords("zip code"); ?><span style="color:red">*</span></label>
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("zip code"); ?></label>
                                                         <div class="col-sm-5">
                                                             <input id="zip-code" class="form-control" type="text" name="zip_code"  value="<?php echo $professor['zip']; ?>"/>
                                                         </div>	
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 control-label"><?php echo ucwords("date of birth"); ?><span style="color:red">*</span></label>
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("date of birth"); ?></label>
                                                         <div class="col-sm-5">
                                                             <input id="date-of-birth" class="form-control datepicker-normal" type="text" name="dob"    value="<?php echo $professor['dob']; ?>"/>
                                                         </div>	
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 control-label"><?php echo ucwords("occupation"); ?><span style="color:red">*</span></label>
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("occupation"); ?></label>
                                                         <div class="col-sm-5">
                                                             <input id="occupation" class="form-control" readonly=""  type="text" name="occupation" required=""
                                                                    value="<?php echo $professor['occupation']; ?>"/>
                                                         </div>	
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 control-label"><?php echo ucwords("designation"); ?><span style="color:red">*</span></label>
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("designation"); ?></label>
                                                         <div class="col-sm-5">
                                                             <input id="designation" class="form-control" readonly=""  type="text" name="designation" required=""
                                                                    value="<?php echo $professor['designation']; ?>"/>
                                                         </div>	
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("department"); ?></label>
                                                         <div class="col-sm-5">
                                                             <select id="degree" name="degree" readonly="" disabled=""   class="form-control" required="">
                                                                 <option value="">Select</option>
@@ -130,7 +167,7 @@
                                                         </div>	
                                                     </div>                        
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 control-label"><?php echo ucwords("branch"); ?><span style="color:red">*</span></label>
+                                                        <label class="col-sm-3 control-label"><?php echo ucwords("branch"); ?></label>
                                                         <div class="col-sm-5">
                                                             <select id="branch" name="branch" readonly=""  disabled="" class="form-control" required="">
                                                                 <option value="">Select</option>   
@@ -199,8 +236,7 @@
 
     $().ready(function () {
         $.validator.setDefaults({
-
-            submitHandler: function (form) {                
+            submitHandler: function (form) {
                 form.submit();
             }
         });
@@ -256,7 +292,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(".datepicker-normal").datepicker({
-            format: ' MM d, yyyy', autoclose:true,
+            format: ' MM d, yyyy', autoclose: true,
             maxDate: '0',
             changeMonth: true,
             changeYear: true
