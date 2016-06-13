@@ -41,6 +41,7 @@ if (!function_exists('user_permission')) {
         $CI->db->where($run);
         $CI->db->where('user_type',$CI->session->userdata('login_type'));
         $user_role_query=$CI->db->get('group')->result_array();
+    
         if(empty($user_role_query))
         {
             $url=base_url().$CI->session->userdata('login_type').'/dashboard';
@@ -48,26 +49,56 @@ if (!function_exists('user_permission')) {
         }
         else
         {
-            $module_role_query = $CI->db->get_where('assign_module' , array('group_id' => $user_role_query[0]['g_id']))->row();
-         $assign_module_id=explode(',',$module_role_query->module_id);
-        foreach($assign_module_id as $assign_module_id_row)
-        {
-                 $module_role_query_final = $CI->db->get_where('modules' , array('module_id' => $assign_module_id_row))->result_array();
-//                
-//                 foreach($module_role_query_final as $module_role_query_row)
-//                 {	
-                        $final_module_assgin[] = $module_role_query_final[0]['module_name_file'];
-                 //}
-        }
-       
+            $query= "select * from assign_module where ";
+            foreach ($user_role_query as $ur) {
+                $query .="group_id=".$ur['g_id']." or ";
+            }
+            $query = rtrim($query, ' or');
+             $module_role_query = $CI->db->query($query)->result_array();
+
+           // $module_role_query = $CI->db->get_where('assign_module' , array('group_id' => $user_role_query[0]['g_id']))->row();
+          $assign_module_id=array();
+             foreach ($module_role_query as $mr) {
+                $mod[]=explode(',',$mr['module_id']);
+            }
+            foreach ($mod as $dd)
+            {
+                foreach($dd as $d)
+                {
+                    $assign_module_id[]=$d;
+                }                
+            }
+            $assign_module_id=array_unique($assign_module_id);
+            
+            $query1= "select * from modules where ";
+            foreach ($assign_module_id as $assign_module_id_row) {
+                $query1 .="module_id=".$assign_module_id_row." or ";
+            }
+            $query1 = rtrim($query1, ' or');
+             $module_role_query_final = $CI->db->query($query1)->result_array();
+             foreach($module_role_query_final as $mf)
+             {
+                $final_module_assgin[] = $mf['module_name_file'];
+             }
+             
+//            
+//            
+        // $assign_module_id=explode(',',$module_role_query->module_id);
+//        foreach($assign_module_id as $assign_module_id_row)
+//        {
+//                 $module_role_query_final = $CI->db->get_where('modules' , array('module_id' => $assign_module_id_row))->result_array();
+////                
+////                 foreach($module_role_query_final as $module_role_query_row)
+////                 {	
+//                        $final_module_assgin[] = $module_role_query_final[0]['module_name_file'];
+//                 //}
+//        }
         if(!in_array($CI->uri->segment(2),$final_module_assgin))
         {
             //echo 'iffffffff';
            $url=base_url().$CI->session->userdata('login_type').'/dashboard';
            echo "<script>alert('You have not permission to access this page.'); window.location.href ='".$url."'</script>";
         }
-//        echo $CI->uri->segment(2);
-//       exit;
         }
         
 
