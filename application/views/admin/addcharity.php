@@ -193,10 +193,11 @@
 
         $(document).ready(function () {
             $('.datepicker-normal').datepicker({
-                format: ' MM d, yyyy', startDate : new Date(),
+                format: ' MM d, yyyy', 
                 autoclose:true,
                 changeMonth: true,
                 changeYear: true,
+                startDate: new Date(),
             });
         })
     </script>

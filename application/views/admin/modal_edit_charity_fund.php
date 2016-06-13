@@ -118,7 +118,7 @@ $edit = $this->db->get_where('charity_fund', [
                     <label class="col-sm-4 control-label"><?php echo ucwords("date"); ?></label>
                     <div class="col-sm-8">
                         <input class="form-control datepicker-normal" readonly="" required="" type="text" name="date"
-                               value="<?php echo date('m/d/Y', strtotime($edit->donation_date)); ?>"/>
+                               value="<?php echo date('F d, Y', strtotime($edit->donation_date)); ?>"/>
                     </div>	
                 </div>
                 <div class="form-group">
@@ -219,7 +219,7 @@ $edit = $this->db->get_where('charity_fund', [
 
     $(document).ready(function () {
         $('.datepicker-normal').datepicker({
-            dateFormat: 'dd M yy',
+            format: ' MM d, yyyy', 
             changeMonth: true,
             changeYear: true,
             minDate: new Date(),

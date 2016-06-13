@@ -2,14 +2,14 @@
 $professor = $this->db->get_where('professor', ['professor_id' => $param2])->row();
 $degree_list = $this->db->get('degree')->result();
 $subjects = $this->db->get_where('subject_manager', [
-    'sm_status' => 1
-])->result();
+            'sm_status' => 1
+        ])->result();
 $assigned_subjects = explode(',', $professor->subjects);
 ?>
 
 <div class=col-lg-12>
     <!-- col-lg-12 start here -->
-    <div class="panel-default toggle panelMove panelClose panelRefresh">
+    <div class="panel-default toggle panelMove panelClose panelRefresh"></div>
         <!-- Start .panel -->
         <!--        <div class=panel-heading>
                     <h4 class=panel-title>Update Professor</h4>
@@ -110,11 +110,10 @@ $assigned_subjects = explode(',', $professor->subjects);
                     <label class="col-sm-4 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
                         <select required="" id="subjects" name="subjects[]" class="form-control" multiple="">
-                            <?php
-                            foreach($subjects as $subject) { ?>
-                            <option value="<?php echo $subject->sm_id; ?>"
-                                    <?php if(in_array($subject->sm_id, $assigned_subjects)) echo 'selected'; ?>><?php echo $subject->subject_name; ?></option>
-                            <?php } ?>
+                            <?php foreach ($subjects as $subject) { ?>
+                                <option value="<?php echo $subject->sm_id; ?>"
+                                        <?php if (in_array($subject->sm_id, $assigned_subjects)) echo 'selected'; ?>><?php echo $subject->subject_name; ?></option>
+                                    <?php } ?>
                         </select>
                     </div>	
                 </div>
@@ -147,8 +146,8 @@ $assigned_subjects = explode(',', $professor->subjects);
              format:'MM d, yyyy',
             changeMonth: true,
             changeYear: true,
-            autoclose:true,
-            mixDate: new Date()
+            autoclose: true,
+            endDate: new Date()
         });
         $("#professor-form").validate({
             rules: {
@@ -188,7 +187,12 @@ $assigned_subjects = explode(',', $professor->subjects);
         });
 
         $(document).ready(function () {
-
+            
+            setTimeout(function(){
+                var branch_data = $('#branch').val();
+                branch_subjects(branch_data);
+            }, 1500);
+            
             $('#branch').find('option').remove().end();
             var degree_id = $('#degree').val();
             $.ajax({
@@ -220,6 +224,27 @@ $assigned_subjects = explode(',', $professor->subjects);
                     }
                 });
             });
+
+
+            $('#branch').on('change', function () {                
+                var branch_id = $(this).val();
+                branch_subjects(branch_id);
+            });
+
+            function branch_subjects(branch_id) {
+                $('#subjects').find('option').remove().end();
+                $.ajax({
+                    url: '<?php echo base_url(); ?>admin/subject_list_from_branch/' + branch_id,
+                    type: 'get',
+                    success: function (content) {
+                        var branch = jQuery.parseJSON(content);
+                        $.each(branch, function (key, value) {
+                            $('#subjects').append('<option value=' + value.sm_id + '>' + value.subject_name + '</option>');
+                        });
+                    }
+                });
+            }
+
 
         });
     </script>

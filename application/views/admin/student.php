@@ -22,7 +22,7 @@
                         <select class="form-control filter-rows" name="filterdegree" id="filterdegree" >
                             <option value="">Select department</option>
                             <?php
-                            $datadegree = $this->db->get_where('degree', array('d_status' => 1))->result();
+                            $datadegree = $this->db->order_by('d_name', 'ASC')->get_where('degree', array('d_status' => 1))->result();
                             foreach ($datadegree as $rowdegree) {
                                 ?>
                                 <option value="<?= $rowdegree->d_id ?>"><?= $rowdegree->d_name ?></option>

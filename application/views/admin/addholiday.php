@@ -28,7 +28,7 @@ $semesters = $this->db->get('semester')->result_array();
                             <label class="col-sm-4 control-label"><?php echo ucwords("start date"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="holiday_startdate" id="holiday_startdate"/>
-                                
+
                             </div>	
                         </div>
                         <div class="form-group">
@@ -64,26 +64,28 @@ $semesters = $this->db->get('semester')->result_array();
 <script>
 
     $(document).ready(function () {
+        var date = '';
+        var start_date = '';
+
         $("#holiday_startdate").datepicker({
             format: ' MM dd, yyyy',
-            changeMonth: true,
-            changeYear: true,
             startDate: new Date(),
-            autoclose: true,            
-            onBlur: function (selectedDate) {
-                alert(selectedDate);
-                $("#holiday_enddate").datepicker("option", "startDate", selectedDate);
-            }
+            todayHighlight: true,
+            autoclose: true
         });
 
-        $("#holiday_enddate").datepicker({
-            format: ' MM dd, yyyy',           
-            changeMonth: true,
-            changeYear: true,
-            autoclose: true,
-            onClose: function (selectedDate) {
-                $("#holiday_startdate").datepicker("option", "endDate", selectedDate);
-            }
+        $('#holiday_startdate').on('change', function () {
+            date = new Date($(this).val());
+            start_date = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+            console.log(start_date);
+            setTimeout(function () {
+                $("#holiday_enddate").datepicker({
+                    format: ' MM dd, yyyy',
+                    todayHighlight: true,
+                    startDate: start_date,
+                    autoclose: true,
+                });
+            }, 700);            
         });
 
         $("#holidayform").validate({

@@ -35,30 +35,28 @@
                                 $sent_list = $professor->email;
                             }
                             ?>
-                            <textarea class="form-control" id="sent_to" name="to" style="height: 75px" readonly=""><?php echo rtrim($sent_list, ', '); ?></textarea>
+                            <div class="email_data"><?php echo rtrim($sent_list, ', '); ?></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Subject</label>
                         <div class="col-sm-9">
-                            <input type="text" id="subject" class="form-control" name="subject" readonly=""
-                                   value="<?php echo $email->subject ?>"/>
+                            <div class="email_data"><?php echo $email->subject; ?></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Cc</label>
                         <div class="col-sm-9">
-                            <input type="text" id="cc" class="form-control" name="cc" readonly=""
-                                   value="<?php echo $email->cc ?>"/>
+                            <div class="email_data"><?php echo $email->cc; ?></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
                         <div class="col-sm-9">
-                            <div style="margin-top: 8px;"><?php echo $email->message; ?></div>
+                            <div class="email_data"><?php echo $email->message; ?></div>
                         </div>
                     </div>
 
@@ -97,3 +95,8 @@ $(document).ready(function(){
         });
 })
 </script>
+<style>
+    .email_data{
+        margin-top: 7px;
+    }
+    </style>

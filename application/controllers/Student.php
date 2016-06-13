@@ -38,8 +38,8 @@ class Student extends MY_Controller {
                     'am_batch' => $student_detail->std_batch
                 ))->result();
         //$this->db->get_where('study_resources')->result_array();
-        $this->data['studyresource'] = $this->db->select('study_filename, study_desc, study_title')->from('study_resources')->get()->result_array();
-        $this->data['library'] = $this->db->get_where('library_manager')->result_array();
+        $this->data['studyresource'] = $this->db->select('study_filename, study_desc, study_title')->from('study_resources')->order_by('study_id', 'DESC')->get()->result_array();
+        $this->data['library'] = $this->db->order_by('created_date', 'DESC')->get_where('library_manager')->result_array();
         $this->data['exam_listing'] = $this->student_exam_listing_widget($student_detail);
         $this->data['cms_pages'] = $this->student_cms_page_list_widget($student_detail);
         $streaming = $this->streaming_list_widget($student_detail);
@@ -820,7 +820,7 @@ class Student extends MY_Controller {
 
             $this->data['register'] = $this->db->query('SELECT * FROM vocational_course 
                     WHERE EXISTS (SELECT vocational_course_id FROM vocational_course_fee
-                    WHERE vocational_course_fee.vocational_course_id = vocational_course.vocational_course_id and vocational_course_fee.student_id= ' . $this->session->userdata('student_id') . ')')->result_array();
+                    WHERE vocational_course_fee.vocational_course_id = vocational_course.vocational_course_id and vocational_course_fee.student_id= ' . $this->session->userdata('student_id') . ')  ORDER BY vocational_course.course_startdate DESC')->result_array();
             
             //$page_data['vocationalcourse'] = $this->db->get_where('vocational_course',array('status'=>1))->result_array();
 
@@ -1185,6 +1185,7 @@ class Student extends MY_Controller {
                     ));
                     //remove session
                     $this->session->unset_userdata('payment_info');
+                    $this->session->set_flashdata('flash_message', 'Transaction successfully completed.');
                     redirect(base_url('student/fee_record'));
                 } else {
                     $this->session->set_flashdata('Transaction incomplete', '<p>' . $this->authorize_net->getError() . '</p>');
@@ -1371,7 +1372,7 @@ class Student extends MY_Controller {
         $year = date('Y');
         $this->data['page'] = 'holiday';
         $this->data['title'] = 'Holiday List';
-        $this->data['holiday'] = $this->db->order_by('holiday_startdate', 'DESC')->where('holiday_year >=',$year)->get('holiday')->result_array();
+        $this->data['holiday'] = $this->db->order_by('holiday_startdate', 'ASC')->where('holiday_startdate >= ', date('Y-m-d'))->get('holiday')->result_array();
         $this->__site_template('student/holiday', $this->data);
     }
 

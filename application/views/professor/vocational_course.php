@@ -35,7 +35,7 @@
                                 <td><?php echo $row['course_name']; ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($row['course_startdate'])); ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($row['course_enddate'])); ?></td>    
-                                <td><?php echo $row['course_fee']; ?></td>                                  
+                                <td><?php echo system_info('currency') . $row['course_fee']; ?></td>                                  
                                 <td>
                                     <?php if ($row['status'] == '1') { ?>
                                         <span>Active</span>
@@ -44,7 +44,8 @@
                                     <?php } ?>
                                 </td>  
                                 <td>
-                                    <a href="#" onclick="showAjaxModal('<?php echo base_url();?>professor/vocational_student/<?php echo $row['vocational_course_id'];?>');" data-original-title="registered student" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">View</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url();?>professor/vocational_student/<?php echo $row['vocational_course_id'];?>');" data-original-title="registered student" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
+                                            <i class="fa fa-desktop" aria-hidden="true"></i>View</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>																				

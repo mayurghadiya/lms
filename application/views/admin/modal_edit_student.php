@@ -373,7 +373,7 @@ endforeach;
         $("#birthdate1").datepicker({
         });
         $("#basic-datepicker").datepicker({
-            startDate: new Date(),
+            endDate: new Date(),
             format: "MM d, yyyy",
             autoclose: true});
 

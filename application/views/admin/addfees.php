@@ -216,32 +216,24 @@
 <script>
     $(document).ready(function () {
         $("#start_date").datepicker({
-            format: 'MM d, yyyy',
-            changeMonth: true,
-            changeYear: true,
-            autoclose:true,
-            minDate: new Date(),
-            onClose: function (selectedDate) {
-                $("#end_date").datepicker("option", "minDate", selectedDate);
-            }
+            format: 'MM dd, yyyy',
+            todayHighlight: true,
+            autoclose: true,
+            startDate: new Date()
         });
         $("#end_date").datepicker({
-            format: 'MM d, yyyy',
-            changeMonth: true,
-            changeYear: true,
-            autoclose:true,
-            onClose: function (selectedDate) {
-                $("#start_date").datepicker("option", "maxDate", selectedDate);
-                $("#expiry_date").datepicker("option", "minDate", selectedDate);
-            }
+            format: 'MM dd, yyyy',
+            todayHighlight: true,
+            autoclose: true,
+            startDate: new Date()
         });
         $('#expiry_date').datepicker({
-           format: 'MM d, yyyy',
-            changeMonth: true,
-            autoclose:true,
-            changeYear: true,
+            format: 'MM dd, yyyy',
+            todayHighlight: true,
+            autoclose: true,
+            startDate: new Date()
         });
-
+        
     })
     //minDate: new Date(),
 

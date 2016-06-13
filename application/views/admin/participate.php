@@ -11,17 +11,8 @@
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
 
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
-            <div class=panel-body>            
+        <div class="panel-default toggle panelMove panelClose panelRefresh"></div> 
+           <div class=panel-body>            
 
                 <div class="panel-default toggle">
 
@@ -355,7 +346,7 @@
                                                     <input type="radio" id="status" name="status" value="1" >Active
                                                 </label>
                                                 <label class="radio-inline">
-                                                    <input type="radio" id="status" name="status" value="0" > Deactive
+                                                    <input type="radio" id="status" name="status" value="0" > Inactive
                                                 </label>
                                                 <label for="status" class="error"></label>
                                             </div>
@@ -433,7 +424,8 @@
                                     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tables-activity">
                                         <thead>
                                             <tr>                                                
-                                                <th>No</th>											
+                                                <th>No</th>				
+                                                <th>Roll No</th>
                                                 <th><?php echo ucwords("Student Name"); ?></th>	
                                                 <th><?php echo ucwords("Parti. Title"); ?></th>
                                                 <th><?php echo ucwords("Comment"); ?></th>
@@ -461,6 +453,7 @@
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $counts++; ?></td>	
+                                                    <td><?php echo $user[0]['std_roll']; ?></td>
                                                     <td><?php echo $user[0]['name']; ?></td>	
                                                     <td><?php echo $part[0]['pp_title']; ?></td>
                                                     <td><?php echo wordwrap($rows['comment'], 40, "<br>\n", true); ?></td>
@@ -499,7 +492,8 @@
                                     <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%  id="uploaded-table">
                                         <thead>
                                             <tr>                                                
-                                                <th>No</th>											
+                                                <th>No</th>				
+                                                <th>Roll No</th>
                                                 <th><?php echo ucwords("Student Name"); ?></th>	                                               
                                                 <th><?php echo ucwords("department"); ?></th>											
                                                 <th><?php echo ucwords("Branch"); ?></th>
@@ -522,7 +516,7 @@
                                                 $this->db->join('semester', 'semester.s_id=student.semester_id');
                                                 $this->db->join('batch', 'batch.b_id=student.std_batch');
                                                 $this->db->join('course', 'course.course_id=student.course_id');
-                                                $this->db->select('student.std_id, student.name, degree.d_name, course.c_name, batch.b_name, semester.s_name');
+                                                $this->db->select('student.std_id, student.std_roll, student.name, degree.d_name, course.c_name, batch.b_name, semester.s_name');
                                                 $this->db->from('student');
                                                 $this->db->where('std_id', $std_id);
                                                 $user1 = $this->db->get()->result_array();
@@ -530,6 +524,7 @@
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $countsu++; ?></td>	
+                                                    <td><?php echo $user1[0]['std_roll']; ?></td>
                                                     <td><?php echo $user1[0]['name']; ?></td>	
                                                     <td><?php
                                                         if (isset($user1[0]['d_name'])) {
@@ -570,7 +565,7 @@
             <!-- row --> 
         </div>
     </div>
-</div></div>
+</div></div></div>
 
 <script type="text/javascript">
     $(document).ready(function () {

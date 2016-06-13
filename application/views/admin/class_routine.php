@@ -483,14 +483,14 @@
                                 height: 600,
                                 views: [
                                     "day",
-                                    {type: "workWeek", selected: true},
-                                    "week",
+                                    {type: "week", selected: true},
                                     "month",
                                     "agenda"
                                 ],
                                 editable: {
                                     template: $("#customEditorTemplate").html(),
                                 },
+                                allDaySlot: false,
                                 eventTemplate: $("#event-template").html(),
                                 edit: function (e) {
                                     var recurrenceEditor = e.container.find("[data-role=recurrenceeditor]").data("kendoRecurrenceEditor");

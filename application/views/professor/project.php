@@ -317,8 +317,10 @@
     </div>
     <!-- col-lg-12 end here -->
 </div>
+<!-- End contentwrapper -->
 </div>
-
+<!-- End #content -->
+</div>
 
 <script type="text/javascript">
     $(document).ready(function () {

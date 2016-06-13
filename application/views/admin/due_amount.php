@@ -52,6 +52,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Roll No</th>
                                 <th>Student Name</th>
                                 <th>Mobile</th>
                                 <th>Email</th>
@@ -66,6 +67,7 @@
                                 ?>
                                 <tr>
                                     <td><?php echo $counter++; ?></td>
+                                    <td><?php echo str_replace('-', '', $student->std_roll); ?></td>
                                     <td><?php echo $student->std_first_name . ' ' . $student->std_last_name; ?></td>
                                     <td><?php echo $student->std_mobile; ?></td>
                                     <td><?php echo $student->email; ?></td>
@@ -79,7 +81,7 @@
                                     }
                                     $due_amount = $fee_structure_info->total_fee - $total_paid;
                                     ?>
-                                    <td>$<?php echo $due_amount; ?></td>
+                                    <td><?php echo system_info('currency') . $due_amount; ?></td>
                                 </tr>
                             <?php } ?>
                         </tbody>

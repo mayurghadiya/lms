@@ -115,7 +115,6 @@
                                         <div class="col-sm-9">
                                             <select name="method" class="form-control">
                                                 <option value="">Select</option>
-                                                <option value="paypal">Paypal</option>
                                                 <option value="authorize.net">Authorize.net</option>
                                             </select>
                                         </div>

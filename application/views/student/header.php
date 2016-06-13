@@ -252,6 +252,10 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a <?php echo active_single_menu('video_streaming', $page); ?> href="<?php echo base_url(); ?>video_streaming"><i class="s16 fa fa-desktop"></i><span class=txt>Video Streaming </span>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a <?php echo active_single_menu('exam', $page); ?> href="<?php echo base_url(); ?>student/exam"><i class="s16 fa fa-picture-o"></i>
                                                 <span class=txt>Exam</span>
                                             </a>
@@ -270,11 +274,7 @@
                                         <li>
                                             <a <?php echo active_single_menu('fees_record', $page); ?> href="<?php echo base_url(); ?>student/fee_record"><i class="s16 fa fa-newspaper-o"></i><span class=txt>Fee Record </span>
                                             </a>
-                                        </li>
-                                        <li>
-                                            <a <?php echo active_single_menu('video_streaming', $page); ?> href="<?php echo base_url(); ?>video_streaming"><i class="s16 fa fa-desktop"></i><span class=txt>Video Streaming </span>
-                                            </a>
-                                        </li>
+                                        </li>                                        
                                         <li>
                                             <a <?php echo active_single_menu('holiday', $page); ?> href="<?php echo base_url(); ?>student/holiday">
                                                 <i class="s16 fa fa-book"></i>

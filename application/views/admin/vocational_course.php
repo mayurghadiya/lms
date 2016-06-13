@@ -38,7 +38,7 @@
                                 <td><?php echo $row['course_name']; ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($row['course_startdate'])); ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($row['course_enddate'])); ?></td>    
-                                <td>$<?php echo $row['course_fee']; ?></td>   
+                                <td><?php echo system_info('currency') . $row['course_fee']; ?></td>   
                                 <td><?php
                                     $professor = $this->db->get('professor')->result_array();
                                     foreach ($professor as $pro) {

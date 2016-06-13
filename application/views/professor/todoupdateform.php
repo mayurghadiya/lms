@@ -67,6 +67,7 @@
         
          $("#updatecloseform").click(function () {
     $("#todo-updateform").hide(500);
+    $('.todo-close_box').css('pointer-events', '');
     });
         
           $("#frmtodoedit").validate({

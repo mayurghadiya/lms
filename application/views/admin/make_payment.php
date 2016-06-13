@@ -55,6 +55,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Roll No</th>
                                 <th>Student Name</th>
                                 <th>Department</th>
                                 <th>Branch</th>
@@ -71,16 +72,19 @@
                             <?php foreach ($student_fees as $row) { ?>
                                 <tr>
                                     <td><?php echo $counter++; ?></td>
+                                    <td><?php echo str_replace('-', '', $row->std_roll); ?></td>
                                     <td><?php echo $row->std_first_name . ' ' . $row->std_last_name; ?></td>
                                     <td><?php echo $row->d_name; ?></td>
                                     <td><?php echo $row->c_name; ?></td>
                                     <td><?php echo $row->b_name; ?></td>
                                     <td><?php echo $row->s_name; ?></td>
-                                    <td>$<?php echo $row->paid_amount; ?></td>
-                                    <td><?php echo date('F d, Y', strtotime($row->paid_created_at)); ?></td>
+                                    <td><?php echo system_info('currency') . $row->paid_amount; ?></td>
+                                    <td><?php echo date('M d, Y', strtotime($row->paid_created_at)); ?></td>
                                     <td class="menu-action">
-                                        <a href="<?php echo base_url('admin/invoice/' . $row->student_fees_id); ?>" target="_blank"><span class="label label-primary mr6 mb6">View</span></a>
-                                        <a target="_blank" href="<?php echo base_url('admin/invoice_print/' . $row->student_fees_id); ?>"><span class="label label-danger mr6 mb6">Download</span></a>
+                                        <a href="<?php echo base_url('admin/invoice/' . $row->student_fees_id); ?>" target="_blank"><span class="label label-primary mr6 mb6">
+                                                <i class="fa fa-desktop"></i>View</span></a>
+                                        <a target="_blank" href="<?php echo base_url('admin/invoice_print/' . $row->student_fees_id); ?>"><span class="label label-danger mr6 mb6">
+                                                <i class="fa fa-download"></i>Download</span></a>
                                     </td>
                                 </tr>
                             <?php } ?>														

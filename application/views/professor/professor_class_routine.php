@@ -56,9 +56,9 @@
                         height: 600,
                         views: [
                             "day",
-                            {type: "week", selected: true},
+                            "week",
                             "month",
-                            "agenda"
+                            {type: "agenda", selected: true}                            
                         ],
                         editable: false,
                         eventTemplate: $("#event-template").html(),
@@ -70,6 +70,7 @@
                                 start: new Date(e.event.start)
                             });
                         },
+                        allDaySlot: false,
                         timezone: "Etc/UTC",
                         dataSource: {
                             batch: true,

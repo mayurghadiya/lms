@@ -1637,4 +1637,28 @@ class Professor_model extends CI_Model {
         $this->db->where("professor_id",$professor_id);
         return $this->db->get('vocational_course')->result_array();
     }
+    
+    /**
+     * Update password
+     * @param array $data
+     * @param int $id
+     * @return int
+     */
+    function update_password($data, $id) {
+        $this->db->where('professor_id', $id);
+        $this->db->update('professor', $data);
+        return $this->db->insert_id();
+    }
+    
+    /**
+     * Professor details
+     * @param inde $id
+     * @return object
+     */
+    function professor_details($id) {
+        return $this->db->select()
+                ->from('professor')
+                ->where('professor_id', $id)
+                ->get()->row();
+    }
 }

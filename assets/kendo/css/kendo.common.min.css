@@ -6024,8 +6024,9 @@ div.k-slider {
 }
 .k-scheduler-footer,
 .k-scheduler-toolbar {
-    line-height: 28px;
-    padding: 6px
+    line-height: 24px;
+    padding: 3px;
+    font-size: 14px;
 }
 .k-scheduler-toolbar {
     position: relative;
@@ -6129,6 +6130,8 @@ div.k-slider {
 .k-scheduler-times {
     position: relative
 }
+.k-scheduler-content h3{font-size: 13px; font-weight: normal; line-height: 20px;}
+.k-scheduler-content p{font-size: 10px;;}
 .k-scheduler-times {
     overflow: hidden;
     border-style: solid;
@@ -6164,13 +6167,17 @@ div.k-slider {
 .k-scheduler-table td,
 .k-scheduler-table th {
     height: 1.5em;
-    padding: .334em .5em;
+    /*padding: .334em .5em;*/
+    padding: 2px 5px;
     font-size: 100%
+    font-weight:normal;
 }
 .k-scheduler .k-scheduler-table td,
 .k-scheduler .k-scheduler-table th {
     -webkit-box-sizing: content-box;
-    box-sizing: content-box
+    box-sizing: content-box;
+    font-size: 15px;
+    font-weight: normal;
 }
 .k-scheduler-monthview .k-hidden,
 .k-scheduler-monthview .k-hidden>div {
@@ -6308,7 +6315,8 @@ div.k-more-events {
     white-space: nowrap
 }
 .k-event-template {
-    padding: .3em 1.4em .3em .6em
+  font-size: 14px;
+  padding: 0.2em 1em 0.2em 0.3em;
 }
 .k-event-time {
     display: none;

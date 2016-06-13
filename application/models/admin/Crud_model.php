@@ -1706,10 +1706,10 @@ class Crud_model extends CI_Model {
      */
     function get_recent_professor()
     {
-        $this->db->select("*");
+        $this->db->select("professor_id,name,image_path,created_at");
         $this->db->from("professor");
         $this->db->order_by("created_at","DESC");        
-        $this->db->limit(8);
+        //$this->db->limit(8);
         return $this->db->get()->result(); 
     }
     
@@ -1718,6 +1718,21 @@ class Crud_model extends CI_Model {
         $this->db->select('AVG(std_rating) as avg_r');
         return $this->db->get_where("survey",array("sq_id"=>$id))->row();
     }
+    
+    /**
+     * Subject list from branch
+     * @param int $branch
+     * @return mixed
+     */
+    function subject_list_from_branch($branch) {
+        return $this->db->select()
+                ->from('subject_manager')
+                ->where([
+                    'sm_course_id'  => $branch
+                ])
+                ->get()->result();
+    }
+    
     function getsubject($id)
     {
         $this->db->where('sm_course_id',$id);
