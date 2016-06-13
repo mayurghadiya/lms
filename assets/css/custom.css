@@ -1341,7 +1341,7 @@ ul.links-gaz{padding-left: 25px; list-style: none;}
 .details_faculty .title b{font-size: 13px; text-transform: capitalize; line-height: 20px;}
 .details_faculty h4.title{ margin:5px 0; color: #3f3f3f;  }
 .details_faculty .title small{color: #7a7a7a; font-size: 13px;font-weight: 300; line-height: 20px; font-style: italic;}
-.scroll_bar_faculty{height: 260px;/* overflow-y: auto;*/ overflow-x: hidden !important;}
+.scroll_bar_faculty{height: 260px;/* overflow-y: auto;*/ overflow-x: hidden !important; padding: 10px 0;}
 .scroll_bar_professor {height: 260px !important;overflow-x: hidden !important; padding: 10px 0;}
 
 #course-male-female, #course-wise-student { /*overflow-x: scroll; overflow-y: hidden;*/ /*width: 1150px !important;*/}
@@ -1359,6 +1359,9 @@ table td br{display: none;}
 table tbody .menu-action{ text-align: center !important; }
 table.batch-details tr td span{ display: block; font-size: 14px; line-height: 20px; text-align: left; }
 table.batch-details td.menu-action a{margin-bottom: 15px; display: block;}
+.menu-action a {display: inline-block; margin: 5px 0 3px;}
+tr.info td{color: #fff; vertical-align: middle;}
+.pagination > li.active a, .pagination > li.active a:hover{ color: #000; }
 
 /*********************** media *****************************/
 

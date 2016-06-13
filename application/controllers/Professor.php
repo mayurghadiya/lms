@@ -891,7 +891,7 @@ class Professor extends MY_Controller {
         if ($param1 == 'do_update') {
             if ($_FILES['libraryfile']['name'] != "") {
                 if (file_exists("uploads/project_file/" . $this->input->post('txtoldfile'))) {
-                    unlink("uploads/project_file/" . $this->input->post('txtoldfile'));
+                    //unlink("uploads/project_file/" . $this->input->post('txtoldfile'));
                 }
 
                 $config['upload_path'] = 'uploads/project_file';
@@ -1092,6 +1092,25 @@ class Professor extends MY_Controller {
         $this->__site_template('professor/courseware', $this->data);
     }
 
+    function getcourseware()
+    {
+        $this->db->where('branch_id',$this->input->post('branch'));
+        $this->db->where('subject_id',$this->input->post('subject'));
+        $this->db->where('chapter',$this->input->post('chapter'));
+        $this->db->where('topic',$this->input->post('topic'));
+        $data=$this->db->get('courseware')->result();
+        
+        if(count($data)>0)
+        {
+            echo 'false';
+        }
+        else
+        {
+            echo 'true';
+        }
+        
+    }
+    
     function getsubject() {
         $this->data['subject'] = $this->Professor_model->getsubject($this->input->post('id'));
 

@@ -92,21 +92,21 @@ $batch = $this->db->query($query)->result();
                     <label class="col-sm-4 control-label"><?php echo ucwords("Start Date"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="edit_start_date" class="form-control datepicker" name="start_date"
-                               value="<?php echo date('M d, Y', strtotime($edit_data->fee_start_date)); ?>"/>
+                               value="<?php echo date('F d, Y', strtotime($edit_data->fee_start_date)); ?>"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label"><?php echo ucwords("End Date"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="edit_end_date" class="form-control datepicker" name="end_date"
-                               value="<?php echo date('M d, Y', strtotime($edit_data->fee_end_date)); ?>"/>
+                               value="<?php echo date('F d, Y', strtotime($edit_data->fee_end_date)); ?>"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label"><?php echo ucwords("Expiry Date"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="edit_expiry_date" class="form-control datepicker" name="expiry_date"
-                               value="<?php echo date('M d, Y', strtotime($edit_data->fee_expiry_date)); ?>"/>
+                               value="<?php echo date('F d, Y', strtotime($edit_data->fee_expiry_date)); ?>"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -246,7 +246,7 @@ $batch = $this->db->query($query)->result();
 <script>
     $(document).ready(function () {
         $("#edit_start_date").datepicker({
-            format: 'M dd, yyyy',
+            format: 'MM d, yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose:true,
@@ -256,7 +256,7 @@ $batch = $this->db->query($query)->result();
             }
         });
         $("#edit_end_date").datepicker({
-            format: 'M dd, yyyy',
+            format: 'MM d, yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose:true,
@@ -266,7 +266,7 @@ $batch = $this->db->query($query)->result();
             }
         });
         $('#edit_expiry_date').datepicker({
-            format: 'M dd, yyyy',
+            format: 'MM d, yyyy',
             changeMonth: true,
             autoclose:true,
             changeYear: true,

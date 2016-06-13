@@ -91,7 +91,7 @@
 
                                 </td>	
 
-                                <td><?php echo date('M d, Y', strtotime($row->pp_dos)); ?></td>	
+                                <td><?php echo date('F d, Y', strtotime($row->pp_dos)); ?></td>	
 
 
                             </tr>

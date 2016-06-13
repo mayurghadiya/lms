@@ -85,7 +85,7 @@ $semesters = $this->db->get('semester')->result_array();
                     startDate: start_date,
                     autoclose: true,
                 });
-            }, 700);
+            }, 700);            
         });
 
         $("#holidayform").validate({

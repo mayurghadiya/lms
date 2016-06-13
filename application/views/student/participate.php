@@ -33,15 +33,16 @@
    		return false;	
    	}
    });
-          var rate = $('#tutorial-'+id+' #rating').val();       
-   $.ajax({
-   url: "<?php echo base_url(); ?>student/addrating",
-   data:'id='+id+'&rating='+rate,
-   type: "POST",
-          success:function(){
-             // $("#question-"+id).hide();
-          }
-   });
+    var rate = $('#tutorial-'+id+' #rating').val();       
+    var rated = $("#rating-"+id).val(rate);
+//   $.ajax({
+//   url: "<?php echo base_url(); ?>student/addrating",
+//   data:'id='+id+'&rating='+rate,
+//   type: "POST",
+//          success:function(){
+//             // $("#question-"+id).hide();
+//          }
+//   });
    }
    
    function resetRating(id) {
@@ -69,6 +70,7 @@
             </div>
             </div>-->
          <div class=panel-body>
+              <?php if(count($survey) > 0 ){ ?>
             <form id="frmsurvey" name="frmsurvey" class=" demo-table form-horizontal form-groups-bordered validate" accept-charset="UTF-8" enctype="multipart/form-data" method="post" novalidate="" action="<?php echo base_url(); ?>student/participate/create">
                <table class="table table-striped" id="" >
                   <!--   <caption id="title1">As a student here: Please rate each of the following during your attendance, using a 1-5 scale where (1) means "Very dissatisfied" and (5) is "Very satisfied":</caption>-->
@@ -84,25 +86,41 @@
                      <tr id="question-<?php echo $rows->sq_id; ?>">                    
                         <th><label><?php echo $rows->question; ?> <span style="color:red">*</span></label>
                         <th>
+                            <?php $res = $this->Student_model->getrating($rows->sq_id);
+                            ?>  
                            <div id="tutorial-<?php echo $rows->sq_id; ?>">
                               <input type="hidden" name="rating" id="rating" value="<?php echo '0'; ?>" />
-                              <ul onMouseOut="resetRating(<?php echo $rows->sq_id; ?>);">
+                              <input type="hidden" name="question_id<?php echo $rows->sq_id; ?>" id="rating-<?php echo $rows->sq_id; ?>" value="">
+                            
+                              <ul <?php if(!isset($res->std_rating)){ ?> onMouseOut="resetRating(<?php echo $rows->sq_id; ?>);" <?php } ?>>
                               <?php
                                  for ($i = 1; $i <= 5; $i++) {
-                                     $selected = "";
+                                     if(isset($res->std_rating) && $i <= $res->std_rating)
+                                    {
+                                     $selected = "selected";
+                                    }
+                                    else{
+                                        $selected = "";
+                                    }
                                      ?>
-                              <li class='<?php echo $selected; ?>' onmouseover="highlightStar(this,<?php echo $rows->sq_id; ?>);" onmouseout="removeHighlight(<?php echo $rows->sq_id; ?>);" onClick="addRating(this,<?php echo $rows->sq_id; ?>);">&#9733;</li>
+                              <li class='<?php echo $selected; ?>' <?php if(!isset($res->std_rating)){ ?> onmouseover="highlightStar(this,<?php echo $rows->sq_id; ?>);" onmouseout="removeHighlight(<?php echo $rows->sq_id; ?>);" onClick="addRating(this,<?php echo $rows->sq_id; ?>);" <?php } ?>>&#9733;</li>
                               <?php } ?>
-                              <ul>
+                              </ul>
                            </div>
                         </th>
-                        </th>
-                     
                      </tr>
                      <?php endforeach; ?>
                   </tbody>
-               </table>               
+               </table>      
+                <?php if(count($survey) > 0 ){ ?>
+              <div class="col-sm-offset-10 col-sm-5">
+                                <button type="submit" class="btn btn-info vd_bg-green">Submit</button>
+                            </div>
+                <?php } ?>
             </form>
+              <?php }else{
+                  echo '<h4> Your survey feedback has been submitted </h4>';
+              } ?>
          </div>
       </div>
       <!-- End .panel -->

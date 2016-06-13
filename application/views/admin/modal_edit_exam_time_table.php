@@ -209,7 +209,7 @@ $subjects = $this->db->get_where('subject_manager',[
     $(function () {
 
         $(".datepicker-normal-edit").datepicker({
-            format: ' MM d, yyyy',
+            format: ' MM d, yyyy', startDate : new Date(),
             changeMonth: true,
             changeYear: true,
             autoclose:true,

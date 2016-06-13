@@ -1,10 +1,11 @@
 
 $(document).ready(function () {
+    $(".todo-list").css({'overflow':'auto'});
      $("#minute-step-timepicker").val("");
     $("#todo-addform").hide();
     $("#basic-datepicker").datepicker({
-        dateFormat: ' MM dd, yy',
-        minDate: '0 days',
+        format: ' MM dd, yyyy',
+        startDate: new Date(),
         autoclose: true,
     });
 
@@ -22,7 +23,13 @@ $(document).ready(function () {
         $("#wait").css("display", "none");
     });
 
-    $(".close").click(function () {
+    $(".todo-close1").click(function () {
+        var r = confirm("Are sure want to delete?");
+        if (r == true) {
+
+        } else {
+            return false
+        }  
         var id = $(this).val();
         var dataString = "id=" + id;
         $.ajax({
@@ -30,7 +37,7 @@ $(document).ready(function () {
             url: base_url+"student/removetodolist",
             data: dataString,
             success: function () {
-
+ $("#todo-task-item-id"+id).hide();
             }
 
         });

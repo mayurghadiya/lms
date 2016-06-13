@@ -47,7 +47,7 @@
                                         <label class="col-sm-3 control-label">Date</label>
                                         <div class="col-sm-9">
                                             <div>
-                                                <input value="<?php echo date('m/d/Y'); ?>" type="text" id="datepicker-normal" name="date" class="form-control"/>
+                                                <input value="<?php echo date('F d, Y'); ?>" type="text" id="datepicker-normal" name="date" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +115,6 @@
                                         <div class="col-sm-9">
                                             <select name="method" class="form-control">
                                                 <option value="">Select</option>
-                                                <option value="paypal">Paypal</option>
                                                 <option value="authorize.net">Authorize.net</option>
                                             </select>
                                         </div>
@@ -257,7 +256,7 @@
     {
         "use strict";
         $("#datepicker-normal").datepicker({
-            dateFormat: 'dd M yy',
+            format: 'MM d, yyyy',
             changeMonth: true,
             changeYear: true,
             autoclose: true,

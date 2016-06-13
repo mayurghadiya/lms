@@ -36,6 +36,10 @@
         else if (url.indexOf('modal_submit_assignment') >= 0) {
             $('#myModalLabel2').html('Submit Assignment');
         }
+        else if (url.indexOf('modal_eventlist') >= 0) {
+            $('#myModalLabel2').html('Timeline');
+        }
+        
         // SHOWING AJAX PRELOADER IMAGE
         jQuery('#modal_ajax .modal-body').html('<div style="text-align:center;margin-top:200px;"><img src="<?php echo base_url(); ?>assets/img/preloader.gif" /></div>');
 
@@ -97,6 +101,10 @@
     {
         jQuery('#modal-4').modal('show', {backdrop: 'static'});
         document.getElementById('delete_link').setAttribute('href', delete_url);
+    }
+    function confirm_modals()
+    {
+        jQuery('#modal-4').modal('show', {backdrop: 'static'});       
     }
 </script>
 

@@ -110,7 +110,7 @@ endforeach;
     $(document).ready(function () {
 
         $("#birthdate").datepicker({
-             format: ' MM d, yyyy',
+             format: ' MM d, yyyy', startDate : new Date(),
             maxDate: 0,
             autoclose:true
         });

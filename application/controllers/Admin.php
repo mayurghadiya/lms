@@ -382,7 +382,22 @@ class Admin extends MY_Controller {
                 //email
 
                 $data['rollno'] = $rollno;
-                $msg = $this->load->view("admin/emailmessage", $data, true);
+                
+                $config = Array(
+                    'protocol' => 'smtp',
+                    'smtp_host' => 'ssl://smtp.googlemail.com',
+                    'smtp_port' => 465,
+                    'smtp_user' => 'mayur.ghadiya@searchnative.in',
+                    'smtp_pass' => 'the mayurz97375',
+                    'mailtype' => 'html',
+                    'charset' => 'iso-8859-1'
+                );
+                $this->load->library('email', $config);
+                $this->email->set_newline("\r\n");
+                $msg = 'Your LMS credentials are given below.<br/>';
+                $msg .= "URL:" . base_url('site/user_login');
+                $msg .= "<br/>Username: " . $_POST['email'];
+                $msg .= "<br/>Passwod: " . $_POST['password'];
                 $this->email->from('mayur.ghadiya@searchnative.in', 'Search Native India');
                 $this->email->to($data['email']);
                 //  $this->email->cc('mayur.ghadiya@searchnative.in');
@@ -1097,7 +1112,7 @@ class Admin extends MY_Controller {
 
             $data['param'] = $param;
         }
-        
+
         if ($param == "assessments") {
             $degree = $this->input->post('degree');
             $course = $this->input->post('course');
@@ -1126,7 +1141,7 @@ class Admin extends MY_Controller {
             //$this->db->where("am.class_id", $class);
             $data['submitedassignment'] = $this->db->get()->result();
 
-            $data['param'] = $param;          
+            $data['param'] = $param;
         }
         $this->load->view("admin/getassignment", $data);
     }
@@ -1794,16 +1809,16 @@ class Admin extends MY_Controller {
         $this->db->select("ls.*,s.*");
         $this->db->from('survey ls');
         $this->db->join("student s", "s.std_id=ls.student_id");
-        $this->db->group_by('ls.student_id');        
-        $this->data['survey']= $this->db->get()->result();       
-        /*$this->data['questions'] = $this->db->get('survey_question')->result();
+        $this->db->group_by('ls.student_id');
+        $this->data['survey'] = $this->db->get()->result();
+        /* $this->data['questions'] = $this->db->get('survey_question')->result();
 
-        $this->data['participate'] = $this->db->get('participate_manager')->result();
-        $this->data['degree'] = $this->db->get('degree')->result();
-        $this->data['batch'] = $this->db->get('batch')->result();
-        $this->data['semester'] = $this->db->get('semester')->result();
-        $this->data['student'] = $this->db->get('student')->result();
-        $this->data['course'] = $this->db->get('course')->result();*/
+          $this->data['participate'] = $this->db->get('participate_manager')->result();
+          $this->data['degree'] = $this->db->get('degree')->result();
+          $this->data['batch'] = $this->db->get('batch')->result();
+          $this->data['semester'] = $this->db->get('semester')->result();
+          $this->data['student'] = $this->db->get('student')->result();
+          $this->data['course'] = $this->db->get('course')->result(); */
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Participate Management';
         $this->data['edit_participate'] = $this->lang_message('edit_participate');
@@ -1831,8 +1846,8 @@ class Admin extends MY_Controller {
         $this->db->select('cw.courseware_id, cw.topic, cw.chapter, cw.description, cw.attachment, cw.status ,c.course_id, c.c_name,sub.subject_name');
         $this->db->from('courseware cw');
         $this->db->join('course c', 'c.course_id=cw.branch_id');
-        $this->db->join('subject_manager sub','sub.sm_id=cw.subject_id');
-        $this->data['courseware'] = $this->db->get('courseware')->result_array();
+        $this->db->join('subject_manager sub', 'sub.sm_id=cw.subject_id');
+        $this->data['courseware'] = $this->db->get()->result_array();
 
         $this->data['page'] = 'courseware';
         $this->data['title'] = $this->lang_message('courseware_title');
@@ -1926,8 +1941,8 @@ class Admin extends MY_Controller {
                 $this->session->set_flashdata('flash_message', $this->lang_message('save_graduate'));
             } elseif ($param1 == 'update') {
                 $graduate_std = $this->Crud_model->get_graduate_student($param2);
-                
-                    if ($_FILES['main_img']['name'] != "") {
+
+                if ($_FILES['main_img']['name'] != "") {
                     $path = FCPATH . 'uploads/student_image/';
                     if (!is_dir($path)) {
                         mkdir($path, 0777);
@@ -2879,7 +2894,7 @@ class Admin extends MY_Controller {
         $degree = $this->input->post("degree");
         $course = $this->input->post("course");
         $class = $this->input->post("divclass");
-        
+
         $data['datastudent'] = $this->db->get_where("student", array(
                     "std_batch" => $batch,
                     'std_status' => 1,
@@ -3080,7 +3095,7 @@ class Admin extends MY_Controller {
         if ($param != "") {
             $this->data['forum_comment'] = $this->forum_model->getcomments($param);
         }
-        $this->data['page'] = 'forum_comment';        
+        $this->data['page'] = 'forum_comment';
         $this->data['title'] = $this->lang_message('forum_comment_title');
         $this->data['param'] = $param;
         $this->data['edit_title'] = $this->lang_message('edit_forum_comment');
@@ -4137,7 +4152,6 @@ class Admin extends MY_Controller {
             $data['user_role'] = implode(',', $this->input->post('user_role'));
 
             $this->db->insert('group', $data);
-            exit;
             $this->session->set_flashdata('flash_message', 'Group Added Successfully');
 
             redirect(base_url() . 'admin/create_group', 'refresh');
@@ -4648,6 +4662,14 @@ class Admin extends MY_Controller {
         $this->data['edit_title'] = $this->lang_message('edit_subject');
         $this->data['add_title'] = $this->lang_message('add_subject');
         $this->__site_template('admin/subject', $this->data);
+    }
+
+    function getsubject() {
+        $this->load->model('admin/Crud_model');
+        $this->data['subject'] = $this->Crud_model->getsubject($this->input->post('course'));
+        $this->data['course'] = $this->db->get('course')->result();
+        $this->data['semester'] = $this->db->get('semester')->result();
+        $this->load->view('admin/getsubject', $this->data);
     }
 
     /**
@@ -6056,8 +6078,8 @@ class Admin extends MY_Controller {
     /**
      * Vocational course Student List
      */
-    function vocational_student($param1='',$param2= '') {        
-        $this->data['student'] = $this->Crud_model->get_vocational_student($param1);       
+    function vocational_student($param1 = '', $param2 = '') {
+        $this->data['student'] = $this->Crud_model->get_vocational_student($param1);
         $this->data['title'] = 'Registered Student List';
         $this->data['page'] = 'vocational_register_student';
         $this->load->view('admin/vocational_register_student', $this->data);
@@ -6094,16 +6116,13 @@ class Admin extends MY_Controller {
     /**
      * Get all topic name by 
      */
-    function get_topics()
-    {
-       $res = $this->Crud_model->get_topics_list();
-       $html = '';
-       foreach($res as $topic)
-       {
-           $html .='<option value="'.$topic->forum_topic_id.'">'.$topic->forum_topic_title.'</option>';
-                   
-       }
-       echo $html;
+    function get_topics() {
+        $res = $this->Crud_model->get_topics_list();
+        $html = '';
+        foreach ($res as $topic) {
+            $html .='<option value="' . $topic->forum_topic_id . '">' . $topic->forum_topic_title . '</option>';
+        }
+        echo $html;
     }
 
     /**
@@ -6131,7 +6150,7 @@ class Admin extends MY_Controller {
         $this->data['degree'] = $this->Crud_model->get_all_degree();
         $this->__site_template('admin/due_amount', $this->data);
     }
-    
+
     /**
      * Fee structure filter
      * @param string $degree
@@ -6141,53 +6160,50 @@ class Admin extends MY_Controller {
      */
     function student_fee_structure($degree, $branch, $batch, $semester) {
         $fee_structure = $this->Crud_model->fee_structure_filter($degree, $branch, $batch, $semester);
-        
+
         echo json_encode($fee_structure);
     }
-    
-    function make_payment_student_list($degree='', $course='', $batch='', $semester='', $fee_structure='') {
+
+    function make_payment_student_list($degree = '', $course = '', $batch = '', $semester = '', $fee_structure = '') {
         $this->data['student_fees'] = $this->Crud_model->make_payment_student_list($degree, $course, $batch, $semester, $fee_structure);
         //echo '<pre>';
         //var_dump($this->data['student_fees']);
         $this->load->view('admin/make_payment_student_list', $this->data);
     }
 
-    function commentcrud($param='',$param2= '')
-    {
+    function commentcrud($param = '', $param2 = '') {
         $this->load->model("Site_model");
-        if($param=="create")
-        {
-           $data['forum_topic_id'] = $param2;           
+        if ($param == "create") {
+            $data['forum_topic_id'] = $param2;
             $data['forum_comments'] = $this->input->post('comment');
             $data['forum_comment_status'] = '1';
             $data['user_role'] = $this->session->userdata('login_type');
             $data['user_role_id'] = $this->session->userdata('login_user_id');
             $this->Site_model->create_comment($data);
             $this->session->set_flashdata('message', ' Your comment has been added successfully.');
-            redirect(base_url()."admin/forumcomment/".$param2);
+            redirect(base_url() . "admin/forumcomment/" . $param2);
         }
-        if($param=="update")
-        {
-           $data['forum_topic_id'] = $param2;
-           $comment_id = $this->input->post("comment_id");
+        if ($param == "update") {
+            $data['forum_topic_id'] = $param2;
+            $comment_id = $this->input->post("comment_id");
             $data['forum_comments'] = $this->input->post('comment');
             $data['forum_comment_status'] = '1';
             $data['user_role'] = $this->session->userdata('login_type');
             $data['user_role_id'] = $this->session->userdata('login_user_id');
-            $this->Site_model->update_comment($data,$comment_id);
+            $this->Site_model->update_comment($data, $comment_id);
             $this->session->set_flashdata('message', ' Your comment has been updated successfully.');
-            redirect(base_url()."admin/forumcomment/".$param2);
+            redirect(base_url() . "admin/forumcomment/" . $param2);
         }
-        
     }
-    
+
     /**
      * Subject from branch
      * @param string $branch
      */
     function subject_list_from_branch($branch) {
         $branch = $this->Crud_model->subject_list_from_branch($branch);
-        
+
         echo json_encode($branch);
     }
+
 }

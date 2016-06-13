@@ -7,12 +7,12 @@
                  <button type=button class="updateclick" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-pencil-square-o"></i></button>
                </div>
                <div class="todo-close_box">
-                   <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                   <button type=button class="close-todo-old todo-close1" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                </div>
             </li>
-<?php } ?>
-
-            <script type="text/javascript">
+<?php } ?>            
+            <script type="text/javascript">   
+                $(".todo-list").css({'overflow':'auto'});
                 $(".taskstatus").click(function(){
                 if($(this).is(':checked'))
                 {
@@ -50,7 +50,13 @@
                 });
                 
                    
-        $(".close").click(function(){
+        $(".todo-close1").click(function(){
+        var r = confirm("Are sure want to delete?");
+        if (r == true) {
+
+        } else {
+            return false
+        }  
             var id = $(this).val();
                 var dataString = "id=" + id;
             $.ajax({

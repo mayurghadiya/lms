@@ -20,7 +20,7 @@
                             <th>No</th>
                             <th>Invoice No</th>
                             <th>Title</th>
-                            <th>Paid</th>
+                            <th>Paid</th>    
                             <th>Date</th>
                             <th>Options</th>
                         </tr>

@@ -112,6 +112,23 @@ $this->carabiner->display('calendar_css');
                             month = flags.wrap.attr('data-current-month');
                     getEvents(flags, eventsOpts, eventsOpts.eventsLimit, year, month, false, "month");
                 });
+                flags.wrap.on('dblclick', '.eventCalendar-day a', function (e) {
+                //flags.wrap.find('.eventCalendar-day a').live('click',function(e){
+                e.preventDefault();
+                var year = flags.wrap.attr('data-current-year'),
+                        month = flags.wrap.attr('data-current-month'),
+                        day = $(this).parent().attr('rel');
+
+                getEvents(flags, eventsOpts, false, year, month, day, "day");
+            });
+            flags.wrap.on('dblclick', '.eventCalendar-monthTitle', function (e) {
+                //flags.wrap.find('.eventCalendar-monthTitle').live('click',function(e){
+                e.preventDefault();
+                var year = flags.wrap.attr('data-current-year'),
+                        month = flags.wrap.attr('data-current-month');
+
+                getEvents(flags, eventsOpts, eventsOpts.eventsLimit, year, month, false, "month");
+            });
             });
             // show event description
             flags.wrap.find('.eventCalendar-list').on('click', '.eventCalendar-eventTitle', function (e) {
@@ -718,6 +735,9 @@ $this->carabiner->display('calendar_css');
                     <!-- Start .panel -->
                     <div class=panel-heading>
                         <h4 class=panel-title>Event Calendar</h4>
+                        <div class="panel-controls panel-controls-right"> 
+                            <a href="#" class="toggle panel-minimize"><i class="minia-icon-arrow-up-3"></i></a>
+                </div>
                     </div>
                     <div class=panel-body>
                         <div id="eventCalendarHumanDate"></div>
@@ -739,6 +759,8 @@ $this->carabiner->display('calendar_css');
                 <h4 class=panel-title>
                     To Do
                 </h4>
+                <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="minia-icon-arrow-up-3"></i></a>
+                </div>
             </div>
             <div class=panel-body>
                 <div class=todo-widget>
@@ -813,7 +835,7 @@ $this->carabiner->display('calendar_css');
                                     <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                 </div>
                                 <div class="todo-close_box">
-                                    <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
+                                    <button type=button class="close-todo-old todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
                                 </div>
                             </li>
                         <?php } ?>
@@ -832,6 +854,8 @@ $this->carabiner->display('calendar_css');
             <!-- Start .panel -->
             <div class="panel-heading">
                 <h4 class="panel-title"> Growth</h4>
+                <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="minia-icon-arrow-up-3"></i></a>
+                </div>
             </div>
             <div class="panel-body">
                 <div class="vital-stats">
@@ -925,6 +949,8 @@ $this->carabiner->display('calendar_css');
                 <h4 class="panel-title marginzero">
                     Timeline
                 </h4>
+                <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="minia-icon-arrow-up-3"></i></a>
+                </div>
             </div>
             <div class=panel-body>
                 <div id="demo">
@@ -1044,7 +1070,7 @@ $this->carabiner->display('calendar_css');
 <script type="text/javascript" src="<?php echo base_url() ?>assets/js/todo-student.js"></script>
 <!--  end to do list -->
 <!-- jQuery Scrollbar Js start -->
-<script src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script>
 
     (function ($) {
@@ -1111,7 +1137,7 @@ $this->carabiner->display('calendar_css');
             }
         });
 
-        $(".panel-body .todo-widget .todo-list").mCustomScrollbar({
+        $(".panel-body .todo-widget .todo-list1").mCustomScrollbar({
             theme: "inset-2-dark",
             axis: "yx",
             advanced: {
@@ -1205,4 +1231,3 @@ $this->carabiner->display('calendar_css');
     });
 </script>
 <!-- Event Calendar Js end -->
-

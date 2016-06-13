@@ -259,8 +259,8 @@ endforeach;
     $().ready(function () {
         $("#submissiondate1").datepicker({
             format: ' MM d, yyyy',
-            minDate: 0,
-            autoclose:true,
+            startDate: new Date(),
+            autoclose:true
         });
 
         $("#frmeditassignment").validate({

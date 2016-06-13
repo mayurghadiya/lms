@@ -260,7 +260,7 @@ endforeach;
     $().ready(function () {
         $("#submissiondate1").datepicker({
             format: ' MM d, yyyy',
-            minDate: 0,
+            startDate: new Date(),
             autoclose:true
         });
 

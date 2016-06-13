@@ -1732,5 +1732,11 @@ class Crud_model extends CI_Model {
                 ])
                 ->get()->result();
     }
+    
+    function getsubject($id)
+    {
+        $this->db->where('sm_course_id',$id);
+        return $this->db->get('subject_manager')->result();
+    }
 
 }

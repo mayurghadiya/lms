@@ -256,7 +256,22 @@ class Student extends MY_Controller {
      * @param string $param2
      */
     function participate($param1 = '', $param2 = '') {
-        if ($param1 == "create") {
+        if ($param1 == "create") {           
+            $std_id = $this->session->userdata("login_user_id");
+            foreach($_POST as $key=>$val):
+              
+            if (strpos($key, 'question_id') !== false) {
+                 $id = explode("question_id",$key);
+                 if($val!='')
+                 {
+                    $sq_id = $id[1]; 
+                    $this->addrating($sq_id , $val , $std_id);
+                 }
+            }   
+           
+                
+            endforeach;           
+            
             
             $survey = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
             $count = 1;
@@ -308,9 +323,11 @@ class Student extends MY_Controller {
         $std = $this->session->userdata('std_id');
         //$getcount =  $this->db->query("SELECT survey_status,survey_question_id, COUNT(*) FROM survey_result GROUP BY survey_question_id")->result();
         
+        //$this->data['survey'] = $this->db->query('SELECT * FROM survey_question ORDER BY sq_id DESC')->result();        
         $this->data['survey'] = $this->db->query('SELECT * FROM survey_question 
                     WHERE NOT EXISTS (SELECT sq_id FROM survey
-                    WHERE survey.sq_id = survey_question.sq_id and survey.student_id= ' . $this->session->userdata('student_id') . ') ORDER BY survey_question.sq_id DESC')->result();        
+                    WHERE survey.sq_id = survey_question.sq_id and survey.student_id= ' . $this->session->userdata('student_id') . ') AND survey_question.question_status="1" ORDER BY survey_question.sq_id DESC')->result(); 
+        
        //$this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Survey Application Form';
@@ -571,12 +588,7 @@ class Student extends MY_Controller {
             $course = $std[0]['course_id'];
             $class = $std[0]['class_id'];
             $this->data['project'] = $this->db->query("SELECT * FROM project_manager WHERE pm_degree='$degree' AND pm_batch = '$batch' AND pm_semester = '$sem' AND pm_course = '$course' AND class_id='$class' AND FIND_IN_SET('$std_id',pm_student_id)")->result();
-            // $page_data['project'] = $this->db->get_where('project_manager', array("pm_student_id" => $this->session->userdata('std_id')))->result();
-            $this->data['degree'] = $this->db->get('degree')->result();
-            $this->data['batch'] = $this->db->get('batch')->result();
-            $this->data['course'] = $this->db->get('course')->result();
-            $this->data['semester'] = $this->db->get('semester')->result();
-            $this->data['class'] = $this->db->get('class')->result();
+            // $page_data['project'] = $this->db->get_where('project_manager', array("pm_student_id" => $this->session->userdata('std_id')))->result();           
             $this->data['student'] = $this->db->get('student')->result();
             $this->data['page'] = 'project';
             $this->data['title'] = 'Project List';
@@ -695,6 +707,7 @@ class Student extends MY_Controller {
         $this->data['title'] = 'Assignment List';
         clear_notification('assignment_manager', $this->session->userdata('student_id'));
         unset($this->session->userdata('notifications')['assignment_manager']);
+         $this->data['assessment'] = $this->Student_model->student_assessment();
         $this->__site_template('student/assignment', $this->data);
     }
 
@@ -1047,7 +1060,7 @@ class Student extends MY_Controller {
         $this->db->from('courseware cw');
         $this->db->join('course c', 'c.course_id=cw.branch_id');
         $this->db->join('subject_manager sub', 'sub.sm_id=cw.subject_id');
-        $this->data['courseware'] = $this->db->get('courseware')->result_array();
+        $this->data['courseware'] = $this->db->get()->result_array();
 
         $this->data['page'] = 'courseware';
         $this->data['title'] = 'Courseware Management';
@@ -1172,6 +1185,7 @@ class Student extends MY_Controller {
                     ));
                     //remove session
                     $this->session->unset_userdata('payment_info');
+                    $this->session->set_flashdata('flash_message', 'Transaction successfully completed.');
                     redirect(base_url('student/fee_record'));
                 } else {
                     $this->session->set_flashdata('Transaction incomplete', '<p>' . $this->authorize_net->getError() . '</p>');
@@ -1355,6 +1369,7 @@ class Student extends MY_Controller {
      * holiday List
      */
     function holiday() {
+        $year = date('Y');
         $this->data['page'] = 'holiday';
         $this->data['title'] = 'Holiday List';
         $this->data['holiday'] = $this->db->order_by('holiday_startdate', 'ASC')->where('holiday_startdate >= ', date('Y-m-d'))->get('holiday')->result_array();
@@ -1605,11 +1620,11 @@ class Student extends MY_Controller {
     /*
      * Add Rating to survey question
      */
-    function addrating()
+    function addrating($id , $rating , $std_id)
     {
-        $id  = $this->input->post('id');  
-        $rating = $this->input->post('rating'); 
-        $std_id = $this->session->userdata('login_user_id');
+       // $id  = $this->input->post('id');  
+       // $rating = $this->input->post('rating'); 
+       // $std_id = $this->session->userdata('login_user_id');
         $data['sq_id'] = $id;
         $data['student_id'] = $std_id;
         $data['std_rating'] = $rating;
@@ -1620,7 +1635,7 @@ class Student extends MY_Controller {
             $this->Student_model->updatesurveyrating($udata,$id,$std_id);
         }
         else{        
-        $this->Student_model->addsurveyrating($data);
+            $this->Student_model->addsurveyrating($data);
         }
     }
 

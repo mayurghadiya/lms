@@ -292,8 +292,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(".datepicker-normal").datepicker({
-            format: ' MM d, yyyy', autoclose: true,
-            maxDate: '0',
+            format: ' MM d, yyyy', autoclose:true,
+            startDate: new Date(),
             changeMonth: true,
             changeYear: true
 

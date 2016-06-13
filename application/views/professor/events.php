@@ -34,7 +34,7 @@
                                 <td><?php echo $row['event_name']; ?></td>
                                 <td><?php echo $row['event_location']; ?></td>
                                 <td><?php echo $row['event_desc']; ?></td>
-                                <td><?php echo date('M d, Y', strtotime($row['event_date'])); ?></td>
+                                <td><?php echo date('F d, Y', strtotime($row['event_date'])); ?></td>
                                 <td><?php echo date('h:i A', strtotime($row['event_date'])); ?></td>
                             </tr>
                         <?php } ?>

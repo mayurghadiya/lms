@@ -27,7 +27,7 @@
                                     <td><?php echo $counter; ?></td>
                                     <td><?php echo $row->email_from; ?></td>
                                     <td><?php echo $row->subject; ?></td>
-                                    <td><?php echo date('d-m-Y h:m A', strtotime($row->created_at)); ?></td>
+                                    <td><?php echo date('F d, Y h:i A', strtotime($row->created_at)); ?></td>
                                     <td class="menu-action">
                                         <a href="<?php echo base_url('professor/inbox_email/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil-square" aria-hidden="true"></i>View</span></a>
                                         <a href="<?php echo base_url('professor/delete_email/' . $row->email_id); ?>"

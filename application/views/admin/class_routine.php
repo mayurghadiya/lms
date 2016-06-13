@@ -483,8 +483,7 @@
                                 height: 600,
                                 views: [
                                     "day",
-                                    {type: "workWeek", selected: true},
-                                    "week",
+                                    {type: "week", selected: true},
                                     "month",
                                     "agenda"
                                 ],

@@ -94,23 +94,27 @@
 <script>
     $(document).ready(function () {
         $("#startdate").datepicker({
-             format: ' MM d, yyyy',
-            minDate:'0',
+             format: ' MM d, yyyy', startDate : new Date(),
+            startDate:'0',
             changeMonth: true,
             changeYear: true,
             autoclose:true,
             onClose: function (selectedDate) {
-                $("#enddate").datepicker("option", "minDate", selectedDate);
+                
+                $("#enddate").datepicker("option", "startDate", selectedDate);
             }
         });
+        var start = $("#startdate").val();
+        
 
         $("#enddate").datepicker({
-             format: ' MM d, yyyy',
+             format: ' MM d, yyyy', startDate : new Date(),
             changeMonth: true,
             changeYear: true,
             autoclose:true,
+            startDate:new Date(),
             onClose: function (selectedDate) {
-                $("#startdate").datepicker("option", "maxDate", selectedDate);
+                $("#startdate").datepicker("option", "endDate", selectedDate);
             }
         });
 

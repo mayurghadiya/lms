@@ -26,13 +26,13 @@ foreach ( $edit_data as $row):
                                          <div class="form-group">
                                             <label class="col-sm-4 control-label"><?php echo ucwords("start date");?><span style="color:red">*</span></label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="holiday_startdate1" id="holiday_startdate1" value="<?php echo date('d F Y', strtotime($row['holiday_startdate'])); ?>"/>
+                                                <input type="text" class="form-control" name="holiday_startdate1" id="holiday_startdate1" value="<?php echo date('F d, Y', strtotime($row['holiday_startdate'])); ?>"/>
                                             </div>	
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label"><?php echo ucwords("end date");?><span style="color:red">*</span></label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="holiday_enddate1" id="holiday_enddate1" value="<?php echo date('d F Y', strtotime($row['holiday_enddate'])); ?>" />
+                                                <input type="text" class="form-control" name="holiday_enddate1" id="holiday_enddate1" value="<?php echo date('F d, Y', strtotime($row['holiday_enddate'])); ?>" />
                                             </div>	
                                         </div>
                                         <div class="form-group">
@@ -64,22 +64,22 @@ endforeach;
   <script>
          $(document).ready(function () {
          $("#holiday_startdate1").datepicker({
-                format: ' MM d, yyyy',
+                format: 'MM d, yyyy', startDate : new Date(),
                 changeMonth: true,
                 changeYear: true,
                 autoclose:true,
                 onClose: function (selectedDate) {
-                    $("#holiday_enddate1").datepicker("option", "minDate", selectedDate);
+                    $("#holiday_enddate1").datepicker("option", "startDate", selectedDate);
                 }
             });
             
             $("#holiday_enddate1").datepicker({
-                format: ' MM d, yyyy', autoclose:true,
+                format: ' MM d, yyyy', startDate : new Date(), autoclose:true,
                 changeMonth: true,
                 changeYear: true,
                 autoclose:true,
                 onClose: function (selectedDate) {
-                    $("#holiday_startdate1").datepicker("option", "maxDate", selectedDate);
+                    $("#holiday_startdate1").datepicker("option", "endDate", selectedDate);
                 }
             });
             

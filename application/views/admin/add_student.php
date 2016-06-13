@@ -184,13 +184,13 @@ $semesters = $this->db->get('semester')->result_array();
                                 <input type="text" class="form-control" name="twitter" id="twitter" />
                             </div>
                         </div>	
-                        <div class="form-group">
+                        <div class="form-group hide">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Group"); ?></label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="group" id="group" placeholder="readonly" readonly />
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group hide">
                             <label class="col-sm-4 control-label"><?php echo ucwords("User Type"); ?></label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="usertype" id="usertype" placeholder="readonly" readonly />
@@ -283,14 +283,14 @@ $semesters = $this->db->get('semester')->result_array();
         }
     });
 
-     $(".basic-datepicker").datepicker({ format: ' MM d, yyyy',autoclose:true});         
+    $(".basic-datepicker").datepicker({format: 'MM d, yyyy', autoclose: true});
     $(document).ready(function () {
         $(".datepicker-normal").datepicker({
-            dateFormat: 'dd M yy',
+            format: 'MM d, yyyy',
+            endDate: new Date(),
+            autoclose: true,
             changeMonth: true,
             changeYear: true,
-            mixDate: new Date()
-
         });
 
         jQuery.validator.addMethod("mobile_no", function (value, element) {

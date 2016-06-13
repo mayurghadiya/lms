@@ -6130,8 +6130,8 @@ div.k-slider {
 .k-scheduler-times {
     position: relative
 }
-.k-scheduler-content h3{font-size: 16px; font-weight: normal; line-height: 20px;}
-.k-scheduler-content p{font-size: 14px;}
+.k-scheduler-content h3{font-size: 13px; font-weight: normal; line-height: 20px;}
+.k-scheduler-content p{font-size: 10px;;}
 .k-scheduler-times {
     overflow: hidden;
     border-style: solid;

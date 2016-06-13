@@ -213,9 +213,10 @@ $semester = $this->db->get('semester')->result();
 
         $(".datepicker-normal-edit").datepicker({
             format: ' MM d, yyyy',
+            startDate: new Date(),
             changeMonth: true,
             changeYear: true,
-            autoclose:true,
+            autoclose:true
 
         });
     });

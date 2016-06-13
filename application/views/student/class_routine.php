@@ -13,119 +13,109 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
-            <div class=panel-body>
-                <div id="example" style="margin-top: -30px;">
-                    <div id="example">
-                        <div id="scheduler"></div>
+        <div class="panel panel-default toggle panelMove panelClose panelRefresh"></div>
+        <div class=panel-body>
+            <div id="example" style="margin-top: -30px;">
+                <div id="example">
+                    <div id="scheduler"></div>
+                </div>
+                <script id="event-template" type="text/x-kendo-template">
+                    <div class="movie-template">
+                    <p>
+                    #: kendo.toString(start, "hh:mm") # - #: kendo.toString(end, "hh:mm") #
+                    </p>
+                    <h3>#: title #</h3>
+                    <p>#: description #</p>
                     </div>
-                    <script id="event-template" type="text/x-kendo-template">
-                        <div class="movie-template">
-                        <p>
-                        #: kendo.toString(start, "hh:mm") # - #: kendo.toString(end, "hh:mm") #
-                        </p>
-                        <h3>#: title #</h3>
-                        <p>#: description #</p>
-                        </div>
-                    </script>
+                </script>
 
-                    <script>
-                        $(function () {
-                            var base_url = '<?php echo base_url(); ?>';
-                            var today = new Date();
-                            var dd = today.getDate();
-                            var mm = today.getMonth();
-                            var yyyy = today.getFullYear();
-                            if (dd < 10) {
-                                dd = '0' + dd
-                            }
-                            if (mm < 10) {
-                                mm = '0' + mm
-                            }
-                            $("#scheduler").kendoScheduler({
-                                date: today,
-                                startTime: new Date(yyyy + '/' + mm + '/' + dd + ' 07:00 AM'),
-                                endTime: new Date(yyyy + '/' + mm + '/' + dd + ' 07:00 PM'),
-                                height: 600,
-                                views: [
-                                    "day",
-                                    {type: "workWeek", selected: true},
-                                    "week",
-                                    "month",
-                                    "agenda"
-                                ],
-                                editable: false,
-                                eventTemplate: $("#event-template").html(),
-                                edit: function (e) {
-                                    var recurrenceEditor = e.container.find("[data-role=recurrenceeditor]").data("kendoRecurrenceEditor");
+                <script>
+                    $(function () {
+                        var base_url = '<?php echo base_url(); ?>';
+                        var today = new Date();
+                        var dd = today.getDate();
+                        var mm = today.getMonth();
+                        var yyyy = today.getFullYear();
+                        if (dd < 10) {
+                            dd = '0' + dd
+                        }
+                        if (mm < 10) {
+                            mm = '0' + mm
+                        }
+                        $("#scheduler").kendoScheduler({
+                            date: today,
+                            startTime: new Date(yyyy + '/' + mm + '/' + dd + ' 07:00 AM'),
+                            endTime: new Date(yyyy + '/' + mm + '/' + dd + ' 07:00 PM'),
+                            height: 600,
+                            views: [
+                                "day",
+                                {type: "week", selected: true},
+                                "month",
+                                "agenda"
+                            ],
+                            editable: false,
+                            eventTemplate: $("#event-template").html(),
+                            edit: function (e) {
+                                var recurrenceEditor = e.container.find("[data-role=recurrenceeditor]").data("kendoRecurrenceEditor");
 
-                                    //set start option value, used to define the week 'Repeat on' selected checkboxes
-                                    recurrenceEditor.setOptions({
-                                        start: new Date(e.event.start)
-                                    });
-                                },
-                                allDaySlot: false,
-                                timezone: "Etc/UTC",
-                                dataSource: {
-                                    batch: true,
-                                    transport: {
-                                        read: {
-                                            url: base_url + "student/class_routine_data",
-                                            dataType: "json"
-                                        },
-                                        parameterMap: function (options, operation) {
-                                            $("#scheduler").data("kendoScheduler").refresh();
-                                            if (operation !== "read" && options.models) {
-                                                return {models: kendo.stringify(options.models)};
-                                            }
-                                        }
+                                //set start option value, used to define the week 'Repeat on' selected checkboxes
+                                recurrenceEditor.setOptions({
+                                    start: new Date(e.event.start)
+                                });
+                            },
+                            allDaySlot: false,
+                            timezone: "Etc/UTC",
+                            dataSource: {
+                                batch: true,
+                                transport: {
+                                    read: {
+                                        url: base_url + "student/class_routine_data",
+                                        dataType: "json"
                                     },
-                                    schema: {
-                                        model: {
-                                            id: "taskId",
-                                            fields: {
-                                                taskId: {from: "ClassRoutineId", type: "number"},
-                                                title: {from: "Title", defaultValue: "", validation: {required: true}},
-                                                department: {from: "DepartmentID", defaultValue: '', validation: {required: true}},
-                                                branch: {from: "BranchID", defaultValue: '', validation: {required: true}},
-                                                batch: {from: "BatchID", defaulevalue: '', validation: {required: true}},
-                                                semester: {from: "SemesterID", defaultValue: '', validation: {required: true}},
-                                                class: {from: "ClassID", defaultValue: '', validation: {required: true}},
-                                                subject: {from: "SubjectID", defaultValue: '', validation: {required: true}},
-                                                //professor: {from: "ProfessorID", defaultValue: '', validation: {required: true}},
-                                                start: {type: "date", from: "Start"},
-                                                end: {type: "date", from: "End"},
-                                                startTimezone: {from: "StartTimezone"},
-                                                endTimezone: {from: "EndTimezone"},
-                                                description: {from: "Description"},
-                                                recurrenceId: {from: "RecurrenceID"},
-                                                recurrenceRule: {from: "RecurrenceRule"},
-                                                recurrenceException: {from: "RecurrenceException"},
-                                                ownerId: {from: "ProfessorID", defaultValue: '', validation: {required: true}},
-                                                isAllDay: {type: "boolean", from: "IsAllDay"}
-                                            }
+                                    parameterMap: function (options, operation) {
+                                        $("#scheduler").data("kendoScheduler").refresh();
+                                        if (operation !== "read" && options.models) {
+                                            return {models: kendo.stringify(options.models)};
+                                        }
+                                    }
+                                },
+                                schema: {
+                                    model: {
+                                        id: "taskId",
+                                        fields: {
+                                            taskId: {from: "ClassRoutineId", type: "number"},
+                                            title: {from: "Title", defaultValue: "", validation: {required: true}},
+                                            department: {from: "DepartmentID", defaultValue: '', validation: {required: true}},
+                                            branch: {from: "BranchID", defaultValue: '', validation: {required: true}},
+                                            batch: {from: "BatchID", defaulevalue: '', validation: {required: true}},
+                                            semester: {from: "SemesterID", defaultValue: '', validation: {required: true}},
+                                            class: {from: "ClassID", defaultValue: '', validation: {required: true}},
+                                            subject: {from: "SubjectID", defaultValue: '', validation: {required: true}},
+                                            //professor: {from: "ProfessorID", defaultValue: '', validation: {required: true}},
+                                            start: {type: "date", from: "Start"},
+                                            end: {type: "date", from: "End"},
+                                            startTimezone: {from: "StartTimezone"},
+                                            endTimezone: {from: "EndTimezone"},
+                                            description: {from: "Description"},
+                                            recurrenceId: {from: "RecurrenceID"},
+                                            recurrenceRule: {from: "RecurrenceRule"},
+                                            recurrenceException: {from: "RecurrenceException"},
+                                            ownerId: {from: "ProfessorID", defaultValue: '', validation: {required: true}},
+                                            isAllDay: {type: "boolean", from: "IsAllDay"}
                                         }
                                     }
                                 }
-                            });
-
+                            }
                         });
-                    </script>
-                </div>
+
+                    });
+                </script>
             </div>
         </div>
-        <!-- End .panel -->
     </div>
-    <!-- col-lg-12 end here -->
+    <!-- End .panel -->
+</div>
+<!-- col-lg-12 end here -->
 </div>
 <!-- End .row -->
 </div>

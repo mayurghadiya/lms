@@ -686,6 +686,8 @@ foreach ($students as $student) {
             <!-- Start .panel -->
             <div class=panel-heading>
                 <h4 class=panel-title>Event Calendar</h4>
+                <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="minia-icon-arrow-up-3"></i></a>
+                </div>
 
             </div>
             <div class=panel-body>
@@ -704,6 +706,8 @@ foreach ($students as $student) {
                         <h4 class=panel-title>
                             To Do List
                         </h4>
+                        <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="minia-icon-arrow-up-3"></i></a>
+                </div>
                     </div>
                     <div class=panel-body>
                         <div class=todo-widget>
@@ -777,7 +781,7 @@ foreach ($students as $student) {
                                             <button type="button" class="updateclick" value="<?php echo $todo->todo_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                         </div>
                                         <div class="todo-close_box">
-                                            <button type=button class="close todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
+                                            <button type=button class="close-todo-old todo-close1" value="<?php echo $todo->todo_id; ?>"><i aria-hidden="true" class="fa fa-trash-o"></i></button>
                                         </div>
                                     </li>
                                 <?php } ?>
@@ -794,6 +798,8 @@ foreach ($students as $student) {
                         <h4 class="panel-title">
                             Recently Added Professor 
                         </h4>
+                        <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="minia-icon-arrow-up-3"></i></a>
+                </div>
                     </div>
 
                     <div class="panel-body text-center">
@@ -836,6 +842,8 @@ foreach ($students as $student) {
         <div class="panel panel-default toggle">
             <div class="panel-heading">
                 <h4 class="panel-title marginzero">Report Charts</h4>
+                <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="minia-icon-arrow-up-3"></i></a>
+                </div>
             </div>
             <div class="panel-body margin25top">
                 <div class="row">

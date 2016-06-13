@@ -51,7 +51,7 @@
                                         ?>
                                     </td>
                                     <td><?php echo $row->subject; ?></td>
-                                    <td style="width:20%;text-align: left"><?php echo date('d-m-Y h:i A', strtotime($row->created_at)); ?>
+                                    <td style="width:20%;text-align: left"><?php echo date('F d, Y h:i A', strtotime($row->created_at)); ?>
                                     </td>
                                     <td>
                                         <a href="<?php echo base_url('student/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">

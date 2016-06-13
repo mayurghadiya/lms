@@ -158,7 +158,7 @@
     <script>
         $(document).ready(function () {
             $('.datepicker-normal').datepicker({
-                format: ' MM d, yyyy',
+                format: ' MM d, yyyy', startDate : new Date(),
                 autoclose:true,
             });
         })

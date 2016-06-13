@@ -110,8 +110,6 @@
             }, 700);
         });
 
-
-
         $("#eventform").validate({
             rules: {
                 event_name: "required",
