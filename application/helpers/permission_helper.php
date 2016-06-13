@@ -44,7 +44,8 @@ if (!function_exists('user_permission')) {
     
         if(empty($user_role_query))
         {
-            $url=base_url().$CI->session->userdata('login_type').'/dashboard';
+            $url= base_url().'site/logout';
+            //$url=base_url().$CI->session->userdata('login_  type').'/dashboard';
            echo "<script>alert('You have not permission to access this page.'); window.location.href ='".$url."'</script>"; 
         }
         else
