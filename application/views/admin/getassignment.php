@@ -77,6 +77,13 @@
                     <td class="menu-action">
                         <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
                         <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/assignment/delete/<?php echo $row->assign_id; ?>');" data-toggle="modal" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
+                         <?php
+                         $current = date("Y-m-d H:i:s");
+                         $dos = date("Y-m-d H:i:s", strtotime($row->assign_dos));
+                         if ($dos < $current) {
+                         ?>
+                         <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_reopen_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Reopen</span></a>
+                         <?php } ?>
                     </td>	
                 </tr>
             <?php endforeach; ?>						

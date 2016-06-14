@@ -1447,6 +1447,7 @@ class Professor_model extends CI_Model {
         $branch = $this->session->userdata("branch");
         $this->db->where("assign_degree", $dept);
         $this->db->where("course_id", $branch);
+        $this->db->order_by("assign_id","DESC");
         return $this->db->get('assignment_manager')->result();
     }
 
@@ -1459,6 +1460,7 @@ class Professor_model extends CI_Model {
         $this->db->join("student s", "s.std_id=ass.student_id");
         $this->db->where("s.std_degree", $dept);
         $this->db->where("s.course_id", $branch);
+        $this->db->order_by("ass.assignment_submit_id","DESC");
         return $this->db->get();
     }
 
@@ -1660,5 +1662,48 @@ class Professor_model extends CI_Model {
                 ->from('professor')
                 ->where('professor_id', $id)
                 ->get()->row();
+    }
+    
+    /**
+     * 
+     * @param mixed array $data
+     * @param int $assign_id
+     */
+    function insert_update_assignment_reopen($data,$assign_id)
+    {
+        $res = $this->db->get_where('assignment_reopen',array("assign_id"=>$assign_id))->num_rows();
+        if($res < 1)
+        {
+        $this->db->insert("assignment_reopen",$data);
+        }
+        else{
+            $this->db->where("assign_id",$assign_id);
+            $this->db->update("assignment_reopen",$data);
+        }
+    }
+    
+    /**
+     * 
+     * @param int $assign_id
+     * @return type mixed array
+     */
+    function get_student_reopen($assign_id)
+    {
+        $this->db->select('student_id');
+        return $this->db->get_where('assignment_reopen',array("assign_id"=>$assign_id))->result();
+    }
+    
+    /**
+     * 
+     * @param int $assign_id
+     * @param int $student_id
+     * @return type mixed array
+     */
+    function get_submitted_student($assign_id,$student_id)
+    {
+       $this->db->select('GROUP_CONCAT(student_id SEPARATOR ",") as student', FALSE);
+        $this->db->where("assign_id",$assign_id);
+        $this->db->where("student_id",$student_id);
+       return $this->db->get("assignment_submission")->result();
     }
 }

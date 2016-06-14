@@ -175,14 +175,36 @@ $centerlist = $this->db->get('center_user')->result();
 </div>
 <script>
         $(document).ready(function () {
-            $('.datepicker-normal-edit').datepicker({
-                format: ' MM d, yyyy', startDate : new Date(),
-                autoclose:true,
-            });
+            
+         var date = '';
+        var start_date = '';
+
+        $("#datepicker-date123").datepicker({
+            format: ' MM dd, yyyy',
+            startDate: new Date(),
+            todayHighlight: true,
+            autoclose: true
+        });
+
+            $('#datepicker-date123').on('change', function () {
+            date = new Date($(this).val());
+            start_date = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+            console.log(start_date);
+            setTimeout(function () {
+                $("#edit_end_date_time").datepicker({
+                    format: ' MM dd, yyyy',
+                    todayHighlight: true,
+                    startDate: start_date,
+                    autoclose: true,
+                });
+            }, 700);            
+        }); 
         })
     </script>
 
 <script type="text/javascript">
+   
+    
     $.validator.setDefaults({
         submitHandler: function (form) {
             form.submit();

@@ -228,25 +228,30 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".datepicker-normal").datepicker({
-            format: ' MM d, yyyy', 
-            autoclose:true,
-            changeMonth: true,
-            changeYear: true,
+       
+            var date = '';
+        var start_date = '';
+
+        $("#date").datepicker({
+            format: ' MM dd, yyyy',
             startDate: new Date(),
-            onClose: function (selectedDate) {
-                $("#end_date_time").datepicker("option", "minDate", selectedDate);
-            }
+            todayHighlight: true,
+            autoclose: true
         });
-        $("#end_date_time").datepicker({
-            format: ' MM d, yyyy', autoclose:true,
-            changeMonth: true,
-            changeYear: true,
-            startDate: new Date(),
-            onClose: function (selectedDate) {
-                //$(".datepicker-normal").datepicker("option", "maxDate", new Date());
-            }
-        })
+
+            $('#date').on('change', function () {
+            date = new Date($(this).val());
+            start_date = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+            console.log(start_date);
+            setTimeout(function () {
+                $("#end_date_time").datepicker({
+                    format: ' MM dd, yyyy',
+                    todayHighlight: true,
+                    startDate: start_date,
+                    autoclose: true,
+                });
+            }, 700);            
+        });
     });
 </script>
 

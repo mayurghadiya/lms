@@ -433,6 +433,22 @@ class Professor extends MY_Controller {
                 $this->session->set_flashdata('flash_message', 'Assignment Updated Successfully');
                 redirect(base_url() . 'professor/assignment/', 'refresh');
             }
+            if($param1=="reopen")
+            {
+                $implode = implode(",",$this->input->post('student'));
+                if(!empty($implode))
+                {
+                    $insert['student_id'] = $implode;
+                    $insert['assign_id'] = $param2;                    
+                    $this->Professor_model->insert_update_assignment_reopen($insert,$param2);
+                    $this->session->set_flashdata('flash_message', 'Assignment reopen Successfully');
+                    redirect(base_url() . 'professor/assignment/', 'refresh');
+                }
+                else{
+                    $this->session->set_flashdata('flash_message', 'Assignment reopen failed');
+                    redirect(base_url() . 'professor/assignment/', 'refresh');
+                }
+            }
         }
 
         if ($param1 == 'delete') {

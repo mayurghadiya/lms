@@ -863,4 +863,26 @@ class Student_model extends CI_Model {
         return   $this->db->get("survey")->row();
         
     }
+    
+    /**
+     * 
+     * @param type $assign_id
+     * @param type $student_id
+     * @return type int
+     */
+    function getchecksubmitted($assign_id,$student_id)
+    {
+        $this->db->where("assign_id",$assign_id);
+        $this->db->where("student_id",$student_id);
+        return $this->db->get("assignment_submission")->num_rows();
+        
+        
+    }
+    
+    function get_student_reopen_assignment($assign_id,$student_id)
+    {
+        $this->db->where("FIND_IN_SET('$student_id',student_id) !=", 0);
+        $this->db->where("assign_id",$assign_id);
+        return $this->db->get('assignment_reopen')->num_rows();
+    }
 }
