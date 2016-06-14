@@ -4,15 +4,6 @@
     <div class="col-lg-12">
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
             <div class=panel-body>
                 <?php echo form_open(base_url() . 'admin/system_settings/do_update', array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'systemform', 'target' => '_top', 'enctype' => 'multipart/form-data'));
                 ?>

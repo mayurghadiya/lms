@@ -1042,6 +1042,22 @@ class Admin extends MY_Controller {
                 $this->session->set_flashdata('flash_message', 'Assignment Updated Successfully');
                 redirect(base_url() . 'admin/assignment/', 'refresh');
             }
+            if($param1=="reopen")
+            {
+                $implode = implode(",",$this->input->post('student'));
+                if(!empty($implode))
+                {
+                    $insert['student_id'] = $implode;
+                    $insert['assign_id'] = $param2;                    
+                    $this->Crud_model->insert_update_assignment_reopen($insert,$param2);
+                    $this->session->set_flashdata('flash_message', 'Assignment reopen Successfully');
+                    redirect(base_url() . 'admin/assignment/', 'refresh');
+                }
+                else{
+                    $this->session->set_flashdata('flash_message', 'Assignment reopen failed');
+                    redirect(base_url() . 'admin/assignment/', 'refresh');
+                }
+            }
         }
 
         if ($param1 == 'delete') {
@@ -1050,12 +1066,9 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('flash_message', 'Assignment Deleted Successfully');
             redirect(base_url() . 'admin/assignment/', 'refresh');
         }
-        $this->data['assignment'] = $this->db->get('assignment_manager')->result();
-        $this->db->select("ass.*,am.*,s.* ");
-        $this->db->from('assignment_submission ass');
-        $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
-        $this->db->join("student s", "s.std_id=ass.student_id");
-        $this->data['submitedassignment'] = $this->db->get();
+        $this->data['assignment'] = $this->Crud_model->get_all_assignment();
+       
+        $this->data['submitedassignment'] = $this->Crud_model->get_submitted_assignments();
         $this->data['course'] = $this->db->get('course')->result();
         $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['batch'] = $this->db->get('batch')->result();
@@ -1070,55 +1083,29 @@ class Admin extends MY_Controller {
 
     function getassignment($param = '') {
 
+            $data['course'] = $this->Crud_model->get_all_course();
+            $data['semester'] =$this->Crud_model->get_all_semester();
+            $data['batch'] = $this->Crud_model->get_all_bacth();
+            $data['degree'] = $this->Crud_model->get_all_degree();
+            $data['class'] = $this->Crud_model->get_all_class();   
         if ($param == 'allassignment') {
             $degree = $this->input->post('degree');
             $course = $this->input->post('course');
             $batch = $this->input->post('batch');
             $semester = $this->input->post("semester");
             $class = $this->input->post("divclass");
-            $data['course'] = $this->db->get('course')->result();
-            $data['semester'] = $this->db->get('semester')->result();
-            $data['batch'] = $this->db->get('batch')->result();
-            $data['degree'] = $this->db->get('degree')->result();
-            $data['class'] = $this->db->get('class')->result();
-            $this->db->where("course_id", $course);
-            $this->db->where("assign_batch", $batch);
-            $this->db->where("assign_degree", $degree);
-            $this->db->where("assign_sem", $semester);
-            $this->db->where("class_id", $class);
-
+                     
+            $data['assignment'] = $this->Crud_model->filter_assignment($course,$batch,$degree,$semester,$class);
+            
             $data['param'] = $param;
-            $data['assignment'] = $this->db->get('assignment_manager')->result();
         }
         if ($param == "submitted") {
 
             $degree = $this->input->post('degree');
             $course = $this->input->post('course');
             $batch = $this->input->post('batch');
-            $semester = $this->input->post("semester");
-            // $class = $this->input->post("divclass");
-            $data['course'] = $this->db->get('course')->result();
-            $data['semester'] = $this->db->get('semester')->result();
-            $data['batch'] = $this->db->get('batch')->result();
-            $data['degree'] = $this->db->get('degree')->result();
-            $data['class'] = $this->db->get('class')->result();
-            //   $this->db->where("course_id",$course);
-            //   $this->db->where("assign_batch",$batch);
-            //  $this->db->where("assign_degree",$degree);
-            //   $this->db->where("assign_sem",$semester);
-            //$data['assignment'] = $this->db->get('assignment_manager')->result();
-
-            $this->db->select("ass.*,am.*,s.*,s.class_id");
-            $this->db->from('assignment_submission ass');
-            $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
-            $this->db->join("student s", "s.std_id=ass.student_id");
-            $this->db->where("am.course_id", $course);
-            $this->db->where("am.assign_batch", $batch);
-            $this->db->where("am.assign_degree", $degree);
-            $this->db->where("am.assign_sem", $semester);
-            //$this->db->where("am.class_id", $class);
-            $data['submitedassignment'] = $this->db->get()->result();
-
+            $semester = $this->input->post("semester");            
+            $data['submitedassignment'] = $this->Crud_model->filter_submitted_assignment($course,$batch,$degree,$semester);
             $data['param'] = $param;
         }
 
@@ -1127,29 +1114,7 @@ class Admin extends MY_Controller {
             $course = $this->input->post('course');
             $batch = $this->input->post('batch');
             $semester = $this->input->post("semester");
-            // $class = $this->input->post("divclass");
-            $data['course'] = $this->db->get('course')->result();
-            $data['semester'] = $this->db->get('semester')->result();
-            $data['batch'] = $this->db->get('batch')->result();
-            $data['degree'] = $this->db->get('degree')->result();
-            $data['class'] = $this->db->get('class')->result();
-            //   $this->db->where("course_id",$course);
-            //   $this->db->where("assign_batch",$batch);
-            //  $this->db->where("assign_degree",$degree);
-            //   $this->db->where("assign_sem",$semester);
-            //$data['assignment'] = $this->db->get('assignment_manager')->result();
-
-            $this->db->select("ass.*,am.*,s.*,s.class_id");
-            $this->db->from('assignment_submission ass');
-            $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
-            $this->db->join("student s", "s.std_id=ass.student_id");
-            $this->db->where("am.course_id", $course);
-            $this->db->where("am.assign_batch", $batch);
-            $this->db->where("am.assign_degree", $degree);
-            $this->db->where("am.assign_sem", $semester);
-            //$this->db->where("am.class_id", $class);
-            $data['submitedassignment'] = $this->db->get()->result();
-
+            $data['submitedassignment'] = $this->Crud_model->filter_assessment($course,$batch,$degree,$semester);
             $data['param'] = $param;
         }
         $this->load->view("admin/getassignment", $data);
@@ -1324,8 +1289,8 @@ class Admin extends MY_Controller {
             delete_notification('study_resources', $param2);
             $this->session->set_flashdata('flash_message', $this->lang_message('delete_study_resource'));
             redirect(base_url() . 'admin/studyresource/', 'refresh');
-        }
-        $this->data['studyresource'] = $this->db->get('study_resources')->result();
+        }        
+        $this->data['studyresource'] = $this->Crud_model->get_study_resources();
         $this->data['degree'] = $this->db->get('degree')->result();
         $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['course'] = $this->db->get('course')->result();
@@ -1501,12 +1466,8 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('flash_message', $this->lang_message('delete_project'));
             redirect(base_url() . 'admin/project/', 'refresh');
         }
-        $this->data['project'] = $this->db->get('project_manager')->result();
-        $this->db->select("ps.*,pm.*,s.std_id, s.std_first_name, s.std_last_name, s.email");
-        $this->db->from('project_document_submission ps');
-        $this->db->join("project_manager pm", "pm.pm_id=ps.project_id");
-        $this->db->join("student s", "s.std_id=ps.student_id");
-        $this->data['submitedproject'] = $this->db->get();
+        $this->data['project'] =$this->Crud_model->get_all_projects();
+        $this->data['submitedproject'] = $this->Crud_model->get_all_submitted_project();
         $this->data['degree'] = $this->db->get('degree')->result();
         $this->data['batch'] = $this->db->get('batch')->result();
         $this->data['course'] = $this->db->get('course')->result();

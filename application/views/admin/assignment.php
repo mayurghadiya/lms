@@ -69,7 +69,7 @@
                                 </form>
                             </div>
                             <div class="panel-body table-responsive" id="getresponse">          
-                                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                                <table id="datatable-listss" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                     <thead>
                                         <tr>
                                             <th>No</th>												
@@ -88,10 +88,11 @@
 
                                     <tbody>
                                         <?php
+                                        $count = 1;
                                         foreach ($assignment as $row):
                                             ?>
                                             <tr>
-                                                <td></td>	
+                                                <td><?php echo $count++; ?></td>	
                                                 <td ><?php echo $row->assign_title; ?></td>	
                                                 <td>
                                                     <?php
@@ -145,6 +146,14 @@
                                                 <td class="menu-action">
                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Edit</span></a>
                                                     <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/assignment/delete/<?php echo $row->assign_id; ?>');" data-toggle="modal" ><span class="label label-danger mr6 mb6">Delete</span></a>
+                                                    <?php
+                                                     $current = date("Y-m-d H:i:s");
+                                                      $dos = date("Y-m-d H:i:s",strtotime($row->assign_dos));
+                                                      if($dos < $current)
+                                                      {
+                                                    ?>
+                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_reopen_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Reopen</span></a>
+                                                     <?php } ?>
                                                 </td>	
                                             </tr>
                                         <?php endforeach; ?>						
@@ -465,6 +474,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#sub-tables').dataTable();
+        $("#datatable-listss").dataTable();
 
     });
 </script>

@@ -157,10 +157,29 @@
     </div>
     <script>
         $(document).ready(function () {
-            $('.datepicker-normal').datepicker({
-                format: ' MM d, yyyy', startDate : new Date(),
-                autoclose:true,
-            });
+            var date = '';
+        var start_date = '';
+
+        $("#date").datepicker({
+            format: ' MM dd, yyyy',
+            startDate: new Date(),
+            todayHighlight: true,
+            autoclose: true
+        });
+
+            $('#date').on('change', function () {
+            date = new Date($(this).val());
+            start_date = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+            console.log(start_date);
+            setTimeout(function () {
+                $("#end_date_time").datepicker({
+                    format: ' MM dd, yyyy',
+                    todayHighlight: true,
+                    startDate: start_date,
+                    autoclose: true,
+                });
+            }, 700);            
+        });
         })
     </script>
 

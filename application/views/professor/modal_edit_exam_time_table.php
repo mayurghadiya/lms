@@ -171,6 +171,24 @@ $semester = $this->db->get('semester')->result();
     });
 
     $(document).ready(function () {
+          $.validator.addMethod("greaterThan",
+                        function (value, element, param) {
+                            var $min = $(param);
+                            if (this.settings.onfocusout) {
+                                $min.off(".validate-greaterThan").on("blur.validate-greaterThan", function () {
+                                    $(element).valid();
+                                });
+                            }
+                            var stt = $min.val();
+                            var edt = $("#end_time").val();
+                            var start_time = new Date("November 13, 2013 " + stt);
+                            stt = start_time.getTime();
+
+                            var end_time = new Date("November 13, 2013 " + edt);
+                            endt = end_time.getTime();
+
+                            return parseInt(endt) > parseInt(stt);
+                        }, "End time must be greater than start time");
          $('#start_time').timepicker({
             upArrowStyle: 'fa fa-angle-up',
             downArrowStyle: 'fa fa-angle-down',
@@ -191,7 +209,10 @@ $semester = $this->db->get('semester')->result();
                 subject: "required",
                 exam_date: "required",
                 start_time: "required",
-                end_time: "required"
+                 end_time: {
+                            required: true,
+                            greaterThan: '#start_time'
+                        }
             },
             messages: {
                 degree: "Please select department",
@@ -202,7 +223,9 @@ $semester = $this->db->get('semester')->result();
                 subject: "Please select subject",
                 exam_date: "Please enter date",
                 start_time: "Please enter start time",
-                end_time: "Please enter end time"
+                end_time: {
+                            required: "Please enter end time",
+                        }
             }
         });
     });
