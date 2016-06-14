@@ -1108,22 +1108,44 @@ class Professor extends MY_Controller {
         $this->__site_template('professor/courseware', $this->data);
     }
 
-    function getcourseware()
+    function getcourseware($param1="")
     {
-        $this->db->where('branch_id',$this->input->post('branch'));
-        $this->db->where('subject_id',$this->input->post('subject'));
-        $this->db->where('chapter',$this->input->post('chapter'));
-        $this->db->where('topic',$this->input->post('topic'));
-        $data=$this->db->get('courseware')->result();
-        
-        if(count($data)>0)
+        if($param1="edit")
         {
-            echo 'false';
+            $this->db->where('branch_id',$this->input->post('branch'));
+            $this->db->where('subject_id',$this->input->post('subject'));
+            $this->db->where('chapter',$this->input->post('chapter'));
+            $this->db->where('topic',$this->input->post('topic'));
+            $this->db->where_not_in('courseware_id',$this->input->post('editid'));
+            $data=$this->db->get('courseware')->result();
+//            echo $this->db->last_query();
+//            print_r($data);
+//            exit;
+            if(count($data)>0)
+            {
+                echo 'false';
+            }
+            else
+            {
+                echo 'true';
+            }
         }
-        else
-        {
-            echo 'true';
-        }
+        else {
+            $this->db->where('branch_id',$this->input->post('branch'));
+            $this->db->where('subject_id',$this->input->post('subject'));
+            $this->db->where('chapter',$this->input->post('chapter'));
+            $this->db->where('topic',$this->input->post('topic'));
+            $data=$this->db->get('courseware')->result();
+
+            if(count($data)>0)
+            {
+                echo 'false';
+            }
+            else
+            {
+                echo 'true';
+            }
+        }       
         
     }
     

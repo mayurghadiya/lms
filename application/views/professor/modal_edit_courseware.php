@@ -20,7 +20,7 @@ foreach ($edit_data as $row):
                                 <span style="color:red">* <?php echo "is " . ucwords("mandatory field"); ?> </span> 
                             </div>
                             <?php echo form_open(base_url() . 'professor/courseware/do_update/' . $row['courseware_id'], array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'frmcoursewareedit', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
-
+                            <input type="hidden" name="editid" id="editid" value="<?php echo $param2; ?>">
                             <div class="form-group">
                                 <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
                                 <div class="col-sm-8">
@@ -110,7 +110,7 @@ foreach ($edit_data as $row):
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-4 col-sm-8">
-                                    <button type="submit" class="btn btn-info vd_bg-green" ><?php echo ucwords("update"); ?></button>
+                                    <button id="btnsubmit" type="submit" class="btn btn-info vd_bg-green" ><?php echo ucwords("update"); ?></button>
                                 </div>
                             </div>
                             </form>                            
@@ -132,6 +132,15 @@ endforeach;
             form.submit();
         }
     });
+
+//$("#subject").change(function(){
+//        
+//       // $("#chapter").val('');
+//        $("#topic").val('');
+//    });
+//    $("#chapter").change(function(){
+//        $("#topic").val('');
+//    });
 
 $("#branch").change(function(){
     var id=$(this).val();
@@ -175,6 +184,27 @@ $("#branch").change(function(){
                 topic:
                         {
                             required: true,
+                            remote: {
+                                url: "<?php echo base_url(); ?>professor/getcourseware/edit",
+                                type: "post",
+                                data: {
+                                    branch: function () {
+                                        return $("#branch").val();
+                                    },
+                                    subject: function () {
+                                        return $("#subject").val();
+                                    },
+                                    chapter: function () {
+                                        return $("#chapter").val();
+                                    },
+                                    topic: function () {
+                                        return $("#topic").val();
+                                    },
+                                    editid: function () {
+                                        return $("#editid").val();
+                                    }
+                                }
+                            }
                         },
             },
             messages: {
@@ -193,8 +223,74 @@ $("#branch").change(function(){
                 topic:
                         {
                             required: "Enter topic ",
+                            remote:"Topic already exists",
                         },
             }
         });
+    $('#btnsubmit').click(function () {
+    $("#frmcoursewareedit").validate({
+            rules: {
+                branch:
+                        {
+                            required: true,
+                        },
+                subject:
+                     {
+                         required: true,
+                     },
+               chapter:
+                   {
+                       required: true,
+                   },       
+                topic:
+                        {
+                            required: true,
+                            remote: {
+                                url: "<?php echo base_url(); ?>professor/getcourseware/edit",
+                                type: "post",
+                                data: {
+                                    branch: function () {
+                                        return $("#branch").val();
+                                    },
+                                    subject: function () {
+                                        return $("#subject").val();
+                                    },
+                                    chapter: function () {
+                                        return $("#chapter").val();
+                                    },
+                                    topic: function () {
+                                        return $("#topic").val();
+                                    },
+                                    editid: function () {
+                                        return $("#editid").val();
+                                    }
+                                }
+                            }
+                        },
+            },
+            messages: {
+                branch:
+                        {
+                            required: "Select branch",
+                        },
+                subject:
+                        {
+                            required: "Select subject",
+                        },
+                chapter:
+                        {
+                            required: "Enter chapter name",
+                        },         
+                topic:
+                        {
+                            required: "Enter topic ",
+                            remote:"Topic already exists",
+                        },
+            }
+        });
+            
     });
+    });
+       
+  
 </script>

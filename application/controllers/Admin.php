@@ -380,7 +380,16 @@ class Admin extends MY_Controller {
                 $this->db->update('student', $updaterollno);
                 //end roll no
                 //email
-
+                
+                //group
+                $groupdata=$this->db->get_where('group',array('g_id'=>$this->input->post('group')))->result_array();
+                
+                $user_role=$groupdata[0]['user_role'].','.$lastid;
+                 
+                $groupupdatedata=array('user_role'=>$user_role);
+                $this->db->where('g_id',$this->input->post('group'));
+                $this->db->update('group',$groupupdatedata);
+               //end group
                 $data['rollno'] = $rollno;
                 
                 $config = Array(
@@ -396,7 +405,7 @@ class Admin extends MY_Controller {
                 $this->email->set_newline("\r\n");
                 $msg = 'Your LMS credentials are given below.<br/>';
                 $msg .= "URL:" . base_url('site/user_login');
-                $msg .= "<br/>Username: " . $_POST['email'];
+                $msg .= "<br/>Username: " . $_POST['email_id'];
                 $msg .= "<br/>Passwod: " . $_POST['password'];
                 $this->email->from('mayur.ghadiya@searchnative.in', 'Search Native India');
                 $this->email->to($data['email']);
@@ -406,7 +415,7 @@ class Admin extends MY_Controller {
 
                 if ($this->email->send()) {
                     $this->session->set_flashdata('flash_message', $this->lang_message('save_student'));
-
+                    
                     redirect(base_url() . 'admin/student/', 'refresh');
                 } else {
                     show_error($this->email->print_debugger());
@@ -4289,14 +4298,14 @@ class Admin extends MY_Controller {
             $user_type[] = '<option value="student">Student</option>';
             //$this->db->select('std_id, name')->from('student')->get()->result_array();
             //$this->db->get('student')->result_array();
-            $sections = $this->db->select('std_id, name')->from('student')->get()->result_array();
+            $sections = $this->db->select('std_id, name,std_first_name,std_last_name')->from('student')->get()->result_array();
             foreach ($sections as $row) {
                 if (!in_array($row['std_id'], $user_role)) {
-                    $full_user_list[] = '<option value="' . $row['std_id'] . '">' . $row['name'] . '</option>';
+                    $full_user_list[] = '<option value="' . $row['std_id'] . '">' . $row['std_first_name'] .' '. $row['std_last_name']. '</option>';
                 }
 
                 if (in_array($row['std_id'], $user_role)) {
-                    $group[] = '<option value="' . $row['std_id'] . '" selected>' . $row['name'] . '</option>';
+                    $group[] = '<option value="' . $row['std_id'] . '" selected>' . $row['std_first_name'] .' '. $row['std_last_name']. '</option>';
                 }
             }
         }
