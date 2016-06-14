@@ -198,6 +198,10 @@
                            // $("#branches").append(response);
                         }
                         else{
+                            $('#branches').html('');
+                            var opt="<option value=''>Select branch</option>";
+                             opt +="<option value='All'>All</option>";
+                            $("#branches").append(opt);
                             $("#branches").append(response);
                             
                         }
@@ -230,8 +234,11 @@
                           
                         }
                         else{
-                           $("#batches").append(response);
-                            
+                             $('#batches').html('');
+                            var opt="<option value=''>Select batch</option>";
+                             opt +="<option value='All'>All</option>";
+                            $("#batches").append(opt);
+                            $("#batches").append(response);
                         }
                         
                     }

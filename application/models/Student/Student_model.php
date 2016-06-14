@@ -738,6 +738,7 @@ class Student_model extends CI_Model {
         $date = date('Y-m-d', strtotime('-6 days', strtotime($date)));        
         $login_type = $this->session->userdata("login_type");
         $login_id = $this->session->userdata("login_user_id");
+        $this->db->select('todo_id,todo_title,todo_datetime,todo_status');
         $this->db->where("todo_role",$login_type);
         $this->db->where("todo_role_id",$login_id);
         $this->db->where('todo_datetime >= ', $date);
@@ -777,11 +778,13 @@ class Student_model extends CI_Model {
     
     function get_timline_todolist()
     {
+        $this->db->select('todo_id,todo_title,todo_datetime');
         return $this->db->get_where('todo_list',array('todo_role'=>'student','todo_role_id'=>$this->session->userdata('student_id')))->result();
       //  return $this->db->get_where('todo_list',array('todo_datetime >='=> date('Y-m-d H:m:s'),'todo_role'=>'student','todo_role_id'=>$this->session->userdata('student_id')))->result();
     }
     function get_timline_event()
     {
+        $this->db->select('event_id,event_name,event_date');
         return $this->db->get('event_manager')->result();
         //return $this->db->get_where('event_manager',array('event_date >='=> date('Y-m-d H:m:s')))->result();
     }

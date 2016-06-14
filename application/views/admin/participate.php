@@ -220,8 +220,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label"><?php echo ucwords("Date "); ?><span style="color:red">*</span></label>
                                             <div class="col-sm-5">     
-                                                <input type="text" readonly="" class="form-control" name="dateofsubmission" id="dateofsubmission" />                              
-
+                                                <input type="text" class="form-control" name="dateofsubmission" id="dateofsubmission" />                              
                                             </div>               
                                         </div>
 
@@ -568,6 +567,12 @@
 </div></div></div>
 
 <script type="text/javascript">
+     $( "#dateofsubmission" ).focusin(function() {
+         $(this).prop('readonly', true);
+      });
+      $( "#dateofsubmission" ).focusout(function() {
+         $(this).prop('readonly', false);
+      });
     $(document).ready(function () {
         $("#upd_searchform").validate({
             rules: {
