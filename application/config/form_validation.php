@@ -88,4 +88,49 @@ $config = array(
             'rules' => $base_rule
         )
     ),
+    'degree_insert' => array(
+        array(
+            'field' => 'd_name',
+            'label' => 'Department',
+            'rules' => $base_rule.'|is_unique[degree.d_name]'
+        )
+    ),
+    'assignment_insert' => array(
+        array(
+            'field' => 'title',
+            'label' => 'Assignment',
+            'rules' => $base_rule.'|is_unique[assignment_manager.assign_title]'
+        ),
+        array(
+            'field' => 'degree',
+            'label' => 'Department',
+            'rules' => $base_rule
+        ),
+        array(
+            'field' => 'course',
+            'label' => 'Branch',
+            'rules' => $base_rule
+        ),
+        array(
+            'field' => 'batch',
+            'label' => 'Batch',
+            'rules' => $base_rule
+        ),
+        array(
+            'field' => 'semester',
+            'label' => 'Semester',
+            'rules' => $base_rule
+        ),
+        array(
+            'field' => 'class',
+            'label' => 'Class',
+            'rules' => $base_rule
+        ),
+        array(
+            'field' => 'submissiondate',
+            'label' => 'Submission Date',
+            'rules' => $base_rule
+        )
+    )
+           
 );

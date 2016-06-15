@@ -28,6 +28,7 @@
                                 <select name="degree" id="degree" class="form-control">
                                     <option value="">Select department</option>
                                     <?php
+                                    $this->db->select('d_id,d_name,d_status');
                                     $degree = $this->db->get_where('degree', array('d_status' => 1))->result();
                                     foreach ($degree as $dgr) {
                                         ?>
@@ -62,6 +63,7 @@
                                 <select name="semester" id="semester" class="form-control">
                                     <option value="">Select Semester</option>
                                     <?php
+                                    $this->db->select('s_id,s_name,s_status');
                                     $datasem = $this->db->get_where('semester', array('s_status' => 1))->result();
                                     foreach ($datasem as $rowsem) {
                                         ?>
@@ -78,6 +80,7 @@
                                 <select name="class" id="class" class="form-control">
                                     <option value="">Select class</option>
                                     <?php
+                                    $this->db->select('class_id,class_name');
                                     $class = $this->db->get('class')->result_array();
 
                                     foreach ($class as $c) {

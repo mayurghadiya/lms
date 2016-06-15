@@ -2569,8 +2569,8 @@ class Professor extends MY_Controller {
 
                     $data['image_path'] = $file_name;
                     $this->session->set_userdata('image_path', $file_name);
-                    $param2 = $this->session->userdata("login_user_id");
-                    //$this->Crud_model->save_professor($, $param2);
+                    $param2 = $this->session->userdata("login_user_id");                    
+                    $this->Crud_model->save_professor($data, $param2);
                     $this->session->set_flashdata("flash_message", 'Profile update successfully');
                     redirect(base_url() . 'professor/manage_profile');
                 }

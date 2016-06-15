@@ -119,7 +119,7 @@
                 <?php } ?>
             </form>
               <?php }else{
-                  echo '<h4> Your survey feedback has been submitted </h4>';
+                  echo '<h4> You have already submitted survey feedback. </h4>';
               } ?>
          </div>
       </div>

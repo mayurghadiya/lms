@@ -354,9 +354,11 @@ class Student extends MY_Controller {
                 $file_url = base_url() . 'uploads/project_file/' . $data['upload_file_name'];
                 $data['upload_url'] = $file_url;
             }
+            $data['upload_title'] = $this->input->post('title');
+            $data['upload_desc'] = $this->input->post('description');
             $data['std_id'] = $this->session->userdata('std_id');
             $this->db->insert("student_upload", $data);
-            $this->session->set_flashdata('flash_message', 'File is successfully uploaded.');
+            $this->session->set_flashdata('flash_message', 'Detail is successfully added.');
             redirect(base_url() . 'student/uploads/', 'refresh');
         }
         $this->data['upload_data'] = $this->Student_model->getstudent_upload();

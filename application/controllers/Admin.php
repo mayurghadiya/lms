@@ -63,13 +63,22 @@ class Admin extends MY_Controller {
 
         if ($_POST) {
             if ($param1 == 'create') {
-                $data['d_name'] = $this->input->post('d_name');
-                $data['d_status'] = $this->status($this->input->post('degree_status'));
+                if ($this->form_validation->run('degree_insert') != FALSE) {
+                   
+                $data['d_name'] = $this->input->post('d_name',TRUE);
+                $data['d_status'] = $this->status($this->input->post('degree_status',TRUE));
                 $data['created_date'] = date('Y-m-d');
                 $this->db->insert('degree', $data);
                 $this->session->set_flashdata('flash_message', $this->lang_message('save_department'));
                 $this->logger->logAction('Department created: ', $_POST);
                 redirect(base_url('admin/department'));
+                 
+                }else{
+                    $error = validation_errors();
+                     $this->session->set_flashdata('department_error', $error);  
+                       redirect(base_url('admin/department'));
+                }
+                
             }
             if ($param1 == 'do_update') {
                 $data['d_name'] = $this->input->post('d_name');
@@ -138,8 +147,11 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('flash_message', $this->lang_message('delete_branch'));
             redirect(base_url() . 'admin/courses/', 'refresh');
         }
+        $this->db->select('d_id,d_name');
         $this->data['degree'] = $this->db->get('degree')->result_array();
+        $this->db->select('course_id,course_alias_id,c_name,degree_id,course_status');
         $this->data['courses'] = $this->db->get('course')->result_array();
+         $this->db->select('s_id,s_name');
         $this->data['semesters'] = $this->db->get('semester')->result_array();
         $this->data['title'] = $this->lang_message('branch_title');
         $this->data['edit_title'] = $this->lang_message('edit_branch');
@@ -906,8 +918,7 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('flash_message', $this->lang_message('delete_event'));
             redirect(base_url() . 'admin/events/', 'refresh');
         }
-        $this->data['events'] = $this->Crud_model->event_manager();
-        $this->data['group'] = $this->db->get('group')->result();
+        $this->data['events'] = $this->Crud_model->event_manager();       
         $this->data['page'] = 'event';
         $this->data['title'] = $this->lang_message('event_title');
         $this->data['add_title'] = $this->lang_message('add_events');
@@ -1069,10 +1080,10 @@ class Admin extends MY_Controller {
         $this->data['assignment'] = $this->Crud_model->get_all_assignment();
        
         $this->data['submitedassignment'] = $this->Crud_model->get_submitted_assignments();
-        $this->data['course'] = $this->db->get('course')->result();
-        $this->data['semester'] = $this->db->get('semester')->result();
-        $this->data['batch'] = $this->db->get('batch')->result();
-        $this->data['degree'] = $this->db->get('degree')->result();
+        $this->data['course'] = $this->Crud_model->get_all_course_optimize();
+        $this->data['semester'] = $this->Crud_model->get_all_semester_optimize();
+        $this->data['batch'] = $this->Crud_model->get_all_batch_optimize();
+        $this->data['degree'] =$this->Crud_model->get_all_degree_optimize();
         //$this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignment';
         $this->data['title'] = $this->lang_message('assignment_title');
@@ -1291,10 +1302,10 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/studyresource/', 'refresh');
         }        
         $this->data['studyresource'] = $this->Crud_model->get_study_resources();
-        $this->data['degree'] = $this->db->get('degree')->result();
-        $this->data['semester'] = $this->db->get('semester')->result();
-        $this->data['course'] = $this->db->get('course')->result();
-        $this->data['batch'] = $this->db->get('batch')->result();
+        $this->data['course'] = $this->Crud_model->get_all_course_optimize();
+        $this->data['semester'] = $this->Crud_model->get_all_semester_optimize();
+        $this->data['batch'] = $this->Crud_model->get_all_batch_optimize();
+        $this->data['degree'] =$this->Crud_model->get_all_degree_optimize();
         $this->data['page'] = 'studyresource';
         $this->data['title'] = $this->lang_message('study_resource_title');
         $this->data['add_title'] = $this->lang_message('add_studyresource');
@@ -1307,30 +1318,35 @@ class Admin extends MY_Controller {
         $course = $this->input->post('course');
         $batch = $this->input->post('batch');
         $semester = $this->input->post("semester");
-        $data['course'] = $this->db->get('course')->result();
-        $data['semester'] = $this->db->get('semester')->result();
-        $data['batch'] = $this->db->get('batch')->result();
-        $data['degree'] = $this->db->get('degree')->result();
-        $data['student'] = $this->db->get('student')->result();
+        $data['course'] =  $this->Crud_model->get_all_course_optimize();
+        $data['semester'] =$this->Crud_model->get_all_semester_optimize();
+        $data['batch'] = $this->Crud_model->get_all_batch_optimize();
+        $data['degree'] = $this->Crud_model->get_all_degree_optimize();
+     //   $data['student'] = $this->db->get('student')->result();
 
         if ($degree == "All") {
+            $this->db->select('study_id,study_title,study_degree,study_course,study_batch,study_sem,study_dos,study_filename');
             $data['studyresource'] = $this->db->get('study_resources')->result();
         } else {
             if ($course == "All") {
+                $this->db->select('study_id,study_title,study_degree,study_course,study_batch,study_sem,study_dos,study_filename');
                 $this->db->where("study_degree", $degree);
                 $data['studyresource'] = $this->db->get('study_resources')->result();
             } else {
                 if ($batch == 'All') {
+                    $this->db->select('study_id,study_title,study_degree,study_course,study_batch,study_sem,study_dos,study_filename');
                     $this->db->where("study_course", $course);
                     $this->db->where("study_degree", $degree);
                     $data['studyresource'] = $this->db->get('study_resources')->result();
                 } else {
                     if ($semester == "All") {
+                        $this->db->select('study_id,study_title,study_degree,study_course,study_batch,study_sem,study_dos,study_filename');
                         $this->db->where("study_batch", $batch);
                         $this->db->where("study_course", $course);
                         $this->db->where("study_degree", $degree);
                         $data['studyresource'] = $this->db->get('study_resources')->result();
                     } else {
+                        $this->db->select('study_id,study_title,study_degree,study_course,study_batch,study_sem,study_dos,study_filename');
                         $this->db->where("study_sem", $semester);
                         $this->db->where("study_batch", $batch);
                         $this->db->where("study_course", $course);
@@ -1468,10 +1484,10 @@ class Admin extends MY_Controller {
         }
         $this->data['project'] =$this->Crud_model->get_all_projects();
         $this->data['submitedproject'] = $this->Crud_model->get_all_submitted_project();
-        $this->data['degree'] = $this->db->get('degree')->result();
-        $this->data['batch'] = $this->db->get('batch')->result();
-        $this->data['course'] = $this->db->get('course')->result();
-        $this->data['semester'] = $this->db->get('semester')->result();
+        $this->data['degree'] = $this->Crud_model->get_all_degree_optimize();
+        $this->data['batch'] = $this->Crud_model->get_all_batch_optimize();
+        $this->data['course'] = $this->Crud_model->get_all_course_optimize();
+        $this->data['semester'] = $this->Crud_model->get_all_semester_optimize();
         //$this->data['class'] = $this->db->get('class')->result();
         //$this->db->get('student')->result();
         $this->data['student'] = $this->db->select('std_id, std_first_name, std_last_name')->from('student')->get()->result();
@@ -1630,16 +1646,12 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/library/', 'refresh');
         }
         //$this->db->get('library_manager')->result();
-        $this->data['library'] = $this->db->select('lm_id, lm_title, lm_degree, lm_batch, lm_course, lm_url, lm_semester, lm_filename')->from('library_manager')->get()->result();
-        //$this->db->get('degree')->result();
-        $this->data['degree'] = $this->db->select('d_id, d_name, d_status')->from('degree')->get()->result();
-        //$this->db->get('course')->result();
-        $this->data['course'] = $this->db->select('course_id, c_name, course_alias_id, degree_id, semester_id')->from('course')->get()->result();
-        //$this->db->get('batch')->result();
-        $this->data['batch'] = $this->db->select('b_id, b_name, degree_id, course_id')->from('batch')->get()->result();
-        //$this->db->get('semester')->result();
+        $this->data['library'] = $this->Crud_model->get_all_library();       
+        $this->data['degree'] = $this->db->select('d_id, d_name, d_status')->from('degree')->get()->result();        
+        $this->data['course'] = $this->db->select('course_id, c_name, course_alias_id, degree_id, semester_id')->from('course')->get()->result();        
+        $this->data['batch'] = $this->db->select('b_id, b_name, degree_id, course_id')->from('batch')->get()->result();        
         $this->data['semester'] = $this->db->select('s_id, s_name')->from('semester')->get()->result();
-        //$this->data['student'] = $this->db->get('student')->result();
+        
         $this->data['page'] = 'library';
         $this->data['title'] = $this->lang_message('library_title');
         $this->data['add_title'] = $this->lang_message('add_digital_library');
@@ -1678,20 +1690,24 @@ class Admin extends MY_Controller {
                     $students = $this->db->get('student')->result();
                 } else {
                     if ($course == 'All') {
+                        $this->db->select('std_id');
                         $this->db->where('std_degree', $degree);
                         $students = $this->db->get('student')->result();
                     } else {
                         if ($batch == 'All') {
+                            $this->db->select('std_id');
                             $this->db->where('std_degree', $degree);
                             $this->db->where('course_id', $course);
                             $students = $this->db->get('student')->result();
                         } else {
                             if ($semester == 'All') {
+                                $this->db->select('std_id');
                                 $this->db->where('std_batch', $batch);
                                 $this->db->where('std_degree', $degree);
                                 $this->db->where('course_id', $course);
                                 $students = $this->db->get('student')->result();
                             } else {
+                                $this->db->select('std_id');
                                 $this->db->where('std_batch', $batch);
                                 $this->db->where('std_degree', $degree);
                                 $this->db->where('course_id', $course);
@@ -1796,7 +1812,7 @@ class Admin extends MY_Controller {
         //$this->db->get('participate_student')->result_array();
         $this->data['volunteer'] = $this->db->select('student_id, pp_id, participate_student_id, comment')->from('participate_student')->get()->result_array();
         //$this->db->get('student_upload')->result_array();
-        $this->data['uploads'] = $this->db->select('std_id, upload_file_name')->from('student_upload')->get()->result_array();
+        $this->data['uploads'] = $this->db->select('std_id, upload_file_name,upload_title,upload_desc')->from('student_upload')->get()->result_array();
         $this->__site_template('admin/participate', $this->data);
     }
 
@@ -5251,7 +5267,7 @@ class Admin extends MY_Controller {
         $degree = $this->input->post("degree");
         $course = $this->input->post("course");
         $class = $this->input->post("divclass");
-
+        $this->db->select('std_id,std_first_name,std_last_name');
         $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'std_status' => 1, "semester_id" => $sem, 'course_id' => $course, 'std_degree' => $degree, 'class_id' => $class))->result();
         $html = '';
         if ($param != '') {
@@ -5292,9 +5308,8 @@ class Admin extends MY_Controller {
         }
 
         if ($batch != "") {
+            $this->db->select('std_id,std_first_name,std_last_name');
             $datastudent = $this->db->get_where("student", array("std_batch" => $batch, 'semester_id' => $sem, 'std_status' => 1, 'course_id' => $course, 'std_degree' => $degree))->result();
-            //  $datastudent = $this->db->get_where('student', array('std_status' => 1))->result();
-
             foreach ($datastudent as $rowstu) {
                 if (isset($std)) {
                     if (in_array($rowstu->std_id, $std)) {
@@ -5337,21 +5352,22 @@ class Admin extends MY_Controller {
             $batch = $this->input->post('batch');
             $semester = $this->input->post("semester");
             $class = $this->input->post("divclass");
-            $data['course'] = $this->db->get('course')->result();
-            $data['semester'] = $this->db->get('semester')->result();
-            $data['batch'] = $this->db->get('batch')->result();
-            $data['degree'] = $this->db->get('degree')->result();
-            $data['class'] = $this->db->get('class')->result();
+            $data['course'] = $this->Crud_model->get_all_course_optimize();
+            $data['semester'] = $this->Crud_model->get_all_semester_optimize();
+            $data['batch'] = $this->Crud_model->get_all_batch_optimize();
+            $data['degree'] =  $this->Crud_model->get_all_degree_optimize();
+            $data['class'] =  $this->Crud_model->get_all_class();
             //$this->db->select('std_id, name, email, std_first_name, std_last_name')->from('student')->get()->result();
             //$this->db->get('student')->result();
             $data['student'] = $this->db->select('std_id, name, email, std_first_name, std_last_name')->from('student')->get()->result();
+            $this->db->select('pm_id,pm_title,pm_student_id,pm_degree,pm_course,pm_batch,pm_semester,class_id,pm_filename,pm_dos');
             $this->db->where("pm_course", $course);
             $this->db->where("pm_batch", $batch);
             $this->db->where("pm_degree", $degree);
             $this->db->where("pm_semester", $semester);
-            $this->db->where("class_id", $class);
-            $data['param'] = $param;
+            $this->db->where("class_id", $class);            
             $data['project'] = $this->db->get('project_manager')->result();
+            $data['param'] = $param;
 
             $this->load->view("admin/getprojects", $data);
         }
@@ -5361,23 +5377,20 @@ class Admin extends MY_Controller {
             $batch = $this->input->post('batch');
             $semester = $this->input->post("semester");
             //$class = $this->input->post("divclass");
-            $data['course'] = $this->db->get('course')->result();
-            $data['semester'] = $this->db->get('semester')->result();
-            $data['batch'] = $this->db->get('batch')->result();
-            $data['degree'] = $this->db->get('degree')->result();
-            //$this->db->select('std_id, email, name, std_first_name, std_last_name')->from('student')->get()->result();
-            //$this->db->get('student')->result();
-            $data['student'] = $this->db->select('std_id, email, name, std_first_name, std_last_name')->from('student')->get()->result();
-            $data['class'] = $this->db->get('class')->result();
-            $this->db->select("ps.*,pm.*,s.std_id, s.name, s.std_first_name, s.std_last_name, s.email");
+            $data['course'] = $this->Crud_model->get_all_course_optimize();
+            $data['semester'] = $this->Crud_model->get_all_semester_optimize();
+            $data['batch'] = $this->Crud_model->get_all_batch_optimize();
+            $data['degree'] =  $this->Crud_model->get_all_degree_optimize();
+            $data['class'] =  $this->Crud_model->get_all_class();
+            $data['student'] = $this->db->select('std_id, email, name, std_first_name, std_last_name')->from('student')->get()->result();           
+            $this->db->select("ps.student_id,ps.project_id,ps.dos,ps.description,ps.document_file,pm_id,pm.pm_title,pm.pm_degree,pm.pm_course,pm.pm_batch,pm.pm_semester,s.std_id, s.std_first_name, s.std_last_name, s.email");
             $this->db->from('project_document_submission ps');
             $this->db->join("project_manager pm", "pm.pm_id=ps.project_id");
             $this->db->join("student s", "s.std_id=ps.student_id");
             $this->db->where("pm_course", $course);
             $this->db->where("pm_batch", $batch);
             $this->db->where("pm_degree", $degree);
-            $this->db->where("pm_semester", $semester);
-            //  $this->db->where("pm.class_id", $semester);
+            $this->db->where("pm_semester", $semester);            
             $data['submitedproject'] = $this->db->get()->result();
             $data['param'] = $param;
             $this->load->view("admin/getprojects", $data);
@@ -5417,30 +5430,34 @@ class Admin extends MY_Controller {
         $course = $this->input->post('course');
         $batch = $this->input->post('batch');
         $semester = $this->input->post("semester");
-        $data['course'] = $this->db->get('course')->result();
-        $data['semester'] = $this->db->get('semester')->result();
-        $data['batch'] = $this->db->get('batch')->result();
-        $data['degree'] = $this->db->get('degree')->result();
+        $data['course'] = $this->Crud_model->get_all_course_optimize();
+        $data['semester'] = $this->Crud_model->get_all_semester_optimize();
+        $data['batch'] = $this->Crud_model->get_all_batch_optimize();
+        $data['degree'] =  $this->Crud_model->get_all_degree_optimize();
+          
         if ($degree == "All") {
-
-
+            $this->db->select('lm_id, lm_title, lm_degree, lm_batch, lm_course, lm_url, lm_semester, lm_filename');
             $data['library'] = $this->db->get('library_manager')->result();
         } else {
             if ($course == "All") {
+                $this->db->select('lm_id, lm_title, lm_degree, lm_batch, lm_course, lm_url, lm_semester, lm_filename');
                 $this->db->where("lm_degree", $degree);
                 $data['library'] = $this->db->get('library_manager')->result();
             } else {
                 if ($batch == 'All') {
+                    $this->db->select('lm_id, lm_title, lm_degree, lm_batch, lm_course, lm_url, lm_semester, lm_filename');
                     $this->db->where("lm_course", $course);
                     $this->db->where("lm_degree", $degree);
                     $data['library'] = $this->db->get('library_manager')->result();
                 } else {
                     if ($semester == "All") {
+                        $this->db->select('lm_id, lm_title, lm_degree, lm_batch, lm_course, lm_url, lm_semester, lm_filename');
                         $this->db->where("lm_batch", $batch);
                         $this->db->where("lm_course", $course);
                         $this->db->where("lm_degree", $degree);
                         $data['library'] = $this->db->get('library_manager')->result();
                     } else {
+                        $this->db->select('lm_id, lm_title, lm_degree, lm_batch, lm_course, lm_url, lm_semester, lm_filename');
                         $this->db->where("lm_semester", $semester);
                         $this->db->where("lm_batch", $batch);
                         $this->db->where("lm_course", $course);
@@ -6157,7 +6174,7 @@ class Admin extends MY_Controller {
             $data['forum_topic_id'] = $param2;
             $comment_id = $this->input->post("comment_id");
             $data['forum_comments'] = $this->input->post('comment');
-            $data['forum_comment_status'] = '1';
+            $data['forum_comment_status'] = $this->input->post('comment_status');
             $data['user_role'] = $this->session->userdata('login_type');
             $data['user_role_id'] = $this->session->userdata('login_user_id');
             $this->Site_model->update_comment($data, $comment_id);
@@ -6175,5 +6192,85 @@ class Admin extends MY_Controller {
 
         echo json_encode($branch);
     }
+    
+    function check_professor_email($param='')
+    {
+        if($param=='')
+        {
+        $email = $this->input->post('email');
+        $data = $this->db->get_where('professor',array('email'=>$email))->row();
+        if (count($data) > 0) {
+            echo "false";
+        } else {
+            echo "true";
+        }
+        }
+        else{
+            
+        $email = $this->input->post('email');
+        $this->db->where("professor_id!=",$param);
+        $data = $this->db->get_where('professor',array('email'=>$email))->row();
+        if (count($data) > 0) {
+            echo "false";
+        } else {
+            echo "true";
+        }
+        }
+    }
+    
+    /**
+     * Get Course
+     * @param string $param
+     */
+    function get_cource_all($param = '') {
+        $did = $this->input->post("degree");
+        $html = '';
+        if ($did != '') {
+            if ($did == "All") {
+                $html = '<option value="">Select Branch</option>';
+                 $html .= '<option value="All">All</option>';
+            } else {
+                $this->db->select('course_id,c_name');
+                $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
+                $html = '<option value="">Select Branch</option>';
+                if ($param == '') {
+                    $html .= '<option value="All">All</option>';
+                }
+                foreach ($cource as $crs):
+                    $html .='<option value="' . $crs['course_id'] . '">' . $crs['c_name'] . '</option>';
 
+                endforeach;
+                
+            }
+        }
+        echo $html;
+    }
+    
+     /**
+     * Get batches
+     * @param string $param
+     */
+    function get_batchs_all($param = '') {
+        $cid = $this->input->post("course");
+        $did = $this->input->post("degree");
+        $html = '';
+        if ($cid != '') {
+            if ($cid == "All") {
+                $html .= '<option value="">Select Batch</option>';
+                $html .= '<option value="All">All</option>';
+            } else {
+                $batch = $this->db->query("SELECT b_id,b_name FROM batch WHERE FIND_IN_SET('" . $did . "',degree_id) AND FIND_IN_SET('" . $cid . "',course_id)")->result_array();
+                $html .= '<option value="">Select Batch</option>';
+                if ($param == "") {
+                    $html .= '<option value="All">All</option>';
+                }
+                foreach ($batch as $btc):
+                    $html .='<option value="' . $btc['b_id'] . '">' . $btc['b_name'] . '</option>';
+
+                endforeach;
+            }
+            echo $html;
+        }
+    }
+    
 }

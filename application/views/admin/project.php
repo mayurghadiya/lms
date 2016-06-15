@@ -57,6 +57,7 @@
                                     <select class="form-control filter-rows" name="filterclass" id="filterclass" >
                                         <option value="">Select</option>
                                         <?php
+                                        $this->db->select('class_id,class_name');
                                         $class = $this->db->get('class')->result_array();
                                         foreach ($class as $c) {
                                             ?>
@@ -157,8 +158,8 @@
                                                 <td id="downloadedfile"> <a href="<?php echo base_url().'uploads/project_file/'.$row->pm_filename; ?>" download=""><i class="fa fa-download"></i></a></td>
                                                 <td><?php echo date('F d, Y', strtotime($row->pm_dos)); ?></td>	
                                                 <td class="menu-action">
-                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
-                                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/project/delete/<?php echo $row->pm_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
+                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/project/delete/<?php echo $row->pm_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>															
@@ -331,7 +332,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('#project-data-tables').dataTable();
+        $('#project-data-tables').dataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>
 
@@ -436,7 +437,7 @@
     });
 
     $(document).ready(function () {
-        $('#sub-tables').dataTable();
+        $('#sub-tables').dataTable({"language": { "emptyTable": "No data available" }});
 
     });
 </script>

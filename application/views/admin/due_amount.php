@@ -135,7 +135,7 @@
                     success: function (content) {
                         $("#due_amount-filter-result").html(content);
                         $('#all-due_amount-result').hide();
-                        $('#due_amount-data-tables').DataTable();
+                        $('#due_amount-data-tables').DataTable({"language": { "emptyTable": "No data available" }});
                     }
                 });
             }

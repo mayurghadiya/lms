@@ -820,7 +820,7 @@ foreach ($students as $student) {
                                                 <small><?php echo date_duration($teacher->created_at); ?></small>
                                             </h4>
                                             <div class="btn-group" role="group">                     
-                                                <a href="#" class="btn btn-default btn-xs" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_view_profile/<?php echo $teacher->professor_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top">More Details</a>
+                                                <a href="#" class="btn btn-default btn-xs" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_view_profile/<?php echo $teacher->professor_id; ?>');"  data-toggle="tooltip" data-placement="top">More Details</a>
                                             </div>
                                         </div>                                                
                                     </div>                            

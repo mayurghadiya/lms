@@ -20,7 +20,7 @@ $subjects = $this->db->get_where('subject_manager', [
             <div class="form-group">
                 <label class="col-sm-4 control-label"><?php echo ucwords("email"); ?><span style="color:red">*</span></label>
                 <div class="col-sm-8">
-                    <input id="email" class="form-control" type="email" name="email" />
+                    <input id="email" class="form-control" type="email" id="email" name="email" />
                 </div>	
             </div>
             <div class="form-group">
@@ -137,7 +137,19 @@ $subjects = $this->db->get_where('subject_manager', [
         $("#professor-form").validate({
             rules: {
                 professor_name: "required",
-                email: "required",
+                email:
+                        {
+                            required: true,
+                            remote: {
+                                url: "<?php echo base_url() . 'admin/check_professor_email'; ?>",
+                                type: "post",
+                                data: {
+                                    course: function () {
+                                        return $("#d_name").val();
+                                    },
+                                }
+                            }
+                        },
                 password: "required",
                 mobile: "required",
                 address: "required",
@@ -154,7 +166,10 @@ $subjects = $this->db->get_where('subject_manager', [
             },
             messages: {
                 professor_name: "Enter professor name",
-                email: "Enter email",
+                email: {
+                    required:"Enter Email",
+                    remote:"Email id already exists",
+                },
                 password: "Enter password",
                 mobile: "Enter mobile",
                 address: "Enter address",

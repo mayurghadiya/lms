@@ -42,6 +42,6 @@
 <!-- End #content -->
 <script>
 $(document).ready(function () {
-        $('#datatable-list1').DataTable();
+        $('#datatable-list1').DataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>

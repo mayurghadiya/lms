@@ -32,8 +32,8 @@
                                     <?php } ?>
                                 </td>
                                 <td class="menu-action">
-                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_forum/<?php echo $row['forum_id']; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
-                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/forum/delete/<?php echo $row['forum_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_forum/<?php echo $row['forum_id']; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/forum/delete/<?php echo $row['forum_id']; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>									
@@ -52,6 +52,6 @@
 <!-- End #content -->
 <script type="text/javascript">
     $(document).ready(function(){
-       $("#datatable-list-forum").dataTable();
+       $("#datatable-list-forum").dataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>

@@ -152,7 +152,18 @@ $assigned_subjects = explode(',', $professor->subjects);
         $("#professor-form").validate({
             rules: {
                 professor_name: "required",
-                email: "required",
+                email: {
+                    required:true,
+                    remote: {
+                                url: "<?php echo base_url() . 'admin/check_professor_email/'.$param2; ?>",
+                                type: "post",
+                                data: {
+                                    course: function () {
+                                        return $("#d_name").val();
+                                    },
+                                }
+                            }
+                },
                 password: "required",
                 mobile: "required",
                 address: "required",
@@ -169,7 +180,10 @@ $assigned_subjects = explode(',', $professor->subjects);
             },
             messages: {
                 professor_name: "Enter professor name",
-                email: "Enter email",
+                email:{
+                    required:"Enter email",
+                    remote: "Email id already exists",
+                        },
                 password: "Enter password",
                 mobile: "Enter mobile",
                 address: "Enter address",

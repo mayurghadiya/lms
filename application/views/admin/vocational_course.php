@@ -61,8 +61,8 @@ $categories = $this->db->get('course_category')->result();
                                     <?php } ?>
                                 </td>
                                 <td class="menu-action">
-                                    <a href="#" onclick="showAjaxModal('<?php echo base_url();?>modal/popup/modal_edit_vocational/<?php echo $row['vocational_course_id'];?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
-                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/vocationalcourse/delete/<?php echo $row['vocational_course_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url();?>modal/popup/modal_edit_vocational/<?php echo $row['vocational_course_id'];?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/vocationalcourse/delete/<?php echo $row['vocational_course_id']; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                     <a href="#" onclick="showAjaxModal('<?php echo base_url();?>admin/vocational_student/<?php echo $row['vocational_course_id'];?>');" data-original-title="registered student" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-desktop" aria-hidden="true"></i>View</span></a>
                                 </td>
                             </tr>

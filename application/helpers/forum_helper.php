@@ -142,6 +142,7 @@ if (!function_exists('countcommenttopic')) {
     function countcommenttopic($topic_id)
     {
         $CI = &get_instance();
+        $CI->db->where('forum_comment_status','1');
         return $CI->db->get_where("forum_comment",array("forum_topic_id"=>$topic_id))->num_rows();
     }
     

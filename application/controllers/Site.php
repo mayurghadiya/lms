@@ -202,7 +202,9 @@ class Site extends MY_Controller {
             $row = $query->row();
             $this->session->set_userdata('admin_login', '1');
             $this->session->set_userdata('admin_id', $row->admin_id);
+            $this->session->set_userdata('admin_id', $row->admin_id);
             $this->session->set_userdata('login_user_id', $row->admin_id);
+            $this->session->set_userdata('user_name', $row->ad_first_name .' '.$row->ad_last_name);
             $this->session->set_userdata('name', $row->name);
             $this->session->set_userdata('email', $row->email);
             $this->session->set_userdata('login_type', 'admin');
@@ -227,6 +229,7 @@ class Site extends MY_Controller {
             $this->session->set_userdata('login_user_id', $row->std_id);
             $this->session->set_userdata('std_roll', $row->std_roll);
             $this->session->set_userdata('name', $row->name);
+             $this->session->set_userdata('user_name', $row->std_first_name .' '.$row->std_last_name);
             $this->session->set_userdata('login_type', 'student');
             $this->session->set_userdata('email', $row->email);
             $this->session->set_userdata('user_type', '2');

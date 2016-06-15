@@ -26,6 +26,9 @@ class Video_streaming extends MY_Controller {
         $this->data['title'] = 'Video Streaming';
         //$this->data['page'] = 'video_streaming';
         $this->data['degree'] = $this->Crud_model->get_all_degree();
+        $this->db->like("created_at",date('Y-m-d'));
+        $this->db->where("is_active",'1');
+        $this->data['streaming']= $this->db->get("broadcast_and_streaming")->result();        
         $this->__site_template($this->session->userdata('login_type') . '/' . $this->data['page'], $this->data);
     }
 

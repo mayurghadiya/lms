@@ -15,12 +15,26 @@
                         </div>-->
             <div class=panel-body>
                 <?php echo form_open(base_url() . 'student/uploads/', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'frmproject', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
-                <div class="padded">											
+                <div class="padded">	
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Title <span style="color:red">* </span> </label>
+                        <div class="col-sm-5">
+                            <input type="text" name="title" value="" class="form-control" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Description <span style="color:red">* </span> </label>
+                        <div class="col-sm-5">
+                            <textarea name="description" class="form-control" ></textarea>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Upload <span style="color:red">* </span> </label>
                         <div class="col-sm-5">
                             <input type="file" name="fileupload" />
                         </div>
+                        <label id="filestyle-0-error" class="error" for="filestyle-0" style="display:none;">Please browse file.</label>
                     </div>
 
                     <div class="form-group">
@@ -40,7 +54,9 @@
                             <table id="upload-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                 <thead>
                                     <tr>
-                                        <th>#</th>												
+                                        <th>#</th>	
+                                        <th><?php echo ucwords("title"); ?></th>
+                                        <th><?php echo ucwords("Description"); ?></th>
                                         <th><?php echo ucwords("File"); ?></th>                                            
                                         <th><?php echo ucwords("Uploaded Time"); ?></th>                                            
 
@@ -53,6 +69,8 @@
                                         ?>
                                         <tr>
                                             <td><?php echo $count++; ?></td>	
+                                            <td><?php echo $row->upload_title; ?></td>	
+                                            <td><?php echo $row->upload_desc; ?></td>	
                                             <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $row->upload_file_name; ?>" download="" title=""><i class="fa fa-download"></i></a></td>	                                                  
                                             <td><?php echo date_duration($row->created_date); ?></td>
 
@@ -94,11 +112,15 @@
 
         $("#frmproject").validate({
             rules: {
+                title:"required",
+                description:"required",
                 fileupload: {required: true,
                     extension: "gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|ppt|pptx|pdf|txt",
                 }
             },
             messages: {
+                title:"Enter title",
+                description:"Enter description",
                 fileupload: {
                     required: "Please browse file.",
                     extension: "Please upload valid file"

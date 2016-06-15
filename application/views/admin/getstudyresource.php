@@ -78,7 +78,7 @@
                 <td><?php echo date('F d, Y', strtotime($row->study_dos)); ?></td>	
                 <td><a href="<?php echo base_url() . 'uploads/project_file/' . $row->study_filename; ?>" download=""  title="<?php echo $row->study_filename; ?>"><i class="fa fa-download"></i></a></td>	
                 <td class="menu-action">
-                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_studyresource/<?php echo $row->study_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_studyresource/<?php echo $row->study_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
                     <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/studyresource/delete/<?php echo $row->study_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>	
                 </td>	
             </tr>
@@ -90,10 +90,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         "use strict";
-        $('#data-tables').dataTable();
+        $('#data-tables').dataTable({"language": { "emptyTable": "No data available" }});
     });
     $(document).ready(function () {
         "use strict";
-        $('#data-tabless').dataTable();
+        $('#data-tabless').dataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>
