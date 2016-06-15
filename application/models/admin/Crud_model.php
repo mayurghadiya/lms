@@ -1106,7 +1106,7 @@ class Crud_model extends CI_Model {
      * @return array
      */
     function event_manager() {
-        return $this->db->select()
+        return $this->db->select('event_name,event_location,event_date,event_id')
                         ->from('event_manager')
                         ->order_by('event_date', 'DESC')
                         ->get()
@@ -1753,4 +1753,228 @@ class Crud_model extends CI_Model {
                 ->result_array();
     }
 
+    /**
+     * 
+     * @param mixed array $data
+     * @param int $assign_id
+     */
+    function insert_update_assignment_reopen($data,$assign_id)
+    {
+        $res = $this->db->get_where('assignment_reopen',array("assign_id"=>$assign_id))->num_rows();
+        if($res < 1)
+        {
+        $this->db->insert("assignment_reopen",$data);
+        }
+        else{
+            $this->db->where("assign_id",$assign_id);
+            $this->db->update("assignment_reopen",$data);
+        }
+    }
+    
+    /**
+     * 
+     * @param int $assign_id
+     * @return type mixed array
+     */
+    function get_student_reopen($assign_id)
+    {
+        $this->db->select('student_id');
+        return $this->db->get_where('assignment_reopen',array("assign_id"=>$assign_id))->result();
+    }
+    
+    /**
+     * 
+     * @param int $assign_id
+     * @param int $student_id
+     * @return mixed array
+     */
+    function get_submitted_student($assign_id,$student_id)
+    {
+       $this->db->select('GROUP_CONCAT(student_id SEPARATOR ",") as student', FALSE);
+        $this->db->where("assign_id",$assign_id);
+        $this->db->where("student_id",$student_id);
+       return $this->db->get("assignment_submission")->result();
+    }
+    
+    /**
+     * study resource
+     * @return mixed array
+     */
+
+    function get_study_resources()
+    {
+        $this->db->select('study_id,study_title,study_degree,study_course,study_batch,study_sem,study_filename');
+        $this->db->order_by('study_id','DESC');
+        return $this->db->get('study_resources')->result();
+    }
+    
+    /**
+     * get all submitted assignment
+     * @return mixed array
+     */
+    function get_submitted_assignments()
+    {
+        $this->db->select("ass.submited_date,ass.comment,ass.document_file,ass.assignment_submit_id,am.assign_id,am.assign_title,am.assign_degree,am.course_id,am.assign_batch,am.assign_sem,s.name");
+        $this->db->from('assignment_submission ass');
+        $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+        $this->db->join("student s", "s.std_id=ass.student_id");
+        return $this->db->get();
+    }
+    
+    /**
+     * all assignment
+     * @return mixed array
+     */
+    function get_all_assignment()
+    {
+        $this->db->select('assign_id,assign_title,assign_degree,course_id,assign_batch,assign_sem,class_id,assign_desc,assign_filename,assign_dos');
+        $this->db->order_by('assign_id','DESC');
+        return $this->db->get('assignment_manager')->result();
+    }
+    
+    /**
+     * submitted project
+     * @return mixed array
+     */
+    function get_all_submitted_project()
+    {
+        $this->db->select("ps.student_id,ps.project_id,ps.dos,ps.description,ps.document_file,pm_id,pm.pm_title,pm.pm_degree,pm.pm_course,pm.pm_batch,pm.pm_semester,s.std_id, s.std_first_name, s.std_last_name, s.email");
+        $this->db->from('project_document_submission ps');
+        $this->db->join("project_manager pm", "pm.pm_id=ps.project_id");
+        $this->db->join("student s", "s.std_id=ps.student_id");
+        return  $this->db->get();
+    }
+    
+    /**
+     * get all project
+     * @return mixed array
+     */
+    function get_all_projects()
+    {
+        $this->db->order_by('pm_id','DESC');
+        return $this->db->get('project_manager')->result();
+    }
+    /**
+     * get all class
+     * @return mixed array
+     */
+    function get_all_class() {
+        return $this->db->select()
+                        ->from('class')
+                        ->order_by('class_name', 'ASC')
+                        ->get()
+                        ->result();
+    }
+    
+    /**
+     * filter  assignment list
+     * @param int $course
+     * @param int $batch
+     * @param int $degree
+     * @param int $semester
+     * @param int $class
+     * @return mixed array
+     */
+    function filter_assignment($course,$batch,$degree,$semester,$class)
+    {
+        
+            $this->db->where("course_id", $course);
+            $this->db->where("assign_batch", $batch);
+            $this->db->where("assign_degree", $degree);
+            $this->db->where("assign_sem", $semester);
+            $this->db->where("class_id", $class);
+            $this->db->order_by('assign_id','DESC');
+            return $this->db->get('assignment_manager')->result();
+    }
+    
+    function filter_submitted_assignment($course,$batch,$degree,$semester)
+    {
+        $this->db->select("ass.*,am.*,s.*,s.class_id");
+            $this->db->from('assignment_submission ass');
+            $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+            $this->db->join("student s", "s.std_id=ass.student_id");
+            $this->db->where("am.course_id", $course);
+            $this->db->where("am.assign_batch", $batch);
+            $this->db->where("am.assign_degree", $degree);
+            $this->db->where("am.assign_sem", $semester);
+            //$this->db->where("am.class_id", $class);
+           return $this->db->get()->result();
+    }
+    
+    function filter_assessment($course,$batch,$degree,$semester)
+    {
+         $this->db->select("ass.*,am.*,s.*,s.class_id");
+            $this->db->from('assignment_submission ass');
+            $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
+            $this->db->join("student s", "s.std_id=ass.student_id");
+            $this->db->where("am.course_id", $course);
+            $this->db->where("am.assign_batch", $batch);
+            $this->db->where("am.assign_degree", $degree);
+            $this->db->where("am.assign_sem", $semester);
+            //$this->db->where("am.class_id", $class);
+            return $this->db->get()->result();
+    }
+    
+    /**
+     * group list
+     * @return mixed array
+     */
+    function get_all_group()
+    {
+        $this->db->select('g_id,group_name');
+        return  $this->db->get('group')->result(); 
+    }
+    
+    function get_all_course_optimize()
+    {
+        return $this->db->select('course_id,c_name')
+                        ->from('course')
+                        ->order_by('c_name', 'ASC')
+                        ->get()
+                        ->result();
+    }
+    
+    function get_all_semester_optimize()
+    {
+        return $this->db->select('s_id,s_name')
+                        ->from('semester')
+                        ->order_by('s_name', 'ASC')
+                        ->get()
+                        ->result();
+    }
+    
+    function get_all_batch_optimize()
+    {
+        
+        return $this->db->select('b_id,b_name')
+                        ->from('batch')
+                        ->order_by('b_name', 'ASC')
+                        ->get()
+                        ->result();
+    }
+    
+    function get_all_degree_optimize()
+    {
+        return $this->db->select('d_id,d_name')
+                        ->from('degree')
+                        ->order_by('d_name', 'ASC')
+                        ->get()
+                        ->result();
+    }
+    
+    /**
+     * Get all student information
+     * 
+     * @return array
+     */
+    function get_all_students_optimize() {
+        return $this->db->select('std_id,name')
+                        ->from('student')
+                        ->get()
+                        ->result();
+    }
+    function get_all_library()
+    {
+         return $this->db->select('lm_id, lm_title, lm_degree, lm_batch, lm_course, lm_url, lm_semester, lm_filename')->from('library_manager')->get()->result();
+    }
 }

@@ -184,10 +184,21 @@ $semesters = $this->db->get('semester')->result_array();
                                 <input type="text" class="form-control" name="twitter" id="twitter" />
                             </div>
                         </div>	
-                        <div class="form-group hide">
+                        <div class="form-group ">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Group"); ?></label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="group" id="group" placeholder="readonly" readonly />
+                                <select class="form-control" name="group" id="group">
+                                    <option> Select group</option>  
+                                    <?php
+                                    $group=$this->db->get_where('group',array('user_type'=>'student'))->result_array();
+                                        foreach($group as $g)
+                                        {
+                                            ?>
+                                    <option value="<?php echo $g['g_id'];?>"><?php echo $g['group_name'];?></option>
+                                    <?php
+                                        }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group hide">

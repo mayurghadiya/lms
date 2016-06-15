@@ -738,6 +738,7 @@ class Student_model extends CI_Model {
         $date = date('Y-m-d', strtotime('-6 days', strtotime($date)));        
         $login_type = $this->session->userdata("login_type");
         $login_id = $this->session->userdata("login_user_id");
+        $this->db->select('todo_id,todo_title,todo_datetime,todo_status');
         $this->db->where("todo_role",$login_type);
         $this->db->where("todo_role_id",$login_id);
         $this->db->where('todo_datetime >= ', $date);
@@ -777,11 +778,13 @@ class Student_model extends CI_Model {
     
     function get_timline_todolist()
     {
+        $this->db->select('todo_id,todo_title,todo_datetime');
         return $this->db->get_where('todo_list',array('todo_role'=>'student','todo_role_id'=>$this->session->userdata('student_id')))->result();
       //  return $this->db->get_where('todo_list',array('todo_datetime >='=> date('Y-m-d H:m:s'),'todo_role'=>'student','todo_role_id'=>$this->session->userdata('student_id')))->result();
     }
     function get_timline_event()
     {
+        $this->db->select('event_id,event_name,event_date');
         return $this->db->get('event_manager')->result();
         //return $this->db->get_where('event_manager',array('event_date >='=> date('Y-m-d H:m:s')))->result();
     }
@@ -862,5 +865,27 @@ class Student_model extends CI_Model {
         $this->db->where('sq_id',$id);
         return   $this->db->get("survey")->row();
         
+    }
+    
+    /**
+     * 
+     * @param type $assign_id
+     * @param type $student_id
+     * @return type int
+     */
+    function getchecksubmitted($assign_id,$student_id)
+    {
+        $this->db->where("assign_id",$assign_id);
+        $this->db->where("student_id",$student_id);
+        return $this->db->get("assignment_submission")->num_rows();
+        
+        
+    }
+    
+    function get_student_reopen_assignment($assign_id,$student_id)
+    {
+        $this->db->where("FIND_IN_SET('$student_id',student_id) !=", 0);
+        $this->db->where("assign_id",$assign_id);
+        return $this->db->get('assignment_reopen')->num_rows();
     }
 }

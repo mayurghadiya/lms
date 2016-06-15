@@ -90,7 +90,7 @@
                             </li>
                             <li class=dropdown>
                                 <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url() . 'uploads/professor/' . $this->session->userdata('image_path'); ?> alt="" class="image"> 
-                                    <span class=txt><?php echo $this->session->userdata('email'); ?></span> <b class=caret></b>
+                                    <span class=txt><?php echo $this->session->userdata('name'); ?></span> <b class=caret></b>
                                 </a>
                                 <ul class="dropdown-menu right">
                                     <li class=menu>

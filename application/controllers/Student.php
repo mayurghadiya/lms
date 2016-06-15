@@ -15,7 +15,6 @@ class Student extends MY_Controller {
             $this->load->helper('permission');
             user_permission();
         }
-        //$this->output->enable_profiler(TRUE);
     }
 
     function index() {
@@ -39,14 +38,14 @@ class Student extends MY_Controller {
                 ))->result();
         //$this->db->get_where('study_resources')->result_array();
         $this->data['studyresource'] = $this->db->select('study_filename, study_desc, study_title')->from('study_resources')->order_by('study_id', 'DESC')->get()->result_array();
-        $this->data['library'] = $this->db->order_by('created_date', 'DESC')->get_where('library_manager')->result_array();
+        $this->data['library'] = $this->db->select('lm_id,lm_filename,lm_title')->from('library_manager')->order_by('created_date', 'DESC')->get()->result_array();
         $this->data['exam_listing'] = $this->student_exam_listing_widget($student_detail);
         $this->data['cms_pages'] = $this->student_cms_page_list_widget($student_detail);
         $streaming = $this->streaming_list_widget($student_detail);
         $this->data['all'] = $streaming['all'];
         $this->data['live_streaming'] = $streaming['live_streaming'];
         $this->data['todolist'] = $this->Student_model->get_todo();
-        $this->data['timeline'] = $this->Student_model->get_timline();
+        // $this->data['timeline'] = $this->Student_model->get_timline();
         $this->data['timline_todolist'] = $this->Student_model->get_timline_todolist();
         $this->data['timline_event'] = $this->Student_model->get_timline_event();
         $this->data['timelinecount'] = $this->Student_model->get_timeline_date_count();
@@ -352,9 +351,11 @@ class Student extends MY_Controller {
                 $file_url = base_url() . 'uploads/project_file/' . $data['upload_file_name'];
                 $data['upload_url'] = $file_url;
             }
+            $data['upload_title'] = $this->input->post('title');
+            $data['upload_desc'] = $this->input->post('description');
             $data['std_id'] = $this->session->userdata('std_id');
             $this->db->insert("student_upload", $data);
-            $this->session->set_flashdata('flash_message', 'File is successfully uploaded.');
+            $this->session->set_flashdata('flash_message', 'Detail is successfully added.');
             redirect(base_url() . 'student/uploads/', 'refresh');
         }
         $this->data['upload_data'] = $this->Student_model->getstudent_upload();
@@ -577,7 +578,7 @@ class Student extends MY_Controller {
         }
         if ($param1 == "submission") {
             $std_id = $this->session->userdata('std_id');
-            $std = $this->db->get_where('student', array('std_id' => $std_id))->result_array();
+            $std = $this->db->select('std_degree,std_batch,semester_id,course_id,class_id')->from('student')->where('std_id', $std_id)->get()->result_array();
             // $this->db->get_where('project_manager',array('	pm_degree'=>$std[0]['std_degree'],
             //'pm_batch'=>$std[0]['std_batch'],'pm_semester'=>$std[0]['semester_id'],'pm_course'=>$std[0]['course_id']))->result();
             $degree = $std[0]['std_degree'];
@@ -587,7 +588,7 @@ class Student extends MY_Controller {
             $class = $std[0]['class_id'];
             $this->data['project'] = $this->db->query("SELECT * FROM project_manager WHERE pm_degree='$degree' AND pm_batch = '$batch' AND pm_semester = '$sem' AND pm_course = '$course' AND class_id='$class' AND FIND_IN_SET('$std_id',pm_student_id)")->result();
             // $page_data['project'] = $this->db->get_where('project_manager', array("pm_student_id" => $this->session->userdata('std_id')))->result();           
-            $this->data['student'] = $this->db->get('student')->result();
+            //$this->data['student'] = $this->db->get('student')->result();
             $this->data['page'] = 'project';
             $this->data['title'] = 'Project List';
             $this->data['add_title'] = $this->lang_message('add_project');
@@ -788,6 +789,7 @@ class Student extends MY_Controller {
      * @param int $param2
      */
     function vocationalcourse($param1 = '', $param2 = '') {
+
         if ($param1 == 'register') {
             $this->data['vocationalcourse'] = $this->db->get_where('vocational_course', array('vocational_course_id' => $param2))->result_array();
 
@@ -1039,8 +1041,9 @@ class Student extends MY_Controller {
      * @param int $param2
      */
     function courseware($param = '', $param2 = '') {
-        $this->db->select('cw.*,c.*,sub.subject_name');
+        $this->db->select('cw.*,c.c_name,sub.subject_name');
         $this->db->from('courseware cw');
+        $this->db->where('status', 1);
         $this->db->join('course c', 'c.course_id=cw.branch_id');
         $this->db->join('subject_manager sub', 'sub.sm_id=cw.subject_id');
         $this->data['courseware'] = $this->db->get()->result_array();

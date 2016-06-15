@@ -61,6 +61,7 @@ if(!function_exists('date_duration'))
     {
         $uploaded = date("Y-m-d H:i",strtotime($datetime));
         $datetime = date("Y-m-d H:i:s",strtotime($datetime));
+        $datetime2 = date("Y-m-d H:i:s",strtotime($datetime));
        
         $date1 =  strtotime(date("Y-m-d H:i:s"));
         $date2 =  strtotime($datetime);
@@ -70,6 +71,9 @@ if(!function_exists('date_duration'))
         $uploaded = strtotime($uploaded);
         if($current == $uploaded)
         {
+         $timeFirst  = strtotime(date("Y-m-d H:i:s"));
+         $timeSecond = strtotime($datetime2);
+        $differenceInSeconds = $timeFirst - $timeSecond ;
             return "a few seconds ago";
         }
         if($strtime1 > $strtime2)

@@ -66,6 +66,6 @@
 
 <script>
 $(document).ready(function(){
-    $('#inbox-datatable-list').DataTable();
+    $('#inbox-datatable-list').dataTable({"language": { "emptyTable": "No data available" }});
 });
 </script>

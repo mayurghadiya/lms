@@ -33,6 +33,7 @@
         <div class="panel-default">
 
             <div class=panel-body>
+                <?php if(!empty($streaming)){ ?>
                 <article>
 
 <!-- just copy this <section> and next script -->
@@ -209,6 +210,9 @@
                     </script>
 
                 </article>
+                <?php }else{ ?>
+                <h4>No live streaming available.</h4>
+                <?php } ?>
                 <!-- commits.js is useless for you! -->
                 <script src="//cdn.webrtc-experiment.com/commits.js" async>
                 </script>

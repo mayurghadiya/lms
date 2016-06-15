@@ -4,15 +4,6 @@
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
             <div class=panel-body>
                 <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addlibrary/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Library</a>
                 <div class="row filter-row">
@@ -141,8 +132,8 @@
                                 </td>	
                                 <td id="downloadedfile"><a href="<?php echo $row->lm_url; ?>" download="" target="_blank" title="<?php echo $row->lm_filename; ?>"><i class="fa fa-download"></i></a></td>	
                                 <td class="menu-action">
-                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_library/<?php echo $row->lm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
-                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/library/delete/<?php echo $row->lm_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_library/<?php echo $row->lm_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/library/delete/<?php echo $row->lm_id; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>						
@@ -186,7 +177,7 @@
                 var dataString = "degree="+degree;
                 $.ajax({
                     type:"POST",
-                    url:"<?php echo base_url().'admin/course_filter/'; ?>",
+                    url:"<?php echo base_url().'admin/get_cource_all/'; ?>",
                     data:dataString,                   
                     success:function(response){
                         if(degree=='All')
@@ -198,8 +189,7 @@
                            // $("#branches").append(response);
                         }
                         else{
-                            $("#branches").append(response);
-                            
+                            $("#branches").html(response);
                         }
                     }
                 });
@@ -219,7 +209,7 @@
                 var dataString = "course="+course+"&degree="+degree;
                 $.ajax({
                     type:"POST",
-                    url:"<?php echo base_url().'admin/batch_filter/'; ?>",
+                    url:"<?php echo base_url().'admin/get_batchs_all/'; ?>",
                     data:dataString,                   
                     success:function(response){
                          if(course=='All')
@@ -230,8 +220,7 @@
                           
                         }
                         else{
-                           $("#batches").append(response);
-                            
+                           $("#batches").html(response);                            
                         }
                         
                     }
@@ -240,6 +229,6 @@
 
         $(document).ready(function () {
             "use strict";
-            $('#library-data').dataTable();
+            $('#library-data').dataTable({"language": { "emptyTable": "No data available" }});
         });
     </script>

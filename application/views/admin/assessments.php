@@ -234,7 +234,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         
-        $("#sub-tables").dataTable();
+        $("#sub-tables").dataTable({"language": { "emptyTable": "No data available" }});
         
         $.validator.setDefaults({
             submitHandler: function (form) {

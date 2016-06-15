@@ -1,4 +1,4 @@
-<?php $group = $this->db->get('group')->result(); ?>
+<?php $group =   $this->Crud_model->get_all_group();   ?>
 <div class=row>                      
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->

@@ -56,7 +56,6 @@
                                 <th width="10%">Semester</th>
                                 <th width="10%">Date</th>
                                 <th>Action</th>
-                            </tr>
                         </thead>
 
                         <tbody>
@@ -73,8 +72,8 @@
                                     <td><?php echo $row->s_name; ?></td>
                                     <td><?php echo date('F d, Y', strtotime($row->em_date)); ?></td>
                                     <td class="menu-action">
-                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_exam/<?php echo $row->em_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
-                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/exam/delete/<?php echo $row->em_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
+                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_exam/<?php echo $row->em_id; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/exam/delete/<?php echo $row->em_id; ?>');" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -129,7 +128,7 @@
                     success: function (content) {
                         $("#due_amount-filter-result").html(content);
                         $('#all-due_amount-result').hide();
-                        $('#due_amount-data-tables').DataTable();
+                        $('#due_amount-data-tables').DataTable({"language": {"emptyTable": "No data available"}});
                     }
                 });
             }

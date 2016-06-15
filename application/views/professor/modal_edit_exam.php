@@ -222,25 +222,31 @@ $centerlist = $this->db->get('center_user')->result();
 </script>
 
 <script type="text/javascript">
-    $(function () {
+    $(document).ready(function () {
+          var date = '';
+        var start_date = '';
 
-        $(".datepicker-normal-edit").datepicker({
-            format: ' MM d, yyyy', startDate: new Date(), autoclose:true,
-            changeMonth: true,
-            changeYear: true,
-            onClose: function (selectedDate) {
-                $("#edit_end_date_time").datepicker("option", "minDate", selectedDate);
-            }
-
+        $("#datepicker-date123").datepicker({
+            format: ' MM dd, yyyy',
+            startDate: new Date(),
+            todayHighlight: true,
+            autoclose: true
         });
-        $("#edit_end_date_time").datepicker({
-            format: ' MM d, yyyy', startDate: new Date(), autoclose:true,
-            changeMonth: true,
-            changeYear: true,            
-            onClose: function (selectedDate) {
-                //$(".datepicker-normal-edit").datepicker("option", "maxDate", selectedDate);
-            }
-        })
+
+            $('#datepicker-date123').on('change', function () {
+            date = new Date($(this).val());
+            start_date = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+            console.log(start_date);
+            setTimeout(function () {
+                $("#edit_end_date_time").datepicker({
+                    format: ' MM dd, yyyy',
+                    todayHighlight: true,
+                    startDate: start_date,
+                    autoclose: true,
+                });
+            }, 700);            
+        }); 
+      
     });
 </script>
 
