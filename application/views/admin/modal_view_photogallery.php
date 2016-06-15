@@ -43,9 +43,6 @@ function removeimg(image , id , img )
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Photo Gallery");?></h4>                
-            </div> 
 			<div class="panel-body">
                             <div >
                                 <h3><?php echo $row['gallery_title']; ?></h3>

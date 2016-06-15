@@ -1404,14 +1404,18 @@ class Professor_model extends CI_Model {
     }
 
     public function get_prof_student($dept, $branch) {
+        if($dept !='0' && $branch!='0')
+        {
         return $this->db->select('std_id, std_first_name, std_last_name, email, std_mobile, std_gender, profile_photo')
                         ->from('student')
-                        ->where([
-                            'std_degree' => $dept,
-                            'course_id' => $branch
-                        ])
+                        ->where(['std_degree' => $dept,'course_id' => $branch])
                         ->get()->result();
-        return $this->db->get_where("student", array('std_degree' => $dept, "course_id" => $branch))->result();
+        }
+        else{
+            return array();
+        }
+        
+        //return $this->db->get_where("student", array('std_degree' => $dept, "course_id" => $branch))->result();
     }
 
     public function getstudentinfo($id) {
@@ -1511,6 +1515,7 @@ class Professor_model extends CI_Model {
 
     public function get_projects() {
         $dept = $this->session->userdata("department");
+        $this->db->select('pm_id,pm_title,pm_student_id,pm_degree,pm_course,pm_batch,pm_semester,class_id,pm_filename,pm_dos');
         $this->db->where("pm_degree", $dept);
         return $this->db->get('project_manager')->result();
     }

@@ -155,8 +155,11 @@ class Modal extends MY_Controller {
             if ($this->session->userdata('login_type') == "professor") {
                 $dept = $this->session->userdata('department');
                 $this->db->where("d_id", $dept);
+                $this->db->select('d_id,d_name');
                 $page_data['degree'] = $this->db->get_where('degree', array('d_status' => 1))->result();
+                $this->db->select('course_id,c_name');
                 $page_data['courses'] = $this->db->get('course')->result_array();
+                $this->db->select('s_id,s_name');
                 $page_data['semesters'] = $this->db->get('semester')->result_array();
             }
         }
@@ -181,7 +184,7 @@ class Modal extends MY_Controller {
             $this->db->where("forum_comment_id",$param2);
             $page_data['comment'] = $this->db->get("forum_comment")->result();
             $page_data['param2'] = $param3;
-                $page_data['edit_title'] = $this->lang_message('edit_forum_comment');
+            $page_data['edit_title'] = $this->lang_message('edit_forum_comment');
         
             
         }

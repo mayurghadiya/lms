@@ -123,11 +123,11 @@
                         </td>
                         <td id="downloadedfile"><a href="<?php echo base_url().'uploads/project_file/'.$row->lm_filename; ?>" download="" target="_blank" title="<?php echo $row->lm_filename; ?>"><i class="fa fa-download"></i></a></td>
                         <td class="menu-action">
-                           <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_library/<?php echo $row->lm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
+                           <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_library/<?php echo $row->lm_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
                            <i class="fa fa-pencil" aria-hidden="true"></i>
                            Edit
                            </span></a>
-                           <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/library/delete/<?php echo $row->lm_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">
+                           <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/library/delete/<?php echo $row->lm_id; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">
                            <i class="fa fa-trash-o" aria-hidden="true"></i>
                            Delete
                            </span></a>
