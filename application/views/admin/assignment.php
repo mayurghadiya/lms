@@ -473,8 +473,8 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#sub-tables').dataTable();
-        $("#datatable-listss").dataTable();
+        $('#sub-tables').dataTable({"language": { "emptyTable": "No data available" }});
+        $("#datatable-listss").dataTable({"language": { "emptyTable": "No data available" }});
 
     });
 </script>

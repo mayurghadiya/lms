@@ -158,7 +158,7 @@
 <script>
     $(document).ready(function () {
         $('#submitted-assignment-datatable-list').DataTable();
-        $('#data-tables1').dataTable();
+        $('#data-tables1').dataTable({"language": { "emptyTable": "No data available" }});
         $("#datatable-list2").dataTable();
     });
 </script>

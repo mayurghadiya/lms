@@ -94,6 +94,6 @@
 <!-- Middle Content End --> 
 <script>
 $(document).ready(function(){
-    $('#email-datatable-list').DataTable();
+    $('#email-datatable-list').DataTable({"language": { "emptyTable": "No data available" }});
 });
 </script>

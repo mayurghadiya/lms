@@ -94,7 +94,6 @@
 }
 if ($param == 'submitted') {
     ?>
-   ssadsadsasad
         <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="data-tabless">
             <thead>
                 <tr>
@@ -246,10 +245,10 @@ if ($param=='assessments') {
 <script type="text/javascript">
     $(document).ready(function () {
         "use strict";
-        $('#data-tables').dataTable();
+        $('#data-tables').dataTable({"language": { "emptyTable": "No data available" }});
     });
     $(document).ready(function () {
         "use strict";
-        $('#data-tabless').dataTable();
+        $('#data-tabless').dataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>

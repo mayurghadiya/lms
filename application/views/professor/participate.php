@@ -9,7 +9,7 @@
                     <thead>
                         <tr>
                             <th>No</th>											
-                            <th>Participate</th>											
+                            <th>Activity Title</th>											
                             <th>Department</th>											
                             <th>Branch</th>
                             <th>Batch</th>											

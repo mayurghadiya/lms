@@ -70,7 +70,7 @@ $edit_data = $this->db->get_where('event_manager', array('event_id' => $param2))
                             <div class="col-sm-8">
                                 <select class="form-control" name="group">
                                     <?php
-                                    $group = $this->db->get('group')->result();
+                                      $group =  $this->Crud_model->get_all_group();                                    
                                     ?>
                                     <option value="">Select</option>
                                     <?php foreach ($group as $gp) { ?>

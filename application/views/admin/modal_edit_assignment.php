@@ -1,4 +1,5 @@
 <?php
+$this->db->select('assign_title,assign_id,assign_degree,course_id,assign_batch,assign_sem,class_id,assign_dos,assign_desc,assignment_instruction,assign_filename');
 $edit_data = $this->db->get_where('assignment_manager', array('assign_id' => $param2))->result_array();
 foreach ($edit_data as $row):
     ?>
@@ -116,6 +117,7 @@ foreach ($edit_data as $row):
                                     <select name="class" id="class"  class="form-control">
                                         <option value="">Select class</option>
                                         <?php 
+                                        $this->db->select('class_id,class_name');
                                         $class=$this->db->get('class')->result_array();
 
                                         foreach($class as $c)
@@ -138,7 +140,7 @@ foreach ($edit_data as $row):
                                 </div>
                                 </div>
                            
-                                    <input type="hidden" class="form-control" name="assignmenturl" id="assignmenturl" value="<?php echo $row['assign_url']; ?>"/>
+                                    <input type="hidden" class="form-control" name="assignmenturl" id="assignmenturl" value=""/>
                            
                             <div class="form-group">
                                 <label class="col-sm-4 control-label"><?php echo ucwords("Submission Date");?><span style="color:red">*</span></label>

@@ -47,7 +47,7 @@
                                                     $name = $admin->ad_first_name . ' ' . $admin->ad_last_name;
                                                     $dashboard_url = base_url('admin/dashboard');
                                                     $profile_url = base_url('admin/manage_profile');
-                                                    $image = base_url('uploads/admin_image/' . $admin->admin_image);
+                                                    $image = base_url('uploads/admin_image/' . $admin->admin_id.'.jpg');                                                    
                                                     break;
                                                 case 'student':
                                                     //find students details
@@ -76,7 +76,7 @@
                                                                 'professor_id' => $this->session->userdata('login_user_id')
                                                             ))->row();
 
-                                                    $name = 'Professor';
+                                                    $name = $this->session->userdata('name');
                                                     $dashboard_url = base_url('professor');
                                                     $profile_url = base_url('professor/manage_profile');
                                                     $image = base_url('uploads/professor/' . $professor->image_path);

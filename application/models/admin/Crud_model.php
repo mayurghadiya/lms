@@ -1103,7 +1103,7 @@ class Crud_model extends CI_Model {
      * @return array
      */
     function event_manager() {
-        return $this->db->select()
+        return $this->db->select('event_name,event_location,event_date,event_id')
                         ->from('event_manager')
                         ->order_by('event_date', 'DESC')
                         ->get()
@@ -1800,7 +1800,7 @@ class Crud_model extends CI_Model {
      */
     function get_submitted_assignments()
     {
-         $this->db->select("ass.*,am.*,s.* ");
+        $this->db->select("ass.submited_date,ass.comment,ass.document_file,ass.assignment_submit_id,am.assign_id,am.assign_title,am.assign_degree,am.course_id,am.assign_batch,am.assign_sem,s.name");
         $this->db->from('assignment_submission ass');
         $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
         $this->db->join("student s", "s.std_id=ass.student_id");
@@ -1824,7 +1824,7 @@ class Crud_model extends CI_Model {
      */
     function get_all_submitted_project()
     {
-         $this->db->select("ps.*,pm.*,s.std_id, s.std_first_name, s.std_last_name, s.email");
+        $this->db->select("ps.student_id,ps.project_id,ps.dos,ps.description,ps.document_file,pm_id,pm.pm_title,pm.pm_degree,pm.pm_course,pm.pm_batch,pm.pm_semester,s.std_id, s.std_first_name, s.std_last_name, s.email");
         $this->db->from('project_document_submission ps');
         $this->db->join("project_manager pm", "pm.pm_id=ps.project_id");
         $this->db->join("student s", "s.std_id=ps.student_id");
@@ -1899,5 +1899,68 @@ class Crud_model extends CI_Model {
             $this->db->where("am.assign_sem", $semester);
             //$this->db->where("am.class_id", $class);
             return $this->db->get()->result();
+    }
+    
+    /**
+     * group list
+     * @return mixed array
+     */
+    function get_all_group()
+    {
+        $this->db->select('g_id,group_name');
+        return  $this->db->get('group')->result(); 
+    }
+    
+    function get_all_course_optimize()
+    {
+        return $this->db->select('course_id,c_name')
+                        ->from('course')
+                        ->order_by('c_name', 'ASC')
+                        ->get()
+                        ->result();
+    }
+    
+    function get_all_semester_optimize()
+    {
+        return $this->db->select('s_id,s_name')
+                        ->from('semester')
+                        ->order_by('s_name', 'ASC')
+                        ->get()
+                        ->result();
+    }
+    
+    function get_all_batch_optimize()
+    {
+        
+        return $this->db->select('b_id,b_name')
+                        ->from('batch')
+                        ->order_by('b_name', 'ASC')
+                        ->get()
+                        ->result();
+    }
+    
+    function get_all_degree_optimize()
+    {
+        return $this->db->select('d_id,d_name')
+                        ->from('degree')
+                        ->order_by('d_name', 'ASC')
+                        ->get()
+                        ->result();
+    }
+    
+    /**
+     * Get all student information
+     * 
+     * @return array
+     */
+    function get_all_students_optimize() {
+        return $this->db->select('std_id,name')
+                        ->from('student')
+                        ->get()
+                        ->result();
+    }
+    function get_all_library()
+    {
+         return $this->db->select('lm_id, lm_title, lm_degree, lm_batch, lm_course, lm_url, lm_semester, lm_filename')->from('library_manager')->get()->result();
     }
 }

@@ -48,7 +48,7 @@
                                         <thead>
                                             <tr>
                                                 <th width="12.5%">No</th>											
-                                                <th width="12.5%"><?php echo ucwords("Parti. Title"); ?> </th>											
+                                                <th width="12.5%"><?php echo ucwords("activity Title"); ?> </th>											
                                                 <th width="12.5%"><?php echo ucwords("department"); ?></th>											
                                                 <th width="12.5%"><?php echo ucwords("Branch"); ?></th>
                                                 <th width="12.5%"><?php echo ucwords("Batch"); ?></th>											
@@ -121,9 +121,9 @@
                                                         ?>                                            
                                                     <td width="12.5%"><?php echo date_formats($row->pp_dos); ?></td>	
                                                     <td width="12.5%" class="menu-action">
-                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_participate/<?php echo $row->pp_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_participate/<?php echo $row->pp_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
 
-                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/participate/delete/<?php echo $row->pp_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>	
+                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/participate/delete/<?php echo $row->pp_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>	
                                                     </td>	
                                                 </tr>
                                             <?php endforeach; ?>						
@@ -410,9 +410,9 @@
 
                                                         <?php //echo ($rowq->question_status == "1") ? 'Active' : 'Deactive'; ?></td>    
 
-                                                    <td>  <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_question/<?php echo $rowq->sq_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                                    <td>  <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_question/<?php echo $rowq->sq_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
 
-                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/survey/delete/<?php echo $rowq->sq_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>	</td>
+                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/survey/delete/<?php echo $rowq->sq_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>	</td>
                                                 </tr>
                                             <?php endforeach; ?>                        
                                         </tbody>
@@ -493,12 +493,14 @@
                                         <thead>
                                             <tr>                                                
                                                 <th>No</th>				
-                                                <th>Roll No</th>
+                                                <th>Roll No</th>                                                 
                                                 <th><?php echo ucwords("Student Name"); ?></th>	                                               
                                                 <th><?php echo ucwords("department"); ?></th>											
                                                 <th><?php echo ucwords("Branch"); ?></th>
                                                 <th><?php echo ucwords("Batch"); ?></th>
                                                 <th><?php echo ucwords("Semester"); ?></th>											
+                                                <th><?php echo ucwords("Title"); ?></th>
+                                                <th><?php echo ucwords("Description"); ?></th>
                                                 <th><?php echo ucwords("File"); ?></th>											                                                                                                
                                             </tr>
                                         </thead>
@@ -547,6 +549,8 @@
                                                             echo $user1[0]['s_name'];
                                                         }
                                                         ?></td>	
+                                                    <td ><?php echo $rowsupl['upload_title']; ?></td>	
+                                                    <td ><?php echo $rowsupl['upload_desc']; ?></td>	
                                                     <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $rowsupl['upload_file_name']; ?>" download=""><i class="fa fa-download" title="<?php echo $rowsupl['upload_file_name']; ?>"></i></a></td>	
 
                                                 </tr>
@@ -981,11 +985,11 @@
     });
 
     $(document).ready(function () {
-        $('#data-tabless').DataTable();
-        $('#survey-table').DataTable();
+        $('#data-tabless').DataTable({"language": { "emptyTable": "No data available" }});
+        $('#survey-table').DataTable({"language": { "emptyTable": "No data available" }});
 
-        $('#data-tables-activity').DataTable();
-        $('#uploaded-table').DataTable();
+        $('#data-tables-activity').DataTable({"language": { "emptyTable": "No data available" }});
+        $('#uploaded-table').DataTable({"language": { "emptyTable": "No data available" }});
     });
 
 

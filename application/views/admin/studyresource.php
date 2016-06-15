@@ -131,7 +131,7 @@
                                 </td>	
                                 <td id="downloadedfile"><a href="<?php echo base_url().'uploads/project_file/'.$row->study_filename; ?>" download=""  title="<?php echo $row->study_filename; ?>"><i class="fa fa-download"></i></a></td>	
                                 <td class="menu-action">
-                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_studyresource/<?php echo $row->study_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_studyresource/<?php echo $row->study_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
                                     <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/studyresource/delete/<?php echo $row->study_id; ?>');" data-original-title="delete" data-toggle="tooltip" data-placement="top" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                 </td>
                             </tr>
@@ -178,9 +178,9 @@
                 var dataString = "degree="+degree;
                 $.ajax({
                     type:"POST",
-                    url:"<?php echo base_url().'admin/course_filter/'; ?>",
+                    url:"<?php echo base_url().'admin/get_cource_all/'; ?>",
                     data:dataString,                   
-                    success:function(response){
+                    success:function(response){                      
                         if(degree=='All')
                         {
                             $("#branches").html(response);
@@ -191,7 +191,7 @@
                         }
                         else{
                            // $('#branches').children('option:not(:first)').remove();
-                            $("#branches").append(response);
+                            $("#branches").html(response);
                             
                         }
                     }
@@ -212,7 +212,7 @@
                 var dataString = "course="+course+"&degree="+degree;
                 $.ajax({
                     type:"POST",
-                    url:"<?php echo base_url().'admin/batch_filter/'; ?>",
+                    url:"<?php echo base_url().'admin/get_batchs_all/'; ?>",
                     data:dataString,                   
                     success:function(response){
                          if(course=='All')
@@ -223,7 +223,7 @@
                            
                         }
                         else{
-                           $("#batches").append(response);
+                           $("#batches").html(response);
                             
                         }
                         
@@ -232,7 +232,7 @@
         });
         });
         $(document).ready(function () {
-            $('#studyresource-tables').dataTable();
+            $('#studyresource-tables').dataTable({"language": { "emptyTable": "No data available" }});
 
         });
     </script>

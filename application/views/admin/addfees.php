@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Expiry Date"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
-                                <input type="text" id="expiry_date" class="form-control datepicker" name="expiry_date"/>
+                                <input type="text" id="expiry_date" class="form-control " name="expiry_date"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -221,18 +221,28 @@
             autoclose: true,
             startDate: new Date()
         });
-        $("#end_date").datepicker({
-            format: 'MM dd, yyyy',
-            todayHighlight: true,
-            autoclose: true,
-            startDate: new Date()
+        $('#start_date').on('change', function () {
+            
+            date = new Date($(this).val());
+            start_date = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+            console.log(start_date);
+            
+            setTimeout(function () {
+                $("#end_date").datepicker({
+                    format: ' MM d, yyyy',
+                    autoclose: true,
+                    todayHighlight: true,
+                    startDate: start_date
+                });
+            }, 700);
         });
-        $('#expiry_date').datepicker({
-            format: 'MM dd, yyyy',
-            todayHighlight: true,
-            autoclose: true,
-            startDate: new Date()
-        });
+          
+           $("#expiry_date").datepicker({
+                    format: ' MM d, yyyy',
+                    autoclose: true,
+                    todayHighlight: true,
+                    startDate: new Date()
+                });
         
     })
     //minDate: new Date(),

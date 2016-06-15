@@ -49,7 +49,7 @@
                                                     <a href="<?php echo $row->pm_url; ?>" download=""><i class="fa fa-download"></i></a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_submit_project/<?php echo $row->pm_id; ?>');" data-original-title="view" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">View</span></a>
+                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_submit_project/<?php echo $row->pm_id; ?>');" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Upload</span></a>
                                                 </td>					
 
                                             </tr>

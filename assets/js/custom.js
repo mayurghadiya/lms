@@ -8,6 +8,9 @@ $(document).ready(function () {
                 "targets": 0
             }],
         "order": [[1, 'asc']],
+        "language": {
+      "emptyTable": "No data available"
+    }
     });
 
     t.on('order.dt search.dt', function () {
