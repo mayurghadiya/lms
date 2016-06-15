@@ -78,7 +78,7 @@
                                     <td><?php echo $row->c_name; ?></td>
                                     <td><?php echo $row->b_name; ?></td>
                                     <td><?php echo $row->s_name; ?></td>
-                                    <td><?php echo system_info('currency') . $row->paid_amount; ?></td>
+                                    <td><?php echo $this->data['currency'] . $row->paid_amount; ?></td>
                                     <td><?php echo date('M d, Y', strtotime($row->paid_created_at)); ?></td>
                                     <td class="menu-action">
                                         <a href="<?php echo base_url('admin/invoice/' . $row->student_fees_id); ?>" target="_blank"><span class="label label-primary mr6 mb6">

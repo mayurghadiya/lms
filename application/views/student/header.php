@@ -197,7 +197,7 @@
                                 <div class=mainnav>
                                     <ul>
                                         <li>
-                                            <a <?php echo active_single_menu('dashboard', $page); ?> href="<?php echo base_url(); ?>student/dashboard"><i class="fa fa-desktop" aria-hidden="true"></i><span class=txt>Dashboard</span></a>
+                                            <a <?php echo active_single_menu('dashboard', $page); ?> href="<?php echo base_url(); ?>student/dashboard"><i class="fa fa-dashboard" aria-hidden="true"></i><span class=txt>Dashboard</span></a>
                                         </li>
 
                                         <?php
@@ -224,7 +224,7 @@
                                                 </li>
                                                 <li>
                                                     <a id="link-sent" href="<?php echo base_url(); ?>student/email_sent">
-                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <i class="s16 fa fa-send"></i>
                                                         <span class="txt">Sent</span>
                                                     </a>
                                                 </li>
@@ -233,13 +233,13 @@
                                         </li>
                                         <li>
                                             <a <?php echo active_single_menu('class_routine', $page); ?> href="<?php echo base_url(); ?>student/class_routine">
-                                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                <i class="fa fa-list" aria-hidden="true"></i>
                                                 <span class=txt>Class Routine</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a <?php echo active_single_menu('syllabus', $page); ?> href="<?php echo base_url(); ?>student/syllabus">
-                                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                <i class="fa fa-code" aria-hidden="true"></i>
                                                 <span class=txt>Syllabus</span>
                                             </a>
                                         </li>
@@ -252,7 +252,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a <?php echo active_single_menu('video_streaming', $page); ?> href="<?php echo base_url(); ?>video_streaming"><i class="s16 fa fa-desktop"></i><span class=txt>Video Streaming </span>
+                                            <a <?php echo active_single_menu('video_streaming', $page); ?> href="<?php echo base_url(); ?>video_streaming"><i class="s16 fa fa-video-camera"></i><span class=txt>Video Streaming </span>
                                             </a>
                                         </li>
                                         <li>
@@ -267,7 +267,7 @@
                                             </a>
                                         </li>                                        
                                         <li>
-                                            <a <?php echo active_single_menu('student_fees', $page); ?> href="<?php echo base_url(); ?>student/student_fees"><i class="s16 fa fa-dollar"></i>
+                                            <a <?php echo active_single_menu('student_fees', $page); ?> href="<?php echo base_url(); ?>student/student_fees"><i class="s16 fa fa-money"></i>
                                                 <span class=txt>Pay Online </span>
                                             </a>
                                         </li> 
@@ -277,7 +277,7 @@
                                         </li>                                        
                                         <li>
                                             <a <?php echo active_single_menu('holiday', $page); ?> href="<?php echo base_url(); ?>student/holiday">
-                                                <i class="s16 fa fa-book"></i>
+                                                <i class="s16 fa fa-calendar"></i>
                                                 <span class=txt>Holiday </span>
                                             </a>
                                         </li>                                           

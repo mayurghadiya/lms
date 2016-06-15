@@ -20,7 +20,7 @@ $subjects = $this->db->get_where('subject_manager', [
             <div class="form-group">
                 <label class="col-sm-4 control-label"><?php echo ucwords("email"); ?><span style="color:red">*</span></label>
                 <div class="col-sm-8">
-                    <input id="email" class="form-control" type="email" name="email" />
+                    <input id="email" class="form-control" type="email" name="email" autocomplete="off"/>
                 </div>	
             </div>
             <div class="form-group">

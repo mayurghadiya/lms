@@ -29,9 +29,9 @@ if (!function_exists('system_info')) {
      */
     function system_info($type) {
         $CI = & get_instance();
-        $result = $CI->db->get_where('system_setting', [
+        $result = $CI->db->select('settings_id, type, description')->from('system_setting')->where([
             'type' => $type
-        ]);
+        ])->get();
 
         if ($result->num_rows()) {
             return $result->row()->description;

@@ -1661,4 +1661,16 @@ class Professor_model extends CI_Model {
                 ->where('professor_id', $id)
                 ->get()->row();
     }
+    
+    function professor_class_department() {
+        return $this->db->select()
+                ->from('degree')
+                ->join('class_routine', 'class_routine.DepartmentID = degree.d_id')
+                ->join('professor', 'professor.professor_id = class_routine.ProfessorID')
+                ->where([
+                    'class_routine.ProfessorID' => $this->session->userdata('login_user_id')
+                ])
+                ->group_by('degree.d_id')
+                ->get()->result();
+    }
 }

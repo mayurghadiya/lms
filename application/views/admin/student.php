@@ -3,19 +3,10 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
-            <div class=panel-body>
-                <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_student/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Student </a>
-                <div class="row filter-row">
+        <div class="panel-default toggle panelMove panelClose panelRefresh"></div>
+        <div class=panel-body>
+            <a class="links"  onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_student/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Student </a>
+            <div class="row filter-row">
                 <form id="frmstudentlist" name="frmfilterlist" action="#" enctype="multipart/form-data" class="form-vertical form-groups-bordered validate">
                     <div class="form-group col-sm-2">
                         <label ><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
@@ -70,18 +61,18 @@
                         <input id="btnsubmit" type="button" value="Go" class="btn btn-info"/>
                     </div>
                 </form>
-                </div>
-                <div class="panel-body table-responsive" >
-                    <div id="filterdata" >
-
-                    </div>
+            </div>
+            <div class="panel-body table-responsive" >
+                <div id="filterdata" >
 
                 </div>
+
             </div>
         </div>
-        <!-- End .panel -->
     </div>
-    <!-- col-lg-12 end here -->
+    <!-- End .panel -->
+</div>
+<!-- col-lg-12 end here -->
 </div>
 <!-- End .row -->
 </div>

@@ -48,8 +48,8 @@
                             endTime: new Date(yyyy + '/' + mm + '/' + dd + ' 07:00 PM'),
                             height: 600,
                             views: [
-                                "day",
-                                {type: "week", selected: true},
+                                {type: "day", selected: true},
+                                "week",
                                 "month",
                                 "agenda"
                             ],

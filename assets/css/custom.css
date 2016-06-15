@@ -1336,7 +1336,7 @@ ul.links-gaz{padding-left: 25px; list-style: none;}
 /*  recently added faculty style */
 .img_box_faculty{display: inline-block; width: 100px; height: 100px; margin-top: 20px;}
 .img_box_faculty .img-responsive, .img_box_faculty > img{-webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; padding: 5px; border: 3px solid #2b669a;}
-.details_faculty{height: 80px; overflow-y: auto;}
+.details_faculty{height: 100px; overflow-y: auto;}
 .details_faculty .title b, .details_faculty .title small{display: inline-block; width: 100%}
 .details_faculty .title b{font-size: 13px; text-transform: capitalize; line-height: 20px;}
 .details_faculty h4.title{ margin:5px 0; color: #3f3f3f;  }
@@ -1362,6 +1362,15 @@ table.batch-details td.menu-action a{margin-bottom: 15px; display: block;}
 .menu-action a {display: inline-block; margin: 5px 0 3px;}
 tr.info td{color: #fff; vertical-align: middle;}
 .pagination > li.active a, .pagination > li.active a:hover{ color: #000; }
+
+iframe {
+  display: block;
+  height: 630px;
+  margin-bottom: 50px;
+  max-height: 630px;
+}
+iframe.professor_routine_box{margin-bottom: 0;}
+#datatable-list_wrapper{margin-bottom: 50px; display: block;}
 
 /*********************** media *****************************/
 

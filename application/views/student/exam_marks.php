@@ -19,7 +19,7 @@
                                     <option value="">Select</option>
                                     <?php foreach ($exam_listing as $row) { ?>
                                         <option value="<?php echo $row->em_id; ?>"
-                                                <?php if ($exam_id == $row->em_id) echo 'selected'; ?>><?php echo $row->s_name . ' -- ' . $row->em_name . ' -- ' . $row->exam_ref_name; ?></option>
+                                                <?php if ($exam_id == $row->em_id) echo 'selected'; ?>><?php echo $row->s_name . ' -- ' . $row->em_name; ?></option>
                                             <?php } ?>
                                 </select>
                             </div>
@@ -30,7 +30,7 @@
                 <?php if ($this->uri->segment(3) != '') { ?>
                     <?php if (count($student_marks)) { ?>
                         <div class="box box-primary">                            
-                            
+
                             <table class="table table-condensed ex1"> 
                                 <tr>
                                     <td class="col-lg-2 col-md-2 col-sm-4 col-xs-4"><strong>Student Name: </strong></td>
@@ -57,12 +57,11 @@
                                     <td><?php echo $exam_details->em_name; ?></td>
                                 </tr>
                             </table>
-                          
                             <div class="box-body">
                                 <div class="box box-warning box-solid">
                                     <div class="box-body">
                                         <div class="box box-info box-solid">
-                                            
+
                                             <div class="box-body no-padding table-responsive">
                                                 <table class="table table-bordered table-striped">
                                                     <tbody>
@@ -84,8 +83,7 @@
                                                         $is_failed = FALSE;
                                                         foreach ($student_marks as $row) {
                                                             $is_number = is_numeric($row->mark_obtained);
-                                                            if (!$is_number)
-                                                                continue;
+                                                            $current_marks = 0;
                                                             ?>
                                                             <tr>
                                                                 <td><?php echo $counter++; ?></td>
@@ -94,7 +92,7 @@
                                                                 <td><?php echo $exam_details->total_marks; ?></td>
                                                                 <?php $total_marks += $exam_details->total_marks; ?>
                                                                 <td><?php echo $exam_details->passing_mark; ?></td>
-                                                                <td><?php echo $row->mark_obtained; ?></td>
+                                                                <td><?php echo $current_marks += $row->mark_obtained; ?></td>
                                                                 <?php if ($row->mark_obtained < $exam_details->passing_mark) $is_failed = TRUE; ?>
                                                                 <?php $obtained_marks += $row->mark_obtained; ?>
                                                                 <?php
@@ -138,37 +136,43 @@
                                             </div><!--/box-body-->
                                             <div class="box-footer"><br>
                                                 <fieldset>
-                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                                    <div class="form-group">
-                                                      <label for="disabledTextInput">Total Marks :</label>
-                                                      <?php echo $total_marks; ?>
-                                                    </div>                                                    
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label for="disabledTextInput">Total Marks :</label>
+                                                            <?php echo $total_marks; ?>
+                                                        </div>                                                    
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                                    <div class="form-group">
-                                                      <label for="disabledTextInput">Total Obtained Marks :</label>
-                                                      <?php echo $obtained_marks; ?>
-                                                    </div>
-                                                    </div>
-
-                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                                    <div class="form-group">
-                                                      <label for="disabledTextInput">Total Percentages Marks :</label>
-                                                      <?php echo number_format((($obtained_marks * 100) / $total_marks), 2, '.', ''); ?>%
-                                                    </div>
+                                                        <div class="form-group">
+                                                            <label for="disabledTextInput">Total Obtained Marks :</label>
+                                                            <?php echo $obtained_marks; ?>
+                                                        </div>
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                                    <div class="form-group">
-                                                      <label for="disabledTextInput">Results :</label>
-                                                      <?php if (!$is_failed) { ?>
-                                                            <span class="label label-success">Pass</span>    
-                                                        <?php } else { ?>
-                                                            <span class="label label-danger">Failed</span>
-                                                        <?php }
-                                                        ?>
+                                                        <div class="form-group">
+                                                            <label for="disabledTextInput">Total Percentages Marks :</label>
+                                                            <?php echo number_format((($obtained_marks * 100) / $total_marks), 2, '.', ''); ?>%
+                                                        </div>
                                                     </div>
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label for="disabledTextInput">Results :</label>
+                                                            <?php if (!$is_failed) { ?>
+                                                                <span class="label label-success">Pass</span>    
+                                                            <?php } else { ?>
+                                                                <span class="label label-danger">Failed</span>
+                                                            <?php }
+                                                            ?>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label>Remarks :</label>
+                                                        </div>
                                                     </div>
                                                 </fieldset>  
                                             </div>
@@ -178,22 +182,22 @@
                                 </div><!--/box-body-->
                             </div><!--/box-->
                         </div><!--/box-body-->
-            </div><!--/box-->
-                    <?php } else { ?> 
-                        <br/>
-                        <div class="well well-sm">
-                            <h4 class="page-header edusec-border-bottom-warning">
-                                <i class="fa fa-info-circle"></i> Exam result
-                            </h4>
-                        </div><!--/well-->
-                        <h3>Exam result has not been declared yet.</h3>
-                    <?php } ?>
+                    </div><!--/box-->
+                <?php } else { ?> 
+                    <br/>
+                    <div class="well well-sm">
+                        <h4 class="page-header edusec-border-bottom-warning">
+                            <i class="fa fa-info-circle"></i> Exam result
+                        </h4>
+                    </div><!--/well-->
+                    <h3>Exam result has not been declared yet.</h3>
                 <?php } ?>
+            <?php } ?>
 
 
         </div>
     </div>
-        <!-- End .panel -->
+    <!-- End .panel -->
 </div>
 <!-- End .row -->
 </div>

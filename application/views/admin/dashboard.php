@@ -6,6 +6,7 @@ $department = student_ratio_department_wise();
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/event_calendar/moment.js"></script> 
 <!-- charts js and library -->
 <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/exporting.js"></script>
 <!-- pie chart (male vs female) -->
 <script>
     $(function () {
@@ -16,6 +17,13 @@ $department = student_ratio_department_wise();
             plotShadow: false,
             type: 'pie'
     },
+    legend: {
+            align: 'center',
+            verticalAlign: 'top',
+            layout: 'horizontol',
+            x: 0,
+            y: 30
+        },
             title: {
             text: 'Male to Female course count ratio'
             },
@@ -57,6 +65,13 @@ $department = student_ratio_department_wise();
     chart: {
     type: 'column'
     },
+    legend: {
+            align: 'center',
+            verticalAlign: 'top',
+            layout: 'horizontol',
+            x: 0,
+            y: 30
+        },
             title: {
             text: 'Student Enrolled'
             },
@@ -109,6 +124,13 @@ $department = student_ratio_department_wise();
     chart: {
     type: 'column'
     },
+    legend: {
+            align: 'center',
+            verticalAlign: 'top',
+            layout: 'horizontol',
+            x: 0,
+            y: 30
+        },
             title: {
             text: 'Department student count ratio'
             },
@@ -167,6 +189,13 @@ foreach ($department as $row) {
     chart: {
     type: 'column'
     },
+    legend: {
+            align: 'center',
+            verticalAlign: 'top',
+            layout: 'horizontol',
+            x: 0,
+            y: 30
+        },
             title: {
             text: 'Students Enrolled in Courses'
             },
@@ -817,6 +846,7 @@ foreach ($students as $student) {
                                         <div class="details_faculty">
                                             <h4 class="title">
                                                 <b><?php echo $teacher->name; ?></b> 
+                                                <b><?php echo $teacher->designation; ?></b>
                                                 <small><?php echo date_duration($teacher->created_at); ?></small>
                                             </h4>
                                             <div class="btn-group" role="group">                     

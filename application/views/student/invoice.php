@@ -30,7 +30,7 @@
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Student Name:</strong> <?php echo $invoice->std_first_name . ' ' . $invoice->std_last_name; ?></li>
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Email: </strong><?php echo $invoice->email; ?><br></li>
                         <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Mobile: </strong><?php echo $invoice->std_mobile; ?></li>
-                        <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Outstanding Amount: </strong>$<?php echo $due_amount; ?></li>
+                        <li><i class="s16 icomoon-icon-arrow-right-3"></i><strong>Outstanding Amount: </strong><?php echo system_info('currency') . $due_amount; ?></li>
                     </ul>
                 </div>
                 <div class=clearfix></div>
@@ -65,7 +65,7 @@
                     
                 </div>
                 <div class=total>
-                    <h4>Total amount:<span class=color-red> $<?php echo $invoice->paid_amount; ?></span></h4>
+                    <h4>Total amount:<span class=color-red> <?php echo system_info('currency') . $invoice->paid_amount; ?></span></h4>
                 </div>
                 <div class=clearfix></div>
                 <div class=invoice-footer style="visibility: hidden">

@@ -297,7 +297,7 @@ class Crud_model extends CI_Model {
      * @return array
      */
     function get_all_exam_type() {
-        return $this->db->select()
+        return $this->db->select('exam_type_id, exam_type_name, status')
                         ->from('exam_type')
                         ->where('status', 1)
                         ->get()
@@ -309,7 +309,7 @@ class Crud_model extends CI_Model {
      * @return array
      */
     function get_all_course() {
-        return $this->db->select()
+        return $this->db->select('course_id, c_name, course_alias_id, degree_id, semester_id, course_status')
                         ->from('course')
                         ->order_by('c_name', 'ASC')
                         ->get()
@@ -321,7 +321,7 @@ class Crud_model extends CI_Model {
      * @return array
      */
     function get_all_semester() {
-        return $this->db->select()
+        return $this->db->select('s_id, s_name, s_status')
                         ->from('semester')
                         ->order_by('s_name', 'ASC')
                         ->get()
@@ -422,9 +422,10 @@ class Crud_model extends CI_Model {
 
     ///// Degree /////
     function get_all_degree() {
-        return $this->db->select()
+        return $this->db->select('d_id, d_name, d_status')
                         ->from('degree')
                         ->order_by('d_name', 'ASC')
+                        ->where('d_status', 1)
                         ->get()
                         ->result();
     }
@@ -733,7 +734,7 @@ class Crud_model extends CI_Model {
      * @return array
      */
     function course_semester_student($course_id, $semester_id) {
-        return $this->db->select()
+        return $this->db->select('std_id, email, name, std_first_name, std_last_name')
                         ->from('student')
                         ->where(array(
                             'course_id' => $course_id,
@@ -748,7 +749,9 @@ class Crud_model extends CI_Model {
      * @return array
      */
     function get_all_teacher() {
-        return $this->db->get('professor')->result();
+        return $this->db->select()
+                ->from('professor')
+                ->get()->result();
     }
 
     /**
@@ -1332,7 +1335,10 @@ class Crud_model extends CI_Model {
      * @return mixed
      */
     function professor() {
-        return $this->db->get('professor')->result();
+        return $this->db->select('professor_id, name, email, address, mobile, dob, designation')
+                ->from('professor')
+                ->order_by('name', 'ASC')
+                ->get()->result();
     }
 
     /**
@@ -1706,7 +1712,7 @@ class Crud_model extends CI_Model {
      */
     function get_recent_professor()
     {
-        $this->db->select("professor_id,name,image_path,created_at");
+        $this->db->select("professor_id,name,image_path,created_at,designation");
         $this->db->from("professor");
         $this->db->order_by("created_at","DESC");        
         //$this->db->limit(8);
@@ -1737,6 +1743,14 @@ class Crud_model extends CI_Model {
     {
         $this->db->where('sm_course_id',$id);
         return $this->db->get('subject_manager')->result();
+    }
+    
+    function cms_manager() {
+        return $this->db->select('c_id, c_title, c_slug, c_status')
+                ->from('cms_manager')
+                ->order_by('created_date', 'DESC')
+                ->get()
+                ->result_array();
     }
 
 }

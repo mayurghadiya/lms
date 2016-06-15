@@ -27,6 +27,7 @@ class MY_Controller extends CI_Controller {
             user_activity();
         }
         ini_set('max_execution_time', 500);
+        $this->data['currency'] = system_info('currency');
     }
 
     /**

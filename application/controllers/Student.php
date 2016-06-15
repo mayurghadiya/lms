@@ -11,11 +11,11 @@ class Student extends MY_Controller {
         $this->load->model('Student/Student_model');
         $notification = show_notification($this->session->userdata('student_id'));
         $this->session->set_userdata('notifications', $notification);
-
-        /* if (!$this->input->is_ajax_request()) {
-          $this->load->helper('permission');
-          user_permission();
-          } */
+        if (!$this->input->is_ajax_request()) {
+            $this->load->helper('permission');
+            user_permission();
+        }
+        //$this->output->enable_profiler(TRUE);
     }
 
     function index() {
@@ -256,23 +256,22 @@ class Student extends MY_Controller {
      * @param string $param2
      */
     function participate($param1 = '', $param2 = '') {
-        if ($param1 == "create") {           
+        if ($param1 == "create") {
             $std_id = $this->session->userdata("login_user_id");
-            foreach($_POST as $key=>$val):
-              
-            if (strpos($key, 'question_id') !== false) {
-                 $id = explode("question_id",$key);
-                 if($val!='')
-                 {
-                    $sq_id = $id[1]; 
-                    $this->addrating($sq_id , $val , $std_id);
-                 }
-            }   
-           
-                
-            endforeach;           
-            
-            
+            foreach ($_POST as $key => $val):
+
+                if (strpos($key, 'question_id') !== false) {
+                    $id = explode("question_id", $key);
+                    if ($val != '') {
+                        $sq_id = $id[1];
+                        $this->addrating($sq_id, $val, $std_id);
+                    }
+                }
+
+
+            endforeach;
+
+
             $survey = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
             $count = 1;
             foreach ($survey as $res) {
@@ -322,13 +321,12 @@ class Student extends MY_Controller {
         }
         $std = $this->session->userdata('std_id');
         //$getcount =  $this->db->query("SELECT survey_status,survey_question_id, COUNT(*) FROM survey_result GROUP BY survey_question_id")->result();
-        
         //$this->data['survey'] = $this->db->query('SELECT * FROM survey_question ORDER BY sq_id DESC')->result();        
         $this->data['survey'] = $this->db->query('SELECT * FROM survey_question 
                     WHERE NOT EXISTS (SELECT sq_id FROM survey
-                    WHERE survey.sq_id = survey_question.sq_id and survey.student_id= ' . $this->session->userdata('student_id') . ') AND survey_question.question_status="1" ORDER BY survey_question.sq_id DESC')->result(); 
-        
-       //$this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
+                    WHERE survey.sq_id = survey_question.sq_id and survey.student_id= ' . $this->session->userdata('student_id') . ') AND survey_question.question_status="1" ORDER BY survey_question.sq_id DESC')->result();
+
+        //$this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Survey Application Form';
         $this->data['param'] = $param1;
@@ -642,27 +640,12 @@ class Student extends MY_Controller {
                     $this->data['error'] = 'Invalid old password';
                 }
             }
-
-            //change profile pic
-            if ($_FILES['userfile']['name'] != '') {
-                $path = FCPATH . 'uploads/student_image/';
-                if (move_uploaded_file($_FILES['userfile']['tmp_name'], $path . $this->session->userdata('student_id') . '.jpg')) {
-                    //     echo 'uploaded';
-                }
-                $this->db->where('std_id', $this->session->userdata('student_id'));
-                $this->db->update('student', array(
-                    'profile_photo' => $this->session->userdata('student_id') . '.jpg'
-                ));
-                $this->session->set_userdata('profile_photo', $this->session->userdata('student_id') . '.jpg');
-                $this->session->set_flashdata('message', 'Profile picture is changed successfully');
-                redirect(base_url('student/profile'));
-            }
         }
         $this->data['title'] = 'Student Profile';
         $this->data['page'] = 'student_profile';
         $this->data['profile'] = $this->Student_model->student_details($this->session->userdata('login_user_id'));
         $this->data['profile_pic'] = $this->Crud_model->get_image_url('student', $this->session->userdata('std_id'));
-        $this->__site_template('student/student_profile', $this->data);
+        $this->__site_template('student/edit_profile', $this->data);
     }
 
     /**
@@ -707,7 +690,7 @@ class Student extends MY_Controller {
         $this->data['title'] = 'Assignment List';
         clear_notification('assignment_manager', $this->session->userdata('student_id'));
         unset($this->session->userdata('notifications')['assignment_manager']);
-         $this->data['assessment'] = $this->Student_model->student_assessment();
+        $this->data['assessment'] = $this->Student_model->student_assessment();
         $this->__site_template('student/assignment', $this->data);
     }
 
@@ -821,7 +804,7 @@ class Student extends MY_Controller {
             $this->data['register'] = $this->db->query('SELECT * FROM vocational_course 
                     WHERE EXISTS (SELECT vocational_course_id FROM vocational_course_fee
                     WHERE vocational_course_fee.vocational_course_id = vocational_course.vocational_course_id and vocational_course_fee.student_id= ' . $this->session->userdata('student_id') . ')  ORDER BY vocational_course.course_startdate DESC')->result_array();
-            
+
             //$page_data['vocationalcourse'] = $this->db->get_where('vocational_course',array('status'=>1))->result_array();
 
             $this->data['page'] = 'vocational_course';
@@ -1333,7 +1316,7 @@ class Student extends MY_Controller {
             }
         }
         $this->data['page'] = 'exam';
-        $this->data['title'] = 'Exam Listing';
+        $this->data['title'] = 'Exam';
         clear_notification('exam_manager', $this->session->userdata('student_id'));
         clear_notification('exam_time_table', $this->session->userdata('student_id'));
         unset($this->session->userdata('notifications')['exam_manager']);
@@ -1578,7 +1561,7 @@ class Student extends MY_Controller {
             show_error($this->email->print_debugger());
         }
     }
-    
+
     /**
      * Statements of marks
      */
@@ -1592,7 +1575,7 @@ class Student extends MY_Controller {
         $this->data['title'] = 'Statement of Marks';
         $this->__site_template('student/statement_of_marks', $this->data);
     }
-    
+
     /**
      * Download exam marsheet report
      * @param string $exam_id
@@ -1616,25 +1599,23 @@ class Student extends MY_Controller {
         //download it.
         $this->m_pdf->pdf->Output($pdfFilePath, "D");
     }
-    
+
     /*
      * Add Rating to survey question
      */
-    function addrating($id , $rating , $std_id)
-    {
-       // $id  = $this->input->post('id');  
-       // $rating = $this->input->post('rating'); 
-       // $std_id = $this->session->userdata('login_user_id');
+
+    function addrating($id, $rating, $std_id) {
+        // $id  = $this->input->post('id');  
+        // $rating = $this->input->post('rating'); 
+        // $std_id = $this->session->userdata('login_user_id');
         $data['sq_id'] = $id;
         $data['student_id'] = $std_id;
         $data['std_rating'] = $rating;
         $count = $this->Student_model->getrepeat($data);
-        if($count > 0)
-        {
+        if ($count > 0) {
             $udata['std_rating'] = $rating;
-            $this->Student_model->updatesurveyrating($udata,$id,$std_id);
-        }
-        else{        
+            $this->Student_model->updatesurveyrating($udata, $id, $std_id);
+        } else {
             $this->Student_model->addsurveyrating($data);
         }
     }

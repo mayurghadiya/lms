@@ -35,12 +35,11 @@ $js = [
     ['jquery-migrate-1.2.1.min.js'],
     ['plugins/bootstrap-datepicker.js'],
     ['plugins/bootstrap-timepicker.js'],
-    ['plugins/jquery.bootstrap-duallistbox.js'],
+    //['plugins/jquery.bootstrap-duallistbox.js'],
     ['plugins/summernote.js'],
     ['plugins/forms-validation.js'],
     ['plugins/tables-data.js'],
-    ['custom.js'],
-    ['plugins/select2.js'],
+    //['custom.js'],
     ['jquery.toaster.js'],
     ['multiselect.js']
 ];
@@ -49,6 +48,8 @@ $this->carabiner->group('footer_js', [
 ]);
 $this->carabiner->display('footer_js');
 ?>
+<script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/plugins/select2.js"></script>
 <script>
 <?php
 $message = $this->session->flashdata('flash_message');

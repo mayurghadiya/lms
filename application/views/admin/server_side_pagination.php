@@ -4,18 +4,17 @@
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel-default">
-            <div class=panel-body><table id="server-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+            <div class=panel-body>
+                <table id="data" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Name</th>
-                            <th>Mobile</th>
-                            <th>Email</th>
-                            <th>Gender</th>
-                            <th>Action</th>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
+                    <tfoot></tfoot>
                 </table>
             </div>
         </div>
@@ -30,18 +29,23 @@
 <!-- End #content -->
 
 <script>
-    $(document).ready(function () {
-        $('#server-datatable-list').DataTable({
-            "ajax": "<?php echo base_url('admin/server_data'); ?>",
-            "pageLength": 10,
-            "order": [[0, "desc"]],
-            "aoColumnDefs": [
-                {"bVisible": false, "aTargets": [0]},
-                {
-                    "bSortable": false,
-                    "aTargets": ["no-sort"]
-                }],
-            "dom": 'T<"clear">lfrtip'
-        });
+    $(document).ready(function ()
+    {
+        $('#data').dataTable({
+            "sScrollY": "400px",
+            "bProcessing": true,
+            "bServerSide": true,
+            "sServerMethod": "GET",
+            "sAjaxSource": "<?php echo base_url(); ?>data/getTable",
+            "iDisplayLength": 10,
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "aaSorting": [[0, 'asc']],
+            "aoColumns": [
+                {"bVisible": true, "bSearchable": true, "bSortable": true},
+                {"bVisible": true, "bSearchable": true, "bSortable": true},
+                {"bVisible": true, "bSearchable": true, "bSortable": true},
+                {"bVisible": true, "bSearchable": true, "bSortable": true}
+            ]
+        })
     });
 </script>

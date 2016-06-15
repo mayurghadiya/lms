@@ -1,106 +1,102 @@
 <div class="row">
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title>Add Exam Schedule</h4>                
-                        </div>-->
-            <div class=panel-body>
-                <?php echo form_open(base_url() . 'admin/exam_time_table/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'exam_time_table_form', 'target' => '_top')); ?>
-                <br/>
-                <div class="padded">
-                    <?php
-                    $validation_error = validation_errors();
-                    if ($validation_error != '') {
-                        ?>
-                        <div class="alert alert-danger">
-                            <button class="close" data-dismiss="alert">&times;</button>
-                            <p><?php echo $validation_error; ?></p>
-                        </div>                                            
-                    <?php } ?>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-8">
-                            <select name="degree" id="degree" class="form-control">
-                                <option value="">Select</option>
-                                <?php foreach ($degree as $row) { ?>
-                                    <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
+        <div class="panel-default toggle panelMove panelClose panelRefresh"></div>
+        <div class=panel-body>
+            <?php echo form_open(base_url() . 'admin/exam_time_table/create', array('class' => 'form-horizontal form-groups-bordered validate', 'role' => 'form', 'id' => 'exam_time_table_form', 'target' => '_top')); ?>
+            <br/>
+            <div class="padded">
+                <?php
+                $validation_error = validation_errors();
+                if ($validation_error != '') {
+                    ?>
+                    <div class="alert alert-danger">
+                        <button class="close" data-dismiss="alert">&times;</button>
+                        <p><?php echo $validation_error; ?></p>
+                    </div>                                            
+                <?php } ?>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
+                        <select name="degree" id="degree" class="form-control">
+                            <option value="">Select</option>
+                            <?php foreach ($degree as $row) { ?>
+                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-8">
-                            <select name="course" id="course" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
+                        <select name="course" id="course" class="form-control">
 
-                            </select>
-                        </div>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-8">
-                            <select class="form-control" name="batch" id="batch">
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Batch"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="batch" id="batch">
 
-                            </select>
-                        </div>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="semester" name="semester">
-                                <option value="">Select</option>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="semester" name="semester">
+                            <option value="">Select</option>
 
-                            </select>
-                        </div>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label"><?php echo ucwords("Exam"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="exam" name="exam">
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Exam"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="exam" name="exam">
 
-                            </select>
-                        </div>
-                    </div> 
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="subject" name="subject">
-
-                            </select>
-                        </div>
-                    </div> 
-                    <div class="form-group">
-
-                        <label class="col-sm-4 control-label"><?php echo ucwords("Date"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-8">
-                            <input readonly="" type="text" id="exam_date" class="form-control datepicker-normal" name="exam_date"/>
-                        </div>	
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label"><?php echo ucwords("Start Time"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-8">
-                             <div class="input-group bootstrap-timepicker">
-                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                </div> 
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="subject" name="subject">
+
+                        </select>
+                    </div>
+                </div> 
+                <div class="form-group">
+
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Date"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
+                        <input readonly="" type="text" id="exam_date" class="form-control datepicker-normal" name="exam_date"/>
+                    </div>	
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("Start Time"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
+                        <div class="input-group bootstrap-timepicker">
+                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                             <input type="text" id="start_time" class="form-control timepicker" name="start_time"/>
-                             </div>
-                        </div>	
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label"><?php echo ucwords("End Time"); ?><span style="color:red">*</span></label>
-                        <div class="col-sm-8">
-                             <div class="input-group bootstrap-timepicker">
-                                                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                    </div>	
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><?php echo ucwords("End Time"); ?><span style="color:red">*</span></label>
+                    <div class="col-sm-8">
+                        <div class="input-group bootstrap-timepicker">
+                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                             <input type="text" id="end_time" class="form-control timepicker" name="end_time"/>
-                             </div>
-                        </div>	
+                        </div>
+                    </div>	
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add "); ?></button>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
-                            <button type="submit" class="btn btn-info vd_bg-green"><?php echo ucwords("Add "); ?></button>
-                    </div>
-                    
+
                     <?php echo form_close(); ?>    
                 </div>
             </div>
@@ -111,23 +107,27 @@
 
 
     <script type="text/javascript">
-        $('#exam_date').datepicker({format:'MM d, yyyy',autoclose:true});
-       
+        $('#exam_date').datepicker({
+            format: 'MM d, yyyy', 
+            autoclose: true,
+            startDate: new Date()
+        });
+
     </script>
 
-    <script type="text/javascript">      
+    <script type="text/javascript">
 
         $(document).ready(function () {
-              $('#start_time').timepicker({
-            upArrowStyle: 'fa fa-angle-up',
-            downArrowStyle: 'fa fa-angle-down',
-            minuteStep: 30
-    });
-     $('#end_time').timepicker({
-            upArrowStyle: 'fa fa-angle-up',
-            downArrowStyle: 'fa fa-angle-down',
-            minuteStep: 30
-    });
+            $('#start_time').timepicker({
+                upArrowStyle: 'fa fa-angle-up',
+                downArrowStyle: 'fa fa-angle-down',
+                minuteStep: 30
+            });
+            $('#end_time').timepicker({
+                upArrowStyle: 'fa fa-angle-up',
+                downArrowStyle: 'fa fa-angle-down',
+                minuteStep: 30
+            });
             $("#exam_time_table_form").validate({
                 rules: {
                     degree: "required",

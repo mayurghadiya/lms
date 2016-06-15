@@ -1,3 +1,4 @@
+<script src="//cdn.ckeditor.com/4.5.9/full/ckeditor.js"></script>
 <!-- Start .row -->
 <div class=row>                      
 
@@ -50,16 +51,16 @@
                     <div class="form-group" id="main_student" style="display: none;">
                         <label class="col-sm-2 control-label">Student</label>
                         <div class="col-sm-5">                                            
-                            <select class="form-control select2" multiple="" id="student" name="student[]">                                                
+                            <select class="form-control form-select" multiple="" id="student" name="student[]">                                                
                                 <option value="all">All Student</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">To</label>
+                        <label class="col-sm-2 control-label">To Admin</label>
                         <div class="col-sm-5">
-                            <select id="to" class="form-control" name="to[]" multiple="" required="">
+                            <select id="to" class="form-control" name="to[]" multiple="">
                                 <?php foreach ($all_admin as $row) { ?>
                                     <option value="<?php echo $row->admin_id; ?>"><?php echo $row->email . ' (Admin)'; ?></option>
                                 <?php } ?>
@@ -84,9 +85,9 @@
                     <div class="form-group">
 
                         <label class="col-sm-2 control-label"><?php echo ucwords("Message"); ?></label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-9">
 
-                            <textarea id="summernote" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
+                            <textarea id="summernote1" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
                         </div>
                     </div>
 
@@ -118,6 +119,7 @@
 </div>
 
 <script>
+    CKEDITOR.replace( 'message' );
     $(document).ready(function () {
         $('#semester').on('change', function () {
             var semester_id = $(this).val();

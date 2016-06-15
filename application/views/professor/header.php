@@ -158,7 +158,7 @@
                                     <ul>
                                         <li>
                                             <a <?php echo active_single_menu('dashboard', $page); ?> href="<?php echo base_url(); ?>professor/dashboard">
-                                                <i class="fa fa-desktop" aria-hidden="true"></i>
+                                                <i class="fa fa-dashboard" aria-hidden="true"></i>
                                                 <span class=txt>Dashboard</span>
                                             </a>
                                         </li>          
@@ -170,28 +170,28 @@
                                         ?>
 
                                         <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-chain"></i>
                                                 <span class="txt">Basic Management</span></a>
                                             <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
                                                     <a id="link-student" href="<?php echo base_url(); ?>professor/student">
-                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <i class="s16 icomoon-icon-user-plus-2"></i>
                                                         <span class="txt">Student</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a id="link-subject" href="<?php echo base_url(); ?>professor/subject">
-                                                        <i class="s16 icomoon-icon-file"></i>
+                                                        <i class="s16 fa fa-book"></i>
                                                         <span class="txt">Subject</span></a></li>
                                                 <li>
                                                     <a id="link-syllabus" href="<?php echo base_url(); ?>professor/syllabus">
-                                                        <i class="s16 icomoon-icon-image-2"></i>
+                                                        <i class="s16 fa fa-list"></i>
                                                         <span class="txt">Syllabus</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a id="link-holiday" href="<?php echo base_url(); ?>professor/holiday">
-                                                        <i class="s16 entypo-icon-clock"></i>
+                                                        <i class="s16 fa fa-calendar"></i>
                                                         <span class="txt">Holiday</span>
                                                     </a>
                                                 </li>
@@ -203,7 +203,7 @@
                                                 </li>
                                                 <li>
                                                     <a id="link-vocational_course" href="<?php echo base_url(); ?>professor/vocationalcourse">
-                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <i class="s16 fa fa-newspaper-o"></i>
                                                         <span class="txt">Vocational Course</span>
                                                     </a>
                                                 </li>
@@ -224,25 +224,25 @@
                                             <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
                                                     <a id="link-events" href="<?php echo base_url(); ?>professor/events">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <i class="s16 fa fa-calendar"></i>
                                                         <span class="txt">Events</span>
                                                     </a>
                                                 </li> 
                                                 <li>
                                                     <a id="link-assignments" href="<?php echo base_url(); ?>professor/assignment">
-                                                        <i class="s16 icomoon-icon-file-2"></i>
+                                                        <i class="s16 fa fa-book"></i>
                                                         <span class="txt">Assignments</span>
                                                     </a>
                                                 </li> 
                                                 <li>
                                                     <a id="link-study_resources" href="<?php echo base_url(); ?>professor/study_resource">
-                                                        <i class="s16 icomoon-icon-attachment"></i>
+                                                        <i class="s16 fa fa-pencil-square"></i>
                                                         <span class="txt">Study Resources</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a id="link-project" href="<?php echo base_url(); ?>professor/project">
-                                                        <i class="s16 icomoon-icon-unlocked"></i>
+                                                        <i class="s16 fa fa-code-fork"></i>
                                                         <span class="txt">Project/Synopsis</span>
                                                     </a>
                                                 </li>
@@ -268,13 +268,13 @@
                                         </li>
                                         <li>
                                             <a <?php echo active_single_menu('class_routine', $page); ?> href="<?php echo base_url(); ?>professor/class_routine">
-                                                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                                <i class="fa fa-calendar-o" aria-hidden="true"></i>
                                                 <span class=txt>Class Routine </span>
                                             </a>
                                         </li> 
                                         <li>
                                             <a  href="<?php echo base_url(); ?>site/forums">
-                                                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                                <i class="fa fa-comment" aria-hidden="true"></i>
                                                 <span class=txt>Forum & Discussion</span>
                                             </a>
                                         </li> 
@@ -290,7 +290,7 @@
                                             <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
                                                     <a id="link-graduates" href="<?php echo base_url(); ?>professor/graduate">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <i class="s16 fa fa-graduation-cap"></i>
                                                         <span class="txt">Toppers Graduate</span>
                                                     </a>
                                                 </li>                                          
@@ -298,7 +298,7 @@
                                         </li>
                                         <li>
                                             <a <?php echo active_single_menu('attendance', $page); ?> href="<?php echo base_url(); ?>professor/attendance">
-                                                <i class="s16 fa fa-university"></i>
+                                                <i class="s16 fa fa-calculator"></i>
                                                 <span class=txt>Attendance </span>
                                             </a>
                                         </li>
@@ -310,24 +310,24 @@
                                         ?>
 
                                         <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-pencil"></i>
                                                 <span class="txt">Examination</span></a>
                                             <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
                                                     <a id="link-exam" href="<?php echo base_url(); ?>professor/exam">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <i class="s16 fa fa-paper-plane-o"></i>
                                                         <span class="txt">Exam</span>
                                                     </a>
                                                 </li> 
                                                 <li>
                                                     <a id="link-exam_schedule" href="<?php echo base_url(); ?>professor/exam_schedule">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <i class="s16 fa fa-history"></i>
                                                         <span class="txt">Exam Schedule</span>
                                                     </a>
                                                 </li> 
                                                 <li>
                                                     <a id="link-exam_marks" href="<?php echo base_url(); ?>professor/exam_marks">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <i class="s16 fa fa-star-o"></i>
                                                         <span class="txt">Exam Marks</span>
                                                     </a>
                                                 </li>  
@@ -341,24 +341,24 @@
                                         ?>
 
                                         <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                            <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-envelope"></i>
                                                 <span class="txt">Email</span></a>
                                             <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                                 <li>
                                                     <a id="link-email_compose" href="<?php echo base_url(); ?>professor/email_compose">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <i class="s16 fa fa-envelope"></i>
                                                         <span class="txt">Compose</span>
                                                     </a>
                                                 </li> 
                                                 <li>
                                                     <a id="link-email_inbox" href="<?php echo base_url(); ?>professor/email_inbox">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <i class="s16 fa fa-inbox"></i>
                                                         <span class="txt">Inbox</span>
                                                     </a>
                                                 </li> 
                                                 <li>
                                                     <a id="link-email_sent" href="<?php echo base_url(); ?>professor/email_sent">
-                                                        <i class="s16 icomoon-icon-screen-2"></i>
+                                                        <i class="s16 fa fa-send"></i>
                                                         <span class="txt">Sent</span>
                                                     </a>
                                                 </li>  

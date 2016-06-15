@@ -55,10 +55,11 @@
                         endTime: new Date(yyyy + '/' + mm + '/' + dd + ' 07:00 PM'),
                         height: 600,
                         views: [
+                            {type: "day", selected: true},
                             "day",
                             "week",
                             "month",
-                            {type: "agenda", selected: true}                            
+                            "agenda"                       
                         ],
                         editable: false,
                         eventTemplate: $("#event-template").html(),

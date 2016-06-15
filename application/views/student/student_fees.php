@@ -196,7 +196,7 @@
                         if (total_paid_amount > 0) {
                             due_amount = Number($('#total_fees').val()) - total_paid_amount;
                         }
-                        $('#due_fees').val(due_amount);
+                        $('#due_fees').val(Math.abs(due_amount));
                         due_fee = due_amount;
                     }
                 });

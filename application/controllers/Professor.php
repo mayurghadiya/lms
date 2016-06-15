@@ -54,7 +54,7 @@ class Professor extends MY_Controller {
 
         $this->data['student'] = $this->Professor_model->get_prof_student($dpet, $branch);
         $this->data['page'] = 'student';
-        $this->data['title'] = 'Student Management';
+        $this->data['title'] = 'Student';
         $this->data['detail_title'] = $this->lang_message('student_detail');
         $this->__site_template('professor/student', $this->data);
     }
@@ -75,7 +75,7 @@ class Professor extends MY_Controller {
         $this->data['course'] = $this->db->get('course')->result();
         $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['page'] = 'subject';
-        $this->data['title'] = 'Subject Management';
+        $this->data['title'] = 'Subject';
         $this->__site_template('professor/subject', $this->data);
     }
 
@@ -182,7 +182,7 @@ class Professor extends MY_Controller {
         //$this->data['degree'] = $this->db->get('degree')->result();
         $this->data['degree'] = $this->Professor_model->get_all_degree();
 
-        $this->data['title'] = 'Syllabus Management';
+        $this->data['title'] = 'Syllabus';
         $this->data['add_title'] = $this->lang_message('add_syllabus');
         $this->data['edit_title'] = $this->lang_message('edit_syllabus');
         $this->data['page'] = 'syllabus';
@@ -219,7 +219,7 @@ class Professor extends MY_Controller {
     function holiday() {
         $this->data['holiday'] = $this->Professor_model->getholiday();
         $this->data['page'] = 'holiday';
-        $this->data['title'] = 'Holiday Management';
+        $this->data['title'] = 'Holiday';
         $this->__site_template('professor/holiday', $this->data);
     }
 
@@ -460,7 +460,7 @@ class Professor extends MY_Controller {
          */
         //$this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignments';
-        $this->data['title'] = 'Assignment Management';
+        $this->data['title'] = 'Assignment';
         $this->data['add_title'] = $this->lang_message('add_assignment');
         $this->data['edit_title'] = $this->lang_message('edit_assignment');
         $this->__site_template('professor/assignment', $this->data);
@@ -623,7 +623,7 @@ class Professor extends MY_Controller {
         $this->data['semester'] = $this->Professor_model->get_all_semester();
         $this->data['batch'] = $this->Professor_model->get_all_bacth();
         $this->data['page'] = 'study_resources';
-        $this->data['title'] = 'Study Resource Management';
+        $this->data['title'] = 'Study Resource';
         $this->data['add_title'] = $this->lang_message('add_studyresource');
         $this->data['edit_title'] = $this->lang_message('edit_studyresource');
         $this->__site_template('professor/studyresource', $this->data);
@@ -778,7 +778,7 @@ class Professor extends MY_Controller {
         //$this->db->get('student')->result();
         $this->data['student'] = $this->db->select('std_id, std_first_name, std_last_name')->from('student')->get()->result();
         $this->data['page'] = 'project';
-        $this->data['title'] = 'Project Management';
+        $this->data['title'] = 'Project';
         $this->data['add_title'] = $this->lang_message('add_project');
         $this->data['edit_title'] = $this->lang_message('edit_project');
         $this->__site_template('professor/project', $this->data);
@@ -976,7 +976,7 @@ class Professor extends MY_Controller {
         $this->data['course'] = $this->db->select('course_id, c_name')->from('course')->get()->result();
 
         $this->data['page'] = 'participate';
-        $this->data['title'] = 'Participate Management';
+        $this->data['title'] = 'Participate';
         //$this->data['volunteer'] = $this->db->get('participate_student')->result_array();
         //$this->data['uploads'] = $this->db->get('student_upload')->result_array();
         $this->__site_template('professor/participate', $this->data);
@@ -1086,7 +1086,7 @@ class Professor extends MY_Controller {
         $this->data['courseware'] = $this->Professor_model->getcourseware();
 
         $this->data['page'] = 'courseware';
-        $this->data['title'] = 'Courseware Management';
+        $this->data['title'] = 'Courseware';
         $this->data['add_title'] = $this->lang_message('add_courseware');
         $this->data['edit_title'] = $this->lang_message('edit_courseware');
         $this->__site_template('professor/courseware', $this->data);
@@ -1158,7 +1158,7 @@ class Professor extends MY_Controller {
         $this->data['title'] = 'Attendance';
         $this->data['page'] = 'attendance';
         $this->data['title'] = 'Attendance';
-        $this->data['degree'] = $this->Professor_model->get_departments();
+        $this->data['degree'] = $this->Professor_model->professor_class_department();
         $this->data['class'] = $this->Crud_model->class_list();
         $this->__site_template('professor/attendance', $this->data);
     }
@@ -1286,7 +1286,7 @@ class Professor extends MY_Controller {
 //$exam = $this->Professor_model->exam_details();
 
         $this->data['page'] = 'exam';
-        $this->data['title'] = 'Exam Management';
+        $this->data['title'] = 'Exam';
         $this->data['add_title'] = 'Add Exam';
         $this->data['edit_title'] = 'Update Exam';
         $this->data['exams'] = $this->Professor_model->exam_details();
@@ -1738,7 +1738,7 @@ class Professor extends MY_Controller {
         $this->load->helper('system_email');
         $this->data['inbox'] = professor_inbox();
         $this->data['title'] = 'Inbox';
-        $this->data['page'] = 'inbox';
+        $this->data['page'] = 'email_inbox';
         $this->__site_template('professor/email_inbox', $this->data);
     }
 
@@ -1828,9 +1828,9 @@ class Professor extends MY_Controller {
         //$this->data['teacher'] = $this->Crud_model->get_all_teacher();
         $this->data['all_admin'] = $this->Crud_model->get_all_admin();
         //set the template and view
-        $this->data['title'] = 'Compose Email';
+        $this->data['title'] = 'Compose';
         $this->data['content'] = 'email_compose';
-        $this->data['page'] = 'compose';
+        $this->data['page'] = 'email_compose';
         $this->__site_template('professor/email_compose', $this->data);
     }
 
@@ -1921,7 +1921,7 @@ class Professor extends MY_Controller {
         $this->load->helper('system_email');
         $this->data['sent_mail'] = professor_sent_email(); //admin
         $this->data['title'] = 'Sent Email';
-        $this->data['page'] = 'sent';
+        $this->data['page'] = 'email_sent';
         $this->__site_template('professor/email_sent', $this->data);
     }
 

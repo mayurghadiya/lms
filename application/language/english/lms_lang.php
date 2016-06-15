@@ -88,7 +88,7 @@ $lang['edit_courseware'] = 'Update Courseware';
 /**
  * Department
  */
-$lang['department_title'] = 'Department Management';
+$lang['department_title'] = 'Department';
 $lang['save_department'] = 'Department is successfully added.';
 $lang['update_department'] = 'Department is successfully updated.';
 $lang['delete_department'] = 'Department is successfully deleted.';
@@ -96,7 +96,7 @@ $lang['delete_department'] = 'Department is successfully deleted.';
 /**
  * Branch
  */
-$lang['branch_title'] = 'Branch Management';
+$lang['branch_title'] = 'Branch';
 $lang['save_branch'] = 'Branch is successfully added.';
 $lang['update_branch'] = 'Branch is successfully updated.';
 $lang['delete_branch'] = 'Branch is successfully deleted.';
@@ -104,7 +104,7 @@ $lang['delete_branch'] = 'Branch is successfully deleted.';
 /**
  * Batch
  */
-$lang['batch_title'] = 'Batch Management';
+$lang['batch_title'] = 'Batch';
 $lang['save_batch'] = 'Batch is successfully added.';
 $lang['update_batch'] = 'Batch is successfully updated.';
 $lang['delete_batch'] = 'Batch is successfully deleted.';
@@ -112,7 +112,7 @@ $lang['delete_batch'] = 'Batch is successfully deleted.';
 /**
  * Semester
  */
-$lang['semester_title'] = 'Semester Mangement';
+$lang['semester_title'] = 'Semester';
 $lang['save_semester'] = 'Semester is successfully added.';
 $lang['update_semester'] = 'Semester is successfully updated.';
 $lang['delete_semester'] = 'Semester is successfully deleted.';
@@ -120,7 +120,7 @@ $lang['delete_semester'] = 'Semester is successfully deleted.';
 /**
  * Class/division
  */
-$lang['class_title'] = 'Class Management';
+$lang['class_title'] = 'Class';
 $lang['save_class'] = 'Class is successully added.';
 $lang['update_class'] = 'Class is successully updated.';
 $lang['delete_class'] = 'Class is successfully deleted.';
@@ -136,7 +136,7 @@ $lang['delete_admission_type'] = 'Admission type is successfully deleted.';
 /**
  * Student
  */
-$lang['student_title'] = 'Student Management';
+$lang['student_title'] = 'Student';
 $lang['save_student'] = 'Student is successfully added.';
 $lang['update_student'] = 'Student is successfully updated.';
 $lang['delete_student'] = 'Student is successfully deleted.';
@@ -144,7 +144,7 @@ $lang['delete_student'] = 'Student is successfully deleted.';
 /**
  * Syllabus
  */
-$lang['syllabus_title'] = 'Syllabus Management';
+$lang['syllabus_title'] = 'Syllabus';
 $lang['save_syllabus'] = 'Sylllabus is successfully added.';
 $lang['update_syllabus'] = 'Syllabus is successfully updated.';
 $lang['delete_syllabus'] = 'Syllabus is successfully deleted.';
@@ -168,7 +168,7 @@ $lang['delete_vocational_course'] = 'Vocational course is successfully deleted.'
 /**
  * Assessment
  */
-$lang['assessment_title'] = 'Assessment Management';
+$lang['assessment_title'] = 'Assessment';
 $lang['save_assessment'] = 'Assessment is successfully added.';
 $lang['update_assessment'] = 'Assessment is successfully updated.';
 $lang['delete_assessment'] = 'Assessment is successfully deleted.';
@@ -177,7 +177,7 @@ $lang['delete_assessment'] = 'Assessment is successfully deleted.';
 <<<<<<< HEAD
  * Events 
  */
-$lang['event_title'] = 'Event Management';
+$lang['event_title'] = 'Event';
 $lang['save_event'] = 'Event is successfully added.';
 $lang['update_event'] = 'Event is successfully updated.';
 $lang['delete_event'] = 'Event is successfully deleted.';
@@ -185,7 +185,7 @@ $lang['delete_event'] = 'Event is successfully deleted.';
 /**
  * Assignments
  */
-$lang['assignment_title'] = 'Assignments Management';
+$lang['assignment_title'] = 'Assignments';
 $lang['save_assignment'] = 'Assignment is successfully added.';
 $lang['update_assignment'] = 'Assignment is successfully updated.';
 $lang['delete_assignment'] = 'Assignment is successfully deleted.';
@@ -193,7 +193,7 @@ $lang['delete_assignment'] = 'Assignment is successfully deleted.';
 /**
  * Study resources
  */
-$lang['study_resource_title'] = 'Study Resource Management';
+$lang['study_resource_title'] = 'Study Resource';
 $lang['save_study_resource'] = 'Study resource is successfully added.';
 $lang['update_study_resource'] = 'Study resource is successfully updated.';
 $lang['delete_study_resource'] = 'Study resource is successfully deleted.';
@@ -201,7 +201,7 @@ $lang['delete_study_resource'] = 'Study resource is successfully deleted.';
 /**
  * Project and synopsis
  */
-$lang['project_title'] = 'Project Management';
+$lang['project_title'] = 'Project';
 $lang['save_project'] = 'Project is successfully added.';
 $lang['update_project'] = 'Project is sucucessfully updated.';
 $lang['delete_project'] = 'Project is successfully deleted.';
@@ -217,7 +217,7 @@ $lang['delete_library'] = 'Digital library is successfully deleted.';
 /**
  * Courseware management
  */
-$lang['courseware_title'] = 'Courseware Management';
+$lang['courseware_title'] = 'Courseware';
 $lang['delete_courseware'] = 'Courseware is successfully deleted.';
 
 /**
@@ -253,7 +253,7 @@ $lang['delete_professor'] = 'Professor is successfully deleted.';
 /**
  * Exam management
  */
-$lang['exam_title'] = 'Exam Management';
+$lang['exam_title'] = 'Exam';
 $lang['save_exam'] = 'Exam is successfully added.';
 $lang['update_exam'] = 'Exam is successfully updated.';
 $lang['delete_exam'] = 'Exam is successfully deleted.';

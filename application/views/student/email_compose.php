@@ -1,4 +1,5 @@
 <!-- Start .row -->
+<script src="//cdn.ckeditor.com/4.5.9/full/ckeditor.js"></script>
 <div class=row>                      
 
     <div class=col-lg-12>
@@ -7,9 +8,9 @@
             <div class=panel-body>
                 <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">To</label>
+                        <label class="col-sm-2 control-label">Admin Email</label>
                         <div class="col-sm-7">
-                            <select id="to" class="form-control select2" name="to[]" multiple="" required="">
+                            <select id="to" class="form-control form-select" name="to[]" multiple="" required="">
                                 <?php foreach ($all_admin as $row) { ?>
                                     <option value="<?php echo $row->admin_id; ?>"><?php echo $row->email . ' (Admin)'; ?></option>
                                 <?php } ?>
@@ -45,7 +46,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Message</label>
                         <div class="col-sm-7">
-                            <textarea id="summernote" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
+                            <textarea id="summernote1" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>
                         </div>
                     </div>
 
@@ -72,3 +73,6 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+<script>
+    CKEDITOR.replace('message');
+</script>

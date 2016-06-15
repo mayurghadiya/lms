@@ -140,6 +140,7 @@ if (!function_exists('admin_inbox')) {
         $admin_details = admin_sender_detail();
         $CI->db->order_by('created_at', 'DESC');
        
+        $CI->db->select('email_id, email_from, from_name, email_to, message, read, created_at, subject');
         $CI->db->where('email_to', $admin_details['admin_id']);
         $CI->db->or_where("professor_to_admin",$admin_details['admin_id']);
         $inbox = $CI->db->get('email')->result();
@@ -528,7 +529,7 @@ if (!function_exists('professor_inbox')) {
     function professor_inbox() {
         $CI = & get_instance();
         $professor_details = professor_sender_detail();
-        $CI->db->select('email_from, subject, created_at, email_id, read');
+        $CI->db->select('email_from, from_name, subject, created_at, email_id, read');
         $CI->db->order_by('created_at', 'DESC');
         $run2 = "FIND_IN_SET('".$professor_details['login_user_id']."', student_to_professor)";
         $run = "FIND_IN_SET('".$professor_details['login_user_id']."', admin_to_professor)";

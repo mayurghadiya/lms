@@ -83,9 +83,10 @@
                               </tr>
                            </thead>
                            <tbody>
+                               <?php $counter = 1; ?>
                               <?php foreach ($assignment as $row): ?>
                               <tr>
-                                 <td></td>
+                                 <td><?php echo $counter++; ?></td>
                                  <td><?php echo $row->assign_title; ?></td>
                                  <td><?php
                                     foreach ($degree as $dgr):
