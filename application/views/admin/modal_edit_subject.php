@@ -1,5 +1,8 @@
 <?php
 $edit_data = $this->db->get_where('subject_manager', array('sm_id' => $param2))->result_array();
+$course = $this->db->get_where('course', array('course_status' => 1))->result();
+$datacourse=$this->db->get_where('course',array('course_id'=>$edit_data[0]['sm_course_id']))->result_array();
+$datadegree = $this->db->get_where('degree', array('d_status' => 1))->result();
 foreach ($edit_data as $row):
     ?>
 <div class=row>                      
@@ -29,15 +32,41 @@ foreach ($edit_data as $row):
                                     <input type="text" class="form-control" name="subcode" id="subcode" value="<?php echo $row['subject_code']; ?>" />
                                 </div>
                             </div>
-
+                             <div class="form-group ">
+                                <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                                 <div class="col-sm-8">
+                                    <select class="form-control" name="degree" id="degree" >
+                                        <option value="">Select department</option>
+                                        <?php
+                                        $datadegree = $this->db->get_where('degree', array('d_status' => 1))->result();
+                                        foreach ($datadegree as $rowdegree) {
+                                            if($datacourse[0]['degree_id']==$rowdegree->d_id)
+                                            {
+                                            ?>
+                                            <option value="<?= $rowdegree->d_id ?>" selected><?= $rowdegree->d_name ?></option>
+                                            <?php
+                                            }
+                                            else
+                                            {
+                                                ?>
+                                            <option value="<?= $rowdegree->d_id ?>"><?= $rowdegree->d_name ?></option>
+                                            <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                 </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label"><?php echo ucwords("Branch");?><span style="color:red">*</span></label>
                                 <div class="col-sm-8">
                                     <select name="course" class="form-control" id="course1">
                                         <option value="">Select branch</option>
                                         <?php
-                                        $course = $this->db->get_where('course', array('course_status' => 1))->result();
+                                       
                                         foreach ($course as $crs) {
+                                           if($datacourse[0]['degree_id']==$crs->degree_id)
+                                           {
                                             if ($crs->course_id == $row['sm_course_id']) {
                                                 ?>
                                                 <option value="<?= $crs->course_id ?>" selected><?= $crs->c_name ?></option>
@@ -47,6 +76,7 @@ foreach ($edit_data as $row):
                                                 <option value="<?= $crs->course_id ?>" ><?= $crs->c_name ?></option>
                                                 <?php
                                             }
+                                           }
                                         }
                                         ?>
                                     </select>
@@ -119,6 +149,19 @@ endforeach;
             var form = document.getElementsByTagName("form");
             form.submit();
         }
+    });
+      $("#degree").change(function () {
+        var degree = $(this).val();
+
+        var dataString = "degree=" + degree;
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url() . 'admin/get_course/'; ?>",
+            data: dataString,
+            success: function (response) {
+                $("#course1").html(response);
+            }
+        });
     });
 $("#course1").change(function () {
         var course = $(this).val();

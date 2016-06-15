@@ -32,20 +32,28 @@ $professor = $this->db->get('professor')->result_array();
                                 <input type="text" class="form-control" name="subcode" id="subcode" />
                             </div>
                         </div>
-
+                        <div class="form-group ">
+                        <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                         <div class="col-sm-8">
+                            <select class="form-control" name="degree" id="degree" >
+                                <option value="">Select department</option>
+                                <?php
+                                $datadegree = $this->db->get_where('degree', array('d_status' => 1))->result();
+                                foreach ($datadegree as $rowdegree) {
+                                    ?>
+                                    <option value="<?= $rowdegree->d_id ?>"><?= $rowdegree->d_name ?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                         </div>
+                    </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <select name="course" class="form-control"  id="course">
                                     <option value="">Select branch</option>
-                                    <?php
-                                    $course = $this->db->get_where('course', array('course_status' => 1))->result();
-                                    foreach ($course as $crs) {
-                                        ?>
-                                        <option value="<?= $crs->course_id ?>"><?= $crs->c_name ?></option>
-                                        <?php
-                                    }
-                                    ?>
+                                   
                                 </select>
                             </div>
                         </div>
@@ -117,6 +125,22 @@ $professor = $this->db->get('professor')->result_array();
         }
         event.preventDefault();
     });
+    
+    
+    $("#degree").change(function () {
+        var degree = $(this).val();
+
+        var dataString = "degree=" + degree;
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url() . 'admin/get_course/'; ?>",
+            data: dataString,
+            success: function (response) {
+                $("#course").html(response);
+            }
+        });
+    });
+    
     $("#course").change(function () {
         var course = $(this).val();
         var degree = $("#degree").val();
@@ -154,6 +178,7 @@ $professor = $this->db->get('professor')->result_array();
             rules: {
                 subname: "required",
                 subcode: "required",
+                degree: "required",
                 course: "required",
                 semester: "required",
                 'professor[]':
@@ -164,6 +189,7 @@ $professor = $this->db->get('professor')->result_array();
             messages: {
                 subname: "Enter subject name",
                 subcode: "Enter subject code",
+                degree: "Select degree",
                 course: "Select branch",
                 semester: "Select semester",
                 'professor[]':
