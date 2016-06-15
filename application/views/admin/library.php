@@ -190,7 +190,6 @@
                         }
                         else{
                             $("#branches").html(response);
-                            
                         }
                     }
                 });
@@ -221,8 +220,7 @@
                           
                         }
                         else{
-                           $("#batches").html(response);
-                            
+                           $("#batches").html(response);                            
                         }
                         
                     }

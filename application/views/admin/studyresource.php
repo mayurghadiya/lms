@@ -191,8 +191,7 @@
                         }
                         else{
                            // $('#branches').children('option:not(:first)').remove();
-                            $("#branches").html(response);
-                            
+                            $("#branches").html(response);                            
                         }
                     }
                 });
@@ -223,8 +222,7 @@
                            
                         }
                         else{
-                           $("#batches").html(response);
-                            
+                           $("#batches").html(response);                            
                         }
                         
                     }

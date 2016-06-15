@@ -28,7 +28,7 @@ class Admin extends MY_Controller {
      */
     function index() {
         $this->load->helper('report_chart');
-        $course = $this->db->get('course')->result();
+       // $course = $this->db->get('course')->result();
         $this->data['male_female_pie_chart'] = male_female_students();
         $this->data['new_student_joining'] = new_student_registration();
         $this->data['male_vs_female_course_wise'] = male_vs_female_course_wise();

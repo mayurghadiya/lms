@@ -1,3 +1,8 @@
+<?php 
+$professor = $this->db->select('professor_id,name')->from('professor')->get()->result_array();
+ $categories = $this->db->get('course_category')->result();
+ $currency=system_info('currency');
+?>
 <!-- Start .row -->
 <div class=row>                      
 
@@ -48,7 +53,6 @@
                                 <td><?php echo $count++; ?></td>
                                 <td><?php echo $row['course_name']; ?></td>   
                                 <td><?php
-                                    $categories = $this->db->get('course_category')->result();
                                     foreach ($categories as $category) {
 
                                         if ($category->category_id == $row['category_id']) {
@@ -58,9 +62,8 @@
                                     ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($row['course_startdate'])); ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($row['course_enddate'])); ?></td>    
-                                <td><?php echo system_info('currency') . $row['course_fee']; ?></td>   
+                                <td><?php echo $currency. $row['course_fee']; ?></td>   
                                 <td><?php
-                                    $professor = $this->db->get('professor')->result_array();
                                     foreach ($professor as $pro) {
                                         if ($pro['professor_id'] == $row['professor_id']) {
                                             echo $pro['name'];
@@ -97,7 +100,7 @@
                                 <td><?php echo $counts++; ?></td>
                                 <td><?php echo $rows['course_name']; ?></td>   
                                 <td><?php
-                                    $categories = $this->db->get('course_category')->result();
+                                   
                                     foreach ($categories as $category) {
 
                                         if ($category->category_id == $rows['category_id']) {
@@ -107,9 +110,8 @@
                                     ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($rows['course_startdate'])); ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($rows['course_enddate'])); ?></td>    
-                                <td><?php echo system_info('currency') . $rows['course_fee']; ?></td>   
+                                <td><?php echo $currency. $rows['course_fee']; ?></td>   
                                 <td><?php
-                                    $professor = $this->db->get('professor')->result_array();
                                     foreach ($professor as $pro) {
                                         if ($pro['professor_id'] == $rows['professor_id']) {
                                             echo $pro['name'];

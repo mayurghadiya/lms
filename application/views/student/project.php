@@ -61,7 +61,7 @@
                             <!-- tab content -->
                             <div class="tab-pane fade" id="submitted-project">
                                 <?php
-                                $this->db->select('s.*,a.*');
+                                $this->db->select('s.dos,s.document_file,a.pm_title');
                                 $this->db->from('project_document_submission s');
                                 $this->db->join('project_manager a', 'a.pm_id=s.project_id');
                                 $this->db->where('s.student_id', $this->session->userdata('std_id'));
