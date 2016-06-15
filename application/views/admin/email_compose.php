@@ -1,4 +1,4 @@
-
+<script src="//cdn.ckeditor.com/4.5.9/full/ckeditor.js"></script>
 <style>
 
     .select2-container-multi .select2-choices .select2-search-field input{
@@ -9,121 +9,112 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
-            <div class="panel-body">                              
-                <form class="form-horizontal" role="form" action="<?php echo base_url(); ?>admin/email_compose" method="post" 
-                      enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label"><?php echo ucwords("department"); ?></label>
-                        <div class="col-sm-5">
-                            <select class="form-control" id="degree" name="degree" required="">
-                                <option value="">Select</option>
-                                <?php foreach ($degree as $row) { ?>
-                                    <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
+        <div class="panel-default toggle panelMove panelClose panelRefresh"></div>
+        <div class="panel-body">                              
+            <form class="form-horizontal" role="form" action="<?php echo base_url(); ?>admin/email_compose" method="post" 
+                  enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo ucwords("department"); ?></label>
+                    <div class="col-sm-5">
+                        <select class="form-control" id="degree" name="degree" required="">
+                            <option value="">Select</option>
+                            <?php foreach ($degree as $row) { ?>
+                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label"><?php echo ucwords("Branch"); ?></label>
-                        <div class="col-sm-5">
-                            <select class="form-control" id="course" name="course" required="">
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo ucwords("Branch"); ?></label>
+                    <div class="col-sm-5">
+                        <select class="form-control" id="course" name="course" required="">
 
-                                <option value="all">All</option>
-                            </select>
-                        </div>
+                            <option value="all">All</option>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label"><?php echo ucwords("Batch"); ?></label>
-                        <div class="col-sm-5">
-                            <select class="form-control" id="batch" name="batch" required="">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo ucwords("Batch"); ?></label>
+                    <div class="col-sm-5">
+                        <select class="form-control" id="batch" name="batch" required="">
 
-                                <option value="all">All</option>
-                            </select>
-                        </div>
+                            <option value="all">All</option>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="form-group" id="main_semester" style="display: none;">
-                        <label class="col-sm-2 control-label">Semester</label>
-                        <div class="col-sm-5">
-                            <select class="form-control" id="semester" name="semester">
-                                <option value="all">All</option>   
-                            </select>
-                        </div>
+                <div class="form-group" id="main_semester" style="display: none;">
+                    <label class="col-sm-2 control-label">Semester</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" id="semester" name="semester">
+                            <option value="all">All</option>   
+                        </select>
                     </div>
+                </div>
 
-                    <div class="form-group" id="main_student" style="display: none;">
-                        <label class="col-sm-2 control-label">Student</label>
-                        <div class="col-sm-5">                                            
-                            <select class="form-control select2" multiple="" id="student" name="student[]">                                                
-                                <option value="all">All Student</option>
-                            </select>
-                        </div>
+                <div class="form-group" id="main_student" style="display: none;">
+                    <label class="col-sm-2 control-label">Student</label>
+                    <div class="col-sm-5">                                            
+                        <select class="form-control form-select" multiple="" id="student" name="student[]">                                                
+                            <option value="all">All Student</option>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label"><?php echo ucwords("Teacher Email"); ?></label>
-                        <div class="col-sm-5">
-                            <select id="teacheremail" class="form-control select3" name="teacheremail[]" multiple="">
-                                <option value="all">All</option>
-                                <?php foreach ($teacher as $row) { ?> 
-                                    <option value="<?php echo $row->email; ?>"><?php echo $row->name . ' (' . $row->email . ')'; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo ucwords("Teacher Email"); ?></label>
+                    <div class="col-sm-5">
+                        <select id="teacheremail" class="form-control select3" name="teacheremail[]" multiple="">
+                            <option value="all">All</option>
+                            <?php foreach ($teacher as $row) { ?> 
+                                <option value="<?php echo $row->email; ?>"><?php echo $row->name . ' (' . $row->email . ')'; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label"><?php echo ucwords("Subject"); ?></label>
-                        <div class="col-sm-5">
-                            <textarea class="form-control" name="subject" required=""></textarea>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo ucwords("Subject"); ?></label>
+                    <div class="col-sm-5">
+                        <textarea class="form-control" name="subject" required=""></textarea>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label"><?php echo ucwords("Cc"); ?></label>
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control" name="cc"/>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo ucwords("Cc"); ?></label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="cc"/>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label"><?php echo ucwords("Message"); ?></label>
-                        <div class="col-sm-9">
-                            <textarea id="summernote" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>                                              
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo ucwords("Message"); ?></label>
+                    <div class="col-sm-9">
+                        <textarea id="cke_editor2" name="message" class="width-100 form-control"  rows="15" placeholder="Write your message here"></textarea>                                              
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label"><?php echo ucwords("Attachment"); ?></label>
-                        <div class="col-sm-5">
-                            <input type="file" class="form-control" name="userfile[]" multiple/>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo ucwords("Attachment"); ?></label>
+                    <div class="col-sm-5">
+                        <input type="file" class="form-control" name="userfile[]" multiple/>
                     </div>
+                </div>
 
-                    <div class="form-group form-actions">
-                        <div class="col-sm-12 col-md-offset-2">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-envelope append-icon"></i> <?php echo ucwords("Send"); ?></button>
+                <div class="form-group form-actions">
+                    <div class="col-sm-12 col-md-offset-2">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-envelope append-icon"></i> <?php echo ucwords("Send"); ?></button>
 
-                        </div>
                     </div>
-                </form>
-            </div>
-            <!-- panel-body  --> 
-
+                </div>
+            </form>
         </div>
-        <!-- panel --> 
+        <!-- panel-body  --> 
+
     </div>
+    <!-- panel --> 
+</div>
 
 </div>
 <!-- row --> 
@@ -141,6 +132,7 @@
 <!-- Middle Content End --> 
 
 <script>
+    CKEDITOR.replace( 'message' );
     $(document).ready(function () {
         $('#semester').on('change', function () {
             var semester_id = $(this).val();

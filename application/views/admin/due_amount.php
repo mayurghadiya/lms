@@ -81,7 +81,7 @@
                                     }
                                     $due_amount = $fee_structure_info->total_fee - $total_paid;
                                     ?>
-                                    <td><?php echo system_info('currency') . $due_amount; ?></td>
+                                    <td><?php echo $this->data['currency'] . $due_amount; ?></td>
                                 </tr>
                             <?php } ?>
                         </tbody>

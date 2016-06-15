@@ -13,8 +13,8 @@ $this->carabiner->group('event_calendar', [
 $this->carabiner->display('event_calendar');
 ?>
 
-<script>
-
+<script type="text/javascript" >
+    ;
     (function ($) {
         $.fn.eventCalendar = function (options) {
             var calendar = this;
@@ -61,12 +61,12 @@ $this->carabiner->display('event_calendar');
             onlyOneDescription: true,
             openEventInNewWindow: false,
             eventsScrollable: false,
-            dateFormat: "MM d, yyyy",
+            dateFormat: "DD/MM/YYYY",
             jsonDateFormat: 'timestamp', // you can use also "human" 'YYYY-MM-DD HH:MM:SS'
-            //moveSpeed: 500,	// speed of month move when you clic on a new date
+            //moveSpeed: 500,    // speed of month move when you clic on a new date
             //moveOpacity: 0, // month and events fadeOut to this opacity
             jsonData: "", // to load and inline json (not ajax calls)
-            cacheJson: true	// if true plugin get a json only first time and after plugin filter events
+            cacheJson: true  // if true plugin get a json only first time and after plugin filter events
                     // if false plugin get a new json on each date change
         };
         function initEventCalendar(that, options) {
@@ -405,7 +405,7 @@ $this->carabiner->display('event_calendar');
                                     if (event.url) {
                                         eventTitle = '<a href="' + event.url + '" target="' + eventLinkTarget + '" class="eventCalendar-eventTitle">Title: ' + event.title + '</a>';
                                     } else {
-                                        eventTitle = '<div class="eventCalendar-eventTitle"><i class="fa fa-check-square-o" aria-hidden="true"></i><b>Title :</b><span>' + event.title + '<span></div>' + '<div class="eventCalendar-eventDesc eventCalendar-hidden"><p><i class="fa fa-file-text-o" aria-hidden="true"></i><b>Description :</b><span>' + event.description + '</span></p><p><i class="fa fa-calendar-o" aria-hidden="true"></i><b>Time :</b><span>' + event.event_start_time + '</span></p><p><i class="fa fa-map-marker" aria-hidden="true"></i><b>Location :</b><span>' + event.Location + '</span></p><p><i class="fa fa-coffee" aria-hidden="true"></i><b>Intention :</b><span>' + event.description + '</span></p></div>';
+                                        eventTitle = '<div class="eventCalendar-eventTitle"><i class="fa fa-check-square-o" aria-hidden="true"></i><b>Title :</b><span>' + event.title + '<span></div>' + '<div class="eventCalendar-eventDesc eventCalendar-hidden"><p><i class="fa fa-file-text-o" aria-hidden="true"></i><b>Description :</b><span>' + event.description + '</span></p><p><i class="fa fa-clock-o" aria-hidden="true"></i><b>Time :</b><span>' + event.event_start_time + '</span></p><p><i class="fa fa-map-marker" aria-hidden="true"></i><b>Location :</b><span>' + event.Location + '</span></p><p><i class="fa fa-coffee" aria-hidden="true"></i><b>Intention :</b><span>' + event.description + '</span></p></div>';
                                     }
 
                                     events.push('<li id="' + key + '" class="' + event.type + '"><time class="time_det" datetime="' + eventDate + '"><i class="mar4top fa fa-calendar-o" aria-hidden="true"></i><b>Date :</b><span><em>' + eventStringDate + '</em></span></time>' + eventTitle + '<p class="eventCalendar-eventDesc displaynone ' + eventDescClass + '">' + event.description + '</p></li>');
@@ -467,11 +467,8 @@ $this->carabiner->display('event_calendar');
             flags.directionLeftMove = flags.wrap.width();
             flags.wrap.find('.eventCalendar-monthWrap').width(flags.wrap.width() + 'px');
             //flags.wrap.find('.eventCalendar-list-wrap').width(flags.wrap.width() + 'px');
-
         }
-
-
-    })(jQuery);</script>
+    })(jQuery);</script> 
 <script type="text/javascript">
     $(document).ready(function () {
         $("#eventCalendarHumanDate").eventCalendar({
@@ -620,35 +617,35 @@ $this->carabiner->display('event_calendar');
                 </div>
             </div>
             <div class=panel-body>
-              <div class="scroll_bar_professor">  
-                <table class="table table-striped table-bordered table-responsive dataTable no-footer table-hover table-reflow">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Date/time </th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>                         
-                        <?php
-                        $r = 0;
-                        foreach (@$recent_activity as $activity):
-                            ?>
+                <div class="scroll_bar_professor">  
+                    <table class="table table-striped table-bordered table-responsive dataTable no-footer table-hover table-reflow">
+                        <thead>
                             <tr>
-                                <th scope="row"><?php
-                                    $r++;
-                                    echo $r;
-                                    ?></th>
-                                <td>
-                                    <span class="date"><?php echo date("F d, Y", strtotime($activity->activity_datetime)); ?></span>
-                                    <span class="time"><?php echo date("h:i A", strtotime($activity->activity_datetime)); ?></span>
-                                </td>
-                                <td class="text-left"><?php echo ucwords($activity->activity); ?></td>
+                                <th>No</th>
+                                <th>Date/time </th>
+                                <th>Details</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-               </div>
+                        </thead>
+                        <tbody>                         
+                            <?php
+                            $r = 0;
+                            foreach (@$recent_activity as $activity):
+                                ?>
+                                <tr>
+                                    <th scope="row"><?php
+                                        $r++;
+                                        echo $r;
+                                        ?></th>
+                                    <td>
+                                        <span class="date"><?php echo date("F d, Y", strtotime($activity->activity_datetime)); ?></span>
+                                        <span class="time"><?php echo date("h:i A", strtotime($activity->activity_datetime)); ?></span>
+                                    </td>
+                                    <td class="text-left"><?php echo ucwords($activity->activity); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <!-- End Recent Activities -->
         </div>

@@ -1990,6 +1990,9 @@ letter-spacing: 1px !important;
 text-transform: uppercase !important;
 color: #333 !important;
 }
+
+/* 14062016 */
+.nanogallery_theme_default .nanoGalleryBreadcrumb .folder:hover, .nanogallery_theme_default .nanoGalleryBreadcrumb .folderHome:hover{color: #000 !important}
 /*Theme Navigation Colors*/
 #header .top-bar a:hover,#header .main-navigation ul ul li:hover > a , #header .top-bar a, .top-bar ul.top-nav.nav-right li:after, #header.modern .main-navigation ul a , #header.modern .main-navigation ul li.menu-item-has-children a::after , #header.modern .mm-toggle i, #header.modern .main-navigation ul ul li:hover > a, #header.modern .main-navigation ul ul li.menu-item-has-children:hover a:after, .cs-user-login > a:after, #header.modern .cs-search-area .search-area a, .modern .slicknav_menu .slicknav_menutxt{color:#FFF !important;}
 #header .main-navigation ul a , #header .main-navigation ul li.menu-item-has-children a:after, #header.modern .main-navigation ul ul li a, #header.modern .main-navigation ul ul li.menu-item-has-children a::after, #header .top-bar .cs-user-login ul li a{color:#333333 !important;}

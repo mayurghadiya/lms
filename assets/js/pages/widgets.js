@@ -6033,8 +6033,8 @@ isAndroid && $("select.form-control").removeClass("form-control").css("width", "
         },
         panels: {
             refreshIcon: "brocco-icon-refresh s12",
-            toggleIcon: "minia-icon-arrow-down-3",
-            collapseIcon: " minia-icon-arrow-up-3",
+            toggleIcon: "minia-icon-arrow-up-3",
+            collapseIcon: " minia-icon-arrow-down-3",
             closeIcon: "icomoon-icon-close",
             showControlsOnHover: !1,
             loadingEffect: "rotateplane",
@@ -6042,8 +6042,8 @@ isAndroid && $("select.form-control").removeClass("form-control").css("width", "
             rememberSortablePosition: !0
         },
         accordion: {
-            toggleIcon: " minia-icon-arrow-up-3 s12",
-            collapseIcon: "minia-icon-arrow-down-3 s12"
+            toggleIcon: " minia-icon-arrow-down-3 s12",
+            collapseIcon: "minia-icon-arrow-up-3 s12"
         },
         tables: {
             responsive: !0,

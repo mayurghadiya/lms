@@ -3,100 +3,97 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh"></div>
-        <div class=panel-body>
-            <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addexam');" data-toggle="modal"><i class="fa fa-plus"></i> Exam</a>
-            <div class="row filter-row">
-                <form id="due_amount-search" action="#" class="form-groups-bordered validate">
-                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <label><?php echo ucwords("department"); ?></label>
-                        <select class="form-control" id="search-degree"name="degree">
-                            <option value="">Select</option>
-                            <?php foreach ($degree as $row) { ?>
-                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
+            <div class=panel-body>
+                <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addexam');" data-toggle="modal"><i class="fa fa-plus"></i> Exam</a>
+                <div class="row filter-row">
+                    <form id="due_amount-search" action="#" class="form-groups-bordered validate">
+                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label><?php echo ucwords("department"); ?></label>
+                            <select class="form-control" id="search-degree"name="degree">
+                                <option value="">Select</option>
+                                <?php foreach ($degree as $row) { ?>
+                                    <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label><?php echo ucwords("Branch"); ?></label>
+                            <select id="search-course" name="course" data-filter="4" class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label><?php echo ucwords("Batch"); ?></label>
+                            <select id="search-batch" name="batch" data-filter="5" class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                            <label> <?php echo ucwords("Semester"); ?></label>
+                            <select id="search-semester" name="semester" data-filter="6" class="form-control">
+                                <option value="">Select</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                            <label>&nbsp;</label><br/>
+                            <input id="search-due_amount-data" type="button" value="Go" class="btn btn-info vd_bg-green"/>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div id="all-due_amount-result">
+                    <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                        <thead>
+
+                        <th>No</th>
+                        <th>Exam Name</th>
+                        <th>Department</th>
+                        <th width="14%">Branch</th>
+                        <th>Batch</th>
+                        <th width="10%">Semester</th>
+                        <th width="10%">Date</th>
+                        <th>Action</th>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                            foreach ($exams as $row) {
+                                $cenlist = array();
+                                ?>
+                                <tr>
+                                    <td></td>
+                                    <td><?php echo $row->em_name; ?></td>
+                                    <td><?php echo $row->d_name; ?></td>
+                                    <td><?php echo $row->c_name; ?></td>
+                                    <td><?php echo $row->b_name; ?></td>
+                                    <td><?php echo $row->s_name; ?></td>
+                                    <td><?php echo date('F d, Y', strtotime($row->em_date)); ?></td>
+                                    <td class="menu-action">
+                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_exam/<?php echo $row->em_id; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/exam/delete/<?php echo $row->em_id; ?>');" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
+                                    </td>
+                                </tr>
                             <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <label><?php echo ucwords("Branch"); ?></label>
-                        <select id="search-course" name="course" data-filter="4" class="form-control">
-                            <option value="">Select</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <label><?php echo ucwords("Batch"); ?></label>
-                        <select id="search-batch" name="batch" data-filter="5" class="form-control">
-                            <option value="">Select</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                        <label> <?php echo ucwords("Semester"); ?></label>
-                        <select id="search-semester" name="semester" data-filter="6" class="form-control">
-                            <option value="">Select</option>
+                        </tbody>
+                    </table>
+                </div>
 
-                        </select>
-                    </div>
-                    <div class="form-group col-lg-1 col-md-1 col-sm-2 col-xs-2">
-                        <label>&nbsp;</label><br/>
-                        <input id="search-due_amount-data" type="button" value="Go" class="btn btn-info vd_bg-green"/>
-                    </div>
-                </form>
+                <div id="due_amount-filter-result"></div>
 
             </div>
-
-            <div id="all-due_amount-result">
-                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Exam Name</th>
-                            <th>Department</th>
-                            <th width="14%">Branch</th>
-                            <th>Batch</th>
-                            <th width="10%">Semester</th>
-                            <th width="10%">Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php
-                        foreach ($exams as $row) {
-                            $cenlist = array();
-                            ?>
-                            <tr>
-                                <td></td>
-                                <td><?php echo $row->em_name; ?></td>
-                                <td><?php echo $row->d_name; ?></td>
-                                <td><?php echo $row->c_name; ?></td>
-                                <td><?php echo $row->b_name; ?></td>
-                                <td><?php echo $row->s_name; ?></td>
-                                <td><?php echo date('F d, Y', strtotime($row->em_date)); ?></td>
-                                <td class="menu-action">
-                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_exam/<?php echo $row->em_id; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
-                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/exam/delete/<?php echo $row->em_id; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="due_amount-filter-result"></div>
-
         </div>
+        <!-- End .panel -->
     </div>
-    <!-- End .panel -->
-</div>
-<!-- col-lg-12 end here -->
+    <!-- col-lg-12 end here -->
 </div>
 <!-- End .row -->
 </div>
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
-
-
 
 <script>
     $(document).ready(function () {
@@ -131,7 +128,7 @@
                     success: function (content) {
                         $("#due_amount-filter-result").html(content);
                         $('#all-due_amount-result').hide();
-                        $('#due_amount-data-tables').DataTable({"language": { "emptyTable": "No data available" }});
+                        $('#due_amount-data-tables').DataTable({"language": {"emptyTable": "No data available"}});
                     }
                 });
             }

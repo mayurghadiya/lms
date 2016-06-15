@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <div class=panel-body>
+            <div class="panel-body">
                 <?php echo form_open(base_url() . 'admin/system_settings/do_update', array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'systemform', 'target' => '_top', 'enctype' => 'multipart/form-data'));
                 ?>
                 <div class=""> 
@@ -283,13 +283,14 @@
                         <button type="submit" class="btn btn-primary"><?php echo ucwords("save"); ?></button>
                     </div>
                 </div>
-
+                <?php form_close(); ?>
             </div>
-            <?php form_close(); ?>
         </div>
-        <!-- End .panel -->
+
     </div>
-    <!-- col-lg-12 end here -->
+    <!-- End .panel -->
+</div>
+<!-- col-lg-12 end here -->
 </div>
 <!-- End .row -->
 </div>
@@ -318,27 +319,26 @@
                             phone: true,
                             minlength: 10,
                         },
-                system_email: { required: true,
-                            system_email: true,},
+                system_email: {required: true,
+                    system_email: true, },
                 currency: "required",
             },
             messages: {
                 system_name: "Enter system name",
                 countryCode: "Select country code",
-                phone:{
-                     required: "Enter phone no",
-                            maxlength: "Enter maximum 10 digit number",
-                            phone: "Enter valid phone number",
-                            minlength: "Enter minimum 10 digit number",
-                },               
+                phone: {
+                    required: "Enter phone no",
+                    maxlength: "Enter maximum 10 digit number",
+                    phone: "Enter valid phone number",
+                    minlength: "Enter minimum 10 digit number",
+                },
                 system_email: {
                     required: "Enter email id",
-                    system_email: "Enter valid email id",},
-                
+                    system_email: "Enter valid email id", },
                 currency: "Enter currency",
             }
         });
-        
-        
+
+
     })
 </script>

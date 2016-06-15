@@ -83,15 +83,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        $count = 1;
-                                        foreach ($assignment as $row):
-                                            ?>
+                                        <?php $counter = 1; ?>
+                                        <?php foreach ($assignment as $row): ?>
                                             <tr>
-                                                <td><?php
-                                                    echo $count;
-                                                    $count++;
-                                                    ?></td>
+                                                <td><?php echo $counter++; ?></td>
                                                 <td><?php echo $row->assign_title; ?></td>
                                                 <td><?php
                                                     foreach ($degree as $dgr):
@@ -153,13 +148,6 @@
                                                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                             Delete
                                                         </span></a>
-                                                    <?php
-                                                    $current = date("Y-m-d H:i:s");
-                                                    $dos = date("Y-m-d H:i:s", strtotime($row->assign_dos));
-                                                    if ($dos < $current) {
-                                                        ?>
-                                                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_reopen_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Reopen</span></a>
-                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>                      
@@ -292,15 +280,15 @@
                     </div>
                 </div>
             </div>
+            <!-- col-lg-12 end here -->
         </div>
-        <!-- col-lg-12 end here -->
+        <div class="clearfix"></div>
+        <!-- End .row -->
     </div>
-    <div class="clearfix"></div>
-    <!-- End .row -->
-</div>
-<!-- End contentwrapper -->
+    <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+</div>
 </div>
 
 <script type="text/javascript">

@@ -10,7 +10,7 @@ $js = [
 ];
 $this->carabiner->group('calendar_css', [
     'css' => $css,
-    'js'    => $js
+    'js' => $js
 ]);
 $this->carabiner->display('calendar_css');
 ?>
@@ -113,22 +113,22 @@ $this->carabiner->display('calendar_css');
                     getEvents(flags, eventsOpts, eventsOpts.eventsLimit, year, month, false, "month");
                 });
                 flags.wrap.on('dblclick', '.eventCalendar-day a', function (e) {
-                //flags.wrap.find('.eventCalendar-day a').live('click',function(e){
-                e.preventDefault();
-                var year = flags.wrap.attr('data-current-year'),
-                        month = flags.wrap.attr('data-current-month'),
-                        day = $(this).parent().attr('rel');
+                    //flags.wrap.find('.eventCalendar-day a').live('click',function(e){
+                    e.preventDefault();
+                    var year = flags.wrap.attr('data-current-year'),
+                            month = flags.wrap.attr('data-current-month'),
+                            day = $(this).parent().attr('rel');
 
-                getEvents(flags, eventsOpts, false, year, month, day, "day");
-            });
-            flags.wrap.on('dblclick', '.eventCalendar-monthTitle', function (e) {
-                //flags.wrap.find('.eventCalendar-monthTitle').live('click',function(e){
-                e.preventDefault();
-                var year = flags.wrap.attr('data-current-year'),
-                        month = flags.wrap.attr('data-current-month');
+                    getEvents(flags, eventsOpts, false, year, month, day, "day");
+                });
+                flags.wrap.on('dblclick', '.eventCalendar-monthTitle', function (e) {
+                    //flags.wrap.find('.eventCalendar-monthTitle').live('click',function(e){
+                    e.preventDefault();
+                    var year = flags.wrap.attr('data-current-year'),
+                            month = flags.wrap.attr('data-current-month');
 
-                getEvents(flags, eventsOpts, eventsOpts.eventsLimit, year, month, false, "month");
-            });
+                    getEvents(flags, eventsOpts, eventsOpts.eventsLimit, year, month, false, "month");
+                });
             });
             // show event description
             flags.wrap.find('.eventCalendar-list').on('click', '.eventCalendar-eventTitle', function (e) {
@@ -617,7 +617,7 @@ $this->carabiner->display('calendar_css');
                 <div class="xe-widget xe-counter-block xe-progress-counter xe-progress-counter-turquoise">
                     <div class="xe-upper">
                         <div class="xe-icon"> <i class="fa fa-legal" aria-hidden="true"></i> </div>
-                        <div class="xe-label"> <span>coming soon...</span> <strong class="num">RESULTS</strong> </div>
+                        <div class="xe-label"><strong class="num">RESULTS</strong> </div>
                     </div>
                     <div class="border"></div>
                     <div class="xe-lower scroll-bar-box">
@@ -664,6 +664,11 @@ $this->carabiner->display('calendar_css');
                                         <div class="menu-text"><?php echo $video->title; ?></div>
                                     </a>
                                 </li>
+                            <?php } ?>
+
+                            <?php
+                            if(!count($live_streaming) && !count($all)) { ?>
+                                <h5>No live streaming available.</h5>
                             <?php } ?>
                         </ul>
                     </div>
@@ -737,7 +742,7 @@ $this->carabiner->display('calendar_css');
                         <h4 class=panel-title>Event Calendar</h4>
                         <div class="panel-controls panel-controls-right"> 
                             <a href="#" class="toggle panel-minimize"><i class="minia-icon-arrow-up-3"></i></a>
-                </div>
+                        </div>
                     </div>
                     <div class=panel-body>
                         <div id="eventCalendarHumanDate"></div>
@@ -797,7 +802,7 @@ $this->carabiner->display('calendar_css');
                                         <div class=form-group>
                                             <div class="col-sm-offset-4 col-sm-8">
                                                 <input type="submit" class="btn btn-primary" name="submit" value="Add New Task" id="addbutton">
-                                                
+
                                             </div>
                                         </div>
                                     </form>
@@ -1073,161 +1078,161 @@ $this->carabiner->display('calendar_css');
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script>
 
-    (function ($) {
+                                    (function ($) {
 
-        $(window).load(function () {
+                                        $(window).load(function () {
 
-            $(".xe-widget.xe-counter-block .xe-lower.scroll-bar-box").mCustomScrollbar({
-                theme: "inset-2-dark",
-                axis: "yx",
-                advanced: {
-                    autoExpandHorizontalScroll: true
-                },
-                /* change mouse-wheel axis on-the-fly */
-                callbacks: {
-                    // onOverflowY:function(){
-                    //  var opt=$(this).data("mCS").opt;
-                    //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
-                    // },
-                    onOverflowX: function () {
-                        var opt = $(this).data("mCS").opt;
-                        if (opt.mouseWheel.axis !== "x")
-                            opt.mouseWheel.axis = "x";
-                    },
-                }
-            });
-            $(".eventCalendar-list-content").mCustomScrollbar({
-                theme: "inset-2-dark",
-                axis: "yx",
-                advanced: {
-                    autoExpandHorizontalScroll: true
-                },
-                /* change mouse-wheel axis on-the-fly */
-                callbacks: {
-                    onOverflowY: function () {
-                        var opt = $(this).data("mCS").opt;
-                        if (opt.mouseWheel.axis !== "y")
-                            opt.mouseWheel.axis = "y";
-                    },
-                    // onOverflowX: function() {
-                    // var opt = $(this).data("mCS").opt;
-                    // if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
-                    // },
-                }
-            });
-        });
-        $("#content-1").mCustomScrollbar({
-            theme: "inset-2-dark",
-            axis: "yx",
-            advanced: {
-                autoExpandHorizontalScroll: true
-            },
-            /* change mouse-wheel axis on-the-fly */
-            callbacks: {
-                onOverflowY: function () {
-                    var opt = $(this).data("mCS").opt;
-                    if (opt.mouseWheel.axis !== "y")
-                        opt.mouseWheel.axis = "y";
-                },
-                onOverflowX: function () {
-                    var opt = $(this).data("mCS").opt;
-                    if (opt.mouseWheel.axis !== "x")
-                        opt.mouseWheel.axis = "x";
-                },
-            }
-        });
+                                            $(".xe-widget.xe-counter-block .xe-lower.scroll-bar-box").mCustomScrollbar({
+                                                theme: "inset-2-dark",
+                                                axis: "yx",
+                                                advanced: {
+                                                    autoExpandHorizontalScroll: true
+                                                },
+                                                /* change mouse-wheel axis on-the-fly */
+                                                callbacks: {
+                                                    // onOverflowY:function(){
+                                                    //  var opt=$(this).data("mCS").opt;
+                                                    //  if(opt.mouseWheel.axis!=="y") opt.mouseWheel.axis="y";
+                                                    // },
+                                                    onOverflowX: function () {
+                                                        var opt = $(this).data("mCS").opt;
+                                                        if (opt.mouseWheel.axis !== "x")
+                                                            opt.mouseWheel.axis = "x";
+                                                    },
+                                                }
+                                            });
+                                            $(".eventCalendar-list-content").mCustomScrollbar({
+                                                theme: "inset-2-dark",
+                                                axis: "yx",
+                                                advanced: {
+                                                    autoExpandHorizontalScroll: true
+                                                },
+                                                /* change mouse-wheel axis on-the-fly */
+                                                callbacks: {
+                                                    onOverflowY: function () {
+                                                        var opt = $(this).data("mCS").opt;
+                                                        if (opt.mouseWheel.axis !== "y")
+                                                            opt.mouseWheel.axis = "y";
+                                                    },
+                                                    // onOverflowX: function() {
+                                                    // var opt = $(this).data("mCS").opt;
+                                                    // if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                                                    // },
+                                                }
+                                            });
+                                        });
+                                        $("#content-1").mCustomScrollbar({
+                                            theme: "inset-2-dark",
+                                            axis: "yx",
+                                            advanced: {
+                                                autoExpandHorizontalScroll: true
+                                            },
+                                            /* change mouse-wheel axis on-the-fly */
+                                            callbacks: {
+                                                onOverflowY: function () {
+                                                    var opt = $(this).data("mCS").opt;
+                                                    if (opt.mouseWheel.axis !== "y")
+                                                        opt.mouseWheel.axis = "y";
+                                                },
+                                                onOverflowX: function () {
+                                                    var opt = $(this).data("mCS").opt;
+                                                    if (opt.mouseWheel.axis !== "x")
+                                                        opt.mouseWheel.axis = "x";
+                                                },
+                                            }
+                                        });
 
-        $(".panel-body .todo-widget .todo-list1").mCustomScrollbar({
-            theme: "inset-2-dark",
-            axis: "yx",
-            advanced: {
-                autoExpandHorizontalScroll: true
-            },
-            /* change mouse-wheel axis on-the-fly */
-            callbacks: {
-                onOverflowY: function () {
-                    var opt = $(this).data("mCS").opt;
-                    if (opt.mouseWheel.axis !== "y")
-                        opt.mouseWheel.axis = "y";
-                },
-                // onOverflowX: function() {
-                //     var opt = $(this).data("mCS").opt;
-                //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
-                // },
-            }
-        });
-        $(".panel-body .vital-stats .growth-list").mCustomScrollbar({
-            theme: "inset-2-dark",
-            axis: "yx",
-            advanced: {
-                autoExpandHorizontalScroll: true
-            },
-            /* change mouse-wheel axis on-the-fly */
-            callbacks: {
-                onOverflowY: function () {
-                    var opt = $(this).data("mCS").opt;
-                    if (opt.mouseWheel.axis !== "y")
-                        opt.mouseWheel.axis = "y";
-                },
-                // onOverflowX: function() {
-                //     var opt = $(this).data("mCS").opt;
-                //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
-                // },
-            }
-        });
-    })(jQuery);
+                                        $(".panel-body .todo-widget .todo-list1").mCustomScrollbar({
+                                            theme: "inset-2-dark",
+                                            axis: "yx",
+                                            advanced: {
+                                                autoExpandHorizontalScroll: true
+                                            },
+                                            /* change mouse-wheel axis on-the-fly */
+                                            callbacks: {
+                                                onOverflowY: function () {
+                                                    var opt = $(this).data("mCS").opt;
+                                                    if (opt.mouseWheel.axis !== "y")
+                                                        opt.mouseWheel.axis = "y";
+                                                },
+                                                // onOverflowX: function() {
+                                                //     var opt = $(this).data("mCS").opt;
+                                                //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                                                // },
+                                            }
+                                        });
+                                        $(".panel-body .vital-stats .growth-list").mCustomScrollbar({
+                                            theme: "inset-2-dark",
+                                            axis: "yx",
+                                            advanced: {
+                                                autoExpandHorizontalScroll: true
+                                            },
+                                            /* change mouse-wheel axis on-the-fly */
+                                            callbacks: {
+                                                onOverflowY: function () {
+                                                    var opt = $(this).data("mCS").opt;
+                                                    if (opt.mouseWheel.axis !== "y")
+                                                        opt.mouseWheel.axis = "y";
+                                                },
+                                                // onOverflowX: function() {
+                                                //     var opt = $(this).data("mCS").opt;
+                                                //     if (opt.mouseWheel.axis !== "x") opt.mouseWheel.axis = "x";
+                                                // },
+                                            }
+                                        });
+                                    })(jQuery);
 </script>
 <!-- Scrollbar Js end -->
 
 
 <!-- Event Calendar Js start -->
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-    show_event_detail_on_load();
-    //show_first_event_details();
+        show_event_detail_on_load();
+        //show_first_event_details();
 
-    $('.eventCalendar-arrow').on('click', function(){
-    $('.eventCalendar-monthTitle').on('click', function(){
-    $('.eventCalendar-list li:first-child').each(function(index){
-    console.log($(this).text());
-    show_event_detail_on_load();
-    });
-    });
-    $('.eventCalendar-day').on('click', function(){
-    show_event_detail_on_load();
-    });
-    //show_event_detail_on_load();
-    setTimeout(function(){
-    $('.eventCalendar-list li:first-child').each(function(index){
-    console.log($(this).text());
-    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
-    });
-    }, 1000);
-    });
-    $('.eventCalendar-monthTitle').on('click', function(){
-    show_event_detail_on_load();
-    });
-    $('.eventCalendar-day').on('click', function(){
-    show_event_detail_on_load();
-    });
-    function show_first_event_details() {
-    $('.eventCalendar-day').on('click', function(){
-    $('.eventCalendar-eventDesc').css('display', 'block');
-    setTimeout(function(){
-    $('.eventCalendar-hidden').removeClass('eventCalendar-hidden');
-    }, 1000);
-    });
-    }
+        $('.eventCalendar-arrow').on('click', function () {
+            $('.eventCalendar-monthTitle').on('click', function () {
+                $('.eventCalendar-list li:first-child').each(function (index) {
+                    console.log($(this).text());
+                    show_event_detail_on_load();
+                });
+            });
+            $('.eventCalendar-day').on('click', function () {
+                show_event_detail_on_load();
+            });
+            //show_event_detail_on_load();
+            setTimeout(function () {
+                $('.eventCalendar-list li:first-child').each(function (index) {
+                    console.log($(this).text());
+                    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+                });
+            }, 1000);
+        });
+        $('.eventCalendar-monthTitle').on('click', function () {
+            show_event_detail_on_load();
+        });
+        $('.eventCalendar-day').on('click', function () {
+            show_event_detail_on_load();
+        });
+        function show_first_event_details() {
+            $('.eventCalendar-day').on('click', function () {
+                $('.eventCalendar-eventDesc').css('display', 'block');
+                setTimeout(function () {
+                    $('.eventCalendar-hidden').removeClass('eventCalendar-hidden');
+                }, 1000);
+            });
+        }
 
-    function show_event_detail_on_load() {
-    setTimeout(function(){
-    $('.eventCalendar-list li:first-child').each(function(index){
-    console.log($(this).text());
-    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
-    });
-    }, 1000);
-    }
+        function show_event_detail_on_load() {
+            setTimeout(function () {
+                $('.eventCalendar-list li:first-child').each(function (index) {
+                    console.log($(this).text());
+                    $('div.eventCalendar-hidden', this).removeClass('eventCalendar-hidden');
+                });
+            }, 1000);
+        }
     });
 </script>
 <!-- Event Calendar Js end -->

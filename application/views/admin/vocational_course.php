@@ -1,3 +1,9 @@
+<?php 
+$professor = $this->db->select('professor_id,name')->from('professor')->get()->result_array();
+$categories = $this->db->get('course_category')->result();
+ $currency=system_info('currency');
+?>
+
 <!-- Start .row -->
 <div class=row>                      
 
@@ -10,11 +16,12 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Course</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Fee</th>
-                            <th>Professor</th>
+                            <th><?php echo ucwords("course name"); ?></th>
+                            <th><?php echo ucwords("category"); ?></th>
+                            <th><?php echo ucwords("course start date"); ?></th>
+                            <th><?php echo ucwords("course end date"); ?></th>
+                            <th><?php echo ucwords("course fee"); ?></th>
+                            <th><?php echo ucwords("professor name"); ?></th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -26,12 +33,20 @@
                         foreach ($vocationalcourse as $row):
                             ?><tr>
                                 <td><?php echo ++$counter; ?></td>
-                                <td><?php echo $row['course_name']; ?></td>    
+                                <td><?php echo $row['course_name']; ?></td>  
+                                <td><?php
+                                    foreach ($categories as $category) {
+
+                                        if ($category->category_id == $row['category_id']) {
+                                            echo $category->category_name;
+                                        }
+                                    }
+                                    ?></td>  
                                 <td><?php echo date('F d, Y', strtotime($row['course_startdate'])); ?></td>    
                                 <td><?php echo date('F d, Y', strtotime($row['course_enddate'])); ?></td>    
-                                <td><?php echo system_info('currency') . $row['course_fee']; ?></td>   
+                                <td><?php echo $currency . $row['course_fee']; ?></td>   
                                 <td><?php
-                                    $professor = $this->db->get('professor')->result_array();
+                                    
                                     foreach ($professor as $pro) {
                                         if ($pro['professor_id'] == $row['professor_id']) {
                                             echo $pro['name'];

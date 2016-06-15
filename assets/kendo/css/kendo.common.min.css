@@ -6303,7 +6303,9 @@ div.k-more-events {
 }
 .k-event {
     cursor: default;
-    min-height: 1.3em
+    min-height: 100px !important;
+    overflow-y: scroll;
+    width: 150px !important;
 }
 .k-event-drag-hint {
     filter: alpha(opacity=60);

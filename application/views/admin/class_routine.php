@@ -346,7 +346,7 @@
                         data-value-field="value" data-text-field="text" required="required">
                         <option value="">Select</option>  
                         <?php
-                        $course = $this->db->get('course')->result();
+                        $course = $this->db->select('course_id, c_name')->from('course')->get()->result();
                         foreach ($course as $row) {
                             ?>
                             <option value="<?php echo $row->course_id; ?>"><?php echo $row->c_name; ?></option>
@@ -361,7 +361,7 @@
                         data-value-field="value" data-text-field="text" required="required">
                         <option value="">Select</option>  
                         <?php
-                        $batch = $this->db->get('batch')->result();
+                        $batch = $this->db->select('b_id, b_name')->from('batch')->get()->result();
                         foreach ($batch as $row) {
                             ?>
                             <option value="<?php echo $row->b_id; ?>"><?php echo $row->b_name; ?></option>
@@ -376,7 +376,7 @@
                         data-value-field="value" data-text-field="text" required="required">
                         <option value="">Select</option>  
                         <?php
-                        $semester = $this->db->get('semester')->result();
+                        $semester = $this->db->select('s_id, s_name')->from('semester')->get()->result();
                         foreach ($semester as $row) {
                             ?>
                             <option value="<?php echo $row->s_id; ?>"><?php echo $row->s_name; ?></option>
@@ -391,7 +391,7 @@
                         data-value-field="value" data-text-field="text" required="required">
                         <option value="">Select</option>
                         <?php
-                        $class = $this->db->get('class')->result();
+                        $class = $this->db->select('class_id, class_name')->from('class')->get()->result();
                         foreach ($class as $row) {
                             ?>
                             <option value="<?php echo $row->class_id; ?>"><?php echo $row->class_name; ?></option>
@@ -406,7 +406,7 @@
                         data-value-field="value" data-text-field="text" required="required">
                         <option value="">Select</option>
                         <?php
-                        $subject = $this->db->get('subject_manager')->result();
+                        $subject = $this->db->select('sm_id, subject_name')->from('subject_manager')->get()->result();
                         foreach ($subject as $row) {
                             ?>
                             <option value="<?php echo $row->sm_id; ?>"><?php echo $row->subject_name; ?></option>
@@ -420,7 +420,7 @@
                         data-value-field="value" data-text-field="text">
                         <option value="">Select</option>
                         <?php
-                        $professor = $this->db->get('professor')->result();
+                        $professor = $this->db->select('professor_id, name')->from('professor')->get()->result();
                         foreach ($professor as $row) {
                             ?>
                             <option value="<?php echo $row->professor_id; ?>"><?php echo $row->name; ?></option>
@@ -482,8 +482,8 @@
                                 endTime: new Date(yyyy + '/' + mm + '/' + dd + ' 07:00 PM'),
                                 height: 600,
                                 views: [
-                                    "day",
-                                    {type: "week", selected: true},
+                                    {type: "day", selected: true},
+                                    "week",
                                     "month",
                                     "agenda"
                                 ],

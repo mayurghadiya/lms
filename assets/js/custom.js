@@ -9,8 +9,8 @@ $(document).ready(function () {
             }],
         "order": [[1, 'asc']],
         "language": {
-      "emptyTable": "No data available"
-    }
+            "emptyTable": "No data available"
+        }
     });
 
     t.on('order.dt search.dt', function () {
@@ -90,7 +90,7 @@ $(document).ready(function () {
             var batch = $("form#frmstudentlist #filterbatch").val();
             var sem = $("form#frmstudentlist #filtersemester").val();
             var divclass = $("form#frmstudentlist #filterclass").val();
-           
+
             $.ajax({
                 url: base_url + 'admin/get_filter_student',
                 type: 'POST',
@@ -134,8 +134,9 @@ $('#summernote').summernote({
     height: 200
 });
 
- $('.select2').select2();
- $('.select3').select2();
+$('.select2').select2();
+$('.form-select').select2();
+$('.select3').select2();
 
 
 //custom datatable filtering
@@ -269,23 +270,23 @@ $(document).ready(function () {
 //     $(this).next('div').slideUp();   
 //});
 
-    $(".nav li.dropdown").click(function (e) {        
+    $(".nav li.dropdown").click(function (e) {
         $(this).toggleClass("open");
     });
     $(".search_box .category").click(function (e) {
         $(this).toggleClass("open");
-    }); 
+    });
 
     $(".bootstrap-timepicker-hour").prop("readonly", true);
     $(".bootstrap-timepicker-minute").prop("readonly", true);
     $(".bootstrap-timepicker-meridian").prop("readonly", true);
 
-    $(".pace.pace-active").click(function (e) {        
+    $(".pace.pace-active").click(function (e) {
         $(this).hide();
     });
 
 });
 
-function isEmpty(str) {         
-    return str.toString().replace(/^\s+|\s+$/gm,'').length == 0;
+function isEmpty(str) {
+    return str.toString().replace(/^\s+|\s+$/gm, '').length == 0;
 }

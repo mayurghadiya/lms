@@ -185,7 +185,7 @@
                                 <ul>
                                     <li>
                                         <a <?php echo active_single_menu('dashboard', $page); ?> href="<?php echo base_url(); ?>admin/dashboard">
-                                            <i class="s16 icomoon-icon-screen-2"></i>
+                                            <i class="s16 fa fa-dashboard"></i>
                                             <span class="txt">Dashboard</span>
                                             <span class="indicator"></span>
                                         </a>
@@ -200,12 +200,12 @@
                                     ?>
 
                                     <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-chain"></i>
                                             <span class="txt">Basic Management</span></a>
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
                                                 <a id="link-department" href="<?php echo base_url(); ?>admin/department">
-                                                    <i class="s16 icomoon-icon-file-2"></i>
+                                                    <i class="s16 fa fa-exchange"></i>
                                                     <span class="txt">Department</span>
                                                 </a>
                                             </li>
@@ -215,13 +215,13 @@
                                                     <span class="txt">Branch</span></a></li>
                                             <li>
                                                 <a id="link-batch" href="<?php echo base_url(); ?>admin/batch">
-                                                    <i class="s16 icomoon-icon-image-2"></i>
+                                                    <i class="s16 fa fa-share-alt"></i>
                                                     <span class="txt">Batch</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a id="link-semester" href="<?php echo base_url(); ?>admin/semester">
-                                                    <i class="s16 entypo-icon-clock"></i>
+                                                    <i class="s16 fa fa-sitemap"></i>
                                                     <span class="txt">Semester</span>
                                                 </a>
                                             </li>
@@ -233,7 +233,7 @@
                                             </li>
                                             <li>
                                                 <a id="link-admission_type" href="<?php echo base_url(); ?>admin/admission_type">
-                                                    <i class="s16 icomoon-icon-lock"></i>
+                                                    <i class="s16 fa fa-key"></i>
                                                     <span class="txt">Admission Type</span>
                                                 </a>
                                             </li>
@@ -245,7 +245,7 @@
                                             </li>
                                             <li>
                                                 <a id="link-subject" href="<?php echo base_url(); ?>admin/subject">
-                                                    <i class="s16 icomoon-icon-file"></i>
+                                                    <i class="s16 fa fa-book"></i>
                                                     <span class="txt">Subject Management</span>
                                                 </a>
                                             </li>
@@ -303,12 +303,12 @@
                                     ?>
 
                                     <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-try"></i>
                                             <span class="txt">Assets Management</span></a>
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
                                                 <a id="link-event" href="<?php echo base_url(); ?>admin/events">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-calendar"></i>
                                                     <span class="txt">Events</span>
                                                 </a>
                                             </li> 
@@ -364,7 +364,7 @@
                                     </li>
                                     <li>
                                         <a <?php echo active_single_menu('video_streaming', $page); ?> href="<?php echo base_url(); ?>video_streaming">
-                                            <i class="s16 icomoon-icon-image-2"></i>
+                                            <i class="s16 fa fa-video-camera"></i>
                                             <span class=txt>Video Streaming </span>
                                         </a>
                                     </li>                                    
@@ -376,7 +376,7 @@
                                     ?>
 
                                     <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-comment"></i>
                                             <span class="txt">Forum</span></a>
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
@@ -401,7 +401,7 @@
                                     ?>
 
                                     <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-picture-o"></i>
                                             <span class="txt">Media</span></a>
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
@@ -425,7 +425,7 @@
                                     ];
                                     ?>
                                     <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-folder"></i>
+                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-envelope"></i>
                                             <span class="txt">Email </span></a>
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
@@ -482,7 +482,7 @@
                                     ?>
 
                                     <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-gears"></i>
                                             <span class="txt">System Setting</span></a>
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
@@ -507,12 +507,12 @@
                                     ?>
 
                                     <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-building"></i>
                                             <span class="txt">University</span></a>
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
                                                 <a id="link-graduate" href="<?php echo base_url(); ?>admin/graduate">
-                                                    <i class="s16 fa fa-user"></i>
+                                                    <i class="s16 fa fa-graduation-cap"></i>
                                                     <span class="txt">Toppers Graduate</span>
                                                 </a>
                                             </li> 
@@ -538,30 +538,30 @@
                                     ?>
 
                                     <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-pencil"></i>
                                             <span class="txt">Examination</span></a>
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
                                                 <a id="link-exam" href="<?php echo base_url(); ?>admin/exam">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-paper-plane-o"></i>
                                                     <span class="txt">Exam</span>
                                                 </a>
                                             </li> 
                                             <li>
                                                 <a id="link-exam_schedule" href="<?php echo base_url(); ?>admin/exam_schedule">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-history"></i>
                                                     <span class="txt">Exam Schedule</span>
                                                 </a>
                                             </li> 
                                             <li>
                                                 <a id="link-marks" href="<?php echo base_url(); ?>admin/exam_marks">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-star-o"></i>
                                                     <span class="txt">Exam Marks</span>
                                                 </a>
                                             </li>     
                                             <li>
                                                 <a id="link-exam_grade" href="<?php echo base_url(); ?>admin/exam_grade">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-pencil"></i>
                                                     <span class="txt">Exam Grade</span>
                                                 </a>
                                             </li> 
@@ -569,7 +569,7 @@
                                     </li>
                                     <li>
                                         <a <?php echo active_single_menu('cms', $page); ?> href="<?php echo base_url(); ?>admin/cms_pages">
-                                            <i class="s16 fa fa-picture-o"></i>
+                                            <i class="s16 fa fa-pagelines"></i>
                                             <span class=txt>CMS Pages</span></a>
                                     </li>
 
@@ -580,24 +580,24 @@
                                     ?>
 
                                     <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-money"></i>
                                             <span class="txt">Payment</span></a>
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
                                                 <a id="link-fee_structure" href="<?php echo base_url(); ?>admin/fees_structure">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-code-fork"></i>
                                                     <span class="txt">Fee Structure</span>
                                                 </a>
                                             </li> 
                                             <li>
                                                 <a id="link-make_payment" href="<?php echo base_url(); ?>admin/make_payment">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-credit-card"></i>
                                                     <span class="txt">Make Payment</span>
                                                 </a>
                                             </li> 
                                             <li>
                                                 <a id="link-due_amount" href="<?php echo base_url(); ?>admin/due_amount">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-recycle"></i>
                                                     <span class="txt">Due Amount</span>
                                                 </a>
                                             </li> 
@@ -605,7 +605,7 @@
                                     </li>
                                     <li>
                                         <a <?php echo active_single_menu('report_chart', $page); ?> href="<?php echo base_url(); ?>admin/report_chart">
-                                            <i class="s16 fa fa-clock-o"></i>
+                                            <i class="s16 fa fa-bar-chart"></i>
                                             <span class=txt>Reports</span>
                                         </a>
                                     </li>
@@ -617,18 +617,18 @@
                                     ?>
 
                                     <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-download"></i>
                                             <span class="txt">Backup/Restore</span></a>
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li>
                                                 <a id="link-backup" href="<?php echo base_url(); ?>admin/backup">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-cloud-download"></i>
                                                     <span class="txt">Backup</span>
                                                 </a>
                                             </li> 
                                             <li>
                                                 <a id="link-restore" href="<?php echo base_url(); ?>admin/restore">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-cloud-upload"></i>
                                                     <span class="txt">Restore</span>
                                                 </a>
                                             </li>                                                 
@@ -642,30 +642,30 @@
                                     ?>
 
                                     <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
-                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
+                                        <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 fa fa-users"></i>
                                             <span class="txt">User Management</span></a>
                                         <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
                                             <li >
                                                 <a id="link-create_group" href="<?php echo base_url(); ?>admin/create_group">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-group"></i>
                                                     <span class="menu-text">Create Groups</span>  
                                                 </a>
                                             </li>
                                             <li >
                                                 <a id="link-list_group" href="<?php echo base_url(); ?>admin/list_group">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-list"></i>
                                                     <span class="menu-text">List Groups</span>  
                                                 </a>
                                             </li>
                                             <li>
                                                 <a id="link-assign_module" href="<?php echo base_url(); ?>admin/assign_module">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-bolt"></i>
                                                     <span class="menu-text">Assign Module</span>  
                                                 </a>
                                             </li>
                                             <li>
                                                 <a id="list_module" href="<?php echo base_url(); ?>admin/list_module">
-                                                    <i class="s16 icomoon-icon-screen-2"></i>
+                                                    <i class="s16 fa fa-paw"></i>
                                                     <span class="menu-text">List Module</span>  
                                                 </a>
                                             </li>                                                

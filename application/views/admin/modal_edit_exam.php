@@ -28,10 +28,6 @@ $centerlist = $this->db->get('center_user')->result();
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title>Update Exam</h4>
-                        </div>-->
             <div class=panel-body>
                 <?php echo form_open(base_url() . 'admin/exam/do_update/' . $edit_data->em_id, array('class' => 'form-horizontal form-groups-bordered validate', 'id' => 'edit-exam-form', 'target' => '_top')); ?>
                 <div class="form-group">
@@ -142,8 +138,8 @@ $centerlist = $this->db->get('center_user')->result();
                 <div class="form-group">
                     <label class="col-sm-4 control-label"><?php echo ucwords("Start Date"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
-                        <input readonly="" type="text" id="datepicker-date123" name="date" class="form-control datepicker-normal-edit"
-                               value="<?php echo date('F d, Y', strtotime($edit_data->em_date));?>"/>
+                        <input readonly="" type="text" id="start-date" name="date" class="form-control datepicker-normal-edit"
+                               value="<?php echo date('F d, Y', strtotime($edit_data->em_date)); ?>"/>
                     </div>
                 </div>
                 <div class="form-group" style="display: none;">
@@ -156,7 +152,7 @@ $centerlist = $this->db->get('center_user')->result();
                 <div class="form-group">
                     <label class="col-sm-4 control-label"><?php echo ucwords("End Date"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
-                        <input readonly="" type="text"  name="end_date_time" id="edit_end_date_time" class="form-control datepicker-normal-edit"
+                        <input readonly="" type="text"  name="end_date_time" id="end-date" class="form-control datepicker-normal-edit"
                                value="<?php echo date('F d, Y', strtotime($edit_data->em_end_time)); ?>"/>
                     </div>
                 </div>	
@@ -172,39 +168,38 @@ $centerlist = $this->db->get('center_user')->result();
     <!-- End .panel -->
 </div>
 <!-- col-lg-12 end here -->
-</div>
+</div></div>
 <script>
-        $(document).ready(function () {
-            
-         var date = '';
+    $(document).ready(function () {
+        var date = '';
         var start_date = '';
-
-        $("#datepicker-date123").datepicker({
-            format: ' MM dd, yyyy',
-            startDate: new Date(),
+        $('#start-date').datepicker({
+            format: ' MM d, yyyy',
+            autoclose: true,
             todayHighlight: true,
+        });
+        $("#end-date").datepicker({
+            format: ' MM d, yyyy',
             autoclose: true
         });
 
-            $('#datepicker-date123').on('change', function () {
+        $('#start-date').on('change', function () {
             date = new Date($(this).val());
             start_date = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
             console.log(start_date);
+
             setTimeout(function () {
-                $("#edit_end_date_time").datepicker({
-                    format: ' MM dd, yyyy',
-                    todayHighlight: true,
-                    startDate: start_date,
+                $("#end-date").datepicker({
+                    format: ' MM d, yyyy',
                     autoclose: true,
+                    startDate: start_date
                 });
-            }, 700);            
-        }); 
-        })
-    </script>
+            }, 700);
+        });
+    })
+</script>
 
 <script type="text/javascript">
-   
-    
     $.validator.setDefaults({
         submitHandler: function (form) {
             form.submit();
@@ -297,22 +292,22 @@ $centerlist = $this->db->get('center_user')->result();
                 }
             })
         }
-        
+
         //get semester from brach
-            function get_semester_from_branch(branch_id) {
-                $('#edit_semester').find('option').remove().end();
-                $.ajax({
-                    url: '<?php echo base_url(); ?>admin/get_semesters_of_branch/' + branch_id,
-                    type: 'get',
-                    success: function (content) {
-                        $('#edit_semester').append('<option value="">Select</option>');
-                        var semester = jQuery.parseJSON(content);
-                        $.each(semester, function (key, value) {
-                            $('#edit_semester').append('<option value=' + value.s_id + '>' + value.s_name + '</option>');
-                        })
-                    }
-                })
-            }
+        function get_semester_from_branch(branch_id) {
+            $('#edit_semester').find('option').remove().end();
+            $.ajax({
+                url: '<?php echo base_url(); ?>admin/get_semesters_of_branch/' + branch_id,
+                type: 'get',
+                success: function (content) {
+                    $('#edit_semester').append('<option value="">Select</option>');
+                    var semester = jQuery.parseJSON(content);
+                    $.each(semester, function (key, value) {
+                        $('#edit_semester').append('<option value=' + value.s_id + '>' + value.s_name + '</option>');
+                    })
+                }
+            })
+        }
 
     })
 </script>

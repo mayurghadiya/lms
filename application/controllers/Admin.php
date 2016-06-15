@@ -28,8 +28,8 @@ class Admin extends MY_Controller {
      */
     function index() {
         $this->load->helper('report_chart');
-       // $course = $this->db->get('course')->result();
-        $this->data['male_female_pie_chart'] = male_female_students();
+        //$course = $this->db->get('course')->result();
+        //$this->data['male_female_pie_chart'] = male_female_students();
         $this->data['new_student_joining'] = new_student_registration();
         $this->data['male_vs_female_course_wise'] = male_vs_female_course_wise();
         $this->data['title'] = 'Admin Dashboard';
@@ -50,7 +50,7 @@ class Admin extends MY_Controller {
     }
 
     /*
-     * Basic Management
+     * Basic
      * All the inventory management including department, branch, batch, etc.
      */
 
@@ -64,21 +64,19 @@ class Admin extends MY_Controller {
         if ($_POST) {
             if ($param1 == 'create') {
                 if ($this->form_validation->run('degree_insert') != FALSE) {
-                   
-                $data['d_name'] = $this->input->post('d_name',TRUE);
-                $data['d_status'] = $this->status($this->input->post('degree_status',TRUE));
-                $data['created_date'] = date('Y-m-d');
-                $this->db->insert('degree', $data);
-                $this->session->set_flashdata('flash_message', $this->lang_message('save_department'));
-                $this->logger->logAction('Department created: ', $_POST);
-                redirect(base_url('admin/department'));
-                 
-                }else{
+
+                    $data['d_name'] = $this->input->post('d_name', TRUE);
+                    $data['d_status'] = $this->status($this->input->post('degree_status', TRUE));
+                    $data['created_date'] = date('Y-m-d');
+                    $this->db->insert('degree', $data);
+                    $this->session->set_flashdata('flash_message', $this->lang_message('save_department'));
+                    $this->logger->logAction('Department created: ', $_POST);
+                    redirect(base_url('admin/department'));
+                } else {
                     $error = validation_errors();
-                     $this->session->set_flashdata('department_error', $error);  
-                       redirect(base_url('admin/department'));
+                    $this->session->set_flashdata('department_error', $error);
+                    redirect(base_url('admin/department'));
                 }
-                
             }
             if ($param1 == 'do_update') {
                 $data['d_name'] = $this->input->post('d_name');
@@ -151,7 +149,7 @@ class Admin extends MY_Controller {
         $this->data['degree'] = $this->db->get('degree')->result_array();
         $this->db->select('course_id,course_alias_id,c_name,degree_id,course_status');
         $this->data['courses'] = $this->db->get('course')->result_array();
-         $this->db->select('s_id,s_name');
+        $this->db->select('s_id,s_name');
         $this->data['semesters'] = $this->db->get('semester')->result_array();
         $this->data['title'] = $this->lang_message('branch_title');
         $this->data['edit_title'] = $this->lang_message('edit_branch');
@@ -392,18 +390,17 @@ class Admin extends MY_Controller {
                 $this->db->update('student', $updaterollno);
                 //end roll no
                 //email
-                
                 //group
-                $groupdata=$this->db->get_where('group',array('g_id'=>$this->input->post('group')))->result_array();
-                
-                $user_role=$groupdata[0]['user_role'].','.$lastid;
-                 
-                $groupupdatedata=array('user_role'=>$user_role);
-                $this->db->where('g_id',$this->input->post('group'));
-                $this->db->update('group',$groupupdatedata);
-               //end group
+                $groupdata = $this->db->get_where('group', array('g_id' => $this->input->post('group')))->result_array();
+
+                $user_role = $groupdata[0]['user_role'] . ',' . $lastid;
+
+                $groupupdatedata = array('user_role' => $user_role);
+                $this->db->where('g_id', $this->input->post('group'));
+                $this->db->update('group', $groupupdatedata);
+                //end group
                 $data['rollno'] = $rollno;
-                
+
                 $config = Array(
                     'protocol' => 'smtp',
                     'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -420,14 +417,14 @@ class Admin extends MY_Controller {
                 $msg .= "<br/>Username: " . $_POST['email_id'];
                 $msg .= "<br/>Passwod: " . $_POST['password'];
                 $this->email->from('mayur.ghadiya@searchnative.in', 'Search Native India');
-                $this->email->to($data['email']);
+                $this->email->to($_POST['email']);
                 //  $this->email->cc('mayur.ghadiya@searchnative.in');
                 $this->email->subject('Login credential');
                 $this->email->message($msg);
 
                 if ($this->email->send()) {
                     $this->session->set_flashdata('flash_message', $this->lang_message('save_student'));
-                    
+
                     redirect(base_url() . 'admin/student/', 'refresh');
                 } else {
                     show_error($this->email->print_debugger());
@@ -510,7 +507,7 @@ class Admin extends MY_Controller {
     }
 
     /**
-     * Syllabus Management
+     * Syllabus
      * @param string $param
      * @param string $param2
      */
@@ -599,7 +596,7 @@ class Admin extends MY_Controller {
         $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['degree'] = $this->db->order_by('d_name', 'ASC')->get('degree')->result();
         $this->data['title'] = $this->lang_message('syllabus_title');
-        $page_data['title'] = 'Syllabus Management';
+        $page_data['title'] = 'Syllabus';
         $this->data['add_title'] = $this->lang_message('add_syllabus');
         $this->data['edit_title'] = $this->lang_message('edit_syllabus');
         $this->data['page'] = 'syllabus';
@@ -607,7 +604,7 @@ class Admin extends MY_Controller {
     }
 
     /**
-     * Holiday Management
+     * Holiday
      * @param string $param1
      * @param string $param2
      */
@@ -732,7 +729,7 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('flash_message', $this->lang_message('chancellor_delete'));
             redirect(base_url() . 'admin/chancellor/', 'refresh');
         }
-        $this->data['title'] = 'Chancellor Management';
+        $this->data['title'] = 'Chancellor';
         $this->data['edit_title'] = $this->lang_message('edit_chancellor');
         $this->data['add_title'] = $this->lang_message('add_chancellor');
         $this->data['chancellor'] = $this->db->get('university_peoples')->result_array();
@@ -872,7 +869,7 @@ class Admin extends MY_Controller {
     }
 
     /**
-     * Assets Management
+     * Assets
      * All assets management
      */
 
@@ -918,7 +915,7 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('flash_message', $this->lang_message('delete_event'));
             redirect(base_url() . 'admin/events/', 'refresh');
         }
-        $this->data['events'] = $this->Crud_model->event_manager();       
+        $this->data['events'] = $this->Crud_model->event_manager();
         $this->data['page'] = 'event';
         $this->data['title'] = $this->lang_message('event_title');
         $this->data['add_title'] = $this->lang_message('add_events');
@@ -1053,18 +1050,15 @@ class Admin extends MY_Controller {
                 $this->session->set_flashdata('flash_message', 'Assignment Updated Successfully');
                 redirect(base_url() . 'admin/assignment/', 'refresh');
             }
-            if($param1=="reopen")
-            {
-                $implode = implode(",",$this->input->post('student'));
-                if(!empty($implode))
-                {
+            if ($param1 == "reopen") {
+                $implode = implode(",", $this->input->post('student'));
+                if (!empty($implode)) {
                     $insert['student_id'] = $implode;
-                    $insert['assign_id'] = $param2;                    
-                    $this->Crud_model->insert_update_assignment_reopen($insert,$param2);
+                    $insert['assign_id'] = $param2;
+                    $this->Crud_model->insert_update_assignment_reopen($insert, $param2);
                     $this->session->set_flashdata('flash_message', 'Assignment reopen Successfully');
                     redirect(base_url() . 'admin/assignment/', 'refresh');
-                }
-                else{
+                } else {
                     $this->session->set_flashdata('flash_message', 'Assignment reopen failed');
                     redirect(base_url() . 'admin/assignment/', 'refresh');
                 }
@@ -1078,12 +1072,12 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/assignment/', 'refresh');
         }
         $this->data['assignment'] = $this->Crud_model->get_all_assignment();
-       
+
         $this->data['submitedassignment'] = $this->Crud_model->get_submitted_assignments();
         $this->data['course'] = $this->Crud_model->get_all_course_optimize();
         $this->data['semester'] = $this->Crud_model->get_all_semester_optimize();
         $this->data['batch'] = $this->Crud_model->get_all_batch_optimize();
-        $this->data['degree'] =$this->Crud_model->get_all_degree_optimize();
+        $this->data['degree'] = $this->Crud_model->get_all_degree_optimize();
         //$this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignment';
         $this->data['title'] = $this->lang_message('assignment_title');
@@ -1094,20 +1088,20 @@ class Admin extends MY_Controller {
 
     function getassignment($param = '') {
 
-            $data['course'] = $this->Crud_model->get_all_course();
-            $data['semester'] =$this->Crud_model->get_all_semester();
-            $data['batch'] = $this->Crud_model->get_all_bacth();
-            $data['degree'] = $this->Crud_model->get_all_degree();
-            $data['class'] = $this->Crud_model->get_all_class();   
+        $data['course'] = $this->Crud_model->get_all_course();
+        $data['semester'] = $this->Crud_model->get_all_semester();
+        $data['batch'] = $this->Crud_model->get_all_bacth();
+        $data['degree'] = $this->Crud_model->get_all_degree();
+        $data['class'] = $this->Crud_model->get_all_class();
         if ($param == 'allassignment') {
             $degree = $this->input->post('degree');
             $course = $this->input->post('course');
             $batch = $this->input->post('batch');
             $semester = $this->input->post("semester");
             $class = $this->input->post("divclass");
-                     
-            $data['assignment'] = $this->Crud_model->filter_assignment($course,$batch,$degree,$semester,$class);
-            
+
+            $data['assignment'] = $this->Crud_model->filter_assignment($course, $batch, $degree, $semester, $class);
+
             $data['param'] = $param;
         }
         if ($param == "submitted") {
@@ -1115,8 +1109,8 @@ class Admin extends MY_Controller {
             $degree = $this->input->post('degree');
             $course = $this->input->post('course');
             $batch = $this->input->post('batch');
-            $semester = $this->input->post("semester");            
-            $data['submitedassignment'] = $this->Crud_model->filter_submitted_assignment($course,$batch,$degree,$semester);
+            $semester = $this->input->post("semester");
+            $data['submitedassignment'] = $this->Crud_model->filter_submitted_assignment($course, $batch, $degree, $semester);
             $data['param'] = $param;
         }
 
@@ -1125,7 +1119,7 @@ class Admin extends MY_Controller {
             $course = $this->input->post('course');
             $batch = $this->input->post('batch');
             $semester = $this->input->post("semester");
-            $data['submitedassignment'] = $this->Crud_model->filter_assessment($course,$batch,$degree,$semester);
+            $data['submitedassignment'] = $this->Crud_model->filter_assessment($course, $batch, $degree, $semester);
             $data['param'] = $param;
         }
         $this->load->view("admin/getassignment", $data);
@@ -1300,12 +1294,12 @@ class Admin extends MY_Controller {
             delete_notification('study_resources', $param2);
             $this->session->set_flashdata('flash_message', $this->lang_message('delete_study_resource'));
             redirect(base_url() . 'admin/studyresource/', 'refresh');
-        }        
+        }
         $this->data['studyresource'] = $this->Crud_model->get_study_resources();
         $this->data['course'] = $this->Crud_model->get_all_course_optimize();
         $this->data['semester'] = $this->Crud_model->get_all_semester_optimize();
         $this->data['batch'] = $this->Crud_model->get_all_batch_optimize();
-        $this->data['degree'] =$this->Crud_model->get_all_degree_optimize();
+        $this->data['degree'] = $this->Crud_model->get_all_degree_optimize();
         $this->data['page'] = 'studyresource';
         $this->data['title'] = $this->lang_message('study_resource_title');
         $this->data['add_title'] = $this->lang_message('add_studyresource');
@@ -1318,11 +1312,11 @@ class Admin extends MY_Controller {
         $course = $this->input->post('course');
         $batch = $this->input->post('batch');
         $semester = $this->input->post("semester");
-        $data['course'] =  $this->Crud_model->get_all_course_optimize();
-        $data['semester'] =$this->Crud_model->get_all_semester_optimize();
+        $data['course'] = $this->Crud_model->get_all_course_optimize();
+        $data['semester'] = $this->Crud_model->get_all_semester_optimize();
         $data['batch'] = $this->Crud_model->get_all_batch_optimize();
         $data['degree'] = $this->Crud_model->get_all_degree_optimize();
-     //   $data['student'] = $this->db->get('student')->result();
+        //   $data['student'] = $this->db->get('student')->result();
 
         if ($degree == "All") {
             $this->db->select('study_id,study_title,study_degree,study_course,study_batch,study_sem,study_dos,study_filename');
@@ -1482,7 +1476,7 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('flash_message', $this->lang_message('delete_project'));
             redirect(base_url() . 'admin/project/', 'refresh');
         }
-        $this->data['project'] =$this->Crud_model->get_all_projects();
+        $this->data['project'] = $this->Crud_model->get_all_projects();
         $this->data['submitedproject'] = $this->Crud_model->get_all_submitted_project();
         $this->data['degree'] = $this->Crud_model->get_all_degree_optimize();
         $this->data['batch'] = $this->Crud_model->get_all_batch_optimize();
@@ -1646,12 +1640,12 @@ class Admin extends MY_Controller {
             redirect(base_url() . 'admin/library/', 'refresh');
         }
         //$this->db->get('library_manager')->result();
-        $this->data['library'] = $this->Crud_model->get_all_library();       
-        $this->data['degree'] = $this->db->select('d_id, d_name, d_status')->from('degree')->get()->result();        
-        $this->data['course'] = $this->db->select('course_id, c_name, course_alias_id, degree_id, semester_id')->from('course')->get()->result();        
-        $this->data['batch'] = $this->db->select('b_id, b_name, degree_id, course_id')->from('batch')->get()->result();        
+        $this->data['library'] = $this->Crud_model->get_all_library();
+        $this->data['degree'] = $this->db->select('d_id, d_name, d_status')->from('degree')->get()->result();
+        $this->data['course'] = $this->db->select('course_id, c_name, course_alias_id, degree_id, semester_id')->from('course')->get()->result();
+        $this->data['batch'] = $this->db->select('b_id, b_name, degree_id, course_id')->from('batch')->get()->result();
         $this->data['semester'] = $this->db->select('s_id, s_name')->from('semester')->get()->result();
-        
+
         $this->data['page'] = 'library';
         $this->data['title'] = $this->lang_message('library_title');
         $this->data['add_title'] = $this->lang_message('add_digital_library');
@@ -1806,7 +1800,7 @@ class Admin extends MY_Controller {
           $this->data['student'] = $this->db->get('student')->result();
           $this->data['course'] = $this->db->get('course')->result(); */
         $this->data['page'] = 'participate';
-        $this->data['title'] = 'Participate Management';
+        $this->data['title'] = 'Participate';
         $this->data['edit_participate'] = $this->lang_message('edit_participate');
         $this->data['add_title'] = 'Add Participate';
         //$this->db->get('participate_student')->result_array();
@@ -2276,7 +2270,7 @@ class Admin extends MY_Controller {
         $this->data['degree'] = $this->Crud_model->get_all_degree();
         $this->data['course'] = $this->Crud_model->get_all_course();
         $this->data['semester'] = $this->Crud_model->get_all_semester();
-        $this->data['centerlist'] = $this->db->get('center_user')->result();
+        //$this->data['centerlist'] = $this->db->get('center_user')->result();
         $this->__site_template('admin/exam', $this->data);
     }
 
@@ -2558,7 +2552,7 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('flash_message', 'CMS page is successfully deleted.');
             redirect(base_url() . 'admin/cms_pages/', 'refresh');
         }
-        $this->data['cms'] = $this->db->get('cms_manager')->result_array();
+        $this->data['cms'] = $this->Crud_model->cms_manager();
         $this->data['page'] = 'cms';
         $this->data['title'] = 'CMS Pages';
         $this->data['edit_title'] = $this->lang_message('edit_cms');
@@ -2713,10 +2707,10 @@ class Admin extends MY_Controller {
      */
     function report_chart() {
         $this->load->helper('report_chart');
-        $course = $this->db->get('course')->result();
+        //$course = $this->db->get('course')->result();
         $this->data['male_female_pie_chart'] = male_female_students();
         $this->data['new_student_joining'] = new_student_registration();
-        $this->data['male_vs_female_course_wise'] = male_vs_female_course_wise();
+        //$this->data['male_vs_female_course_wise'] = male_vs_female_course_wise();
         $this->data['title'] = 'Report Charts';
         $this->data['page'] = 'report_chart';
         $this->__site_template('admin/report_chart', $this->data);
@@ -2881,13 +2875,13 @@ class Admin extends MY_Controller {
         $course = $this->input->post("course");
         $class = $this->input->post("divclass");
 
-        $data['datastudent'] = $this->db->get_where("student", array(
+        $data['datastudent'] = $this->db->select('std_id, std_roll, std_gender, email, std_first_name, std_last_name, address, std_mobile, profile_photo')->from('student')->where(array(
                     "std_batch" => $batch,
                     'std_status' => 1,
                     "semester_id" => $sem,
                     'course_id' => $course,
                     'std_degree' => $degree,
-                    'class_id' => $class))->result();
+                    'class_id' => $class))->get()->result();
         //$this->session->set_flashdata('flash_message', count($data['datastudent']) . ' records found.');
         $this->load->view("admin/ajax_student", $data);
     }
@@ -2976,7 +2970,7 @@ class Admin extends MY_Controller {
         }
         $this->data['title'] = $this->lang_message('system_title');
         $this->data['page'] = 'system_setting';
-        $this->data['settings'] = $this->db->get('system_setting')->result_array();
+        //$this->data['settings'] = $this->db->get('system_setting')->result_array();
         $this->__site_template('admin/system_settings', $this->data);
     }
 
@@ -4317,11 +4311,11 @@ class Admin extends MY_Controller {
             $sections = $this->db->select('std_id, name,std_first_name,std_last_name')->from('student')->get()->result_array();
             foreach ($sections as $row) {
                 if (!in_array($row['std_id'], $user_role)) {
-                    $full_user_list[] = '<option value="' . $row['std_id'] . '">' . $row['std_first_name'] .' '. $row['std_last_name']. '</option>';
+                    $full_user_list[] = '<option value="' . $row['std_id'] . '">' . $row['std_first_name'] . ' ' . $row['std_last_name'] . '</option>';
                 }
 
                 if (in_array($row['std_id'], $user_role)) {
-                    $group[] = '<option value="' . $row['std_id'] . '" selected>' . $row['std_first_name'] .' '. $row['std_last_name']. '</option>';
+                    $group[] = '<option value="' . $row['std_id'] . '" selected>' . $row['std_first_name'] . ' ' . $row['std_last_name'] . '</option>';
                 }
             }
         }
@@ -4644,7 +4638,7 @@ class Admin extends MY_Controller {
         $this->data['course'] = $this->db->get('course')->result();
         $this->data['semester'] = $this->db->get('semester')->result();
         $this->data['page'] = 'subject';
-        $this->data['title'] = 'Subject Management';
+        $this->data['title'] = 'Subject';
         $this->data['edit_title'] = $this->lang_message('edit_subject');
         $this->data['add_title'] = $this->lang_message('add_subject');
         $this->__site_template('admin/subject', $this->data);
@@ -4671,7 +4665,7 @@ class Admin extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
+            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ') - ' . ucfirst($row->exam_ref_name); ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
@@ -4702,7 +4696,7 @@ class Admin extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
+            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
@@ -5355,8 +5349,8 @@ class Admin extends MY_Controller {
             $data['course'] = $this->Crud_model->get_all_course_optimize();
             $data['semester'] = $this->Crud_model->get_all_semester_optimize();
             $data['batch'] = $this->Crud_model->get_all_batch_optimize();
-            $data['degree'] =  $this->Crud_model->get_all_degree_optimize();
-            $data['class'] =  $this->Crud_model->get_all_class();
+            $data['degree'] = $this->Crud_model->get_all_degree_optimize();
+            $data['class'] = $this->Crud_model->get_all_class();
             //$this->db->select('std_id, name, email, std_first_name, std_last_name')->from('student')->get()->result();
             //$this->db->get('student')->result();
             $data['student'] = $this->db->select('std_id, name, email, std_first_name, std_last_name')->from('student')->get()->result();
@@ -5365,7 +5359,7 @@ class Admin extends MY_Controller {
             $this->db->where("pm_batch", $batch);
             $this->db->where("pm_degree", $degree);
             $this->db->where("pm_semester", $semester);
-            $this->db->where("class_id", $class);            
+            $this->db->where("class_id", $class);
             $data['project'] = $this->db->get('project_manager')->result();
             $data['param'] = $param;
 
@@ -5380,9 +5374,9 @@ class Admin extends MY_Controller {
             $data['course'] = $this->Crud_model->get_all_course_optimize();
             $data['semester'] = $this->Crud_model->get_all_semester_optimize();
             $data['batch'] = $this->Crud_model->get_all_batch_optimize();
-            $data['degree'] =  $this->Crud_model->get_all_degree_optimize();
-            $data['class'] =  $this->Crud_model->get_all_class();
-            $data['student'] = $this->db->select('std_id, email, name, std_first_name, std_last_name')->from('student')->get()->result();           
+            $data['degree'] = $this->Crud_model->get_all_degree_optimize();
+            $data['class'] = $this->Crud_model->get_all_class();
+            $data['student'] = $this->db->select('std_id, email, name, std_first_name, std_last_name')->from('student')->get()->result();
             $this->db->select("ps.student_id,ps.project_id,ps.dos,ps.description,ps.document_file,pm_id,pm.pm_title,pm.pm_degree,pm.pm_course,pm.pm_batch,pm.pm_semester,s.std_id, s.std_first_name, s.std_last_name, s.email");
             $this->db->from('project_document_submission ps');
             $this->db->join("project_manager pm", "pm.pm_id=ps.project_id");
@@ -5390,7 +5384,7 @@ class Admin extends MY_Controller {
             $this->db->where("pm_course", $course);
             $this->db->where("pm_batch", $batch);
             $this->db->where("pm_degree", $degree);
-            $this->db->where("pm_semester", $semester);            
+            $this->db->where("pm_semester", $semester);
             $data['submitedproject'] = $this->db->get()->result();
             $data['param'] = $param;
             $this->load->view("admin/getprojects", $data);
@@ -5433,8 +5427,8 @@ class Admin extends MY_Controller {
         $data['course'] = $this->Crud_model->get_all_course_optimize();
         $data['semester'] = $this->Crud_model->get_all_semester_optimize();
         $data['batch'] = $this->Crud_model->get_all_batch_optimize();
-        $data['degree'] =  $this->Crud_model->get_all_degree_optimize();
-          
+        $data['degree'] = $this->Crud_model->get_all_degree_optimize();
+
         if ($degree == "All") {
             $this->db->select('lm_id, lm_title, lm_degree, lm_batch, lm_course, lm_url, lm_semester, lm_filename');
             $data['library'] = $this->db->get('library_manager')->result();
@@ -6006,54 +6000,6 @@ class Admin extends MY_Controller {
         $this->__site_template('admin/timeline', $this->data);
     }
 
-    function demo_faker() {
-        require 'vendor/autoload.php';
-        // use the factory to create a Faker\Generator instance
-        $faker = Faker\Factory::create();
-//        for($i=1; $i<=50; $i++){
-//            $male_female = (rand(1, 100) > 50) ? 'male' : 'female';
-//            $this->db->insert('professor', array(
-//                'name'  => $faker->name($male_female),
-//                'email' => $faker->safeEmail,
-//                'password'  => hash('md5', '12345'),
-//                'real_pass' => '12345',
-//                'address'   => $faker->address,
-//                'city'  => $faker->city,
-//                'zip'   => $faker->postcode,
-//                'mobile'    => $faker->e164PhoneNumber,
-//                'dob'   => $faker->date,
-//                'about' => $faker->text
-//            ));
-//        }
-        $roll_no = 1573372988;
-        for ($i = 1; $i <= 5000; $i++) {
-            $male_female = (rand(1, 100) > 50) ? 'male' : 'female';
-            $this->db->insert('student', array(
-                'email' => $faker->safeEmail,
-                'name' => $faker->name($male_female),
-                'password' => hash('md5', '12345'),
-                'std_roll' => $roll_no++,
-                'std_first_name' => $faker->firstName($male_female),
-                'std_last_name' => $faker->lastName,
-                'std_gender' => ucfirst($male_female),
-                'address' => $faker->address,
-                'country' => $faker->country,
-                'state' => $faker->state,
-                'city' => $faker->city,
-                'zip' => $faker->postcode,
-                'std_birthdate' => $faker->date,
-                //'std_merital' => '',
-                'std_about' => $faker->text,
-                'std_mobile' => $faker->e164PhoneNumber,
-                'parent_name' => $faker->name,
-                'parent_contact' => $faker->e164PhoneNumber,
-                'parent_email' => $faker->safeEmail,
-                'real_pass' => '12345',
-            ));
-        }
-        echo 'done';
-    }
-
     /**
      * Start or stop video streaming
      * @param type $stream_name
@@ -6084,7 +6030,7 @@ class Admin extends MY_Controller {
         foreach ($subjects as $row) {
             ?>
             <option value="<?php echo $row->sm_id; ?>"
-                    <?php if ($row->sm_id == $time_table) echo 'selected'; ?>><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?>
+            <?php if ($row->sm_id == $time_table) echo 'selected'; ?>><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?>
             </option>
             <!--echo "<option value={$row->sm_id}>{$row->subject_name}  (Code: {$row->subject_code})</option>";-->
             <?php
@@ -6151,6 +6097,14 @@ class Admin extends MY_Controller {
         echo json_encode($fee_structure);
     }
 
+    /**
+     * Student list with payment list
+     * @param string $degree
+     * @param string $course
+     * @param string $batch
+     * @param string $semester
+     * @param string $fee_structure
+     */
     function make_payment_student_list($degree = '', $course = '', $batch = '', $semester = '', $fee_structure = '') {
         $this->data['student_fees'] = $this->Crud_model->make_payment_student_list($degree, $course, $batch, $semester, $fee_structure);
         //echo '<pre>';
@@ -6192,32 +6146,29 @@ class Admin extends MY_Controller {
 
         echo json_encode($branch);
     }
-    
-    function check_professor_email($param='')
-    {
-        if($param=='')
-        {
-        $email = $this->input->post('email');
-        $data = $this->db->get_where('professor',array('email'=>$email))->row();
-        if (count($data) > 0) {
-            echo "false";
+
+    function check_professor_email($param = '') {
+        if ($param == '') {
+            $email = $this->input->post('email');
+            $data = $this->db->get_where('professor', array('email' => $email))->row();
+            if (count($data) > 0) {
+                echo "false";
+            } else {
+                echo "true";
+            }
         } else {
-            echo "true";
-        }
-        }
-        else{
-            
-        $email = $this->input->post('email');
-        $this->db->where("professor_id!=",$param);
-        $data = $this->db->get_where('professor',array('email'=>$email))->row();
-        if (count($data) > 0) {
-            echo "false";
-        } else {
-            echo "true";
-        }
+
+            $email = $this->input->post('email');
+            $this->db->where("professor_id!=", $param);
+            $data = $this->db->get_where('professor', array('email' => $email))->row();
+            if (count($data) > 0) {
+                echo "false";
+            } else {
+                echo "true";
+            }
         }
     }
-    
+
     /**
      * Get Course
      * @param string $param
@@ -6228,7 +6179,7 @@ class Admin extends MY_Controller {
         if ($did != '') {
             if ($did == "All") {
                 $html = '<option value="">Select Branch</option>';
-                 $html .= '<option value="All">All</option>';
+                $html .= '<option value="All">All</option>';
             } else {
                 $this->db->select('course_id,c_name');
                 $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
@@ -6240,13 +6191,12 @@ class Admin extends MY_Controller {
                     $html .='<option value="' . $crs['course_id'] . '">' . $crs['c_name'] . '</option>';
 
                 endforeach;
-                
             }
         }
         echo $html;
     }
-    
-     /**
+
+    /**
      * Get batches
      * @param string $param
      */
@@ -6272,5 +6222,5 @@ class Admin extends MY_Controller {
             echo $html;
         }
     }
-    
+
 }

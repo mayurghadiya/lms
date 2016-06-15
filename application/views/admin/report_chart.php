@@ -17,6 +17,13 @@ $department = student_ratio_department_wise();
             plotShadow: false,
             type: 'pie'
     },
+    legend: {
+            align: 'center',
+            verticalAlign: 'top',
+            layout: 'horizontol',
+            x: 0,
+            y: 30
+        },
             title: {
             text: 'Male to Female course count ratio'
             },
@@ -37,7 +44,7 @@ $department = student_ratio_department_wise();
             }
             },
             series: [{
-            name: 'Genger',
+            name: 'Gender',
                     colorByPoint: true,
                     data: [{
                     name: 'Male',
@@ -58,6 +65,13 @@ $department = student_ratio_department_wise();
     chart: {
     type: 'column'
     },
+    legend: {
+            align: 'center',
+            verticalAlign: 'top',
+            layout: 'horizontol',
+            x: 0,
+            y: 30
+        },
             title: {
             text: 'Student Enrolled'
             },
@@ -111,6 +125,13 @@ $department = student_ratio_department_wise();
     chart: {
     type: 'column'
     },
+    legend: {
+            align: 'center',
+            verticalAlign: 'top',
+            layout: 'horizontol',
+            x: 0,
+            y: 30
+        },
             title: {
             text: 'Department student count ratio'
             },
@@ -170,6 +191,13 @@ $department = student_ratio_department_wise();
     chart: {
     type: 'column'
     },
+    legend: {
+            align: 'center',
+            verticalAlign: 'top',
+            layout: 'horizontol',
+            x: 0,
+            y: 30
+        },
             title: {
             text: 'Students Enrolled in Courses'
             },

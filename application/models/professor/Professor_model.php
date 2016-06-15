@@ -508,9 +508,9 @@ class Professor_model extends CI_Model {
      */
     function time_table() {
         return $this->db->select('degree.d_id, degree.d_name, course.course_id, course.c_name,'
-                . 'batch.b_id, batch.b_name, subject_manager.sm_id, subject_manager.subject_name,'
-                . 'semester.s_id, semester.s_name, exam_manager.em_name, exam_time_table.exam_date,'
-                . 'exam_time_table.exam_time_table_id, exam_time_table.exam_start_time, exam_time_table.exam_end_time')
+                                . 'batch.b_id, batch.b_name, subject_manager.sm_id, subject_manager.subject_name,'
+                                . 'semester.s_id, semester.s_name, exam_manager.em_name, exam_time_table.exam_date,'
+                                . 'exam_time_table.exam_time_table_id, exam_time_table.exam_start_time, exam_time_table.exam_end_time')
                         ->from('exam_time_table')
                         ->join('exam_manager', 'exam_manager.em_id = exam_time_table.exam_id')
                         ->join('subject_manager', 'subject_manager.sm_id = exam_time_table.subject_id')
@@ -1451,7 +1451,7 @@ class Professor_model extends CI_Model {
         $branch = $this->session->userdata("branch");
         $this->db->where("assign_degree", $dept);
         $this->db->where("course_id", $branch);
-        $this->db->order_by("assign_id","DESC");
+        $this->db->order_by("assign_id", "DESC");
         return $this->db->get('assignment_manager')->result();
     }
 
@@ -1464,7 +1464,7 @@ class Professor_model extends CI_Model {
         $this->db->join("student s", "s.std_id=ass.student_id");
         $this->db->where("s.std_degree", $dept);
         $this->db->where("s.course_id", $branch);
-        $this->db->order_by("ass.assignment_submit_id","DESC");
+        $this->db->order_by("ass.assignment_submit_id", "DESC");
         return $this->db->get();
     }
 
@@ -1608,15 +1608,14 @@ class Professor_model extends CI_Model {
      * vocational course student list
      * return mixed data
      */
-    function get_vocational_student($id)
-    {
-            return $this->db->select('vocational_course_fee.*, student.*, vocational_course.*,course_category.*')
+    function get_vocational_student($id) {
+        return $this->db->select('vocational_course_fee.*, student.*, vocational_course.*,course_category.*')
                         ->from('vocational_course_fee')
-                        ->where('vocational_course_fee.vocational_course_id',$id)
+                        ->where('vocational_course_fee.vocational_course_id', $id)
                         ->join('student', 'student.std_id = vocational_course_fee.student_id')
                         ->join('vocational_course', 'vocational_course.vocational_course_id = vocational_course_fee.vocational_course_id')
                         ->join('course_category', 'course_category.category_id = vocational_course.category_id')
-                       ->get()
+                        ->get()
                         ->result();
     }
 
@@ -1638,13 +1637,12 @@ class Professor_model extends CI_Model {
         $this->db->limit("10");
         return $this->db->get()->result();
     }
-    
-    function get_vocational_course($professor_id)
-    {
-        $this->db->where("professor_id",$professor_id);
+
+    function get_vocational_course($professor_id) {
+        $this->db->where("professor_id", $professor_id);
         return $this->db->get('vocational_course')->result_array();
     }
-    
+
     /**
      * Update password
      * @param array $data
@@ -1656,7 +1654,7 @@ class Professor_model extends CI_Model {
         $this->db->update('professor', $data);
         return $this->db->insert_id();
     }
-    
+
     /**
      * Professor details
      * @param inde $id
@@ -1664,51 +1662,63 @@ class Professor_model extends CI_Model {
      */
     function professor_details($id) {
         return $this->db->select()
-                ->from('professor')
-                ->where('professor_id', $id)
-                ->get()->row();
+                        ->from('professor')
+                        ->where('professor_id', $id)
+                        ->get()->row();
     }
-    
+
+    /**
+     * Professor class routine department
+     * @return mixed
+     */
+    function professor_class_department() {
+        return $this->db->select()
+                        ->from('degree')
+                        ->join('class_routine', 'class_routine.DepartmentID = degree.d_id')
+                        ->join('professor', 'professor.professor_id = class_routine.ProfessorID')
+                        ->where([
+                            'class_routine.ProfessorID' => $this->session->userdata('login_user_id')
+                        ])
+                        ->group_by('degree.d_id')
+                        ->get()->result();
+    }
+
     /**
      * 
      * @param mixed array $data
      * @param int $assign_id
      */
-    function insert_update_assignment_reopen($data,$assign_id)
-    {
-        $res = $this->db->get_where('assignment_reopen',array("assign_id"=>$assign_id))->num_rows();
-        if($res < 1)
-        {
-        $this->db->insert("assignment_reopen",$data);
-        }
-        else{
-            $this->db->where("assign_id",$assign_id);
-            $this->db->update("assignment_reopen",$data);
+    function insert_update_assignment_reopen($data, $assign_id) {
+        $res = $this->db->get_where('assignment_reopen', array("assign_id" => $assign_id))->num_rows();
+        if ($res < 1) {
+            $this->db->insert("assignment_reopen", $data);
+        } else {
+            $this->db->where("assign_id", $assign_id);
+            $this->db->update("assignment_reopen", $data);
         }
     }
-    
+
     /**
      * 
      * @param int $assign_id
      * @return type mixed array
      */
-    function get_student_reopen($assign_id)
-    {
+    function get_student_reopen($assign_id) {
         $this->db->select('student_id');
-        return $this->db->get_where('assignment_reopen',array("assign_id"=>$assign_id))->result();
+        return $this->db->get_where('assignment_reopen', array("assign_id" => $assign_id))->result();
     }
-    
+
     /**
      * 
      * @param int $assign_id
      * @param int $student_id
      * @return type mixed array
      */
-    function get_submitted_student($assign_id,$student_id)
-    {
-       $this->db->select('GROUP_CONCAT(student_id SEPARATOR ",") as student', FALSE);
-        $this->db->where("assign_id",$assign_id);
-        $this->db->where("student_id",$student_id);
-       return $this->db->get("assignment_submission")->result();
+    function get_submitted_student($assign_id, $student_id) {
+        $this->db->select('GROUP_CONCAT(student_id SEPARATOR ",") as student', FALSE);
+        $this->db->where("assign_id", $assign_id);
+        $this->db->where("student_id", $student_id);
+        return $this->db->get("assignment_submission")->result();
     }
+
 }

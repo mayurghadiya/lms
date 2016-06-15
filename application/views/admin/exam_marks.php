@@ -3,78 +3,70 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle">
-            <!-- Start .panel -->
-            <!--            <div class=panel-heading>
-                            <h4 class=panel-title><?php echo $title; ?></h4>
-                            <div class="panel-controls panel-controls-right">
-                                <a class="panel-refresh" href="#"><i class="fa fa-refresh s12"></i></a>
-                                <a class="toggle panel-minimize" href="#"><i class="fa fa-plus s12"></i></a>
-                                <a class="panel-close" href="#"><i class="fa fa-times s12"></i></a>
-                            </div>
-                        </div>-->
-            <div class=panel-body>
-                <form class="form-groups-bordered validate">
-                    <div class="col-md-12">
-                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
-                            <label><?php echo ucwords("department"); ?></label>
-                            <select id="degree" name="degree" class="form-control">
-                                <option value="">Select</option>
-                                <?php foreach ($degree as $row) { ?>
-                                    <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 col-xs-12 validating">
-                            <label><?php echo ucwords("Branch"); ?></label>
-                            <select id="course" name="course" class="form-control">
-                                <option value="">Select</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
-                            <label><?php echo ucwords("Batch"); ?></label>
-                            <select id="batch" name="batch" class="form-control">
-                                <option value="">Select</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
-                            <label><?php echo ucwords("Semester"); ?></label>
-                            <select id="semester" name="semester" class="form-control">
-                                <option value="">Select</option>                                                    
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
-                            <label><?php echo ucwords("Exam"); ?></label>
-                            <select id="exam" name="exam" class="form-control">
-                                <option value="">Select</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
-                            <label><?php echo ucwords("Students"); ?></label>
-                            <select id="student" name="student" class="form-control">
-                                <option value="">All</option>
-                                <?php foreach ($student_list as $exam_student) { ?>
-                                    <option value="<?php echo $exam_student->std_id; ?>"
-                                            <?php if ($student_id == $exam_student->std_id) echo 'selected'; ?>><?php echo $exam_student->std_first_name . ' ' . $exam_student->std_last_name; ?></option>
-                                        <?php } ?>
-                            </select>
-                        </div>
+        <div class="panel-default toggle"></div>
+        <div class=panel-body>
+            <form class="form-groups-bordered validate">
+                <div class="col-md-12">
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
+                        <label><?php echo ucwords("department"); ?></label>
+                        <select id="degree" name="degree" class="form-control">
+                            <option value="">Select</option>
+                            <?php foreach ($degree as $row) { ?>
+                                <option value="<?php echo $row->d_id; ?>"><?php echo $row->d_name; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
-                </form>
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 col-xs-12 validating">
+                        <label><?php echo ucwords("Branch"); ?></label>
+                        <select id="course" name="course" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
+                        <label><?php echo ucwords("Batch"); ?></label>
+                        <select id="batch" name="batch" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
+                        <label><?php echo ucwords("Semester"); ?></label>
+                        <select id="semester" name="semester" class="form-control">
+                            <option value="">Select</option>                                                    
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
+                        <label><?php echo ucwords("Exam"); ?></label>
+                        <select id="exam" name="exam" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12 validating">
+                        <label><?php echo ucwords("Students"); ?></label>
+                        <select id="student" name="student" class="form-control">
+                            <option value="">All</option>
+                            <?php foreach ($student_list as $exam_student) { ?>
+                                <option value="<?php echo $exam_student->std_id; ?>"
+                                        <?php if ($student_id == $exam_student->std_id) echo 'selected'; ?>><?php echo $exam_student->std_first_name . ' ' . $exam_student->std_last_name; ?></option>
+                                    <?php } ?>
+                        </select>
+                    </div>
+                </div>
+            </form>
 
-                <?php
-                $show_exam_details = $this->db->select('exam_manager.*, exam_type.*, course.*, batch.*, semester.*, degree.*')
-                        ->from('exam_manager')
-                        ->join('exam_type', 'exam_type.exam_type_id = exam_manager.em_type')
-                        ->join('course', 'course.course_id = exam_manager.course_id')
-                        ->join('semester', 'semester.s_id = exam_manager.em_semester')
-                        ->join('degree', 'degree.d_id = exam_manager.degree_id')
-                        ->join('batch', 'batch.b_id = exam_manager.batch_id')
-                        ->where('exam_manager.em_id', $exam_id)
-                        ->get()
-                        ->row();
-                ?>
+            <?php
+            $show_exam_details = $this->db->select('exam_manager.*, exam_type.*, course.*, batch.*, semester.*, degree.*')
+                    ->from('exam_manager')
+                    ->join('exam_type', 'exam_type.exam_type_id = exam_manager.em_type')
+                    ->join('course', 'course.course_id = exam_manager.course_id')
+                    ->join('semester', 'semester.s_id = exam_manager.em_semester')
+                    ->join('degree', 'degree.d_id = exam_manager.degree_id')
+                    ->join('batch', 'batch.b_id = exam_manager.batch_id')
+                    ->where('exam_manager.em_id', $exam_id)
+                    ->get()
+                    ->row();
+            ?>
 
+            <?php if ($this->uri->total_segments() >= 7) { ?>
                 <?php if (count($show_exam_details)) { ?>
                     <div class="col-md-12">
                         <div class="panel panel-default">
@@ -114,13 +106,17 @@
                                     <table data-filter="#filter" id="marklist" class="table table-bordered table-striped table-responsive">
                                         <thead>
                                             <tr>
-                                                <th width="5%">#</th>
+                                                <th width="5%" rowspan="2">#</th>
+                                                <th colspan="2"><strong>Student Details</strong></th>
+                                                <th colspan="<?php echo count($subject_details); ?>"><strong>Subjects</strong></th>
+                                                <th width="15%" rowspan="2"><?php echo ucwords("Remarks"); ?></th>
+                                            </tr>
+                                            <tr>                                                
                                                 <th>Roll No</th>
-                                                <th width="20%"><?php echo ucwords("Student Name"); ?></th>
+                                                <th width="10%"><?php echo ucwords("Student Name"); ?></th>
                                                 <?php foreach ($subject_details as $subject) { ?>
-                                                    <th>Sub: <?php echo $subject->subject_name; ?></th>
-                                                <?php } ?>
-                                                <th width="15%"><?php echo ucwords("Remarks"); ?></th>
+                                                    <th><?php echo $subject->subject_name; ?></th>
+                                                <?php } ?>                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -200,11 +196,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>           
+
         </div>
-        <!-- End .panel -->
     </div>
-    <!-- col-lg-12 end here -->
+    <!-- End .panel -->
+</div>
+<!-- col-lg-12 end here -->
 </div>
 <!-- End .row -->
 </div>

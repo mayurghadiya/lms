@@ -3,7 +3,7 @@
 
     <div class=col-lg-12>
         <!-- col-lg-12 start here -->
-        <div class="panel-default toggle panelMove panelClose panelRefresh"></div>
+        <div class="panel-default toggle panelMove panelClose panelRefresh">
             <div class=panel-body>
                 <form class="form-horizontal" action="" id="student_profile" role="form" method="post"
                       enctype="multipart/form-data">
@@ -16,18 +16,14 @@
                                     <div class="col-xs-12">
                                         <div class="form-img text-center mgbt-xs-15"> 
                                             <?php if ($profile->profile_photo != "") { ?>    
-                                            <img alt="" src="<?php echo $profile_pic; ?>" id="manage_profile"> </div>
+                                                <img alt="" src="<?php echo $profile_pic; ?>" id="manage_profile"> </div>
                                         <?php } else { ?>
-                                        <img alt="example image" src="<?php echo base_url('uploads/user.jpg'); ?>" id="manage_profile"> </div>
+                                            <img alt="example image" src="<?php echo base_url('uploads/user.jpg'); ?>" id="manage_profile"> </div>
                                     <?php } ?>
                                     <br/>
                                     <div>
                                         <table class="table table-striped table-hover">
                                             <tbody>
-                                              <!--<tr>
-                                                <td style="width:60%;">Status</td>
-                                                <td><span class="label label-success">Active</span></td>
-                                              </tr>-->
                                                 <tr>
                                                     <td>Register Since</td>
                                                     <td><?php echo date('F d, Y', strtotime($profile->Joining_date)); ?></td>
@@ -95,6 +91,8 @@
                             </div>
                             <!-- form-group -->
 
+                            <hr/>
+                            <h3>Change Password</h3>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Password</label>
                                 <div class="col-sm-9 controls">

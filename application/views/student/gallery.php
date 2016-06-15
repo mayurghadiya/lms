@@ -265,7 +265,7 @@ foreach ($gallery as $gal2):
     <?php endforeach; ?>
 <?php endforeach; ?>
         ];
-                jQuery("#nanoGalleryMLN").nanoGallery({thumbnailWidth: 120, thumbnailHeight: 120,
+                jQuery("#nanoGalleryMLN").nanoGallery({thumbnailWidth: 250, thumbnailHeight: 250,
             items: contentGalleryMLN,
             //paginationMaxItemsPerPage:3,
             paginationMaxLinesPerPage: 3,
@@ -277,7 +277,7 @@ foreach ($gallery as $gal2):
             maxItemsPerLine: 5
         });
 
-        jQuery("#nanoGalleryAnimation1").nanoGalleryDemo({thumbnailWidth: 120, thumbnailHeight: 120, itemsBaseURL: 'demonstration',
+        jQuery("#nanoGalleryAnimation1").nanoGalleryDemo({thumbnailWidth: 250, thumbnailHeight: 250, itemsBaseURL: 'demonstration',
             viewerDisplayLogo: true
         });
 

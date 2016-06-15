@@ -25,7 +25,7 @@
                                 ?>
                                    <tr class="<?php if ($row->read == 0) echo 'info'; ?>">
                                     <td><?php echo $counter; ?></td>
-                                    <td><?php echo $row->email_from; ?></td>
+                                    <td><?php echo ucwords($row->from_name); ?></td>
                                     <td><?php echo $row->subject; ?></td>
                                     <td><?php echo date('F d, Y h:i A', strtotime($row->created_at)); ?></td>
                                     <td class="menu-action">
