@@ -61,7 +61,6 @@
                                 <div class="box box-warning box-solid">
                                     <div class="box-body">
                                         <div class="box box-info box-solid">
-
                                             <div class="box-body no-padding table-responsive">
                                                 <table class="table table-bordered table-striped">
                                                     <tbody>
@@ -74,7 +73,7 @@
                                                             <th>Obtained Marks</th>
                                                             <th>Grade</th>
                                                             <th>Results</th>
-                                                            <th>Remarks</th>
+                                                            
                                                         </tr>
                                                         <?php
                                                         $counter = 1;
@@ -104,8 +103,8 @@
                                                                     $grade = (int) (100 * $row->mark_obtained) / $exam_details->total_marks;
                                                                     $grade_data = $this->db->select()
                                                                             ->from('grade')
-                                                                            ->where('from_marks >= ', $grade)
-                                                                            ->order_by('from_marks', 'ASC')
+                                                                            ->where('from_marks <= ', $grade)
+                                                                            ->order_by('from_marks', 'DESC')
                                                                             ->limit(1)
                                                                             ->get()
                                                                             ->row();
@@ -126,7 +125,7 @@
                                                                     else
                                                                         echo 'Fail';
                                                                     ?></td>
-                                                                <td><?php echo ''; ?></td>
+                                                             
 
                                                             </tr>
                                                         <?php } ?>
@@ -134,7 +133,7 @@
                                                     </tbody>
                                                 </table>
                                             </div><!--/box-body-->
-                                            <div class="box-footer"><br>
+                                            <div class="box-footer">
                                                 <fieldset>
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                         <div class="form-group">
@@ -172,6 +171,7 @@
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                         <div class="form-group">
                                                             <label>Remarks :</label>
+                                                            <?php echo $row->mm_remarks; ?>
                                                         </div>
                                                     </div>
                                                 </fieldset>  

@@ -45,6 +45,7 @@
         <?php endforeach; ?>																			
     </tbody>
 </table>
+</div>
 <script>
     var t = $('#datatable-list2').DataTable({
         "columnDefs": [{
@@ -53,6 +54,7 @@
                 "targets": 0
             }],
         "order": [[2, 'asc']],
+        "language": { "emptyTable": "No data available" }
     });
 
     t.on('order.dt search.dt', function () {

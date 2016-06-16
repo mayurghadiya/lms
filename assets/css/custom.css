@@ -30,6 +30,7 @@ label.error {
 .index .page-content {
     background: #fff !important;
 }
+.profile .panel,
 .dashboard .panel,
 .index .panel,
 .report_chart .panel {
@@ -1370,8 +1371,54 @@ iframe {
   max-height: 630px;
 }
 iframe.professor_routine_box{margin-bottom: 0;}
-#datatable-list_wrapper{margin-bottom: 50px; display: block;}
+#datatable-list_wrapper{margin-bottom: 50px; clear: both; height: 100%;}
+/*.table-responsive{clear: both; height: 590px;}*/
+/*#footer {position: relative !important;}*/
+#content{min-height: 100vh;}
 
+  .dropbtn1, .dropbtn2 {
+    background-image: linear-gradient(to bottom, #fafafa 0px, #dcdcdc 100%);
+    background-color: #e0e0e0;
+    color: #000;
+    padding: 15px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    }
+    .dropdown1, .dropdown2 {
+        position: relative;
+        display: block;
+    }
+    .dropdown-content1{
+        display: none;
+        background-color: #fff;
+        min-width: 100%;
+        box-shadow: none;
+        height: 300px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        z-index: 99999;
+    }
+        .dropdown-content2 {
+        display: none;
+        background-color: #fff;
+        z-index: 99999;
+
+    }
+
+
+#highcharts-0.highcharts-container{max-height: 530px !important; height: 530px !important; padding:0 0 20px 0; }    
+#highcharts-1.highcharts-container{max-height: 530px !important; height: 530px !important; padding:0 0 20px 0; }    
+#highcharts-2.highcharts-container{max-height: 530px !important; height: 530px !important; }    
+#highcharts-3.highcharts-container{max-height: 580px !important; height: 580px !important; }    
+#highcharts-4.highcharts-container{max-height: 580px !important; height: 580px !important; }    
+#highcharts-0.highcharts-container > svg, #highcharts-1.highcharts-container > svg,
+#highcharts-0.highcharts-container svg[Attributes Style], #highcharts-1.highcharts-container svg[Attributes Style] {
+    height: 480;
+    max-height: 100%;
+}
+/*#highcharts-2.highcharts-container{max-height: 600px !important; height: 600px !important; overflow:hidden;} */
+/*#highcharts-0.highcharts-container svg{min-height: 380px !important; height: 380px !important; max-height: 100% !important;}    */
 /*********************** media *****************************/
 
 @media screen and (max-width:1279px) {

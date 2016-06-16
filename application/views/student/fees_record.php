@@ -39,7 +39,7 @@
                                 <td><?php echo date('F d, Y h:i A', strtotime($row->paid_created_at)); ?></td>
                                 <td>
                                     <a href="<?php echo base_url('student/invoice/' . $row->student_fees_id); ?>"><span class="label label-primary mr6 mb6">
-                                            <i class="fa fa-pencil"></i>View</span></a>
+                                           <i class="fa fa-desktop" ></i>View</span></a>
                                     <a href="<?php echo base_url('student/invoice_print/' . $row->student_fees_id); ?>"><span class="label label-danger mr6 mb6">
                                             <i class="fa fa-download"></i>Download</span></a>                                    
                                 </td>

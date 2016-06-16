@@ -352,7 +352,9 @@ class Student_model extends CI_Model {
                         ->from('exam_manager')
                         ->join('course', 'course.course_id = exam_manager.course_id')
                         ->join('semester', 'semester.s_id = exam_manager.em_semester')
+                        ->join('exam_seat_no', 'exam_seat_no.exam_id = exam_manager.em_id')
                         ->where('em_id', $exam_id)
+                        ->where('exam_seat_no.student_id', $this->session->userdata('login_user_id'))
                         ->get()
                         ->row();
     }
@@ -887,5 +889,18 @@ class Student_model extends CI_Model {
         $this->db->where("FIND_IN_SET('$student_id',student_id) !=", 0);
         $this->db->where("assign_id",$assign_id);
         return $this->db->get('assignment_reopen')->num_rows();
+    }
+
+    
+    /**
+     * 
+     * @param int $user_id
+     * @return mixed
+     */
+    function get_growth($user_id)
+    {
+        
+        return $this->db->query("SELECT SUM(marks_manager.mark_obtained) as total, SUM(exam_manager.total_marks) as totalmarks,marks_manager.mm_std_id,semester.s_name FROM  marks_manager JOIN exam_manager ON marks_manager.mm_exam_id = exam_manager.em_id JOIN semester ON exam_manager.em_semester=semester.s_id WHERE marks_manager.mm_std_id='".$user_id."' GROUP BY exam_manager.em_semester")->result();            
+        
     }
 }

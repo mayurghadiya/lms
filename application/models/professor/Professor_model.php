@@ -1408,7 +1408,8 @@ class Professor_model extends CI_Model {
                         ->from('student')
                         ->where([
                             'std_degree' => $dept,
-                            'course_id' => $branch
+                            'course_id' => $branch,
+                            'std_degree !=' => 0,
                         ])
                         ->get()->result();
         return $this->db->get_where("student", array('std_degree' => $dept, "course_id" => $branch))->result();
@@ -1446,7 +1447,7 @@ class Professor_model extends CI_Model {
         $dept = $this->session->userdata("department");
         $branch = $this->session->userdata("branch");
         $this->db->where("assign_degree", $dept);
-        $this->db->where("course_id", $branch);
+       // $this->db->where("course_id", $branch);
         $this->db->order_by("assign_id", "DESC");
         return $this->db->get('assignment_manager')->result();
     }
@@ -1459,7 +1460,7 @@ class Professor_model extends CI_Model {
         $this->db->join("assignment_manager am", "am.assign_id=ass.assign_id");
         $this->db->join("student s", "s.std_id=ass.student_id");
         $this->db->where("s.std_degree", $dept);
-        $this->db->where("s.course_id", $branch);
+       // $this->db->where("s.course_id", $branch);
         $this->db->order_by("ass.assignment_submit_id", "DESC");
         return $this->db->get();
     }
@@ -1523,7 +1524,7 @@ class Professor_model extends CI_Model {
         $this->db->join("project_manager pm", "pm.pm_id=ps.project_id");
         $this->db->join("student s", "s.std_id=ps.student_id");
         $this->db->where("s.std_degree", $dept);
-        $this->db->where("s.course_id", $branch);
+        //$this->db->where("s.course_id", $branch);
         return $this->db->get();
     }
 

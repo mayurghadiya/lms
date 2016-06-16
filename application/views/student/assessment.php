@@ -58,7 +58,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#data-tables1').dataTable();
+        $('#data-tables1').dataTable({"language": { "emptyTable": "No data available" }});
     })
 
 </script>

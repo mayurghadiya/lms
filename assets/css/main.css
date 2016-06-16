@@ -1717,7 +1717,7 @@ body #wrapper {
 }
 #sidebar.collapse-sidebar .mainnav li.hover-li a {
   z-index: 999;
-  width: 240px;
+  width: 300px !important;
   background-image: linear-gradient(to bottom, #ffffff 0%, #f3f3f3 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff3f3f3', GradientType=0);
@@ -1777,7 +1777,8 @@ body #wrapper {
   border-right: 1px solid #c4c4c4;
 }
 #sidebar.collapse-sidebar .mainnav li.hover-li > ul.sub li a {
-  width: 179px;
+  /*width: 179px;*/
+  width: 239px;
   background: none;
 }
 #sidebar.collapse-sidebar .mainnav li.hover-li > ul.sub li a span.txt {

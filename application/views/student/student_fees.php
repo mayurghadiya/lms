@@ -196,15 +196,15 @@
                         if (total_paid_amount > 0) {
                             due_amount = Number($('#total_fees').val()) - total_paid_amount;
                         }
-                        $('#due_fees').val(Math.abs(due_amount));
+                        $('#due_fees').val(Math.abs(total_fee));
                         due_fee = due_amount;
                     }
                 });
             }, 1500);
 
             setTimeout(function () {
-                $('#amount').attr('min', '0');
-                $('#amount').attr('max', Math.abs(due_fee));
+                $('#amount').attr('min', Math.abs(total_fee));
+                $('#amount').attr('max', Math.abs(total_fee));
             }, 2000);
 
         })

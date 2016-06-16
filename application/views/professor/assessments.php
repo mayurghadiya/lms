@@ -146,7 +146,7 @@
                             <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100% id="sub-tables">
                                 <thead>
                                     <tr>
-                                        <th>#</th>												
+                                        <th>No</th>												
                                         <th><?php echo ucwords("Assignment"); ?></th>
                                         <th><?php echo ucwords("Student"); ?></th>
                                         <th><?php echo ucwords("Department"); ?></th>

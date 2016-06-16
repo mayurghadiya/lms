@@ -108,7 +108,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#fee-datatable-list').DataTable({});
+        $('#fee-datatable-list').DataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>
 

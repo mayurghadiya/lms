@@ -322,7 +322,9 @@
                         });
                     </script>
                     <script id="customEditorTemplate" type="text/x-kendo-template">
-
+<!-- 
+<div class="modal-dialog modal-dialog-center">
+    <div class="panel-body"> -->
                         <div class="k-edit-label"><label for="title">Title</label></div>
                         <div data-container-for="title" class="k-edit-field">
                         <input type="text" class="k-input k-textbox" name="title" required="required" data-bind="value:title">
@@ -461,7 +463,10 @@
                         <div class="k-edit-label"><label for="description">Description</label></div>
                         <div data-container-for="description" class="k-edit-field">
                         <textarea name="description" class="k-textbox" data-bind="value:description" placeholder="Description"></textarea>
-                        </div>                
+                        </div> 
+
+<!--     </div>
+</div>     -->           
                     </script>
                     <script>
                         $(function () {

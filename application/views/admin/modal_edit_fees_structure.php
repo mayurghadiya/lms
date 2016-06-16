@@ -244,33 +244,37 @@ $batch = $this->db->query($query)->result();
 </script>
 
 <script>
-    $(document).ready(function () {
-        $("#edit_start_date").datepicker({
-            format: 'MM d, yyyy',
-            changeMonth: true,
-            changeYear: true,
-            autoclose:true,
-            minDate: new Date(),
-            onClose: function (selectedDate) {
-                $("#edit_end_date").datepicker("option", "minDate", selectedDate);
-            }
+    $(document).ready(function () {       
+         $("#edit_start_date").datepicker({
+            format: 'MM dd, yyyy',
+            todayHighlight: true,
+            autoclose: true,
+            startDate: new Date()
         });
-        $("#edit_end_date").datepicker({
-            format: 'MM d, yyyy',
-            changeMonth: true,
-            changeYear: true,
-            autoclose:true,
-            onClose: function (selectedDate) {
-                $("#edit_start_date").datepicker("option", "maxDate", selectedDate);
-                $("#edit_expiry_date").datepicker("option", "minDate", selectedDate);
-            }
+        $('#edit_start_date').on('change', function () {
+            
+            date = new Date($(this).val());
+            start_date = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+            console.log(start_date);
+            
+            setTimeout(function () {
+                $("#edit_end_date").datepicker({
+                    format: ' MM d, yyyy',
+                    autoclose: true,
+                    todayHighlight: true,
+                    startDate: start_date
+                }).on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#edit_expiry_date').datepicker('setStartDate', minDate);
         });
-        $('#edit_expiry_date').datepicker({
-            format: 'MM d, yyyy',
-            changeMonth: true,
-            autoclose:true,
-            changeYear: true,
+            }, 200);
         });
+          
+           $("#edit_expiry_date").datepicker({
+                    format: ' MM d, yyyy',
+                    autoclose: true,
+                    todayHighlight: true
+                });
 
     })
     //minDate: new Date(),

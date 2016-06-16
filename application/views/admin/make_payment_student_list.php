@@ -36,6 +36,6 @@
 
 <script>
 $(document).ready(function(){
-   $('#make-payment-student-datatable-list').DataTable({}); 
+   $('#make-payment-student-datatable-list').DataTable({"language": { "emptyTable": "No data available" }}); 
 });
 </script>

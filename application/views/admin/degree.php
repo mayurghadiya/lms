@@ -25,7 +25,7 @@
                                 <?php if ($row['d_status'] == '1') { ?>
                                     <span>Active</span>
                                 <?php } else { ?>	
-                                    <span>InActive</span>
+                                    <span>Inactive</span>
                                 <?php } ?>
                             </td>
                             <td class="menu-action">

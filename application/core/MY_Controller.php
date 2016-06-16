@@ -28,6 +28,7 @@ class MY_Controller extends CI_Controller {
         }
         ini_set('max_execution_time', 500);
         $this->data['currency'] = system_info('currency');
+        //$this->output->enable_profiler(true);
     }
 
     /**

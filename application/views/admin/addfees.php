@@ -233,15 +233,17 @@
                     autoclose: true,
                     todayHighlight: true,
                     startDate: start_date
-                });
-            }, 700);
+                }).on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#expiry_date').datepicker('setStartDate', minDate);
+        });
+            }, 200);
         });
           
            $("#expiry_date").datepicker({
                     format: ' MM d, yyyy',
                     autoclose: true,
-                    todayHighlight: true,
-                    startDate: new Date()
+                    todayHighlight: true
                 });
         
     })

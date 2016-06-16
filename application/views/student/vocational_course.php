@@ -35,7 +35,7 @@ $professor = $this->db->select('professor_id,name')->from('professor')->get()->r
                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>No</th>
                             <th><?php echo ucwords("course name"); ?></th>
                             <th><?php echo ucwords("category"); ?></th>
                             <th><?php echo ucwords("course start date"); ?></th>
@@ -72,7 +72,7 @@ $professor = $this->db->select('professor_id,name')->from('professor')->get()->r
                                     ?></td>   
 
                                 <td class="menu-action">
-                                    <a href="<?php echo base_url(); ?>student/vocationalcourse/register/<?php echo $row['vocational_course_id']; ?>"  data-original-title="" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Register Now</span></a>
+                                    <a href="<?php echo base_url(); ?>student/vocationalcourse/register/<?php echo $row['vocational_course_id']; ?>"  data-original-title="" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Register Now</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -83,7 +83,7 @@ $professor = $this->db->select('professor_id,name')->from('professor')->get()->r
                              <table id="datatable-list-course" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>No</th>
                             <th><?php echo ucwords("course name"); ?></th>
                             <th><?php echo ucwords("category"); ?></th>
                             <th><?php echo ucwords("course start date"); ?></th>
@@ -134,7 +134,7 @@ $professor = $this->db->select('professor_id,name')->from('professor')->get()->r
 
 <script>
     $(document).ready(function () {
-        $('#datatable-list-course').dataTable();
+        $('#datatable-list-course').dataTable({"language": { "emptyTable": "No data available" }});
     })
 
 </script>

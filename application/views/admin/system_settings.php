@@ -20,7 +20,7 @@
                     <label  class="col-lg-3 col-md-3 col-sm-6 col-xs-12 control-label"><?php echo ucwords("Phone"); ?><span style="color:red">*</span></label>
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div style="margin-left: -15px" class="col-sm-3 p-l-0">
+                        <div style="margin-left: -15px" class="col-sm-4 p-l-0">
                             <select name="countryCode" id="countryCode" class="form-control">  
                                 <option data-countryCode="DZ" value="213">Algeria (+213)</option>
                                 <option data-countryCode="AD" value="376">Andorra (+376)</option>

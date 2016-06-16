@@ -2,7 +2,7 @@
                                         <table class="table table-striped" id="data-tabless">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>                                           
+                                                    <th>No</th>                                           
                                                     <th>Student Name</th>       
                                                     <th>Department</th>
                                                     <th>Branch</th>
@@ -102,11 +102,11 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		"use strict";				
-		$('#data-tables').dataTable();
+		$('#data-tables').dataTable({"language": { "emptyTable": "No data available" }});
 	} );
         $(document).ready(function() {
 		"use strict";				
-		$('#data-tabless').dataTable();
+		$('#data-tabless').dataTable({"language": { "emptyTable": "No data available" }});
 	} );
 </script>
             

@@ -22,8 +22,8 @@
                             <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Assignment Name</th>											
+                                        <th>No</th>
+                                        <th>Assignment</th>											
                                         <th>Date of submission</th>
                                         <th>File</th>      
                                         <th>Instruction</th>                                                                                      
@@ -49,14 +49,14 @@
                                                 $assignment = $this->Student_model->getchecksubmitted($row->assign_id, $student_id);
                                                 if ($dos >= $current && $assignment < 1) {
                                                     ?>
-                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_submit_assignment/<?php echo $row->assign_id; ?>');" data-original-title="submit assignment" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="icomoon-icon-plus mr0"></i> Add</span></a>
+                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_submit_assignment/<?php echo $row->assign_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="icomoon-icon-plus mr0"></i> Add</span></a>
                                                     <?php
                                                 } else {
                                                     if ($assignment < 1) {
                                                         $res = $this->Student_model->get_student_reopen_assignment($row->assign_id, $student_id);
                                                         if ($res > 0) {
                                                             ?>
-                                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_submit_assignment/<?php echo $row->assign_id; ?>');" data-original-title="submit assignment" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="icomoon-icon-plus mr0"></i> Add</span></a>
+                                                            <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_submit_assignment/<?php echo $row->assign_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="icomoon-icon-plus mr0"></i> Add</span></a>
                                                             <?php
                                                         } else {
                                                             echo '<span class="label label-danger mr6 mb6">Not Submitted</span>';
@@ -85,10 +85,10 @@
                             <table id="submitted-assignment-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Assignment Name</th>												
-                                        <th>Submitted Date</th>												
-                                        <th>Document Name</th>	
+                                        <th>No</th>
+                                        <th>Assignment</th>												
+                                        <th>Submitted-Date</th>												
+                                        <th>Document</th>	
                                         <th>File</th>                                                               
                                     </tr>
                                 </thead>
@@ -103,7 +103,7 @@
                                             <td><?php echo date("F d, Y", strtotime($srow->submited_date)); ?></td>	
                                             <td><?php echo $srow->document_file; ?></td>
                                             <td > 
-                                                <a href="<?php echo base_url() ?>uploads/project_file/<?php echo $srow->assign_filename; ?>" download="" data-original-title="download" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Download</span></a>
+                                                <a href="<?php echo base_url() ?>uploads/project_file/<?php echo $srow->assign_filename; ?>" download=""  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Download</span></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>						
@@ -116,8 +116,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>		
-                                        <th>Assignment Name</th>                                                                          
-                                        <th>Submitted File</th>                                                       
+                                        <th>Assignment</th>
+                                        <th>Submitted-File</th>                                                       
                                         <th>Feedback</th>                                                
                                         <th>Grade</th>	
                                     </tr>
@@ -157,8 +157,8 @@
 
 <script>
     $(document).ready(function () {
-        $('#submitted-assignment-datatable-list').DataTable();
+        $('#submitted-assignment-datatable-list').DataTable({"language": { "emptyTable": "No data available" }});
         $('#data-tables1').dataTable({"language": { "emptyTable": "No data available" }});
-        $("#datatable-list2").dataTable();
+        $("#datatable-list2").dataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>

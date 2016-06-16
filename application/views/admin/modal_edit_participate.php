@@ -132,7 +132,7 @@ foreach ($edit_data as $row):
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-4 control-label"><?php echo ucwords("Participate Title "); ?><span style="color:red">*</span></label>
+                                <label class="col-sm-4 control-label"><?php echo ucwords("Activity Title "); ?><span style="color:red">*</span></label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" name="title" id="title"  value="<?php echo $row['pp_title']; ?>"/>
                                 </div>

@@ -29,7 +29,7 @@
                                 <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                     <thead>
                                         <tr>
-                                            <th>#</th>											
+                                            <th>No</th>											
                                             <th>Project Title</th>										
                                             <th>Date of submission</th>	
                                             <th>File</th>	
@@ -70,7 +70,7 @@
                                 <table class="table table-striped table-bordered table-responsive" id="submitted-project-list">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>No</th>
                                             <th>Project Title</th>												
                                             <th>Submitted Date</th>												
                                             <th>Document Name</th>	                                                                
@@ -86,7 +86,7 @@
                                                 <td><?php echo $row->pm_title; ?></td>	
                                                 <td><?php echo date('F d, Y', strtotime($row->dos)); ?></td>	
                                                 <td>
-                                                    <a href="<?php echo base_url() . 'uploads/project_file/' . $row->document_file ?>" download="" data-original-title="download" ><span class="label label-primary mr6 mb6">Download</span></a>
+                                                    <a href="<?php echo base_url() . 'uploads/project_file/' . $row->document_file ?>" download=""  ><span class="label label-primary mr6 mb6">Download</span></a>
                                                 </td>	
                                             </tr>
                                         <?php endforeach; ?>						
@@ -126,7 +126,11 @@
 
 <script>
     $(document).ready(function () {
-        $('#submitted-project-list').DataTable();
+        $('#submitted-project-list').DataTable({
+            "language": {
+                "emptyTable": "No data available"
+            }
+        });
     });
 </script>
 

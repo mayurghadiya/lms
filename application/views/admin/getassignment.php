@@ -170,14 +170,14 @@ if ($param=='assessments') {
         <table class="table table-striped table-bordered table-responsive" id="data-tabless">
             <thead>
                 <tr>
-                    <th><div>#</div></th>												
-                    <th><div>Assignment Name</div></th>
-                    <th><div>Student Name</div></th>
+                    <th>No</th>												
+                    <th><div>Assignment</div></th>
+                    <th><div>Student</div></th>
                     <th><div>Department</div></th>
                     <th><div>Branch</div></th>												
                     <th><div>Batch</div></th>												
                     <th><div>Sem</div></th>	
-                    <th><div>Submitted Date</div></th>	
+                    <th><div>Submitted-Date</div></th>	
                     <th><div>Comment</div></th>
                     <th><div><?php echo ucwords("File"); ?></div></th>	
                     <th><div>Action</div></th>												                                            

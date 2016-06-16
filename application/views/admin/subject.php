@@ -9,7 +9,7 @@
                 <a class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addsubject/');" href="#" id="navfixed" data-toggle="tab"><i class="fa fa-plus"></i> Subject</a>
                 <div class="row filter-row">
                 <form id="frmsearch" name="frmsearch" action="#" enctype="multipart/form-data" class="form-vertical form-groups-bordered validate">
-                    <div class="form-group col-sm-2">
+                    <div class="form-group col-sm-4">
                         <label ><?php echo ucwords("department"); ?></label>
                         <select class="form-control filter-rows" name="filterdegree" id="filterdegree" >
                             <option value="">Select department</option>
@@ -23,13 +23,13 @@
                             ?>
                         </select>
                     </div>
-                    <div class="form-group col-sm-2">
+                    <div class="form-group col-sm-4">
                         <label ><?php echo ucwords("Branch"); ?></label>
                         <select class="form-control filter-rows" name="filtercourse" id="filtercourse" >
                             <option value="">Select Branch</option>
                         </select>
                     </div>
-                    <div class="form-group col-sm-2">
+                    <div class="form-group col-sm-4">
                         <label>&nbsp;</label><br/>
                         <input id="btnsubmit" type="button" value="Go" class="btn btn-info"/>
                     </div>

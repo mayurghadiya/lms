@@ -225,7 +225,7 @@
                                                 <li>
                                                     <a id="link-sent" href="<?php echo base_url(); ?>student/email_sent">
                                                         <i class="s16 fa fa-send"></i>
-                                                        <span class="txt">Sent</span>
+                                                        <span class="txt">Sent Email</span>
                                                     </a>
                                                 </li>
 

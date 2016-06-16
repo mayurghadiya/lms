@@ -95,7 +95,7 @@
                         <div class="tab-pane fade" id="submittedlist">
                             <div class="row filter-row">
                                 <form id="assignment-search-submitted" action="#" class="form-groups-bordered validate">
-                                    <div class="form-group col-sm-2">
+                                    <div class="form-group col-sm-3">
                                         <label><?php echo ucwords("department"); ?></label>
                                         <select class="form-control" id="scourses" name="degree_search">
                                             <option value="">Select</option>
@@ -104,7 +104,7 @@
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-sm-2">
+                                    <div class="form-group col-sm-3">
                                         <label><?php echo ucwords("Branch"); ?></label>
                                         <select id="sbranches" name="course_search" data-filter="4" class="form-control">
                                             <option value="">Select</option>
@@ -123,7 +123,7 @@
 
                                         </select>
                                     </div>
-                                    <div class="form-group col-sm-2" style="display: none;">
+                                    <div class="form-group col-sm-1" style="display: none;">
                                         <label><?php echo ucwords("Class"); ?><span style="color:red"></span></label>
                                         <select class="form-control filter-rows" name="divclass" id="sfilterclass" >
                                             <option value="">Select</option>

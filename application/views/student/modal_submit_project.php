@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Description</label>
                         <div class="col-sm-5">
-                            <textarea id="comment" name="comment" ></textarea>
+                            <textarea class="form-control" id="comment" name="comment" ></textarea>
                         </div>
                     </div>
 
@@ -44,3 +44,32 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+
+<script type="text/javascript">
+    $.validator.setDefaults({
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+
+
+    $(document).ready(function () {
+        
+        $("#edit_exam_center").validate({
+            rules: {
+                comment: "required",
+               document_file: {
+                    required: true,
+                    extension: 'gif|jpg|png|pdf|xlsx|xls|doc|docx|ppt|pptx|txt',
+                }
+            },
+            messages: {
+               comment: "Enter Comment",
+                document_file: {
+                    required: "Upload file",
+                    extension: 'Upload valid file',
+                }
+            }
+        });
+    });
+</script>	

@@ -230,8 +230,8 @@
                                 <table class="table table-striped table-bordered table-responsive" id="sub-tables">
                                     <thead>
                                         <tr>
-                                            <th>#</th>												
-                                            <th><?php echo ucwords("Project Name"); ?></th>
+                                            <th>No</th>												
+                                            <th><?php echo ucwords("Project Title"); ?></th>
                                             <th><?php echo ucwords("Student Name"); ?></th>                                                											
                                             <th><?php echo ucwords("department"); ?></th>	
                                             <th><?php echo ucwords("Branch"); ?></th>
@@ -316,13 +316,13 @@
 <script type="text/javascript">
     $(document).ready(function () {
         "use strict";
-        $('#data-tabless').DataTable();
+        $('#data-tabless').DataTable({"language": { "emptyTable": "No data available" }});
 
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#project-data-tables').dataTable();
+        $('#project-data-tables').dataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>
 

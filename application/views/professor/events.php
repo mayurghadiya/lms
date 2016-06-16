@@ -47,6 +47,6 @@
 
 <script>
     $(document).ready(function () {
-        $('#event-datatable-list').DataTable();
+        $('#event-datatable-list').DataTable({"language": { "emptyTable": "No data available" }});
     })
 </script>

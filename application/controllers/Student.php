@@ -49,6 +49,8 @@ class Student extends MY_Controller {
         $this->data['timline_todolist'] = $this->Student_model->get_timline_todolist();
         $this->data['timline_event'] = $this->Student_model->get_timline_event();
         $this->data['timelinecount'] = $this->Student_model->get_timeline_date_count();
+         $user_id = $this->session->userdata('login_user_id');
+        $this->data['growth']  = $this->Student_model->get_growth($user_id);
         $this->data['page'] = 'dashboard';
         $this->__site_template('student/dashboard', $this->data);
     }
@@ -325,6 +327,8 @@ class Student extends MY_Controller {
                     WHERE NOT EXISTS (SELECT sq_id FROM survey
                     WHERE survey.sq_id = survey_question.sq_id and survey.student_id= ' . $this->session->userdata('student_id') . ') AND survey_question.question_status="1" ORDER BY survey_question.sq_id DESC')->result();
 
+         $this->data['survey'] = $this->db->query(" SELECT * FROM `survey_question` where sq_id not in (SELECT sq_id FROM survey where student_id='".$std."') and question_status='1'")->result();        
+        
         //$this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Survey Application Form';
@@ -590,7 +594,7 @@ class Student extends MY_Controller {
             // $page_data['project'] = $this->db->get_where('project_manager', array("pm_student_id" => $this->session->userdata('std_id')))->result();           
             //$this->data['student'] = $this->db->get('student')->result();
             $this->data['page'] = 'project';
-            $this->data['title'] = 'Project List';
+            $this->data['title'] = 'Projects';
             $this->data['add_title'] = $this->lang_message('add_project');
             $this->data['edit_title'] = $this->lang_message('edit_project');
             $this->data['param'] = $param1;
@@ -601,7 +605,7 @@ class Student extends MY_Controller {
         if ($param1 == "video") {
             $this->data['project'] = $this->db->get('project_manager')->result();
             $this->data['page'] = 'project';
-            $this->data['title'] = 'Project List';
+            $this->data['title'] = 'Projects';
             $this->data['add_title'] = $this->lang_message('add_project');
             $this->data['edit_title'] = $this->lang_message('edit_project');
             $this->data['param'] = $param1;
@@ -644,7 +648,7 @@ class Student extends MY_Controller {
         }
         $this->data['title'] = 'Student Profile';
         $this->data['page'] = 'student_profile';
-        $this->data['profile'] = $this->Student_model->student_details($this->session->userdata('login_user_id'));
+        $this->data['profile'] = $this->Student_model->student_details($this->session->userdata('login_user_id'));        
         $this->data['profile_pic'] = $this->Crud_model->get_image_url('student', $this->session->userdata('std_id'));
         $this->__site_template('student/edit_profile', $this->data);
     }
@@ -688,7 +692,7 @@ class Student extends MY_Controller {
         $this->data['batch'] = $this->db->get('batch')->result();
         $this->data['page'] = 'assignment';
         $this->data['param'] = $param1;
-        $this->data['title'] = 'Assignment List';
+        $this->data['title'] = 'Assignments';
         clear_notification('assignment_manager', $this->session->userdata('student_id'));
         unset($this->session->userdata('notifications')['assignment_manager']);
         $this->data['assessment'] = $this->Student_model->student_assessment();
@@ -706,7 +710,7 @@ class Student extends MY_Controller {
         $this->data['semester'] = $this->Student_model->get_all_semester();
         $this->data['fees_record'] = $this->Student_model->fees_record($this->session->userdata('login_user_id'));
         $this->data['page'] = 'fees_record';
-        $this->data['title'] = 'Student Fee Record';
+        $this->data['title'] = 'Fee Record';
         $this->__site_template('student/fees_record', $this->data);
     }
 
@@ -941,7 +945,7 @@ class Student extends MY_Controller {
         $this->data['semester'] = $this->Student_model->get_all_semester();
         $this->data['fees_record'] = $this->Student_model->fees_record($this->session->userdata('login_user_id'));
         $this->data['page'] = 'student_fees';
-        $this->data['title'] = 'Student Fees';
+        $this->data['title'] = 'Pay Online';
         clear_notification('fees_structure', $this->session->userdata('student_id'));
         unset($this->session->userdata('notifications')['fees_structure']);
         $this->__site_template('student/student_fees', $this->data);
@@ -1049,7 +1053,7 @@ class Student extends MY_Controller {
         $this->data['courseware'] = $this->db->get()->result_array();
 
         $this->data['page'] = 'courseware';
-        $this->data['title'] = 'Courseware Management';
+        $this->data['title'] = 'Courseware';
         $this->__site_template('student/courseware', $this->data);
     }
 
@@ -1357,7 +1361,7 @@ class Student extends MY_Controller {
     function holiday() {
         $year = date('Y');
         $this->data['page'] = 'holiday';
-        $this->data['title'] = 'Holiday List';
+        $this->data['title'] = 'Holiday';
         $this->data['holiday'] = $this->db->order_by('holiday_startdate', 'ASC')->where('holiday_startdate >= ', date('Y-m-d'))->get('holiday')->result_array();
         $this->__site_template('student/holiday', $this->data);
     }

@@ -3,8 +3,8 @@
     <table class="table table-striped table-bordered table-responsive" id="data-tables">
         <thead>
             <tr>
-                <th>#</th>												
-                <th>Assignment Name</th>
+                <th>No</th>												
+                <th>Assignment</th>
                 <th>Department</th>
                 <th>Branch</th>												
                 <th>Batch</th>												
@@ -95,14 +95,14 @@ if ($param == 'submitted') {
         <table class="table table-striped table-bordered table-responsive" id="data-tabless">
             <thead>
                 <tr>
-                    <th>#</th>												
-                    <th>Assignment Name</th>
-                    <th>Student Name</th>
+                    <th>No</th>												
+                    <th>Assignment</th>
+                    <th>Student</th>
                     <th>Department</th>
                     <th>Branch</th>												
                     <th>Batch</th>												
                     <th>Sem</th>	
-                    <th>Submitted date</th>	
+                    <th>Submitted-date</th>	
                     <th>Comment</th>
                     <th>Action</th>												                                            
                 </tr>
@@ -168,17 +168,17 @@ if ($param == 'assessments') {
         <table class="table table-striped table-bordered table-responsive" id="data-tabless">
             <thead>
                 <tr>
-                    <th><div>#</div></th>												
-                    <th><div>Assignment Name</div></th>
-                    <th><div>Student Name</div></th>
-                    <th><div>Department</div></th>
-                    <th><div>Branch</div></th>												
-                    <th><div>Batch</div></th>												
-                    <th><div>Sem</div></th>	
-                    <th><div>Submitted Date</div></th>	
-                    <th><div>Comment</div></th>
-                    <th><div><?php echo ucwords("File"); ?></div></th>	
-                    <th><div>Action</div></th>												                                            
+                    <th>No</th>												
+                    <th>Assignment</th>
+                    <th>Student</th>
+                    <th>Department</th>
+                    <th>Branch</th>												
+                    <th>Batch</th>												
+                    <th>Sem</th>	
+                    <th>Submitted-Date</th>	
+                    <th>Comment</th>
+                    <th><?php echo ucwords("File"); ?></th>	
+                    <th>Action</th>												                                            
                 </tr>
             </thead>
             <tbody>
@@ -243,10 +243,10 @@ if ($param == 'assessments') {
 <script type="text/javascript">
     $(document).ready(function () {
         "use strict";
-        $('#data-tables').dataTable();
+        $('#data-tables').dataTable({"language": { "emptyTable": "No data available" }});
     });
     $(document).ready(function () {
         "use strict";
-        $('#data-tabless').dataTable();
+        $('#data-tabless').dataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>

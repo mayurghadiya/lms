@@ -29,15 +29,15 @@
                                     <td style="width: 20%">
                                         <?php
                                         if (!empty($row->email_to)) {
-                                            $query = "SELECT email FROM student WHERE std_id IN ($row->email_to)";
+                                            $query = "SELECT email, name FROM student WHERE std_id IN ($row->email_to)";
                                         } else {
-                                            $query = "SELECT email FROM admin WHERE admin_id IN ($row->professor_to_admin)";
+                                            $query = "SELECT email, name FROM admin WHERE admin_id IN ($row->professor_to_admin)";
                                         }
                                         $result = $this->db->query($query)->result();
                                         if (count($result) > 1) {
-                                            echo "{$result[0]->email}...";
+                                            echo "{$result[0]->name}...";
                                         } else {
-                                            echo "{$result[0]->email}";
+                                            echo "{$result[0]->name}";
                                         }
                                         ?>
                                         <?php //echo $row->email_to; ?>
@@ -47,11 +47,10 @@
                                         <strong><?php echo date('F d, Y h:i A', strtotime($row->created_at)); ?></strong>
                                     </td>
                                     <td class="menu-action">
-                                        <a href="<?php echo base_url('professor/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">
-                                                <i aria-hidden="true" class="fa fa-pencil-square"></i>View
+                                        <a href="<?php echo base_url('professor/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6"><i class="fa fa-desktop" ></i>View
                                             </span></a>                       
-                                        <a href="href="<?php echo base_url('professor/delete_email/' . $row->email_id) ?>" title="delete"
-                                           onclick="return confirm('Are you sure to delete this email?');""><span class="label label-danger mr6 mb6">
+                                        <a href="<?php echo base_url('professor/delete_email/' . $row->email_id) ?>"
+                                           onclick="return confirm('Are you sure to delete this email?');"><span class="label label-danger mr6 mb6">
                                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                 Delete
                                             </span></a>
@@ -87,6 +86,6 @@
 
 <script>
     $(document).ready(function () {
-        $('#email-datatable-list').DataTable();
+        $('#email-datatable-list').DataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>

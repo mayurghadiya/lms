@@ -89,7 +89,13 @@
                                 </ul>
                             </li>
                             <li class=dropdown>
-                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown><img src=<?php echo base_url() . 'uploads/professor/' . $this->session->userdata('image_path'); ?> alt="" class="image"> 
+                                <a href=# class="dropdown-toggle avatar" data-toggle=dropdown>
+                                    <?php
+                                    if($professor_details->image_path) { ?>
+                                    <img src=<?php echo base_url() . 'uploads/professor/' . $professor_details->image_path; ?> alt="" class="image"> 
+                                    <?php } else { ?>
+                                    <img src=<?php echo base_url('assets/img/avatar.jpg'); ?> alt="" class="image"> 
+                                    <?php } ?>                                    
                                     <span class=txt><?php echo $this->session->userdata('name'); ?></span> <b class=caret></b>
                                 </a>
                                 <ul class="dropdown-menu right">
@@ -291,7 +297,7 @@
                                                 <li>
                                                     <a id="link-graduates" href="<?php echo base_url(); ?>professor/graduate">
                                                         <i class="s16 fa fa-graduation-cap"></i>
-                                                        <span class="txt">Toppers Graduate</span>
+                                                        <span class="txt">Recent Graduates</span>
                                                     </a>
                                                 </li>                                          
                                             </ul>
@@ -388,54 +394,80 @@
                             </div>
                             <div class="search_box">
                                 <!-- .search -->
-                                <form action="<?php echo base_url(); ?>student/search" method="post" class="form-horizontal" id="searchform">
-                                    <input value="" placeholder="Search here ..." class="top-search from-control" name="search"> 
-                                    <input type="submit" class="search-btn">
-                                    <div class="category">
-                                        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            Category                                     
-                                        </a>
+                                <form id=searchform class=form-horizontal>
+                                <input name="search" class="top-search from-control" placeholder="Search here ..."
+                                       value="<?php echo isset($search_string) ? $search_string : ''; ?>"> 
+                                <input type=submit class=search-btn>
+                                <div class="category">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
+                                        Category                                     
+                                    </a>
 
-                                        <ul class="dropdown-menu" style="margin-left: -46.3833px;">
-                                            <li class="menu">
-                                                <ul>
-                                                    <li>
-                                                        <label>
-                                                            <div class="checkbox-custom">
-                                                                <input type="checkbox" name="exam" value="exam" 
-                                                                       <?php if (isset($from['exam'])) echo 'checked'; ?>><label for="chbox0"></label></div>
-                                                            <span>Exam</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <div class="checkbox-custom">
-                                                                <input type="checkbox" name="assignment" value="assignment"
-                                                                       <?php if (isset($from['assignment'])) echo 'checked'; ?>><label for="chbox1"></label></div>
-                                                            <span>Assignment</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <div class="checkbox-custom">
-                                                                <input type="checkbox" name="participate" value="participate"
-                                                                       <?php if (isset($from['participate'])) echo 'checked'; ?>><label for="chbox2"></label></div>
-                                                            <span>Participate</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <div class="checkbox-custom">
-                                                                <input type="checkbox" name="event" value="event"
-                                                                       <?php if (isset($from['event'])) echo 'checked'; ?>><label for="chbox3"></label></div>
-                                                            <span>Events</span>
-                                                        </label>
-                                                    </li> 
-                                                </ul>                                           
-                                            </li>
-                                        </ul> 
-                                    </div>
-                                </form>
+                                    <ul class="dropdown-menu">
+                                        <li class="menu">
+                                            <ul>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" value="degree" name="degree"
+                                                               <?php if (isset($from['degree'])) echo 'checked'; ?>>
+                                                        <span>Department</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" value="student" name="student"
+                                                               <?php if (isset($from['student'])) echo 'checked'; ?>>
+                                                        <span>Student</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" value="course" name="course"
+                                                               <?php if (isset($from['course'])) echo 'checked'; ?>>
+                                                        <span>Branch</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" value="exam" name="exam"
+                                                               <?php if (isset($from['exam'])) echo 'checked'; ?>>
+                                                        <span>Exam</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" value="event" name="event"
+                                                               <?php if (isset($from['event'])) echo 'checked'; ?>>
+                                                        <span>Event</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" value="batch" name="batch"
+                                                               <?php if (isset($from['batch'])) echo 'checked'; ?>>
+                                                        <span>Batch</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" value="assignment" name="assignment"
+                                                               <?php if (isset($from['assignment'])) echo 'checked'; ?>>
+                                                        <span>Assignment</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" value="participate" name="participate"
+                                                               <?php if (isset($from['participate'])) echo 'checked'; ?>>
+                                                        <span>Participate</span>
+                                                    </label>
+                                                </li> 
+                                                
+                                            </ul>                                           
+                                        </li>
+                                    </ul> 
+                                </div>
+                            </form>
                             </div>
                             <?php echo create_breadcrumb(); ?>
 

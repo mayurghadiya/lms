@@ -41,7 +41,7 @@ $semesters = $this->db->get('semester')->result_array();
                         <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Password"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" name="password" id="password" readonly value="1234"/>
+                                <input type="password" class="form-control" name="password" id="password" value="12345"/>
                             </div>
                         </div>	
                         <div class="form-group">

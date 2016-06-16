@@ -62,6 +62,6 @@
 <!-- End #content -->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#inbox_email-list').DataTable({});
+        $('#inbox_email-list').DataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>

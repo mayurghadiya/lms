@@ -285,6 +285,11 @@ $(document).ready(function () {
         $(this).hide();
     });
 
+     $(".trigger").click(function(){
+          $(".trigger").not(this).next(".toggle").slideUp("slow");
+          $(this).next(".toggle").slideToggle("slow");
+        });  
+
 });
 
 function isEmpty(str) {

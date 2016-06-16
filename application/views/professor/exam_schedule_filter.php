@@ -1,7 +1,7 @@
 <table class="table table-striped table-bordered" id="search-data-tables">
     <thead>
         <tr>
-            <th>#</th>
+            <th>No</th>
             <th><?php echo ucwords("Course"); ?></th>
             <th><?php echo ucwords("Branch"); ?></th>
             <th><?php echo ucwords("Batch"); ?></th>

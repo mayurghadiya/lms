@@ -70,7 +70,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Assignment</th>
+                                            <th>Assignment Name</th>
                                             <th>Department</th>
                                             <th>Branch</th>
                                             <th>Batch</th>
@@ -210,7 +210,7 @@
                                 <table class="table table-striped table-bordered table-responsive" id="sub-tables">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>No</th>
                                             <th><?php echo ucwords("Assignment Name"); ?></th>
                                             <th><?php echo ucwords("Student Name"); ?></th>
                                             <th><?php echo ucwords("Course"); ?></th>
@@ -293,8 +293,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#assignmenttable').dataTable();
-        $('#sub-tables').dataTable();
+        $('#assignmenttable').dataTable({"language": { "emptyTable": "No data available" }});
+        $('#sub-tables').dataTable({"language": { "emptyTable": "No data available" }});
 
     });
 </script>

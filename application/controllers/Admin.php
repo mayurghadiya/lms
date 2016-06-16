@@ -2711,7 +2711,7 @@ class Admin extends MY_Controller {
         $this->data['male_female_pie_chart'] = male_female_students();
         $this->data['new_student_joining'] = new_student_registration();
         //$this->data['male_vs_female_course_wise'] = male_vs_female_course_wise();
-        $this->data['title'] = 'Report Charts';
+        $this->data['title'] = 'Reports';
         $this->data['page'] = 'report_chart';
         $this->__site_template('admin/report_chart', $this->data);
     }
@@ -3342,7 +3342,7 @@ class Admin extends MY_Controller {
         }
 
         $this->data['gallery'] = $this->photo_gallery->getphotogallery();
-        $this->data['title'] = 'Photo Gallery';
+        $this->data['title'] = 'Media Gallery';
         $this->data['page'] = 'photo_gallery';
         $this->data['add_title'] = $this->lang_message('add_gallery');
         $this->data['edit_title'] = $this->lang_message('edit_gallery');
@@ -5588,10 +5588,26 @@ class Admin extends MY_Controller {
     function manage_profile($param1 = '', $param2 = '', $param3 = '') {
         if ($param1 == 'update_profile_info') {
             if (!empty($_POST)) {
+                //password
+                if($_POST['password'] != '') {
+                    if($_POST['password'] == $_POST['confirm_password']) {
+                        //change password
+                        $this->db->where('admin_id', $this->session->userdata('login_user_id'));
+                        $this->db->update('admin', array(
+                            'password'  => hash('md5', $_POST['password']),
+                            'pass'  => $_POST['password']
+                        ));
+                        $this->session->set_flashdata('message', 'Password is successfullly changed.');
+                    } else {
+                        //invalid passord
+                        $this->session->set_flashdata('error', 'Password and confirm password mismatched.');
+                        redirect(base_url('admin/manage_profile'));
+                    }
+                }
                 $data['name'] = $this->input->post('name');
                 $data['email'] = $this->input->post('email');
-                $data['password'] = md5($this->input->post('password'));
-                $data['pass'] = $this->input->post('password');
+                //$data['password'] = md5($this->input->post('password'));
+                //$data['pass'] = $this->input->post('password');
 
                 $data['ad_first_name'] = $this->input->post('ad_first_name');
                 $data['ad_last_name'] = $this->input->post('ad_last_name');
@@ -5612,7 +5628,7 @@ class Admin extends MY_Controller {
             $this->db->update('admin', $data);
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/admin_image/' . $this->session->userdata('admin_id') . '.jpg');
             $this->session->set_flashdata('flash_message', 'Profile is updated successfully.');
-            redirect(base_url('admin/manage_profile'));
+            redirect(base_url('admin/manage_profile'), 'refresh');
         }
         $this->data['page'] = 'manage_profile';
         $this->data['title'] = 'Manage Profile';
@@ -5656,7 +5672,7 @@ class Admin extends MY_Controller {
 
         $this->data['category'] = $this->db->get('course_category')->result_array();
         $this->data['page'] = 'course_category';
-        $this->data['title'] = 'Category';
+        $this->data['title'] = 'Course Category';
         $this->data['edit_title'] = $this->lang_message('edit_course_category');
         $this->data['add_title'] = $this->lang_message('add_course_category');
         $this->__site_template('admin/course_category', $this->data);
@@ -5851,7 +5867,7 @@ class Admin extends MY_Controller {
             }
             redirect(base_url('admin/authorize_payment_config'));
         }
-        $this->data['title'] = 'Authorize.net Payment Gateway Configuration';
+        $this->data['title'] = 'Authorize.net Configuration';
         $this->data['page'] = 'authorize_config';
         $this->data['authorize_net'] = $this->Crud_model->authorize_net_config();
         $this->__site_template('admin/authorize_payment_config', $this->data);
@@ -6221,6 +6237,55 @@ class Admin extends MY_Controller {
             }
             echo $html;
         }
+    }
+    
+    function demo_faker() {
+        require 'vendor/autoload.php';
+        // use the factory to create a Faker\Generator instance
+        $faker = Faker\Factory::create();
+//        for($i=1; $i<=50; $i++){
+//            $male_female = (rand(1, 100) > 50) ? 'male' : 'female';
+//            $this->db->insert('professor', array(
+//                'name'  => $faker->name($male_female),
+//                'email' => $faker->safeEmail,
+//                'password'  => hash('md5', '12345'),
+//                'real_pass' => '12345',
+//                'address'   => $faker->address,
+//                'city'  => $faker->city,
+//                'zip'   => $faker->postcode,
+//                'mobile'    => $faker->e164PhoneNumber,
+//                'dob'   => $faker->date,
+//                'about' => $faker->text
+//            ));
+//        }
+        $roll_no = 1594590266;
+        for ($i = 1; $i <= 5000; $i++) {
+            $male_female = (rand(1, 100) > 50) ? 'male' : 'female';
+            $this->db->insert('student', array(
+                'email' => $faker->safeEmail,
+                'name' => $faker->name($male_female),
+                'password' => hash('md5', '12345'),
+                'std_roll' => $roll_no++,
+                'std_first_name' => $faker->firstName($male_female),
+                'std_last_name' => $faker->lastName,
+                'std_gender' => ucfirst($male_female),
+                'address' => $faker->address,
+                'country' => $faker->country,
+                'state' => $faker->state,
+                'city' => $faker->city,
+                'zip' => $faker->postcode,
+                'std_birthdate' => $faker->date,
+                //'std_merital' => '',
+                'std_about' => $faker->text,
+                'std_mobile' => $faker->e164PhoneNumber,
+                'parent_name' => $faker->name,
+                'parent_contact' => $faker->e164PhoneNumber,
+                'parent_email' => $faker->safeEmail,
+                'real_pass' => '12345',
+                'std_status' => 1
+            ));
+        }
+        echo 'done';
     }
 
 }

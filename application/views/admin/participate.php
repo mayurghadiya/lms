@@ -212,7 +212,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label"><?php echo ucwords("Participate Title "); ?><span style="color:red">*</span></label>
+                                            <label class="col-sm-4 control-label"><?php echo ucwords("activity Title "); ?><span style="color:red">*</span></label>
                                             <div class="col-sm-5">
                                                 <input type="text" class="form-control" name="title" id="title" />
                                             </div>
@@ -771,42 +771,7 @@
 
     });
 
-    $("#searchform").submit(function () {
-        var degree = $("#courses").val();
-        var course = $("#branches").val();
-        var batch = $("#batches").val();
-        var semester = $("#semesters").val();
-        if ($("#courses").val() != "" & $("#branches").val() != "" & $("#batches").val() != "" & $("#semesters").val() != "")
-        {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url(); ?>admin/getsurvey/",
-                data: {'degree': degree, 'course': course, 'batch': batch, "semester": semester},
-                success: function (response)
-                {
-                    $("#getresponse").html(response);
-                }
-
-
-            });
-        } else {
-            $("#searchform").validate({
-                rules: {
-                    degree: "required",
-                    course: "required",
-                    batch: "required",
-                    semester: "required",
-                },
-                messages: {
-                    degree: "Select department",
-                    course: "Select branch",
-                    batch: "Select batch",
-                    semester: "Select semester",
-                }
-            });
-        }
-        return false;
-    });
+    
     $("#courses").change(function () {
         var degree = $(this).val();
 

@@ -135,10 +135,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-1">
-                                    <label>&nbsp;</label>
-                                    <input type="submit" value="Submit" class="btn btn-info vd_bg-green"/>
-                                </div>
+                                <input type="submit" value="Submit" class="btn btn-info"/>
                             </form>
                         <?php } ?>
                     </div>
@@ -198,6 +195,7 @@
             "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-6'i><'col-sm-6'p>>",
+                    "language": { "emptyTable": "No data available" }
         });
         
         
@@ -224,7 +222,6 @@
         
         $(".datepicker-normal").datepicker({
             format: ' MM d, yyyy',
-            startDate: new Date(),
             autoclose:true,
             changeMonth: true,
             changeYear: true
@@ -234,6 +231,7 @@
             "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-6'i><'col-sm-6'p>>",
+            "language": { "emptyTable": "No data available" }
         });
         // branch from department
         $('#department').on('change', function () {
