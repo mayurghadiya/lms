@@ -25,7 +25,7 @@
                         <td></td>											
                         <td>
                             <?php if ($row->profile_photo != "") { ?>   
-                            <img src="<?= base_url() ?>/uploads/student_image/<?= $row->profile_photo; ?>" height="100px" width="100px
+                            <img src="<?php echo base_url(); ?>uploads/student_image/<?php echo $row->profile_photo; ?>" height="70px" width="70px
                                  "/>
                                  <?php } else { ?>
                                     <?php

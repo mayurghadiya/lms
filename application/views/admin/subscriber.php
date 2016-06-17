@@ -5,7 +5,7 @@
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
             <div class=panel-body>               
-                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                <table id="subscriber-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
                             <th>No</th>
@@ -41,3 +41,12 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('#subscriber-list').DataTable( {
+        "language": { "emptyTable": "No data available" },
+        "order": [[ 2, "desc" ]]
+    } );
+} );
+</script>

@@ -179,7 +179,7 @@ $degree = $this->Professor_model->get_all_degree();
                                 <?php } ?>
                             <?php } else { ?>
                                 <tr>
-                                    <td colspan="4">Exam schedule not found</td>
+                                    <td colspan="4">No data available!</td>
                                 </tr>
 
                             <?php } ?>

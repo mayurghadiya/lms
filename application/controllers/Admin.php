@@ -26,7 +26,7 @@ class Admin extends MY_Controller {
     /**
      * Index action
      */
-    function index() {
+    function index() {                
         $this->load->helper('report_chart');
         //$course = $this->db->get('course')->result();
         //$this->data['male_female_pie_chart'] = male_female_students();
@@ -3344,7 +3344,7 @@ class Admin extends MY_Controller {
         }
 
         $this->data['gallery'] = $this->photo_gallery->getphotogallery();
-        $this->data['title'] = 'Media Gallery';
+        $this->data['title'] = 'Photo Gallery';
         $this->data['page'] = 'photo_gallery';
         $this->data['add_title'] = $this->lang_message('add_gallery');
         $this->data['edit_title'] = $this->lang_message('edit_gallery');
@@ -3497,6 +3497,9 @@ class Admin extends MY_Controller {
 
         $this->data['title'] = 'Banner Slider';
         $this->data['page'] = 'banner_slider';
+        
+        $this->data['add_title'] = $this->lang_message('add_banner');
+        $this->data['edit_title'] = $this->lang_message('edit_banner');
         $this->__site_template('admin/banner_slider', $this->data);
     }
 
@@ -4779,6 +4782,7 @@ class Admin extends MY_Controller {
         $did = $this->input->post("degree");
 
         if ($did != '') {
+             $this->db->order_by('c_name','ASC');
             $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
             $html = '<option value="">Select Branch</option>';
             foreach ($cource as $crs):
@@ -5121,7 +5125,7 @@ class Admin extends MY_Controller {
         if ($did != '') {
 
 
-
+             $this->db->order_by('c_name','ASC');
             $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
 
             $html = '<option value="">Select Branch</option>';
@@ -5179,6 +5183,7 @@ class Admin extends MY_Controller {
                 echo ' <option value="">Select Branch</option>
                    <option value="All">All</option>';
             } else {
+                 $this->db->order_by('c_name','ASC');
                 $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
                 $html = '';
                 foreach ($cource as $crs):
@@ -5621,7 +5626,8 @@ class Admin extends MY_Controller {
                 $data['ad_mobile'] = $this->input->post('ad_mobile');
                 $data['ad_fb'] = $this->input->post('ad_fb');
                 $data['ad_twitter'] = $this->input->post('ad_twitter');
-
+                $name = $data['ad_first_name'].' '.$data['ad_last_name'];
+                $this->session->set_userdata('user_name',$name);     
 
                 //$data['identification_num'] = rand(1111,9999);
             }
@@ -6200,6 +6206,7 @@ class Admin extends MY_Controller {
                 $html .= '<option value="All">All</option>';
             } else {
                 $this->db->select('course_id,c_name');
+                 $this->db->order_by('c_name','ASC');
                 $cource = $this->db->get_where("course", array("degree_id" => $did))->result_array();
                 $html = '<option value="">Select Branch</option>';
                 if ($param == '') {

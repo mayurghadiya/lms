@@ -602,5 +602,35 @@ class Site extends MY_Controller {
         $this->data['gallery'] = $this->db->get('photo_gallery')->result();
         $this->__template('gallery', $this->data);
     }
+    
+    function growth()
+    {
+        
+    //$res =    $this->db->query("SELECT STR_TO_DATE(event_date,'%Y-%m-%d') as e_date, event_id
+//FROM event_manager
+//WHERE e_date IN ()")->result();
+       // $res = $this->db->query("SELECT STR_TO_DATE(todo_datetime,'%Y-%m-%d') as todo_date FROM todo_list")->result();
+        $res = $this->db->query("select * from event_manager join todo_list on 1=1")->result();
+        $res = $this->db->query("SELECT STR_TO_DATE(event_date,'%Y-%m-%d') as e_date FROM event_manager
+UNION (
+SELECT STR_TO_DATE(todo_datetime,'%Y-%m-%d') as todo_date FROM todo_list)")->result();
+       // $res = $this->db->query('SELECT * FROM event_manager,todo_list')->result();
+        echo "<pre>";
+        print_r($res);
+        die;
+        //$res = $this->db->query("SELECT SUM(marks_manager.mark_obtained) as total, SUM(exam_manager.total_marks) as outmark,marks_manager.mm_std_id FROM marks_manager JOIN exam_manager ON marks_manager.mm_subject_id = exam_manager.subject_id WHERE marks_manager.mm_std_id='23'")->result();
+        $user_id = $this->session->userdata('login_user_id');
+        $res =  $this->db->query("SELECT SUM(marks_manager.mark_obtained) as total, SUM(exam_manager.total_marks) as totalmarks,marks_manager.mm_std_id,semester.s_name FROM  marks_manager JOIN exam_manager ON marks_manager.mm_exam_id = exam_manager.em_id JOIN semester ON exam_manager.em_semester=semester.s_id WHERE marks_manager.mm_std_id='".$user_id."' GROUP BY exam_manager.em_semester")->result();      
+        echo "<pre>";
+        print_r($res);
+        foreach($res as $row_mark):	
+						$total = ($row_mark->total*100/$row_mark->totalmarks);
+						$total_percentage = number_format($total, 2, '.', ',');
+                                                echo $total_percentage." %"; echo "<br>";
+                                                endforeach;
+      
+        die;
+        
+    }
 
 }

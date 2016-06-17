@@ -138,13 +138,13 @@
                                                 <!-- id="inlinedate" contenteditable="true" onBlur="saveToDatabase(this,'assign_dos','<?php echo $row->assign_id; ?>')" onClick="showEdit(this);"-->
                                                 <td><?php echo wordwrap($row->assign_desc, 30, "<br>\n"); ?></td>
                                                 <td><?php echo date('M d, Y', strtotime($row->assign_dos)); ?></td>
-                                                <td><a href="<?php echo base_url() . 'uploads/project_file/' . $row->assign_filename; ?>" download="" title="<?php echo $row->assign_title; ?>"><i class="fa fa-download"></i></a></td>
+                                                <td><a href="<?php echo base_url() . 'uploads/project_file/' . $row->assign_filename; ?>" download="" title="download"><i class="fa fa-download"></i></a></td>
                                                 <td class="menu-action">
-                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
+                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_assignment/<?php echo $row->assign_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
                                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                                             Edit
                                                         </span></a>
-                                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/assignment/delete/<?php echo $row->assign_id; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">
+                                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/assignment/delete/<?php echo $row->assign_id; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">
                                                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                             Delete
                                                         </span></a>
@@ -270,7 +270,7 @@
                                                 </td>
                                                 <td><?php echo date_formats($rowsub->submited_date); ?></td>
                                                 <td><?php echo $rowsub->comment; ?></td>
-                                                <td id="downloadedfile"><a href="<?php echo base_url(); ?>uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>
+                                                <td id="downloadedfile"><a href="<?php echo base_url(); ?>uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="download"><i class="fa fa-download"></i></a></td>
                                             </tr>
                                         <?php endforeach; ?>                      
                                     </tbody>

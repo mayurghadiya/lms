@@ -85,7 +85,7 @@
                     <td><?php echo date("F d, Y", strtotime($row->pm_dos)); ?></td>	
 
                     <td class="menu-action">
-                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
+                        <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_project/<?php echo $row->pm_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
 <i class="fa fa-pencil" aria-hidden="true"></i>
 Edit
 </span></a>

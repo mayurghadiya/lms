@@ -869,8 +869,8 @@ $this->carabiner->display('calendar_css');
                        <?php  foreach($growth as $row_mark):    
                         $total = ($row_mark->total*100/$row_mark->totalmarks);
                         $total_percentage = number_format($total, 2, '.', ',');
-                                                 $total_percentage." %";
-                                                 $round_percentage = round($total_percentage);
+                        $total_percentage." %";
+                        $round_percentage = round($total_percentage);
                                                 ?>
                          <?php
                                  $progress_class = '';

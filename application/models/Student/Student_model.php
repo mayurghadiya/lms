@@ -890,7 +890,6 @@ class Student_model extends CI_Model {
         $this->db->where("assign_id",$assign_id);
         return $this->db->get('assignment_reopen')->num_rows();
     }
-
     
     /**
      * 

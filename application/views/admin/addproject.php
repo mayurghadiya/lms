@@ -148,6 +148,11 @@
             data: dataString,
             success: function (response) {
                 $("#course").html(response);
+                 $("#student").html('');
+                $('#course').prop('selectedIndex',0);
+                       $('#batch').prop('selectedIndex',0);
+                       $('#semester').prop('selectedIndex',0);
+                        $('#class').prop('selectedIndex',0);
             }
         });
     });
@@ -168,10 +173,24 @@
                     data: {'course': course},
                     success: function (response) {
                         $("#semester").html(response);
+                        $("#student").html('');
+                         $('#batch').prop('selectedIndex',0);
+                       $('#semester').prop('selectedIndex',0);
+                        $('#class').prop('selectedIndex',0);
                     }
                 });
             }
         });
+    });
+    
+    $("#batch").change(function(){
+      $("#student").html('');
+            $('#semester').prop('selectedIndex',0);
+            $('#class').prop('selectedIndex',0);
+    });
+    $('#semester').change(function(){
+        $("#student").html('');
+             $('#class').prop('selectedIndex',0);
     });
 
     function get_student2(batch, semester = '') {

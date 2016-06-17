@@ -39,7 +39,7 @@
                                             <td><?php echo $count++; ?></td>
                                             <td><?php echo $row->assign_title; ?></td>	                                                    	                                                   
                                             <td><?php echo date("F d, Y", strtotime($row->assign_dos)); ?></td>		                                           
-                                            <td> <a href="<?php echo base_url(); ?>uploads/project_file/<?php echo $row->assign_filename; ?>" download="" title="<?php echo $row->assign_filename; ?>"><i class="fa fa-download"></i></a></td>
+                                            <td> <a href="<?php echo base_url(); ?>uploads/project_file/<?php echo $row->assign_filename; ?>" download="" title="download"><i class="fa fa-download"></i></a></td>
                                             <td><?php echo wordwrap($row->assignment_instruction, 30, "<br>\n"); ?></td>
                                             <td> 
                                                 <?php
@@ -59,10 +59,10 @@
                                                             <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_submit_assignment/<?php echo $row->assign_id; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="icomoon-icon-plus mr0"></i> Add</span></a>
                                                             <?php
                                                         } else {
-                                                            echo '<span class="label label-danger mr6 mb6">Not Submitted</span>';
+                                                            echo '<span class="label label-danger mr6 mb6"><i class="fa fa-minus-square-o" ></i>Not Submitted</span>';
                                                         }
                                                     } else {
-                                                        echo '<span class="label label-primary mr6 mb6">Submitted</span>';
+                                                        echo '<span class="label label-primary mr6 mb6"><i class="fa fa-check-square-o"></i>Submitted</span>';
                                                     }
                                                 }
                                                 ?>
@@ -103,7 +103,7 @@
                                             <td><?php echo date("F d, Y", strtotime($srow->submited_date)); ?></td>	
                                             <td><?php echo $srow->document_file; ?></td>
                                             <td > 
-                                                <a href="<?php echo base_url() ?>uploads/project_file/<?php echo $srow->assign_filename; ?>" download=""  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Download</span></a>
+                                                <a href="<?php echo base_url() ?>uploads/project_file/<?php echo $srow->assign_filename; ?>" download=""  data-toggle="tooltip" data-placement="top" title="download" ><i class="fa fa-download"></i></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>						
@@ -131,7 +131,7 @@
                                         <tr>
                                             <td><?php echo $count++; ?></td>	
                                             <td><?php echo $row['assign_title']; ?></td>                                                               
-                                            <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $row['document_file']; ?>" download=""><i class="fa fa-download"></i></a></td>	                                                              
+                                            <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $row['document_file']; ?>" title="download" download=""><i class="fa fa-download"></i></a></td>	                                                              
                                             <td><?php echo wordwrap($row['feedback'], 30, "<br>\n"); ?></td>                                                   
                                             <td><?php echo $row['grade']; ?></td>                                                   
                                         </tr>

@@ -407,7 +407,7 @@
                                             <li>
                                                 <a id="link-photo_gallery" href="<?php echo base_url(); ?>admin/photogallery">
                                                     <i class="s16 fa fa-picture-o"></i>
-                                                    <span class="txt">Media Gallery</span>
+                                                    <span class="txt">Photo Gallery</span>
                                                 </a>
                                             </li>
                                             <li>
@@ -708,13 +708,6 @@
                                             <ul>
                                                 <li>
                                                     <label>
-                                                        <input type="checkbox" value="degree" name="degree"
-                                                               <?php if (isset($from['degree'])) echo 'checked'; ?>>
-                                                        <span>Department</span>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
                                                         <input type="checkbox" value="student" name="student"
                                                                <?php if (isset($from['student'])) echo 'checked'; ?>>
                                                         <span>Student</span>
@@ -743,30 +736,9 @@
                                                 </li>
                                                 <li>
                                                     <label>
-                                                        <input type="checkbox" value="batch" name="batch"
-                                                               <?php if (isset($from['batch'])) echo 'checked'; ?>>
-                                                        <span>Batch</span>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
                                                         <input type="checkbox" value="assignment" name="assignment"
                                                                <?php if (isset($from['assignment'])) echo 'checked'; ?>>
                                                         <span>Assignment</span>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" value="participate" name="participate"
-                                                               <?php if (isset($from['participate'])) echo 'checked'; ?>>
-                                                        <span>Participate</span>
-                                                    </label>
-                                                </li> 
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" value="professor" name="professor"
-                                                               <?php if (isset($from['professor'])) echo 'checked'; ?>>
-                                                        <span>Professor</span>
                                                     </label>
                                                 </li>
                                             </ul>                                           

@@ -86,7 +86,7 @@
                                                 <td><?php echo $row->pm_title; ?></td>	
                                                 <td><?php echo date('F d, Y', strtotime($row->dos)); ?></td>	
                                                 <td>
-                                                    <a href="<?php echo base_url() . 'uploads/project_file/' . $row->document_file ?>" download=""  ><span class="label label-primary mr6 mb6">Download</span></a>
+                                                    <a href="<?php echo base_url() . 'uploads/project_file/' . $row->document_file ?>" download="" title="download"  ><i class="fa fa-download"></i></a>
                                                 </td>	
                                             </tr>
                                         <?php endforeach; ?>						

@@ -42,7 +42,7 @@
                                         <td><?php echo $row->syllabus_title; ?></td>	
 
                                         <td><?php echo wordwrap($row->syllabus_desc, 30, "<br>\n"); ?></td>
-                                        <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/syllabus/' . $row->syllabus_filename; ?>" download="" title="<?php echo $row->syllabus_title; ?>"><i class="fa fa-download"></i></a></td>	                                                  
+                                        <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/syllabus/' . $row->syllabus_filename; ?>" download="" title="download"><i class="fa fa-download"></i></a></td>	                                                  
 
                                     </tr>
 <?php endforeach; ?>						
