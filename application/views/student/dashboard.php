@@ -866,16 +866,45 @@ $this->carabiner->display('calendar_css');
                 <div class="vital-stats">
                     <!-- Vital stats -->
                     <ul class="list-unstyled growth-list">
+                       <?php  foreach($growth as $row_mark):	
+						$total = ($row_mark->total*100/$row_mark->totalmarks);
+						$total_percentage = number_format($total, 2, '.', ',');
+                                                 $total_percentage." %";
+                                                 $round_percentage = round($total_percentage);
+                                                ?>
+                         <?php
+                                 $progress_class = '';
+                                 $color_class = '';
+                                if($round_percentage >= 50 || $round_percentage <= 60  )
+                                {
+                                    $progress_class = "progress-bar-warning";
+                                    $color_class = "fa-caret-down color-red";
+                                }
+                                if($round_percentage <= 50)
+                                {
+                                    $progress_class = "progress-bar-danger";
+                                    $color_class= "fa-caret-down color-red";
+                                }
+                                if($round_percentage >= 70)
+                                {
+                                    $progress_class = "progress-bar-success";
+                                    $color_class= "fa-caret-up color-green";
+                                }
+                                
+                                 ?>
+                                               
                         <li>
-                            <i class="fa fa-caret-up s24 color-green" aria-hidden="true"></i>
-                            Subject 1 
-                            <span class="pull-right strong">567</span>
+                            <i class="fa fa-caret-up s24 <?php echo $color_class; ?>" aria-hidden="true"></i>
+                             <?php echo $row_mark->s_name; ?>
+                            <span class="pull-right strong"><?php echo $row_mark->total; ?></span>
                             <div class="progress progress-striped animated-bar mt0">
-                                <div data-transitiongoal="81" role="progressbar" class="progress-bar" style="width: 81%;" aria-valuenow="81">
-                                    81%
+                               
+                                <div data-transitiongoal="<?php echo $round_percentage; ?>" role="progressbar" class="progress-bar <?php echo $progress_class; ?>" style="width: <?php echo $round_percentage; ?>%;" aria-valuenow="<?php echo $round_percentage; ?>">
+                                   <?php echo $total_percentage; ?>%
                                 </div>
                             </div>
                         </li>
+                                 <?php endforeach;?>
                         <li>
                             <i class="fa fa-caret-up s24 color-green" aria-hidden="true"></i> Subject 2 <span class="pull-right strong">507</span>
                             <div class="progress progress-striped animated-bar mt0">

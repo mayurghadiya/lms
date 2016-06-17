@@ -86,7 +86,7 @@
                      <tr id="question-<?php echo $rows->sq_id; ?>">                    
                         <th><label><?php echo $rows->question; ?> <span style="color:red">*</span></label>
                         <th>
-                            <?php $res = $this->Student_model->getrating($rows->sq_id);
+                            <?php $res = '';
                             ?>  
                            <div id="tutorial-<?php echo $rows->sq_id; ?>">
                               <input type="hidden" name="rating" id="rating" value="<?php echo '0'; ?>" />
