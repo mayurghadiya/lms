@@ -320,6 +320,10 @@ class Student extends MY_Controller {
             $this->session->set_flashdata('flash_message', 'Survey added successfully');
             redirect(base_url() . 'student/participate', 'refresh');
         }
+        $std = $this->session->userdata('login_user_id');                
+        
+//$this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
+
         $std = $this->session->userdata('std_id');
         //$getcount =  $this->db->query("SELECT survey_status,survey_question_id, COUNT(*) FROM survey_result GROUP BY survey_question_id")->result();
         //$this->data['survey'] = $this->db->query('SELECT * FROM survey_question ORDER BY sq_id DESC')->result();        
@@ -330,6 +334,7 @@ class Student extends MY_Controller {
          $this->data['survey'] = $this->db->query(" SELECT * FROM `survey_question` where sq_id not in (SELECT sq_id FROM survey where student_id='".$std."') and question_status='1'")->result();        
         
         //$this->data['survey'] = $this->db->get_where('survey_question', array('question_status' => '1'))->result();
+
         $this->data['page'] = 'participate';
         $this->data['title'] = 'Survey Application Form';
         $this->data['param'] = $param1;
@@ -1626,5 +1631,5 @@ class Student extends MY_Controller {
             $this->Student_model->addsurveyrating($data);
         }
     }
-
+    
 }

@@ -284,6 +284,12 @@ endforeach;
             success: function (response) {
                 $("#course2").html(response);
                 $("#student2").html('');
+                    $('#course2').prop('selectedIndex',0);
+                       $('#batch2').prop('selectedIndex',0);
+                       $('#semester2').prop('selectedIndex',0);
+                        $('#class2').prop('selectedIndex',0);
+                       
+
             }
         });
     });
@@ -304,14 +310,27 @@ endforeach;
                     url: "<?php echo base_url() . 'professor/get_semester/'; ?>",
                     data: {'course': course},
                     success: function (response1) {
+                        $("#student2").html('');
                         $("#semester2").html(response1);
+                         $('#batch2').prop('selectedIndex',0);
+                       $('#semester2').prop('selectedIndex',0);
+                        $('#class2').prop('selectedIndex',0);
                     }
                 });
             }
         });
     });
+    $('#batch2').change(function(){
+            $('#semester2').prop('selectedIndex',0);
+            $('#class2').prop('selectedIndex',0);
+            $("#student2").html('');
+    });
+    $("#semester2").change(function () {
+        $("#student2").html('');
+      $('#class2').prop('selectedIndex',0);
+    });
 
-
+    
 
 
     $.validator.setDefaults({

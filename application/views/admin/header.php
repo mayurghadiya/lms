@@ -407,7 +407,7 @@
                                             <li>
                                                 <a id="link-photo_gallery" href="<?php echo base_url(); ?>admin/photogallery">
                                                     <i class="s16 fa fa-picture-o"></i>
-                                                    <span class="txt">Media Gallery</span>
+                                                    <span class="txt">Photo Gallery</span>
                                                 </a>
                                             </li>
                                             <li>

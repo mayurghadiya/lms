@@ -48,11 +48,11 @@
                                 </td>
                                 <td id="downloadedfile"><a href="<?= base_url() ?>uploads/courseware/<?php echo $row['attachment']; ?>" download="" title="download"><i class="fa fa-download"></i></a></td>	
                                 <td class="menu-action">
-                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_courseware/<?php echo $row['courseware_id']; ?>');" data-original-title="edit" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_courseware/<?php echo $row['courseware_id']; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                     Edit
                                     </span></a>
-                                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/courseware/delete/<?php echo $row['courseware_id']; ?>');" data-original-title="Remove" data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">
+                                                                        <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>professor/courseware/delete/<?php echo $row['courseware_id']; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     Delete
                                     </span></a>
