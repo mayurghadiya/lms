@@ -38,7 +38,7 @@
                                 <td><?php echo $row['subject_name']; ?></td>                                
                                 <td><?php echo $row['chapter']; ?></td> 
                                 <td><?php echo $row['c_name']; ?></td>
-                                <td id="downloadedfile"><a href="<?= base_url() ?>uploads/courseware/<?php echo $row['attachment']; ?>" download="" title="<?php echo $row['attachment']; ?>"><i class="fa fa-download"></i></a></td>	
+                                <td id="downloadedfile"><a href="<?= base_url() ?>uploads/courseware/<?php echo $row['attachment']; ?>" download="" title="download"><i class="fa fa-download"></i></a></td>	
                                 <td><?php echo $row['description']; ?></td>
                             </tr>
                             <?php

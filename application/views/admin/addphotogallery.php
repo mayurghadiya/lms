@@ -18,7 +18,7 @@ $semesters = $this->db->get('semester')->result_array();
                             var img = $("<img />");
                             img.attr("style", "height:100px;width: 100px");
                             img.attr("src", e.target.result);
-                            img.attr("class", 'img-photogallery');
+                            img.attr("class",'img-photogallery');
                             dvPreview.append(img);
                         }
                         reader.readAsDataURL(file[0]);

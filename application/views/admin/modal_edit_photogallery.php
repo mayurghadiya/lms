@@ -20,7 +20,7 @@ foreach ($edit_data as $row):
                                 var img = $("<img />");
                                 img.attr("style", "height:100px;width: 100px");
                                 img.attr("src", e.target.result);
-                                img.attr("class", 'img-photogallery');
+                                 img.attr("class",'img-photogallery');
                                 dvPreview.append(img);
                             }
                             reader.readAsDataURL(file[0]);
@@ -98,7 +98,6 @@ foreach ($edit_data as $row):
                                         <div id="image_container1"><img class='img-thumbnail' style='width:300px;margin:20px;' src='<?php echo base_url() . "uploads/photogallery/" . $row['main_img']; ?>' ></div>                           
                                     </div>
                                 </div>
-
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">File Upload <span style="color:red"></span></label>
@@ -139,7 +138,10 @@ foreach ($edit_data as $row):
                             for ($i = 0; $i < count($galleryimg); $i++) {
                                 ?>
                                 <img src="<?php echo base_url(); ?>uploads/photogallery/<?php echo $galleryimg[$i]; ?>" height="100" width="100" class="img-photogallery" />
-                            <?php } ?>
+
+
+    <?php } ?>
+
                         </div>
 
                     </div>

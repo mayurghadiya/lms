@@ -46,7 +46,7 @@
                                         <span>InActive</span>
                                     <?php } ?>
                                 </td>
-                                <td id="downloadedfile"><a href="<?= base_url() ?>uploads/courseware/<?php echo $row['attachment']; ?>" download="" title="<?php echo $row['attachment']; ?>"><i class="fa fa-download"></i></a></td>	
+                                <td id="downloadedfile"><a href="<?= base_url() ?>uploads/courseware/<?php echo $row['attachment']; ?>" download="" title="download"><i class="fa fa-download"></i></a></td>	
                                 <td class="menu-action">
                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_courseware/<?php echo $row['courseware_id']; ?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
