@@ -349,6 +349,7 @@ class Admin extends MY_Controller {
 
                     $data['profile_photo'] = '';
                 }
+                $data['name'] = $this->input->post('f_name') . ' ' . $this->input->post('l_name');
                 $data['email'] = $this->input->post('email_id');
                 $data['password'] = md5($this->input->post('password'));
                 $data['std_first_name'] = $this->input->post('f_name');
@@ -417,7 +418,7 @@ class Admin extends MY_Controller {
                 $msg .= "<br/>Username: " . $_POST['email_id'];
                 $msg .= "<br/>Passwod: " . $_POST['password'];
                 $this->email->from('mayur.ghadiya@searchnative.in', 'Search Native India');
-                $this->email->to($_POST['email']);
+                $this->email->to($_POST['email_id']);
                 //  $this->email->cc('mayur.ghadiya@searchnative.in');
                 $this->email->subject('Login credential');
                 $this->email->message($msg);
@@ -460,6 +461,7 @@ class Admin extends MY_Controller {
                         redirect(base_url() . 'admin/student/', 'refresh');
                     }
                 }
+                $data['name'] = $this->input->post('f_name') . ' ' . $this->input->post('l_name');
                 $data['email'] = $this->input->post('email_id');
                 $data['password'] = md5($this->input->post('password'));
                 $data['real_pass'] = $this->input->post('password');
