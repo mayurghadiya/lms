@@ -11,12 +11,12 @@
    .demo-table .highlight, .demo-table .selected {color:#F4B30A;text-shadow: 0 0 1px #F48F0A;}
 </style>
 <script>function highlightStar(obj,id) {
-   removeHighlight(id);		
+   removeHighlight(id);   
    $('.demo-table #tutorial-'+id+' li').each(function(index) {
-   	$(this).addClass('highlight');
-   	if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
-   		return false;	
-   	}
+    $(this).addClass('highlight');
+    if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
+      return false; 
+    }
    });
    }
    
@@ -27,11 +27,11 @@
    
    function addRating(obj,id) {
    $('.demo-table #tutorial-'+id+' li').each(function(index) {
-   	$(this).addClass('selected');
-   	$('#tutorial-'+id+' #rating').val((index+1));
-   	if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
-   		return false;	
-   	}
+    $(this).addClass('selected');
+    $('#tutorial-'+id+' #rating').val((index+1));
+    if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
+      return false; 
+    }
    });
     var rate = $('#tutorial-'+id+' #rating').val();       
     var rated = $("#rating-"+id).val(rate);
@@ -47,12 +47,12 @@
    
    function resetRating(id) {
    if($('#tutorial-'+id+' #rating').val() != 0) {
-   	$('.demo-table #tutorial-'+id+' li').each(function(index) {
-   		$(this).addClass('selected');
-   		if((index+1) == $('#tutorial-'+id+' #rating').val()) {
-   			return false;	
-   		}
-   	});
+    $('.demo-table #tutorial-'+id+' li').each(function(index) {
+      $(this).addClass('selected');
+      if((index+1) == $('#tutorial-'+id+' #rating').val()) {
+        return false; 
+      }
+    });
    }
    } 
 </script>

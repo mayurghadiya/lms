@@ -4932,9 +4932,9 @@ if (+ function(a) {
                 $footer = a("#footer");
                 var b = a(".page-content");
                 $footer.css(b.height() < a(window).height() ? {
-                    position: "absolute"
+                   // position: "absolute"
                 } : {
-                    position: "static"
+                   // position: "static"
                 })
             }, f.getBreakPoint = function() {
                 var a = jRespond([{

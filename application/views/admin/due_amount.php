@@ -65,22 +65,25 @@
                             $counter = 1;
                             foreach ($students as $student) {
                                 ?>
+                                <?php
+                                $paid_fees = $this->Student_model->student_paid_fees($fee_structure, $student->std_id);
+                                $total_paid = 0;
+                                if (count($paid_fees)) {
+                                    foreach ($paid_fees as $paid) {
+                                        $total_paid += $paid->paid_amount;
+                                    }
+                                }
+                                $due_amount = $fee_structure_info->total_fee - $total_paid;
+                                if ($due_amount <= 0)
+                                    continue;
+                                ?>
                                 <tr>
                                     <td><?php echo $counter++; ?></td>
                                     <td><?php echo str_replace('-', '', $student->std_roll); ?></td>
-                                    <td><?php echo $student->std_first_name . ' ' . $student->std_last_name; ?></td>
+                                    <td><?php echo ucwords($student->std_first_name . ' ' . $student->std_last_name); ?></td>
                                     <td><?php echo $student->std_mobile; ?></td>
                                     <td><?php echo $student->email; ?></td>
-                                    <?php
-                                    $paid_fees = $this->Student_model->student_paid_fees($fee_structure, $student->std_id);
-                                    $total_paid = 0;
-                                    if (count($paid_fees)) {
-                                        foreach ($paid_fees as $paid) {
-                                            $total_paid += $paid->paid_amount;
-                                        }
-                                    }
-                                    $due_amount = $fee_structure_info->total_fee - $total_paid;
-                                    ?>
+
                                     <td><?php echo $this->data['currency'] . $due_amount; ?></td>
                                 </tr>
                             <?php } ?>
@@ -135,7 +138,7 @@
                     success: function (content) {
                         $("#due_amount-filter-result").html(content);
                         $('#all-due_amount-result').hide();
-                        $('#due_amount-data-tables').DataTable({"language": { "emptyTable": "No data available" }});
+                        $('#due_amount-data-tables').DataTable({"language": {"emptyTable": "No data available"}});
                     }
                 });
             }

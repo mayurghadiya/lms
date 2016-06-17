@@ -152,7 +152,7 @@
                                                       if($dos < $current)
                                                       {
                                                     ?>
-                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_reopen_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Reopen</span></a>
+                                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_reopen_assignment/<?php echo $row->assign_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6"><i class="fa fa-desktop" ></i>Reopen</span></a>
                                                      <?php } ?>
                                                 </td>	
                                             </tr>

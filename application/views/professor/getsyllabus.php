@@ -71,7 +71,7 @@ Delete
 <script type="text/javascript">
     $(document).ready(function () {
         "use strict";
-        $('#datatable-list').dataTable();
+        $('#datatable-list').dataTable({"language": { "emptyTable": "No data available" }});
     });
    
 </script>

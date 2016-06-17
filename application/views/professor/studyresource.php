@@ -224,7 +224,7 @@
         });
     });
     $(document).ready(function () {
-        $('#studyresource-tables').dataTable();
+        $('#studyresource-tables').dataTable({"language": { "emptyTable": "No data available" }});
 
     });
 </script>

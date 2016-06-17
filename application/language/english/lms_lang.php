@@ -201,7 +201,7 @@ $lang['delete_study_resource'] = 'Study resource is successfully deleted.';
 /**
  * Project and synopsis
  */
-$lang['project_title'] = 'Project';
+$lang['project_title'] = 'Project/Synopsis';
 $lang['save_project'] = 'Project is successfully added.';
 $lang['update_project'] = 'Project is sucucessfully updated.';
 $lang['delete_project'] = 'Project is successfully deleted.';
@@ -308,7 +308,7 @@ $lang['banner_general']= "Banner Slider General Setting Updated Successfully";
  */
 
 $lang['data_import'] = "Data is successfully imported.";
-$lang['import_title'] = 'Import Data';
+$lang['import_title'] = 'Import';
 
 
 $lang['semseter_add'] = 'Semester Added Auccessfully';

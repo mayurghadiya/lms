@@ -21,6 +21,9 @@ class Professor extends MY_Controller {
             $this->load->helper('permission');
             user_permission();
         }
+
+        $this->data['professor_details'] = $this->Professor_model->professor_details(
+                $this->session->userdata('login_user_id'));
     }
 
     /**
@@ -29,7 +32,7 @@ class Professor extends MY_Controller {
     function index() {
         $this->data['todolist'] = $this->Professor_model->get_todo();
         $this->data['page'] = 'dashboard';
-        $this->data['title'] = 'Professor Dashboard';
+        $this->data['title'] = 'Dashboard';
         $this->data['recent_activity'] = $this->Professor_model->get_recent_activity();
         $this->__site_template('professor/dashboard', $this->data);
     }
@@ -39,7 +42,7 @@ class Professor extends MY_Controller {
      */
     function dashboard() {
         $this->data['page'] = 'dashboard';
-        $this->data['title'] = 'Professor Dashboard';
+        $this->data['title'] = 'Dashboard';
         $this->data['todolist'] = $this->Professor_model->get_todo();
         $this->data['recent_activity'] = $this->Professor_model->get_recent_activity();
         $this->__site_template('professor/dashboard', $this->data);
@@ -433,18 +436,15 @@ class Professor extends MY_Controller {
                 $this->session->set_flashdata('flash_message', 'Assignment Updated Successfully');
                 redirect(base_url() . 'professor/assignment/', 'refresh');
             }
-            if($param1=="reopen")
-            {
-                $implode = implode(",",$this->input->post('student'));
-                if(!empty($implode))
-                {
+            if ($param1 == "reopen") {
+                $implode = implode(",", $this->input->post('student'));
+                if (!empty($implode)) {
                     $insert['student_id'] = $implode;
-                    $insert['assign_id'] = $param2;                    
-                    $this->Professor_model->insert_update_assignment_reopen($insert,$param2);
+                    $insert['assign_id'] = $param2;
+                    $this->Professor_model->insert_update_assignment_reopen($insert, $param2);
                     $this->session->set_flashdata('flash_message', 'Assignment reopen Successfully');
                     redirect(base_url() . 'professor/assignment/', 'refresh');
-                }
-                else{
+                } else {
                     $this->session->set_flashdata('flash_message', 'Assignment reopen failed');
                     redirect(base_url() . 'professor/assignment/', 'refresh');
                 }
@@ -476,7 +476,7 @@ class Professor extends MY_Controller {
          */
         //$this->data['class'] = $this->db->get('class')->result();
         $this->data['page'] = 'assignments';
-        $this->data['title'] = 'Assignment';
+        $this->data['title'] = 'Assignments';
         $this->data['add_title'] = $this->lang_message('add_assignment');
         $this->data['edit_title'] = $this->lang_message('edit_assignment');
         $this->__site_template('professor/assignment', $this->data);
@@ -794,7 +794,7 @@ class Professor extends MY_Controller {
         //$this->db->get('student')->result();
         $this->data['student'] = $this->db->select('std_id, std_first_name, std_last_name')->from('student')->get()->result();
         $this->data['page'] = 'project';
-        $this->data['title'] = 'Project';
+        $this->data['title'] = 'Project/Synopsis';
         $this->data['add_title'] = $this->lang_message('add_project');
         $this->data['edit_title'] = $this->lang_message('edit_project');
         $this->__site_template('professor/project', $this->data);
@@ -1108,47 +1108,37 @@ class Professor extends MY_Controller {
         $this->__site_template('professor/courseware', $this->data);
     }
 
-    function getcourseware($param1="")
-    {
-        if($param1="edit")
-        {
-            $this->db->where('branch_id',$this->input->post('branch'));
-            $this->db->where('subject_id',$this->input->post('subject'));
-            $this->db->where('chapter',$this->input->post('chapter'));
-            $this->db->where('topic',$this->input->post('topic'));
-            $this->db->where_not_in('courseware_id',$this->input->post('editid'));
-            $data=$this->db->get('courseware')->result();
+    function getcourseware($param1 = "") {
+        if ($param1 = "edit") {
+            $this->db->where('branch_id', $this->input->post('branch'));
+            $this->db->where('subject_id', $this->input->post('subject'));
+            $this->db->where('chapter', $this->input->post('chapter'));
+            $this->db->where('topic', $this->input->post('topic'));
+            $this->db->where_not_in('courseware_id', $this->input->post('editid'));
+            $data = $this->db->get('courseware')->result();
 //            echo $this->db->last_query();
 //            print_r($data);
 //            exit;
-            if(count($data)>0)
-            {
+            if (count($data) > 0) {
                 echo 'false';
+            } else {
+                echo 'true';
             }
-            else
-            {
+        } else {
+            $this->db->where('branch_id', $this->input->post('branch'));
+            $this->db->where('subject_id', $this->input->post('subject'));
+            $this->db->where('chapter', $this->input->post('chapter'));
+            $this->db->where('topic', $this->input->post('topic'));
+            $data = $this->db->get('courseware')->result();
+
+            if (count($data) > 0) {
+                echo 'false';
+            } else {
                 echo 'true';
             }
         }
-        else {
-            $this->db->where('branch_id',$this->input->post('branch'));
-            $this->db->where('subject_id',$this->input->post('subject'));
-            $this->db->where('chapter',$this->input->post('chapter'));
-            $this->db->where('topic',$this->input->post('topic'));
-            $data=$this->db->get('courseware')->result();
-
-            if(count($data)>0)
-            {
-                echo 'false';
-            }
-            else
-            {
-                echo 'true';
-            }
-        }       
-        
     }
-    
+
     function getsubject() {
         $this->data['subject'] = $this->Professor_model->getsubject($this->input->post('id'));
 
@@ -1740,7 +1730,7 @@ class Professor extends MY_Controller {
         foreach ($exam_detail as $row) {
             ?>
             <option value="<?php echo $row->em_id ?>"
-                    <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
+            <?php if ($row->em_id == $time_table) echo 'selected'; ?>><?php echo $row->em_name . '  (Marks' . $row->total_marks . ')'; ?></option>
             <!--echo "<option value={$row->em_id}>{$row->em_name}  (Marks{$row->total_marks})</option>";-->
             <?php
         }
@@ -1958,7 +1948,7 @@ class Professor extends MY_Controller {
     function email_sent() {
         $this->load->helper('system_email');
         $this->data['sent_mail'] = professor_sent_email(); //admin
-        $this->data['title'] = 'Sent Email';
+        $this->data['title'] = 'Sent';
         $this->data['page'] = 'email_sent';
         $this->__site_template('professor/email_sent', $this->data);
     }
@@ -2569,7 +2559,7 @@ class Professor extends MY_Controller {
 
                     $data['image_path'] = $file_name;
                     $this->session->set_userdata('image_path', $file_name);
-                    $param2 = $this->session->userdata("login_user_id");                    
+                    $param2 = $this->session->userdata("login_user_id");
                     $this->Crud_model->save_professor($data, $param2);
                     $this->session->set_flashdata("flash_message", 'Profile update successfully');
                     redirect(base_url() . 'professor/manage_profile');
@@ -2850,7 +2840,7 @@ class Professor extends MY_Controller {
         foreach ($subjects as $row) {
             ?>
             <option value="<?php echo $row->sm_id; ?>"
-                    <?php if ($row->sm_id == $time_table) echo 'selected'; ?>><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?></option>
+            <?php if ($row->sm_id == $time_table) echo 'selected'; ?>><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?></option>
             <!--echo "<option value={$row->sm_id}>{$row->subject_name}  (Code: {$row->subject_code})</option>";-->
             <?php
         }
@@ -2895,6 +2885,27 @@ class Professor extends MY_Controller {
         $this->data['vocationalcourse'] = $this->Professor_model->get_vocational_course($professor_id);
         $this->data['page'] = 'vocational_course';
         $this->__site_template('professor/vocational_course', $this->data);
+    }
+
+    /**
+     * Professor search
+     * @return search result
+     */
+    function search() {
+        $this->load->helper('professor_search');
+        $this->data['search_result'] = array();
+        $this->data['page'] = 'search_result';
+        $this->data['title'] = 'Search Result';
+        if ($_POST) {
+            $this->data['title'] = 'Search Result';
+            if ($_POST['search'] != '')
+                $this->data['search_result'] = global_search($_POST['search'], $_POST);
+            $this->data['search_string'] = $_POST['search'];
+            unset($_POST['search']);
+            $this->data['from'] = $_POST;
+        }
+        //$this->data['page'] = 'search_result';
+        $this->__site_template('professor/search_result', $this->data);
     }
 
 }

@@ -255,7 +255,7 @@ $department = student_ratio_department_wise();
             </div>
             <div class="panel-body margin25top">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-xs-6">
+                    <div class="col-lg-6 col-md-6 col-xs-6 hide">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">Male to Female Course count Ratio</h4>
@@ -263,7 +263,7 @@ $department = student_ratio_department_wise();
                             <div class="panel-body ratio_count" id="course_count_ratio" style="height:450px;" ></div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">Students enrolled</h4>

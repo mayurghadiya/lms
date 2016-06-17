@@ -825,7 +825,7 @@ foreach ($students as $student) {
                     <!-- Start .panel -->
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            Recently Added Professor 
+                            Staff 
                         </h4>
                         <div class="panel-controls panel-controls-right"> <a href="#" class="toggle panel-minimize"><i class="minia-icon-arrow-up-3"></i></a>
                 </div>
@@ -882,7 +882,7 @@ foreach ($students as $student) {
                             <div class="panel-heading">
                                 <div class="panel-title">Male to Female Course count Ratio</div>
                             </div>
-                            <div class="panel-body" id="course_count_ratio" style="height: 450px;"></div>
+                            <div class="panel-body" id="course_count_ratio" style="height: 580px; padding:10px 0; box-sizing:border-box !important;"></div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -890,7 +890,7 @@ foreach ($students as $student) {
                             <div class="panel-heading">
                                 <div class="panel-title">Students enrolled</div>
                             </div>
-                            <div class="panel-body" id="stduent-enrolled" style="height: 450px;"></div>
+                            <div class="panel-body" id="stduent-enrolled" style="height: 580px; padding:10px 0;box-sizing:border-box !important;"></div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -898,7 +898,7 @@ foreach ($students as $student) {
                             <div class="panel-heading">
                                 <div class="panel-title">Department student count Ratio</div>
                             </div>
-                            <div class="panel-body" id="course-male-female" style="height: 500px !important; min-height: 700px !important;  display:block;"></div>
+                            <div class="panel-body" id="course-male-female" style="height: 630px !important; min-height: 630px !important;  display:block; padding:10px 0;box-sizing:border-box !important;"></div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -906,7 +906,7 @@ foreach ($students as $student) {
                             <div class="panel-heading">
                                 <div class="panel-title">Students Enrolled (Coursewise)</div>
                             </div>
-                            <div class="panel-body" id="course-wise-student" style="height: 550px !important; min-height: 500px !important; display:block;"></div>
+                            <div class="panel-body" id="course-wise-student" style="height: 630px !important; min-height: 630px !important;  display:block; padding:10px 0;box-sizing:border-box !important;"></div>
                         </div>
                     </div>
                 </div>

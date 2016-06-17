@@ -7,7 +7,7 @@
             <th>Branch</th>
             <th>Batch</th>
             <th>Semester</th>
-            <th>Action</th>
+            <th>Date</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -40,24 +40,3 @@ Delete
         <?php } ?>
     </tbody>
 </table>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        "use strict";
-        $('#exam-data-tables').dataTable({
-            "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
-        });
-        $('.filter-rows').on('change', function () {
-            var filter_id = $(this).attr('data-filter');
-            filter_column(filter_id);
-        });
-
-        function filter_column(filter_id) {
-            $('#exam-data-tables').DataTable().column(filter_id).search(
-                    $('#filter' + filter_id).val()
-                    ).draw();
-        }
-    });
-</script>

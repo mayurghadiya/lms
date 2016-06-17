@@ -18,8 +18,6 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-
-                <<<<<<< HEAD
                 <tbody>
                     <?php
                     foreach ($holiday as $row):

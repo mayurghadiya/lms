@@ -16,10 +16,10 @@ foreach ($edit_data as $row) {
                     <div class="widget light-widget">
                         <?php echo form_open(base_url() . 'admin/manage_profile/update_profile_info', array('class' => 'form-horizontal form-groups-bordered validate', 'target' => '_top', 'role' => 'form', 'id' => 'edit_profile', 'enctype' => 'multipart/form-data')); ?>
                         <div  class="panel-body">
-                            <h3 class="mgbt-xs-20"> Profile: <span class="font-semibold"><?php echo $row['ad_first_name'] . '&nbsp;' . $row['ad_last_name']; ?></span> </h3>
-                            <br/>
+                            
                             <div class="row">
-                                <div class="col-sm-3 mgbt-xs-20">
+                                <div class="col-sm-4 mgbt-xs-20">
+                                <h4 class="mgbt-xs-20"> Profile: <span class="font-semibold"><?php echo $row['ad_first_name'] . '&nbsp;' . $row['ad_last_name']; ?></span> </h4>
                                     <div class="form-group">
                                         <div class="col-xs-12">
                                             <div class="form-img text-center mgbt-xs-15">
@@ -42,219 +42,244 @@ foreach ($edit_data as $row) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Email</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <input class="form-control" type="email" value="<?php echo $row['email']; ?>" name="email" id="email" placeholder="email@yourcompany.com">
+
+                                <div class="col-sm-8">
+                                   <div class="dropdown1">
+                                       <?php
+                                       if($this->session->flashdata('message') != '') { ?>
+                                       <div class="alert alert-success">
+                                           <button class="close" data-dismiss="alert">&times;</button>
+                                           <p><?php echo $this->session->flashdata('message'); ?></p>
+                                       </div>
+                                       <?php } ?>
+                                       
+                                       <?php
+                                       if($this->session->flashdata('error') != '') { ?>
+                                       <div class="alert alert-danger">
+                                           <button class="close" data-dismiss="alert">&times;</button>
+                                           <p><?php echo $this->session->flashdata('error'); ?></p>
+                                       </div>
+                                       <?php } ?>
+                                    <h3 class="mgbt-xs-15 dropdown-toggle trigger dropbtn1">Profile Setting</h3>
+                                        <div class="clearfix dropdown-content1 toggle">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">First Name</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <input class="form-control" type="text" value="<?php echo $row['ad_first_name']; ?>" name="ad_first_name" placeholder="first name">
+                                                        </div>
+                                                    </div>
+                                                    <!-- row --> 
                                                 </div>
-                                                <!-- col-xs-12 -->
+                                                <!-- col-sm-10 --> 
                                             </div>
-                                            <!-- row --> 
+                                            <!-- form-group -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Last Name</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <input class="form-control" type="text" value="<?php echo $row['ad_last_name']; ?>" name="ad_last_name" placeholder="last name">
+                                                        </div>
+                                                    </div>
+                                                    <!-- row --> 
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Email</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <input class="form-control" readonly="" type="email" value="<?php echo $row['email']; ?>" name="email" id="email" placeholder="email@yourcompany.com">
+                                                        </div>
+                                                        <!-- col-xs-12 -->
+                                                    </div>
+                                                    <!-- row --> 
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
+                                            <!-- form-group -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Username</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <input class="form-control" type="text" value="<?php echo $row['name']; ?>" name="name" id="name" placeholder="username">
+                                                        </div>
+                                                    </div>
+                                                    <!-- row --> 
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
+                                            <!-- form-group -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Gender</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <select class="form-control" name="ad_gender">
+                                                                <option value="Male"
+                                                                        <?php if($row['ad_gender'] == 'Male') echo 'selected'; ?>>Male</option>
+                                                                <option value="Female"
+                                                                        <?php if($row['ad_gender'] == 'Female') echo 'selected'; ?>>Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- row --> 
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
+                                            <!-- form-group -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Birthday</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <input class="form-control" type="text" id="datepicker-normal" name="ad_birthdate" value="<?php echo $row['ad_birthdate']; ?>"  />
+                                                        </div>
+                                                    </div>
+                                                    <!-- row --> 
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
+                                            <!-- form-group -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Marital Status</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <select name="ad_marital" class="form-control">
+                                                                <option value="Single" <?php
+                                                                if ($row['ad_marital'] == 'Single') {
+                                                                    echo "selected";
+                                                                }
+                                                                ?>>Single</option>
+                                                                <option value="Married" <?php
+                                                                if ($row['ad_marital'] == 'Married') {
+                                                                    echo "selected";
+                                                                }
+                                                                ?>>Married</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- row --> 
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
+                                            <!-- form-group -->
+                                            <div class="form-group" style="display:none">
+                                                <label class="col-sm-3 control-label">Branch</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <select name="ad_branch" id="ad_branch" hidden="" class="form-control">
+                                                                <option value="2016">2016</option>
+                                                                <?php
+                                                                $batch = $this->db->get('batch')->result_array();
+                                                                foreach ($batch as $row2):
+                                                                    ?>
+                                                                    <option value="<?php echo $row2['b_id']; ?>" <?php if ($row['ad_branch'] == $row2['b_id']) echo 'selected'; ?>><?php echo $row2['b_name']; ?></option>
+                                                                    <?php
+                                                                endforeach;
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- row --> 
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
+                                            <!-- form-group -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">About</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <textarea class="form-control" rows="3" name="ad_about"><?php echo $row['ad_about']; ?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <!-- row --> 
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
+                                            <!-- form-group -->                                   
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Mobile Phone</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <input class="form-control" name="ad_mobile" value="<?php echo $row['ad_mobile']; ?>"/>
+                                                        </div>
+                                                    </div>
+                                                    <!-- row --> 
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
+                                            <!-- form-group -->
+                                            <!-- form-group -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Facebook</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <input class="form-control" type="text"  value="<?php echo $row['ad_fb']; ?>" name="ad_fb" placeholder="https://www.facebook.com/">
+                                                        </div>
+                                                        <!-- col-xs-9 -->
+                                                    </div>
+                                                    <!-- row --> 
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
+                                            <!-- form-group -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Twitter</label>
+                                                <div class="col-sm-9 controls">
+                                                    <div class="row mgbt-xs-0">
+                                                        <div class="col-xs-9">
+                                                            <input class="form-control" type="text" value="<?php echo $row['ad_twitter']; ?>" name="ad_twitter" placeholder="https://www.twitter.com/">
+                                                        </div>
+                                                        <!-- col-xs-9 -->
+                                                    </div>
+                                                    <!-- row --> 
+                                                </div>
+                                                <!-- col-sm-10 --> 
+                                            </div>
                                         </div>
-                                        <!-- col-sm-10 --> 
                                     </div>
-                                    <!-- form-group -->
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Username</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <input class="form-control" type="text" value="<?php echo $row['name']; ?>" name="name" id="name" placeholder="username">
+                                    <div class="dropdown2">
+                                    <h3 class="mgbt-xs-15 dropbtn2 trigger">Change Password</h3>
+                                    <div class="clearfix dropdown-content2 toggle">                                        
+                                        <!-- form-group -->                        
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Password</label>
+                                            <div class="col-sm-9 controls">
+                                                <div class="row mgbt-xs-0">
+                                                    <div class="col-xs-9">
+                                                        <input class="form-control" type="password" value="" name="password" id="password">
+                                                    </div>
+                                                    <!-- col-xs-12 --> 
+                                                </div>
+                                                <!-- row --> 
+                                            </div>
+                                            <!-- col-sm-10 --> 
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Confirm Password</label>
+                                            <div class="col-sm-9 controls">
+                                                <div class="row mgbt-xs-0">
+                                                    <div class="col-xs-9">
+                                                        <input class="form-control" id="confirm_password" name="confirm_password" type="password">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <!-- row --> 
                                         </div>
-                                        <!-- col-sm-10 --> 
+                                        <!-- form-group -->                        
                                     </div>
-                                    <!-- form-group -->                        
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Password</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <input class="form-control" type="password" value="<?php echo $row['pass']; ?>" name="password" id="password" placeholder="password">
-                                                </div>
-                                                <!-- col-xs-12 --> 
-                                            </div>
-                                            <!-- row --> 
-                                        </div>
-                                        <!-- col-sm-10 --> 
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Confirm Password</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <input class="form-control" id="confirm_password" name="confirm_password" type="password">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- form-group -->                        
-                                    <hr />
-                                    <h3 class="mgbt-xs-15">Profile Setting</h3>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">First Name</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <input class="form-control" type="text" value="<?php echo $row['ad_first_name']; ?>" name="ad_first_name" placeholder="first name">
-                                                </div>
-                                            </div>
-                                            <!-- row --> 
-                                        </div>
-                                        <!-- col-sm-10 --> 
-                                    </div>
-                                    <!-- form-group -->
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Last Name</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <input class="form-control" type="text" value="<?php echo $row['ad_last_name']; ?>" name="ad_last_name" placeholder="last name">
-                                                </div>
-                                            </div>
-                                            <!-- row --> 
-                                        </div>
-                                        <!-- col-sm-10 --> 
-                                    </div>
-                                    <!-- form-group -->
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Gender</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <select class="form-control" name="ad_gender">
-                                                        <option value="Male"
-                                                                <?php if($row['ad_gender'] == 'Male') echo 'selected'; ?>>Male</option>
-                                                        <option value="Female"
-                                                                <?php if($row['ad_gender'] == 'Female') echo 'selected'; ?>>Female</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- row --> 
-                                        </div>
-                                        <!-- col-sm-10 --> 
-                                    </div>
-                                    <!-- form-group -->
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Birthday</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <input class="form-control" type="text" id="datepicker-normal" name="ad_birthdate" value="<?php echo $row['ad_birthdate']; ?>"  />
-                                                </div>
-                                            </div>
-                                            <!-- row --> 
-                                        </div>
-                                        <!-- col-sm-10 --> 
-                                    </div>
-                                    <!-- form-group -->
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Marital Status</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <select name="ad_marital" class="form-control">
-                                                        <option value="Single" <?php
-                                                        if ($row['ad_marital'] == 'Single') {
-                                                            echo "selected";
-                                                        }
-                                                        ?>>Single</option>
-                                                        <option value="Married" <?php
-                                                        if ($row['ad_marital'] == 'Married') {
-                                                            echo "selected";
-                                                        }
-                                                        ?>>Married</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- row --> 
-                                        </div>
-                                        <!-- col-sm-10 --> 
-                                    </div>
-                                    <!-- form-group -->
-                                    <div class="form-group" style="display:none">
-                                        <label class="col-sm-3 control-label">Branch</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <select name="ad_branch" id="ad_branch" hidden="" class="form-control">
-                                                        <option value="2016">2016</option>
-                                                        <?php
-                                                        $batch = $this->db->get('batch')->result_array();
-                                                        foreach ($batch as $row2):
-                                                            ?>
-                                                            <option value="<?php echo $row2['b_id']; ?>" <?php if ($row['ad_branch'] == $row2['b_id']) echo 'selected'; ?>><?php echo $row2['b_name']; ?></option>
-                                                            <?php
-                                                        endforeach;
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- row --> 
-                                        </div>
-                                        <!-- col-sm-10 --> 
-                                    </div>
-                                    <!-- form-group -->
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">About</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <textarea class="form-control" rows="3" name="ad_about"><?php echo $row['ad_about']; ?></textarea>
-                                                </div>
-                                            </div>
-                                            <!-- row --> 
-                                        </div>
-                                        <!-- col-sm-10 --> 
-                                    </div>
-                                    <!-- form-group -->
-                                    <hr/>
-                                    <h3 class="mgbt-xs-15">Contact Setting</h3>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Mobile Phone</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <input class="form-control" name="ad_mobile" value="<?php echo $row['ad_mobile']; ?>"/>
-                                                </div>
-                                            </div>
-                                            <!-- row --> 
-                                        </div>
-                                        <!-- col-sm-10 --> 
-                                    </div>
-                                    <!-- form-group -->
-                                    <!-- form-group -->
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Facebook</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <input class="form-control" type="text"  value="<?php echo $row['ad_fb']; ?>" name="ad_fb" placeholder="https://www.facebook.com/">
-                                                </div>
-                                                <!-- col-xs-9 -->
-                                            </div>
-                                            <!-- row --> 
-                                        </div>
-                                        <!-- col-sm-10 --> 
-                                    </div>
-                                    <!-- form-group -->
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Twitter</label>
-                                        <div class="col-sm-9 controls">
-                                            <div class="row mgbt-xs-0">
-                                                <div class="col-xs-9">
-                                                    <input class="form-control" type="text" value="<?php echo $row['ad_twitter']; ?>" name="ad_twitter" placeholder="https://www.twitter.com/">
-                                                </div>
-                                                <!-- col-xs-9 -->
-                                            </div>
-                                            <!-- row --> 
-                                        </div>
-                                        <!-- col-sm-10 --> 
+                                   </div> 
+                                   <div class="form-group" style="margin-left: 0px; margin-top:15px;">
+                                        <button class="btn btn-primary"><span class="menu-icon"><i class="fa fa-fw fa-check"></i></span> Update</button>
                                     </div>
                                     <!-- form-group --> 
                                 </div>
@@ -263,9 +288,7 @@ foreach ($edit_data as $row) {
                             <!-- row --> 
                         </div>
                         <!-- panel-body -->
-                        <div class="form-group" style="margin-left: 450px;">
-                            <button class="btn btn-primary">Update</button>
-                        </div>
+                        
                         </form>
                     </div>
                     <!-- Panel Widget --> 
@@ -308,5 +331,14 @@ foreach ($edit_data as $row) {
             changeYear: true
 
         });
-    });
+    });    
+</script>
+
+<script>
+$(document).ready(function(){
+    <?php
+    if($this->session->flashdata('error') != '' || $this->session->flashdata('message') != '') { ?>
+        $('.dropdown-content2').css('display', 'block');
+    <?php } ?>
+});
 </script>

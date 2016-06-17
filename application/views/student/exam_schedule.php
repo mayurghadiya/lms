@@ -1,3 +1,6 @@
+<style>    
+    .tab_Det_left tr td, .tab_Det_left tr th{text-align: left !important;}
+</style>
 <!-- Start .row -->
 <div class=row>                      
 
@@ -14,125 +17,76 @@
                             </div>
                         </div>-->
             <div class=panel-body>
-                <table class="table table-bordered">
+                <table class="table table-condensed ex1">
                     <thead>
                         <tr>
-                            <th>Exam Name: <?php echo $exam_details->em_name; ?></th>
-                            <th>Year: <?php echo $exam_details->em_year; ?></th>
+                            <td class="col-lg-2 col-md-2 col-sm-4 col-xs-4"><strong>Exam Name: </strong></td>
+                            <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><?php echo $exam_details->em_name; ?></td>
+                            <td class="col-lg-2 col-md-2 col-sm-4 col-xs-4"><strong>Year: </strong></td>
+                            <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><?php echo $exam_details->em_year; ?></td>
                         </tr>
                         <tr>
-                            <th>Course Name: <?php echo $exam_details->c_name; ?></th>
-                            <th>Semester: <?php echo $exam_details->s_name; ?></th>
+                            <td class="col-lg-2 col-md-2 col-sm-4 col-xs-4"><strong>Semester: </strong></td>
+                            <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><?php echo $exam_details->s_name; ?></td>
+                            <td class="col-lg-2 col-md-2 col-sm-4 col-xs-4"><strong>Course Name: </strong></td>
+                            <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><?php echo $exam_details->c_name; ?></td>
                         </tr>
                         <tr>
-                            <th>Total Marks: <?php echo $exam_details->total_marks; ?></th>
-                            <th>Passing Marks: <?php echo $exam_details->passing_mark; ?></th>
+                            <td class="col-lg-2 col-md-2 col-sm-4 col-xs-4"><strong>Total Marks: </strong></td>
+                            <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><?php echo $exam_details->total_marks; ?></td>
+                            <td class="col-lg-2 col-md-2 col-sm-4 col-xs-4"><strong>Passing Marks: </strong></td>
+                            <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><?php echo $exam_details->passing_mark; ?></td>
+                        </tr>
+                        <tr>
+                            <td class="col-lg-2 col-md-2 col-sm-4 col-xs-4"><strong>Seat No: </strong></td>
+                            <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><?php echo $exam_details->seat_no; ?></td>
+                            <td class="col-lg-2 col-md-2 col-sm-4 col-xs-4">&nbsp;</td>
+                            <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"></td>
                         </tr>
                     </thead>                            
                 </table>
 
-                <table class="table table-bordered">
-                    <?php
-                    //check for exam type reguler or remedial
-                    if ($exam_details->exam_ref_name == 'reguler') {
-                        ?>
-                        <tbody>
-                            <tr>
-                                <th colspan="<?php echo count($time_table) + 1; ?>" style="text-align: center">Exam Schedule</th>
-                            </tr>
-                            <tr>
-                                <th>Subject</th>
-                                <?php
-                                foreach ($time_table as $row) {
-                                    echo "<th>{$row->subject_name}({$row->subject_code})</th>";
-                                }
-                                ?>
-
-                            </tr>
-                            <tr>
-                                <th>Date</th>
-                                <?php
-                                foreach ($time_table as $row) {
-                                    echo "<td>" . date('F d, Y', strtotime($row->exam_date)) . "</td>";
-                                }
-                                ?>
-
-                            </tr>
-                            <tr>
-                                <th>Time</th>
-                                <?php
-                                foreach ($time_table as $row) {
-                                    echo "<td>" . date('h:i A', strtotime(date('Y-m-d') . $row->exam_start_time)) . " to " . date('h:i A', strtotime(date('Y-m-d') . $row->exam_end_time)) . "</td>";
-                                }
-                                ?>
-
-                            </tr>
-                        </tbody>
-                        <?php
-                    } else {
-                        //check previous exam result
-                        $remedial = $this->db->select()
-                                ->from('exam_manager')
-                                ->where('em_id < ', $exam_details->em_id)
-                                ->where('em_id', $exam_details->exam_ref_id)
-                                ->order_by('em_id', 'ASC')
-                                ->limit(1)
-                                ->get()
-                                ->row();
-                        //get time table
-                        $this->load->model('Student/Student_model');
-                        $schedule = $this->Student_model->exam_schedule($remedial->em_id);
-
-                        //check for marks
-                        $student_id = $this->session->userdata('student_id');
-                        $marks = $this->Student_model->student_marks($student_id, $remedial->em_id);
-                        $remedial_schedule = array();
-                        foreach ($marks as $mark) {
-                            if ($mark->mark_obtained < $remedial->passing_mark) {
-                                $remedial_schedule_data = $this->Student_model->remedial_exam_schedule($remedial->em_id, $mark->mm_subject_id);
-                                array_push($remedial_schedule, $remedial_schedule_data);
-                            }
-                        }
-                        ?>
-
-                        <?php foreach ($remedial_schedule as $sc) { ?>
-                            <tbody>
-                                <tr>
-                                    <th colspan="<?php echo count($remedial_schedule) + 1; ?>" style="text-align: center">Exam Schedule</th>
-                                </tr>
-                                <tr>
-                                    <th>Subject</th>
-                                    <?php
-                                    foreach ($sc as $row) {
-                                        echo "<th>{$row->subject_name}({$row->subject_code})</th>";
-                                    }
-                                    ?>
-
-                                </tr>
-                                <tr>
-                                    <th>Date</th>
-                                    <?php
-                                    foreach ($sc as $row) {
-                                        echo "<td>" . date('F d, Y', strtotime($row->exam_date)) . "</td>";
-                                    }
-                                    ?>
-
-                                </tr>
-                                <tr>
-                                    <th>Time</th>
-                                    <?php
-                                    foreach ($sc as $row) {
-                                        echo "<td>" . date('h:i A', strtotime(date('Y-m-d') . $row->exam_start_time)) . " to " . date('h:i A', strtotime(date('Y-m-d') . $row->exam_end_time)) . "</td>";
-                                    }
-                                    ?>
-
-                                </tr>
-                            </tbody>
-                        <?php } ?>
-
+                <table class="table table-bordered table-striped tab_Det_left" style="">
+                    <tr>
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            No
+                        </th>
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            Subject
+                        </th>
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            Date
+                        </th>
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            Time
+                        </th>
+                    </tr>
+                    <?php            
+                    $counter = 1;
+                    foreach ($time_table as $row) { ?>
+                    
+                    <tr>
+                        <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <?php echo $counter++; ?>
+                        </td>
+                        <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <?php echo $row->subject_name; ?>
+                        </td>
+                        <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <?php echo date('F d, Y', strtotime($row->exam_date)); ?>
+                        </td>
+                        <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                           <?php echo date('h:i A', strtotime(date('Y-m-d') . $row->exam_start_time)) ?>
+                        </td>
+                    </tr>                    
+                    
                     <?php } ?>
-
+                    
                 </table>
+                
             </div>
         </div>
         <!-- End .panel -->

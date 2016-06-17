@@ -352,7 +352,9 @@ class Student_model extends CI_Model {
                         ->from('exam_manager')
                         ->join('course', 'course.course_id = exam_manager.course_id')
                         ->join('semester', 'semester.s_id = exam_manager.em_semester')
+                        ->join('exam_seat_no', 'exam_seat_no.exam_id = exam_manager.em_id')
                         ->where('em_id', $exam_id)
+                        ->where('exam_seat_no.student_id', $this->session->userdata('login_user_id'))
                         ->get()
                         ->row();
     }

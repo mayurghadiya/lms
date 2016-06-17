@@ -14,6 +14,7 @@ if (!function_exists('new_student_registration')) {
 
         $result = $CI->db->select('COUNT(std_id) AS Total, YEAR(created_date) AS Year')
                 ->from('student')
+                ->order_by('Year', 'DESC')
                 ->group_by('Year')
                 ->get()
                 ->result();

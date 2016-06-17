@@ -43,6 +43,6 @@
 
 <script>
     $(document).ready(function () {
-        $('#holiday-datatable-list').DataTable();
+        $('#holiday-datatable-list').DataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>

@@ -226,7 +226,7 @@
    
         $(document).ready(function () {
             "use strict";
-            $('#library-data').dataTable();
+            $('#library-data').dataTable({"language": { "emptyTable": "No data available" }});
         });
     
 </script>

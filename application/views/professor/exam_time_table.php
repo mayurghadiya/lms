@@ -181,7 +181,7 @@
                     success: function (content) {
                         $("#search-result-exam-schedule").html(content);
                         $("#exam-time-table-datatable-list").hide();
-                        $('#search-data-tables').DataTable();
+                        $('#search-data-tables').DataTable({"language": { "emptyTable": "No data available" }});
                     }
                 });
             }

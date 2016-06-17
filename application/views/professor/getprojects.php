@@ -108,7 +108,7 @@ if ($param == 'submitted') {
         <table class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%  id="data-tabless">
             <thead>
                 <tr>
-                    <th>#</th>												
+                    <th>No</th>												
                     <th>Project Title</th>
                     <th>Student Name</th>                                                											
                     <th>Department</th>	
@@ -178,10 +178,10 @@ if ($param == 'submitted') {
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('#data-tables').dataTable();
+        $('#data-tables').dataTable({"language": { "emptyTable": "No data available" }});
     });
     $(document).ready(function () {
 
-        $('#data-tabless').dataTable();
+        $('#data-tabless').dataTable({"language": { "emptyTable": "No data available" }});
     });
 </script>

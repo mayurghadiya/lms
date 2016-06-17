@@ -55,7 +55,7 @@
                                     </td>
                                     <td>
                                         <a href="<?php echo base_url('student/email_view/' . $row->email_id); ?>"><span class="label label-primary mr6 mb6">
-                                                <i class="fa fa-pencil"></i>View</span></a>                                        
+                                                <i class="fa fa-desktop" ></i>View</span></a>                                        
                                     </td>
                                 </tr>
 
@@ -78,6 +78,6 @@
 
 <script>
 $(document).ready(function(){
-    $('#email-datatable-list').DataTable();
+    $('#email-datatable-list').DataTable({"language": { "emptyTable": "No data available" }});
 })
 </script>

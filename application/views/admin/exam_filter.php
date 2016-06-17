@@ -42,6 +42,7 @@
             "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
+                    "language": { "emptyTable": "No data available" }
         });
         $('.filter-rows').on('change', function () {
             var filter_id = $(this).attr('data-filter');

@@ -119,13 +119,14 @@
     $(document).ready(function () {
         "use strict";
         $('#data-tabless').DataTable({
+            "language": { "emptyTable": "No data available" },
             aoColumnDefs: [
                 {
                     bSortable: false,
                     aTargets: [-1]
                 }
             ]
-        });
+       });
 
 
         $("#searchform #btnsubmit").click(function () {
@@ -200,6 +201,7 @@
             "dom": "<'row'<'col-sm-6'><'col-sm-6'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
+                    "language": { "emptyTable": "No data available" } 
         });
         $('.sfilter-rows').on('change', function () {
             var filter_id = $(this).attr('data-filter');

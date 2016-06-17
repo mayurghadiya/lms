@@ -76,7 +76,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="<?php echo $this->router->fetch_method(); ?>">
+    <body class="<?php echo $this->router->fetch_method(); ?>" style="min-height: 100%">
         <!--[if lt IE 9]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]--><!-- .#header -->
@@ -246,13 +246,13 @@
                                             <li>
                                                 <a id="link-subject" href="<?php echo base_url(); ?>admin/subject">
                                                     <i class="s16 fa fa-book"></i>
-                                                    <span class="txt">Subject Management</span>
+                                                    <span class="txt">Subject</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a id="link-syllabus" href="<?php echo base_url(); ?>admin/syllabus">
                                                     <i class="s16 icomoon-icon-file-2"></i>
-                                                    <span class="txt">Syllabus Management</span>
+                                                    <span class="txt">Syllabus</span>
                                                 </a>
                                             </li>
                                             <li>
@@ -431,7 +431,7 @@
                                             <li>
                                                 <a id="link-compose" href="<?php echo base_url(); ?>admin/email_compose">
                                                     <i class="s16 fa fa-envelope"></i>
-                                                    <span class="txt">Compose E-Mail</span>
+                                                    <span class="txt">Compose EMail</span>
                                                 </a>
                                             </li>
                                             <li>
@@ -443,7 +443,7 @@
                                             <li>
                                                 <a id="link-sent" href="<?php echo base_url(); ?>admin/email_sent">
                                                     <i class="s16 fa fa-send"></i>
-                                                    <span class="txt">Sent</span>
+                                                    <span class="txt">Sent Email</span>
                                                 </a>
                                             </li>
 
@@ -527,7 +527,7 @@
                                     <li>
                                         <a <?php echo active_single_menu('professor', $page); ?> href="<?php echo base_url(); ?>admin/professor">
                                             <i class="s16 fa fa-user"></i>
-                                            <span class=txt>Professor </span>
+                                            <span class=txt>Staff </span>
                                         </a>
                                     </li>
 
@@ -623,13 +623,13 @@
                                             <li>
                                                 <a id="link-backup" href="<?php echo base_url(); ?>admin/backup">
                                                     <i class="s16 fa fa-cloud-download"></i>
-                                                    <span class="txt">Backup</span>
+                                                    <span class="txt">System Backup</span>
                                                 </a>
                                             </li> 
                                             <li>
                                                 <a id="link-restore" href="<?php echo base_url(); ?>admin/restore">
                                                     <i class="s16 fa fa-cloud-upload"></i>
-                                                    <span class="txt">Restore</span>
+                                                    <span class="txt">System Restore</span>
                                                 </a>
                                             </li>                                                 
                                         </ul>
@@ -648,13 +648,13 @@
                                             <li >
                                                 <a id="link-create_group" href="<?php echo base_url(); ?>admin/create_group">
                                                     <i class="s16 fa fa-group"></i>
-                                                    <span class="menu-text">Create Groups</span>  
+                                                    <span class="menu-text">Create Group</span>  
                                                 </a>
                                             </li>
                                             <li >
                                                 <a id="link-list_group" href="<?php echo base_url(); ?>admin/list_group">
                                                     <i class="s16 fa fa-list"></i>
-                                                    <span class="menu-text">List Groups</span>  
+                                                    <span class="menu-text">Group List</span>  
                                                 </a>
                                             </li>
                                             <li>
@@ -666,7 +666,7 @@
                                             <li>
                                                 <a id="list_module" href="<?php echo base_url(); ?>admin/list_module">
                                                     <i class="s16 fa fa-paw"></i>
-                                                    <span class="menu-text">List Module</span>  
+                                                    <span class="menu-text">Module List</span>  
                                                 </a>
                                             </li>                                                
                                         </ul>

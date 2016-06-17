@@ -6,7 +6,7 @@
         <div class="panel-default toggle panelMove panelClose panelRefresh">
             <div class=panel-body>
                 <a href="#" class="links" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/add_forum_topic');" data-toggle="modal"><i class="fa fa-plus"></i> Forum Topic</a>
-                <table id="forum-topics-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
+                <table id="datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                     <thead>
                         <tr>
                             <th>No</th>
@@ -40,7 +40,7 @@
 
                                 </td>
                                 <td><?php echo date('M d, Y', strtotime($row['created_date'])); ?></td>
-                                <td><a href="<?php echo base_url() . 'admin/forumcomment/' . $row['forum_topic_id']; ?>" data-original-title="View Comments" data-toggle="tooltip" data-placement="top" class="icon_link"><i class="fa fa-file-o"></i></a>                                   
+                                <td><a href="<?php echo base_url() . 'admin/forumcomment/' . $row['forum_topic_id']; ?>"  data-toggle="tooltip" data-placement="top" class="icon_link"><i class="fa fa-file-o"></i></a>                                   
                                     <span class="notification2"><?php echo countcommenttopic($row['forum_topic_id']); ?></span>
                                 </td>
                                 <td>     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/addcomments/<?php echo $row['forum_topic_id']; ?>');" data-toggle="modal">
@@ -66,8 +66,3 @@
 <!-- End contentwrapper -->
 </div>
 <!-- End #content -->
-<script>
-$(document).ready(function(){
-    $('#forum-topics-datatable-list').DataTable({});
-});
-</script>

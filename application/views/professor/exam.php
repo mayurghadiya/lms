@@ -144,7 +144,7 @@ Delete
                     success: function (content) {
                         $("#exam-filter-result").html(content);
                         $('#all-exam-list').hide();
-                        $('#exam-data-tables').DataTable();
+                        $('#exam-data-tables').DataTable({"language": { "emptyTable": "No data available" }});
                     }
                 });
             }
