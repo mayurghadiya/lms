@@ -170,7 +170,7 @@
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li><a href="<?php echo base_url(); ?>student/gallery" title="Photo Gallery" class=tip>
+                            <li><a href="<?php echo base_url(); ?>site/gallery" title="Photo Gallery" class=tip>
                                     <i class="fa fa-image" aria-hidden="true"></i>
                                 </a>
                             </li>
@@ -294,7 +294,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a <?php echo active_single_menu('gallery', $page); ?> href="<?php echo base_url(); ?>student/gallery"><i class="s16 fa fa-picture-o"></i>
+                                            <a <?php echo active_single_menu('gallery', $page); ?> href="<?php echo base_url(); ?>site/gallery"><i class="s16 fa fa-picture-o"></i>
                                                 <span class=txt>Gallery </span>
                                             </a>
                                         </li>  

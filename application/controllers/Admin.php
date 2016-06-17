@@ -3344,7 +3344,7 @@ class Admin extends MY_Controller {
         }
 
         $this->data['gallery'] = $this->photo_gallery->getphotogallery();
-        $this->data['title'] = 'Media Gallery';
+        $this->data['title'] = 'Photo Gallery';
         $this->data['page'] = 'photo_gallery';
         $this->data['add_title'] = $this->lang_message('add_gallery');
         $this->data['edit_title'] = $this->lang_message('edit_gallery');
@@ -5626,7 +5626,8 @@ class Admin extends MY_Controller {
                 $data['ad_mobile'] = $this->input->post('ad_mobile');
                 $data['ad_fb'] = $this->input->post('ad_fb');
                 $data['ad_twitter'] = $this->input->post('ad_twitter');
-
+                $name = $data['ad_first_name'].' '.$data['ad_last_name'];
+                $this->session->set_userdata('user_name',$name);     
 
                 //$data['identification_num'] = rand(1111,9999);
             }
