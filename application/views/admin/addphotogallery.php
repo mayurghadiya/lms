@@ -18,6 +18,7 @@ $semesters = $this->db->get('semester')->result_array();
                             var img = $("<img />");
                             img.attr("style", "height:100px;width: 100px");
                             img.attr("src", e.target.result);
+                            img.attr("class", 'img-photogallery');
                             dvPreview.append(img);
                         }
                         reader.readAsDataURL(file[0]);
@@ -86,7 +87,12 @@ $semesters = $this->db->get('semester')->result_array();
                             <div class="col-sm-8">
                                 <input id="main_img" class="form-control coverimage" type="file" name="main_img"  />
                             </div>
-                            <div id="image_container"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label"></label>
+                            <div class="col-sm-8">
+                                <div id="image_container"></div>                               
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">File Upload <span style="color:red">*</span></label>

@@ -1417,6 +1417,16 @@ iframe.professor_routine_box{margin-bottom: 0;}
     height: 480;
     max-height: 100%;
 }
+
+img.img-photogallery {
+    display: inline-block;
+    margin: 15px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+.profile_title{text-align: center; width: 100%;}
+.xe-lower .mCSB_container {width: 100% !important;}
+/*.xe-lower .mCSB_container ul.links-gaz{margin-right: -25px;}*/
 /*#highcharts-2.highcharts-container{max-height: 600px !important; height: 600px !important; overflow:hidden;} */
 /*#highcharts-0.highcharts-container svg{min-height: 380px !important; height: 380px !important; max-height: 100% !important;}    */
 /*********************** media *****************************/

@@ -28,10 +28,7 @@ $semesters = $this->db->get('semester')->result_array();
     <div class="col-lg-12">
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
-            <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Add Bannner Slider"); ?></h4>                
-            </div>
+            <!-- Start .panel -->           
 
             <div class="panel-body"> 
                 <div class="box-content">  
@@ -60,8 +57,15 @@ $semesters = $this->db->get('semester')->result_array();
                             <div class="col-sm-8">
                                 <input id="main_img" class="form-control coverimage" type="file" name="main_img"  />
                             </div>
-                            <div id="image_container"></div>
-                        </div>                                                                              
+
+                        </div>   
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label"></label>
+                            <div class="col-sm-8">
+                                <div id="image_container"></div>
+                            </div>
+
+                        </div>                                                                               
 
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Slide</label>

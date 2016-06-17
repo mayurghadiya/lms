@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 date_default_timezone_set('Asia/Kolkata');
-$config['base_url'] = 'http://192.168.1.28/lms/';
+$config['base_url'] = 'http://192.168.1.36/lms/';
 /*
 |--------------------------------------------------------------------------
 | Index File

@@ -20,6 +20,7 @@ foreach ($edit_data as $row):
                                 var img = $("<img />");
                                 img.attr("style", "height:100px;width: 100px");
                                 img.attr("src", e.target.result);
+                                img.attr("class", 'img-photogallery');
                                 dvPreview.append(img);
                             }
                             reader.readAsDataURL(file[0]);
@@ -91,7 +92,13 @@ foreach ($edit_data as $row):
                                 <div class="col-sm-8">
                                     <input id="main_img" class="form-control coverimage2" type="file" name="main_img" />
                                 </div>
-                                <div id="image_container1"><img class='img-thumbnail' style='width:300px;margin:20px;' src='<?php echo base_url() . "uploads/photogallery/" . $row['main_img']; ?>' ></div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"></label>
+                                    <div class="col-sm-8">
+                                        <div id="image_container1"><img class='img-thumbnail' style='width:300px;margin:20px;' src='<?php echo base_url() . "uploads/photogallery/" . $row['main_img']; ?>' ></div>                           
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">File Upload <span style="color:red"></span></label>
@@ -104,12 +111,16 @@ foreach ($edit_data as $row):
                                 <div class="col-sm-8">
                                     <select name="status" class="form-control">
                                         <option value="">Select</option>
-                                        <option value="1" <?php if ($row['gal_status'] == "1") {
-                            echo "selected=selected";
-                        } ?>>Active</option>
-                                        <option value="0" <?php if ($row['gal_status'] == "0") {
-                            echo "selected=selected";
-                        } ?>>Inactive</option>
+                                        <option value="1" <?php
+                                        if ($row['gal_status'] == "1") {
+                                            echo "selected=selected";
+                                        }
+                                        ?>>Active</option>
+                                        <option value="0" <?php
+                                        if ($row['gal_status'] == "0") {
+                                            echo "selected=selected";
+                                        }
+                                        ?>>Inactive</option>
                                     </select>
                                 </div>
                             </div>
@@ -122,13 +133,13 @@ foreach ($edit_data as $row):
                         </div> 
                         <div id="dvPreview3">
                         </div>
-                        <div id="dvPreview2">
+                        <div id="dvPreview2" style="margin: 0 -5px;">
                             <?php
                             $galleryimg = explode(",", $row['gallery_img']);
                             for ($i = 0; $i < count($galleryimg); $i++) {
                                 ?>
-                                <img src="<?php echo base_url(); ?>uploads/photogallery/<?php echo $galleryimg[$i]; ?>" height="100" width="100" />
-    <?php } ?>
+                                <img src="<?php echo base_url(); ?>uploads/photogallery/<?php echo $galleryimg[$i]; ?>" height="100" width="100" class="img-photogallery" />
+                            <?php } ?>
                         </div>
 
                     </div>
