@@ -7,7 +7,6 @@
   # then use
   # RewriteBase /mypage/test1/
   #RewriteBase /
-  php_value max_input_vars 100000
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.*)$ index.php?/$1 [L]
