@@ -39,6 +39,8 @@ class Admin extends MY_Controller {
         $this->data['recent_professor'] = $this->Crud_model->get_recent_professor();
         $this->data['title'] = 'Dashboard';
         $this->data['page'] = 'dashboard';
+        $this->output->enable_profiler(TRUE);
+
         $this->__site_template('admin/dashboard', $this->data);
     }
 
