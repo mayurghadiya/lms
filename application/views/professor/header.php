@@ -394,7 +394,8 @@
                             </div>
                             <div class="search_box">
                                 <!-- .search -->
-                                <form id=searchform class=form-horizontal>
+                                <form id=searchform class=form-horizontal method="post"
+                                      action="<?php echo base_url(); ?>professor/search">
                                 <input name="search" class="top-search from-control" placeholder="Search here ..."
                                        value="<?php echo isset($search_string) ? $search_string : ''; ?>"> 
                                 <input type=submit class=search-btn>

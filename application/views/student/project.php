@@ -46,7 +46,7 @@
                                                 <td><?php echo $row->pm_title; ?></td>	                                               
                                                 <td><?php echo date('F d, Y', strtotime($row->pm_dos)); ?></td>	
                                                 <td>
-                                                    <a href="<?php echo $row->pm_url; ?>" download=""><i class="fa fa-download"></i></a>
+                                                    <a href="<?php echo $row->pm_url; ?>" download="" title="download"><i class="fa fa-download"></i></a>
                                                 </td>
                                                 <td>
                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_submit_project/<?php echo $row->pm_id; ?>');" data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6">Upload</span></a>

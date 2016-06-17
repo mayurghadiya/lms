@@ -31,9 +31,6 @@ foreach ( $edit_data as $row):
         <!-- col-lg-12 start here -->
         <div class="panel-default toggle panelMove panelClose panelRefresh">
             <!-- Start .panel -->
-            <div class=panel-heading>
-                <h4 class=panel-title>  <?php echo ucwords("Update Banner Slider");?></h4>                
-            </div>
 
 			<div class="panel-body">
 				 <div class="">
@@ -62,7 +59,16 @@ foreach ( $edit_data as $row):
                                             <div class="col-sm-8">
                                                 <input id="main_img" class="form-control coverimage2" type="file" name="main_img" />
                                             </div>
-                                            <div id="image_container1"><img class='img-thumbnail' style='width:300px;margin:20px;' src='<?php echo base_url()."uploads/bannerimg/".$row['banner_img']; ?>' ></div>
+                                            
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label"></label>
+                            <div class="col-sm-8">
+                              <div id="image_container1"><img class='img-thumbnail' style='width:300px;margin:20px;' src='<?php echo base_url()."uploads/bannerimg/".$row['banner_img']; ?>' ></div>
+                            </div>
+                           
+                        </div>                                                                               
+ 
                                         </div>             
                                          <div class="form-group">
                                                     <label class="col-sm-4 control-label">Slide</label>

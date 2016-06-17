@@ -45,8 +45,8 @@
                                             <td ><?php echo $count++; ?></td>	
                                             <td ><?php echo $row['assign_title']; ?></td>   
                                             <td ><?php echo $row['name']; ?></td>                               
-                                            <td  id="downloadedfile"><a href="<?php echo $row['assign_url']; ?>" download="" title="<?php echo $row['assign_title']; ?>"><i class="fa fa-download"></i></a></td>	
-                                            <td  id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $row['document_file']; ?>" download=""><i class="fa fa-download"></i></a></td>	
+                                            <td  id="downloadedfile"><a href="<?php echo $row['assign_url']; ?>" download="" title="download"><i class="fa fa-download"></i></a></td>	
+                                            <td  id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $row['document_file']; ?>" download="" title="download"><i class="fa fa-download"></i></a></td>	
                                             <td ><?php
                                                     foreach ($degree as $dgr):
                                                         if ($dgr->d_id == $row['std_degree']):
@@ -208,7 +208,7 @@
                                                 </td>	
                                                 <td ><?php echo date_formats($rowsub->submited_date); ?></td>	
                                                 <td ><?php echo $rowsub->comment; ?></td>
-                                                <td id="downloadedfile"><a href="uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="<?php echo $rowsub->document_file; ?>"><i class="fa fa-download"></i></a></td>                      	
+                                                <td id="downloadedfile"><a href="uploads/project_file/<?php echo $rowsub->document_file; ?>" download="" title="download"><i class="fa fa-download"></i></a></td>                      	
                                                 <td  class="menu-action">
                                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_assessment/<?php echo $rowsub->assignment_submit_id; ?>');" data-toggle="modal"><span class="label label-primary mr6 mb6">Assessment</span></a>
 

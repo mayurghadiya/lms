@@ -1,5 +1,5 @@
 <?php
-$degree = $this->db->get('degree')->result_array();
+$degree = $this->db->order_by('d_name', 'ASC')->get('degree')->result_array();
 $courses = $this->db->get('course')->result_array();
 $semesters = $this->db->get('semester')->result_array();
 $professor = $this->db->get('professor')->result_array();
@@ -34,18 +34,22 @@ $professor = $this->db->get('professor')->result_array();
                         </div>
 
                         <div class="form-group">
+                            <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
+                            <div class="col-sm-8">
+                                <select id="degree" class="form-control" name="degree">
+                                    <option value="">Select</option>
+                                    <?php foreach ($degree as $row) { ?>
+                                        <option value="<?php echo $row['d_id']; ?>"><?php echo $row['d_name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <select name="course" class="form-control"  id="course">
-                                    <option value="">Select branch</option>
-                                    <?php
-                                    $course = $this->db->get_where('course', array('course_status' => 1))->result();
-                                    foreach ($course as $crs) {
-                                        ?>
-                                        <option value="<?= $crs->course_id ?>"><?= $crs->c_name ?></option>
-                                        <?php
-                                    }
-                                    ?>
+                                    <option value="">Select</option>                                    
                                 </select>
                             </div>
                         </div>
@@ -53,7 +57,7 @@ $professor = $this->db->get('professor')->result_array();
                             <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
                             <div class="col-sm-8">
                                 <select name="semester" class="form-control" id="semester">
-                                    <option value="">Select semester</option>
+                                    <option value="">Select</option>
 
                                 </select>
                                 <lable class="error" id="error_lable_exist" style="color:red"></lable>
@@ -141,6 +145,26 @@ $professor = $this->db->get('professor')->result_array();
         $("#subcode").change(function () {
             $('#semester').val($("#semester option:eq(0)").val());
         });
+        
+        $('#degree').on('change', function(){
+            var degree_id = $(this).val();
+            branch_from_department(degree_id);
+        });
+
+        function branch_from_department(department_id) {
+            $('#course').find('option').remove().end();
+            $('#course').append('<option value>Select</option>');
+            $.ajax({
+                url: '<?php echo base_url(); ?>admin/course_list_from_degree/' + department_id,
+                type: 'get',
+                success: function (content) {
+                    var course = jQuery.parseJSON(content);
+                    $.each(course, function (key, value) {
+                        $('#course').append('<option value=' + value.course_id + '>' + value.c_name + '</option>');
+                    })
+                }
+            })
+        }
     });
     $.validator.setDefaults({
         submitHandler: function (form) {

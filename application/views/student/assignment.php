@@ -39,7 +39,7 @@
                                             <td><?php echo $count++; ?></td>
                                             <td><?php echo $row->assign_title; ?></td>	                                                    	                                                   
                                             <td><?php echo date("F d, Y", strtotime($row->assign_dos)); ?></td>		                                           
-                                            <td> <a href="<?php echo base_url(); ?>uploads/project_file/<?php echo $row->assign_filename; ?>" download="" title="<?php echo $row->assign_filename; ?>"><i class="fa fa-download"></i></a></td>
+                                            <td> <a href="<?php echo base_url(); ?>uploads/project_file/<?php echo $row->assign_filename; ?>" download="" title="download"><i class="fa fa-download"></i></a></td>
                                             <td><?php echo wordwrap($row->assignment_instruction, 30, "<br>\n"); ?></td>
                                             <td> 
                                                 <?php

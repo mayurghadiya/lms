@@ -550,7 +550,7 @@
                                                         ?></td>	
                                                     <td ><?php echo $rowsupl['upload_title']; ?></td>	
                                                     <td ><?php echo $rowsupl['upload_desc']; ?></td>	
-                                                    <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $rowsupl['upload_file_name']; ?>" download=""><i class="fa fa-download" title="<?php echo $rowsupl['upload_file_name']; ?>"></i></a></td>	
+                                                    <td id="downloadedfile"><a href="<?php echo base_url() . 'uploads/project_file/' . $rowsupl['upload_file_name']; ?>" download=""><i class="fa fa-download" title="download"></i></a></td>	
 
                                                 </tr>
                                             <?php endforeach; ?>						
