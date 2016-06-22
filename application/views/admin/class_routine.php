@@ -187,7 +187,7 @@
                             branch_list_from_department(department_id);
                             batch_from_department_and_branch(department_id, branch_id);
                             semesters_list_from_branch(branch_id);
-                            subject_list_from_branch_and_semester(branch_id, semester_id);
+                            subject_list_from_branch_and_semester(department_id,branch_id, semester_id);
                             professor_list(subject_id);
                             // branch list from department
                             $('#department').on('change', function () {
@@ -204,9 +204,10 @@
                             });
 
                             $('#semester').on('change', function () {
+                                var degree_id = $('#department').val();
                                 var branch_id = $('#branch').val();
                                 var semester_id = $(this).val();
-                                subject_list_from_branch_and_semester(branch_id, semester_id);
+                                subject_list_from_branch_and_semester(degree_id,branch_id, semester_id);
                             });
 
                             $('#subject').on('change', function () {
@@ -277,9 +278,9 @@
                                 });
                             }
 
-                            function subject_list_from_branch_and_semester(branch_id, semester_id) {
+                            function subject_list_from_branch_and_semester(degree_id,branch_id, semester_id) {
                                 $.ajax({
-                                    url: '<?php echo base_url(); ?>admin/subject_list_from_course_and_semester/' + branch_id + '/' + semester_id,
+                                    url: '<?php echo base_url(); ?>admin/subject_list_from_course_and_semester1/' + degree_id + '/' + branch_id + '/' + semester_id,
                                     type: 'get',
                                     success: function (content) {
                                         var subject_list = jQuery.parseJSON(content);

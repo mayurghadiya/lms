@@ -35,6 +35,7 @@
                                 <td class="menu-action">
                                     <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_edit_professor/<?php echo $row->professor_id; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
                                     <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/professor/delete/<?php echo $row->professor_id; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url(); ?>modal/popup/modal_professor_subject/<?php echo $row->professor_id; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6">Subject</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>																					

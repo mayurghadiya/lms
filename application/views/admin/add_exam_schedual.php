@@ -247,7 +247,7 @@
             })
             batch_from_degree_and_course(degree_id, course_id);
             exam_list_from_degree_and_course(degree_id, course_id, batch_id, semester);
-            subject_list(course_id, semester);
+            subject_list(degree_id,course_id, semester);
         });
 
         //batch from course and degree
@@ -258,7 +258,7 @@
             var semester = $('#semester').val();
             batch_from_degree_and_course(degree_id, course_id);
             exam_list_from_degree_and_course(degree_id, course_id, batch_id, semester);
-            subject_list(course_id, semester);
+            subject_list(degree_id,course_id, semester);
             get_semester_from_branch(course_id);
         })
 
@@ -269,7 +269,7 @@
             var batch = $(this).val();
             var semester = $('#semester').val();
             exam_list_from_degree_and_course(degree, course, batch, semester);
-            subject_list(course, semester);
+            subject_list(degree_id,course, semester);
         })
 
         $('#semester').on('change', function () {
@@ -278,7 +278,7 @@
             var batch = $('#batch').val();
             var semester = $(this).val();
             exam_list_from_degree_and_course(degree, course, batch, semester);
-            subject_list(course, semester);
+            subject_list(degree,course, semester);
         })
 
         //find batch from degree and course
@@ -316,10 +316,10 @@
         }
 
         // subject list from course and semester
-        function subject_list(course, semester) {
+        function subject_list(degree,course, semester) {
             $('#subject').find('option').remove().end();
             $.ajax({
-                url: '<?php echo base_url(); ?>admin/subject_list_from_course_and_semester/' + course + '/' + semester,
+                url: '<?php echo base_url(); ?>admin/subject_list_from_course_and_semester1/' +degree+ '/' + course + '/' + semester,
                 type: 'get',
                 success: function (content) {
                     $('#subject').append('<option value="">Select</option>');

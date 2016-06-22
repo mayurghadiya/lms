@@ -507,7 +507,29 @@ class Admin extends MY_Controller {
         $this->data['page'] = 'student';
         $this->__site_template('admin/student', $this->data);
     }
-
+    
+    function student_profile($param1 = '', $param2 = '')
+    {
+        $this->data['profile'] = $this->Crud_model->student_details($param1);  
+//        echo "<pre>";
+//        print_r($this->data['profile']);
+//        exit;
+        
+        $this->data['profile_pic'] = $this->Crud_model->get_image_url('student',$param1);
+        $this->data['exam_listing'] = $this->Crud_model->
+                student_exam_list($this->data['profile']->course_id, $this->data['profile']->semester_id);
+       $this->data['title'] = $this->lang_message('student_profile');
+        $this->data['page'] = 'student_profile';
+        $this->__site_template('admin/student_profile', $this->data);
+    }
+     function student_exam_marks()
+    {
+        $id=$this->input->post('exam_id');
+        $student_id=$this->input->post('student_id');
+         $this->data['exam_details'] = $this->Crud_model->student_exam_detail($student_id, $id);
+        $this->data['student_marks'] = $this->Crud_model->student_marks($student_id, $id);
+        $this->load->view('admin/student_exam_marks',$this->data);
+    }
     /**
      * Syllabus
      * @param string $param
@@ -924,7 +946,12 @@ class Admin extends MY_Controller {
         $this->data['edit_title'] = $this->lang_message('edit_events');
         $this->__site_template('admin/events', $this->data);
     }
-
+    function get_today_event()
+    {
+        $event=$this->db->get_where('event_manager',array('date(event_date)'=>date('Y-m-d')))->result_array();
+       
+        echo json_encode($event);
+    }
     /**
      * Assignments management
      * @param string $param1
@@ -1076,6 +1103,7 @@ class Admin extends MY_Controller {
         $this->data['assignment'] = $this->Crud_model->get_all_assignment();
 
         $this->data['submitedassignment'] = $this->Crud_model->get_submitted_assignments();
+       
         $this->data['course'] = $this->Crud_model->get_all_course_optimize();
         $this->data['semester'] = $this->Crud_model->get_all_semester_optimize();
         $this->data['batch'] = $this->Crud_model->get_all_batch_optimize();
@@ -4607,26 +4635,17 @@ class Admin extends MY_Controller {
      */
     function subject($param1 = '', $param2 = '') {
         if ($param1 == 'create') {
-            $data['sm_course_id'] = $this->input->post('course');
-            $data['sm_sem_id'] = $this->input->post('semester');
             $data['subject_name'] = $this->input->post('subname');
             $data['subject_code'] = $this->input->post('subcode');
-            $data['professor_id'] = implode(',', $this->input->post('professor'));
             $data['sm_status'] = 1;
-            $data['created_date'] = date('Y-m-d');
-
-
-            $this->db->insert('subject_manager', $data);
+            $data['created_date'] = date('Y-m-d');  $this->db->insert('subject_manager', $data);
             $this->session->set_flashdata('flash_message', $this->lang_message('subject_add'));
             redirect(base_url() . 'admin/subject/', 'refresh');
         }
         if ($param1 == 'do_update') {
 
-            $data['sm_course_id'] = $this->input->post('course');
-            $data['sm_sem_id'] = $this->input->post('semester');
             $data['subject_name'] = $this->input->post('subname');
             $data['subject_code'] = $this->input->post('subcode');
-            $data['professor_id'] = implode(',', $this->input->post('professor'));
             $data['sm_status'] = 1;
             $this->db->where('sm_id', $param2);
             $this->db->update('subject_manager', $data);
@@ -4648,12 +4667,62 @@ class Admin extends MY_Controller {
         $this->data['add_title'] = $this->lang_message('add_subject');
         $this->__site_template('admin/subject', $this->data);
     }
+    
+    function subject_detail($param1 = '', $param2 = '',$param3='')
+    {
+         if ($param1 == 'create') {
+            $data['degree_id'] = $this->input->post('degree');
+            $data['course_id'] = $this->input->post('course');
+            $data['sem_id'] = $this->input->post('semester');
+            $data['sm_id'] = $param2;
+            $data['professor_id'] = implode(',', $this->input->post('professor'));
+            $data['created_date'] = date('Y-m-d');
+            
+            $this->db->insert('subject_association', $data);
+            $this->session->set_flashdata('flash_message', $this->lang_message('subject_detail_add'));
+            redirect(base_url() . 'admin/subject_detail/'.$param2, 'refresh');
+        }
+        if ($param1 == 'do_update') {
 
+             $data['degree_id'] = $this->input->post('degree');
+            $data['course_id'] = $this->input->post('course');
+            $data['sem_id'] = $this->input->post('semester');
+            $data['professor_id'] = implode(',', $this->input->post('professor'));              
+            $this->db->where('sa_id', $param2);
+            $this->db->update('subject_association', $data);
+            $this->session->set_flashdata('flash_message', $this->lang_message('subject_detail_update'));
+            redirect(base_url() . 'admin/subject_detail/'.$this->input->post('smid'), 'refresh');
+        }
+         if ($param1 == 'delete') {
+           
+            $this->db->where('sa_id', $param2);
+            $this->db->delete('subject_association');
+            $this->session->set_flashdata('flash_message', $this->lang_message('subject_detail_delete'));
+            redirect(base_url() . 'admin/subject_detail/'.$param3, 'refresh');
+        }
+        $this->db->select('sa.*,d.d_name,c.c_name,s.s_name,p.name,sm.subject_name,sm.subject_code');
+        $this->db->where('sa.sm_id', $param1);
+        $this->db->from('subject_association sa');
+        $this->db->join('degree d','d.d_id=sa.degree_id');
+        $this->db->join('course c','c.course_id=sa.course_id');
+        $this->db->join('semester s','s.s_id=sa.sem_id');
+        $this->db->join('professor p','p.professor_id=sa.professor_id');
+        $this->db->join('subject_manager sm','sm.sm_id=sa.sm_id');        
+       $this->data['subjectdetail']= $this->db->get()->result();
+       
+        $this->data['page'] = 'subject_detail';
+        $this->data['title'] = 'Subject Detail';
+        $this->data['param'] = $param1;
+        $this->data['edit_title'] = $this->lang_message('edit_subject_detail');
+        $this->data['add_title'] = $this->lang_message('add_subject_detail');
+        $this->__site_template('admin/subject_detail', $this->data);
+    }
+    
     function getsubject() {
         $this->load->model('admin/Crud_model');
-        $this->data['subject'] = $this->Crud_model->getsubject($this->input->post('course'));
-        $this->data['course'] = $this->db->get('course')->result();
-        $this->data['semester'] = $this->db->get('semester')->result();
+        
+        $this->data['subject'] = $this->Crud_model->getsubject($this->input->post('degree'),$this->input->post('course'));
+      
         $this->load->view('admin/getsubject', $this->data);
     }
 
@@ -5585,7 +5654,12 @@ class Admin extends MY_Controller {
 
         echo json_encode($subjects);
     }
+    function subject_list_from_course_and_semester1($degree,$course, $semester)
+    {
+         $subjects = $this->Crud_model->subject_list_from_course_and_semester1($degree,$course, $semester);
 
+        echo json_encode($subjects);
+    }
     /**
      * Manage profile
      * @param string $param1
@@ -6047,14 +6121,14 @@ class Admin extends MY_Controller {
      * @param type $course_id
      * @param type $semester_id
      */
-    function subject_list($course_id = '', $semester_id, $time_table = '') {
+    function subject_list($degree_id,$course_id = '', $semester_id) {
         $this->load->model('admin/Crud_model');
-        $subjects = $this->Crud_model->subject_list($course_id, $semester_id);
+        $subjects = $this->Crud_model->subject_list($degree_id,$course_id, $semester_id);
+       
         echo "<option vale=''>Select</option>";
         foreach ($subjects as $row) {
             ?>
-            <option value="<?php echo $row->sm_id; ?>"
-            <?php if ($row->sm_id == $time_table) echo 'selected'; ?>><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?>
+            <option value="<?php echo $row->sm_id; ?>"><?php echo $row->subject_name . '  Code: ' . $row->subject_code; ?>
             </option>
             <!--echo "<option value={$row->sm_id}>{$row->subject_name}  (Code: {$row->subject_code})</option>";-->
             <?php

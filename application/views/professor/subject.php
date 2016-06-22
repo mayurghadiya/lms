@@ -25,7 +25,7 @@
                                 <td>
                                     <?php
                                     foreach ($course as $crs) {
-                                        if ($crs->course_id == $row->sm_course_id) {
+                                        if ($crs->course_id == $row->course_id) {
                                             echo $crs->c_name;
                                         }
                                     }
@@ -34,7 +34,7 @@
                                 <td>
                                     <?php
                                     foreach ($semester as $sem) {
-                                        if ($sem->s_id == $row->sm_sem_id) {
+                                        if ($sem->s_id == $row->sem_id) {
                                             echo $sem->s_name;
                                         }
                                     }

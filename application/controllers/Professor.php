@@ -67,8 +67,14 @@ class Professor extends MY_Controller {
      */
     function subject() {
         $dept = $this->session->userdata('department');
-        $this->data['subject'] = $this->db->query("SELECT * FROM subject_manager WHERE FIND_IN_SET('" . $this->session->userdata('login_user_id') . "',professor_id)")->result();
-
+       // $this->data['subject'] = $this->db->query("SELECT * FROM subject_manager WHERE FIND_IN_SET('" . $this->session->userdata('login_user_id') . "',professor_id)")->result();
+      
+       $this->db->select('sa.*,sm.*');
+        $this->db->where("FIND_IN_SET('".$this->session->userdata('login_user_id')."',sa.professor_id) !=",0);
+        $this->db->from('subject_association sa');
+        $this->db->join('subject_manager sm','sm.sm_id=sa.sm_id');
+         $this->data['subject']= $this->db->get()->result();
+         
         $login_id = $this->session->userdata('login_user_id');
         //$this->db->get_where("professor", array("professor_id" => $login_id))->result();
         $degree = $this->db->select('professor_id, department')->from('professor')->where('professor_id', $login_id)->get()->result();

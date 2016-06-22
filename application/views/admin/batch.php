@@ -20,7 +20,9 @@
                         <tr>
                             <th>No</th>
                             <th>Batch</th>
+                            <th hidden>Department</th>
                             <th>Department</th>
+                            <th hidden>Branch</th>
                             <th>Branch</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -34,7 +36,7 @@
                             <tr>
                                 <td></td>
                                 <td><?php echo $row['b_name']; ?></td>    
-                                <td> <?php
+                                <td hidden> <?php
                                     $explodedegree = explode(',', $row['degree_id']);
                                     foreach ($degree as $deg) {
                                         if (in_array($deg['d_id'], $explodedegree)) {
@@ -42,13 +44,49 @@
                                         }
                                     }
                                     ?></td>
-                                <td>                                                    
+                                <td> <?php
+                                    $count=0;
+                                    $explodedegree = explode(',', $row['degree_id']);
+                                    foreach ($degree as $deg) {
+                                        if (in_array($deg['d_id'], $explodedegree)) {
+                                             $count++;
+                                             if($count<3)
+                                             {
+                                                echo "<span>" . $deg['d_name'] . "</span>";
+                                             }
+                                        }
+                                    }
+                                    if($count>2)
+                                    {
+                                        echo "<a href='#' onclick="."showAjaxModal('".base_url()."modal/popup/modal_batch_detail/".$row['b_id']."/department');".">read more</a>";
+                                    }
+                                    ?></td>
+                                <td hidden>                                                    
                                     <?php
                                     $explodecourse = explode(',', $row['course_id']);
                                     foreach ($course as $crs) {
                                         if (in_array($crs->course_id, $explodecourse)) {
                                             echo "<span>" . $crs->c_name . "</span>";
                                         }
+                                    }
+                                    ?>
+                                </td>
+                                 <td>                                                    
+                                    <?php
+                                    $count1=0;
+                                    $explodecourse = explode(',', $row['course_id']);
+                                    foreach ($course as $crs) {
+                                        if (in_array($crs->course_id, $explodecourse)) {
+                                            $count1++;
+                                            if($count1<3)
+                                            {
+                                                 echo "<span>" . $crs->c_name . "</span>";
+                                            }
+                                        }
+                                    }
+                                    if($count1>2)
+                                    {
+                                       echo "<a href='#' onclick="."showAjaxModal('".base_url()."modal/popup/modal_batch_detail/".$row['b_id']."/branch');".">read more</a>";
                                     }
                                     ?>
                                 </td>
@@ -60,8 +98,8 @@
                                     <?php } ?>
                                 </td>
                                 <td class="menu-action">
-                                    <a href="#" onclick="showAjaxModal('<?php echo base_url();?>modal/popup/modal_edit_batch/<?php echo $row['b_id'];?>');"  data-toggle="tooltip" data-placement="top" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
-                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/batch/delete/<?php echo $row['b_id']; ?>');"  data-toggle="tooltip" data-placement="top"><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
+                                    <a href="#" onclick="showAjaxModal('<?php echo base_url();?>modal/popup/modal_edit_batch/<?php echo $row['b_id'];?>');"  data-toggle="modal" ><span class="label label-primary mr6 mb6"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+                                    <a href="#" onclick="confirm_modal('<?php echo base_url(); ?>admin/batch/delete/<?php echo $row['b_id']; ?>');"  data-toggle="modal" ><span class="label label-danger mr6 mb6"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>															

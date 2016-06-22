@@ -77,10 +77,11 @@
                         <div class="tab-pane fade" id="submitted-assignment">
                             <?php
                             $this->db->select('s.*,a.*');
+                            $this->db->where('s.student_id', $this->session->userdata('std_id'));
                             $this->db->from('assignment_submission s');
                             $this->db->join('assignment_manager a', 'a.assign_id=s.assign_id');
-                            $this->db->where('s.student_id', $this->session->userdata('std_id'));
-                            $submitassignment = $this->db->get();
+                            
+                            $submitassignment = $this->db->get()->result();
                             ?> 
                             <table id="submitted-assignment-datatable-list" class="table table-striped table-bordered table-responsive" cellspacing=0 width=100%>
                                 <thead>
@@ -95,7 +96,7 @@
                                 <tbody>
                                     <?php
                                     $count = 1;
-                                    foreach ($submitassignment->result() as $srow):
+                                    foreach ($submitassignment as $srow):
                                         ?>
                                         <tr>
                                             <td><?php echo $count++; ?></td>
@@ -103,7 +104,7 @@
                                             <td><?php echo date("F d, Y", strtotime($srow->submited_date)); ?></td>	
                                             <td><?php echo $srow->document_file; ?></td>
                                             <td > 
-                                                <a href="<?php echo base_url() ?>uploads/project_file/<?php echo $srow->assign_filename; ?>" download=""  data-toggle="tooltip" data-placement="top" title="download" ><i class="fa fa-download"></i></a>
+                                                <a href="<?php echo base_url() ?>uploads/project_file/<?php echo $srow->document_file; ?>" download=""  data-toggle="tooltip" data-placement="top" title="download" ><i class="fa fa-download"></i></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>						

@@ -318,6 +318,9 @@ $lang['semester_delete'] = 'Semester Deleted Successflly';
 $lang['subject_add'] = 'Subject added Successfully';
 $lang['subject_update'] = 'Subject updated Successfully';
 $lang['subject_delete'] = 'Subject Deleted Successfully';
+$lang['subject_detail_add'] = 'Subject detail added successfully';
+$lang['subject_detail_update'] = 'Subject detail updated successfully';
+$lang['subject_detail_delete'] = 'Subject detail deleted successfully';
 
 $lang['chancellor_add'] =  'Chancellor Added Successfully';
 $lang['chancellor_update'] =  'Chancellor Updated Successfully';
@@ -329,3 +332,5 @@ $lang['edit_forum_comment'] = 'Update Forum Comment';
 
 $lang['add_banner'] = 'Add Banner Slider';
 $lang['edit_banner'] = 'Update Banner Slider';
+
+$lang['student_profile'] = 'Student Profile';

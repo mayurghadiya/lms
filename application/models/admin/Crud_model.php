@@ -581,11 +581,19 @@ class Crud_model extends CI_Model {
      * @param int $semester_id
      * @return array
      */
-    function subject_list($course_id, $semester_id) {
-        return $this->db->get_where('subject_manager', array(
-                    'sm_course_id' => $course_id,
-                    'sm_sem_id' => $semester_id
-                ))->result();
+    function subject_list($degree_id,$course_id, $semester_id) {
+//        return $this->db->get_where('subject_manager', array(
+//                    'sm_course_id' => $course_id,
+//                    'sm_sem_id' => $semester_id
+//                ))->result();
+        
+         $this->db->select('sa.*,sm.*');
+        $this->db->where('sa.degree_id',$degree_id);
+        $this->db->where('sa.course_id',$course_id);
+        $this->db->where('sa.sem_id',$semester_id);
+        $this->db->from('subject_association sa');
+        $this->db->join('subject_manager sm','sm.sm_id=sa.sm_id');
+       return  $this->db->get()->result();
     }
 
     /**
@@ -857,7 +865,23 @@ class Crud_model extends CI_Model {
                     'sm_sem_id' => $semester
                 ))->result();
     }
-
+    function subject_list_from_course_and_semester1($degree,$course, $semester)
+    {
+//        return $this->db->get_where('subject_association', array(
+//                    'degree_id' => $degree,
+//                    'course_id' => $course,
+//                    'sem_id' => $semester
+//                ))->result();
+        
+        $this->db->select('sa.*,sm.*');
+        $this->db->where('sa.degree_id',$degree);
+        $this->db->where('sa.course_id',$course);
+        $this->db->where('sa.sem_id',$semester);
+        $this->db->from('subject_association sa');
+        $this->db->join('subject_manager sm','sm.sm_id=sa.sm_id');
+       return  $this->db->get()->result();
+        
+    }
     /**
      * Exam time table subject list
      * @param int $exam_id
@@ -1156,7 +1180,54 @@ class Crud_model extends CI_Model {
                         ->get()
                         ->result();
     }
+    function student_details($student_id) {
+        return $this->db->select('student.*, student.created_date AS Joining_date, course.course_id,course.c_name, semester.*, batch.b_id,batch.b_name, degree.d_name')
+                        ->from('student')
+                        ->join('course', 'course.course_id = student.course_id')
+                        ->join('semester', 'semester.s_id = student.semester_id')
+                        ->join('batch', 'batch.b_id = student.std_batch')
+                        ->join('degree', 'degree.d_id = student.std_degree')
+                        ->where('student.std_id', $student_id)
+                        ->get()
+                        ->row();
+    }
+    function student_exam_list($course, $semeseter) {
+        return $this->db->select()
+                        ->from('exam_manager')
+                        ->join('exam_type', 'exam_type.exam_type_id = exam_manager.em_type')
+                        ->join('semester', 'semester.s_id = exam_manager.em_semester')
+                        ->where(array(
+                            'exam_manager.course_id' => $course,
+                            'exam_manager.em_semester' => $semeseter,
+                            'exam_manager.exam_ref_name' => 'reguler'
+                        ))
+                        ->order_by('exam_manager.em_start_time', 'DESC')
+                        ->get()
+                        ->result();
+    }
 
+     function student_marks($student_id, $exam_id) {
+        return $this->db->select()
+                        ->from('marks_manager')
+                        ->join('subject_manager', 'subject_manager.sm_id = marks_manager.mm_subject_id')
+                        ->where(array(
+                            'mm_std_id' => $student_id,
+                            'mm_exam_id' => $exam_id
+                        ))
+                        ->get()
+                        ->result();
+    }
+    function student_exam_detail($student_id,$exam_id) {
+        return $this->db->select()
+                        ->from('exam_manager')
+                        ->join('course', 'course.course_id = exam_manager.course_id')
+                        ->join('semester', 'semester.s_id = exam_manager.em_semester')
+                        ->join('exam_seat_no', 'exam_seat_no.exam_id = exam_manager.em_id')
+                        ->where('em_id', $exam_id)
+                        ->where('exam_seat_no.student_id',$student_id)
+                        ->get()
+                        ->row();
+    }
     /**
      * Student list from degree, course, batch, and semester
      * @param string $degree
@@ -1739,10 +1810,20 @@ class Crud_model extends CI_Model {
                 ->get()->result();
     }
     
-    function getsubject($id)
+    function getsubject($did,$id)
     {
-        $this->db->where('sm_course_id',$id);
-        return $this->db->get('subject_manager')->result();
+        
+        $this->db->select('sm.sm_id,sm.subject_name,sm.subject_code');
+        $this->db->where('sa.degree_id', $did);
+        $this->db->where('sa.course_id', $id);
+        $this->db->from('subject_association sa');
+        $this->db->join('subject_manager sm','sm.sm_id=sa.sm_id');        
+         return $this->db->get()->result();
+       
+        
+//        
+//        $this->db->where('sm_course_id',$id);
+//        return $this->db->get('subject_manager')->result();
     }
     
     function cms_manager() {

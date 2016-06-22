@@ -1,5 +1,5 @@
 <?php
-$edit_data = $this->db->select()
+$edit_data = $this->db->select('exam_time_table.semester_id semid,exam_time_table.*,exam_manager.*,subject_manager.*,course.*,semester.*')
         ->from('exam_time_table')
         ->join('exam_manager', 'exam_manager.em_id = exam_time_table.exam_id')
         ->join('subject_manager', 'subject_manager.sm_id = exam_time_table.subject_id')
@@ -8,9 +8,11 @@ $edit_data = $this->db->select()
         ->where('exam_time_table.exam_time_table_id', $param2)
         ->get()
         ->row();
-
+//echo "<pre>";
+//print_r($edit_data);
+//exit;
 $course_id = $edit_data->course_id;
-$semester_id = $edit_data->semester_id;
+$semester_id = $edit_data->semid;
 $degree_id = $edit_data->degree_id;
 $batch_id = $edit_data->batch_id;
 $this->db->distinct('em_name');
@@ -30,10 +32,19 @@ $batch = $this->db->query($query)->result();
 $semester = explode(',', $edit_data->semester_id);
 $this->db->where_in('s_id', $semester);
 $semester = $this->db->get('semester')->result();
-$subjects = $this->db->get_where('subject_manager',[
-    'sm_course_id'  => $course_id,
-    'sm_sem_id' => $semester_id
-])->result();
+//$subjects = $this->db->get_where('subject_manager',[
+//    'sm_course_id'  => $course_id,
+//    'sm_sem_id' => $semester_id
+//])->result();
+
+$this->db->select('sa.*,sm.sm_id,sm.subject_name');
+        $this->db->where('sa.degree_id',$degree_id);
+        $this->db->where('sa.course_id',$course_id);
+        $this->db->where('sa.sem_id',$semester_id);
+        $this->db->from('subject_association sa');
+        $this->db->join('subject_manager sm','sm.sm_id=sa.sm_id');
+       $subjects=  $this->db->get()->result();
+      
 ?>
 <div class="row">
 
@@ -109,6 +120,7 @@ $subjects = $this->db->get_where('subject_manager',[
                 <div class="form-group">
                     <label class="col-sm-4 control-label"><?php echo ucwords("Subject"); ?><span style="color:red">*</span></label>
                     <div class="col-sm-8">
+                        
                         <select class="form-control" id="edit_subject" name="subject" required="">
                             <option value="">Select</option>
                             <?php
@@ -258,13 +270,9 @@ $subjects = $this->db->get_where('subject_manager',[
         });
     }
     
-    function exam_subjects(exam_id) {
-    
-    }
-
-    function subject_list(course_id, semester_id) {
+    function subject_list(degree_id,course_id, semester_id) {
         $.ajax({
-            url: '<?php echo base_url(); ?>admin/subject_list/' + course_id + '/' + semester_id + '/' + subject_id,
+            url: '<?php echo base_url(); ?>admin/subject_list/'+ degree_id + '/' + course_id + '/' + semester_id,
             type: 'get',
             success: function (content) {
                 $('#edit_subject').html(content);
@@ -276,20 +284,22 @@ $subjects = $this->db->get_where('subject_manager',[
         var course_id = $('#edit_course').val();
         var semester_id = $('#edit_semester').val();
         // get_exam_list(course_id, semester_id, time_table_exam_id);
-        subject_list(course_id, semester_id, subject_id);
+        //subject_list(course_id, semester_id, subject_id);
 
         $('#edit_course').on('click', function () {
             var course_id = $(this).val();
+            var degree_id = $('#edit_degree').val();
             var semester_id = $('#edit_semester').val();
             get_exam_list(course_id, semester_id, time_table_exam_id);
-            subject_list(course_id, semester_id, subject_id);
+            subject_list(degree_id,course_id, semester_id);
         })
 
         $('#edit_semester').on('click', function () {
             var course_id = $('#edit_course').val();
+            var degree_id = $('#edit_degree').val();
             var semester_id = $(this).val();
             get_exam_list(course_id, semester_id, time_table_exam_id);
-            subject_list(course_id, semester_id, subject_id);
+            subject_list(degree_id,course_id, semester_id);
         })
     })
 </script>

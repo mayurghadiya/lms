@@ -33,86 +33,6 @@ foreach ($edit_data as $row):
                                     <input type="text" class="form-control" name="subcode" id="subcode" value="<?php echo $row['subject_code']; ?>" />
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label"><?php echo ucwords("department"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-8">
-                                    <select id="edit_degree" class="form-control" name="degree">
-                                        <option value="">Select</option>
-                                        <?php foreach ($degree as $department) { ?>
-                                            <option value="<?php echo $department['d_id']; ?>"
-                                                    <?php if($branch->degree_id == $department['d_id']) echo 'selected'; ?>><?php echo $department['d_name']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label"><?php echo ucwords("Branch"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-8">
-                                    <select name="course" class="form-control" id="course1">
-                                        <option value="">Select</option>
-                                        <?php
-                                        $course = $this->db->get_where('course', array('course_status' => 1))->result();
-                                        foreach ($course as $crs) {
-                                            if ($crs->course_id == $row['sm_course_id']) {
-                                                ?>
-                                                <option value="<?= $crs->course_id ?>" selected><?= $crs->c_name ?></option>
-                                                <?php
-                                            } else {
-                                                ?>
-                                                <option value="<?= $crs->course_id ?>" ><?= $crs->c_name ?></option>
-                                                <?php
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label"><?php echo ucwords("Semester"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-8">
-                                    <select name="semester" class="form-control" id="semester1">
-                                        <option value="">Select</option>
-                                        <?php
-                                        $datasem = $this->db->get_where('semester', array('s_status' => 1))->result();
-                                        foreach ($datasem as $rowsem) {
-                                            if ($rowsem->s_id == $row['sm_sem_id']) {
-                                                ?>
-                                                <option value="<?= $rowsem->s_id ?>" selected><?= $rowsem->s_name ?></option>
-                                                <?php
-                                            } else {
-                                                ?>
-                                                <option value="<?= $rowsem->s_id ?>" ><?= $rowsem->s_name ?></option>
-                                                <?php
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label"><?php echo ucwords("Professor"); ?><span style="color:red">*</span></label>
-                                <div class="col-sm-8">
-                                    <select name="professor[]" class="form-control" id="professor1" multiple="">                                      
-                                        <?php
-                                        $professor_id = explode(',', $row['professor_id']);
-                                        $professor = $this->db->get_where('professor')->result();
-                                        foreach ($professor as $prof) {
-                                            if (in_array($prof->professor_id, $professor_id)) {
-                                                ?>
-                                                <option value="<?= $prof->professor_id; ?>" selected><?= $prof->name ?></option>
-                                                <?php
-                                            } else {
-                                                ?>
-                                                <option value="<?= $prof->professor_id ?>" ><?= $prof->name ?></option>
-                                                <?php
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-4 col-sm-8">
                                     <button type="submit" class="submit btn btn-info vd_bg-green"><?php echo ucwords("Update"); ?></button>
@@ -155,50 +75,10 @@ endforeach;
             rules: {
                 subname: "required",
                 subcode: "required",
-                course: "required",
-                semester: {
-                    required: true,
-                    remote: {
-                        url: "<?= base_url() ?>admin/checksubject",
-                        type: "post",
-                        data: {
-                            subname: function () {
-
-                                return $("#subname").val();
-                            },
-                            subcode: function () {
-
-                                return $("#subcode").val();
-                            },
-                            course: function () {
-
-                                return $("#course").val();
-                            },
-                            semester: function () {
-
-                                return $("#semester").val();
-                            },
-                        }
-                    }
-
-                },
-                'professor[]':
-                        {
-                            required: true,
-                        },
             },
             messages: {
                 subname: "Enter subject name",
                 subcode: "Enter subject code",
-                course: "Select branch",
-                semester: {
-                    required: "Select semester",
-                    remote: "subject already exists in this course and semester",
-                },
-                'professor[]':
-                        {
-                            required: "Select Professor",
-                        },
             }
         });
         

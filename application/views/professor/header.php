@@ -189,12 +189,12 @@
                                                     <a id="link-subject" href="<?php echo base_url(); ?>professor/subject">
                                                         <i class="s16 fa fa-book"></i>
                                                         <span class="txt">Subject</span></a></li>
-                                                <li>
+<!--                                                <li>
                                                     <a id="link-syllabus" href="<?php echo base_url(); ?>professor/syllabus">
                                                         <i class="s16 fa fa-list"></i>
                                                         <span class="txt">Syllabus</span>
                                                     </a>
-                                                </li>
+                                                </li>-->
                                                 <li>
                                                     <a id="link-holiday" href="<?php echo base_url(); ?>professor/holiday">
                                                         <i class="s16 fa fa-calendar"></i>
@@ -258,7 +258,7 @@
                                                         <span class="txt">Digital Library</span>
                                                     </a>
                                                 </li>
-                                                <li>
+<!--                                                <li>
                                                     <a id="link-participate" href="<?php echo base_url(); ?>professor/participate">
                                                         <i class="s16 icomoon-icon-user-plus-2"></i>
                                                         <span class="txt">Participate</span>
@@ -269,7 +269,7 @@
                                                         <i class="s16 icomoon-icon-attachment"></i>
                                                         <span class="txt">Courseware</span>
                                                     </a>
-                                                </li>
+                                                </li>-->
                                             </ul>
                                         </li>
                                         <li>
@@ -290,7 +290,7 @@
                                         ];
                                         ?>
 
-                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
+<!--                                        <li class="hasSub<?php echo highlight_menu($page, $pages); ?>">
                                             <a href="#" class="<?php echo exapnd_not_expand_menu($page, $pages); ?>"><i class="icomoon-icon-arrow-down-2 s16 hasDrop"></i><i class="s16 icomoon-icon-lock"></i>
                                                 <span class="txt">University</span></a>
                                             <ul <?php echo navigation_show_hide_ul($page, $pages); ?>>
@@ -301,7 +301,7 @@
                                                     </a>
                                                 </li>                                          
                                             </ul>
-                                        </li>
+                                        </li>-->
                                         <li>
                                             <a <?php echo active_single_menu('attendance', $page); ?> href="<?php echo base_url(); ?>professor/attendance">
                                                 <i class="s16 fa fa-calculator"></i>
